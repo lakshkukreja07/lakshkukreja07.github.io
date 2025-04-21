@@ -18,31 +18,33 @@
 </div>
 <div class="buttons">
 <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-<div id="noWrapper">
 <button class="btn" id="noButton">No</button>
 </div>
-</div>
 <script>
-function nextPage() {
-window.location.href = "yes.html";
-}
-function moveButton() {
-const wrapper = document.getElementById("noWrapper");
-const maxOffset = 30;
-const offsetX = Math.floor(Math.random() * (maxOffset * 2 + 1)) - maxOffset;
-const offsetY = Math.floor(Math.random() * (maxOffset * 2 + 1)) - maxOffset;
-wrapper.style.position = "relative";
-wrapper.style.left = `${offsetX}px`;
-wrapper.style.top = `${offsetY}px`;
-}
-document.addEventListener("DOMContentLoaded", () => {
-const noButton = document.getElementById("noButton");
-noButton.addEventListener("mouseover", moveButton);
-noButton.addEventListener("touchstart", function (e) {
-e.preventDefault();
-moveButton();
-});
-});
+  function nextPage() {
+    window.location.href = "yes.html";
+  }
+
+  function moveButton(event) {
+    const button = document.getElementById('noButton');
+
+    // Increase movement range: -100px to +100px
+    const offsetX = Math.floor(Math.random() * 200 - 100);
+    const offsetY = Math.floor(Math.random() * 200 - 100);
+
+    button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const noButton = document.getElementById('noButton');
+
+    // Move on hover and touch
+    noButton.addEventListener("mouseover", moveButton);
+    noButton.addEventListener("touchstart", function (e) {
+      e.preventDefault();
+      moveButton();
+    });
+  });
 </script>
 </body>
 </html>
