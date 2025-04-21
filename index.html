@@ -2,24 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Invitation</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1 class="header_text">Do you wanna go out with me?</h1>
-    <h1 class="header_text">Are you free tomorrow?</h1>
+    <div id="text1" class="header_text"></div>
+    <div id="text2" class="header_text"></div>
 
     <div class="gif_container">
-      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration" />
+      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute gif">
     </div>
 
-    <div class="buttons">
+    <div class="button_wrapper">
       <button class="btn" id="noButton">No</button>
       <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
     </div>
+	
+	<div class="footer">
+		© Laksh Kukreja • All Rights Reserved • 2025 |
+	<a href="https://github.com/lakshkukreja07" target="_blank">GitHub</a>
+	</div>
   </div>
 
   <script>
@@ -27,7 +31,7 @@
       window.location.href = "yes.html";
     }
 
-    function moveButton() {
+    function moveButton(event) {
       const button = document.getElementById('noButton');
       const offsetX = Math.floor(Math.random() * 200 - 100);
       const offsetY = Math.floor(Math.random() * 200 - 100);
@@ -41,6 +45,42 @@
         e.preventDefault();
         moveButton();
       });
+
+      // Typing animation
+      const line1 = "Do You Wanna Go Out With Me?";
+      const line2 = "Are You Free Tomorrow?";
+      const text1 = document.getElementById("text1");
+      const text2 = document.getElementById("text2");
+
+      let i = 0;
+      let j = 0;
+
+      function typeFirstLine() {
+        if (i < line1.length) {
+          text1.textContent += line1.charAt(i);
+          i++;
+          setTimeout(typeFirstLine, 50);
+        } else {
+          text1.classList.remove("typing");
+          text1.classList.add("typed-done");
+          setTimeout(typeSecondLine, 300);
+        }
+      }
+
+      function typeSecondLine() {
+        if (j < line2.length) {
+          text2.textContent += line2.charAt(j);
+          j++;
+          setTimeout(typeSecondLine, 50);
+        } else {
+          text2.classList.remove("typing");
+          text2.classList.add("typed-done");
+        }
+      }
+
+      text1.classList.add("typing");
+      text2.classList.add("typing");
+      typeFirstLine();
     });
   </script>
 </body>
