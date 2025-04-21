@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Date Invite</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <div class="container">
@@ -22,50 +22,50 @@
         </div>
     </div>
 
-<script>
-    function nextPage() {
-        window.location.href = "yes.html";
-    }
+    <script>
+        function nextPage() {
+            window.location.href = "yes.html";
+        }
 
-    function moveButton() {
-        const button = document.getElementById('noButton');
+        function moveButton(event) {
+            const button = document.getElementById('noButton');
+            const parent = document.querySelector('.buttons');
 
-        // Get window and button dimensions
-        const buttonWidth = button.offsetWidth;
-        const buttonHeight = button.offsetHeight;
-        const padding = 20; // margin from edge
-        const maxX = window.innerWidth - buttonWidth - padding;
-        const maxY = window.innerHeight - buttonHeight - padding;
+            const parentRect = parent.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
 
-        // Get current position of mouse or touch
-        let mouseX = event.clientX || (event.touches && event.touches[0].clientX);
-        let mouseY = event.clientY || (event.touches && event.touches[0].clientY);
+            const padding = 10;
 
-        // Generate new position that isn't too close to current pointer
-        let newX, newY;
-        do {
-            newX = Math.floor(Math.random() * maxX);
-            newY = Math.floor(Math.random() * maxY);
-        } while (Math.abs(newX - mouseX) < 80 && Math.abs(newY - mouseY) < 80);
+            // Limit movement to ±80px from current position
+            const currentX = parseInt(button.style.left || 0, 10);
+            const currentY = parseInt(button.style.top || 0, 10);
 
-        button.style.position = "absolute";
-        button.style.left = `${newX}px`;
-        button.style.top = `${newY}px`;
-    }
+            const maxMove = 80;
 
-    // Add hover and touch support after page loads
-    document.addEventListener("DOMContentLoaded", function () {
-        const noButton = document.getElementById('noButton');
+            let newX = currentX + (Math.random() * maxMove * 2 - maxMove);
+            let newY = currentY + (Math.random() * maxMove * 2 - maxMove);
 
-        // Desktop (hover)
-        noButton.addEventListener("mouseover", moveButton);
+            // Constrain to container
+            newX = Math.max(padding, Math.min(parent.clientWidth - button.offsetWidth - padding, newX));
+            newY = Math.max(padding, Math.min(parent.clientHeight - button.offsetHeight - padding, newY));
 
-        // Mobile (touch)
-        noButton.addEventListener("touchstart", function (e) {
-            e.preventDefault(); // prevent accidental click
-            moveButton();
+            button.style.left = `${newX}px`;
+            button.style.top = `${newY}px`;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const noButton = document.getElementById('noButton');
+
+            // Set initial position to match yesButton level
+            noButton.style.left = '120px'; // near yesButton
+            noButton.style.top = '60px';   // same height as yesButton
+
+            noButton.addEventListener("mouseover", moveButton);
+            noButton.addEventListener("touchstart", (e) => {
+                e.preventDefault();
+                moveButton(e);
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
