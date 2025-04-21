@@ -1,0 +1,95 @@
+/* Prevent scroll and center everything */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+    background-color: rgb(189, 225, 122);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container for all content */
+.container {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Header text */
+.header_text {
+    font-size: 22px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin: 5px 0;
+    line-height: 1.2;
+}
+
+/* GIF area */
+.gif_container {
+    width: 150px;
+    height: 150px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gif_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* Buttons layout */
+.buttons {
+    position: relative;
+    width: 220px;
+    height: 100px;
+    margin-top: 10px;
+}
+
+/* Button base */
+.btn {
+    background-color: #ffffff;
+    color: rgb(233, 48, 48);
+    padding: 8px 14px;
+    font-size: 12px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+
+/* Hover effect */
+.btn:hover {
+    background-color: #ffeaea;
+    transform: scale(1.05);
+}
+
+/* Positioning */
+#yesButton {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+#noButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: all 0.3s ease;
+}
