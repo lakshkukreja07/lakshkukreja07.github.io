@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Date Invite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 class="header_text">Do you wanna go out with me?</h1>
+            <h1 class="header_text">Are you free tomorrow?</h1>
+        </div>
+        <div class="gif_container">
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
+        </div>
+        <div class="buttons">
+            <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+            <button class="btn" id="noButton">No</button>
+        </div>
+    </div>
+
+<script>
+    function nextPage() {
+        window.location.href = "yes.html";
+    }
+
+    function moveButton() {
+        const button = document.getElementById('noButton');
+
+        // Get window and button dimensions
+        const buttonWidth = button.offsetWidth;
+        const buttonHeight = button.offsetHeight;
+        const padding = 20; // margin from edge
+        const maxX = window.innerWidth - buttonWidth - padding;
+        const maxY = window.innerHeight - buttonHeight - padding;
+
+        // Get current position of mouse or touch
+        let mouseX = event.clientX || (event.touches && event.touches[0].clientX);
+        let mouseY = event.clientY || (event.touches && event.touches[0].clientY);
+
+        // Generate new position that isn't too close to current pointer
+        let newX, newY;
+        do {
+            newX = Math.floor(Math.random() * maxX);
+            newY = Math.floor(Math.random() * maxY);
+        } while (Math.abs(newX - mouseX) < 80 && Math.abs(newY - mouseY) < 80);
+
+        button.style.position = "absolute";
+        button.style.left = `${newX}px`;
+        button.style.top = `${newY}px`;
+    }
+
+    // Add hover and touch support after page loads
+    document.addEventListener("DOMContentLoaded", function () {
+        const noButton = document.getElementById('noButton');
+
+        // Desktop (hover)
+        noButton.addEventListener("mouseover", moveButton);
+
+        // Mobile (touch)
+        noButton.addEventListener("touchstart", function (e) {
+            e.preventDefault(); // prevent accidental click
+            moveButton();
+        });
+    });
+</script>
+</body>
+</html>
