@@ -26,21 +26,21 @@
 function nextPage() {
 window.location.href = "yes.html";
 }
-function moveButton(event) {
-const button = document.getElementById('noButton');
-const range = 30;
-const offsetX = Math.floor(Math.random() * range * 2 - range);
-const offsetY = Math.floor(Math.random() * range * 2 - range);
-button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+function moveButton() {
+const wrapper = document.getElementById("noWrapper");
+const maxOffset = 30;
+const offsetX = Math.floor(Math.random() * (maxOffset * 2 + 1)) - maxOffset;
+const offsetY = Math.floor(Math.random() * (maxOffset * 2 + 1)) - maxOffset;
+wrapper.style.position = "relative";
+wrapper.style.left = `${offsetX}px`;
+wrapper.style.top = `${offsetY}px`;
 }
 document.addEventListener("DOMContentLoaded", () => {
-const noButton = document.getElementById('noButton');
-noButton.style.left = '120px';
-noButton.style.top = '50px';
+const noButton = document.getElementById("noButton");
 noButton.addEventListener("mouseover", moveButton);
 noButton.addEventListener("touchstart", function (e) {
 e.preventDefault();
-moveButton(e);
+moveButton();
 });
 });
 </script>
