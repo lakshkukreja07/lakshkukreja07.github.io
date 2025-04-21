@@ -1,71 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Date Invite</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Date Invite</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <div>
-            <h1 class="header_text">Do you wanna go out with me?</h1>
-            <h1 class="header_text">Are you free tomorrow?</h1>
-        </div>
-        <div class="gif_container">
-            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
-        </div>
-        <div class="buttons">
-            <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-            <button class="btn" id="noButton">No</button>
-        </div>
+  <div class="container">
+    <div>
+      <h1 class="header_text">Do you wanna go out with me?</h1>
+      <h1 class="header_text">Are you free tomorrow?</h1>
     </div>
+    <div class="gif_container">
+      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
+    </div>
+    <div class="buttons">
+      <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+      <button class="btn" id="noButton">No</button>
+    </div>
+  </div>
 
-    <script>
-        function nextPage() {
-            window.location.href = "yes.html";
-        }
+  <script>
+    function nextPage() {
+      window.location.href = "yes.html";
+    }
 
-        function moveButton(event) {
-            const button = document.getElementById('noButton');
-            const parent = document.querySelector('.buttons');
+    function moveButton(event) {
+      const button = document.getElementById('noButton');
+      const parent = document.querySelector('.buttons');
 
-            const parentRect = parent.getBoundingClientRect();
-            const buttonRect = button.getBoundingClientRect();
+      // Get parent size
+      const parentWidth = parent.clientWidth;
+      const parentHeight = parent.clientHeight;
 
-            const padding = 10;
+      // Define movement bounds near the original position
+      const centerX = parentWidth / 2 + 40; // original position offset from center
+      const centerY = parentHeight / 2;
 
-            // Limit movement to ±80px from current position
-            const currentX = parseInt(button.style.left || 0, 10);
-            const currentY = parseInt(button.style.top || 0, 10);
+      const range = 40; // limit movement to ±40px
 
-            const maxMove = 80;
+      // Generate small random offsets
+      let newX = centerX + (Math.random() * range * 2 - range);
+      let newY = centerY + (Math.random() * range * 2 - range);
 
-            let newX = currentX + (Math.random() * maxMove * 2 - maxMove);
-            let newY = currentY + (Math.random() * maxMove * 2 - maxMove);
+      // Constrain inside the container
+      newX = Math.max(0, Math.min(parentWidth - button.offsetWidth, newX));
+      newY = Math.max(0, Math.min(parentHeight - button.offsetHeight, newY));
 
-            // Constrain to container
-            newX = Math.max(padding, Math.min(parent.clientWidth - button.offsetWidth - padding, newX));
-            newY = Math.max(padding, Math.min(parent.clientHeight - button.offsetHeight - padding, newY));
+      // Apply position
+      button.style.left = `${newX}px`;
+      button.style.top = `${newY}px`;
+    }
 
-            button.style.left = `${newX}px`;
-            button.style.top = `${newY}px`;
-        }
+    document.addEventListener("DOMContentLoaded", () => {
+      const noButton = document.getElementById('noButton');
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const noButton = document.getElementById('noButton');
+      // Set consistent initial position next to yesButton
+      noButton.style.left = '120px';
+      noButton.style.top = '50px';
 
-            // Set initial position to match yesButton level
-            noButton.style.left = '120px'; // near yesButton
-            noButton.style.top = '60px';   // same height as yesButton
-
-            noButton.addEventListener("mouseover", moveButton);
-            noButton.addEventListener("touchstart", (e) => {
-                e.preventDefault();
-                moveButton(e);
-            });
-        });
-    </script>
+      noButton.addEventListener("mouseover", moveButton);
+      noButton.addEventListener("touchstart", function (e) {
+        e.preventDefault();
+        moveButton(e);
+      });
+    });
+  </script>
 </body>
 </html>
