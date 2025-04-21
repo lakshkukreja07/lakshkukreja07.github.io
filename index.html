@@ -9,40 +9,39 @@
 </head>
 <body>
 <div class="container">
-<div>
-<h1 class="header_text">Do you wanna go out with me?</h1>
-<h1 class="header_text">Are you free tomorrow?</h1>
+  <div>
+    <h1 class="header_text">Do you wanna go out with me?</h1>
+    <h1 class="header_text">Are you free tomorrow?</h1>
+  </div>
+  <div class="gif_container">
+    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
+    <div class="buttons">
+      <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+      <button class="btn" id="noButton">No</button>
+    </div>
+  </div>
 </div>
-<div class="gif_container">
-<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
-<div class="buttons">
-<button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-<button class="btn" id="noButton">No</button>
-</div>
+
 <script>
 function nextPage() {
-window.location.href = "yes.html";
+  window.location.href = "yes.html";
 }
+
 function moveButton(event) {
-    const button = document.getElementById('noButton');
+  const button = document.getElementById('noButton');
+  const offsetX = Math.floor(Math.random() * 300 - 150);
+  const offsetY = Math.floor(Math.random() * 300 - 150);
+  button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+}
 
-    // More movement: range -150px to +150px
-    const offsetX = Math.floor(Math.random() * 300 - 150);
-    const offsetY = Math.floor(Math.random() * 300 - 150);
-
-    button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const noButton = document.getElementById('noButton');
-
-    // Only trigger movement on user interaction
-    noButton.addEventListener("mouseover", moveButton);
-    noButton.addEventListener("touchstart", function (e) {
-      e.preventDefault();
-      moveButton();
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const noButton = document.getElementById('noButton');
+  noButton.addEventListener("mouseover", moveButton);
+  noButton.addEventListener("touchstart", function (e) {
+    e.preventDefault();
+    moveButton();
   });
+});
 </script>
 </body>
 </html>
