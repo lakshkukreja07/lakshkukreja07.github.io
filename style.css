@@ -32,95 +32,69 @@
 }
 
 html, body {
-    font-family: 'NType82-Regular', sans-serif;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background-color: rgb(189, 225, 122);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'NType82-Regular', sans-serif;
+  background-color: rgb(189, 225, 122);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-    width: 100%;
-    max-width: 500px;
-    height: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .header_text {
-    font-size: 22px;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    margin: 5px 0;
-    line-height: 1.2;
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+  margin: 8px 0;
 }
 
 .gif_container {
-    width: 150px;
-    height: 150px;
-    margin: 10px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
 }
 
 .gif_container img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
 }
 
 .buttons {
-    width: 100%;
-    max-width: 200px;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    position: relative;
-    z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  position: relative;
 }
 
 .btn {
-    background-color: #ffffff;
-    color: rgb(233, 48, 48);
-    padding: 10px 18px;
-    font-size: 14px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    white-space: nowrap;
-    position: relative;
-    transition: transform 0.3s ease;
+  background-color: #ffffff;
+  color: rgb(233, 48, 48);
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  position: relative;
 }
 
 .btn:hover {
-    background-color: #ffeaea;
-    transform: scale(1.05);
-}
-
-#yesButton {
-    margin-left: auto; /* Position Yes button on the right */
+  background-color: #ffeaea;
 }
 
 #noButton {
-    margin-right: auto; /* Position No button on the left */
-}
-
-#noWrapper {
-    position: relative;
-    width: fit-content;
-    height: fit-content;
+  transition: transform 0.3s ease;
 }
