@@ -50,14 +50,10 @@ html, body {
 }
 
 .buttons {
-    position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 20px;
     margin-top: 20px;
-    width: auto;
-    height: 50px;
 }
 
 .btn {
@@ -70,6 +66,7 @@ html, body {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     white-space: nowrap;
+    position: relative; /* important! keeps layout stable */
 }
 
 .btn:hover {
