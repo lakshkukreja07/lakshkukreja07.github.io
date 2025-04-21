@@ -1,98 +1,97 @@
-/* Custom Font 1 */
 @font-face {
-    font-family: 'LetteraMonoLL-Regular';
-    src: url('https://lakshkukreja07.github.io/assets/font/LetteraMonoLL-Regular.woff2') format('woff2'),
-         url('https://lakshkukreja07.github.io/assets/font/LetteraMonoLL-Regular.woff') format('woff'),
-         url('https://lakshkukreja07.github.io/assets/font/LetteraMonoLL-Regular.ttf') format('truetype'),
-         url('https://lakshkukreja07.github.io/assets/font/LetteraMonoLL-Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'LetteraMonoLL-Regular';
+  src: url('https://lakshkukreja07.github.io/assets/font/LetteraMonoLL-Regular.woff2') format('woff2'),
+       url('https://lakshkukreja07.github.io/assets/font/LetteraMonoLL-Regular.woff') format('woff'),
+       url('https://lakshkukreja07.github.io/assets/font/LetteraMonoLL-Regular.ttf') format('truetype'),
+       url('https://lakshkukreja07.github.io/assets/font/LetteraMonoLL-Regular.otf') format('opentype');
 }
 
-/* Custom Font 2 */
 @font-face {
-    font-family: 'NType82-Regular';
-    src: url('https://lakshkukreja07.github.io/assets/font/NType82-Regular.woff2') format('woff2'),
-         url('https://lakshkukreja07.github.io/assets/font/NType82-Regular.woff') format('woff'),
-         url('https://lakshkukreja07.github.io/assets/font/NType82-Regular.ttf') format('truetype'),
-         url('https://lakshkukreja07.github.io/assets/font/NType82-Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'NType82-Regular';
+  src: url('https://lakshkukreja07.github.io/assets/font/NType82-Regular.woff2') format('woff2'),
+       url('https://lakshkukreja07.github.io/assets/font/NType82-Regular.woff') format('woff'),
+       url('https://lakshkukreja07.github.io/assets/font/NType82-Regular.ttf') format('truetype'),
+       url('https://lakshkukreja07.github.io/assets/font/NType82-Regular.otf') format('opentype');
 }
 
-/* Custom Font 3 */
 @font-face {
-    font-family: 'NDot57Caps';
-    src: url('https://lakshkukreja07.github.io/assets/font/NDot57Caps.woff2') format('woff2'),
-         url('https://lakshkukreja07.github.io/assets/font/NDot57Caps.woff') format('woff'),
-         url('https://lakshkukreja07.github.io/assets/font/NDot57Caps.ttf') format('truetype'),
-         url('https://lakshkukreja07.github.io/assets/font/NDot57Caps.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'NDot57Caps';
+  src: url('https://lakshkukreja07.github.io/assets/font/NDot57Caps.woff2') format('woff2'),
+       url('https://lakshkukreja07.github.io/assets/font/NDot57Caps.woff') format('woff'),
+       url('https://lakshkukreja07.github.io/assets/font/NDot57Caps.ttf') format('truetype'),
+       url('https://lakshkukreja07.github.io/assets/font/NDot57Caps.otf') format('opentype');
 }
 
-html, body {
+hhtml, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   font-family: 'NType82-Regular', sans-serif;
-  background-color: rgb(189, 225, 122);
+  background-color: #f4c2c2;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .container {
-  width: 100%;
-  max-width: 400px;
-  padding: 20px;
-  box-sizing: border-box;
   text-align: center;
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .header_text {
-  font-size: 22px;
-  color: white;
-  font-weight: bold;
-  margin: 8px 0;
+  font-size: 36px;
+  color: #3d2b1f;
+  margin: 10px 0;
 }
 
 .gif_container {
   width: 200px;
   height: 200px;
-  margin: 20px auto;
+  margin: 20px 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .gif_container img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
-.buttons {
+.button_wrapper {
   display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
-  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+  gap: 24px;
 }
 
 .btn {
   background-color: #ffffff;
-  color: rgb(233, 48, 48);
-  padding: 10px 20px;
+  color: #000000;
+  padding: 12px 22px;
   font-size: 16px;
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  position: relative;
+  transition: all 0.3s ease;
+  font-family: 'LetteraMonoLL-Regular', sans-serif;
 }
 
 .btn:hover {
-  background-color: #ffeaea;
+  background-color: #fbe8e8;
+  transform: scale(1.05);
 }
 
 #noButton {
