@@ -27,33 +27,16 @@
       window.location.href = "yes.html";
     }
 
-    function moveButton(event) {
-      const button = document.getElementById('noButton');
-      const parent = document.querySelector('.buttons');
+function moveButton(event) {
+    const button = document.getElementById('noButton');
+    const range = 30; // pixels
 
-      // Get parent size
-      const parentWidth = parent.clientWidth;
-      const parentHeight = parent.clientHeight;
+    // Generate small random x/y
+    const offsetX = Math.floor(Math.random() * range * 2 - range);
+    const offsetY = Math.floor(Math.random() * range * 2 - range);
 
-      // Define movement bounds near the original position
-      const centerX = parentWidth / 2 + 40; // original position offset from center
-      const centerY = parentHeight / 2;
-
-      const range = 40; // limit movement to ±40px
-
-      // Generate small random offsets
-      let newX = centerX + (Math.random() * range * 2 - range);
-      let newY = centerY + (Math.random() * range * 2 - range);
-
-      // Constrain inside the container
-      newX = Math.max(0, Math.min(parentWidth - button.offsetWidth, newX));
-      newY = Math.max(0, Math.min(parentHeight - button.offsetHeight, newY));
-
-      // Apply position
-      button.style.left = `${newX}px`;
-      button.style.top = `${newY}px`;
-    }
-
+    button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+}
     document.addEventListener("DOMContentLoaded", () => {
       const noButton = document.getElementById('noButton');
 
