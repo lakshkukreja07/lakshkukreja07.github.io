@@ -29,13 +29,12 @@ html, body {
   height: 100vh;
   overflow: hidden;
   font-family: 'NType82-Regular', sans-serif;
-  background-color: #f4c2c2; /* Cozy strawberry pink background */
+  background-color: #eb7c7c;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Center the content */
 .container {
   text-align: center;
   width: 100%;
@@ -47,21 +46,19 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Typing animation style */
 .header_text {
   font-size: 30px;
   color: #3d2b1f;
   margin: 10px 0;
   white-space: nowrap;
-  overflow: hidden; /* Hide the overflow text initially */
-  border-right: 3px solid black; /* Blinking cursor effect */
-  width: 0; /* Start with no width */
-  animation: typing 0.1s steps(40) 1s forwards, blink 0.75s step-end infinite; /* Typing effect and blink cursor */
-  display: inline-block; /* Ensure it stays inline without breaking */
-  max-width: 100%; /* Ensure text doesn't overflow */
+  overflow: hidden;
+  border-right: 3px solid black;
+  width: 0;
+  animation: typing 0.1s steps(40) 1s forwards, blink 0.75s step-end infinite;
+  display: inline-block;
+  max-width: 100%;
 }
 
-/* Blink cursor animation */
 @keyframes blink {
   0%, 50% {
     border-color: transparent;
@@ -71,10 +68,9 @@ html, body {
   }
 }
 
-/* Remove cursor after typing is finished */
 .header_text.finished {
-  border-color: transparent; /* Remove cursor after typing is finished */
-  animation: none; /* Stop the animation */
+  border-color: transparent;
+  animation: none;
 }
 
 @keyframes typing {
@@ -86,7 +82,6 @@ html, body {
   }
 }
 
-/* Style for the gif container */
 .gif_container {
   width: 200px;
   height: 200px;
@@ -100,7 +95,6 @@ html, body {
   border-radius: 12px;
 }
 
-/* Buttons layout */
 .button_wrapper {
   display: flex;
   justify-content: center;
@@ -109,20 +103,19 @@ html, body {
   gap: 24px;
 }
 
-/* Button styles */
 .btn {
   background-color: #ffffff;
   color: #000000;
   padding: 12px 22px;
   font-size: 16px;
-  border: 0.1px solid #000000; /* Subtle border */
+  border: 0.5px solid #000000;
   border-radius: 16px;
   cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease;
   font-family: 'LetteraMonoLL-Regular', sans-serif;
   min-width: 100px;
   text-align: center;
-  z-index: 1; /* Prevents overlap with other elements */
+  z-index: 1;
 }
 
 
