@@ -15,22 +15,20 @@
 </div>
 <div class="gif_container">
 <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
-</div>
 <div class="buttons">
 <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
 <button class="btn" id="noButton">No</button>
 </div>
 <script>
-  function nextPage() {
-    window.location.href = "yes.html";
-  }
-
-  function moveButton(event) {
+function nextPage() {
+window.location.href = "yes.html";
+}
+function moveButton(event) {
     const button = document.getElementById('noButton');
 
-    // Increase movement range: -100px to +100px
-    const offsetX = Math.floor(Math.random() * 200 - 100);
-    const offsetY = Math.floor(Math.random() * 200 - 100);
+    // More movement: range -150px to +150px
+    const offsetX = Math.floor(Math.random() * 300 - 150);
+    const offsetY = Math.floor(Math.random() * 300 - 150);
 
     button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
   }
@@ -38,7 +36,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     const noButton = document.getElementById('noButton');
 
-    // Move on hover and touch
+    // Only trigger movement on user interaction
     noButton.addEventListener("mouseover", moveButton);
     noButton.addEventListener("touchstart", function (e) {
       e.preventDefault();
