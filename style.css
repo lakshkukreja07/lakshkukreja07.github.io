@@ -51,10 +51,12 @@ html, body {
 
 .buttons {
     display: flex;
-    justify-content: space-between;  /* Change this to space buttons apart */
-    width: 100%;
-    gap: 20px;
-    margin-top: 20px;
+    justify-content: space-between; /* Distribute buttons evenly */
+    width: 100%; /* Ensure buttons span across */
+    position: absolute;
+    bottom: -60px; /* Move buttons below the gif */
+    left: 0;
+    padding: 0 10px; /* Add padding to the sides */
 }
 
 .btn {
@@ -75,13 +77,11 @@ html, body {
 }
 
 #yesButton {
-    position: relative;
-    right: 0;
+    margin-left: auto; /* Position Yes button on the right */
 }
 
 #noButton {
-    position: relative;
-    left: 0;
+    margin-right: auto; /* Position No button on the left */
 }
 
 #noWrapper {
