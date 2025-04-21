@@ -1,55 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Invitation</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Invitation</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <div>
-      <h1 class="header_text">Do you wanna go out with me?</h1>
-      <h1 class="header_text">Are you free tomorrow?</h1>
-    </div>
-    <div class="gif_container">
-      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
-    </div>
-    <div class="buttons">
-      <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-      <button class="btn" id="noButton">No</button>
-    </div>
-  </div>
-
-  <script>
-    function nextPage() {
-      window.location.href = "yes.html";
-    }
-
-function moveButton(event) {
-    const button = document.getElementById('noButton');
-    const range = 30; // pixels
-
-    // Generate small random x/y
-    const offsetX = Math.floor(Math.random() * range * 2 - range);
-    const offsetY = Math.floor(Math.random() * range * 2 - range);
-
-    button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+<div class="container">
+<div>
+<h1 class="header_text">Do you wanna go out with me?</h1>
+<h1 class="header_text">Are you free tomorrow?</h1>
+</div>
+<div class="gif_container">
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
+</div>
+<div class="buttons">
+<button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+<div id="noWrapper">
+<button class="btn" id="noButton">No</button>
+</div>
+</div>
+<script>
+function nextPage() {
+window.location.href = "yes.html";
 }
-    document.addEventListener("DOMContentLoaded", () => {
-      const noButton = document.getElementById('noButton');
-
-      // Set consistent initial position next to yesButton
-      noButton.style.left = '120px';
-      noButton.style.top = '50px';
-
-      noButton.addEventListener("mouseover", moveButton);
-      noButton.addEventListener("touchstart", function (e) {
-        e.preventDefault();
-        moveButton(e);
-      });
-    });
-  </script>
+function moveButton(event) {
+const button = document.getElementById('noButton');
+const range = 30;
+const offsetX = Math.floor(Math.random() * range * 2 - range);
+const offsetY = Math.floor(Math.random() * range * 2 - range);
+button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+}
+document.addEventListener("DOMContentLoaded", () => {
+const noButton = document.getElementById('noButton');
+noButton.style.left = '120px';
+noButton.style.top = '50px';
+noButton.addEventListener("mouseover", moveButton);
+noButton.addEventListener("touchstart", function (e) {
+e.preventDefault();
+moveButton(e);
+});
+});
+</script>
 </body>
 </html>
