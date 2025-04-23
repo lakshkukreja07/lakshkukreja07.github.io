@@ -7,57 +7,75 @@
   <link rel="stylesheet" href="style2.css" />
 </head>
 <body>
-  <div class="container">
+  <div class="container hidden" id="contentWrapper">
     <div id="text1" class="header_text"></div>
     <div id="text2" class="header_text"></div>
-
+    <div id="emojiContainer" class="emoji"></div>
     <div class="gif_container">
-      <img src="https://media0.giphy.com/media/T86i6yDyOYz7J6dPhf/giphy.gif" alt="Cute gif">
+      <img id="slideshow" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmE5OHFzbG91aGpucDhvenBuNWhrOWZ1ZThkMWV5bW1sc3c5OHB0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/T86i6yDyOYz7J6dPhf/giphy.gif" alt="Slideshow GIF">
+    </div>
+    <div class="footer hidden" id="footerWrapper">
+      © Laksh Kukreja • Made With Love <3 • 
+      <a href="https://github.com/lakshkukreja07" target="_blank">GitHub</a> •
+      <a href="https://lakshkukreja07.github.io">Return To Home Page</a>
     </div>
   </div>
-
-  <div class="footer">
-    © Laksh Kukreja • All Rights Reserved • 2025 |
-    <a href="https://github.com/lakshkukreja07" target="_blank">GitHub</a> |
-    <a href="https://lakshkukreja07.github.io">Return To Home Page</a>
-  </div>
-
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const line1 = "All Set! 😎";
-      const line2 = "Waiting To Know Venue & Time. 😏";
-      const text1 = document.getElementById("text1");
-      const text2 = document.getElementById("text2");
-
-      let i = 0;
-      let j = 0;
-
-      function typeFirstLine() {
-        if (i < line1.length) {
-          text1.textContent += line1.charAt(i);
-          i++;
-          setTimeout(typeFirstLine, 50);
-        } else {
-          text1.classList.remove("typing");
-          text1.classList.add("typed-done");
-          setTimeout(typeSecondLine, 300);
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const content = document.getElementById("contentWrapper");
+        const footer = document.getElementById("footerWrapper");
+        content.classList.remove("hidden");
+        content.classList.add("visible");
+        footer.classList.remove("hidden");
+        footer.classList.add("visible");
+        const line1 = "All Set!";
+        const line2 = "Waiting To Know Venue & Time.";
+        const emoji1 = " 😎";
+        const emoji2 = " 😏";
+        const text1 = document.getElementById("text1");
+        const text2 = document.getElementById("text2");
+        let i = 0;
+        let j = 0;
+        function typeFirstLine() {
+          if (i < line1.length) {
+            text1.textContent += line1.charAt(i);
+            i++;
+            setTimeout(typeFirstLine, 50);
+          } else {
+            text1.classList.remove("typing");
+            text1.classList.add("typed-done");
+            setTimeout(() => {
+              text1.textContent += emoji1;
+              typeSecondLine();
+            }, 300);
+          }
         }
-      }
-
-      function typeSecondLine() {
-        if (j < line2.length) {
-          text2.textContent += line2.charAt(j);
-          j++;
-          setTimeout(typeSecondLine, 50);
-        } else {
-          text2.classList.remove("typing");
-          text2.classList.add("typed-done");
+        function typeSecondLine() {
+          if (j < line2.length) {
+            text2.textContent += line2.charAt(j);
+            j++;
+            setTimeout(typeSecondLine, 50);
+          } else {
+            text2.classList.remove("typing");
+            text2.classList.add("typed-done");
+            text2.textContent += emoji2;
+          }
         }
-      }
-
-      text1.classList.add("typing");
-      text2.classList.add("typing");
-      typeFirstLine();
+        text1.classList.add("typing");
+        text2.classList.add("typing");
+        typeFirstLine();
+        const gifs = [
+		  "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjRscTh0cmpyODQ0NXVtcGxudDFyc2F6a2czenRueDFpZmE2bWp6MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IcJ6n6VJNjRNS/giphy.gif",
+		  "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmE5OHFzbG91aGpucDhvenBuNWhrOWZ1ZThkMWV5bW1sc3c5OHB0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/T86i6yDyOYz7J6dPhf/giphy.gif"
+		  ];        
+        let currentGif = 0;
+        function changeGif() {
+          currentGif = (currentGif + 1) % gifs.length;
+          document.getElementById("slideshow").src = gifs[currentGif];
+        }
+        setInterval(changeGif, 2000);
+      }, 500);
     });
   </script>
 </body>
