@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Invitation Letter</title>
+	<link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+	<div class="container hidden" id="contentWrapper">
+		<div id="text1" class="header_text"></div>
+		<div id="text2" class="header_text"></div>
+		<div class="gif_container hidden">
+			<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute gif">
+		</div>
+		<div class="button_wrapper hidden">
+			<button class="btn" id="noButton">No</button>
+			<button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+		</div>
+		<div class="footer">
+			© Laksh Kukreja • Made With Love <3 • 
+			<a href="https://github.com/lakshkukreja07" target="_blank">GitHub</a>
+		</div>
+	</div>
+	<script>
+		function nextPage() {
+			window.location.href = "index2.html";
+		}
+		function moveButton(event) {
+			const button = document.getElementById('noButton');
+			const offsetX = Math.floor(Math.random() * 200 - 100);
+			const offsetY = Math.floor(Math.random() * 200 - 100);
+			button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+		}
+		document.addEventListener("DOMContentLoaded", () => {
+			setTimeout(() => {
+				const content = document.getElementById("contentWrapper");
+				const gifContainer = document.querySelector('.gif_container');
+				const buttonWrapper = document.querySelector('.button_wrapper');
+				const text1 = document.getElementById("text1");
+				const text2 = document.getElementById("text2");
+				content.classList.remove("hidden");
+				gifContainer.classList.remove("hidden");
+				buttonWrapper.classList.remove("hidden");
+				const line1 = "Do You Wanna Go Out With Me?";
+				const line2 = "Are You Free Tomorrow?";
+				let i = 0;
+				let j = 0;
+				function typeFirstLine() {
+					if (i < line1.length) {
+						text1.textContent += line1.charAt(i);
+						i++;
+						setTimeout(typeFirstLine, 50);
+					} else {
+						text1.classList.remove("typing");
+						text1.classList.add("typed-done");
+						setTimeout(typeSecondLine, 300);
+					}
+				}
+				function typeSecondLine() {
+					if (j < line2.length) {
+						text2.textContent += line2.charAt(j);
+						j++;
+						setTimeout(typeSecondLine, 50);
+					} else {
+						text2.classList.remove("typing");
+						text2.classList.add("typed-done");
+					}
+				}
+				text1.classList.add("typing");
+				text2.classList.add("typing");
+				typeFirstLine();
+			}, 1000);
+		});
+	</script>
+</body>
+</html>
