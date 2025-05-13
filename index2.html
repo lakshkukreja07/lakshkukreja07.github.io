@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Invitation Accepted!</title>
   <link rel="stylesheet" href="style2.css" />
+  <style>
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .visible {
+      opacity: 1;
+      transition: opacity 0.5s ease-in;
+      pointer-events: auto;
+    }
+  </style>
 </head>
 <body>
   <div class="container hidden" id="contentWrapper">
@@ -14,19 +26,22 @@
     <div class="gif_container">
       <img id="slideshow" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmE5OHFzbG91aGpucDhvenBuNWhrOWZ1ZThkMWV5bW1sc3c5OHB0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/T86i6yDyOYz7J6dPhf/giphy.gif" alt="Slideshow GIF">
     </div>
-    <div class="footer">
-	© Laksh • Made With Love &lt;3
+    <div class="footer" id="footerWrapper">
+      © Laksh • Made With Love &lt;3
     </div>
   </div>
+
   <script>
     window.addEventListener("load", () => {
       setTimeout(() => {
         const content = document.getElementById("contentWrapper");
         const footer = document.getElementById("footerWrapper");
+
         content.classList.remove("hidden");
         content.classList.add("visible");
         footer.classList.remove("hidden");
         footer.classList.add("visible");
+
         const line1 = "All Set!";
         const line2 = "Waiting To Know Venue & Time.";
         const emoji1 = " 😎";
@@ -35,6 +50,7 @@
         const text2 = document.getElementById("text2");
         let i = 0;
         let j = 0;
+
         function typeFirstLine() {
           if (i < line1.length) {
             text1.textContent += line1.charAt(i);
@@ -49,6 +65,7 @@
             }, 300);
           }
         }
+
         function typeSecondLine() {
           if (j < line2.length) {
             text2.textContent += line2.charAt(j);
@@ -60,18 +77,22 @@
             text2.textContent += emoji2;
           }
         }
+
         text1.classList.add("typing");
         text2.classList.add("typing");
         typeFirstLine();
+
         const gifs = [
-		  "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjRscTh0cmpyODQ0NXVtcGxudDFyc2F6a2czenRueDFpZmE2bWp6MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IcJ6n6VJNjRNS/giphy.gif",
-		  "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmE5OHFzbG91aGpucDhvenBuNWhrOWZ1ZThkMWV5bW1sc3c5OHB0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/T86i6yDyOYz7J6dPhf/giphy.gif"
-		  ];        
+          "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjRscTh0cmpyODQ0NXVtcGxudDFyc2F6a2czenRueDFpZmE2bWp6MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IcJ6n6VJNjRNS/giphy.gif",
+          "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmE5OHFzbG91aGpucDhvenBuNWhrOWZ1ZThkMWV5bW1sc3c5OHB0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/T86i6yDyOYz7J6dPhf/giphy.gif"
+        ];
         let currentGif = 0;
+
         function changeGif() {
           currentGif = (currentGif + 1) % gifs.length;
           document.getElementById("slideshow").src = gifs[currentGif];
         }
+
         setInterval(changeGif, 2000);
       }, 500);
     });
