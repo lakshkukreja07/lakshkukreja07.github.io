@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Videocon | The Future Reimagined</title>
+    <link rel="stylesheet" href="assets/css/v1.0.200.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.css">
+    <link rel="icon" href="assets/src/videocon.png" type="image/png">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="assets/src/videocon.png" alt="Videocon Logo" class="logo-img">
+            </a>
+
+            <div class="nav-links">
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#innovation" class="nav-link">Innovation</a>
+                <a href="#sustainability" class="nav-link">Sustainability</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i data-lucide="sun" class="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    The Future<br>
+                    <span class="highlight">Reimagined</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Videcon returns with a renewed commitment to excellence,
+                    sustainability, and intelligent design for modern living.
+                </p>
+
+                <div class="hero-actions">
+                    <button class="btn btn-primary" id="explore-btn">
+                        <span>Explore Collection</span>
+                        <i data-lucide="arrow-right" class="btn-icon"></i>
+                    </button>
+                    <button class="btn btn-outline" id="watch-story">
+                        <i data-lucide="play" class="btn-icon"></i>
+                        <span>Watch Story</span>
+                    </button>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-lucide="history"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" data-count="40">40</div>
+                            <div class="stat-label">Years of Legacy</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-lucide="globe"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" data-count="150">150</div>
+                            <div class="stat-label">Countries</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-lucide="zap"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" data-count="95">95%</div>
+                            <div class="stat-label">Energy Efficient</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section products-section" id="products">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <i data-lucide="sparkle"></i>
+                    <span>Our Collection</span>
+                </div>
+                <h2 class="section-title">Redefining Home Experience</h2>
+                <p class="section-subtitle">Premium electronics designed with purpose and precision</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Vision X Pro OLED TV" class="product-img">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Vision X Pro</h3>
+                        <p class="product-description">8K OLED display with adaptive intelligence and immersive sound
+                        </p>
+                        <div class="product-features">
+                            <span class="feature-capsule">
+                                <i data-lucide="zap"></i> 240Hz Refresh
+                            </span>
+                            <span class="feature-capsule">
+                                <i data-lucide="eye"></i> Eye Comfort Pro
+                            </span>
+                            <span class="feature-capsule">
+                                <i data-lucide="volume-2"></i> Dolby Atmos
+                            </span>
+                        </div>
+                        <button class="product-cta">
+                            <span>Learn More</span>
+                            <i data-lucide="move-up-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Soundscape 360 Audio System" class="product-img">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Soundscape 360</h3>
+                        <p class="product-description">Wireless surround system with spatial audio and voice control</p>
+                        <div class="product-features">
+                            <span class="feature-capsule">
+                                <i data-lucide="waves"></i> 360° Sound
+                            </span>
+                            <span class="feature-capsule">
+                                <i data-lucide="wifi"></i> Wi-Fi 6E
+                            </span>
+                            <span class="feature-capsule">
+                                <i data-lucide="mic"></i> Voice AI
+                            </span>
+                        </div>
+                        <button class="product-cta">
+                            <span>Learn More</span>
+                            <i data-lucide="move-up-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1589003077984-894e133dabab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Climate Sense AC" class="product-img">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Climate Sense</h3>
+                        <p class="product-description">Smart climate control with AI optimization and energy saving</p>
+                        <div class="product-features">
+                            <span class="feature-capsule">
+                                <i data-lucide="leaf"></i> Eco Mode
+                            </span>
+                            <span class="feature-capsule">
+                                <i data-lucide="brain"></i> AI Learning
+                            </span>
+                            <span class="feature-capsule">
+                                <i data-lucide="battery-charging"></i> Solar Ready
+                            </span>
+                        </div>
+                        <button class="product-cta">
+                            <span>Learn More</span>
+                            <i data-lucide="move-up-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovation Section -->
+    <section class="section innovation-section" id="innovation">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <i data-lucide="zap"></i>
+                    <span>Our Technology</span>
+                </div>
+                <h2 class="section-title">Intelligent by Design</h2>
+                <p class="section-subtitle">Advanced features that adapt to your lifestyle</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="innovation-card">
+                    <div class="innovation-icon">
+                        <i data-lucide="cpu"></i>
+                    </div>
+                    <h3 class="innovation-title">Adaptive Intelligence</h3>
+                    <p class="innovation-description">Our AI learns your preferences and adjusts settings automatically
+                        for optimal experience.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">
+                        <i data-lucide="shield"></i>
+                    </div>
+                    <h3 class="innovation-title">Privacy First</h3>
+                    <p class="innovation-description">All data is processed locally. Your privacy is our priority with
+                        end-to-end encryption.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">
+                        <i data-lucide="refresh-cw"></i>
+                    </div>
+                    <h3 class="innovation-title">Seamless Updates</h3>
+                    <p class="innovation-description">Regular firmware updates bring new features and improvements over
+                        time.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">
+                        <i data-lucide="git-branch"></i>
+                    </div>
+                    <h3 class="innovation-title">Ecosystem Integration</h3>
+                    <p class="innovation-description">All Videcon products work together seamlessly for a unified
+                        experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Section -->
+    <section class="section sustainability-section" id="sustainability">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <i data-lucide="leaf"></i>
+                    <span>Our Promise</span>
+                </div>
+                <h2 class="section-title">Sustainable Future</h2>
+                <p class="section-subtitle">Committed to environmental responsibility and circular economy</p>
+            </div>
+
+            <div class="sustainability-content">
+                <div class="sustainability-stats">
+                    <div class="sustainability-stat">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Recycled Materials</div>
+                        <div class="stat-bar">
+                            <div class="stat-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="sustainability-stat">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Energy Efficient</div>
+                        <div class="stat-bar">
+                            <div class="stat-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <div class="sustainability-stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Carbon Neutral</div>
+                        <div class="stat-bar">
+                            <div class="stat-progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sustainability-text">
+                    <h3>Designed for Tomorrow</h3>
+                    <p>At Videcon, sustainability isn't an afterthought—it's foundational to our design process. We're
+                        committed to creating products that last longer, use fewer resources, and can be fully recycled
+                        at end of life.</p>
+
+                    <div class="sustainability-features">
+                        <div class="feature-item">
+                            <i data-lucide="package"></i>
+                            <span>Plastic-Free Packaging</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="recycle"></i>
+                            <span>Modular Repair System</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="tree-pine"></i>
+                            <span>Reforestation Program</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience-section" id="experience">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <i data-lucide="sparkles"></i>
+                    <span>The Experience</span>
+                </div>
+                <h2 class="section-title">Unboxing Excellence</h2>
+                <p class="section-subtitle">Every detail crafted for a premium experience</p>
+            </div>
+
+            <div class="experience-showcase">
+                <div class="experience-card">
+                    <div class="experience-visual">
+                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Videcon Premium Packaging" class="experience-img">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Thoughtful Packaging</h3>
+                        <p>Experience the premium unboxing with sustainable materials and thoughtful organization.</p>
+                        <button class="btn btn-outline">
+                            <span>View Gallery</span>
+                            <i data-lucide="image"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <i data-lucide="history"></i>
+                    <span>Our Journey</span>
+                </div>
+                <h2 class="section-title">The Videcon Story</h2>
+                <p class="section-subtitle">From legacy to innovation: A brand reborn</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-timeline">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-year">1980</div>
+                                <h4 class="timeline-title">Founded in India</h4>
+                                <p class="timeline-description">Videcon began as a pioneer in consumer electronics,
+                                    bringing innovation to Indian homes.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-year">2024</div>
+                                <h4 class="timeline-title">Revival Announced</h4>
+                                <p class="timeline-description">New leadership announced the rebirth of Videcon with a
+                                    focus on sustainability and smart technology.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item last-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-year">2026</div>
+                                <h4 class="timeline-title">Global Relaunch</h4>
+                                <p class="timeline-description">Introducing our new product lineup designed for the
+                                    modern, connected home.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-mission">
+                    <div class="mission-card">
+                        <h3>Our Mission</h3>
+                        <p>To create technology that enhances life while respecting our planet—products that are
+                            beautiful, intelligent, and built to last.</p>
+
+                        <div class="mission-values">
+                            <div class="value-card">
+                                <i data-lucide="heart"></i>
+                                <span>Human-Centered</span>
+                                <p>Designed with people at the core</p>
+                            </div>
+                            <div class="value-card">
+                                <i data-lucide="globe"></i>
+                                <span>Sustainable</span>
+                                <p>Built for a better planet</p>
+                            </div>
+                            <div class="value-card">
+                                <i data-lucide="target"></i>
+                                <span>Innovative</span>
+                                <p>Pushing boundaries forward</p>
+                            </div>
+                            <div class="value-card">
+                                <i data-lucide="shield"></i>
+                                <span>Reliable</span>
+                                <p>Engineered for durability</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section newsletter-section">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="newsletter-card">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Stay Updated</h2>
+                    <p class="newsletter-subtitle">Be the first to know about new products, updates, and exclusive
+                        offers.</p>
+
+                    <form class="newsletter-form" id="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" class="form-input" placeholder="Enter your email" required>
+                            <button type="submit" class="btn btn-primary">
+                                <span>Subscribe</span>
+                                <i data-lucide="send"></i>
+                            </button>
+                        </div>
+                        <div class="form-hint">We respect your privacy. Unsubscribe at any time.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="assets/src/videocon.png" alt="Videocon Logo" class="logo-img">
+                    </div>
+                    <p class="footer-tagline">The Future Reimagined</p>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i data-lucide="instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i data-lucide="youtube"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">Products</h4>
+                        <a href="#" class="footer-link">Televisions</a>
+                        <a href="#" class="footer-link">Audio Systems</a>
+                        <a href="#" class="footer-link">Home Appliances</a>
+                        <a href="#" class="footer-link">Accessories</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">Support</h4>
+                        <a href="#" class="footer-link">Help Center</a>
+                        <a href="#" class="footer-link">Warranty</a>
+                        <a href="#" class="footer-link">Service Centers</a>
+                        <a href="#" class="footer-link">Contact Us</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">Company</h4>
+                        <a href="#" class="footer-link">About Us</a>
+                        <a href="#" class="footer-link">Sustainability</a>
+                        <a href="#" class="footer-link">Careers</a>
+                        <a href="#" class="footer-link">Press</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">Legal</h4>
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Terms of Service</a>
+                        <a href="#" class="footer-link">Cookie Policy</a>
+                        <a href="#" class="footer-link">Compliance</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <div class="copyright">
+                        © 2026 Videocon. All rights reserved.
+                    </div>
+                </div>
+
+                <div class="footer-center">
+                    <div class="footer-info">
+                        <div class="version-info">
+                            <i data-lucide="user-star"></i>
+                            <span>Developer: Laksh Kukreja</span>
+                            <i data-lucide="zap"></i>
+                            <span>V1.0.200 (beta)</span>
+                            <i data-lucide="calendar-check"></i>
+                            <span>Last Update: 19/12/26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-right">
+                    <button class="back-to-top" id="back-to-top">
+                        <i data-lucide="arrow-up"></i>
+                        <span>Back to Top</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="modal" id="video-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">The Videcon Revival</h3>
+                    <button class="modal-close" id="modal-close">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="video-player">
+                        <div class="video-placeholder">
+                            <div class="play-button-large">
+                                <i data-lucide="play"></i>
+                            </div>
+                            <p class="video-caption">Experience our journey from legacy to innovation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="assets/js/v1.0.200.js"></script>
+</body>
+
+</html>

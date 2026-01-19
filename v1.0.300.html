@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videcon | Legacy Reborn - Smart Home Appliances</title>
+    <link rel="stylesheet" href="assets/css/v1.0.300.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%230056FF%22>V</text></svg>">
+</head>
+
+<body>
+    <!-- Announcement Banner -->
+    <div class="announcement-banner">
+        <div class="container">
+            <span class="banner-text"><strong>LEGACY REBORN:</strong> Trade in your old Videcon appliance for up to 25%
+                discount + Free Installation</span>
+            <a href="#tradein" class="banner-link">Claim Offer <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="primary-nav">
+                <a href="#" class="brand-logo">
+                    <span class="logo-symbol">V</span>
+                    <span class="logo-text">VIDECON</span>
+                </a>
+
+                <div class="nav-center">
+                    <div class="main-menu" id="mainMenu">
+                        <a href="#heritage" class="nav-item">Heritage</a>
+                        <div class="dropdown">
+                            <a href="#products" class="nav-item dropdown-toggle">Products <i
+                                    class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="#refrigerators">Refrigerators</a>
+                                <a href="#washing-machines">Washing Machines</a>
+                                <a href="#air-conditioners">Air Conditioners</a>
+                                <a href="#televisions">Televisions</a>
+                                <a href="#home-appliances">Home Appliances</a>
+                            </div>
+                        </div>
+                        <a href="#innovation" class="nav-item">Innovation</a>
+                        <a href="#support" class="nav-item">Support</a>
+                        <a href="#business" class="nav-item">For Business</a>
+                    </div>
+                </div>
+
+                <div class="nav-right">
+                    <button class="icon-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="icon-btn" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="icon-btn" id="userBtn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <a href="#funzone" class="funzone-btn">
+                        <i class="fas fa-gift"></i> Fun Zone
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <div class="search-header">
+                <input type="text" placeholder="Search products, features, support..." class="search-input" autofocus>
+                <button class="search-close" id="searchClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="search-suggestions">
+                <h4>Popular Searches</h4>
+                <div class="suggestion-tags">
+                    <a href="#" class="tag">Smart Inverter AC</a>
+                    <a href="#" class="tag">Steam Washing Machine</a>
+                    <a href="#" class="tag">Frost-Free Refrigerator</a>
+                    <a href="#" class="tag">4K Smart TV</a>
+                    <a href="#" class="tag">Trade-In Program</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-tag">LEGACY REBORN</span>
+                    <span class="badge-text">Since 1984</span>
+                </div>
+                <h1 class="hero-title">
+                    The Trust Returns.<br>
+                    <span class="highlight">Smarter Than Ever.</span>
+                </h1>
+                <p class="hero-description">
+                    After 40 years of powering Indian homes, Videcon returns with intelligent appliances designed for
+                    modern living. Experience legacy reborn with cutting-edge technology.
+                </p>
+                <div class="hero-cta">
+                    <a href="#products" class="btn btn-primary">
+                        Explore Products <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#heritage" class="btn btn-outline">
+                        <i class="fas fa-play-circle"></i> Watch Our Story
+                    </a>
+                </div>
+                <div class="hero-features">
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>10-Year Compressor Warranty</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-truck"></i>
+                        <span>Free Installation</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-credit-card"></i>
+                        <span>No Cost EMI Available</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <!-- Will be replaced with actual hero image -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Years in Indian Homes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5M+</div>
+                    <div class="stat-label">Households Trusted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">₹500Cr</div>
+                    <div class="stat-label">R&D Investment</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Service Centers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Section -->
+    <section class="section section-heritage" id="heritage">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">OUR LEGACY</span>
+                <h2 class="section-title">40 Years of Trust, Reborn</h2>
+                <p class="section-subtitle">From India's first made-for-India TV to smart appliances that understand
+                    your needs</p>
+            </div>
+
+            <div class="heritage-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1984</div>
+                    <div class="timeline-content">
+                        <h3>The Beginning</h3>
+                        <p>Videcon launches India's first affordable television, making entertainment accessible to
+                            millions.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1995</div>
+                    <div class="timeline-content">
+                        <h3>Home Appliance Revolution</h3>
+                        <p>Expands to refrigerators and washing machines, becoming a household name across India.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h3>Intelligent Comeback</h3>
+                        <p>Returns with AI-powered appliances, sustainable design, and a ₹500Cr commitment to
+                            innovation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="testimonial-text">"Our Videcon refrigerator lasted 25 years. When I heard they're coming
+                        back, I knew it was time to upgrade. The legacy continues!"</p>
+                    <div class="testimonial-author">
+                        <strong>Rajesh Mehta</strong>
+                        <span>Videcon user since 1995</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section - LG Style Grid -->
+    <section class="section section-products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">BEST SELLERS</span>
+                <h2 class="section-title">Engineered for Modern Living</h2>
+                <div class="section-controls">
+                    <a href="#" class="view-all">View All Products <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Product Filters -->
+            <div class="product-filters">
+                <button class="filter-btn active" data-category="all">All Products</button>
+                <button class="filter-btn" data-category="refrigerators">Refrigerators</button>
+                <button class="filter-btn" data-category="washing-machines">Washing Machines</button>
+                <button class="filter-btn" data-category="air-conditioners">Air Conditioners</button>
+                <button class="filter-btn" data-category="televisions">Televisions</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid">
+                <!-- Product 1: Refrigerator -->
+                <div class="product-card" data-category="refrigerators">
+                    <div class="product-badges">
+                        <span class="badge cashback">CASHBACK</span>
+                        <span class="badge bestseller">BEST SELLER</span>
+                    </div>
+
+                    <div class="product-image">
+                        <div class="image-placeholder fridge">
+                            <div class="product-model">V-NEXUS 540L</div>
+                        </div>
+                    </div>
+
+                    <div class="product-info">
+                        <div class="product-title">
+                            <h3>Videcon 540L Frost-Free Refrigerator with AI Cooling</h3>
+                        </div>
+
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="rating-text">4.4 (128)</span>
+                            </div>
+                        </div>
+
+                        <div class="product-specs">
+                            <div class="spec">
+                                <span class="spec-label">Capacity</span>
+                                <span class="spec-value">540 Liters</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec-label">Star Rating</span>
+                                <span class="spec-value">5 Star</span>
+                            </div>
+                        </div>
+
+                        <div class="product-pricing">
+                            <div class="price-row">
+                                <span class="mrp">MRP: ₹74,990</span>
+                                <span class="discount">Save ₹15,000</span>
+                            </div>
+                            <div class="final-price">₹59,990</div>
+                            <div class="emi">No Cost EMI from ₹4,999/month</div>
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn btn-learn">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </button>
+                            <button class="btn btn-buy">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Washing Machine -->
+                <div class="product-card" data-category="washing-machines">
+                    <div class="product-badges">
+                        <span class="badge cashback">CASHBACK</span>
+                        <span class="badge bestseller">BEST SELLER</span>
+                    </div>
+
+                    <div class="product-image">
+                        <div class="image-placeholder washer">
+                            <div class="product-model">AQUASTEAM 9kg</div>
+                        </div>
+                    </div>
+
+                    <div class="product-info">
+                        <div class="product-title">
+                            <h3>Videcon 9kg Front Load Washing Machine with SteamCare+</h3>
+                        </div>
+
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="rating-text">4.6 (94)</span>
+                            </div>
+                        </div>
+
+                        <div class="product-specs">
+                            <div class="spec">
+                                <span class="spec-label">Capacity</span>
+                                <span class="spec-value">9 kg</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Front Load</span>
+                            </div>
+                        </div>
+
+                        <div class="product-pricing">
+                            <div class="price-row">
+                                <span class="mrp">MRP: ₹46,990</span>
+                                <span class="discount">Save ₹8,000</span>
+                            </div>
+                            <div class="final-price">₹38,990</div>
+                            <div class="emi">No Cost EMI from ₹3,249/month</div>
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn btn-learn">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </button>
+                            <button class="btn btn-buy">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Air Conditioner -->
+                <div class="product-card" data-category="air-conditioners">
+                    <div class="product-badges">
+                        <span class="badge cashback">CASHBACK</span>
+                        <span class="badge new">NEW LAUNCH</span>
+                    </div>
+
+                    <div class="product-image">
+                        <div class="image-placeholder ac">
+                            <div class="product-model">AI COOL 1.5T</div>
+                        </div>
+                    </div>
+
+                    <div class="product-info">
+                        <div class="product-title">
+                            <h3>Videcon 1.5 Ton 5-Star AI Inverter Split AC</h3>
+                        </div>
+
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="rating-text">4.8 (67)</span>
+                            </div>
+                        </div>
+
+                        <div class="product-specs">
+                            <div class="spec">
+                                <span class="spec-label">Capacity</span>
+                                <span class="spec-value">1.5 Ton</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec-label">Star Rating</span>
+                                <span class="spec-value">5 Star</span>
+                            </div>
+                        </div>
+
+                        <div class="product-pricing">
+                            <div class="price-row">
+                                <span class="mrp">MRP: ₹59,990</span>
+                                <span class="discount">Save ₹10,000</span>
+                            </div>
+                            <div class="final-price">₹49,990</div>
+                            <div class="emi">No Cost EMI from ₹4,166/month</div>
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn btn-learn">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </button>
+                            <button class="btn btn-buy">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Television -->
+                <div class="product-card" data-category="televisions">
+                    <div class="product-badges">
+                        <span class="badge cashback">CASHBACK</span>
+                        <span class="badge bestseller">BEST SELLER</span>
+                    </div>
+
+                    <div class="product-image">
+                        <div class="image-placeholder tv">
+                            <div class="product-model">OLED 4K 55"</div>
+                        </div>
+                    </div>
+
+                    <div class="product-info">
+                        <div class="product-title">
+                            <h3>Videcon 139 cm (55") 4K UHD Smart TV with AI Processor</h3>
+                        </div>
+
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="rating-text">4.3 (201)</span>
+                            </div>
+                        </div>
+
+                        <div class="product-sizes">
+                            <span class="size active">55"</span>
+                            <span class="size">50"</span>
+                            <span class="size">43"</span>
+                        </div>
+
+                        <div class="product-pricing">
+                            <div class="price-row">
+                                <span class="mrp">MRP: ₹69,990</span>
+                                <span class="discount">Save ₹20,000</span>
+                            </div>
+                            <div class="final-price">₹49,990</div>
+                            <div class="emi">No Cost EMI from ₹4,166/month</div>
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn btn-learn">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </button>
+                            <button class="btn btn-buy">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section class="section section-membership">
+        <div class="container">
+            <div class="membership-card">
+                <div class="membership-content">
+                    <h2 class="membership-title">Become a Videcon Member</h2>
+                    <p class="membership-text">Enjoy exclusive benefits, special discounts, and premium services
+                        designed for our valued customers.</p>
+
+                    <div class="benefits-grid">
+                        <div class="benefit">
+                            <div class="benefit-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h3>No Cost EMI*</h3>
+                                <p>Flexible installments with zero interest on select products</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h3>Extended Warranty</h3>
+                                <p>Get discounted extended warranty for long-lasting performance</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h3>Free Shipping</h3>
+                                <p>Free & safe delivery across serviceable locations</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h3>Member-Only Offers</h3>
+                                <p>Exclusive discounts and early access to new products</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large">
+                        Join Now for Free <i class="fas fa-user-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trade-In Program -->
+    <section class="section section-tradein" id="tradein">
+        <div class="container">
+            <div class="tradein-header">
+                <span class="section-tag">LEGACY PROGRAM</span>
+                <h2 class="section-title">Trade In Your Old Videcon</h2>
+                <p class="section-subtitle">Get exclusive benefits when you upgrade to new Videcon appliances</p>
+            </div>
+
+            <div class="tradein-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Check Value</h3>
+                        <p>Enter your old appliance details to see trade-in value</p>
+                    </div>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Schedule Pickup</h3>
+                        <p>Free doorstep pickup of your old appliance</p>
+                    </div>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Get Rewarded</h3>
+                        <p>Receive discount + extra legacy bonus</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tradein-calculator">
+                <div class="calculator-header">
+                    <h3>Check Your Trade-In Value</h3>
+                    <p>Get instant estimate for your old appliance</p>
+                </div>
+
+                <form class="calculator-form" id="tradeinForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Appliance Type</label>
+                            <select id="applianceType" required>
+                                <option value="">Select Type</option>
+                                <option value="tv">Television</option>
+                                <option value="fridge">Refrigerator</option>
+                                <option value="washer">Washing Machine</option>
+                                <option value="ac">Air Conditioner</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Age (Years)</label>
+                            <input type="number" id="applianceAge" min="1" max="30" placeholder="e.g., 10" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Condition</label>
+                            <select id="condition" required>
+                                <option value="">Select Condition</option>
+                                <option value="working">Working</option>
+                                <option value="needs_repair">Needs Repair</option>
+                                <option value="not_working">Not Working</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Brand</label>
+                            <select id="brand">
+                                <option value="videcon">Videcon (Extra 10% Bonus)</option>
+                                <option value="other">Other Brand</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> Calculate Value
+                    </button>
+                </form>
+
+                <div class="calculator-result" id="tradeinResult">
+                    <div class="result-placeholder">
+                        <i class="fas fa-calculator"></i>
+                        <p>Enter details to see your trade-in value</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun Zone - Spin the Wheel -->
+    <section class="section section-funzone" id="funzone">
+        <div class="container">
+            <div class="funzone-header">
+                <span class="section-tag">REWARDS ZONE</span>
+                <h2 class="section-title">Spin & Win Exciting Rewards</h2>
+                <p class="section-subtitle">Try your luck and win instant coupons, discounts, and special offers</p>
+            </div>
+
+            <div class="funzone-content">
+                <div class="wheel-container">
+                    <div class="wheel-wrapper">
+                        <div class="wheel" id="prizeWheel">
+                            <div class="wheel-center"></div>
+                            <div class="wheel-section" data-value="10%">
+                                <span>10% OFF</span>
+                            </div>
+                            <div class="wheel-section" data-value="500">
+                                <span>500 pts</span>
+                            </div>
+                            <div class="wheel-section" data-value="free">
+                                <span>Free Gift</span>
+                            </div>
+                            <div class="wheel-section" data-value="15%">
+                                <span>15% OFF</span>
+                            </div>
+                            <div class="wheel-section" data-value="200">
+                                <span>200 pts</span>
+                            </div>
+                            <div class="wheel-section" data-value="5%">
+                                <span>5% OFF</span>
+                            </div>
+                            <div class="wheel-section" data-value="1000">
+                                <span>1000 pts</span>
+                            </div>
+                            <div class="wheel-section" data-value="spin">
+                                <span>Spin Again</span>
+                            </div>
+                        </div>
+                        <div class="wheel-pointer">
+                            <i class="fas fa-caret-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="wheel-controls">
+                        <div class="spin-info">
+                            <div class="spin-count">
+                                <i class="fas fa-redo"></i>
+                                <span>Spins Today: <strong id="spinCount">3</strong>/3</span>
+                            </div>
+                            <div class="next-spin">
+                                <i class="fas fa-clock"></i>
+                                <span>Next spin in: <strong id="nextSpin">24h</strong></span>
+                            </div>
+                        </div>
+                        <button class="btn-spin" id="spinBtn">
+                            <i class="fas fa-play"></i> SPIN THE WHEEL
+                        </button>
+                    </div>
+                </div>
+
+                <div class="rewards-panel">
+                    <div class="panel-header">
+                        <h3>Your Rewards</h3>
+                        <div class="points-balance">
+                            <i class="fas fa-coins"></i>
+                            <span>Points: <strong id="userPoints">0</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="rewards-list">
+                        <div class="reward-item">
+                            <div class="reward-icon">
+                                <i class="fas fa-ticket-alt"></i>
+                            </div>
+                            <div class="reward-details">
+                                <h4>10% Off Coupon</h4>
+                                <p>Valid on any purchase above ₹20,000</p>
+                            </div>
+                            <div class="reward-action">
+                                <button class="btn-redeem" data-reward="10%">
+                                    Redeem <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="reward-item">
+                            <div class="reward-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="reward-details">
+                                <h4>Free Installation</h4>
+                                <p>On appliances above ₹30,000</p>
+                            </div>
+                            <div class="reward-action">
+                                <button class="btn-redeem" data-reward="install">
+                                    Redeem <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="reward-item">
+                            <div class="reward-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="reward-details">
+                                <h4>Extended Warranty</h4>
+                                <p>+1 year on selected products</p>
+                            </div>
+                            <div class="reward-action">
+                                <button class="btn-redeem" data-reward="warranty">
+                                    Redeem <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="coupons-section">
+                        <h4>Active Coupons</h4>
+                        <div class="coupons-list" id="couponsList">
+                            <div class="coupon-placeholder">
+                                <i class="fas fa-ticket-alt"></i>
+                                <p>Win coupons by spinning the wheel!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="section section-support" id="support">
+        <div class="container">
+            <div class="support-header">
+                <span class="section-tag">SUPPORT</span>
+                <h2 class="section-title">We're Here to Help</h2>
+                <p class="section-subtitle">Comprehensive support for both legacy and new Videcon products</p>
+            </div>
+
+            <div class="support-grid">
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="support-content">
+                        <h3>Live Chat</h3>
+                        <p>Chat with our product experts for instant assistance</p>
+                        <a href="#" class="support-link">
+                            Start Chat <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="support-content">
+                        <h3>Repair Request</h3>
+                        <p>Schedule repair services conveniently online</p>
+                        <a href="#" class="support-link">
+                            Request Repair <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="support-content">
+                        <h3>Product Registration</h3>
+                        <p>Register your product for faster support</p>
+                        <a href="#" class="support-link">
+                            Register Now <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="support-content">
+                        <h3>Email Support</h3>
+                        <p>Send us an email for detailed assistance</p>
+                        <a href="mailto:support@videcon.com" class="support-link">
+                            Email Us <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legacy-support">
+                <div class="legacy-content">
+                    <h3>Legacy Product Support</h3>
+                    <p>Still using old Videcon appliances? We provide spare parts and service for models up to 20 years
+                        old.</p>
+                    <a href="#" class="btn btn-outline">
+                        <i class="fas fa-history"></i> Check Legacy Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="brand-logo">
+                        <span class="logo-symbol">V</span>
+                        <span class="logo-text">VIDECON</span>
+                    </a>
+                    <p class="footer-tagline">Legacy Reborn. Future Redefined.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>Products</h4>
+                        <a href="#">Refrigerators</a>
+                        <a href="#">Washing Machines</a>
+                        <a href="#">Air Conditioners</a>
+                        <a href="#">Televisions</a>
+                        <a href="#">All Products</a>
+                    </div>
+
+                    <div class="link-column">
+                        <h4>Support</h4>
+                        <a href="#">Product Support</a>
+                        <a href="#">Repair Services</a>
+                        <a href="#">Manuals & Guides</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">Service Centers</a>
+                    </div>
+
+                    <div class="link-column">
+                        <h4>Company</h4>
+                        <a href="#heritage">Our Heritage</a>
+                        <a href="#innovation">Innovation</a>
+                        <a href="#">Sustainability</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Press</a>
+                    </div>
+
+                    <div class="link-column">
+                        <h4>Programs</h4>
+                        <a href="#tradein">Trade-In Program</a>
+                        <a href="#funzone">Fun Zone</a>
+                        <a href="#">Membership</a>
+                        <a href="#">For Business</a>
+                        <a href="#">Where to Buy</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <span class="copyright">© 2024 Videcon Electronics Ltd. All rights reserved.</span>
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Cookie Policy</a>
+                        <a href="#">Site Map</a>
+                    </div>
+                </div>
+
+                <div class="footer-info">
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>Toll Free: 1800-103-VIDECON (843326)</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@videcon.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Result Modal -->
+    <div class="modal" id="resultModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <div class="result-content">
+                    <div class="result-icon success">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="result-title">Congratulations!</h3>
+                    <p class="result-text">You've won: <strong id="wonPrize">10% Off Coupon</strong></p>
+                    <div class="result-code" id="couponCode">
+                        VIDECON10
+                    </div>
+                    <p class="result-note">Use this code at checkout to claim your reward</p>
+                    <button class="btn btn-primary" id="copyCoupon">
+                        <i class="fas fa-copy"></i> Copy Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/v1.0.300.js"></script>
+</body>
+
+</html>
