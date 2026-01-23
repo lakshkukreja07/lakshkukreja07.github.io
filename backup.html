@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendora | Smart Vending Solutions for Enterprises</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        :root {
+            --primary-purple: #8B5CF6;
+            --purple-dark: #7C3AED;
+            --purple-light: #A78BFA;
+            --purple-ultralight: #C4B5FD;
+            --gradient-purple: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+            --gradient-dark: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%);
+            --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            --gray-900: #0F172A;
+            --gray-850: #121D33;
+            --gray-800: #1E293B;
+            --gray-700: #334155;
+            --gray-600: #475569;
+            --gray-300: #CBD5E1;
+            --gray-100: #F1F5F9;
+            --text-white: #FFFFFF;
+            --text-light: #E2E8F0;
+            --accent-green: #10B981;
+            --accent-blue: #3B82F6;
+            --accent-pink: #EC4899;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-white);
+            background: var(--gradient-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Modern Glass Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-white);
+            text-decoration: none;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-purple);
+        }
+
+        .nav-link.active {
+            color: var(--primary-purple);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-purple);
+            border-radius: 2px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-white);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(139, 92, 246, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 60px;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 75, 0.8) 100%);
+        }
+
+        /* Animated Background Elements */
+        .hero-bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--primary-purple);
+            filter: blur(60px);
+            opacity: 0.15;
+        }
+
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            left: -100px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -50px;
+            right: -50px;
+            animation: float 25s infinite ease-in-out reverse;
+        }
+
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 70%;
+            animation: float 30s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        /* Modern Capsule Badge */
+        .capsule-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--purple-light);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            position: relative;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            overflow: hidden;
+        }
+
+        .capsule-badge i {
+            color: var(--accent-green);
+            font-size: 14px;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .capsule-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            animation: shimmer 8s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            50% {
+                left: 100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Hero Text */
+        .hero-title {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--text-white);
+            background: linear-gradient(to right, #FFFFFF, var(--purple-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            margin-top: 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--gradient-card);
+            border-radius: var(--radius);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: var(--shadow-card);
+        }
+
+        .stat-icon-container {
+            width: 70px;
+            height: 70px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-icon-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(99, 102, 241, 0.2));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-item:hover .stat-icon-container::before {
+            opacity: 1;
+        }
+
+        .stat-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--primary-purple);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-title {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-item h3 {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 0;
+            line-height: 1;
+            font-feature-settings: "tnum" 1;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 120px 0;
+            position: relative;
+            scroll-margin-top: 80px;
+        }
+
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 27, 75, 0.9) 100%);
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-content {
+            text-align: center;
+        }
+
+        .about-description {
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.8;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 700px;
+        }
+
+        .about-description p {
+            margin-bottom: 24px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            line-height: 1.2;
+            color: var(--text-white);
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--gradient-card);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-purple);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: rgba(139, 92, 246, 0.2);
+            transform: scale(1.05);
+        }
+
+        .feature-icon i {
+            font-size: 30px;
+            color: var(--primary-purple);
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-white);
+            line-height: 1.3;
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 16px;
+            flex-grow: 1;
+        }
+
+        /* Ecosystem Section */
+        .ecosystem {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 27, 75, 0.9) 100%);
+        }
+
+        .ecosystem-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .ecosystem-features {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .ecosystem-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            color: var(--text-light);
+            font-size: 17px;
+            line-height: 1.6;
+            padding: 24px;
+            background: var(--gradient-card);
+            border-radius: 16px;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .ecosystem-features li:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: var(--shadow-card);
+        }
+
+        .ecosystem-features li i {
+            color: var(--accent-green);
+            font-size: 20px;
+            min-width: 24px;
+            margin-top: 2px;
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-card {
+            background: var(--gradient-card);
+            border-radius: var(--radius);
+            padding: 30px;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: var(--shadow-card);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon i {
+            font-size: 22px;
+            color: var(--primary-purple);
+        }
+
+        .contact-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-white);
+        }
+
+        .contact-details {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .contact-details a {
+            color: var(--purple-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--text-white);
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: var(--gradient-card);
+            border-radius: var(--radius);
+            padding: 40px;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-white);
+            font-size: 16px;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .form-control::placeholder {
+            color: var(--gray-600);
+        }
+
+        textarea.form-control {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--gradient-purple);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--gradient-purple);
+            color: var(--text-white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="white"/></svg>');
+            background-size: 1000px 100%;
+            opacity: 0.1;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            padding: 0 24px;
+        }
+
+        .cta-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--text-white);
+            color: var(--primary-purple);
+            padding: 18px 36px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            min-width: 240px;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: #f8f9fa;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 18px 36px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            min-width: 240px;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: var(--text-light);
+            padding: 80px 0 40px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-purple), transparent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            color: var(--gray-300);
+            margin-bottom: 24px;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-purple);
+            transform: translateY(-3px) rotate(5deg);
+        }
+
+        .footer-column h3 {
+            color: var(--text-white);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-purple);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .copyright {
+            color: var(--gray-300);
+            font-size: 14px;
+        }
+
+        .site-by {
+            color: var(--gray-300);
+            font-size: 13px;
+            opacity: 0.8;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .legal-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .legal-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 48px;
+            }
+            .section-title, .cta-title {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 42px;
+            }
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .section-title, .cta-title {
+                font-size: 38px;
+            }
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .ecosystem-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px;
+                gap: 24px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                box-shadow: var(--shadow);
+                border-radius: 0 0 var(--radius) var(--radius);
+                z-index: 999;
+            }
+            .nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            .hero {
+                padding: 100px 0 40px;
+            }
+            .hero-title {
+                font-size: 36px;
+            }
+            .hero-content {
+                padding: 30px 0;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            .section-title, .cta-title {
+                font-size: 32px;
+                margin-bottom: 30px;
+            }
+            .capsule-badge {
+                margin-bottom: 20px;
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+            .section {
+                padding: 80px 0;
+                scroll-margin-top: 60px;
+            }
+            .about, .features, .ecosystem, .contact, .cta {
+                padding: 80px 0;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .feature-card {
+                padding: 32px 24px;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+                margin-top: 30px;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                min-width: auto;
+                padding: 16px 24px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            .legal-links {
+                flex-wrap: wrap;
+            }
+            .contact-form {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+            .hero {
+                padding: 80px 0 30px;
+            }
+            .hero-title {
+                font-size: 32px;
+            }
+            .hero-subtitle {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .stat-item {
+                padding: 24px 16px;
+            }
+            .stat-item h3 {
+                font-size: 36px;
+            }
+            .section-title, .cta-title {
+                font-size: 28px;
+                margin-bottom: 24px;
+            }
+            .capsule-badge {
+                padding: 8px 18px;
+                font-size: 12px;
+                margin-bottom: 16px;
+            }
+            .section {
+                padding: 60px 0;
+            }
+            .about, .features, .ecosystem, .contact, .cta {
+                padding: 60px 0;
+            }
+            .feature-title {
+                font-size: 22px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .ecosystem-features li {
+                padding: 20px;
+                font-size: 16px;
+            }
+            .contact-form {
+                padding: 24px;
+            }
+            .circle-1, .circle-2, .circle-3 {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    
+    <!-- Modern Header -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">Vendora</a>
+            <nav class="nav" id="nav">
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#features" class="nav-link">Technology</a>
+                <a href="#ecosystem" class="nav-link">Ecosystem</a>
+                <a href="#contact" class="nav-link">Contact Us</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-elements">
+            <div class="bg-circle circle-1"></div>
+            <div class="bg-circle circle-2"></div>
+            <div class="bg-circle circle-3"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="capsule-badge">
+                    <i class="fas fa-bolt"></i>
+                    India's Leading Smart Vending Platform
+                </div>
+                <h1 class="hero-title">Convenience At Every Corner</h1>
+                <p class="hero-subtitle">
+                    Transform your enterprise with India's most advanced smart vending network. 
+                    Powering 24×7 access to food, beverages & essentials—anytime, anywhere.
+                </p>
+                
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon">
+                                    <!-- Machines SVG -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Machines</div>
+                            <h3 id="machines-counter">2.0K+</h3>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon">
+                                    <!-- Clients SVG -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Clients</div>
+                            <h3 id="clients-counter">550+</h3>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon">
+                                    <!-- Cities/Location SVG -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Cities</div>
+                            <h3 id="cities-counter">20+</h3>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon">
+                                    <!-- Daily Outreach SVG -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                        <path d="M16 3.128a4 4 0 0 1 0 7.744"/>
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Daily Outreach</div>
+                            <h3 id="outreach-counter">1.0M+</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about section" id="about">
+        <div class="container about-container">
+            <div class="about-content">
+                <div class="section-header">
+                    <div class="capsule-badge">
+                        <i class="fas fa-users"></i>
+                        Who Are We
+                    </div>
+                    <h2 class="section-title">About Vendora</h2>
+                </div>
+                <div class="about-description">
+                    <p>Vendora is a B2B-focused vending machine company that provides smart, reliable, and scalable automated vending solutions for businesses across sectors. Our machines are designed to serve everyone—enhancing accessibility, efficiency, and convenience in workplaces, institutions, and commercial spaces.</p>
+                    <p>By combining technology with operational simplicity, Vendora helps organizations streamline product distribution while delivering a seamless, modern experience to end users.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="features section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="capsule-badge">
+                    <i class="fas fa-microchip"></i>
+                    Advanced Technology
+                </div>
+                <h2 class="section-title">Smart Vending, Smarter Operations</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">AI Inventory Management</h3>
+                    <p class="feature-description">
+                        Smart sensors predict stock levels with 95% accuracy, reducing waste by 40% 
+                        and ensuring optimal inventory.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Seamless Payments</h3>
+                    <p class="feature-description">
+                        QR code, UPI, and app-less payments via WhatsApp/SMS. Multiple payment options 
+                        for maximum convenience.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Live Analytics Dashboard</h3>
+                    <p class="feature-description">
+                        Real-time insights into sales, inventory, and machine performance. Make 
+                        data-driven decisions instantly.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Enterprise Security</h3>
+                    <p class="feature-description">
+                        Military-grade encryption, biometric access, and tamper-proof hardware 
+                        ensuring complete security.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section class="ecosystem section" id="ecosystem">
+        <div class="container ecosystem-container">
+            <div class="section-header">
+                <div class="capsule-badge">
+                    <i class="fas fa-leaf"></i>
+                    Completed Ecosystem
+                </div>
+                <h2 class="section-title">End-to-End Enterprise Solution</h2>
+            </div>
+            <ul class="ecosystem-features">
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Live machine status & performance monitoring across all locations</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Predictive maintenance alerts reducing downtime by 70%</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Advanced sales analytics & revenue tracking with automated reports</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Intelligent inventory management with auto-reordering system</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Multi-location dashboard with role-based access control</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Custom reporting & data export for business intelligence</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container contact-container">
+            <div class="section-header">
+                <div class="capsule-badge">
+                    <i class="fas fa-envelope"></i>
+                    Get In Touch
+                </div>
+                <h2 class="section-title">Contact Us</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="contact-title">Office Location</h3>
+                        <div class="contact-details">
+                            <p>123 Tech Park, Innovation Street</p>
+                            <p>Bangalore, Karnataka 560001</p>
+                            <p>India</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3 class="contact-title">Contact Numbers</h3>
+                        <div class="contact-details">
+                            <p>Sales: <a href="tel:+9118001234567">+91 1800 123 4567</a></p>
+                            <p>Support: <a href="tel:+9118007654321">+91 1800 765 4321</a></p>
+                            <p>Emergency: <a href="tel:+919876543210">+91 98765 43210</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="contact-title">Email Address</h3>
+                        <div class="contact-details">
+                            <p>Sales: <a href="mailto:sales@vendora.com">sales@vendora.com</a></p>
+                            <p>Support: <a href="mailto:support@vendora.com">support@vendora.com</a></p>
+                            <p>Partnership: <a href="mailto:partners@vendora.com">partners@vendora.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" class="form-control" placeholder="Enter your company name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" placeholder="Tell us about your requirements..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta section" id="cta">
+        <div class="container cta-container">
+            <div class="section-header">
+                <div class="capsule-badge">
+                    <i class="fas fa-rocket"></i>
+                    Get Started
+                </div>
+                <h2 class="cta-title">Ready to Transform Your Business?</h2>
+            </div>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-primary">
+                    <i class="fas fa-calendar-alt"></i>
+                    Schedule Enterprise Demo
+                </a>
+                <a href="tel:+9118001234567" class="btn-secondary">
+                    <i class="fas fa-phone-alt"></i>
+                    Call Sales
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Vendora</a>
+                    <p class="footer-description">
+                        Legacy Reborn. Future Redefined. Empowering enterprises with smart vending 
+                        solutions for a connected tomorrow.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>PRODUCTS</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Smart Vending Machines</a></li>
+                        <li><a href="#">Refrigerated Units</a></li>
+                        <li><a href="#">Hot Food Machines</a></li>
+                        <li><a href="#">Micro Markets</a></li>
+                        <li><a href="#">All Products</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>COMPANY</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press & Media</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>RESOURCES</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>
+                    <p class="copyright">© 2026 Management and Machines Private Limited. All rights reserved.</p>
+                    <p class="site-by">Site By Laksh Kukreja</p>
+                </div>
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const headerHeight = header.offsetHeight;
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - headerHeight - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Number counting animation for stats
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-item h3');
+            const finalValues = [2000, 550, 20, 1000000];
+            const startValues = [100, 50, 1, 100000];
+            const suffixes = ['+', '+', '+', '+'];
+            
+            statNumbers.forEach((stat, index) => {
+                const rect = stat.getBoundingClientRect();
+                const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
+                
+                if (isVisible && !stat.classList.contains('animated')) {
+                    stat.classList.add('animated');
+                    
+                    // Set initial value
+                    stat.textContent = '0';
+                    
+                    let currentValue = startValues[index];
+                    const endValue = finalValues[index];
+                    const duration = 1500;
+                    const increment = Math.ceil((endValue - currentValue) / 50);
+                    const suffix = suffixes[index];
+                    
+                    function formatNumber(num) {
+                        if (num >= 1000000) {
+                            return (num / 1000000).toFixed(1) + 'M' + suffix;
+                        } else if (num >= 1000) {
+                            return (num / 1000).toFixed(1) + 'K' + suffix;
+                        } else {
+                            return num + suffix;
+                        }
+                    }
+                    
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= endValue) {
+                            currentValue = endValue;
+                            clearInterval(timer);
+                            stat.textContent = formatNumber(endValue);
+                        } else {
+                            stat.textContent = formatNumber(currentValue);
+                        }
+                    }, duration / 50);
+                }
+            });
+        }
+
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const company = document.getElementById('company').value;
+                const message = document.getElementById('message').value;
+                
+                // Here you would typically send the form data to a server
+                // For now, we'll just show an alert
+                alert(`Thank you ${name}! Your message has been received. We'll contact you at ${email} soon.`);
+                
+                // Reset form
+                contactForm.reset();
+            });
+        }
+
+        // Initialize animations
+        window.addEventListener('load', () => {
+            lucide.createIcons();
+            animateStats();
+        });
+        
+        window.addEventListener('scroll', animateStats);
+        
+        // Trigger animation on page load
+        setTimeout(animateStats, 500);
+    </script>
+</body>
+</html>
