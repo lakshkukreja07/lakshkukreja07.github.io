@@ -232,7 +232,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--gray-900) url('vendora-background.png') center/cover no-repeat;
+            background: var(--gray-900) url('https://lakshkukreja07.github.io/assets/src/vendora-background.png') center/cover no-repeat;
             opacity: 0.3;
             z-index: 0;
         }
@@ -630,7 +630,7 @@
     width: 100%;
     height: 100%;
     background: 
-        url('zigzag-background.png') center/cover no-repeat,
+        url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/raw/main/assets/src/zigzag-background.png') center/cover no-repeat,
         radial-gradient(
             ellipse at 50% 50%,
             rgba(0, 0, 0, 0.15) 0%,
@@ -651,17 +651,29 @@
     height: 100%;
     background: 
         radial-gradient(
-            ellipse at 50% 50%,
-            rgba(0, 0, 0, 0.1) 0%,
-            rgba(0, 0, 0, 0.2) 30%,
-            rgba(0, 0, 0, 0.3) 60%,
-            transparent 100%
+            circle at 20% 50%,
+            rgba(255, 255, 255, 0.03) 0%,
+            rgba(255, 255, 255, 0.01) 20%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 255, 255, 0.02) 0%,
+            rgba(255, 255, 255, 0.008) 20%,
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 40% 80%,
+            rgba(255, 255, 255, 0.02) 0%,
+            rgba(255, 255, 255, 0.008) 20%,
+            transparent 45%
         );
-    backdrop-filter: blur(10px);
-    opacity: 0.7;
+    backdrop-filter: blur(15px) brightness(0.5);
+    mix-blend-mode: overlay;
+    opacity: 0.9;
     z-index: 2;
-    mix-blend-mode: multiply; /* Changed from overlay to multiply */
 }
+
 .cta-container {
     max-width: 800px;
     margin: 0 auto;
