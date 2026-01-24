@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendora | Smart Vending Solutions for Enterprises</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        :root {
+            --primary-purple: #8B5CF6;
+            --purple-dark: #7C3AED;
+            --purple-light: #A78BFA;
+            --gray-900: #0F172A;
+            --gray-850: #121D33;
+            --gray-800: #1E293B;
+            --gray-700: #334155;
+            --gray-300: #CBD5E1;
+            --text-white: #FFFFFF;
+            --text-light: #E2E8F0;
+            --gradient: linear-gradient(135deg, var(--primary-purple), #6366F1);
+            --bg-gradient: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-850) 100%);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-white);
+            background: var(--bg-gradient);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 clamp(16px, 3vw, 24px);
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            z-index: 1000;
+            padding: clamp(12px, 2vw, 18px) 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(20px, 3vw, 26px);
+            font-weight: 700;
+            color: var(--text-white);
+            text-decoration: none;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav {
+            display: flex;
+            gap: clamp(16px, 2vw, 32px);
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: clamp(12px, 1.5vw, 14px);
+            padding: clamp(8px, 1.5vw, 10px) clamp(12px, 1.5vw, 18px);
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 2;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--text-white);
+        }
+
+        .nav-link.active {
+            color: var(--text-white);
+        }
+
+        .nav-indicator {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 75%;
+            background: rgba(139, 92, 246, 0.25);
+            border-radius: 6px;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: clamp(18px, 2.5vw, 20px);
+            color: var(--text-white);
+            cursor: pointer;
+        }
+
+        .hero {
+            padding: clamp(80px, 10vw, 100px) 0 clamp(30px, 4vw, 40px);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gray-900) url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/raw/main/assets/src/vendora-background.png') center/cover no-repeat;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(18, 29, 51, 0.75) 30%, rgba(30, 41, 59, 0.6) 100%);
+            opacity: 0.7;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: min(90%, 700px);
+            width: 100%;
+            padding: clamp(20px, 3vw, 30px) 0;
+        }
+
+        .capsule-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: clamp(8px, 1vw, 10px);
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--text-white);
+            padding: clamp(6px, 1vw, 8px) clamp(16px, 2vw, 20px);
+            border-radius: 50px;
+            font-size: clamp(12px, 1.5vw, 14px);
+            font-weight: 600;
+            margin-bottom: clamp(10px, 1.5vw, 15px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            overflow: hidden;
+            position: relative;
+            letter-spacing: 0.3px;
+            text-transform: none;
+        }
+
+        .hero-content .capsule-badge {
+            margin-bottom: clamp(10px, 1.5vw, 15px);
+        }
+
+        .capsule-badge i {
+            color: #10B981;
+            font-size: clamp(12px, 1.5vw, 14px);
+            animation: shakeThunderbolt 4s ease-in-out infinite;
+        }
+
+        .capsule-icon {
+            width: clamp(14px, 2vw, 16px);
+            height: clamp(14px, 2vw, 16px);
+            color: #10B981;
+            animation: shakeThunderbolt 4s ease-in-out infinite;
+        }
+
+        @keyframes shakeThunderbolt {
+
+            0%,
+            100% {
+                transform: rotate(0deg) translateX(0);
+            }
+
+            5% {
+                transform: rotate(-5deg) translateX(-1px);
+            }
+
+            10% {
+                transform: rotate(5deg) translateX(1px);
+            }
+
+            15% {
+                transform: rotate(-3deg) translateX(-1px);
+            }
+
+            20% {
+                transform: rotate(3deg) translateX(1px);
+            }
+
+            25% {
+                transform: rotate(0deg) translateX(0);
+            }
+
+            95% {
+                transform: rotate(0deg) translateX(0);
+            }
+        }
+
+        .capsule-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            animation: shimmerBadge 8s ease-in-out infinite;
+        }
+
+        @keyframes shimmerBadge {
+            0% {
+                left: -100%;
+            }
+
+            20%,
+            80% {
+                left: -100%;
+            }
+
+            50% {
+                left: 100%;
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(32px, 6vw, 42px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: clamp(16px, 2vw, 20px);
+            color: var(--text-white);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2.5vw, 18px);
+            color: var(--text-light);
+            margin-bottom: clamp(20px, 3vw, 30px);
+            line-height: 1.5;
+        }
+
+        .hero-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3), transparent);
+            margin: clamp(20px, 3vw, 30px) 0;
+            width: 100%;
+            max-width: min(95%, 600px);
+        }
+
+        .stats-section {
+            margin-top: clamp(15px, 2vw, 20px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+            gap: clamp(15px, 2vw, 20px);
+            margin-top: clamp(20px, 3vw, 30px);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: clamp(12px, 1.5vw, 15px) clamp(8px, 1vw, 10px);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-icon-container {
+            position: relative;
+            width: clamp(40px, 5vw, 50px);
+            height: clamp(40px, 5vw, 50px);
+            margin: 0 auto clamp(10px, 1.5vw, 15px);
+        }
+
+        .stat-icon-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #DA9FFC;
+            border-radius: clamp(8px, 1vw, 10px);
+            opacity: 0.15;
+        }
+
+        .stat-icon {
+            position: relative;
+            width: clamp(20px, 3vw, 24px);
+            height: clamp(20px, 3vw, 24px);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-white);
+            z-index: 2;
+        }
+
+        .stat-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            fill: none;
+        }
+
+        .stat-title {
+            font-size: clamp(12px, 1.5vw, 14px);
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: clamp(6px, 1vw, 8px);
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-item h3 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 0;
+            line-height: 1;
+            font-feature-settings: "tnum" 1;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes counterPulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .stat-item h3.animated {
+            animation: countUp 0.8s ease-out forwards, counterPulse 0.3s ease-out 1.8s;
+        }
+
+        .section {
+            padding: clamp(60px, 10vw, 120px) 0;
+            position: relative;
+            overflow: hidden;
+            scroll-margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .about {
+            background: var(--gray-900);
+        }
+
+        .about-container {
+            max-width: min(90%, 800px);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .about-content {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .about .capsule-badge {
+            margin-top: clamp(-15px, -2vw, -20px);
+            margin-bottom: clamp(15px, 2vw, 20px);
+        }
+
+        .about .section-title,
+        .features .section-title,
+        .ecosystem .section-title {
+            font-size: clamp(32px, 5vw, 42px);
+            font-weight: 800;
+            margin-bottom: clamp(40px, 6vw, 60px);
+            line-height: 1.2;
+            color: var(--text-white);
+            text-align: center;
+        }
+
+        .about-description {
+            font-size: clamp(16px, 2vw, 18px);
+            color: var(--text-light);
+            line-height: 1.8;
+            text-align: left;
+            margin: 0 auto;
+            max-width: min(95%, 700px);
+            margin-top: clamp(20px, 3vw, 30px);
+        }
+
+        .about-description p {
+            margin-bottom: clamp(15px, 2vw, 20px);
+        }
+
+        .features {
+            background: var(--gray-800);
+        }
+
+        .features .container {
+            width: 100%;
+            text-align: center;
+        }
+
+        .features .capsule-badge {
+            margin-top: clamp(-15px, -2vw, -20px);
+            margin-bottom: clamp(15px, 2vw, 20px);
+            display: inline-flex;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 30px);
+            margin-top: clamp(20px, 3vw, 30px);
+        }
+
+        .feature-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: clamp(25px, 3vw, 35px) clamp(20px, 2.5vw, 25px);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-purple);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .feature-icon {
+            width: clamp(50px, 6vw, 60px);
+            height: clamp(50px, 6vw, 60px);
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: clamp(12px, 1.5vw, 14px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: clamp(20px, 2.5vw, 25px);
+        }
+
+        .feature-icon svg {
+            width: clamp(22px, 3vw, 26px);
+            height: clamp(22px, 3vw, 26px);
+            color: var(--text-white);
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .feature-icon i {
+            font-size: clamp(22px, 3vw, 26px);
+            color: var(--text-white);
+        }
+
+        .feature-title {
+            font-size: clamp(18px, 2.5vw, 22px);
+            font-weight: 600;
+            margin-bottom: clamp(12px, 1.5vw, 16px);
+            color: var(--text-white);
+            line-height: 1.4;
+            word-break: keep-all;
+            overflow-wrap: normal;
+            height: 3.2em;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: clamp(14px, 1.8vw, 15px);
+            flex-grow: 1;
+        }
+
+        .ecosystem {
+            background: var(--gray-900);
+        }
+
+        .ecosystem-container {
+            max-width: min(90%, 900px);
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .ecosystem-content {
+            text-align: center;
+        }
+
+        .ecosystem .capsule-badge {
+            margin-top: clamp(-15px, -2vw, -20px);
+            margin-bottom: clamp(15px, 2vw, 20px);
+        }
+
+        .ecosystem-features {
+            list-style: none;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(15px, 2vw, 20px);
+            margin-top: clamp(30px, 4vw, 40px);
+        }
+
+        @media (min-width: 768px) {
+            .ecosystem-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .ecosystem-features li {
+            display: flex;
+            align-items: center;
+            gap: clamp(12px, 1.5vw, 15px);
+            color: var(--text-light);
+            font-size: clamp(14px, 1.8vw, 16px);
+            line-height: 1.6;
+            padding: clamp(15px, 2vw, 18px) clamp(16px, 2vw, 20px);
+            background: rgba(30, 41, 59, 0.3);
+            border-radius: clamp(10px, 1.5vw, 12px);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .ecosystem-features li:hover {
+            background: rgba(30, 41, 59, 0.5);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .ecosystem-features li i {
+            color: #10B981;
+            font-size: clamp(16px, 2vw, 18px);
+            min-width: clamp(20px, 3vw, 24px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: shakeThunderbolt 4s ease-in-out infinite;
+        }
+
+        .ecosystem-features li span {
+            flex: 1;
+        }
+
+        .lucide-badge-check {
+            width: clamp(18px, 2.5vw, 20px);
+            height: clamp(18px, 2.5vw, 20px);
+            color: #10B981;
+            animation: shakeThunderbolt 4s ease-in-out infinite;
+        }
+
+        .need-help {
+            background: var(--gray-800);
+            color: var(--text-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .need-help-container {
+            max-width: min(95%, 1200px);
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            padding: 0 clamp(16px, 3vw, 24px);
+            width: 100%;
+        }
+
+        .need-help-capsule-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: clamp(-15px, -2vw, -20px);
+            margin-bottom: clamp(30px, 4vw, 40px);
+        }
+
+        .help-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(30px, 5vw, 60px);
+            align-items: start;
+        }
+
+        @media (min-width: 768px) {
+            .help-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .contact-left {
+            text-align: left;
+        }
+
+        .contact-title,
+        .faqs-title {
+            font-size: clamp(28px, 4vw, 36px);
+            font-weight: 800;
+            margin-bottom: clamp(20px, 3vw, 30px);
+            line-height: 1.2;
+            color: var(--text-white);
+            text-align: left;
+        }
+
+        .contact-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(15px, 2vw, 20px);
+            margin-top: clamp(20px, 3vw, 30px);
+            align-items: stretch;
+        }
+
+        @media (min-width: 768px) {
+            .contact-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .contact-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: var(--radius);
+            padding: clamp(20px, 2.5vw, 25px) clamp(16px, 2vw, 20px);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: min(160px, 25vw);
+            justify-content: flex-start;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary-purple);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .contact-card-header {
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.5vw, 12px);
+            margin-bottom: clamp(15px, 2vw, 20px);
+        }
+
+        .contact-card-icon {
+            width: clamp(45px, 5vw, 50px);
+            height: clamp(45px, 5vw, 50px);
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: clamp(10px, 1.5vw, 12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-card-icon svg {
+            width: clamp(20px, 3vw, 24px);
+            height: clamp(20px, 3vw, 24px);
+            color: var(--text-white);
+        }
+
+        .contact-card-title {
+            font-size: clamp(16px, 2vw, 18px);
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-white);
+        }
+
+        .contact-card-body {
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 1vw, 8px);
+            margin-top: auto;
+        }
+
+        .contact-card-body:not(:has(svg)) {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .contact-card-body svg {
+            width: clamp(14px, 2vw, 16px);
+            height: clamp(14px, 2vw, 16px);
+            color: var(--text-white);
+            flex-shrink: 0;
+        }
+
+        .contact-card-link {
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 1vw, 8px);
+            color: var(--text-white);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: clamp(12px, 1.5vw, 14px);
+            transition: color 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .contact-card-link:hover {
+            color: var(--text-white);
+        }
+
+        .contact-card-link:hover .arrow-icon,
+        .contact-card-link:hover+.arrow-icon,
+        .contact-card-body:hover .arrow-icon {
+            transform: translate(2px, -2px);
+            transition: transform 0.3s ease;
+        }
+
+        .arrow-icon {
+            transition: transform 0.3s ease;
+            width: clamp(14px, 2vw, 16px);
+            height: clamp(14px, 2vw, 16px);
+            color: var(--text-white);
+            flex-shrink: 0;
+        }
+
+        .faqs-right {
+            text-align: left;
+        }
+
+        .faqs-list {
+            list-style: none;
+            margin-top: clamp(15px, 2vw, 20px);
+        }
+
+        .faq-item {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: var(--radius);
+            padding: clamp(20px, 2.5vw, 25px);
+            margin-bottom: clamp(15px, 2vw, 20px);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+            min-height: min(110px, 20vw);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .faq-item:hover {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .faq-question {
+            font-size: clamp(16px, 2vw, 18px);
+            font-weight: 600;
+            margin-bottom: 0;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.5vw, 12px);
+            cursor: pointer;
+            padding-right: clamp(25px, 3vw, 30px);
+            position: relative;
+        }
+
+        .faq-question svg {
+            width: clamp(18px, 2.5vw, 20px);
+            height: clamp(18px, 2.5vw, 20px);
+            color: var(--primary-purple);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .faq-toggle {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: clamp(18px, 2.5vw, 20px);
+            height: clamp(18px, 2.5vw, 20px);
+            color: var(--primary-purple);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .faq-answer {
+            font-size: clamp(14px, 1.8vw, 15px);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding-left: clamp(28px, 3vw, 32px);
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: clamp(12px, 1.5vw, 15px);
+        }
+
+        .footer {
+            background: var(--gray-900);
+            color: var(--text-light);
+            padding: clamp(50px, 7vw, 70px) 0 clamp(25px, 4vw, 35px);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(30px, 4vw, 45px);
+            margin-bottom: clamp(30px, 4vw, 45px);
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand .logo {
+            margin-bottom: clamp(12px, 1.5vw, 18px);
+        }
+
+        .footer-description {
+            color: var(--gray-300);
+            margin-bottom: clamp(15px, 2vw, 20px);
+            line-height: 1.6;
+            font-size: clamp(14px, 1.8vw, 16px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: clamp(10px, 1.5vw, 14px);
+        }
+
+        .social-links a {
+            width: clamp(32px, 4vw, 36px);
+            height: clamp(32px, 4vw, 36px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-purple);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h3 {
+            color: var(--text-white);
+            font-size: clamp(13px, 1.6vw, 15px);
+            font-weight: 600;
+            margin-bottom: clamp(15px, 2vw, 20px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: clamp(8px, 1vw, 10px);
+        }
+
+        .footer-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: clamp(13px, 1.5vw, 14px);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        .footer-bottom {
+            padding-top: clamp(25px, 4vw, 35px);
+            border-top: 1px solid var(--gray-700);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(15px, 2vw, 20px);
+            align-items: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .copyright {
+            color: var(--gray-300);
+            font-size: clamp(12px, 1.5vw, 13px);
+        }
+
+        .site-by {
+            color: var(--gray-300);
+            font-size: clamp(12px, 1.5vw, 13px);
+            opacity: 1;
+            margin-top: clamp(6px, 1vw, 8px);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: clamp(4px, 1vw, 6px);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .site-by:hover {
+            color: var(--primary-purple);
+        }
+
+        .lucide-badge-check-icon {
+            width: clamp(14px, 2vw, 16px);
+            height: clamp(14px, 2vw, 16px);
+            color: #10B981;
+            flex-shrink: 0;
+        }
+
+        .legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(12px, 2vw, 20px);
+        }
+
+        .legal-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: clamp(12px, 1.5vw, 13px);
+            transition: color 0.3s ease;
+        }
+
+        .legal-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .popup-content {
+            background: rgba(30, 41, 59, 0.95);
+            border-radius: 12px;
+            padding: 0;
+            max-width: min(95%, 500px);
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: clamp(12px, 1.5vw, 16px);
+            right: clamp(12px, 1.5vw, 16px);
+            background: rgba(30, 41, 59, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: clamp(32px, 4vw, 36px);
+            height: clamp(32px, 4vw, 36px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-white);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .popup-close:hover {
+            background: rgba(139, 92, 246, 0.3);
+        }
+
+        .popup-close svg {
+            width: clamp(18px, 2.5vw, 20px);
+            height: clamp(18px, 2.5vw, 20px);
+        }
+
+        .popup-header {
+            padding: clamp(24px, 3vw, 32px) clamp(24px, 3vw, 32px) clamp(20px, 2.5vw, 24px);
+            text-align: center;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .popup-header h2 {
+            font-size: clamp(20px, 3vw, 24px);
+            font-weight: 700;
+            color: var(--text-white);
+            margin: 0;
+        }
+
+        .popup-body {
+            padding: clamp(24px, 3vw, 32px);
+        }
+
+        .popup-body .section-header {
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.5vw, 12px);
+            padding: clamp(14px, 2vw, 16px) clamp(16px, 2vw, 20px);
+            background: rgba(139, 92, 246, 0.05);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+            margin: 0 0 0 0;
+            text-align: left;
+            max-width: none;
+            width: auto;
+        }
+
+        .popup-header-icon {
+            width: clamp(56px, 7vw, 64px);
+            height: clamp(56px, 7vw, 64px);
+            background: rgba(139, 92, 246, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto clamp(16px, 2vw, 20px);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+        }
+
+        .popup-header-icon svg {
+            width: clamp(28px, 4vw, 32px);
+            height: clamp(28px, 4vw, 32px);
+            color: var(--primary-purple);
+        }
+
+        .popup-subtitle {
+            font-size: clamp(12px, 1.5vw, 14px);
+            color: var(--text-light);
+            margin-top: clamp(6px, 1vw, 8px);
+            opacity: 0.8;
+        }
+
+        .motto-box {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            padding: clamp(20px, 2.5vw, 24px);
+            margin-bottom: clamp(15px, 2vw, 20px);
+            text-align: left;
+        }
+
+        .motto-content.author-name {
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.5vw, 12px);
+            margin-bottom: clamp(12px, 1.5vw, 15px);
+            padding-left: clamp(6px, 1vw, 8px);
+        }
+
+        .author-name-text {
+            font-size: clamp(18px, 2.5vw, 22px);
+            font-weight: 700;
+            color: var(--text-white);
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .motto-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.6), rgba(139, 92, 246, 0.3), transparent);
+            margin: clamp(8px, 1vw, 10px) 0;
+            width: 100%;
+        }
+
+        .motto-content {
+            display: flex;
+            align-items: center;
+            gap: clamp(12px, 1.5vw, 14px);
+            margin-bottom: clamp(8px, 1vw, 10px);
+            padding-left: clamp(6px, 1vw, 8px);
+        }
+
+        .motto-content:last-child {
+            margin-bottom: 0;
+        }
+
+        .motto-icon {
+            width: clamp(20px, 2.5vw, 22px);
+            height: clamp(20px, 2.5vw, 22px);
+            flex-shrink: 0;
+        }
+
+        .motto-icon.heart {
+            color: #EC4899;
+        }
+
+        .motto-icon.flame {
+            color: #F59E0B;
+        }
+
+        .motto-text {
+            font-size: clamp(14px, 1.8vw, 16px);
+            color: var(--text-light);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.5vw, 12px);
+            padding: clamp(14px, 2vw, 16px) clamp(16px, 2vw, 20px);
+            background: rgba(139, 92, 246, 0.05);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            margin: 0 0 0 0;
+        }
+
+        .section-header:first-child {
+            margin-top: 0;
+        }
+
+        .section-icon {
+            width: clamp(18px, 2.5vw, 20px);
+            height: clamp(18px, 2.5vw, 20px);
+            color: var(--primary-purple);
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: clamp(14px, 1.8vw, 16px);
+            font-weight: 600;
+            color: var(--text-white);
+            margin: 0;
+            text-transform: none;
+        }
+
+        .tech-items {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.3) !important;
+            margin-bottom: clamp(15px, 2vw, 20px);
+            overflow: hidden;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            padding: clamp(12px, 1.5vw, 14px) clamp(16px, 2vw, 20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3) !important;
+        }
+
+        .tech-item:last-child {
+            border-bottom: none !important;
+        }
+
+        .tech-label {
+            font-size: clamp(13px, 1.5vw, 14px);
+            color: #CBD5E1;
+            font-weight: 700;
+            width: min(140px, 40%);
+            flex-shrink: 0;
+            padding-right: clamp(8px, 1vw, 10px);
+        }
+
+        .tech-icon {
+            width: clamp(18px, 2.5vw, 20px);
+            height: clamp(18px, 2.5vw, 20px);
+            color: var(--text-light);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .tech-content {
+            flex: 1;
+        }
+
+        .tech-value {
+            font-size: clamp(13px, 1.5vw, 14px);
+            color: var(--text-white);
+            font-weight: 400;
+            flex: 1;
+            word-break: break-word;
+            text-align: right;
+            margin-left: auto;
+            padding-left: clamp(16px, 2vw, 20px);
+        }
+
+        .tech-item:first-child .tech-label {
+            color: var(--text-white);
+            font-weight: 700;
+        }
+
+        .tech-item:first-child .tech-value {
+            color: var(--text-white);
+            font-weight: 600;
+        }
+
+        .verified-tick {
+            width: clamp(28px, 4vw, 32px);
+            height: clamp(28px, 4vw, 32px);
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            margin-top: 2px;
+        }
+
+        .verified-tick svg {
+            width: clamp(16px, 2.2vw, 18px);
+            height: clamp(16px, 2.2vw, 18px);
+            color: #10B981;
+        }
+
+        .changelog-items {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.3) !important;
+            margin-bottom: clamp(15px, 2vw, 20px);
+            overflow: hidden;
+        }
+
+        .changelog-item {
+            display: flex;
+            align-items: flex-start;
+            padding: clamp(12px, 1.5vw, 14px) clamp(16px, 2vw, 20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3) !important;
+        }
+
+        .changelog-item:last-child {
+            border-bottom: none !important;
+        }
+
+        .changelog-icon {
+            width: clamp(18px, 2.5vw, 20px);
+            height: clamp(18px, 2.5vw, 20px);
+            color: var(--primary-purple);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .changelog-text {
+            font-size: clamp(13px, 1.5vw, 14px);
+            color: var(--text-white);
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .important-info {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.3) !important;
+            margin-bottom: clamp(15px, 2vw, 20px);
+            overflow: hidden;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            padding: clamp(12px, 1.5vw, 14px) clamp(16px, 2vw, 20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3) !important;
+        }
+
+        .info-item:last-child {
+            border-bottom: none !important;
+        }
+
+        .info-item.full-width {
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-icon {
+            width: clamp(18px, 2.5vw, 20px);
+            height: clamp(18px, 2.5vw, 20px);
+            color: var(--primary-purple);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .info-text {
+            font-size: clamp(12px, 1.5vw, 13px);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .info-text p {
+            margin-bottom: clamp(10px, 1.5vw, 12px);
+            padding-left: clamp(6px, 1vw, 8px);
+        }
+
+        .info-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .popup-header h2 svg {
+            width: clamp(20px, 3vw, 24px);
+            height: clamp(20px, 3vw, 24px);
+            color: #10B981;
+        }
+
+        .shield-check {
+            color: #10B981 !important;
+        }
+
+        .heart-handshake {
+            color: #EC4899 !important;
+        }
+
+        .flame {
+            color: #F59E0B !important;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--gray-900);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 80px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav.active {
+                right: 0;
+            }
+
+            .nav-indicator {
+                display: none;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">Vendora</a>
+            <nav class="nav" id="nav">
+                <div class="nav-indicator" id="navIndicator"></div>
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#features" class="nav-link">Technology</a>
+                <a href="#ecosystem" class="nav-link">Ecosystem</a>
+                <a href="#need-help" class="nav-link">Need Help?</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-bg-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="capsule-badge">
+                    <i class="fas fa-bolt"></i>
+                    India's Leading Smart Vending Platform
+                </div>
+                <h1 class="hero-title">Convenience At Every Corner</h1>
+                <p class="hero-subtitle">
+                    Transform your enterprise with India's most advanced smart vending network.
+                    Powering 24×7 access to food, beverages & essentials—anytime, anywhere.
+                </p>
+                <div class="hero-divider"></div>
+                <div class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon-bg"></div>
+                                <div class="stat-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Machines</div>
+                            <h3 id="machines-counter" data-target="2000" data-suffix="+">0</h3>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon-bg"></div>
+                                <div class="stat-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                        <circle cx="12" cy="7" r="4" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Clients</div>
+                            <h3 id="clients-counter" data-target="550" data-suffix="+">0</h3>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon-bg"></div>
+                                <div class="stat-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Cities</div>
+                            <h3 id="cities-counter" data-target="20" data-suffix="+">0</h3>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon-bg"></div>
+                                <div class="stat-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                        <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                        <circle cx="9" cy="7" r="4" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Daily Outreach</div>
+                            <h3 id="outreach-counter" data-target="1000000" data-suffix="+">0</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about section" id="about">
+        <div class="container about-container">
+            <div class="about-content">
+                <div class="capsule-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="capsule-icon" style="color: #10B981;">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    Who Are We
+                </div>
+                <h2 class="section-title">About Vendora</h2>
+                <div class="about-description">
+                    <p>Vendora is a B2B-focused vending machine company that provides smart, reliable, and scalable
+                        automated vending solutions for businesses across sectors. Our machines are designed to serve
+                        everyone—enhancing accessibility, efficiency, and convenience in workplaces, institutions, and
+                        commercial spaces.</p>
+                    <p>By combining technology with operational simplicity, Vendora helps organizations streamline
+                        product distribution while delivering a seamless, modern experience to end users.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features section" id="features">
+        <div class="container">
+            <div class="capsule-badge">
+                <i class="fas fa-microchip"></i>
+                Advanced Technology
+            </div>
+            <h2 class="section-title">Smart Vending, Smarter Operations</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 18V5" />
+                            <path d="M15 13a4.17 4.17 0 0 1-3-4 a4.17 4.17 0 0 1-3 4" />
+                            <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" />
+                            <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" />
+                            <path d="M18 18a4 4 0 0 0 2-7.464" />
+                            <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" />
+                            <path d="M6 18a4 4 0 0 1-2-7.464" />
+                            <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">AI Inventory Management</h3>
+                    <p class="feature-description">
+                        Smart sensors predict stock levels with 95% accuracy, reducing waste by 40%
+                        and ensuring optimal inventory.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Seamless Payments</h3>
+                    <p class="feature-description">
+                        QR code, UPI, and app-less payments via WhatsApp/SMS. Multiple payment options
+                        for maximum convenience.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Live Analytics Dashboard</h3>
+                    <p class="feature-description">
+                        Real-time insights into sales, inventory, and machine performance. Make
+                        data-driven decisions instantly.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Enterprise Security</h3>
+                    <p class="feature-description">
+                        Military-grade encryption, biometric access, and tamper-proof hardware
+                        ensuring complete security.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ecosystem section" id="ecosystem">
+        <div class="container ecosystem-container">
+            <div class="ecosystem-content">
+                <div class="capsule-badge">
+                    <i class="fas fa-leaf"></i>
+                    Complete Ecosystem
+                </div>
+                <h2 class="section-title">End-to-End Enterprise Solution</h2>
+                <ul class="ecosystem-features">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Live machine status & performance monitoring across all locations</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Predictive maintenance alerts reducing downtime by 70%</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Advanced sales analytics & revenue tracking with automated reports</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Intelligent inventory management with auto-reordering system</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Multi-location dashboard with role-based access control</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Custom reporting & data export for business intelligence</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="need-help section" id="need-help">
+        <div class="container need-help-container">
+            <div class="need-help-capsule-container">
+                <div class="capsule-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="capsule-icon" style="color: #10B981;">
+                        <path
+                            d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
+                        <path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" />
+                    </svg>
+                    Life Saver, Indeed
+                </div>
+            </div>
+            <div class="help-layout">
+                <div class="contact-left">
+                    <h2 class="contact-title">Need Help?</h2>
+                    <div class="contact-cards-grid">
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18l-6-4-6 4Z" />
+                                        <path d="M10 6h4" />
+                                        <path d="M10 10h4" />
+                                        <path d="M10 14h4" />
+                                    </svg>
+                                </div>
+                                <h3 class="contact-card-title">Visit Us</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="arrow-icon">
+                                    <path d="M7 7h10v10" />
+                                    <path d="M7 17 17 7" />
+                                </svg>
+                                <a href="#" class="contact-card-link">
+                                    Click Here For More Information
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="m16 8 6-6" />
+                                        <path d="M22 8V2h-6" />
+                                        <path
+                                            d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+                                    </svg>
+                                </div>
+                                <h3 class="contact-card-title">Customer Support</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <a href="tel:+9118001234567" class="contact-card-link">
+                                    +91 1800 123 4567
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                                    </svg>
+                                </div>
+                                <h3 class="contact-card-title">Email Support</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <a href="mailto:support@vendora.com" class="contact-card-link">
+                                    support@vendora.com
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" />
+                                    </svg>
+                                </div>
+                                <h3 class="contact-card-title">Repair Request</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="arrow-icon">
+                                    <path d="M7 7h10v10" />
+                                    <path d="M7 17 17 7" />
+                                </svg>
+                                <a href="#" class="contact-card-link">
+                                    Click Here For More Information
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="faqs-right">
+                    <h2 class="faqs-title">General FAQs</h2>
+                    <ul class="faqs-list">
+                        <li class="faq-item">
+                            <div class="faq-question">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg>
+                                What is the warranty period for Vendora machines?
+                            </div>
+                            <div class="faq-answer">
+                                All Vendora smart vending machines come with a standard 2-year comprehensive warranty
+                                covering parts and labor. Extended warranty options are available for enterprise
+                                clients.
+                            </div>
+                        </li>
+                        <li class="faq-item">
+                            <div class="faq-question">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg>
+                                What payment methods are supported?
+                            </div>
+                            <div class="faq-answer">
+                                Our machines support UPI, QR codes, credit/debit cards, and app-less payments via
+                                WhatsApp/SMS. We also offer enterprise billing options for corporate clients.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Vendora</a>
+                    <p class="footer-description">
+                        Legacy Reborn. Future Redefined. Empowering enterprises with smart vending solutions for a
+                        connected tomorrow.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>PRODUCTS</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Smart Vending Machines</a></li>
+                        <li><a href="#">Refrigerated Units</a></li>
+                        <li><a href="#">Hot Food Machines</a></li>
+                        <li><a href="#">Micro Markets</a></li>
+                        <li><a href="#">All Products</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>COMPANY</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press & Media</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#need-help">Need Help?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>RESOURCES</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>
+                    <p class="copyright">© 2026 Management and Machines Private Limited. All rights reserved.</p>
+                    <p class="site-by" id="siteByPopupTrigger">
+                        © Laksh Kukreja | Site Information
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide-badge-check-icon" style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                    </p>
+                </div>
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="popup-overlay" id="siteInfoPopup">
+        <div class="popup-content">
+            <button class="popup-close" id="popupClose">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+            <div class="popup-header">
+                <h2>Site Information</h2>
+            </div>
+            <div class="popup-body">
+                <div class="tech-items">
+                    <div class="section-header" style="background: rgba(139, 92, 246, 0.05);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="section-icon">
+                            <path d="M18 20a6 6 0 0 0-12 0" />
+                            <circle cx="12" cy="10" r="4" />
+                            <circle cx="12" cy="12" r="10" />
+                        </svg>
+                        <h3 class="section-title">Author Information</h3>
+                    </div>
+                    <div class="changelog-item">
+                        <div class="changelog-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                style="color: #EC4899; margin-right: 8px; vertical-align: middle;">
+                                <path
+                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                            </svg>
+                            Site Made By Laksh Kukreja With Love <3 </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    style="color: #F59E0B; margin-right: 8px; vertical-align: middle;">
+                                    <path
+                                        d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                                </svg>
+                                For #TeamVendora
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-items">
+                        <div class="section-header" style="background: rgba(139, 92, 246, 0.05);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="section-icon">
+                                <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
+                                <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />
+                                <line x1="6" x2="6.01" y1="6" y2="6" />
+                                <line x1="6" x2="6.01" y1="18" y2="18" />
+                            </svg>
+                            <h3 class="section-title">Website Technicalities</h3>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Host</div>
+                            <div class="tech-value">lakshkukreja07.github.io</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Version</div>
+                            <div class="tech-value">V2.7</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Variant</div>
+                            <div class="tech-value">Stable Series</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Updated On</div>
+                            <div class="tech-value">25/01/2026</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Updated At</div>
+                            <div class="tech-value">12:45 AM [IST]</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Build Code</div>
+                            <div class="tech-value">20260125124504-MANUALGREP</div>
+                        </div>
+                    </div>
+                    <div class="changelog-items">
+                        <div class="section-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="section-icon">
+                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                            <h3 class="section-title">Changelog</h3>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Transitioned V2.7 From Beta To Stable Series With Various Fixes.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Fixed Statistics Counter Coding Logic & Optimized Functionality.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Enhanced Easter Egg Popup Visuals.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Added Dynamic Flex For Sections To Adapt According To Various Device Sizes.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Top Bar Now Supports Live Scrolling With Better Visual Aesthetics.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Removed Support For Smaller Devices & Phones For Better Backend Coding Management.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Added Animation For Capsule SVGs For Better Visual Experience.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Added Glass Light Rays Effect For Capsules For Better Visual Experience.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="important-info">
+                        <div class="section-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="section-icon">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                            </svg>
+                            <h3 class="section-title">Important Information</h3>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-text">
+                                <p>This website has been manually built by the author and hosted via static GitHub Pages
+                                    format.</p>
+                                <p>All assets, ideas & creations have been used for personal usage & educational
+                                    purposes only.</p>
+                                <p>Reusing any content from this website for redistribution is not permitted and may
+                                    result in legal complications.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            lucide.createIcons();
+
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const nav = document.getElementById('nav');
+            let statsAnimated = false;
+
+            mobileMenuBtn.addEventListener('click', () => {
+                nav.classList.toggle('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                });
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = targetPosition - headerHeight;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            const navIndicator = document.getElementById('navIndicator');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+
+            function updateNavIndicator() {
+                if (window.innerWidth <= 768) return;
+
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                let currentSection = 'home';
+                let maxVisibleArea = 0;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - headerHeight - 50;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    const viewportTop = window.scrollY;
+                    const viewportBottom = window.scrollY + window.innerHeight;
+
+                    const visibleTop = Math.max(sectionTop, viewportTop);
+                    const visibleBottom = Math.min(sectionBottom, viewportBottom);
+                    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+                    const visiblePercentage = visibleHeight / section.offsetHeight;
+
+                    if (visiblePercentage > maxVisibleArea) {
+                        maxVisibleArea = visiblePercentage;
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                const activeLink = document.querySelector(`.nav-link[href="#${currentSection}"]`);
+
+                if (activeLink) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    activeLink.classList.add('active');
+
+                    const linkRect = activeLink.getBoundingClientRect();
+                    const navRect = document.querySelector('.nav').getBoundingClientRect();
+
+                    navIndicator.style.width = `${linkRect.width}px`;
+                    navIndicator.style.left = `${linkRect.left - navRect.left}px`;
+                    navIndicator.style.opacity = '1';
+                }
+            }
+
+            function initNavIndicator() {
+                if (window.innerWidth <= 768) return;
+
+                const activeLink = document.querySelector('.nav-link.active');
+                if (activeLink) {
+                    const linkRect = activeLink.getBoundingClientRect();
+                    const navRect = document.querySelector('.nav').getBoundingClientRect();
+
+                    navIndicator.style.width = `${linkRect.width}px`;
+                    navIndicator.style.left = `${linkRect.left - navRect.left}px`;
+                    navIndicator.style.opacity = '1';
+                }
+            }
+
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const question = item.querySelector('.faq-question');
+
+                const toggleIcon = document.createElement('div');
+                toggleIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-toggle">
+                <path d="m6 9 6 6 6-6"/>
+            </svg>`;
+                question.appendChild(toggleIcon);
+
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+
+            const siteByTrigger = document.getElementById('siteByPopupTrigger');
+            const siteInfoPopup = document.getElementById('siteInfoPopup');
+            const popupClose = document.getElementById('popupClose');
+
+            siteByTrigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.body.style.overflow = 'hidden';
+                siteInfoPopup.classList.add('active');
+            });
+
+            function closePopup() {
+                siteInfoPopup.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            popupClose.addEventListener('click', closePopup);
+
+            siteInfoPopup.addEventListener('click', (e) => {
+                if (e.target === siteInfoPopup) {
+                    closePopup();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && siteInfoPopup.classList.contains('active')) {
+                    closePopup();
+                }
+            });
+
+            function startCounterAnimation(element) {
+                const target = parseFloat(element.getAttribute('data-target'));
+                const suffix = element.getAttribute('data-suffix') || '';
+                const duration = 2000;
+                const steps = 60;
+                const stepDuration = duration / steps;
+
+                let current = 0;
+                const increment = target / steps;
+
+                const timer = setInterval(() => {
+                    current += increment;
+
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+
+                    let displayValue;
+                    if (target >= 1000000) {
+                        displayValue = (current / 1000000).toFixed(1) + 'M';
+                    } else if (target >= 1000) {
+                        displayValue = (current / 1000).toFixed(1) + 'K';
+                    } else {
+                        displayValue = Math.round(current);
+                    }
+
+                    element.textContent = displayValue + suffix;
+                }, stepDuration);
+            }
+
+            function animateStats() {
+                const statItems = document.querySelectorAll('.stat-item h3');
+
+                statItems.forEach((stat) => {
+                    const rect = stat.getBoundingClientRect();
+                    if (rect.top >= 0 && rect.top <= window.innerHeight) {
+                        if (!stat.classList.contains('animated')) {
+                            startCounterAnimation(stat);
+                            stat.classList.add('animated');
+                        }
+                    }
+                });
+            }
+
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+
+                scrollTimeout = setTimeout(() => {
+                    const sections = document.querySelectorAll('section[id]');
+                    const navLinks = document.querySelectorAll('.nav-link');
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+
+                    let current = '';
+                    let maxVisible = 0;
+
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop - headerHeight - 100;
+                        const sectionBottom = sectionTop + section.offsetHeight;
+                        const currentScroll = window.scrollY;
+
+                        if (currentScroll >= sectionTop && currentScroll <= sectionBottom) {
+                            const visibleHeight = Math.min(sectionBottom, currentScroll + window.innerHeight) - Math.max(sectionTop, currentScroll);
+                            const visiblePercentage = visibleHeight / window.innerHeight;
+
+                            if (visiblePercentage > maxVisible) {
+                                maxVisible = visiblePercentage;
+                                current = section.getAttribute('id');
+                            }
+                        }
+                    });
+
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${current}`) {
+                            link.classList.add('active');
+                        }
+                    });
+
+                    updateNavIndicator();
+
+                    if (!statsAnimated) {
+                        const firstStat = document.querySelector('.stat-item h3');
+                        if (firstStat) {
+                            const rect = firstStat.getBoundingClientRect();
+                            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                                animateStats();
+                                statsAnimated = true;
+                            }
+                        }
+                    }
+                }, 10);
+            });
+
+            document.querySelectorAll('.contact-card-link').forEach(link => {
+                link.addEventListener('mouseenter', function () {
+                    const arrowIcon = this.parentElement.querySelector('.arrow-icon');
+                    if (arrowIcon) {
+                        arrowIcon.style.transform = 'translate(2px, -2px)';
+                    }
+                });
+
+                link.addEventListener('mouseleave', function () {
+                    const arrowIcon = this.parentElement.querySelector('.arrow-icon');
+                    if (arrowIcon) {
+                        arrowIcon.style.transform = 'translate(0, 0)';
+                    }
+                });
+            });
+
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const firstStat = document.querySelector('.stat-item h3');
+                    if (firstStat) {
+                        const rect = firstStat.getBoundingClientRect();
+                        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                            animateStats();
+                            statsAnimated = true;
+                        }
+                    }
+                }, 500);
+            });
+
+            initNavIndicator();
+        </script>
+</body>
+
+</html>
