@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="assets/css/vendora/vendora_v2.8.css">
+</head>
+
+<body>
+    <!-- Loading Screen Script -->
+    <script>
+        // Create minimal loading overlay
+        const loadingOverlay = document.createElement('div');
+        loadingOverlay.id = 'loadingOverlay';
+        loadingOverlay.style.cssText = `
+            position: fixed;
+            top: -1px;
+            left: -1px;
+            width: calc(100% + 2px);
+            height: calc(100% + 2px);
+            background: var(--bg-gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        `;
+
+        // Add simple text
+        const loadingText = document.createElement('div');
+        loadingText.style.cssText = `
+            color: var(--text-white);
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Manrope', sans-serif;
+            opacity: 0.8;
+        `;
+        loadingText.textContent = 'VENDORA';
+
+        loadingOverlay.appendChild(loadingText);
+        document.body.appendChild(loadingOverlay);
+
+        // Hide body content initially to prevent white flash
+        document.body.style.overflow = 'hidden';
+
+        // Function to hide loading screen
+        function hideLoadingScreen() {
+            loadingOverlay.style.opacity = '0';
+            setTimeout(() => {
+                if (loadingOverlay.parentNode) {
+                    loadingOverlay.parentNode.removeChild(loadingOverlay);
+                }
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // Show loading screen for exactly 2 seconds
+        setTimeout(() => {
+            hideLoadingScreen();
+        }, 2000);
+    </script>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">Vendora</a>
+            <nav class="nav" id="nav">
+                <div class="nav-indicator" id="navIndicator"></div>
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#features" class="nav-link">Technology</a>
+                <a href="#ecosystem" class="nav-link">Ecosystem</a>
+                <a href="#need-help" class="nav-link">Need Help?</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span class="menu-icon">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-bg-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="capsule-badge">
+                    <i class="fas fa-bolt"></i>
+                    India's Leading Smart Vending Platform
+                </div>
+                <h1 class="hero-title">Convenience At Every Corner</h1>
+                <p class="hero-subtitle">
+                    Transform your enterprise with India's most advanced smart vending network.
+                    Powering 24×7 access to food, beverages & essentials—anytime, anywhere.
+                </p>
+                <div class="hero-divider"></div>
+                <div class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon-bg"></div>
+                                <div class="stat-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Machines</div>
+                            <h3 id="machines-counter" data-target="2000" data-suffix="+">0</h3>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon-bg"></div>
+                                <div class="stat-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                        <circle cx="12" cy="7" r="4" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Clients</div>
+                            <h3 id="clients-counter" data-target="550" data-suffix="+">0</h3>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon-bg"></div>
+                                <div class="stat-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Cities</div>
+                            <h3 id="cities-counter" data-target="20" data-suffix="+">0</h3>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon-container">
+                                <div class="stat-icon-bg"></div>
+                                <div class="stat-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                        <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                        <circle cx="9" cy="7" r="4" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-title">Daily Outreach</div>
+                            <h3 id="outreach-counter" data-target="1000000" data-suffix="+">0</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about section" id="about">
+        <div class="container about-container">
+            <div class="about-content">
+                <div class="capsule-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="capsule-icon" style="color: #10B981;">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    Who Are We
+                </div>
+                <h2 class="section-title">About Vendora</h2>
+                <div class="about-description">
+                    <p>Vendora is a B2B-focused vending machine company that provides smart, reliable, and scalable
+                        automated vending solutions for businesses across sectors. Our machines are designed to serve
+                        everyone—enhancing accessibility, efficiency, and convenience in workplaces, institutions, and
+                        commercial spaces.</p>
+                    <p>By combining technology with operational simplicity, Vendora helps organizations streamline
+                        product distribution while delivering a seamless, modern experience to end users.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features section" id="features">
+        <div class="container">
+            <div class="capsule-badge">
+                <i class="fas fa-microchip"></i>
+                Advanced Technology
+            </div>
+            <h2 class="section-title">Smart Vending, Smarter Operations</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 18V5" />
+                            <path d="M15 13a4.17 4.17 0 0 1-3-4 a4.17 4.17 0 0 1-3 4" />
+                            <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" />
+                            <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" />
+                            <path d="M18 18a4 4 0 0 0 2-7.464" />
+                            <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" />
+                            <path d="M6 18a4 4 0 0 1-2-7.464" />
+                            <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">AI Inventory Management</h3>
+                    <p class="feature-description">
+                        Smart sensors predict stock levels with 95% accuracy, reducing waste by 40%
+                        and ensuring optimal inventory.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Seamless Payments</h3>
+                    <p class="feature-description">
+                        QR code, UPI, and app-less payments via WhatsApp/SMS. Multiple payment options
+                        for maximum convenience.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Live Analytics Dashboard</h3>
+                    <p class="feature-description">
+                        Real-time insights into sales, inventory, and machine performance. Make
+                        data-driven decisions instantly.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Enterprise Security</h3>
+                    <p class="feature-description">
+                        Military-grade encryption, biometric access, and tamper-proof hardware
+                        ensuring complete security.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ecosystem section" id="ecosystem">
+        <div class="container ecosystem-container">
+            <div class="ecosystem-content">
+                <div class="capsule-badge">
+                    <i class="fas fa-leaf"></i>
+                    Complete Ecosystem
+                </div>
+                <h2 class="section-title">End-to-End Enterprise Solution</h2>
+                <ul class="ecosystem-features">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Live machine status & performance monitoring across all locations</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Predictive maintenance alerts reducing downtime by 70%</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Advanced sales analytics & revenue tracking with automated reports</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Intelligent inventory management with auto-reordering system</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Multi-location dashboard with role-based access control</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>Custom reporting & data export for business intelligence</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="need-help section" id="need-help">
+        <div class="container need-help-container">
+            <div class="need-help-capsule-container">
+                <div class="capsule-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="capsule-icon" style="color: #10B981;">
+                        <path
+                            d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676 .56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
+                        <path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" />
+                    </svg>
+                    Life Saver, Indeed
+                </div>
+            </div>
+            <div class="help-layout">
+                <div class="contact-left">
+                    <h2 class="contact-title">Need Help?</h2>
+                    <div class="contact-cards-grid">
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18l-6-4-6 4Z" />
+                                        <path d="M10 6h4" />
+                                        <path d="M10 10h4" />
+                                        <path d="M10 14h4" />
+                                    </svg>
+                                </div>
+                                <h3 class="contact-card-title">Visit Us</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="arrow-icon">
+                                    <path d="M7 7h10v10" />
+                                    <path d="M7 17 17 7" />
+                                </svg>
+                                <a href="#" class="contact-card-link">
+                                    Click Here For More Information
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="m16 8 6-6" />
+                                        <path d="M22 8V2h-6" />
+                                        <path
+                                            d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+                                    </svg>
+                                </div>
+                                <h3 class="contact-card-title">Customer Support</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <a href="tel:+9118001234567" class="contact-card-link">
+                                    +91 1800 123 4567
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                                    </svg>
+                                </div>
+                                <h3 class="contact-card-title">Email Support</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <a href="mailto:support@vendora.com" class="contact-card-link">
+                                    support@vendora.com
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" />
+                                    </svg>
+                                </div>
+                                <h3 class="contact-card-title">Repair Request</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="arrow-icon">
+                                    <path d="M7 7h10v10" />
+                                    <path d="M7 17 17 7" />
+                                </svg>
+                                <a href="#" class="contact-card-link">
+                                    Click Here For More Information
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="faqs-right">
+                    <h2 class="faqs-title">General FAQs</h2>
+                    <ul class="faqs-list">
+                        <li class="faq-item">
+                            <div class="faq-question">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg>
+                                What is the warranty period for Vendora machines?
+                            </div>
+                            <div class="faq-answer">
+                                All Vendora smart vending machines come with a standard 2-year comprehensive warranty
+                                covering parts and labor. Extended warranty options are available for enterprise
+                                clients.
+                            </div>
+                        </li>
+                        <li class="faq-item">
+                            <div class="faq-question">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg>
+                                What payment methods are supported?
+                            </div>
+                            <div class="faq-answer">
+                                Our machines support UPI, QR codes, credit/debit cards, and app-less payments via
+                                WhatsApp/SMS. We also offer enterprise billing options for corporate clients.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Vendora</a>
+                    <p class="footer-description">
+                        Legacy Reborn. Future Redefined. Empowering enterprises with smart vending solutions for a
+                        connected tomorrow.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>PRODUCTS</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Smart Vending Machines</a></li>
+                        <li><a href="#">Refrigerated Units</a></li>
+                        <li><a href="#">Hot Food Machines</a></li>
+                        <li><a href="#">Micro Markets</a></li>
+                        <li><a href="#">All Products</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>COMPANY</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press & Media</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#need-help">Need Help?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>RESOURCES</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>
+                    <p class="copyright">© 2026 Management and Machines Private Limited. All rights reserved.</p>
+                    <p class="site-by" id="siteByPopupTrigger">
+                        © Laksh Kukreja | Site Information
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide-badge-check-icon" style="color: #10B981;">
+                            <path
+                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                    </p>
+                </div>
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Popup -->
+    <div class="popup-overlay" id="siteInfoPopup">
+        <div class="popup-content">
+            <button class="popup-close" id="popupClose">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+            <div class="popup-header">
+                <h2>Site Information</h2>
+            </div>
+            <div class="popup-body">
+                <div class="tech-items">
+                    <div class="section-header" style="background: rgba(139, 92, 246, 0.05);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="section-icon">
+                            <path d="M18 20a6 6 0 0 0-12 0" />
+                            <circle cx="12" cy="10" r="4" />
+                            <circle cx="12" cy="12" r="10" />
+                        </svg>
+                        <h3 class="section-title">Author Information</h3>
+                    </div>
+                    <div class="changelog-item">
+                        <div class="changelog-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                style="color: #EC4899; margin-right: 8px; vertical-align: middle;">
+                                <path
+                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                            </svg>
+                            Site Made By Laksh Kukreja With Love <3 </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    style="color: #F59E0B; margin-right: 8px; vertical-align: middle;">
+                                    <path
+                                        d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                                </svg>
+                                For #TeamVendora
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-items">
+                        <div class="section-header" style="background: rgba(139, 92, 246, 0.05);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="section-icon">
+                                <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
+                                <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />
+                                <line x1="6" x2="6.01" y1="6" y2="6" />
+                                <line x1="6" x2="6.01" y1="18" y2="18" />
+                            </svg>
+                            <h3 class="section-title">Website Technicalities</h3>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Host</div>
+                            <div class="tech-value">lakshkukreja07.github.io</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Version</div>
+                            <div class="tech-value">V2.8</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Variant</div>
+                            <div class="tech-value">Stable Series</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Updated On</div>
+                            <div class="tech-value">26/01/2026</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Updated At</div>
+                            <div class="tech-value">03:59 PM [IST]</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-label">Build Code</div>
+                            <div class="tech-value">20260126155918-MANUALGREP</div>
+                        </div>
+                    </div>
+                    <div class="changelog-items">
+                        <div class="section-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="section-icon">
+                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                            <h3 class="section-title">Changelog</h3>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Switched To Stable Series From Beta Channel For V2.8 Update.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Remove Existing Fonts Support & Switched To Manrope Font.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Re-Implemented Support For Mobiles & Smaller Sized Displays.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Added New Minimal Loading Animation, Making Sure All Assets Are Pre-Loaded.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Updated Meta Tags & Optimized Coding Logic.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Splitted Files For CSS & JS To Maintain Coding Efficiencies.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Fixed Logic Of Statistics Counter For Failing Abnormally Under Some Scenarios.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Enhanced Easter Egg Popup Menu Visuals Across Entire UI.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Added Support Of DynamicFlex™ For Sections To Adapt Content According To Display Sizes.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Top Bar Supports Live Scrolling Support For Overall Better Visual Experience.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Added Animation For Capsule SVGs For Better Visual Experience.
+                            </div>
+                        </div>
+                        <div class="changelog-item">
+                            <div class="changelog-text">
+                                Added Glass Light Rays Effect For Capsules For Better Visual Experience.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="important-info">
+                        <div class="section-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="section-icon">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                            </svg>
+                            <h3 class="section-title">Important Information</h3>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-text">
+                                <p>This website has been manually designed and developed by the author and is hosted as
+                                    a static site via GitHub Pages.</p>
+                                <p>All assets, concepts, designs, and creative materials presented here are intended
+                                    strictly for personal and educational use.</p>
+                                <p>Any unauthorized reuse, reproduction, redistribution, or publication of content from
+                                    this website—whether in full or in part, is strictly prohibited and may lead to
+                                    legal
+                                    consequences under applicable intellectual property and copyright laws.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/vendora/vendora_v2.8.js"></script>
+</body>
+
+</html>
