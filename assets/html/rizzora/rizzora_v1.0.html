@@ -1,1 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rizzora</title>
+
+    <!-- ✅ ONLY FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --r: 18px;
+            --pad: 12px;
+            --barH: 74px;
+            --max: 1520px;
+
+            --dark: rgba(0, 0, 0, .92);
+            --muted: rgba(0, 0, 0, .62);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Manrope, sans-serif;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        html,
+        body {
+            height: 100%;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden
+        }
+
+        button {
+            border: 0;
+            background: none;
+            cursor: pointer
+        }
+
+        button:focus,
+        button:focus-visible {
+            outline: none !important;
+            box-shadow: none !important
+        }
+
+        /* ✅ blur behind opened menu (mobile only) */
+        .menu-blur {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 200ms ease;
+            background: rgba(0, 0, 0, 0.20);
+            backdrop-filter: blur(16px);
+        }
+
+        body.menu-open .menu-blur {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ================= TOPBAR WRAP ================= */
+        .topbar-wrap {
+            position: fixed;
+            top: 18px;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            padding: 0 22px;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        /* ✅ One container (bar + dropdown part inside) */
+        .topbar {
+            pointer-events: auto;
+            width: 100%;
+            max-width: var(--max);
+            border-radius: var(--r);
+            overflow: hidden;
+
+            border: 1px solid transparent;
+            background: transparent;
+
+            display: flex;
+            flex-direction: column;
+            transition: background 320ms ease 80ms, border-color 320ms ease 80ms, backdrop-filter 320ms ease 80ms;
+        }
+
+        /* ✅ Only TOP ROW fades (as you asked) */
+        .topbar-row {
+            height: var(--barH);
+            padding: 0 22px;
+            display: grid;
+            grid-template-columns: 140px 1fr 140px;
+            align-items: center;
+            background: transparent;
+        }
+
+        @media (min-width:861px) {
+            .topbar-wrap:hover .topbar {
+                background: rgba(255, 255, 255, 0.96);
+                border-color: rgba(0, 0, 0, 0.06);
+                backdrop-filter: blur(14px);
+            }
+
+            .topbar-wrap:hover .brand {
+                color: var(--dark)
+            }
+
+            .topbar-wrap:hover .signin-desktop {
+                color: var(--muted)
+            }
+
+            .topbar-wrap:hover .menu-icon span {
+                background: rgba(0, 0, 0, .70)
+            }
+        }
+
+        .left {
+            display: flex;
+            align-items: center
+        }
+
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end
+        }
+
+        /* ================= BRAND ================= */
+        .brand {
+            font-weight: 800;
+            letter-spacing: 9px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, .94);
+            transition: color 200ms ease;
+            text-transform: uppercase;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* ================= SIGNIN ================= */
+        .signin-desktop {
+            color: rgba(255, 255, 255, .92);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            transition: 180ms ease;
+            white-space: nowrap;
+        }
+
+        /* mobile sign in capsule (only visible when open) */
+        .signin-mobile {
+            display: none;
+            border: 1px solid rgba(0, 0, 0, .14);
+            background: #fff;
+            color: rgba(0, 0, 0, .82);
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 13px;
+            height: 44px;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        /* ================= MENU BUTTON ================= */
+        .menu-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            transition: 180ms ease;
+        }
+
+        .menu-btn.is-open {
+            background: rgba(0, 0, 0, .95)
+        }
+
+        .menu-icon {
+            width: 22px;
+            height: 16px;
+            position: relative
+        }
+
+        .menu-icon span {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, .92);
+            transition: top 260ms ease, transform 260ms ease, background 200ms ease;
+        }
+
+        .menu-icon span:nth-child(1) {
+            top: 4px
+        }
+
+        .menu-icon span:nth-child(2) {
+            top: 12px
+        }
+
+        .menu-btn.is-open .menu-icon span {
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, .98);
+        }
+
+        .menu-btn.is-open .menu-icon span:nth-child(1) {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .menu-btn.is-open .menu-icon span:nth-child(2) {
+            transform: translateY(-50%) rotate(-45deg);
+        }
+
+        /* ================= MOBILE DROPDOWN AREA (POPS IN, NO TRANSITION) ================= */
+        .mobile-expand {
+            display: none;
+            height: 0;
+            background: #fff;
+        }
+
+        @media (max-width:860px) {
+            .topbar-wrap {
+                top: var(--pad);
+                padding: 0 var(--pad)
+            }
+
+            .topbar-row {
+                padding: 0 16px;
+                grid-template-columns: 48px 1fr 48px;
+            }
+
+            .brand {
+                font-size: 15px;
+                letter-spacing: 7px;
+            }
+
+            .signin-desktop {
+                display: none
+            }
+
+            /* exists in mobile */
+            .mobile-expand {
+                display: block;
+            }
+
+            /* ✅ OPEN: top row fades to white + logo turns black */
+            body.menu-open .topbar {
+                border-color: rgba(0, 0, 0, .06);
+            }
+
+            body.menu-open .topbar-row {
+                background: #fff;
+            }
+
+            body.menu-open .brand {
+                color: var(--dark);
+            }
+
+            body.menu-open .menu-icon span {
+                background: rgba(0, 0, 0, .70);
+            }
+
+            body.menu-open .menu-btn.is-open .menu-icon span {
+                background: rgba(255, 255, 255, .98);
+            }
+
+            /* ✅ show sign in capsule ONLY when open */
+            body.menu-open .signin-mobile {
+                display: inline-flex;
+            }
+
+            /* ✅ Bottom part POPS IN instantly (no transition) */
+            body.menu-open .mobile-expand {
+                height: calc(100vh - (var(--pad) * 2 + var(--barH)));
+            }
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .hero video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            transform: scale(1.05);
+            filter: contrast(1.05) saturate(1.05) brightness(.90);
+        }
+
+        @media (max-width:860px) {
+            .hero video {
+                object-position: left center;
+                transform: scale(1.12);
+            }
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, .10), rgba(0, 0, 0, .30), rgba(0, 0, 0, .72));
+        }
+
+        .hero-inner {
+            width: 100%;
+            max-width: var(--max);
+            padding: 0 22px 72px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .title {
+            font-size: clamp(54px, 8vw, 120px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: .92;
+            margin-bottom: 14px;
+        }
+
+        .sub {
+            max-width: 560px;
+            font-size: 16px;
+            line-height: 1.4;
+            opacity: .9;
+            margin-bottom: 18px;
+        }
+
+        .btn {
+            padding: 14px 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 14px;
+            background: rgba(255, 255, 255, .92);
+            color: #000;
+            min-width: 140px;
+            transition: 200ms ease;
+        }
+
+        .btn:hover {
+            background: #fff;
+            transform: translateY(-1px)
+        }
+
+        @media (max-width:860px) {
+            .hero-inner {
+                padding: 0 14px 56px
+            }
+
+            .sub {
+                font-size: 15px
+            }
+        }
+
+        /* ================= BELOW ================= */
+        .below {
+            background: #fff;
+            color: #000;
+            padding: 70px 22px 110px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            margin-top: -22px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .below-inner {
+            max-width: var(--max);
+            margin: 0 auto
+        }
+
+        @media (max-width:860px) {
+            .below {
+                padding: 50px 14px 100px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ✅ BACKGROUND BLUR WHEN MENU OPEN -->
+    <div class="menu-blur" id="menuBlur"></div>
+
+    <!-- TOPBAR -->
+    <div class="topbar-wrap">
+        <header class="topbar" id="topbar">
+
+            <!-- ✅ top row -->
+            <div class="topbar-row">
+                <div class="left">
+                    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                        <div class="menu-icon">
+                            <span></span><span></span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="center">
+                    <div class="brand">RIZZORA</div>
+                </div>
+
+                <div class="right">
+                    <button class="signin-desktop">Sign In</button>
+                    <button class="signin-mobile">Sign In</button>
+                </div>
+            </div>
+
+            <!-- ✅ expanded area (EMPTY) -->
+            <div class="mobile-expand"></div>
+
+        </header>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <video autoplay muted loop playsinline preload="auto">
+            <source src="https://cdn.pixabay.com/video/2023/12/05/192066-891655462_large.mp4" type="video/mp4" />
+        </video>
+        <div class="overlay"></div>
+
+        <div class="hero-inner">
+            <div class="title">RIZZORA</div>
+
+            <div class="sub">
+                Rise in presence.<br />
+                Radiate confidence.
+            </div>
+
+            <button class="btn">Explore</button>
+        </div>
+    </section>
+
+    <section class="below">
+        <div class="below-inner">
+            <h2 style="font-size:32px; letter-spacing:-1px; margin-bottom:10px;">Minimal. Modern. Confident.</h2>
+            <p style="opacity:0.85; max-width:720px; line-height:1.6;">
+                Website Made By Laksh Kukreja. <br />
+                In Search Of Perfection - Mastering Skills Of Making Great Things.
+            </p>
+        </div>
+    </section>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const blur = document.getElementById("menuBlur");
+
+        const isMobile = () => matchMedia("(max-width: 860px)").matches;
+
+        function openMenu() {
+            document.body.classList.add("menu-open");
+            menuBtn.classList.add("is-open");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeMenu() {
+            document.body.classList.remove("menu-open");
+            menuBtn.classList.remove("is-open");
+            document.body.style.overflow = "";
+        }
+
+        menuBtn.addEventListener("click", () => {
+            if (!isMobile()) {
+                menuBtn.classList.toggle("is-open");
+                return;
+            }
+            if (document.body.classList.contains("menu-open")) closeMenu();
+            else openMenu();
+        });
+
+        blur.addEventListener("click", closeMenu);
+
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeMenu();
+        });
+
+        window.addEventListener("resize", () => closeMenu());
+    </script>
+
+</body>
+
+</html>
