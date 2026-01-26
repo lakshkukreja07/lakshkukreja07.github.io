@@ -49,7 +49,6 @@
             padding: 40px 24px;
         }
 
-        /* Welcome Header */
         .welcome-header {
             margin-bottom: 60px;
             text-align: center;
@@ -74,7 +73,6 @@
             font-family: 'Manrope', sans-serif;
         }
 
-        /* Sections */
         .section {
             margin-bottom: 80px;
         }
@@ -110,14 +108,12 @@
             font-family: 'Manrope', sans-serif;
         }
 
-        /* Cards Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 20px;
         }
 
-        /* Card */
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -139,7 +135,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        /* Card hover effect for arrow */
         .card:hover .card-link {
             gap: 12px;
         }
@@ -226,7 +221,6 @@
             transition: transform 0.2s;
         }
 
-        /* Footer */
         .footer {
             padding: 60px 0 40px;
             border-top: 1px solid var(--border);
@@ -260,7 +254,6 @@
             margin-bottom: 16px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 30px 20px;
@@ -326,7 +319,6 @@
             }
         }
 
-        /* Animation */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -512,8 +504,8 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <span class="version-number">v2.7</span>
-                        <a href="vendora_v2.7.html" class="card-link">
+                        <span class="version-number">v2.8</span>
+                        <a href="vendora_v2.8.html" class="card-link">
                             Open Build
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -549,7 +541,6 @@
                 </div>
         </section>
 
-        <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
                 <div class="copyright-main">© 2026 Laksh Kukreja. All Rights Reserved.</div>
@@ -566,13 +557,10 @@
     </div>
 
     <script>
-        // Interactive card effects
         document.addEventListener('DOMContentLoaded', function () {
-            // Make whole cards clickable
             const cards = document.querySelectorAll('.card');
             cards.forEach(card => {
                 card.addEventListener('click', function (e) {
-                    // Don't trigger if clicking on the link itself
                     if (!e.target.closest('.card-link')) {
                         const link = this.querySelector('.card-link');
                         if (link) {
@@ -581,7 +569,6 @@
                     }
                 });
 
-                // Add keyboard navigation
                 card.setAttribute('tabindex', '0');
                 card.addEventListener('keydown', function (e) {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -592,7 +579,6 @@
                     }
                 });
 
-                // Hover effect
                 card.addEventListener('mouseenter', function () {
                     this.style.zIndex = '10';
                 });
