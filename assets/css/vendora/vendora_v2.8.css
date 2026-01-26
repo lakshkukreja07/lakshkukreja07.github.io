@@ -328,7 +328,7 @@ body {
     }
 }
 
-/* FIXED: Sections for mobile - Optimized sizing */
+/* FIXED: Sections for mobile - Dynamic sizing */
 .section {
     padding: 90px 0;
     position: relative;
@@ -824,7 +824,7 @@ body {
     }
 }
 
-/* FIXED: Technology cards for mobile - 2x2 layout */
+/* FIXED: Technology cards for mobile - 2 per row */
 .features-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -2650,115 +2650,153 @@ body {
     color: #F59E0B !important;
 }
 
-/* ====== MOBILE ONLY IMPROVEMENTS ====== */
+/* ====== MOBILE ONLY FIXES ====== */
 @media (max-width: 768px) {
-    /* Fix About section sizing */
-    .about .section-title {
-        font-size: 28px !important;
-        margin-bottom: 20px !important;
-        line-height: 1.2;
+    /* Fix section sizing to be dynamic */
+    .section {
+        padding: 60px 0 !important;
+        min-height: auto !important;
+        height: auto !important;
+        display: block !important;
+        align-items: flex-start !important;
     }
     
-    .about-description {
-        font-size: 15px !important;
-        line-height: 1.6 !important;
-        text-align: center;
-        padding: 0 5px;
+    .container {
+        padding: 0 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Fix About section */
+    .about .section-title {
+        font-size: 24px !important;
+        margin-bottom: 20px !important;
+        line-height: 1.3;
         width: 100%;
     }
     
-    .about-description p {
-        margin-bottom: 15px;
+    .about-description {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        width: 100%;
+        max-width: 100% !important;
+        padding: 0 5px;
         text-align: left;
     }
     
     .about-container {
+        padding: 0 10px !important;
         width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 15px !important;
     }
     
-    /* Fix Technology section - 2x2 layout */
+    /* Fix Technology section - 2x2 layout that fits screen */
     .features-grid {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
+        gap: 10px !important;
         margin-top: 20px !important;
+        width: 100%;
     }
     
     .feature-card {
-        padding: 16px !important;
-        min-height: 200px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        padding: 15px !important;
+        min-height: 180px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .feature-icon {
-        width: 40px !important;
-        height: 40px !important;
-        margin-bottom: 12px !important;
+        width: 35px !important;
+        height: 35px !important;
+        margin-bottom: 10px !important;
     }
     
     .feature-title {
-        font-size: 15px !important;
-        min-height: 3.5em !important;
+        font-size: 14px !important;
+        min-height: 3.2em !important;
         margin-bottom: 8px !important;
-        line-height: 1.4;
+        line-height: 1.3;
     }
     
     .feature-description {
-        font-size: 12.5px !important;
-        line-height: 1.5 !important;
+        font-size: 12px !important;
+        line-height: 1.4 !important;
     }
     
-    /* Fix Need Help section - 2x2 layout */
+    /* FIXED: Need Help section - 2x2 layout that fits screen */
     .contact-cards-grid {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
+        gap: 10px !important;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .contact-card {
-        padding: 16px !important;
-        min-height: 150px !important;
+        padding: 15px !important;
+        min-height: 130px !important;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .contact-card-icon {
-        width: 36px !important;
-        height: 36px !important;
+        width: 32px !important;
+        height: 32px !important;
     }
     
     .contact-card-title {
-        font-size: 14px !important;
+        font-size: 13px !important;
+        line-height: 1.2;
     }
     
     .contact-card-link {
         font-size: 11px !important;
+        word-break: break-word;
+        white-space: normal;
+        line-height: 1.3;
     }
     
-    /* Fix Ecosystem section for mobile */
+    .arrow-icon {
+        width: 10px !important;
+        height: 10px !important;
+    }
+    
+    /* Fix FAQ section layout */
+    .help-layout {
+        gap: 30px !important;
+    }
+    
+    .faq-item {
+        padding: 15px !important;
+    }
+    
+    .faq-question {
+        font-size: 14px !important;
+        line-height: 1.3;
+    }
+    
+    .faq-answer {
+        font-size: 12.5px !important;
+    }
+    
+    /* Fix Ecosystem section */
     .ecosystem-features {
         grid-template-columns: 1fr !important;
-        gap: 10px !important;
+        gap: 8px !important;
     }
     
     .ecosystem-features li {
-        padding: 14px !important;
-        font-size: 13.5px !important;
+        padding: 12px !important;
+        font-size: 13px !important;
+        line-height: 1.4;
     }
     
-    /* Fix section padding for mobile */
-    .section {
-        padding: 60px 0 !important;
-    }
-    
-    /* Fix hero section for mobile */
+    /* Fix hero section */
     .hero {
-        padding: 80px 0 40px !important;
+        padding: 70px 0 40px !important;
         min-height: calc(100vh - 60px) !important;
     }
     
     .hero-title {
-        font-size: 26px !important;
+        font-size: 24px !important;
         margin-bottom: 15px !important;
     }
     
@@ -2767,44 +2805,13 @@ body {
         margin-bottom: 20px !important;
     }
     
-    /* Fix FAQ section for mobile */
-    .faq-item {
-        padding: 16px !important;
-        margin-bottom: 10px !important;
-    }
-    
-    .faq-question {
-        font-size: 14px !important;
-    }
-    
-    .faq-answer {
-        font-size: 12.5px !important;
-    }
-    
-    /* Fix footer for mobile */
-    .footer-grid {
-        grid-template-columns: 1fr !important;
-        gap: 25px !important;
-    }
-    
-    /* Fix help layout for mobile */
-    .help-layout {
-        gap: 30px !important;
-    }
-    
-    .contact-title,
-    .faqs-title {
-        font-size: 22px !important;
-        margin-bottom: 15px !important;
-    }
-    
-    /* Make everything fit properly on mobile */
-    .container {
-        padding: 0 15px !important;
-    }
-    
+    /* Fix stats */
     .stats-grid {
         gap: 10px !important;
+    }
+    
+    .stat-item {
+        padding: 10px 5px !important;
     }
     
     .stat-item h3 {
@@ -2812,6 +2819,38 @@ body {
     }
     
     .stat-title {
-        font-size: 12px !important;
+        font-size: 11px !important;
+    }
+    
+    /* Fix footer */
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    /* Make sure nothing overflows */
+    * {
+        max-width: 100%;
+    }
+    
+    img, svg, video {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Ensure all containers fit screen */
+    .need-help-container,
+    .ecosystem-container,
+    .about-container,
+    .features .container {
+        padding: 0 10px !important;
+        width: 100% !important;
+    }
+    
+    /* Fix contact titles */
+    .contact-title,
+    .faqs-title {
+        font-size: 20px !important;
+        margin-bottom: 15px !important;
     }
 }
