@@ -272,6 +272,40 @@
             }
         }
 
+/* FIX: About section mobile sizing */
+@media (max-width: 768px) {
+    .about .section-title {
+        font-size: 28px !important;
+        margin-bottom: 25px !important;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .about-description {
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+        text-align: center;
+        width: 100%;
+        max-width: 100% !important;
+        padding: 0 10px;
+    }
+    
+    .about-description p {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    
+    .about-container {
+        padding: 0 15px !important;
+        width: 100% !important;
+    }
+    
+    .about-content {
+        text-align: center;
+        width: 100%;
+    }
+}
+
         /* FIXED: Hero and Sections for mobile - Optimized sizing */
         .hero {
             padding: 100px 0 60px;
