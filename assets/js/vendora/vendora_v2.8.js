@@ -34,7 +34,7 @@ function closeMobileMenu() {
 mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-// FIXED: Mobile menu navigation - properly update active section in mobile menu
+// FIXED: Mobile menu navigation
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -42,7 +42,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
         const href = link.getAttribute('href');
         if (!href || href === '#') return;
         
-        // Update active state for mobile menu
+        // Update active state for ALL navigation links (both desktop and mobile)
         document.querySelectorAll('.nav-link').forEach(navLink => {
             navLink.classList.remove('active');
         });
@@ -96,9 +96,8 @@ const navIndicator = document.getElementById('navIndicator');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section[id]');
 
-function updateNavIndicator() {
-    if (window.innerWidth <= 768) return;
-
+// FIXED: Combined function to update both desktop indicator AND mobile active state
+function updateActiveSection() {
     const headerHeight = document.querySelector('.header').offsetHeight;
     let currentSection = 'home';
     let maxVisibleArea = 0;
@@ -126,37 +125,39 @@ function updateNavIndicator() {
         }
     });
 
-    // Update active link and indicator position
+    // Update active link for ALL navigation (both desktop and mobile)
     const activeLink = document.querySelector(`.nav-link[href="#${currentSection}"]`);
     
-    if (activeLink) {
+    if (activeLink && !activeLink.classList.contains('active')) {
         // Remove active class from all links
         navLinks.forEach(link => link.classList.remove('active'));
         // Add active class to current link
         activeLink.classList.add('active');
         
-        // Update indicator position
-        const linkRect = activeLink.getBoundingClientRect();
-        const navRect = document.querySelector('.nav').getBoundingClientRect();
-        
-        navIndicator.style.width = `${linkRect.width}px`;
-        navIndicator.style.left = `${linkRect.left - navRect.left}px`;
-        navIndicator.style.opacity = '1';
-        navIndicator.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        // Update desktop indicator if on desktop
+        if (window.innerWidth > 768) {
+            const linkRect = activeLink.getBoundingClientRect();
+            const navRect = document.querySelector('.nav').getBoundingClientRect();
+            
+            navIndicator.style.width = `${linkRect.width}px`;
+            navIndicator.style.left = `${linkRect.left - navRect.left}px`;
+            navIndicator.style.opacity = '1';
+            navIndicator.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        }
     }
 }
 
 function initNavIndicator() {
-    if (window.innerWidth <= 768) return;
+    if (window.innerWidth > 768) {
+        const activeLink = document.querySelector('.nav-link.active');
+        if (activeLink) {
+            const linkRect = activeLink.getBoundingClientRect();
+            const navRect = document.querySelector('.nav').getBoundingClientRect();
 
-    const activeLink = document.querySelector('.nav-link.active');
-    if (activeLink) {
-        const linkRect = activeLink.getBoundingClientRect();
-        const navRect = document.querySelector('.nav').getBoundingClientRect();
-
-        navIndicator.style.width = `${linkRect.width}px`;
-        navIndicator.style.left = `${linkRect.left - navRect.left}px`;
-        navIndicator.style.opacity = '1';
+            navIndicator.style.width = `${linkRect.width}px`;
+            navIndicator.style.left = `${linkRect.left - navRect.left}px`;
+            navIndicator.style.opacity = '1';
+        }
     }
 }
 
@@ -273,11 +274,11 @@ let scrollTimeout;
 let isScrolling = false;
 
 window.addEventListener('scroll', () => {
-    // Update navigation indicator smoothly
+    // Update active section for both desktop and mobile
     if (!isScrolling) {
         isScrolling = true;
         requestAnimationFrame(() => {
-            updateNavIndicator();
+            updateActiveSection();
             isScrolling = false;
         });
     }
