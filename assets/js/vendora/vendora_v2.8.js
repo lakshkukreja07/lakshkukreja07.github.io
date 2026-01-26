@@ -34,46 +34,49 @@ function closeMobileMenu() {
 mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-// FIXED: Mobile menu navigation - properly close menu when clicking links
+// FIXED: Mobile menu navigation - properly update active section in mobile menu
 document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        // Get the target section from href
-        const href = link.getAttribute('href');
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
         
-        // Close mobile menu if open
-        if (window.innerWidth <= 768 && nav.classList.contains('active')) {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+        
+        // Update active state for mobile menu
+        document.querySelectorAll('.nav-link').forEach(navLink => {
+            navLink.classList.remove('active');
+        });
+        link.classList.add('active');
+        
+        // Close mobile menu if open on mobile
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile && nav.classList.contains('active')) {
             closeMobileMenu();
             
-            // Wait for menu to close before scrolling (if needed)
+            // Wait for menu to close before scrolling
             setTimeout(() => {
-                if (href && href !== '#') {
-                    const targetElement = document.querySelector(href);
-                    if (targetElement) {
-                        const headerHeight = document.querySelector('.header').offsetHeight;
-                        const targetPosition = targetElement.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            }, 300); // Match the CSS transition time
-        } else if (window.innerWidth > 768 && href && href !== '#') {
-            // For desktop, just scroll smoothly
-            const targetElement = document.querySelector(href);
-            if (targetElement) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
+                scrollToSection(href);
+            }, 300);
+        } else {
+            // For desktop, just scroll
+            scrollToSection(href);
         }
     });
 });
+
+// Helper function for smooth scrolling to sections
+function scrollToSection(sectionId) {
+    const targetElement = document.querySelector(sectionId);
+    if (targetElement) {
+        const headerHeight = document.querySelector('.header').offsetHeight;
+        const targetPosition = targetElement.offsetTop - headerHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && nav.classList.contains('active')) {
@@ -265,27 +268,6 @@ setTimeout(() => {
         animateStats();
     }, 100);
 }, 2100);
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            const targetPosition = targetElement.offsetTop - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
 
 let scrollTimeout;
 let isScrolling = false;
