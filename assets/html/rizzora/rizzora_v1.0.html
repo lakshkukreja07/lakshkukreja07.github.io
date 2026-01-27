@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rizzora</title>
 
-    <!-- ✅ ONLY FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
     <style>
         :root {
@@ -65,7 +64,7 @@
             pointer-events: auto;
         }
 
-        /* ================= TOPBAR WRAP ================= */
+        /* ================= TOPBAR WRAP (LOCKED / FIXED) ================= */
         .topbar-wrap {
             position: fixed;
             top: 18px;
@@ -76,9 +75,12 @@
             display: flex;
             justify-content: center;
             pointer-events: none;
+            transform: translateY(0);
+            opacity: 1;
+            transition: opacity 260ms ease, transform 260ms ease;
         }
 
-        /* ✅ One container (bar + dropdown part inside) */
+        /* ✅ One container */
         .topbar {
             pointer-events: auto;
             width: 100%;
@@ -94,7 +96,7 @@
             transition: background 320ms ease 80ms, border-color 320ms ease 80ms, backdrop-filter 320ms ease 80ms;
         }
 
-        /* ✅ Only TOP ROW fades (as you asked) */
+        /* ✅ Only TOP ROW */
         .topbar-row {
             height: var(--barH);
             padding: 0 22px;
@@ -104,6 +106,7 @@
             background: transparent;
         }
 
+        /* ✅ Hover effect (desktop) */
         @media (min-width:861px) {
             .topbar-wrap:hover .topbar {
                 background: rgba(255, 255, 255, 0.96);
@@ -231,7 +234,7 @@
             transform: translateY(-50%) rotate(-45deg);
         }
 
-        /* ================= MOBILE DROPDOWN AREA (POPS IN, NO TRANSITION) ================= */
+        /* ================= MOBILE DROPDOWN AREA ================= */
         .mobile-expand {
             display: none;
             height: 0;
@@ -258,12 +261,11 @@
                 display: none
             }
 
-            /* exists in mobile */
             .mobile-expand {
                 display: block;
             }
 
-            /* ✅ OPEN: top row fades to white + logo turns black */
+            /* ✅ OPEN: white row + logo black */
             body.menu-open .topbar {
                 border-color: rgba(0, 0, 0, .06);
             }
@@ -284,12 +286,10 @@
                 background: rgba(255, 255, 255, .98);
             }
 
-            /* ✅ show sign in capsule ONLY when open */
             body.menu-open .signin-mobile {
                 display: inline-flex;
             }
 
-            /* ✅ Bottom part POPS IN instantly (no transition) */
             body.menu-open .mobile-expand {
                 height: calc(100vh - (var(--pad) * 2 + var(--barH)));
             }
@@ -392,14 +392,151 @@
             z-index: 5;
         }
 
-        .below-inner {
-            max-width: var(--max);
-            margin: 0 auto
-        }
-
         @media (max-width:860px) {
             .below {
                 padding: 50px 14px 100px
+            }
+        }
+
+        /* ========= CATALOGUE ============ */
+        .catalogue-wrap {
+            width: 100%;
+            max-width: 1520px;
+            margin: 0 auto;
+        }
+
+        .catalogue-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .catalogue-title {
+            font-size: 52px;
+            letter-spacing: -1.8px;
+            line-height: 1.05;
+            color: #000;
+        }
+
+        /* ✅ compare button */
+        .catalogue-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 999px;
+
+            border: none;
+            background: transparent;
+
+            font-size: 14px;
+            font-weight: 800;
+            color: #000;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: 180ms ease;
+        }
+
+        .catalogue-link:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* ✅ remove sleeping scrollbar */
+        .catalogue-scroll {
+            display: flex;
+            gap: 22px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .catalogue-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .catalogue-card {
+            min-width: 380px;
+            max-width: 380px;
+            scroll-snap-align: start;
+            background: transparent;
+        }
+
+        /* ✅ desktop image height 500px */
+        .catalogue-img {
+            height: 500px;
+            border-radius: 28px;
+            margin-bottom: 18px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .catalogue-card h3 {
+            font-size: 26px;
+            letter-spacing: -0.6px;
+            margin-bottom: 6px;
+            color: #000;
+        }
+
+        .catalogue-card p {
+            color: rgba(0, 0, 0, 0.70);
+            line-height: 1.4;
+            margin-bottom: 14px;
+        }
+
+        .catalogue-price {
+            color: rgba(0, 0, 0, 0.75);
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .catalogue-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* ✅ learn more black squarish */
+        .pill-btn {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            background: #000;
+            color: #fff;
+        }
+
+        /* ✅ buy black text */
+        .link-btn {
+            border: none;
+            background: transparent;
+            color: #000;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        @media (max-width:860px) {
+            .catalogue-title {
+                font-size: 34px;
+            }
+
+            .catalogue-card {
+                min-width: 290px;
+                max-width: 290px;
+            }
+
+            /* ✅ mobile stays same */
+            .catalogue-img {
+                height: 240px;
             }
         }
     </style>
@@ -407,14 +544,12 @@
 
 <body>
 
-    <!-- ✅ BACKGROUND BLUR WHEN MENU OPEN -->
     <div class="menu-blur" id="menuBlur"></div>
 
-    <!-- TOPBAR -->
-    <div class="topbar-wrap">
+    <!-- ✅ TOPBAR -->
+    <div class="topbar-wrap" id="topbarWrap">
         <header class="topbar" id="topbar">
 
-            <!-- ✅ top row -->
             <div class="topbar-row">
                 <div class="left">
                     <button class="menu-btn" id="menuBtn" aria-label="Menu">
@@ -434,7 +569,6 @@
                 </div>
             </div>
 
-            <!-- ✅ expanded area (EMPTY) -->
             <div class="mobile-expand"></div>
 
         </header>
@@ -459,16 +593,63 @@
         </div>
     </section>
 
+    <!-- BELOW -->
     <section class="below">
-        <div class="below-inner">
-            <h2 style="font-size:32px; letter-spacing:-1px; margin-bottom:10px;">Minimal. Modern. Confident.</h2>
-            <p style="opacity:0.85; max-width:720px; line-height:1.6;">
-                Website Made By Laksh Kukreja. <br />
-                In Search Of Perfection - Mastering Skills Of Making Great Things.
-            </p>
+        <div class="catalogue-wrap">
+            <div class="catalogue-head">
+                <h2 class="catalogue-title">Explore the lineup.</h2>
+                <a class="catalogue-link" href="#">Compare all scents ›</a>
+            </div>
+
+            <div class="catalogue-scroll">
+                <div class="catalogue-card">
+                    <div class="catalogue-img" style="background:linear-gradient(135deg,#101010,#3a3a3a)"></div>
+                    <h3>Rizzora Aura</h3>
+                    <p>Fresh. Hormonal. Magnetic.</p>
+                    <div class="catalogue-price">From ₹1,499</div>
+                    <div class="catalogue-actions">
+                        <button class="pill-btn">Learn more</button>
+                        <button class="link-btn">Buy ›</button>
+                    </div>
+                </div>
+
+                <div class="catalogue-card">
+                    <div class="catalogue-img" style="background:linear-gradient(135deg,#0f172a,#111827)"></div>
+                    <h3>Rizzora Noir</h3>
+                    <p>Deep and confident. Night-ready.</p>
+                    <div class="catalogue-price">From ₹1,799</div>
+                    <div class="catalogue-actions">
+                        <button class="pill-btn">Learn more</button>
+                        <button class="link-btn">Buy ›</button>
+                    </div>
+                </div>
+
+                <div class="catalogue-card">
+                    <div class="catalogue-img" style="background:linear-gradient(135deg,#c7b3ff,#f4f0ff)"></div>
+                    <h3>Rizzora Bloom</h3>
+                    <p>Soft, romantic, long-lasting.</p>
+                    <div class="catalogue-price">From ₹1,299</div>
+                    <div class="catalogue-actions">
+                        <button class="pill-btn">Learn more</button>
+                        <button class="link-btn">Buy ›</button>
+                    </div>
+                </div>
+
+                <div class="catalogue-card">
+                    <div class="catalogue-img" style="background:linear-gradient(135deg,#0ea5e9,#1d4ed8)"></div>
+                    <h3>Rizzora Ice</h3>
+                    <p>Cool citrus energy. Everyday wear.</p>
+                    <div class="catalogue-price">From ₹999</div>
+                    <div class="catalogue-actions">
+                        <button class="pill-btn">Learn more</button>
+                        <button class="link-btn">Buy ›</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- ✅ CLEAN JS (NO SCROLL SUPPORT + NO RED ERRORS) -->
     <script>
         const menuBtn = document.getElementById("menuBtn");
         const blur = document.getElementById("menuBlur");
@@ -488,10 +669,12 @@
         }
 
         menuBtn.addEventListener("click", () => {
+            // Desktop: only animate icon (same as your vibe)
             if (!isMobile()) {
                 menuBtn.classList.toggle("is-open");
                 return;
             }
+
             if (document.body.classList.contains("menu-open")) closeMenu();
             else openMenu();
         });
@@ -502,7 +685,9 @@
             if (e.key === "Escape") closeMenu();
         });
 
-        window.addEventListener("resize", () => closeMenu());
+        window.addEventListener("resize", () => {
+            closeMenu();
+        });
     </script>
 
 </body>
