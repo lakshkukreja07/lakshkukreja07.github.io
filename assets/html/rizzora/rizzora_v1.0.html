@@ -36,7 +36,6 @@
       overflow-y: auto;
     }
 
-    /* ✅ Hide scrollbar but keep scrolling */
     body::-webkit-scrollbar {
       width: 0px;
       height: 0px;
@@ -71,23 +70,77 @@
       justify-content: center;
     }
 
-    .hero video {
+    /* Video containers with blur transition */
+    .video-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: blur(0px);
+      transform: scale(1);
+    }
+
+    .video-container.fade-out {
+      opacity: 0;
+      filter: blur(15px);
+      transform: scale(1.02);
+    }
+
+    /* Active video - subtle bloom effect */
+    .video-container:not(.fade-out) {
+      animation: bloomIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes bloomIn {
+      0% {
+        filter: blur(20px) brightness(1.2);
+        opacity: 0;
+        transform: scale(1.05);
+      }
+      70% {
+        filter: blur(5px) brightness(1.1);
+        opacity: 0.8;
+        transform: scale(1.01);
+      }
+      100% {
+        filter: blur(0px) brightness(1);
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .video-container video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
-
-      /* ✅ PERFORMANCE: keep only transform */
       transform: scale(1.05);
       will-change: transform;
     }
 
     @media (max-width: 860px) {
-      .hero video {
-        object-position: left center;
-        transform: scale(1.12);
+      .video-container video {
+        object-position: center center;
+        transform: scale(1);
+      }
+    }
+
+    /* Hide mobile video by default */
+    .mobile-video-container {
+      display: none;
+    }
+
+    @media (max-width: 860px) {
+      .desktop-video-container {
+        display: none;
+      }
+      
+      .mobile-video-container {
+        display: block;
       }
     }
 
@@ -136,7 +189,6 @@
       display: flex;
       flex-direction: column;
 
-      /* ✅ PERFORMANCE: removed blur */
       transition: background 220ms ease, border-color 220ms ease;
 
       position: relative;
@@ -167,7 +219,6 @@
       justify-content: flex-end;
     }
 
-    /* ✅ Brand container now contains only text */
     .brand-wrap {
       display: inline-flex;
       align-items: center;
@@ -199,7 +250,6 @@
       cursor: pointer;
     }
 
-    /* ✅ menu button */
     .menu-btn {
       width: 44px;
       height: 44px;
@@ -254,7 +304,6 @@
       transform: translateY(-50%) rotate(-45deg);
     }
 
-    /* ✅ Desktop hover */
     @media (min-width: 861px) {
       .topbar-wrap:hover .topbar {
         background: rgba(255, 255, 255, 0.94);
@@ -265,7 +314,6 @@
         color: var(--text-dark);
       }
 
-      /* ✅ Sign In BLACK on hover */
       .topbar-wrap:hover .signin-desktop {
         color: #000;
       }
@@ -274,13 +322,11 @@
         background: rgba(0, 0, 0, .70);
       }
 
-      /* ✅ keep X lines white when open */
       .topbar-wrap:hover .menu-btn.is-open .menu-icon span {
         background: rgba(255, 255, 255, .98) !important;
       }
     }
 
-    /* ✅ mobile sign in capsule */
     .signin-mobile {
       display: none;
       border: 1px solid rgba(0, 0, 0, .14);
@@ -296,17 +342,12 @@
       cursor: pointer;
     }
 
-    /* =========================================================
-       ✅ MOBILE MENU OVERLAY
-       ========================================================= */
     .menu-blur {
       position: absolute;
       inset: 0;
       z-index: 15;
       opacity: 0;
       pointer-events: none;
-
-      /* ✅ PERFORMANCE: no backdrop-filter */
       background: rgba(0, 0, 0, 0.22);
       transition: opacity 180ms ease;
     }
@@ -381,11 +422,9 @@
     .hero-inner {
       width: 100%;
       max-width: var(--max);
-
-      padding: 0 22px 60px; /* Reduced from 100px to 60px */
+      padding: 0 22px 60px;
       padding-top: 120px;
-	  padding-bottom: 80px;
-
+      padding-bottom: 80px;
       position: relative;
       z-index: 5;
       color: #fff;
@@ -397,7 +436,7 @@
       font-weight: 800;
       letter-spacing: -2px;
       line-height: .92;
-      margin-bottom: 12px; /* Reduced from 14px */
+      margin-bottom: 12px;
     }
 
     .sub {
@@ -405,7 +444,7 @@
       font-size: 16px;
       line-height: 1.4;
       opacity: .9;
-      margin-bottom: 16px; /* Reduced from 24px */
+      margin-bottom: 16px;
     }
 
     .btn {
@@ -427,7 +466,7 @@
 
     @media (max-width: 860px) {
       .hero-inner {
-        padding: 0 14px 40px; /* Reduced from 80px to 40px */
+        padding: 0 20px 100px;
         padding-top: 110px;
       }
 
@@ -441,7 +480,7 @@
       background: #fff;
       color: #000;
       padding: 70px 0 110px;
-      margin-top: -20px; /* Changed from 0 to -30px to pull up */
+      margin-top: -20px;
       position: relative;
       z-index: 5;
       width: 100%;
@@ -452,7 +491,7 @@
     @media (max-width: 860px) {
       .below {
         padding: 50px 0 100px;
-        margin-top: -20px; /* Also pull up on mobile */
+        margin-top: -20px;
       }
     }
 
@@ -480,7 +519,7 @@
     }
 
     .catalogue-title {
-	margin-top: 20px;
+      margin-top: 20px;
       font-size: 52px;
       letter-spacing: -1.8px;
       line-height: 1.05;
@@ -488,7 +527,7 @@
     }
 
     .catalogue-link {
-	margin-top: 20px;
+      margin-top: 20px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -640,10 +679,9 @@
       background: rgba(0, 0, 0, 0.05);
     }
 
-    /* Scroll buttons - positioned at bottom right of cards */
     .scroll-btn {
       position: absolute;
-      bottom: 40px;
+      bottom: 30px;
       right: 62px;
       width: 50px;
       height: 50px;
@@ -662,11 +700,26 @@
       transition: all 200ms ease;
     }
 
-    .scroll-btn:hover {
+    .scroll-btn:hover:not(.disabled) {
       background: #000;
       color: #fff;
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
       transform: scale(1.05);
+    }
+
+    .scroll-btn.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: #f5f5f5;
+      color: #999;
+      border-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .scroll-btn.disabled:hover {
+      background: #f5f5f5;
+      color: #999;
+      transform: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .scroll-btn.prev {
@@ -752,9 +805,20 @@
       </header>
     </div>
 
-    <video autoplay muted loop playsinline preload="metadata">
-      <source src="https://cdn.pixabay.com/video/2023/12/05/192066-891655462_large.mp4" type="video/mp4" />
-    </video>
+    <!-- ✅ VIDEO CONTAINERS FIXED -->
+    <div class="video-container desktop-video-container" id="desktopVideo">
+      <video autoplay muted loop playsinline preload="auto" id="desktopVideoEl"
+             crossorigin="anonymous">
+        <source src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/rizzora_trailer.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="video-container mobile-video-container" id="mobileVideo">
+      <video autoplay muted loop playsinline preload="auto" id="mobileVideoEl"
+             crossorigin="anonymous">
+        <source src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/rizzora_trailer_3.mp4" type="video/mp4" />
+      </video>
+    </div>
 
     <div class="overlay"></div>
 
@@ -775,7 +839,7 @@
     <div class="catalogue-wrap">
       <div class="catalogue-head">
         <h2 class="catalogue-title">Explore the lineup.</h2>
-        <a class="catalogue-link" href="#">Compare all scents ›</a>
+        <a class="catalogue-link" href="#">Compare All Perfumes ›</a>
       </div>
 
       <div class="catalogue-container">
@@ -802,7 +866,7 @@
           <!-- Noir -->
           <div class="catalogue-card">
             <div class="product-image-container">
-              <img class="product-image" src="assets/src/rizzora_aura.png" alt="Rizzora Noir">
+              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_noir.png" alt="Rizzora Noir">
             </div>
             <div class="catalogue-content">
               <h3>Rizzora Noir</h3>
@@ -815,13 +879,13 @@
             </div>
           </div>
 
-          <!-- Bloom -->
+          <!-- Femme -->
           <div class="catalogue-card">
             <div class="product-image-container">
-              <img class="product-image" src="assets/src/rizzora_aura.png" alt="Rizzora Bloom">
+              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_femme.png" alt="Rizzora Femme">
             </div>
             <div class="catalogue-content">
-              <h3>Rizzora Bloom</h3>
+              <h3>Rizzora Femme</h3>
               <p>Soft, romantic, long-lasting.</p>
               <div class="catalogue-price">From ₹1,299</div>
               <div class="catalogue-actions">
@@ -834,11 +898,43 @@
           <!-- Ice -->
           <div class="catalogue-card">
             <div class="product-image-container">
-              <img class="product-image" src="assets/src/rizzora_aura.png" alt="Rizzora Ice">
+              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_ice.png" alt="Rizzora Ice">
             </div>
             <div class="catalogue-content">
               <h3>Rizzora Ice</h3>
               <p>Cool citrus energy. Everyday wear.</p>
+              <div class="catalogue-price">From ₹999</div>
+              <div class="catalogue-actions">
+                <button class="pill-btn">Buy Now</button>
+                <button class="link-btn">Learn more ›</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Core -->
+          <div class="catalogue-card">
+            <div class="product-image-container">
+              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_core.png" alt="Rizzora Core">
+            </div>
+            <div class="catalogue-content">
+              <h3>Rizzora Core</h3>
+              <p>Dark, intense warmth. Bold and commanding.</p>
+              <div class="catalogue-price">From ₹999</div>
+              <div class="catalogue-actions">
+                <button class="pill-btn">Buy Now</button>
+                <button class="link-btn">Learn more ›</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zen -->
+          <div class="catalogue-card">
+            <div class="product-image-container">
+              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_zen.png" alt="Rizzora Zen">
+            </div>
+            <div class="catalogue-content">
+              <h3>Rizzora Zen</h3>
+              <p>Rare, refined freshness. Effortlessly elite.</p>
               <div class="catalogue-price">From ₹999</div>
               <div class="catalogue-actions">
                 <button class="pill-btn">Buy Now</button>
@@ -851,75 +947,214 @@
     </div>
   </section>
 
-  <script>
+ <script>
+    // Menu functionality
     const menuBtn = document.getElementById("menuBtn");
     const blur = document.getElementById("menuBlur");
     const catalogueScroll = document.getElementById("catalogueScroll");
     const prevBtn = document.querySelector(".scroll-btn.prev");
     const nextBtn = document.querySelector(".scroll-btn.next");
+    const desktopVideo = document.getElementById("desktopVideo");
+    const mobileVideo = document.getElementById("mobileVideo");
+    const desktopVideoEl = document.getElementById("desktopVideoEl");
+    const mobileVideoEl = document.getElementById("mobileVideoEl");
 
-    const isMobile = () => matchMedia("(max-width: 860px)").matches;
+    // ========== GLOBAL STATE ==========
+    let isSwitching = false;
+    let currentMode = window.innerWidth <= 860 ? 'mobile' : 'desktop';
+    let resizeTimeout;
+    let desktopVideoReady = false;
+    let mobileVideoReady = false;
 
+    // ========== UTILITY FUNCTIONS ==========
+    const isMobile = () => window.innerWidth <= 860;
+
+    // ========== MENU FUNCTIONS ==========
     function openMenu() {
-      document.body.classList.add("menu-open");
-      menuBtn.classList.add("is-open");
-      document.body.style.overflow = "hidden";
+        document.body.classList.add("menu-open");
+        menuBtn.classList.add("is-open");
+        document.body.style.overflow = "hidden";
     }
 
     function closeMenu() {
-      document.body.classList.remove("menu-open");
-      menuBtn.classList.remove("is-open");
-      document.body.style.overflow = "";
+        document.body.classList.remove("menu-open");
+        menuBtn.classList.remove("is-open");
+        document.body.style.overflow = "";
     }
 
-    menuBtn.addEventListener("click", () => {
-      if (!isMobile()) {
-        menuBtn.classList.toggle("is-open");
-        return;
-      }
+    // ========== VIDEO MANUAL LOOP ==========
+    function setupVideoLoop(videoElement) {
+        if (!videoElement) return;
+        
+        videoElement.addEventListener('ended', function() {
+            videoElement.currentTime = 0;
+            setTimeout(() => {
+                videoElement.play().catch(e => console.log('Ended play error:', e));
+            }, 100);
+        });
+    }
 
-      if (document.body.classList.contains("menu-open")) closeMenu();
-      else openMenu();
+    // ========== VIDEO PLAY FUNCTION ==========
+    function playVideoSafe(videoElement) {
+        if (!videoElement) return;
+        
+        videoElement.currentTime = 0;
+        
+        videoElement.play()
+            .then(() => {
+                console.log('Video playing successfully');
+            })
+            .catch(error => {
+                console.log('Video play failed:', error.name);
+                
+                // Try with muted if not already
+                if (!videoElement.muted) {
+                    videoElement.muted = true;
+                    videoElement.play().catch(e => console.log('Muted play also failed:', e));
+                }
+            });
+    }
+
+    // ========== VIDEO LOADING HANDLERS ==========
+    desktopVideoEl.addEventListener('loadeddata', function() {
+        desktopVideoReady = true;
+        console.log('Desktop video loaded');
+        
+        setupVideoLoop(desktopVideoEl);
+        
+        if (currentMode === 'desktop') {
+            setTimeout(() => playVideoSafe(desktopVideoEl), 500);
+        }
     });
 
-    blur.addEventListener("click", closeMenu);
-
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
+    mobileVideoEl.addEventListener('loadeddata', function() {
+        mobileVideoReady = true;
+        console.log('Mobile video loaded');
+        
+        setupVideoLoop(mobileVideoEl);
+        
+        if (currentMode === 'mobile') {
+            setTimeout(() => playVideoSafe(mobileVideoEl), 500);
+        }
     });
 
-    window.addEventListener("resize", () => {
-      closeMenu();
+    // Handle video errors
+    desktopVideoEl.addEventListener('error', function(e) {
+        console.log('Desktop video error:', desktopVideoEl.error);
+        desktopVideoReady = false;
     });
 
-    // Scroll buttons functionality
+    mobileVideoEl.addEventListener('error', function(e) {
+        console.log('Mobile video error:', mobileVideoEl.error);
+        mobileVideoReady = false;
+    });
+
+    // ========== VIDEO SWITCHING ==========
+    function switchVideoWithBlur() {
+        if (isSwitching) return;
+        
+        const newMode = isMobile() ? 'mobile' : 'desktop';
+        
+        if (newMode !== currentMode) {
+            isSwitching = true;
+            
+            const outgoingVideo = currentMode === 'desktop' ? desktopVideo : mobileVideo;
+            const incomingVideo = newMode === 'desktop' ? desktopVideo : mobileVideo;
+            const incomingVideoEl = newMode === 'desktop' ? desktopVideoEl : mobileVideoEl;
+            
+            outgoingVideo.classList.add('fade-out');
+            
+            setTimeout(() => {
+                // Pause outgoing video
+                if (currentMode === 'desktop') {
+                    desktopVideoEl.pause();
+                } else {
+                    mobileVideoEl.pause();
+                }
+                
+                outgoingVideo.style.display = 'none';
+                incomingVideo.style.display = 'block';
+                
+                setTimeout(() => {
+                    outgoingVideo.classList.remove('fade-out');
+                    
+                    playVideoSafe(incomingVideoEl);
+                    
+                    currentMode = newMode;
+                    isSwitching = false;
+                }, 100);
+            }, 350);
+        }
+    }
+
+    // ========== RESIZE HANDLER ==========
+    function handleResize() {
+        clearTimeout(resizeTimeout);
+        closeMenu();
+        
+        resizeTimeout = setTimeout(() => {
+            switchVideoWithBlur();
+            updateScrollButtons();
+        }, 250);
+    }
+
+    // ========== SCROLL BUTTONS ==========
     prevBtn.addEventListener('click', () => {
-      catalogueScroll.scrollBy({
-        left: -400,
-        behavior: 'smooth'
-      });
+        if (prevBtn.classList.contains('disabled')) return;
+        catalogueScroll.scrollBy({ left: -400, behavior: 'smooth' });
     });
 
     nextBtn.addEventListener('click', () => {
-      catalogueScroll.scrollBy({
-        left: 400,
-        behavior: 'smooth'
-      });
+        if (nextBtn.classList.contains('disabled')) return;
+        catalogueScroll.scrollBy({ left: 400, behavior: 'smooth' });
     });
 
-    // Update button visibility based on scroll position
     function updateScrollButtons() {
-      prevBtn.style.display = catalogueScroll.scrollLeft <= 0 ? 'none' : 'flex';
-      nextBtn.style.display = catalogueScroll.scrollLeft + catalogueScroll.clientWidth >= catalogueScroll.scrollWidth ? 'none' : 'flex';
+        const scrollLeft = catalogueScroll.scrollLeft;
+        const scrollWidth = catalogueScroll.scrollWidth;
+        const clientWidth = catalogueScroll.clientWidth;
+        
+        const isAtStart = scrollLeft <= 5;
+        const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 5;
+        
+        prevBtn.classList.toggle('disabled', isAtStart);
+        nextBtn.classList.toggle('disabled', isAtEnd);
     }
 
+    // ========== INITIAL SETUP ==========
+    function initializePage() {
+        // Set initial video display
+        if (isMobile()) {
+            desktopVideo.style.display = 'none';
+            mobileVideo.style.display = 'block';
+            currentMode = 'mobile';
+        } else {
+            desktopVideo.style.display = 'block';
+            mobileVideo.style.display = 'none';
+            currentMode = 'desktop';
+        }
+        
+        // Initialize scroll buttons
+        updateScrollButtons();
+        prevBtn.classList.add('disabled');
+        
+        console.log('Page initialized in', currentMode, 'mode');
+    }
+
+    // ========== EVENT LISTENERS ==========
+    menuBtn.addEventListener("click", () => {
+        if (!isMobile()) {
+            menuBtn.classList.toggle("is-open");
+            return;
+        }
+        document.body.classList.contains("menu-open") ? closeMenu() : openMenu();
+    });
+
+    blur.addEventListener("click", closeMenu);
+    document.addEventListener("keydown", (e) => e.key === "Escape" && closeMenu());
+    window.addEventListener("resize", handleResize);
     catalogueScroll.addEventListener('scroll', updateScrollButtons);
-    window.addEventListener('resize', updateScrollButtons);
-    
-    // Initial update
-    setTimeout(updateScrollButtons, 100);
-  </script>
-
+    window.addEventListener('DOMContentLoaded', initializePage);
+</script>
 </body>
-
 </html>
