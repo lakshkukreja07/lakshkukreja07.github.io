@@ -2,693 +2,923 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rizzora</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
-
-    <style>
-        :root {
-            --r: 18px;
-            --pad: 12px;
-            --barH: 74px;
-            --max: 1520px;
-
-            --dark: rgba(0, 0, 0, .92);
-            --muted: rgba(0, 0, 0, .62);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Manrope, sans-serif;
-            -webkit-tap-highlight-color: transparent
-        }
-
-        html,
-        body {
-            height: 100%;
-            background: #000;
-            color: #fff;
-            overflow-x: hidden
-        }
-
-        button {
-            border: 0;
-            background: none;
-            cursor: pointer
-        }
-
-        button:focus,
-        button:focus-visible {
-            outline: none !important;
-            box-shadow: none !important
-        }
-
-        /* ✅ blur behind opened menu (mobile only) */
-        .menu-blur {
-            position: fixed;
-            inset: 0;
-            z-index: 9000;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 200ms ease;
-            background: rgba(0, 0, 0, 0.20);
-            backdrop-filter: blur(16px);
-        }
-
-        body.menu-open .menu-blur {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* ================= TOPBAR WRAP (LOCKED / FIXED) ================= */
-        .topbar-wrap {
-            position: fixed;
-            top: 18px;
-            left: 0;
-            width: 100%;
-            z-index: 9999;
-            padding: 0 22px;
-            display: flex;
-            justify-content: center;
-            pointer-events: none;
-            transform: translateY(0);
-            opacity: 1;
-            transition: opacity 260ms ease, transform 260ms ease;
-        }
-
-        /* ✅ One container */
-        .topbar {
-            pointer-events: auto;
-            width: 100%;
-            max-width: var(--max);
-            border-radius: var(--r);
-            overflow: hidden;
-
-            border: 1px solid transparent;
-            background: transparent;
-
-            display: flex;
-            flex-direction: column;
-            transition: background 320ms ease 80ms, border-color 320ms ease 80ms, backdrop-filter 320ms ease 80ms;
-        }
-
-        /* ✅ Only TOP ROW */
-        .topbar-row {
-            height: var(--barH);
-            padding: 0 22px;
-            display: grid;
-            grid-template-columns: 140px 1fr 140px;
-            align-items: center;
-            background: transparent;
-        }
-
-        /* ✅ Hover effect (desktop) */
-        @media (min-width:861px) {
-            .topbar-wrap:hover .topbar {
-                background: rgba(255, 255, 255, 0.96);
-                border-color: rgba(0, 0, 0, 0.06);
-                backdrop-filter: blur(14px);
-            }
-
-            .topbar-wrap:hover .brand {
-                color: var(--dark)
-            }
-
-            .topbar-wrap:hover .signin-desktop {
-                color: var(--muted)
-            }
-
-            .topbar-wrap:hover .menu-icon span {
-                background: rgba(0, 0, 0, .70)
-            }
-        }
-
-        .left {
-            display: flex;
-            align-items: center
-        }
-
-        .center {
-            display: flex;
-            align-items: center;
-            justify-content: center
-        }
-
-        .right {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end
-        }
-
-        /* ================= BRAND ================= */
-        .brand {
-            font-weight: 800;
-            letter-spacing: 9px;
-            font-size: 18px;
-            color: rgba(255, 255, 255, .94);
-            transition: color 200ms ease;
-            text-transform: uppercase;
-            user-select: none;
-            pointer-events: none;
-        }
-
-        /* ================= SIGNIN ================= */
-        .signin-desktop {
-            color: rgba(255, 255, 255, .92);
-            font-weight: 700;
-            font-size: 14px;
-            padding: 10px 12px;
-            border-radius: 12px;
-            transition: 180ms ease;
-            white-space: nowrap;
-        }
-
-        /* mobile sign in capsule (only visible when open) */
-        .signin-mobile {
-            display: none;
-            border: 1px solid rgba(0, 0, 0, .14);
-            background: #fff;
-            color: rgba(0, 0, 0, .82);
-            padding: 10px 16px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 13px;
-            height: 44px;
-            align-items: center;
-            white-space: nowrap;
-        }
-
-        /* ================= MENU BUTTON ================= */
-        .menu-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 999px;
-            display: grid;
-            place-items: center;
-            transition: 180ms ease;
-        }
-
-        .menu-btn.is-open {
-            background: rgba(0, 0, 0, .95)
-        }
-
-        .menu-icon {
-            width: 22px;
-            height: 16px;
-            position: relative
-        }
-
-        .menu-icon span {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            border-radius: 99px;
-            background: rgba(255, 255, 255, .92);
-            transition: top 260ms ease, transform 260ms ease, background 200ms ease;
-        }
-
-        .menu-icon span:nth-child(1) {
-            top: 4px
-        }
-
-        .menu-icon span:nth-child(2) {
-            top: 12px
-        }
-
-        .menu-btn.is-open .menu-icon span {
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, .98);
-        }
-
-        .menu-btn.is-open .menu-icon span:nth-child(1) {
-            transform: translateY(-50%) rotate(45deg);
-        }
-
-        .menu-btn.is-open .menu-icon span:nth-child(2) {
-            transform: translateY(-50%) rotate(-45deg);
-        }
-
-        /* ================= MOBILE DROPDOWN AREA ================= */
-        .mobile-expand {
-            display: none;
-            height: 0;
-            background: #fff;
-        }
-
-        @media (max-width:860px) {
-            .topbar-wrap {
-                top: var(--pad);
-                padding: 0 var(--pad)
-            }
-
-            .topbar-row {
-                padding: 0 16px;
-                grid-template-columns: 48px 1fr 48px;
-            }
-
-            .brand {
-                font-size: 15px;
-                letter-spacing: 7px;
-            }
-
-            .signin-desktop {
-                display: none
-            }
-
-            .mobile-expand {
-                display: block;
-            }
-
-            /* ✅ OPEN: white row + logo black */
-            body.menu-open .topbar {
-                border-color: rgba(0, 0, 0, .06);
-            }
-
-            body.menu-open .topbar-row {
-                background: #fff;
-            }
-
-            body.menu-open .brand {
-                color: var(--dark);
-            }
-
-            body.menu-open .menu-icon span {
-                background: rgba(0, 0, 0, .70);
-            }
-
-            body.menu-open .menu-btn.is-open .menu-icon span {
-                background: rgba(255, 255, 255, .98);
-            }
-
-            body.menu-open .signin-mobile {
-                display: inline-flex;
-            }
-
-            body.menu-open .mobile-expand {
-                height: calc(100vh - (var(--pad) * 2 + var(--barH)));
-            }
-        }
-
-        /* ================= HERO ================= */
-        .hero {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            z-index: 1;
-        }
-
-        .hero video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            transform: scale(1.05);
-            filter: contrast(1.05) saturate(1.05) brightness(.90);
-        }
-
-        @media (max-width:860px) {
-            .hero video {
-                object-position: left center;
-                transform: scale(1.12);
-            }
-        }
-
-        .overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, .10), rgba(0, 0, 0, .30), rgba(0, 0, 0, .72));
-        }
-
-        .hero-inner {
-            width: 100%;
-            max-width: var(--max);
-            padding: 0 22px 72px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .title {
-            font-size: clamp(54px, 8vw, 120px);
-            font-weight: 800;
-            letter-spacing: -2px;
-            line-height: .92;
-            margin-bottom: 14px;
-        }
-
-        .sub {
-            max-width: 560px;
-            font-size: 16px;
-            line-height: 1.4;
-            opacity: .9;
-            margin-bottom: 18px;
-        }
-
-        .btn {
-            padding: 14px 22px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 14px;
-            background: rgba(255, 255, 255, .92);
-            color: #000;
-            min-width: 140px;
-            transition: 200ms ease;
-        }
-
-        .btn:hover {
-            background: #fff;
-            transform: translateY(-1px)
-        }
-
-        @media (max-width:860px) {
-            .hero-inner {
-                padding: 0 14px 56px
-            }
-
-            .sub {
-                font-size: 15px
-            }
-        }
-
-        /* ================= BELOW ================= */
-        .below {
-            background: #fff;
-            color: #000;
-            padding: 70px 22px 110px;
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
-            margin-top: -22px;
-            position: relative;
-            z-index: 5;
-        }
-
-        @media (max-width:860px) {
-            .below {
-                padding: 50px 14px 100px
-            }
-        }
-
-        /* ========= CATALOGUE ============ */
-        .catalogue-wrap {
-            width: 100%;
-            max-width: 1520px;
-            margin: 0 auto;
-        }
-
-        .catalogue-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            margin-bottom: 18px;
-        }
-
-        .catalogue-title {
-            font-size: 52px;
-            letter-spacing: -1.8px;
-            line-height: 1.05;
-            color: #000;
-        }
-
-        /* ✅ compare button */
-        .catalogue-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 18px;
-            border-radius: 999px;
-
-            border: none;
-            background: transparent;
-
-            font-size: 14px;
-            font-weight: 800;
-            color: #000;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: 180ms ease;
-        }
-
-        .catalogue-link:hover {
-            background: #000;
-            color: #fff;
-        }
-
-        /* ✅ remove sleeping scrollbar */
-        .catalogue-scroll {
-            display: flex;
-            gap: 22px;
-            overflow-x: auto;
-            padding-bottom: 12px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .catalogue-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        .catalogue-card {
-            min-width: 380px;
-            max-width: 380px;
-            scroll-snap-align: start;
-            background: transparent;
-        }
-
-        /* ✅ desktop image height 500px */
-        .catalogue-img {
-            height: 500px;
-            border-radius: 28px;
-            margin-bottom: 18px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .catalogue-card h3 {
-            font-size: 26px;
-            letter-spacing: -0.6px;
-            margin-bottom: 6px;
-            color: #000;
-        }
-
-        .catalogue-card p {
-            color: rgba(0, 0, 0, 0.70);
-            line-height: 1.4;
-            margin-bottom: 14px;
-        }
-
-        .catalogue-price {
-            color: rgba(0, 0, 0, 0.75);
-            font-weight: 700;
-            margin-bottom: 18px;
-        }
-
-        .catalogue-actions {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        /* ✅ learn more black squarish */
-        .pill-btn {
-            border: none;
-            padding: 12px 18px;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 14px;
-            cursor: pointer;
-            background: #000;
-            color: #fff;
-        }
-
-        /* ✅ buy black text */
-        .link-btn {
-            border: none;
-            background: transparent;
-            color: #000;
-            font-weight: 800;
-            font-size: 15px;
-            cursor: pointer;
-        }
-
-        @media (max-width:860px) {
-            .catalogue-title {
-                font-size: 34px;
-            }
-
-            .catalogue-card {
-                min-width: 290px;
-                max-width: 290px;
-            }
-
-            /* ✅ mobile stays same */
-            .catalogue-img {
-                height: 240px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rizzora</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+ <style>
+    :root {
+      --max: 1520px;
+      --r: 18px;
+      --barH: 74px;
+
+      --black: #000;
+      --white: #fff;
+      --text-dark: rgba(0, 0, 0, .92);
+      --text-muted: rgba(0, 0, 0, .68);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Manrope, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      height: 100%;
+      background: #000;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* ✅ Hide scrollbar but keep scrolling */
+    body::-webkit-scrollbar {
+      width: 0px;
+      height: 0px;
+    }
+
+    body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    button:focus,
+    button:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    /* ================= HERO VIDEO ================= */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+
+      /* ✅ PERFORMANCE: keep only transform */
+      transform: scale(1.05);
+      will-change: transform;
+    }
+
+    @media (max-width: 860px) {
+      .hero video {
+        object-position: left center;
+        transform: scale(1.12);
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+          rgba(0, 0, 0, .10),
+          rgba(0, 0, 0, .30),
+          rgba(0, 0, 0, .75));
+      z-index: 1;
+    }
+
+    /* =========================================================
+       ✅ TOPBAR OVER VIDEO
+       ========================================================= */
+    .topbar-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      z-index: 20;
+      pointer-events: none;
+
+      display: flex;
+      justify-content: center;
+
+      padding: 0;
+      margin: 0;
+    }
+
+    .topbar {
+      pointer-events: auto;
+
+      width: calc(100% - 44px);
+      max-width: var(--max);
+
+      margin-top: 12px;
+      border-radius: var(--r);
+      overflow: hidden;
+
+      border: 1px solid transparent;
+      background: transparent;
+
+      display: flex;
+      flex-direction: column;
+
+      /* ✅ PERFORMANCE: removed blur */
+      transition: background 220ms ease, border-color 220ms ease;
+
+      position: relative;
+      z-index: 30;
+    }
+
+    .topbar-row {
+      height: var(--barH);
+      padding: 0 22px;
+
+      display: grid;
+      grid-template-columns: 140px 1fr 140px;
+      align-items: center;
+    }
+
+    .left,
+    .center,
+    .right {
+      display: flex;
+      align-items: center;
+    }
+
+    .center {
+      justify-content: center;
+    }
+
+    .right {
+      justify-content: flex-end;
+    }
+
+    /* ✅ Brand container now contains only text */
+    .brand-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 9px;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.94);
+      transition: color 180ms ease;
+    }
+
+    .signin-desktop {
+      color: rgba(255, 255, 255, 0.92);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      white-space: nowrap;
+      transition: 180ms ease;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    /* ✅ menu button */
+    .menu-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: 180ms ease;
+    }
+
+    .menu-btn.is-open {
+      background: rgba(0, 0, 0, .95);
+    }
+
+    .menu-icon {
+      width: 22px;
+      height: 16px;
+      position: relative;
+    }
+
+    .menu-icon span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, .92);
+      transition: top 220ms ease, transform 220ms ease, background 200ms ease;
+    }
+
+    .menu-icon span:nth-child(1) {
+      top: 4px;
+    }
+
+    .menu-icon span:nth-child(2) {
+      top: 12px;
+    }
+
+    .menu-btn.is-open .menu-icon span {
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, .98);
+    }
+
+    .menu-btn.is-open .menu-icon span:nth-child(1) {
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .menu-btn.is-open .menu-icon span:nth-child(2) {
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+    /* ✅ Desktop hover */
+    @media (min-width: 861px) {
+      .topbar-wrap:hover .topbar {
+        background: rgba(255, 255, 255, 0.94);
+        border-color: rgba(0, 0, 0, 0.08);
+      }
+
+      .topbar-wrap:hover .brand {
+        color: var(--text-dark);
+      }
+
+      /* ✅ Sign In BLACK on hover */
+      .topbar-wrap:hover .signin-desktop {
+        color: #000;
+      }
+
+      .topbar-wrap:hover .menu-icon span {
+        background: rgba(0, 0, 0, .70);
+      }
+
+      /* ✅ keep X lines white when open */
+      .topbar-wrap:hover .menu-btn.is-open .menu-icon span {
+        background: rgba(255, 255, 255, .98) !important;
+      }
+    }
+
+    /* ✅ mobile sign in capsule */
+    .signin-mobile {
+      display: none;
+      border: 1px solid rgba(0, 0, 0, .14);
+      background: #fff;
+      color: rgba(0, 0, 0, .82);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+      height: 44px;
+      align-items: center;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       ✅ MOBILE MENU OVERLAY
+       ========================================================= */
+    .menu-blur {
+      position: absolute;
+      inset: 0;
+      z-index: 15;
+      opacity: 0;
+      pointer-events: none;
+
+      /* ✅ PERFORMANCE: no backdrop-filter */
+      background: rgba(0, 0, 0, 0.22);
+      transition: opacity 180ms ease;
+    }
+
+    body.menu-open .menu-blur {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-expand {
+      display: none;
+      height: 0;
+      background: #fff;
+      position: relative;
+      z-index: 40;
+    }
+
+    @media (max-width: 860px) {
+      .topbar {
+        margin-top: 12px;
+        margin-left: 12px;
+        margin-right: 12px;
+      }
+
+      .topbar-row {
+        padding: 0 16px;
+        grid-template-columns: 48px 1fr 48px;
+      }
+
+      .brand {
+        font-size: 15px;
+        letter-spacing: 7px;
+      }
+
+      .signin-desktop {
+        display: none;
+      }
+
+      .mobile-expand {
+        display: block;
+      }
+
+      body.menu-open .topbar {
+        border-color: rgba(0, 0, 0, .06);
+      }
+
+      body.menu-open .topbar-row {
+        background: #fff;
+      }
+
+      body.menu-open .brand {
+        color: var(--text-dark);
+      }
+
+      body.menu-open .menu-icon span {
+        background: rgba(0, 0, 0, .70);
+      }
+
+      body.menu-open .menu-btn.is-open .menu-icon span {
+        background: rgba(255, 255, 255, .98) !important;
+      }
+
+      body.menu-open .signin-mobile {
+        display: inline-flex;
+      }
+
+      body.menu-open .mobile-expand {
+        height: calc(100vh - 98px);
+      }
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: var(--max);
+
+      padding: 0 22px 60px; /* Reduced from 100px to 60px */
+      padding-top: 120px;
+	  padding-bottom: 80px;
+
+      position: relative;
+      z-index: 5;
+      color: #fff;
+      text-align: left;
+    }
+
+    .title {
+      font-size: clamp(54px, 8vw, 120px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: .92;
+      margin-bottom: 12px; /* Reduced from 14px */
+    }
+
+    .sub {
+      max-width: 560px;
+      font-size: 16px;
+      line-height: 1.4;
+      opacity: .9;
+      margin-bottom: 16px; /* Reduced from 24px */
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      background: rgba(255, 255, 255, .92);
+      color: #000;
+      min-width: 140px;
+      transition: 200ms ease;
+      border: 0;
+    }
+
+    .btn:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 860px) {
+      .hero-inner {
+        padding: 0 14px 40px; /* Reduced from 80px to 40px */
+        padding-top: 110px;
+      }
+
+      .sub {
+        font-size: 15px;
+      }
+    }
+
+    /* ================= BELOW SECTION ================= */
+    .below {
+      background: #fff;
+      color: #000;
+      padding: 70px 0 110px;
+      margin-top: -20px; /* Changed from 0 to -30px to pull up */
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+    }
+
+    @media (max-width: 860px) {
+      .below {
+        padding: 50px 0 100px;
+        margin-top: -20px; /* Also pull up on mobile */
+      }
+    }
+
+    /* ================= CATALOGUE ================= */
+    .catalogue-wrap {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .catalogue-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 0 42px;
+    }
+
+    @media (max-width: 860px) {
+      .catalogue-head {
+        padding: 0 24px;
+        margin-bottom: 30px;
+      }
+    }
+
+    .catalogue-title {
+	margin-top: 20px;
+      font-size: 52px;
+      letter-spacing: -1.8px;
+      line-height: 1.05;
+      color: #000;
+    }
+
+    .catalogue-link {
+	margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 800;
+      color: #000;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: 180ms ease;
+    }
+
+    .catalogue-link:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .catalogue-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 60px;
+    }
+
+    .catalogue-scroll {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      overscroll-behavior-x: contain;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      contain: layout paint;
+      padding: 10px 42px 30px;
+      margin: 0;
+    }
+
+    .catalogue-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .catalogue-card {
+      flex: 0 0 auto;
+      width: 380px;
+      height: 540px;
+      scroll-snap-align: start;
+      padding: 12px 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-image-container {
+      width: 340px;
+      height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      overflow: hidden;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+
+    .catalogue-content {
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .catalogue-card h3 {
+      font-size: 26px;
+      letter-spacing: -0.6px;
+      margin-bottom: 4px;
+      color: #000;
+      line-height: 1.2;
+    }
+
+    .catalogue-card p {
+      color: rgba(0, 0, 0, 0.70);
+      line-height: 1.4;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .catalogue-price {
+      color: rgba(0, 0, 0, 0.85);
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .catalogue-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+      padding-top: 0;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .pill-btn {
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      background: #000;
+      color: #fff;
+      transition: all 200ms ease;
+      white-space: nowrap;
+    }
+
+    .pill-btn:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+
+    .link-btn {
+      border: none;
+      background: transparent;
+      color: #000;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 200ms ease;
+      white-space: nowrap;
+    }
+
+    .link-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Scroll buttons - positioned at bottom right of cards */
+    .scroll-btn {
+      position: absolute;
+      bottom: 40px;
+      right: 62px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      color: #000;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-size: 20px;
+      font-weight: 300;
+      transition: all 200ms ease;
+    }
+
+    .scroll-btn:hover {
+      background: #000;
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+    }
+
+    .scroll-btn.prev {
+      right: 122px;
+    }
+
+    .scroll-btn.next {
+      right: 62px;
+    }
+
+    @media (max-width: 860px) {
+      .catalogue-title {
+        font-size: 34px;
+      }
+
+      .catalogue-card {
+        width: 290px;
+        height: 460px;
+      }
+
+      .product-image-container {
+        width: 260px;
+        height: 260px;
+        margin-bottom: 8px;
+      }
+
+      .catalogue-content {
+        padding: 0 15px;
+      }
+
+      .catalogue-card h3 {
+        font-size: 22px;
+      }
+
+      .catalogue-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .scroll-btn {
+        display: none;
+      }
+      
+      .catalogue-scroll {
+        padding: 10px 24px 30px;
+        gap: 16px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
+  <!-- ✅ HERO -->
+  <section class="hero">
+
     <div class="menu-blur" id="menuBlur"></div>
 
-    <!-- ✅ TOPBAR -->
     <div class="topbar-wrap" id="topbarWrap">
-        <header class="topbar" id="topbar">
+      <header class="topbar" id="topbar">
+        <div class="topbar-row">
+          <div class="left">
+            <button class="menu-btn" id="menuBtn" aria-label="Menu">
+              <div class="menu-icon">
+                <span></span><span></span>
+              </div>
+            </button>
+          </div>
 
-            <div class="topbar-row">
-                <div class="left">
-                    <button class="menu-btn" id="menuBtn" aria-label="Menu">
-                        <div class="menu-icon">
-                            <span></span><span></span>
-                        </div>
-                    </button>
-                </div>
-
-                <div class="center">
-                    <div class="brand">RIZZORA</div>
-                </div>
-
-                <div class="right">
-                    <button class="signin-desktop">Sign In</button>
-                    <button class="signin-mobile">Sign In</button>
-                </div>
+          <div class="center">
+            <div class="brand-wrap">
+              <div class="brand">RIZZORA</div>
             </div>
+          </div>
 
-            <div class="mobile-expand"></div>
+          <div class="right">
+            <button class="signin-desktop">Sign In</button>
+            <button class="signin-mobile">Sign In</button>
+          </div>
+        </div>
 
-        </header>
+        <div class="mobile-expand"></div>
+      </header>
     </div>
 
-    <!-- HERO -->
-    <section class="hero">
-        <video autoplay muted loop playsinline preload="auto">
-            <source src="https://cdn.pixabay.com/video/2023/12/05/192066-891655462_large.mp4" type="video/mp4" />
-        </video>
-        <div class="overlay"></div>
+    <video autoplay muted loop playsinline preload="metadata">
+      <source src="https://cdn.pixabay.com/video/2023/12/05/192066-891655462_large.mp4" type="video/mp4" />
+    </video>
 
-        <div class="hero-inner">
-            <div class="title">RIZZORA</div>
+    <div class="overlay"></div>
 
-            <div class="sub">
-                Rise in presence.<br />
-                Radiate confidence.
+    <div class="hero-inner">
+      <div class="title">RIZZORA</div>
+
+      <div class="sub">
+        Rise in presence.<br />
+        Radiate confidence.
+      </div>
+
+      <button class="btn">Explore</button>
+    </div>
+  </section>
+
+  <!-- ✅ BELOW -->
+  <section class="below">
+    <div class="catalogue-wrap">
+      <div class="catalogue-head">
+        <h2 class="catalogue-title">Explore the lineup.</h2>
+        <a class="catalogue-link" href="#">Compare all scents ›</a>
+      </div>
+
+      <div class="catalogue-container">
+        <button class="scroll-btn prev" aria-label="Previous cards">‹</button>
+        <button class="scroll-btn next" aria-label="Next cards">›</button>
+        
+        <div class="catalogue-scroll" id="catalogueScroll">
+          <!-- Aura -->
+          <div class="catalogue-card">
+            <div class="product-image-container">
+              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_aura.png" alt="Rizzora Aura">
             </div>
+            <div class="catalogue-content">
+              <h3>Rizzora Aura</h3>
+              <p>Fresh. Hormonal. Magnetic.</p>
+              <div class="catalogue-price">From ₹1,499</div>
+              <div class="catalogue-actions">
+                <button class="pill-btn">Buy Now</button>
+                <button class="link-btn">Learn more ›</button>
+              </div>
+            </div>
+          </div>
 
-            <button class="btn">Explore</button>
+          <!-- Noir -->
+          <div class="catalogue-card">
+            <div class="product-image-container">
+              <img class="product-image" src="assets/src/rizzora_aura.png" alt="Rizzora Noir">
+            </div>
+            <div class="catalogue-content">
+              <h3>Rizzora Noir</h3>
+              <p>Deep and confident. Night-ready.</p>
+              <div class="catalogue-price">From ₹1,799</div>
+              <div class="catalogue-actions">
+                <button class="pill-btn">Buy Now</button>
+                <button class="link-btn">Learn more ›</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloom -->
+          <div class="catalogue-card">
+            <div class="product-image-container">
+              <img class="product-image" src="assets/src/rizzora_aura.png" alt="Rizzora Bloom">
+            </div>
+            <div class="catalogue-content">
+              <h3>Rizzora Bloom</h3>
+              <p>Soft, romantic, long-lasting.</p>
+              <div class="catalogue-price">From ₹1,299</div>
+              <div class="catalogue-actions">
+                <button class="pill-btn">Buy Now</button>
+                <button class="link-btn">Learn more ›</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ice -->
+          <div class="catalogue-card">
+            <div class="product-image-container">
+              <img class="product-image" src="assets/src/rizzora_aura.png" alt="Rizzora Ice">
+            </div>
+            <div class="catalogue-content">
+              <h3>Rizzora Ice</h3>
+              <p>Cool citrus energy. Everyday wear.</p>
+              <div class="catalogue-price">From ₹999</div>
+              <div class="catalogue-actions">
+                <button class="pill-btn">Buy Now</button>
+                <button class="link-btn">Learn more ›</button>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- BELOW -->
-    <section class="below">
-        <div class="catalogue-wrap">
-            <div class="catalogue-head">
-                <h2 class="catalogue-title">Explore the lineup.</h2>
-                <a class="catalogue-link" href="#">Compare all scents ›</a>
-            </div>
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const blur = document.getElementById("menuBlur");
+    const catalogueScroll = document.getElementById("catalogueScroll");
+    const prevBtn = document.querySelector(".scroll-btn.prev");
+    const nextBtn = document.querySelector(".scroll-btn.next");
 
-            <div class="catalogue-scroll">
-                <div class="catalogue-card">
-                    <div class="catalogue-img" style="background:linear-gradient(135deg,#101010,#3a3a3a)"></div>
-                    <h3>Rizzora Aura</h3>
-                    <p>Fresh. Hormonal. Magnetic.</p>
-                    <div class="catalogue-price">From ₹1,499</div>
-                    <div class="catalogue-actions">
-                        <button class="pill-btn">Learn more</button>
-                        <button class="link-btn">Buy ›</button>
-                    </div>
-                </div>
+    const isMobile = () => matchMedia("(max-width: 860px)").matches;
 
-                <div class="catalogue-card">
-                    <div class="catalogue-img" style="background:linear-gradient(135deg,#0f172a,#111827)"></div>
-                    <h3>Rizzora Noir</h3>
-                    <p>Deep and confident. Night-ready.</p>
-                    <div class="catalogue-price">From ₹1,799</div>
-                    <div class="catalogue-actions">
-                        <button class="pill-btn">Learn more</button>
-                        <button class="link-btn">Buy ›</button>
-                    </div>
-                </div>
+    function openMenu() {
+      document.body.classList.add("menu-open");
+      menuBtn.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    }
 
-                <div class="catalogue-card">
-                    <div class="catalogue-img" style="background:linear-gradient(135deg,#c7b3ff,#f4f0ff)"></div>
-                    <h3>Rizzora Bloom</h3>
-                    <p>Soft, romantic, long-lasting.</p>
-                    <div class="catalogue-price">From ₹1,299</div>
-                    <div class="catalogue-actions">
-                        <button class="pill-btn">Learn more</button>
-                        <button class="link-btn">Buy ›</button>
-                    </div>
-                </div>
+    function closeMenu() {
+      document.body.classList.remove("menu-open");
+      menuBtn.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
 
-                <div class="catalogue-card">
-                    <div class="catalogue-img" style="background:linear-gradient(135deg,#0ea5e9,#1d4ed8)"></div>
-                    <h3>Rizzora Ice</h3>
-                    <p>Cool citrus energy. Everyday wear.</p>
-                    <div class="catalogue-price">From ₹999</div>
-                    <div class="catalogue-actions">
-                        <button class="pill-btn">Learn more</button>
-                        <button class="link-btn">Buy ›</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    menuBtn.addEventListener("click", () => {
+      if (!isMobile()) {
+        menuBtn.classList.toggle("is-open");
+        return;
+      }
 
-    <!-- ✅ CLEAN JS (NO SCROLL SUPPORT + NO RED ERRORS) -->
-    <script>
-        const menuBtn = document.getElementById("menuBtn");
-        const blur = document.getElementById("menuBlur");
+      if (document.body.classList.contains("menu-open")) closeMenu();
+      else openMenu();
+    });
 
-        const isMobile = () => matchMedia("(max-width: 860px)").matches;
+    blur.addEventListener("click", closeMenu);
 
-        function openMenu() {
-            document.body.classList.add("menu-open");
-            menuBtn.classList.add("is-open");
-            document.body.style.overflow = "hidden";
-        }
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
 
-        function closeMenu() {
-            document.body.classList.remove("menu-open");
-            menuBtn.classList.remove("is-open");
-            document.body.style.overflow = "";
-        }
+    window.addEventListener("resize", () => {
+      closeMenu();
+    });
 
-        menuBtn.addEventListener("click", () => {
-            // Desktop: only animate icon (same as your vibe)
-            if (!isMobile()) {
-                menuBtn.classList.toggle("is-open");
-                return;
-            }
+    // Scroll buttons functionality
+    prevBtn.addEventListener('click', () => {
+      catalogueScroll.scrollBy({
+        left: -400,
+        behavior: 'smooth'
+      });
+    });
 
-            if (document.body.classList.contains("menu-open")) closeMenu();
-            else openMenu();
-        });
+    nextBtn.addEventListener('click', () => {
+      catalogueScroll.scrollBy({
+        left: 400,
+        behavior: 'smooth'
+      });
+    });
 
-        blur.addEventListener("click", closeMenu);
+    // Update button visibility based on scroll position
+    function updateScrollButtons() {
+      prevBtn.style.display = catalogueScroll.scrollLeft <= 0 ? 'none' : 'flex';
+      nextBtn.style.display = catalogueScroll.scrollLeft + catalogueScroll.clientWidth >= catalogueScroll.scrollWidth ? 'none' : 'flex';
+    }
 
-        window.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") closeMenu();
-        });
-
-        window.addEventListener("resize", () => {
-            closeMenu();
-        });
-    </script>
+    catalogueScroll.addEventListener('scroll', updateScrollButtons);
+    window.addEventListener('resize', updateScrollButtons);
+    
+    // Initial update
+    setTimeout(updateScrollButtons, 100);
+  </script>
 
 </body>
 
