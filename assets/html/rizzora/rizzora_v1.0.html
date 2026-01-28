@@ -2,1159 +2,1811 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rizzora</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rizzora</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
- <style>
-    :root {
-      --max: 1520px;
-      --r: 18px;
-      --barH: 74px;
+    <style>
+        :root {
+            --max: 1520px;
+            --r: 20px;
+            --barH: 80px;
 
-      --black: #000;
-      --white: #fff;
-      --text-dark: rgba(0, 0, 0, .92);
-      --text-muted: rgba(0, 0, 0, .68);
-    }
+            --black: #000;
+            --white: #fff;
+            --text-dark: rgba(0, 0, 0, .92);
+            --text-muted: rgba(0, 0, 0, .68);
+            --accent: #000;
+            --accent-hover: #333;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Manrope, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Manrope, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    html,
-    body {
-      height: 100%;
-      background: #000;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
+        html,
+        body {
+            height: 100%;
+            background: #000;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
 
-    body::-webkit-scrollbar {
-      width: 0px;
-      height: 0px;
-    }
+        body::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
 
-    body {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
 
-    button {
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-    }
+        button {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
 
-    button:focus,
-    button:focus-visible {
-      outline: none !important;
-      box-shadow: none !important;
-    }
+        button:focus,
+        button:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
+        }
 
-    /* ================= HERO VIDEO ================= */
-    .hero {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
+        /* ================= HERO VIDEO ================= */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
 
-    /* Video containers with blur transition */
-    .video-container {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 1;
-      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-      filter: blur(0px);
-      transform: scale(1);
-    }
+        /* Video containers with blur transition */
+        .video-container {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: blur(0px);
+            transform: scale(1);
+        }
 
-    .video-container.fade-out {
-      opacity: 0;
-      filter: blur(15px);
-      transform: scale(1.02);
-    }
+        .video-container.fade-out {
+            opacity: 0;
+            filter: blur(15px);
+            transform: scale(1.02);
+        }
 
-    /* Active video - subtle bloom effect */
-    .video-container:not(.fade-out) {
-      animation: bloomIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
+        /* Active video - subtle bloom effect */
+        .video-container:not(.fade-out) {
+            animation: bloomIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
 
-    @keyframes bloomIn {
-      0% {
-        filter: blur(20px) brightness(1.2);
-        opacity: 0;
-        transform: scale(1.05);
-      }
-      70% {
-        filter: blur(5px) brightness(1.1);
-        opacity: 0.8;
-        transform: scale(1.01);
-      }
-      100% {
-        filter: blur(0px) brightness(1);
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+        @keyframes bloomIn {
+            0% {
+                filter: blur(20px) brightness(1.2);
+                opacity: 0;
+                transform: scale(1.05);
+            }
 
-    .video-container video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transform: scale(1.05);
-      will-change: transform;
-    }
+            70% {
+                filter: blur(5px) brightness(1.1);
+                opacity: 0.8;
+                transform: scale(1.01);
+            }
 
-    @media (max-width: 860px) {
-      .video-container video {
-        object-position: center center;
-        transform: scale(1);
-      }
-    }
+            100% {
+                filter: blur(0px) brightness(1);
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-    /* Hide mobile video by default */
-    .mobile-video-container {
-      display: none;
-    }
+        .video-container video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1.05);
+            will-change: transform;
+        }
 
-    @media (max-width: 860px) {
-      .desktop-video-container {
-        display: none;
-      }
-      
-      .mobile-video-container {
-        display: block;
-      }
-    }
+        @media (max-width: 860px) {
+            .video-container video {
+                object-position: center center;
+                transform: scale(1);
+            }
+        }
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom,
-          rgba(0, 0, 0, .10),
-          rgba(0, 0, 0, .30),
-          rgba(0, 0, 0, .75));
-      z-index: 1;
-    }
+        /* Hide mobile video by default */
+        .mobile-video-container {
+            display: none;
+        }
 
-    /* =========================================================
+        @media (max-width: 860px) {
+            .desktop-video-container {
+                display: none;
+            }
+
+            .mobile-video-container {
+                display: block;
+            }
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, .10),
+                    rgba(0, 0, 0, .30),
+                    rgba(0, 0, 0, .75));
+            z-index: 1;
+        }
+
+        /* =========================================================
        ✅ TOPBAR OVER VIDEO
        ========================================================= */
-    .topbar-wrap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-
-      z-index: 20;
-      pointer-events: none;
-
-      display: flex;
-      justify-content: center;
-
-      padding: 0;
-      margin: 0;
-    }
-
-    .topbar {
-      pointer-events: auto;
-
-      width: calc(100% - 44px);
-      max-width: var(--max);
-
-      margin-top: 12px;
-      border-radius: var(--r);
-      overflow: hidden;
-
-      border: 1px solid transparent;
-      background: transparent;
-
-      display: flex;
-      flex-direction: column;
-
-      transition: background 220ms ease, border-color 220ms ease;
-
-      position: relative;
-      z-index: 30;
-    }
-
-    .topbar-row {
-      height: var(--barH);
-      padding: 0 22px;
-
-      display: grid;
-      grid-template-columns: 140px 1fr 140px;
-      align-items: center;
-    }
-
-    .left,
-    .center,
-    .right {
-      display: flex;
-      align-items: center;
-    }
-
-    .center {
-      justify-content: center;
-    }
-
-    .right {
-      justify-content: flex-end;
-    }
-
-    .brand-wrap {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .brand {
-      font-weight: 800;
-      letter-spacing: 9px;
-      font-size: 18px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.94);
-      transition: color 180ms ease;
-    }
-
-    .signin-desktop {
-      color: rgba(255, 255, 255, 0.92);
-      font-weight: 700;
-      font-size: 14px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      white-space: nowrap;
-      transition: 180ms ease;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .menu-btn {
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 0;
-      background: transparent;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: 180ms ease;
-    }
-
-    .menu-btn.is-open {
-      background: rgba(0, 0, 0, .95);
-    }
-
-    .menu-icon {
-      width: 22px;
-      height: 16px;
-      position: relative;
-    }
-
-    .menu-icon span {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      border-radius: 99px;
-      background: rgba(255, 255, 255, .92);
-      transition: top 220ms ease, transform 220ms ease, background 200ms ease;
-    }
-
-    .menu-icon span:nth-child(1) {
-      top: 4px;
-    }
-
-    .menu-icon span:nth-child(2) {
-      top: 12px;
-    }
-
-    .menu-btn.is-open .menu-icon span {
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, .98);
-    }
-
-    .menu-btn.is-open .menu-icon span:nth-child(1) {
-      transform: translateY(-50%) rotate(45deg);
-    }
-
-    .menu-btn.is-open .menu-icon span:nth-child(2) {
-      transform: translateY(-50%) rotate(-45deg);
-    }
-
-    @media (min-width: 861px) {
-      .topbar-wrap:hover .topbar {
-        background: rgba(255, 255, 255, 0.94);
-        border-color: rgba(0, 0, 0, 0.08);
-      }
-
-      .topbar-wrap:hover .brand {
-        color: var(--text-dark);
-      }
-
-      .topbar-wrap:hover .signin-desktop {
-        color: #000;
-      }
-
-      .topbar-wrap:hover .menu-icon span {
-        background: rgba(0, 0, 0, .70);
-      }
-
-      .topbar-wrap:hover .menu-btn.is-open .menu-icon span {
-        background: rgba(255, 255, 255, .98) !important;
-      }
-    }
-
-    .signin-mobile {
-      display: none;
-      border: 1px solid rgba(0, 0, 0, .14);
-      background: #fff;
-      color: rgba(0, 0, 0, .82);
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 13px;
-      height: 44px;
-      align-items: center;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .menu-blur {
-      position: absolute;
-      inset: 0;
-      z-index: 15;
-      opacity: 0;
-      pointer-events: none;
-      background: rgba(0, 0, 0, 0.22);
-      transition: opacity 180ms ease;
-    }
-
-    body.menu-open .menu-blur {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .mobile-expand {
-      display: none;
-      height: 0;
-      background: #fff;
-      position: relative;
-      z-index: 40;
-    }
-
-    @media (max-width: 860px) {
-      .topbar {
-        margin-top: 12px;
-        margin-left: 12px;
-        margin-right: 12px;
-      }
-
-      .topbar-row {
-        padding: 0 16px;
-        grid-template-columns: 48px 1fr 48px;
-      }
-
-      .brand {
-        font-size: 15px;
-        letter-spacing: 7px;
-      }
-
-      .signin-desktop {
-        display: none;
-      }
-
-      .mobile-expand {
-        display: block;
-      }
-
-      body.menu-open .topbar {
-        border-color: rgba(0, 0, 0, .06);
-      }
-
-      body.menu-open .topbar-row {
-        background: #fff;
-      }
-
-      body.menu-open .brand {
-        color: var(--text-dark);
-      }
-
-      body.menu-open .menu-icon span {
-        background: rgba(0, 0, 0, .70);
-      }
-
-      body.menu-open .menu-btn.is-open .menu-icon span {
-        background: rgba(255, 255, 255, .98) !important;
-      }
-
-      body.menu-open .signin-mobile {
-        display: inline-flex;
-      }
-
-      body.menu-open .mobile-expand {
-        height: calc(100vh - 98px);
-      }
-    }
-
-    .hero-inner {
-      width: 100%;
-      max-width: var(--max);
-      padding: 0 22px 60px;
-      padding-top: 120px;
-      padding-bottom: 80px;
-      position: relative;
-      z-index: 5;
-      color: #fff;
-      text-align: left;
-    }
-
-    .title {
-      font-size: clamp(54px, 8vw, 120px);
-      font-weight: 800;
-      letter-spacing: -2px;
-      line-height: .92;
-      margin-bottom: 12px;
-    }
-
-    .sub {
-      max-width: 560px;
-      font-size: 16px;
-      line-height: 1.4;
-      opacity: .9;
-      margin-bottom: 16px;
-    }
-
-    .btn {
-      padding: 14px 22px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 14px;
-      background: rgba(255, 255, 255, .92);
-      color: #000;
-      min-width: 140px;
-      transition: 200ms ease;
-      border: 0;
-    }
-
-    .btn:hover {
-      background: #fff;
-      transform: translateY(-1px);
-    }
-
-    @media (max-width: 860px) {
-      .hero-inner {
-        padding: 0 20px 100px;
-        padding-top: 110px;
-      }
-
-      .sub {
-        font-size: 15px;
-      }
-    }
-
-    /* ================= BELOW SECTION ================= */
-    .below {
-      background: #fff;
-      color: #000;
-      padding: 70px 0 110px;
-      margin-top: -20px;
-      position: relative;
-      z-index: 5;
-      width: 100%;
-      border-top-left-radius: 30px;
-      border-top-right-radius: 30px;
-    }
-
-    @media (max-width: 860px) {
-      .below {
-        padding: 50px 0 100px;
-        margin-top: -20px;
-      }
-    }
-
-    /* ================= CATALOGUE ================= */
-    .catalogue-wrap {
-      width: 100%;
-      max-width: var(--max);
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .catalogue-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 0 42px;
-    }
-
-    @media (max-width: 860px) {
-      .catalogue-head {
-        padding: 0 24px;
-        margin-bottom: 30px;
-      }
-    }
-
-    .catalogue-title {
-      margin-top: 20px;
-      font-size: 52px;
-      letter-spacing: -1.8px;
-      line-height: 1.05;
-      color: #000;
-    }
-
-    .catalogue-link {
-      margin-top: 20px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 18px;
-      border-radius: 12px;
-      border: none;
-      background: transparent;
-      font-size: 14px;
-      font-weight: 800;
-      color: #000;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: 180ms ease;
-    }
-
-    .catalogue-link:hover {
-      background: #000;
-      color: #fff;
-    }
-
-    .catalogue-container {
-      position: relative;
-      width: 100%;
-      padding-bottom: 60px;
-    }
-
-    .catalogue-scroll {
-      display: flex;
-      gap: 24px;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      touch-action: pan-x;
-      overscroll-behavior-x: contain;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-      contain: layout paint;
-      padding: 10px 42px 30px;
-      margin: 0;
-    }
-
-    .catalogue-scroll::-webkit-scrollbar {
-      display: none;
-    }
-
-    .catalogue-card {
-      flex: 0 0 auto;
-      width: 380px;
-      height: 540px;
-      scroll-snap-align: start;
-      padding: 12px 0;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .product-image-container {
-      width: 340px;
-      height: 340px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 12px;
-      overflow: hidden;
-    }
-
-    .product-image {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-    }
-
-    .catalogue-content {
-      padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      justify-content: space-between;
-      text-align: center;
-    }
-
-    .catalogue-card h3 {
-      font-size: 26px;
-      letter-spacing: -0.6px;
-      margin-bottom: 4px;
-      color: #000;
-      line-height: 1.2;
-    }
-
-    .catalogue-card p {
-      color: rgba(0, 0, 0, 0.70);
-      line-height: 1.4;
-      margin-bottom: 6px;
-      font-size: 15px;
-    }
-
-    .catalogue-price {
-      color: rgba(0, 0, 0, 0.85);
-      font-weight: 700;
-      margin-bottom: 12px;
-      font-size: 16px;
-    }
-
-    .catalogue-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 4px;
-      padding-top: 0;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .pill-btn {
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      background: #000;
-      color: #fff;
-      transition: all 200ms ease;
-      white-space: nowrap;
-    }
-
-    .pill-btn:hover {
-      background: #333;
-      transform: translateY(-1px);
-    }
-
-    .link-btn {
-      border: none;
-      background: transparent;
-      color: #000;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: all 200ms ease;
-      white-space: nowrap;
-    }
-
-    .link-btn:hover {
-      background: rgba(0, 0, 0, 0.05);
-    }
-
-    .scroll-btn {
-      position: absolute;
-      bottom: 30px;
-      right: 62px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #fff;
-      color: #000;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 20;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      font-size: 20px;
-      font-weight: 300;
-      transition: all 200ms ease;
-    }
-
-    .scroll-btn:hover:not(.disabled) {
-      background: #000;
-      color: #fff;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-      transform: scale(1.05);
-    }
-
-    .scroll-btn.disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      background: #f5f5f5;
-      color: #999;
-      border-color: rgba(0, 0, 0, 0.05);
-    }
-
-    .scroll-btn.disabled:hover {
-      background: #f5f5f5;
-      color: #999;
-      transform: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .scroll-btn.prev {
-      right: 122px;
-    }
-
-    .scroll-btn.next {
-      right: 62px;
-    }
-
-    @media (max-width: 860px) {
-      .catalogue-title {
-        font-size: 34px;
-      }
-
-      .catalogue-card {
-        width: 290px;
-        height: 460px;
-      }
-
-      .product-image-container {
-        width: 260px;
-        height: 260px;
-        margin-bottom: 8px;
-      }
-
-      .catalogue-content {
-        padding: 0 15px;
-      }
-
-      .catalogue-card h3 {
-        font-size: 22px;
-      }
-
-      .catalogue-actions {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      .scroll-btn {
-        display: none;
-      }
-      
-      .catalogue-scroll {
-        padding: 10px 24px 30px;
-        gap: 16px;
-      }
-    }
-  </style>
+        .topbar-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .topbar {
+            pointer-events: auto;
+            width: calc(100% - 44px);
+            max-width: var(--max);
+            margin-top: 12px;
+            border-radius: var(--r);
+            overflow: hidden;
+            border: 1px solid transparent;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 30;
+        }
+
+        .topbar-row {
+            height: var(--barH);
+            padding: 0 22px;
+            display: grid;
+            grid-template-columns: 140px 1fr 140px;
+            align-items: center;
+        }
+
+        .left,
+        .center,
+        .right {
+            display: flex;
+            align-items: center;
+        }
+
+        .center {
+            justify-content: center;
+        }
+
+        .right {
+            justify-content: flex-end;
+        }
+
+        .brand-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .brand {
+            font-weight: 800;
+            letter-spacing: 9px;
+            font-size: 18px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.94);
+            transition: color 180ms ease;
+        }
+
+        .signin-desktop {
+            color: rgba(255, 255, 255, 0.92);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            white-space: nowrap;
+            transition: 180ms ease;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .menu-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 0;
+            background: transparent;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: 180ms ease;
+        }
+
+        .menu-btn.is-open {
+            background: rgba(0, 0, 0, .95);
+        }
+
+        .menu-icon {
+            width: 22px;
+            height: 16px;
+            position: relative;
+        }
+
+        .menu-icon span {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, .92);
+            transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-icon span:nth-child(1) {
+            top: 4px;
+        }
+
+        .menu-icon span:nth-child(2) {
+            top: 12px;
+        }
+
+        .menu-btn.is-open .menu-icon span {
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, .98);
+        }
+
+        .menu-btn.is-open .menu-icon span:nth-child(1) {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .menu-btn.is-open .menu-icon span:nth-child(2) {
+            transform: translateY(-50%) rotate(-45deg);
+        }
+
+        @media (min-width: 861px) {
+            .topbar-wrap:hover .topbar {
+                background: rgba(255, 255, 255, 0.94);
+                border-color: rgba(0, 0, 0, 0.08);
+            }
+
+            .topbar-wrap:hover .brand {
+                color: var(--text-dark);
+            }
+
+            .topbar-wrap:hover .signin-desktop {
+                color: #000;
+            }
+
+            .topbar-wrap:hover .menu-icon span {
+                background: rgba(0, 0, 0, .70);
+            }
+
+            .topbar-wrap:hover .menu-btn.is-open .menu-icon span {
+                background: rgba(255, 255, 255, .98) !important;
+            }
+        }
+
+        .signin-mobile {
+            display: none;
+            border: 1px solid rgba(0, 0, 0, .14);
+            background: #fff;
+            color: rgba(0, 0, 0, .82);
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 13px;
+            height: 44px;
+            align-items: center;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .menu-blur {
+            position: absolute;
+            inset: 0;
+            z-index: 15;
+            opacity: 0;
+            pointer-events: none;
+            background: rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.menu-open .menu-blur {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-expand {
+            display: none;
+            height: 0;
+            background: #fff;
+            position: relative;
+            z-index: 40;
+            transition: height 400ms cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .mobile-expand-content {
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 200ms ease 100ms;
+        }
+
+        body.menu-open .mobile-expand-content {
+            opacity: 1;
+        }
+
+        @media (max-width: 860px) {
+            .topbar {
+                margin-top: 12px;
+                margin-left: 12px;
+                margin-right: 12px;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .topbar-row {
+                padding: 0 16px;
+                grid-template-columns: 48px 1fr 48px;
+                background: transparent;
+            }
+
+            .brand {
+                font-size: 15px;
+                letter-spacing: 7px;
+            }
+
+            .signin-desktop {
+                display: none;
+            }
+
+            .mobile-expand {
+                display: block;
+            }
+
+            body.menu-open .topbar {
+                border-color: rgba(0, 0, 0, .06);
+                background: #fff;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            body.menu-open .topbar-row {
+                background: #fff;
+            }
+
+            body.menu-open .brand {
+                color: var(--text-dark);
+            }
+
+            body.menu-open .menu-icon span {
+                background: rgba(0, 0, 0, .70);
+            }
+
+            body.menu-open .menu-btn.is-open .menu-icon span {
+                background: rgba(255, 255, 255, .98) !important;
+            }
+
+            body.menu-open .signin-mobile {
+                display: inline-flex;
+            }
+
+            body.menu-open .mobile-expand {
+                height: calc(100vh - 110px);
+            }
+        }
+
+        /* Desktop menu styling */
+        .desktop-expand {
+            position: fixed;
+            top: calc(var(--barH) + 24px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            width: calc(100% - 44px);
+            max-width: var(--max);
+            background: #fff;
+            border-radius: var(--r);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            z-index: 25;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        body.desktop-menu-open .desktop-expand {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        .desktop-expand-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-inner {
+            width: 100%;
+            max-width: var(--max);
+            padding: 0 22px 60px;
+            padding-top: 120px;
+            padding-bottom: 80px;
+            position: relative;
+            z-index: 5;
+            color: #fff;
+            text-align: left;
+        }
+
+        .title {
+            font-size: clamp(54px, 8vw, 120px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: .92;
+            margin-bottom: 12px;
+        }
+
+        .sub {
+            max-width: 560px;
+            font-size: 16px;
+            line-height: 1.4;
+            opacity: .9;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            padding: 14px 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 14px;
+            background: rgba(255, 255, 255, .92);
+            color: #000;
+            min-width: 140px;
+            transition: 200ms ease;
+            border: 0;
+        }
+
+        .btn:hover {
+            background: #fff;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 860px) {
+            .hero-inner {
+                padding: 0 20px 100px;
+                padding-top: 110px;
+            }
+
+            .sub {
+                font-size: 15px;
+            }
+        }
+
+        /* ================= BELOW SECTION ================= */
+        .below {
+            background: #fff;
+            color: #000;
+            padding: 70px 0 110px;
+            margin-top: -20px;
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+
+        @media (max-width: 860px) {
+            .below {
+                padding: 50px 0 100px;
+                margin-top: -20px;
+            }
+        }
+
+        /* ================= CATALOGUE ================= */
+        .catalogue-wrap {
+            width: 100%;
+            max-width: var(--max);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .catalogue-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 0 42px;
+        }
+
+        @media (max-width: 860px) {
+            .catalogue-head {
+                padding: 0 24px;
+                margin-bottom: 30px;
+            }
+        }
+
+        .catalogue-title {
+            margin-top: 20px;
+            font-size: 52px;
+            letter-spacing: -1.8px;
+            line-height: 1.05;
+            color: #000;
+        }
+
+        .catalogue-link {
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 800;
+            color: #000;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: 180ms ease;
+        }
+
+        .catalogue-link:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .catalogue-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 60px;
+        }
+
+        .catalogue-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-x;
+            overscroll-behavior-x: contain;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            contain: layout paint;
+            padding: 10px 42px 30px;
+            margin: 0;
+        }
+
+        .catalogue-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .catalogue-card {
+            flex: 0 0 auto;
+            width: 380px;
+            height: 540px;
+            scroll-snap-align: start;
+            padding: 12px 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-image-container {
+            width: 340px;
+            height: 340px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
+
+        .catalogue-content {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .catalogue-card h3 {
+            font-size: 26px;
+            letter-spacing: -0.6px;
+            margin-bottom: 4px;
+            color: #000;
+            line-height: 1.2;
+        }
+
+        .catalogue-card p {
+            color: rgba(0, 0, 0, 0.70);
+            line-height: 1.4;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .catalogue-price {
+            color: rgba(0, 0, 0, 0.85);
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .catalogue-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 4px;
+            padding-top: 0;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .pill-btn {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            background: #000;
+            color: #fff;
+            transition: all 200ms ease;
+            white-space: nowrap;
+        }
+
+        .pill-btn:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+
+        .link-btn {
+            border: none;
+            background: transparent;
+            color: #000;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 200ms ease;
+            white-space: nowrap;
+        }
+
+        .link-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .scroll-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 62px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #fff;
+            color: #000;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+            font-weight: 300;
+            transition: all 200ms ease;
+        }
+
+        .scroll-btn:hover:not(.disabled) {
+            background: #000;
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .scroll-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            background: #f5f5f5;
+            color: #999;
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .scroll-btn.disabled:hover {
+            background: #f5f5f5;
+            color: #999;
+            transform: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .scroll-btn.prev {
+            right: 122px;
+        }
+
+        .scroll-btn.next {
+            right: 62px;
+        }
+
+        @media (max-width: 860px) {
+            .catalogue-title {
+                font-size: 34px;
+            }
+
+            .catalogue-card {
+                width: 290px;
+                height: 460px;
+            }
+
+            .product-image-container {
+                width: 260px;
+                height: 260px;
+                margin-bottom: 8px;
+            }
+
+            .catalogue-content {
+                padding: 0 15px;
+            }
+
+            .catalogue-card h3 {
+                font-size: 22px;
+            }
+
+            .catalogue-actions {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .scroll-btn {
+                display: block;
+            }
+
+            .catalogue-scroll {
+                padding: 10px 24px 30px;
+                gap: 16px;
+            }
+        }
+
+        /* ================= PRODUCT POPUP ================= */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .product-popup {
+            background: #fff;
+            border-radius: 28px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        /* Hide scrollbar for popup */
+        .product-popup::-webkit-scrollbar {
+            display: none;
+            width: 0;
+        }
+
+        .product-popup {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 200ms ease;
+            border: none;
+            font-size: 24px;
+            color: #000;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .popup-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .popup-content {
+            padding: 32px 40px 40px;
+        }
+
+        .popup-header {
+            margin-bottom: 36px;
+            position: relative;
+            padding-right: 60px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+
+        .popup-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            margin-bottom: 0;
+            color: #000;
+            line-height: 1.2;
+            text-align: left;
+            flex: 1;
+            padding-top: 4px;
+        }
+
+        .popup-section {
+            margin-bottom: 32px;
+        }
+
+        .popup-section h4 {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .popup-section h4 i {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 14px;
+        }
+
+        .popup-description {
+            color: rgba(0, 0, 0, 0.8);
+            line-height: 1.7;
+            font-size: 16px;
+            padding-left: 26px;
+            position: relative;
+        }
+
+        .popup-description::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+        }
+
+        /* Changed ingredients to simple text format */
+        .popup-ingredients {
+            color: rgba(0, 0, 0, 0.8);
+            line-height: 1.7;
+            font-size: 16px;
+            padding-left: 26px;
+            position: relative;
+        }
+
+        .popup-ingredients::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+        }
+
+        .popup-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .popup-btn {
+            padding: 18px 24px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: all 200ms ease;
+            flex: 1;
+            min-width: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .popup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .popup-btn-primary {
+            background: #000;
+            color: #fff;
+        }
+
+        .popup-btn-primary:hover {
+            background: #333;
+        }
+
+        .popup-btn-secondary {
+            background: #fff;
+            color: #000;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .popup-btn-secondary:hover {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.25);
+        }
+
+        .popup-btn i {
+            font-size: 18px;
+        }
+
+        .popup-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.7);
+            line-height: 1.4;
+        }
+
+        .feature-text strong {
+            color: #000;
+            display: block;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        @media (max-width: 860px) {
+            .product-popup {
+                max-height: 85vh;
+                border-radius: 24px;
+                max-width: 95%;
+            }
+
+            .popup-content {
+                padding: 28px 24px 32px;
+            }
+
+            .popup-header {
+                padding-right: 50px;
+                min-height: 40px;
+            }
+
+            .popup-title {
+                font-size: 28px;
+                padding-top: 2px;
+            }
+
+            .popup-close {
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+            }
+
+            .popup-actions {
+                flex-direction: row;
+                gap: 12px;
+            }
+
+            .popup-btn {
+                min-width: calc(50% - 6px);
+                padding: 16px 12px;
+                font-size: 14px;
+            }
+
+            .popup-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            /* Fix the gray line width for tablets */
+            .popup-description::before,
+            .popup-ingredients::before {
+                width: 3px;
+            }
+
+            .popup-description,
+            .popup-ingredients {
+                padding-left: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .popup-content {
+                padding: 24px 20px 28px;
+            }
+
+            .popup-header {
+                padding-right: 40px;
+            }
+
+            .popup-title {
+                font-size: 24px;
+                padding-top: 0;
+            }
+
+            .popup-close {
+                top: 18px;
+                right: 18px;
+                width: 36px;
+                height: 36px;
+                font-size: 20px;
+            }
+
+            /* Fix the gray line width for phones */
+            .popup-description::before,
+            .popup-ingredients::before {
+                width: 2px;
+                border-radius: 1px;
+            }
+
+            .popup-description,
+            .popup-ingredients {
+                padding-left: 18px;
+            }
+
+            .popup-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- ✅ HERO -->
-  <section class="hero">
+    <!-- ✅ HERO -->
+    <section class="hero">
 
-    <div class="menu-blur" id="menuBlur"></div>
+        <div class="menu-blur" id="menuBlur"></div>
 
-    <div class="topbar-wrap" id="topbarWrap">
-      <header class="topbar" id="topbar">
-        <div class="topbar-row">
-          <div class="left">
-            <button class="menu-btn" id="menuBtn" aria-label="Menu">
-              <div class="menu-icon">
-                <span></span><span></span>
-              </div>
-            </button>
-          </div>
+        <div class="topbar-wrap" id="topbarWrap">
+            <header class="topbar" id="topbar">
+                <div class="topbar-row">
+                    <div class="left">
+                        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                            <div class="menu-icon">
+                                <span></span><span></span>
+                            </div>
+                        </button>
+                    </div>
 
-          <div class="center">
-            <div class="brand-wrap">
-              <div class="brand">RIZZORA</div>
-            </div>
-          </div>
+                    <div class="center">
+                        <div class="brand-wrap">
+                            <div class="brand">RIZZORA</div>
+                        </div>
+                    </div>
 
-          <div class="right">
-            <button class="signin-desktop">Sign In</button>
-            <button class="signin-mobile">Sign In</button>
-          </div>
+                    <div class="right">
+                        <button class="signin-desktop">Sign In</button>
+                        <button class="signin-mobile">Sign In</button>
+                    </div>
+                </div>
+
+                <div class="mobile-expand"></div>
+            </header>
         </div>
 
-        <div class="mobile-expand"></div>
-      </header>
-    </div>
-
-    <!-- ✅ VIDEO CONTAINERS FIXED -->
-    <div class="video-container desktop-video-container" id="desktopVideo">
-      <video autoplay muted loop playsinline preload="auto" id="desktopVideoEl"
-             crossorigin="anonymous">
-        <source src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/rizzora_trailer.mp4" type="video/mp4" />
-      </video>
-    </div>
-
-    <div class="video-container mobile-video-container" id="mobileVideo">
-      <video autoplay muted loop playsinline preload="auto" id="mobileVideoEl"
-             crossorigin="anonymous">
-        <source src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/rizzora_trailer_3.mp4" type="video/mp4" />
-      </video>
-    </div>
-
-    <div class="overlay"></div>
-
-    <div class="hero-inner">
-      <div class="title">RIZZORA</div>
-
-      <div class="sub">
-        Rise in presence.<br />
-        Radiate confidence.
-      </div>
-
-      <button class="btn">Explore</button>
-    </div>
-  </section>
-
-  <!-- ✅ BELOW -->
-  <section class="below">
-    <div class="catalogue-wrap">
-      <div class="catalogue-head">
-        <h2 class="catalogue-title">Explore the lineup.</h2>
-        <a class="catalogue-link" href="#">Compare all scents ›</a>
-      </div>
-
-      <div class="catalogue-container">
-        <button class="scroll-btn prev" aria-label="Previous cards">‹</button>
-        <button class="scroll-btn next" aria-label="Next cards">›</button>
-        
-        <div class="catalogue-scroll" id="catalogueScroll">
-          <!-- Core -->
-          <div class="catalogue-card">
-            <div class="product-image-container">
-              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_core.png" alt="Rizzora Core">
-            </div>
-            <div class="catalogue-content">
-              <h3>Rizzora Core</h3>
-              <p>Dark, Intense Warmth & Bold.</p>
-              <div class="catalogue-price">₹999</div>
-              <div class="catalogue-actions">
-                <button class="pill-btn">Buy Now</button>
-                <button class="link-btn">Learn more ›</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Ice -->
-          <div class="catalogue-card">
-            <div class="product-image-container">
-              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_ice.png" alt="Rizzora Ice">
-            </div>
-            <div class="catalogue-content">
-              <h3>Rizzora Ice</h3>
-              <p>Fresh, Fearless & Ice Spice Charged.</p>
-              <div class="catalogue-price">From ₹1,199</div>
-              <div class="catalogue-actions">
-                <button class="pill-btn">Buy Now</button>
-                <button class="link-btn">Learn more ›</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Femme -->
-          <div class="catalogue-card">
-            <div class="product-image-container">
-              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_femme.png" alt="Rizzora Femme">
-            </div>
-            <div class="catalogue-content">
-              <h3>Rizzora Femme</h3>
-              <p>Soft, Romantic Elegance & Lasting Allure.</p>
-              <div class="catalogue-price">From ₹1,499</div>
-              <div class="catalogue-actions">
-                <button class="pill-btn">Buy Now</button>
-                <button class="link-btn">Learn more ›</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Noir -->
-          <div class="catalogue-card">
-            <div class="product-image-container">
-              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_noir.png" alt="Rizzora Noir">
-            </div>
-            <div class="catalogue-content">
-              <h3>Rizzora Noir</h3>
-              <p>Sensual, Dark & After Hours Refined.</p>
-              <div class="catalogue-price">From ₹1,499</div>
-              <div class="catalogue-actions">
-                <button class="pill-btn">Buy Now</button>
-                <button class="link-btn">Learn more ›</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Aura -->
-          <div class="catalogue-card">
-            <div class="product-image-container">
-              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_aura.png" alt="Rizzora Aura">
-            </div>
-            <div class="catalogue-content">
-              <h3>Rizzora Aura</h3>
-              <p>Fresh, Hormonal & Magnetic.</p>
-              <div class="catalogue-price">From ₹1,999</div>
-              <div class="catalogue-actions">
-                <button class="pill-btn">Buy Now</button>
-                <button class="link-btn">Learn more ›</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Zen -->
-          <div class="catalogue-card">
-            <div class="product-image-container">
-              <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_zen.png" alt="Rizzora Zen">
-            </div>
-            <div class="catalogue-content">
-              <h3>Rizzora Zen</h3>
-              <p>Rare, Refined Freshness & Effortlessly Elite.</p>
-              <div class="catalogue-price">From ₹2,499</div>
-              <div class="catalogue-actions">
-                <button class="pill-btn">Buy Now</button>
-                <button class="link-btn">Learn more ›</button>
-              </div>
-            </div>
-          </div>
+        <!-- ✅ VIDEO CONTAINERS FIXED -->
+        <div class="video-container desktop-video-container" id="desktopVideo">
+            <video autoplay muted loop playsinline preload="auto" id="desktopVideoEl" crossorigin="anonymous">
+                <source
+                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/rizzora_trailer.mp4"
+                    type="video/mp4" />
+            </video>
         </div>
-      </div>
+
+        <div class="video-container mobile-video-container" id="mobileVideo">
+            <video autoplay muted loop playsinline preload="auto" id="mobileVideoEl" crossorigin="anonymous">
+                <source
+                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/rizzora_trailer_3.mp4"
+                    type="video/mp4" />
+            </video>
+        </div>
+
+        <div class="overlay"></div>
+
+        <div class="hero-inner">
+            <div class="title">RIZZORA</div>
+
+            <div class="sub">
+                Confidence has a scent.<br />
+                Radiate confidence.
+            </div>
+
+            <button class="btn">Explore</button>
+        </div>
+    </section>
+
+    <!-- ✅ BELOW -->
+    <section class="below">
+        <div class="catalogue-wrap">
+            <div class="catalogue-head">
+                <h2 class="catalogue-title">Explore the lineup.</h2>
+                <a class="catalogue-link" href="#">Compare all scents ›</a>
+            </div>
+
+            <div class="catalogue-container">
+                <button class="scroll-btn prev disabled" aria-label="Previous cards">‹</button>
+                <button class="scroll-btn next" aria-label="Next cards">›</button>
+
+                <div class="catalogue-scroll" id="catalogueScroll">
+                    <!-- Core -->
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image"
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora_core.png" alt="Rizzora Core">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Core</h3>
+                            <p>Unisex. Everyday. Effortlessly Warm.</p>
+                            <div class="catalogue-price">₹999</div>
+                            <div class="catalogue-actions">
+                                <button class="pill-btn">Buy Now</button>
+                                <button class="link-btn learn-more" data-product="core">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ice -->
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_ice.png"
+                                alt="Rizzora Ice">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Ice</h3>
+                            <p>Fresh, Fearless & Ice Spice Charged.</p>
+                            <div class="catalogue-price">From ₹1,199</div>
+                            <div class="catalogue-actions">
+                                <button class="pill-btn">Buy Now</button>
+                                <button class="link-btn learn-more" data-product="ice">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Femme -->
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image"
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora_femme.png" alt="Rizzora Femme">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Femme</h3>
+                            <p>Soft, Romantic Elegance & Lasting Allure.</p>
+                            <div class="catalogue-price">From ₹1,499</div>
+                            <div class="catalogue-actions">
+                                <button class="pill-btn">Buy Now</button>
+                                <button class="link-btn learn-more" data-product="femme">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Noir -->
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image"
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora_noir.png" alt="Rizzora Noir">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Noir</h3>
+                            <p>Sensual, Dark & After Hours Refined.</p>
+                            <div class="catalogue-price">From ₹1,499</div>
+                            <div class="catalogue-actions">
+                                <button class="pill-btn">Buy Now</button>
+                                <button class="link-btn learn-more" data-product="noir">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aura -->
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image"
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora_aura.png" alt="Rizzora Aura">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Aura</h3>
+                            <p>Fresh, Hormonal & Magnetic.</p>
+                            <div class="catalogue-price">From ₹1,999</div>
+                            <div class="catalogue-actions">
+                                <button class="pill-btn">Buy Now</button>
+                                <button class="link-btn learn-more" data-product="aura">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zen -->
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_zen.png"
+                                alt="Rizzora Zen">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Zen</h3>
+                            <p>Rare, Refined Freshness & Effortlessly Elite.</p>
+                            <div class="catalogue-price">From ₹2,499</div>
+                            <div class="catalogue-actions">
+                                <button class="pill-btn">Buy Now</button>
+                                <button class="link-btn learn-more" data-product="zen">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT POPUP -->
+    <div class="popup-overlay" id="productPopup">
+        <div class="product-popup">
+            <button class="popup-close" id="closePopup">×</button>
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h2 class="popup-title" id="popupTitle">Product Name</h2>
+                </div>
+
+                <div class="popup-section">
+                    <h4><i class="fas fa-align-left"></i> Description</h4>
+                    <div class="popup-description" id="popupDescription">
+                        Product description will appear here.
+                    </div>
+                </div>
+
+                <div class="popup-section">
+                    <h4><i class="fas fa-flask"></i> Ingredients</h4>
+                    <div class="popup-ingredients" id="popupIngredients">
+                        <!-- Ingredients will be populated here as simple text -->
+                    </div>
+                </div>
+
+                <div class="popup-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="feature-text">
+                            <strong>Long Lasting</strong>
+                            8-12 hours
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="feature-text">
+                            <strong>Scent Type</strong>
+                            <span id="featureScentType">Woody</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="feature-text">
+                            <strong>Concentration</strong>
+                            Eau de Parfum
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="feature-text">
+                            <strong>Quality</strong>
+                            Premium Grade
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popup-actions">
+                    <button class="popup-btn popup-btn-primary" id="addToCart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="popup-btn popup-btn-secondary" id="addToWishlist">
+                        <i class="fas fa-heart"></i> Add to Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
 
- <script>
-    // Menu functionality
-    const menuBtn = document.getElementById("menuBtn");
-    const blur = document.getElementById("menuBlur");
-    const catalogueScroll = document.getElementById("catalogueScroll");
-    const prevBtn = document.querySelector(".scroll-btn.prev");
-    const nextBtn = document.querySelector(".scroll-btn.next");
-    const desktopVideo = document.getElementById("desktopVideo");
-    const mobileVideo = document.getElementById("mobileVideo");
-    const desktopVideoEl = document.getElementById("desktopVideoEl");
-    const mobileVideoEl = document.getElementById("mobileVideoEl");
+    <script>
+        // Menu functionality
+        const menuBtn = document.getElementById("menuBtn");
+        const blur = document.getElementById("menuBlur");
+        const catalogueScroll = document.getElementById("catalogueScroll");
+        const prevBtn = document.querySelector(".scroll-btn.prev");
+        const nextBtn = document.querySelector(".scroll-btn.next");
+        const desktopVideo = document.getElementById("desktopVideo");
+        const mobileVideo = document.getElementById("mobileVideo");
+        const desktopVideoEl = document.getElementById("desktopVideoEl");
+        const mobileVideoEl = document.getElementById("mobileVideoEl");
+        const productPopup = document.getElementById("productPopup");
+        const closePopup = document.getElementById("closePopup");
+        const popupTitle = document.getElementById("popupTitle");
+        const popupDescription = document.getElementById("popupDescription");
+        const popupIngredients = document.getElementById("popupIngredients");
+        const featureScentType = document.getElementById("featureScentType");
+        const addToCart = document.getElementById("addToCart");
+        const addToWishlist = document.getElementById("addToWishlist");
 
-    // ========== GLOBAL STATE ==========
-    let isSwitching = false;
-    let currentMode = window.innerWidth <= 860 ? 'mobile' : 'desktop';
-    let resizeTimeout;
-    let desktopVideoReady = false;
-    let mobileVideoReady = false;
+        // ========== GLOBAL STATE ==========
+        let isSwitching = false;
+        let currentMode = window.innerWidth <= 860 ? 'mobile' : 'desktop';
+        let resizeTimeout;
+        let desktopVideoReady = false;
+        let mobileVideoReady = false;
+        let isMenuOpen = false;
 
-    // ========== UTILITY FUNCTIONS ==========
-    const isMobile = () => window.innerWidth <= 860;
+        // ========== PRODUCT DATA ==========
+        const productData = {
+            core: {
+                name: "Rizzora Core",
+                description: "Rizzora Core is designed to be worn anytime, by anyone. It doesn't overpower — it blends. A soft warmth unfolds slowly, sitting close to the skin and evolving naturally through the day.",
+                ingredients: ["Coconut Oil (Base)", "Jojoba Oil (Base)", "Amber Resin", "Cedarwood Extract", "Vanilla Absolute", "Clove Oil"],
+                scentType: "Woody & Warm"
+            },
+            ice: {
+                name: "Rizzora Ice",
+                description: "A refreshing and invigorating scent that combines crisp freshness with a hint of spice. Rizzora Ice is designed for the fearless individual who embraces both cool confidence and fiery passion.",
+                ingredients: ["Bergamot", "Mint", "Ginger", "Icy Accord", "White Musk", "Vetiver"],
+                scentType: "Fresh & Spicy"
+            },
+            femme: {
+                name: "Rizzora Femme",
+                description: "An elegant and romantic fragrance that captures feminine grace and timeless beauty. Rizzora Femme offers a delicate yet lasting scent that enhances natural allure with sophistication.",
+                ingredients: ["Jasmine", "Rose", "Peony", "Vanilla", "Sandalwood", "White Amber"],
+                scentType: "Floral & Sweet"
+            },
+            noir: {
+                name: "Rizzora Noir",
+                description: "A mysterious and sensual scent for the night. Rizzora Noir combines dark, luxurious notes to create an aura of sophistication and intrigue. Perfect for evening elegance.",
+                ingredients: ["Oud", "Leather", "Patchouli", "Dark Chocolate", "Incense", "Black Rose"],
+                scentType: "Oriental & Dark"
+            },
+            aura: {
+                name: "Rizzora Aura",
+                description: "A magnetic fragrance designed to create an irresistible aura. Rizzora Aura combines fresh top notes with deep, hormonal base notes that naturally attract and captivate.",
+                ingredients: ["Pheromones", "Ocean Breeze", "Musk", "Ambergris", "Citrus Blend", "Woody Notes"],
+                scentType: "Fresh & Musky"
+            },
+            zen: {
+                name: "Rizzora Zen",
+                description: "The ultimate luxury fragrance. Rizzora Zen combines rare ingredients to create a scent of unparalleled refinement and sophistication. For those who appreciate the finest things in life.",
+                ingredients: ["Saffron", "Oud", "Sandalwood", "Iris", "Vanilla Absolute", "White Truffle"],
+                scentType: "Rare & Refined"
+            }
+        };
 
-    // ========== MENU FUNCTIONS ==========
-    function openMenu() {
-        document.body.classList.add("menu-open");
-        menuBtn.classList.add("is-open");
-        document.body.style.overflow = "hidden";
-    }
+        // ========== UTILITY FUNCTIONS ==========
+        const isMobile = () => window.innerWidth <= 860;
 
-    function closeMenu() {
-        document.body.classList.remove("menu-open");
-        menuBtn.classList.remove("is-open");
-        document.body.style.overflow = "";
-    }
-
-    // ========== VIDEO MANUAL LOOP ==========
-    function setupVideoLoop(videoElement) {
-        if (!videoElement) return;
-        
-        videoElement.addEventListener('ended', function() {
-            videoElement.currentTime = 0;
-            setTimeout(() => {
-                videoElement.play().catch(e => console.log('Ended play error:', e));
-            }, 100);
-        });
-    }
-
-    // ========== VIDEO PLAY FUNCTION ==========
-    function playVideoSafe(videoElement) {
-        if (!videoElement) return;
-        
-        videoElement.currentTime = 0;
-        
-        videoElement.play()
-            .then(() => {
-                console.log('Video playing successfully');
-            })
-            .catch(error => {
-                console.log('Video play failed:', error.name);
-                
-                // Try with muted if not already
-                if (!videoElement.muted) {
-                    videoElement.muted = true;
-                    videoElement.play().catch(e => console.log('Muted play also failed:', e));
-                }
-            });
-    }
-
-    // ========== VIDEO LOADING HANDLERS ==========
-    desktopVideoEl.addEventListener('loadeddata', function() {
-        desktopVideoReady = true;
-        console.log('Desktop video loaded');
-        
-        setupVideoLoop(desktopVideoEl);
-        
-        if (currentMode === 'desktop') {
-            setTimeout(() => playVideoSafe(desktopVideoEl), 500);
+        // ========== MENU FUNCTIONS ==========
+        function openMenu() {
+            isMenuOpen = true;
+            document.body.classList.add("menu-open");
+            menuBtn.classList.add("is-open");
+            document.body.style.overflow = "hidden";
         }
-    });
 
-    mobileVideoEl.addEventListener('loadeddata', function() {
-        mobileVideoReady = true;
-        console.log('Mobile video loaded');
-        
-        setupVideoLoop(mobileVideoEl);
-        
-        if (currentMode === 'mobile') {
-            setTimeout(() => playVideoSafe(mobileVideoEl), 500);
+        function closeMenu() {
+            isMenuOpen = false;
+            document.body.classList.remove("menu-open");
+            menuBtn.classList.remove("is-open");
+            document.body.style.overflow = "";
         }
-    });
 
-    // Handle video errors
-    desktopVideoEl.addEventListener('error', function(e) {
-        console.log('Desktop video error:', desktopVideoEl.error);
-        desktopVideoReady = false;
-    });
+        function toggleDesktopMenu() {
+            if (isMobile()) return;
 
-    mobileVideoEl.addEventListener('error', function(e) {
-        console.log('Mobile video error:', mobileVideoEl.error);
-        mobileVideoReady = false;
-    });
-
-    // ========== VIDEO SWITCHING ==========
-    function switchVideoWithBlur() {
-        if (isSwitching) return;
-        
-        const newMode = isMobile() ? 'mobile' : 'desktop';
-        
-        if (newMode !== currentMode) {
-            isSwitching = true;
-            
-            const outgoingVideo = currentMode === 'desktop' ? desktopVideo : mobileVideo;
-            const incomingVideo = newMode === 'desktop' ? desktopVideo : mobileVideo;
-            const incomingVideoEl = newMode === 'desktop' ? desktopVideoEl : mobileVideoEl;
-            
-            outgoingVideo.classList.add('fade-out');
-            
-            setTimeout(() => {
-                // Pause outgoing video
-                if (currentMode === 'desktop') {
-                    desktopVideoEl.pause();
-                } else {
-                    mobileVideoEl.pause();
-                }
-                
-                outgoingVideo.style.display = 'none';
-                incomingVideo.style.display = 'block';
-                
+            if (!isMenuOpen) {
+                isMenuOpen = true;
+                menuBtn.classList.add("is-open");
+                // Create a dropdown area for desktop
+                const mobileExpand = document.querySelector('.mobile-expand');
+                mobileExpand.style.display = 'block';
+                mobileExpand.style.height = '200px'; // Adjust height as needed
+                mobileExpand.style.transition = 'height 300ms cubic-bezier(0.4, 0, 0.2, 1)';
+                document.body.style.overflow = "hidden";
+            } else {
+                closeMenu();
+                const mobileExpand = document.querySelector('.mobile-expand');
+                mobileExpand.style.height = '0';
                 setTimeout(() => {
-                    outgoingVideo.classList.remove('fade-out');
-                    
-                    playVideoSafe(incomingVideoEl);
-                    
-                    currentMode = newMode;
-                    isSwitching = false;
+                    mobileExpand.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // ========== VIDEO MANUAL LOOP ==========
+        function setupVideoLoop(videoElement) {
+            if (!videoElement) return;
+
+            videoElement.addEventListener('ended', function () {
+                videoElement.currentTime = 0;
+                setTimeout(() => {
+                    videoElement.play().catch(e => console.log('Ended play error:', e));
                 }, 100);
-            }, 350);
+            });
         }
-    }
 
-    // ========== RESIZE HANDLER ==========
-    function handleResize() {
-        clearTimeout(resizeTimeout);
-        closeMenu();
-        
-        resizeTimeout = setTimeout(() => {
-            switchVideoWithBlur();
+        // ========== VIDEO PLAY FUNCTION ==========
+        function playVideoSafe(videoElement) {
+            if (!videoElement) return;
+
+            videoElement.currentTime = 0;
+
+            videoElement.play()
+                .then(() => {
+                    console.log('Video playing successfully');
+                })
+                .catch(error => {
+                    console.log('Video play failed:', error.name);
+
+                    // Try with muted if not already
+                    if (!videoElement.muted) {
+                        videoElement.muted = true;
+                        videoElement.play().catch(e => console.log('Muted play also failed:', e));
+                    }
+                });
+        }
+
+        // ========== VIDEO LOADING HANDLERS ==========
+        desktopVideoEl.addEventListener('loadeddata', function () {
+            desktopVideoReady = true;
+            console.log('Desktop video loaded');
+
+            setupVideoLoop(desktopVideoEl);
+
+            if (currentMode === 'desktop') {
+                setTimeout(() => playVideoSafe(desktopVideoEl), 500);
+            }
+        });
+
+        mobileVideoEl.addEventListener('loadeddata', function () {
+            mobileVideoReady = true;
+            console.log('Mobile video loaded');
+
+            setupVideoLoop(mobileVideoEl);
+
+            if (currentMode === 'mobile') {
+                setTimeout(() => playVideoSafe(mobileVideoEl), 500);
+            }
+        });
+
+        // Handle video errors
+        desktopVideoEl.addEventListener('error', function (e) {
+            console.log('Desktop video error:', desktopVideoEl.error);
+            desktopVideoReady = false;
+        });
+
+        mobileVideoEl.addEventListener('error', function (e) {
+            console.log('Mobile video error:', mobileVideoEl.error);
+            mobileVideoReady = false;
+        });
+
+        // ========== VIDEO SWITCHING ==========
+        function switchVideoWithBlur() {
+            if (isSwitching) return;
+
+            const newMode = isMobile() ? 'mobile' : 'desktop';
+
+            if (newMode !== currentMode) {
+                isSwitching = true;
+
+                const outgoingVideo = currentMode === 'desktop' ? desktopVideo : mobileVideo;
+                const incomingVideo = newMode === 'desktop' ? desktopVideo : mobileVideo;
+                const incomingVideoEl = newMode === 'desktop' ? desktopVideoEl : mobileVideoEl;
+
+                outgoingVideo.classList.add('fade-out');
+
+                setTimeout(() => {
+                    // Pause outgoing video
+                    if (currentMode === 'desktop') {
+                        desktopVideoEl.pause();
+                    } else {
+                        mobileVideoEl.pause();
+                    }
+
+                    outgoingVideo.style.display = 'none';
+                    incomingVideo.style.display = 'block';
+
+                    setTimeout(() => {
+                        outgoingVideo.classList.remove('fade-out');
+
+                        playVideoSafe(incomingVideoEl);
+
+                        currentMode = newMode;
+                        isSwitching = false;
+                    }, 100);
+                }, 350);
+            }
+        }
+
+        // ========== RESIZE HANDLER ==========
+        function handleResize() {
+            clearTimeout(resizeTimeout);
+            closeMenu();
+
+            resizeTimeout = setTimeout(() => {
+                switchVideoWithBlur();
+                updateScrollButtons();
+            }, 250);
+        }
+
+        // ========== SCROLL BUTTONS ==========
+        prevBtn.addEventListener('click', () => {
+            if (prevBtn.classList.contains('disabled')) return;
+            catalogueScroll.scrollBy({ left: -400, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (nextBtn.classList.contains('disabled')) return;
+            catalogueScroll.scrollBy({ left: 400, behavior: 'smooth' });
+        });
+
+        function updateScrollButtons() {
+            const scrollLeft = catalogueScroll.scrollLeft;
+            const scrollWidth = catalogueScroll.scrollWidth;
+            const clientWidth = catalogueScroll.clientWidth;
+
+            const isAtStart = scrollLeft <= 5;
+            const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 5;
+
+            prevBtn.classList.toggle('disabled', isAtStart);
+            nextBtn.classList.toggle('disabled', isAtEnd);
+        }
+
+        // ========== POPUP FUNCTIONS ==========
+        function openProductPopup(productKey) {
+            const product = productData[productKey];
+            if (!product) return;
+
+            // Update popup content
+            popupTitle.textContent = product.name;
+            popupDescription.textContent = product.description;
+            featureScentType.textContent = product.scentType;
+
+            // Update ingredients as simple text with commas
+            const ingredientsText = product.ingredients.join(', ');
+            popupIngredients.innerHTML = '';
+            const ingredientsContainer = document.createElement('div');
+            ingredientsContainer.textContent = ingredientsText;
+            popupIngredients.appendChild(ingredientsContainer);
+
+            // Update button event handlers
+            addToCart.onclick = () => {
+                alert(`Added ${product.name} to cart!`);
+                closeProductPopup();
+            };
+
+            addToWishlist.onclick = () => {
+                alert(`Added ${product.name} to wishlist!`);
+                closeProductPopup();
+            };
+
+            // Show popup and prevent background scrolling
+            productPopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProductPopup() {
+            productPopup.classList.remove('active');
+            // Only restore scrolling if menu is not open
+            if (!isMenuOpen) {
+                document.body.style.overflow = '';
+            }
+        }
+
+        // ========== INITIAL SETUP ==========
+        function initializePage() {
+            // Set initial video display
+            if (isMobile()) {
+                desktopVideo.style.display = 'none';
+                mobileVideo.style.display = 'block';
+                currentMode = 'mobile';
+            } else {
+                desktopVideo.style.display = 'block';
+                mobileVideo.style.display = 'none';
+                currentMode = 'desktop';
+            }
+
+            // Initialize scroll buttons
             updateScrollButtons();
-        }, 250);
-    }
+            prevBtn.classList.add('disabled'); // Left button greyed out by default
 
-    // ========== SCROLL BUTTONS ==========
-    prevBtn.addEventListener('click', () => {
-        if (prevBtn.classList.contains('disabled')) return;
-        catalogueScroll.scrollBy({ left: -400, behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener('click', () => {
-        if (nextBtn.classList.contains('disabled')) return;
-        catalogueScroll.scrollBy({ left: 400, behavior: 'smooth' });
-    });
-
-    function updateScrollButtons() {
-        const scrollLeft = catalogueScroll.scrollLeft;
-        const scrollWidth = catalogueScroll.scrollWidth;
-        const clientWidth = catalogueScroll.clientWidth;
-        
-        const isAtStart = scrollLeft <= 5;
-        const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 5;
-        
-        prevBtn.classList.toggle('disabled', isAtStart);
-        nextBtn.classList.toggle('disabled', isAtEnd);
-    }
-
-    // ========== INITIAL SETUP ==========
-    function initializePage() {
-        // Set initial video display
-        if (isMobile()) {
-            desktopVideo.style.display = 'none';
-            mobileVideo.style.display = 'block';
-            currentMode = 'mobile';
-        } else {
-            desktopVideo.style.display = 'block';
-            mobileVideo.style.display = 'none';
-            currentMode = 'desktop';
+            console.log('Page initialized in', currentMode, 'mode');
         }
-        
-        // Initialize scroll buttons
-        updateScrollButtons();
-        prevBtn.classList.add('disabled');
-        
-        console.log('Page initialized in', currentMode, 'mode');
-    }
 
-    // ========== EVENT LISTENERS ==========
-    menuBtn.addEventListener("click", () => {
-        if (!isMobile()) {
-            menuBtn.classList.toggle("is-open");
-            return;
-        }
-        document.body.classList.contains("menu-open") ? closeMenu() : openMenu();
-    });
+        // ========== EVENT LISTENERS ==========
+        menuBtn.addEventListener("click", () => {
+            if (isMobile()) {
+                document.body.classList.contains("menu-open") ? closeMenu() : openMenu();
+            } else {
+                toggleDesktopMenu();
+            }
+        });
 
-    blur.addEventListener("click", closeMenu);
-    document.addEventListener("keydown", (e) => e.key === "Escape" && closeMenu());
-    window.addEventListener("resize", handleResize);
-    catalogueScroll.addEventListener('scroll', updateScrollButtons);
-    window.addEventListener('DOMContentLoaded', initializePage);
-</script>
+        blur.addEventListener("click", closeMenu);
+        closePopup.addEventListener("click", closeProductPopup);
+
+        // Prevent scrolling on popup when using wheel
+        productPopup.addEventListener('wheel', (e) => {
+            e.stopPropagation();
+        });
+
+        // Prevent scrolling on popup when using touch
+        productPopup.addEventListener('touchmove', (e) => {
+            e.stopPropagation();
+        }, { passive: false });
+
+        productPopup.addEventListener("click", (e) => {
+            if (e.target === productPopup) {
+                closeProductPopup();
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                if (productPopup.classList.contains('active')) {
+                    closeProductPopup();
+                } else {
+                    closeMenu();
+                }
+            }
+        });
+
+        // Learn more button event listeners
+        document.querySelectorAll('.learn-more').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productKey = button.getAttribute('data-product');
+                openProductPopup(productKey);
+            });
+        });
+
+        window.addEventListener("resize", handleResize);
+        catalogueScroll.addEventListener('scroll', updateScrollButtons);
+        window.addEventListener('DOMContentLoaded', initializePage);
+    </script>
 </body>
+
 </html>
