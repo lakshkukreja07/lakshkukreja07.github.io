@@ -134,63 +134,59 @@
             z-index: 1;
         }
 
-     .topbar-wrap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 20;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    padding: 30px 0 0 0;
-    margin: 0;
-}
+        .topbar-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
 
-.topbar {
-      pointer-events: auto;
-    width: calc(100% - 44px);
-    max-width: var(--max);
-    margin-top: 12px;
-    border-radius: var(--r);
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: transparent;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    z-index: 30;
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-}
+        .topbar {
+            pointer-events: auto;
+            width: calc(100% - 44px);
+            max-width: var(--max);
+            margin-top: 12px;
+            border-radius: var(--r);
+            overflow: hidden;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 30;
+            transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-.topbar-wrap:hover .topbar {
-    background: #fff;
-    border-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+        .topbar-wrap:hover .topbar {
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-     .topbar-wrap:hover .brand {
-    color: #000;
-}
+        .topbar-wrap:hover .brand {
+            color: #000 !important;
+            transition: color 320ms ease;
+        }
 
-.topbar-wrap:hover .signin-desktop {
-    color: #000;
-}
+        .topbar-wrap:hover .signin-desktop {
+            color: #000 !important;
+            transition: color 320ms ease;
+        }
 
-.topbar-wrap:hover .menu-btn {
-    background: rgba(0, 0, 0, 0.05);
-}
+        .topbar-wrap:hover .menu-btn {
+            background: rgba(0, 0, 0, 0.05);
+            transition: 320ms ease;
+        }
 
-.topbar-wrap:hover .menu-icon span {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-/* Menu open state */
-body.desktop-menu-open .topbar {
-    background: #fff;
-    border-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+        .topbar-wrap:hover .menu-icon span {
+            background: rgba(0, 0, 0, 0.8) !important;
+            transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
         .topbar-row {
             height: var(--barH);
@@ -230,18 +226,18 @@ body.desktop-menu-open .topbar {
             letter-spacing: 9px;
             font-size: 18px;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.94);
-            transition: color 180ms ease;
+            color: #fff !important;
+            transition: color 320ms ease;
         }
 
         .signin-desktop {
-            color: rgba(255, 255, 255, 0.92);
+            color: #fff !important;
             font-weight: 700;
             font-size: 14px;
             padding: 10px 12px;
             border-radius: 12px;
             white-space: nowrap;
-            transition: 180ms ease;
+            transition: 320ms ease;
             border: 0;
             background: transparent;
             cursor: pointer;
@@ -256,7 +252,7 @@ body.desktop-menu-open .topbar {
             display: grid;
             place-items: center;
             cursor: pointer;
-            transition: 180ms ease;
+            transition: 320ms ease;
         }
 
         .menu-btn.is-open {
@@ -275,8 +271,8 @@ body.desktop-menu-open .topbar {
             width: 100%;
             height: 2px;
             border-radius: 99px;
-            background: rgba(255, 255, 255, .92);
-            transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fff !important;
+            transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .menu-icon span:nth-child(1) {
@@ -301,19 +297,35 @@ body.desktop-menu-open .topbar {
             transform: translateY(-50%) rotate(-45deg);
         }
 
+        .menu-blur {
+            position: absolute;
+            inset: 0;
+            z-index: 15;
+            opacity: 0;
+            pointer-events: none;
+            background: rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.menu-open .menu-blur {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .desktop-expand {
             overflow: hidden;
             max-height: 0;
             transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1);
             background: #fff;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            border-top: none;
         }
 
         body.desktop-menu-open .topbar {
-    background: #fff;
-    border-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
 
         body.desktop-menu-open .brand {
             color: #000;
@@ -2589,815 +2601,814 @@ body.desktop-menu-open .topbar {
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        lucide.createIcons();
+        <script>
+            lucide.createIcons();
 
-        const menuBtn = document.getElementById("menuBtn");
-        const blur = document.getElementById("menuBlur");
-        const catalogueScroll = document.getElementById("catalogueScroll");
-        const prevBtn = document.querySelector(".scroll-btn.prev");
-        const nextBtn = document.querySelector(".scroll-btn.next");
-        const desktopVideo = document.getElementById("desktopVideo");
-        const desktopVideoEl = document.getElementById("desktopVideoEl");
-        const productPopup = document.getElementById("productPopup");
-        const closePopup = document.getElementById("closePopup");
-        const popupTitle = document.getElementById("popupTitle");
-        const popupDescription = document.getElementById("popupDescription");
-        const popupIngredients = document.getElementById("popupIngredients");
-        const featureScentType = document.getElementById("featureScentType");
-        const featureLongevity = document.getElementById("featureLongevity");
-        const featureConcentration = document.getElementById("featureConcentration");
-        const featureQuality = document.getElementById("featureQuality");
-        const addToCartBtn = document.getElementById("addToCart");
-        const addToWishlistBtn = document.getElementById("addToWishlist");
-        const exploreBtn = document.getElementById("exploreBtn");
-        const catalogueSection = document.getElementById("catalogueSection");
-        const topbarWrap = document.getElementById("topbarWrap");
-        const topbar = document.getElementById("topbar");
-        const desktopExpand = document.getElementById("desktopExpand");
-        const aboutSection = document.getElementById("aboutSection");
+            const menuBtn = document.getElementById("menuBtn");
+            const blur = document.getElementById("menuBlur");
+            const catalogueScroll = document.getElementById("catalogueScroll");
+            const prevBtn = document.querySelector(".scroll-btn.prev");
+            const nextBtn = document.querySelector(".scroll-btn.next");
+            const desktopVideo = document.getElementById("desktopVideo");
+            const desktopVideoEl = document.getElementById("desktopVideoEl");
+            const productPopup = document.getElementById("productPopup");
+            const closePopup = document.getElementById("closePopup");
+            const popupTitle = document.getElementById("popupTitle");
+            const popupDescription = document.getElementById("popupDescription");
+            const popupIngredients = document.getElementById("popupIngredients");
+            const featureScentType = document.getElementById("featureScentType");
+            const featureLongevity = document.getElementById("featureLongevity");
+            const featureConcentration = document.getElementById("featureConcentration");
+            const featureQuality = document.getElementById("featureQuality");
+            const addToCartBtn = document.getElementById("addToCart");
+            const addToWishlistBtn = document.getElementById("addToWishlist");
+            const exploreBtn = document.getElementById("exploreBtn");
+            const catalogueSection = document.getElementById("catalogueSection");
+            const topbarWrap = document.getElementById("topbarWrap");
+            const topbar = document.getElementById("topbar");
+            const desktopExpand = document.getElementById("desktopExpand");
+            const aboutSection = document.getElementById("aboutSection");
 
-        const navCategoryItems = document.querySelectorAll('.nav-category-item');
-        let navContents = document.querySelectorAll('.nav-content');
-        const standardProducts = document.getElementById("standardProducts");
-        const premiumProducts = document.getElementById("premiumProducts");
-        const luxuryProducts = document.getElementById("luxuryProducts");
-        const cartItemsContainer = document.getElementById("cartItemsContainer");
-        const wishlistItemsContainer = document.getElementById("wishlistItemsContainer");
-        const supportContent = document.getElementById("supportContent");
+            const navCategoryItems = document.querySelectorAll('.nav-category-item');
+            let navContents = document.querySelectorAll('.nav-content');
+            const standardProducts = document.getElementById("standardProducts");
+            const premiumProducts = document.getElementById("premiumProducts");
+            const luxuryProducts = document.getElementById("luxuryProducts");
+            const cartItemsContainer = document.getElementById("cartItemsContainer");
+            const wishlistItemsContainer = document.getElementById("wishlistItemsContainer");
+            const supportContent = document.getElementById("supportContent");
 
-        const emailPopup = document.getElementById("emailPopup");
-        const closeEmailPopup = document.getElementById("closeEmailPopup");
-        const popupSubscribeForm = document.getElementById("popupSubscribeForm");
-        const popupEmailInput = document.getElementById("popupEmail");
-        const popupSubscribeBtn = document.querySelector('.popup-subscribe-btn');
-        const zipCodeInput = document.getElementById("zipCode");
+            const emailPopup = document.getElementById("emailPopup");
+            const closeEmailPopup = document.getElementById("closeEmailPopup");
+            const popupSubscribeForm = document.getElementById("popupSubscribeForm");
+            const popupEmailInput = document.getElementById("popupEmail");
+            const popupSubscribeBtn = document.querySelector('.popup-subscribe-btn');
+            const zipCodeInput = document.getElementById("zipCode");
 
-        const subscribeForm = document.getElementById('subscribeForm');
-        const emailInput = document.getElementById('email');
-        const subscribeBtn = document.querySelector('.subscribe-btn');
+            const subscribeForm = document.getElementById('subscribeForm');
+            const emailInput = document.getElementById('email');
+            const subscribeBtn = document.querySelector('.subscribe-btn');
 
-        let isSwitching = false;
-        let currentMode = 'desktop';
-        let resizeTimeout;
-        let desktopVideoReady = false;
-        let isMenuOpen = false;
-        let currentProductKey = null;
+            let isSwitching = false;
+            let currentMode = 'desktop';
+            let resizeTimeout;
+            let desktopVideoReady = false;
+            let isMenuOpen = false;
+            let currentProductKey = null;
 
-        const STORAGE_KEYS = {
-            CART: 'rizzora_cart',
-            WISHLIST: 'rizzora_wishlist',
-            PRODUCT_STATES: 'rizzora_product_states'
-        };
-
-        function initializeStorage() {
-            if (!localStorage.getItem(STORAGE_KEYS.CART)) {
-                localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify([]));
-            }
-            if (!localStorage.getItem(STORAGE_KEYS.WISHLIST)) {
-                localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify([]));
-            }
-            if (!localStorage.getItem(STORAGE_KEYS.PRODUCT_STATES)) {
-                localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify({}));
-            }
-        }
-
-        function getCartItems() {
-            return JSON.parse(localStorage.getItem(STORAGE_KEYS.CART) || '[]');
-        }
-
-        function getWishlistItems() {
-            return JSON.parse(localStorage.getItem(STORAGE_KEYS.WISHLIST) || '[]');
-        }
-
-        function getProductStates() {
-            return JSON.parse(localStorage.getItem(STORAGE_KEYS.PRODUCT_STATES) || '{}');
-        }
-
-        function addToCart(productKey, productData) {
-            const cart = getCartItems();
-            const existingItemIndex = cart.findIndex(item => item.key === productKey);
-
-            if (existingItemIndex === -1) {
-                cart.push({
-                    key: productKey,
-                    name: productData.name,
-                    price: getProductPrice(productKey),
-                    image: getProductImage(productKey),
-                    addedAt: new Date().toISOString()
-                });
-                localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
-
-                const states = getProductStates();
-                states[productKey] = states[productKey] || {};
-                states[productKey].inCart = true;
-                localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
-
-                updateCartUI();
-                return true;
-            } else {
-                cart.splice(existingItemIndex, 1);
-                localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
-
-                const states = getProductStates();
-                states[productKey] = states[productKey] || {};
-                states[productKey].inCart = false;
-                localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
-
-                updateCartUI();
-                return false;
-            }
-        }
-
-        function addToWishlist(productKey, productData) {
-            const wishlist = getWishlistItems();
-            const existingItemIndex = wishlist.findIndex(item => item.key === productKey);
-
-            if (existingItemIndex === -1) {
-                wishlist.push({
-                    key: productKey,
-                    name: productData.name,
-                    price: getProductPrice(productKey),
-                    image: getProductImage(productKey),
-                    addedAt: new Date().toISOString()
-                });
-                localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(wishlist));
-
-                const states = getProductStates();
-                states[productKey] = states[productKey] || {};
-                states[productKey].inWishlist = true;
-                localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
-
-                updateWishlistUI();
-                return true;
-            } else {
-                wishlist.splice(existingItemIndex, 1);
-                localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(wishlist));
-
-                const states = getProductStates();
-                states[productKey] = states[productKey] || {};
-                states[productKey].inWishlist = false;
-                localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
-
-                updateWishlistUI();
-                return false;
-            }
-        }
-
-        function getProductPrice(productKey) {
-            const prices = {
-                core: 'From ₹999',
-                ice: 'From ₹1,199',
-                femme: 'From ₹1,499',
-                noir: 'From ₹1,499',
-                aura: 'From ₹1,999',
-                zen: 'From ₹2,499'
+            const STORAGE_KEYS = {
+                CART: 'rizzora_cart',
+                WISHLIST: 'rizzora_wishlist',
+                PRODUCT_STATES: 'rizzora_product_states'
             };
-            return prices[productKey] || '₹999';
-        }
 
-        function getProductImage(productKey) {
-            const images = {
-                core: 'https://lakshkukreja07.github.io/assets/src/rizzora_core.png',
-                ice: 'https://lakshkukreja07.github.io/assets/src/rizzora_ice.png',
-                femme: 'https://lakshkukreja07.github.io/assets/src/rizzora_femme.png',
-                noir: 'https://lakshkukreja07.github.io/assets/src/rizzora_noir.png',
-                aura: 'https://lakshkukreja07.github.io/assets/src/rizzora_aura.png',
-                zen: 'https://lakshkukreja07.github.io/assets/src/rizzora_zen.png'
-            };
-            return images[productKey] || '';
-        }
-
-        function updateCartUI() {
-            const cart = getCartItems();
-            cartItemsContainer.innerHTML = '';
-
-            if (cart.length === 0) {
-                const emptyState = document.createElement('div');
-                emptyState.className = 'empty-state';
-                emptyState.innerHTML = '<i class="fas fa-shopping-cart"></i><p>Your cart is empty</p><div class="subtext">Add items to get started</div>';
-                cartItemsContainer.appendChild(emptyState);
-            } else {
-                cart.forEach(item => {
-                    const cartItem = document.createElement('div');
-                    cartItem.className = 'product-item';
-                    cartItem.innerHTML = '<img src="' + item.image + '" alt="' + item.name + '" class="product-item-image"><div class="product-item-details"><div class="product-item-name">' + item.name + '</div><div class="product-item-price">' + item.price + '</div></div>';
-                    cartItemsContainer.appendChild(cartItem);
-                });
-            }
-        }
-
-        function updateWishlistUI() {
-            const wishlist = getWishlistItems();
-            wishlistItemsContainer.innerHTML = '';
-
-            if (wishlist.length === 0) {
-                const emptyState = document.createElement('div');
-                emptyState.className = 'empty-state';
-                emptyState.innerHTML = '<i class="fas fa-heart"></i><p>Your wishlist is empty</p><div class="subtext">Save items you love</div>';
-                wishlistItemsContainer.appendChild(emptyState);
-            } else {
-                wishlist.forEach(item => {
-                    const wishlistItem = document.createElement('div');
-                    wishlistItem.className = 'product-item';
-                    wishlistItem.innerHTML = '<img src="' + item.image + '" alt="' + item.name + '" class="product-item-image"><div class="product-item-details"><div class="product-item-name">' + item.name + '</div><div class="product-item-price">' + item.price + '</div></div>';
-                    wishlistItemsContainer.appendChild(wishlistItem);
-                });
-            }
-        }
-
-        function setupBuyNowButtons() {
-            const buyNowButtons = document.querySelectorAll('.pill-btn.buy-now');
-            
-            const states = getProductStates();
-            
-            buyNowButtons.forEach(button => {
-                const productKey = button.getAttribute('data-product');
-                const productState = states[productKey] || {};
-                
-                if (productState.inCart) {
-                    updateBuyNowButtonToAddedState(button);
+            function initializeStorage() {
+                if (!localStorage.getItem(STORAGE_KEYS.CART)) {
+                    localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify([]));
                 }
-                
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const productKey = this.getAttribute('data-product');
-                    const product = productData[productKey];
-                    
-                    if (!product) return;
-                    
-                    const wasAdded = addToCart(productKey, product);
-                    
-                    if (wasAdded) {
-                        updateBuyNowButtonToAddedState(this);
-                        showQuickConfirmation(product.name + ' added to cart!');
-                    } else {
-                        updateBuyNowButtonToOriginalState(this);
-                        showQuickConfirmation(product.name + ' removed from cart');
+                if (!localStorage.getItem(STORAGE_KEYS.WISHLIST)) {
+                    localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify([]));
+                }
+                if (!localStorage.getItem(STORAGE_KEYS.PRODUCT_STATES)) {
+                    localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify({}));
+                }
+            }
+
+            function getCartItems() {
+                return JSON.parse(localStorage.getItem(STORAGE_KEYS.CART) || '[]');
+            }
+
+            function getWishlistItems() {
+                return JSON.parse(localStorage.getItem(STORAGE_KEYS.WISHLIST) || '[]');
+            }
+
+            function getProductStates() {
+                return JSON.parse(localStorage.getItem(STORAGE_KEYS.PRODUCT_STATES) || '{}');
+            }
+
+            function addToCart(productKey, productData) {
+                const cart = getCartItems();
+                const existingItemIndex = cart.findIndex(item => item.key === productKey);
+
+                if (existingItemIndex === -1) {
+                    cart.push({
+                        key: productKey,
+                        name: productData.name,
+                        price: getProductPrice(productKey),
+                        image: getProductImage(productKey),
+                        addedAt: new Date().toISOString()
+                    });
+                    localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
+
+                    const states = getProductStates();
+                    states[productKey] = states[productKey] || {};
+                    states[productKey].inCart = true;
+                    localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+
+                    updateCartUI();
+                    return true;
+                } else {
+                    cart.splice(existingItemIndex, 1);
+                    localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
+
+                    const states = getProductStates();
+                    states[productKey] = states[productKey] || {};
+                    states[productKey].inCart = false;
+                    localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+
+                    updateCartUI();
+                    return false;
+                }
+            }
+
+            function addToWishlist(productKey, productData) {
+                const wishlist = getWishlistItems();
+                const existingItemIndex = wishlist.findIndex(item => item.key === productKey);
+
+                if (existingItemIndex === -1) {
+                    wishlist.push({
+                        key: productKey,
+                        name: productData.name,
+                        price: getProductPrice(productKey),
+                        image: getProductImage(productKey),
+                        addedAt: new Date().toISOString()
+                    });
+                    localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(wishlist));
+
+                    const states = getProductStates();
+                    states[productKey] = states[productKey] || {};
+                    states[productKey].inWishlist = true;
+                    localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+
+                    updateWishlistUI();
+                    return true;
+                } else {
+                    wishlist.splice(existingItemIndex, 1);
+                    localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(wishlist));
+
+                    const states = getProductStates();
+                    states[productKey] = states[productKey] || {};
+                    states[productKey].inWishlist = false;
+                    localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+
+                    updateWishlistUI();
+                    return false;
+                }
+            }
+
+            function getProductPrice(productKey) {
+                const prices = {
+                    core: 'From ₹999',
+                    ice: 'From ₹1,199',
+                    femme: 'From ₹1,499',
+                    noir: 'From ₹1,499',
+                    aura: 'From ₹1,999',
+                    zen: 'From ₹2,499'
+                };
+                return prices[productKey] || '₹999';
+            }
+
+            function getProductImage(productKey) {
+                const images = {
+                    core: 'https://lakshkukreja07.github.io/assets/src/rizzora_core.png',
+                    ice: 'https://lakshkukreja07.github.io/assets/src/rizzora_ice.png',
+                    femme: 'https://lakshkukreja07.github.io/assets/src/rizzora_femme.png',
+                    noir: 'https://lakshkukreja07.github.io/assets/src/rizzora_noir.png',
+                    aura: 'https://lakshkukreja07.github.io/assets/src/rizzora_aura.png',
+                    zen: 'https://lakshkukreja07.github.io/assets/src/rizzora_zen.png'
+                };
+                return images[productKey] || '';
+            }
+
+            function updateCartUI() {
+                const cart = getCartItems();
+                cartItemsContainer.innerHTML = '';
+
+                if (cart.length === 0) {
+                    const emptyState = document.createElement('div');
+                    emptyState.className = 'empty-state';
+                    emptyState.innerHTML = '<i class="fas fa-shopping-cart"></i><p>Your cart is empty</p><div class="subtext">Add items to get started</div>';
+                    cartItemsContainer.appendChild(emptyState);
+                } else {
+                    cart.forEach(item => {
+                        const cartItem = document.createElement('div');
+                        cartItem.className = 'product-item';
+                        cartItem.innerHTML = '<img src="' + item.image + '" alt="' + item.name + '" class="product-item-image"><div class="product-item-details"><div class="product-item-name">' + item.name + '</div><div class="product-item-price">' + item.price + '</div></div>';
+                        cartItemsContainer.appendChild(cartItem);
+                    });
+                }
+            }
+
+            function updateWishlistUI() {
+                const wishlist = getWishlistItems();
+                wishlistItemsContainer.innerHTML = '';
+
+                if (wishlist.length === 0) {
+                    const emptyState = document.createElement('div');
+                    emptyState.className = 'empty-state';
+                    emptyState.innerHTML = '<i class="fas fa-heart"></i><p>Your wishlist is empty</p><div class="subtext">Save items you love</div>';
+                    wishlistItemsContainer.appendChild(emptyState);
+                } else {
+                    wishlist.forEach(item => {
+                        const wishlistItem = document.createElement('div');
+                        wishlistItem.className = 'product-item';
+                        wishlistItem.innerHTML = '<img src="' + item.image + '" alt="' + item.name + '" class="product-item-image"><div class="product-item-details"><div class="product-item-name">' + item.name + '</div><div class="product-item-price">' + item.price + '</div></div>';
+                        wishlistItemsContainer.appendChild(wishlistItem);
+                    });
+                }
+            }
+
+            function setupBuyNowButtons() {
+                const buyNowButtons = document.querySelectorAll('.pill-btn.buy-now');
+
+                const states = getProductStates();
+
+                buyNowButtons.forEach(button => {
+                    const productKey = button.getAttribute('data-product');
+                    const productState = states[productKey] || {};
+
+                    if (productState.inCart) {
+                        updateBuyNowButtonToAddedState(button);
                     }
+
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const productKey = this.getAttribute('data-product');
+                        const product = productData[productKey];
+
+                        if (!product) return;
+
+                        const wasAdded = addToCart(productKey, product);
+
+                        if (wasAdded) {
+                            updateBuyNowButtonToAddedState(this);
+                            showQuickConfirmation(product.name + ' added to cart!');
+                        } else {
+                            updateBuyNowButtonToOriginalState(this);
+                            showQuickConfirmation(product.name + ' removed from cart');
+                        }
+                    });
                 });
-            });
-        }
+            }
 
-        function updateBuyNowButtonToAddedState(button) {
-            button.classList.add('added');
-            button.innerHTML = '<span class="btn-text">Added</span>';
-            button.style.pointerEvents = 'none';
-        }
+            function updateBuyNowButtonToAddedState(button) {
+                button.classList.add('added');
+                button.innerHTML = '<span class="btn-text">Added</span>';
+                button.style.pointerEvents = 'none';
+            }
 
-        function updateBuyNowButtonToOriginalState(button) {
-            button.classList.remove('added');
-            button.innerHTML = '<span class="btn-text">Buy Now</span>';
-            button.style.pointerEvents = 'auto';
-        }
+            function updateBuyNowButtonToOriginalState(button) {
+                button.classList.remove('added');
+                button.innerHTML = '<span class="btn-text">Buy Now</span>';
+                button.style.pointerEvents = 'auto';
+            }
 
-        function showQuickConfirmation(message) {
-            const notification = document.createElement('div');
-            notification.textContent = message;
-            notification.style.position = 'fixed';
-            notification.style.bottom = '20px';
-            notification.style.right = '20px';
-            notification.style.background = '#10b981';
-            notification.style.color = 'white';
-            notification.style.padding = '12px 20px';
-            notification.style.borderRadius = '8px';
-            notification.style.fontWeight = '600';
-            notification.style.fontSize = '14px';
-            notification.style.zIndex = '9999';
-            notification.style.boxShadow = '0 4px 12px rgba(16, 185, 129, 0.3)';
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateY(10px)';
-            notification.style.transition = 'opacity 0.3s, transform 0.3s';
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '1';
-                notification.style.transform = 'translateY(0)';
-            }, 10);
-            
-            setTimeout(() => {
+            function showQuickConfirmation(message) {
+                const notification = document.createElement('div');
+                notification.textContent = message;
+                notification.style.position = 'fixed';
+                notification.style.bottom = '20px';
+                notification.style.right = '20px';
+                notification.style.background = '#10b981';
+                notification.style.color = 'white';
+                notification.style.padding = '12px 20px';
+                notification.style.borderRadius = '8px';
+                notification.style.fontWeight = '600';
+                notification.style.fontSize = '14px';
+                notification.style.zIndex = '9999';
+                notification.style.boxShadow = '0 4px 12px rgba(16, 185, 129, 0.3)';
                 notification.style.opacity = '0';
                 notification.style.transform = 'translateY(10px)';
-                
+                notification.style.transition = 'opacity 0.3s, transform 0.3s';
+
+                document.body.appendChild(notification);
+
                 setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
+                    notification.style.opacity = '1';
+                    notification.style.transform = 'translateY(0)';
+                }, 10);
 
-        const productData = {
-            core: {
-                name: "Rizzora Core",
-                description: "Rizzora Core is designed to be worn anytime, by anyone. It doesn't overpower — it blends. A soft warmth unfolds slowly, sitting close to the skin and evolving naturally through the day.",
-                ingredients: ["Coconut Oil (Base)", "Jojoba Oil (Base)", "Amber Resin", "Cedarwood Extract", "Vanilla Absolute", "Clove Oil"],
-                scentType: "Woody & Warm",
-                category: "Standard Perfume",
-                longevity: "~ 6 to 8 hours",
-                concentration: "Eau de Parfum",
-                quality: "Standard Grade"
-            },
-            ice: {
-                name: "Rizzora Ice",
-                description: "A refreshing and invigorating scent that combines crisp freshness with a hint of spice. Rizzora Ice is designed for the fearless individual who embraces both cool confidence and fiery passion.",
-                ingredients: ["Bergamot", "Mint", "Ginger", "Icy Accord", "White Musk", "Vetiver"],
-                scentType: "Fresh & Spicy",
-                category: "Standard Perfume",
-                longevity: "~ 8 to 10 hours",
-                concentration: "Eau de Parfum",
-                quality: "Standard Grade"
-            },
-            femme: {
-                name: "Rizzora Femme",
-                description: "An elegant and romantic fragrance that captures feminine grace and timeless beauty. Rizzora Femme offers a delicate yet lasting scent that enhances natural allure with sophistication.",
-                ingredients: ["Jasmine", "Rose", "Peony", "Vanilla", "Sandalwood", "White Amber"],
-                scentType: "Floral & Sweet",
-                category: "Premium Perfume",
-                longevity: "~ 10 to 12 hours",
-                concentration: "Eau de Parfum",
-                quality: "Premium Grade"
-            },
-            noir: {
-                name: "Rizzora Noir",
-                description: "A mysterious and sensual scent for the night. Rizzora Noir combines dark, luxurious notes to create an aura of sophistication and intrigue. Perfect for evening elegance.",
-                ingredients: ["Oud", "Leather", "Patchouli", "Dark Chocolate", "Incense", "Black Rose"],
-                scentType: "Oriental & Dark",
-                category: "Premium Perfume",
-                longevity: "~ 10 to 12 hours",
-                concentration: "Eau de Parfum",
-                quality: "Premium Grade"
-            },
-            aura: {
-                name: "Rizzora Aura",
-                description: "A magnetic fragrance designed to create an irresistible aura. Rizzora Aura combines fresh top notes with deep, hormonal base notes that naturally attract and captivate.",
-                ingredients: ["Pheromones", "Ocean Breeze", "Musk", "Ambergris", "Citrus Blend", "Woody Notes"],
-                scentType: "Fresh & Musky",
-                category: "Luxury Perfume",
-                longevity: "~ 12 to 14 hours",
-                concentration: "Eau de Parfum",
-                quality: "Luxury Grade"
-            },
-            zen: {
-                name: "Rizzora Zen",
-                description: "The ultimate luxury fragrance. Rizzora Zen combines rare ingredients to create a scent of unparalleled refinement and sophistication. For those who appreciate the finest things in life.",
-                ingredients: ["Saffron", "Oud", "Sandalwood", "Iris", "Vanilla Absolute", "White Truffle"],
-                scentType: "Rare & Refined",
-                category: "Luxury Perfume",
-                longevity: "~ 12 to 16 hours",
-                concentration: "Eau de Parfum",
-                quality: "Luxury Grade"
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateY(10px)';
+
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
             }
-        };
 
-        const categories = {
-            "Standard Perfumes": ["core", "ice"],
-            "Premium Perfumes": ["femme", "noir"],
-            "Luxury Perfumes": ["aura", "zen"],
-            "Support": []
-        };
+            const productData = {
+                core: {
+                    name: "Rizzora Core",
+                    description: "Rizzora Core is designed to be worn anytime, by anyone. It doesn't overpower — it blends. A soft warmth unfolds slowly, sitting close to the skin and evolving naturally through the day.",
+                    ingredients: ["Coconut Oil (Base)", "Jojoba Oil (Base)", "Amber Resin", "Cedarwood Extract", "Vanilla Absolute", "Clove Oil"],
+                    scentType: "Woody & Warm",
+                    category: "Standard Perfume",
+                    longevity: "~ 6 to 8 hours",
+                    concentration: "Eau de Parfum",
+                    quality: "Standard Grade"
+                },
+                ice: {
+                    name: "Rizzora Ice",
+                    description: "A refreshing and invigorating scent that combines crisp freshness with a hint of spice. Rizzora Ice is designed for the fearless individual who embraces both cool confidence and fiery passion.",
+                    ingredients: ["Bergamot", "Mint", "Ginger", "Icy Accord", "White Musk", "Vetiver"],
+                    scentType: "Fresh & Spicy",
+                    category: "Standard Perfume",
+                    longevity: "~ 8 to 10 hours",
+                    concentration: "Eau de Parfum",
+                    quality: "Standard Grade"
+                },
+                femme: {
+                    name: "Rizzora Femme",
+                    description: "An elegant and romantic fragrance that captures feminine grace and timeless beauty. Rizzora Femme offers a delicate yet lasting scent that enhances natural allure with sophistication.",
+                    ingredients: ["Jasmine", "Rose", "Peony", "Vanilla", "Sandalwood", "White Amber"],
+                    scentType: "Floral & Sweet",
+                    category: "Premium Perfume",
+                    longevity: "~ 10 to 12 hours",
+                    concentration: "Eau de Parfum",
+                    quality: "Premium Grade"
+                },
+                noir: {
+                    name: "Rizzora Noir",
+                    description: "A mysterious and sensual scent for the night. Rizzora Noir combines dark, luxurious notes to create an aura of sophistication and intrigue. Perfect for evening elegance.",
+                    ingredients: ["Oud", "Leather", "Patchouli", "Dark Chocolate", "Incense", "Black Rose"],
+                    scentType: "Oriental & Dark",
+                    category: "Premium Perfume",
+                    longevity: "~ 10 to 12 hours",
+                    concentration: "Eau de Parfum",
+                    quality: "Premium Grade"
+                },
+                aura: {
+                    name: "Rizzora Aura",
+                    description: "A magnetic fragrance designed to create an irresistible aura. Rizzora Aura combines fresh top notes with deep, hormonal base notes that naturally attract and captivate.",
+                    ingredients: ["Pheromones", "Ocean Breeze", "Musk", "Ambergris", "Citrus Blend", "Woody Notes"],
+                    scentType: "Fresh & Musky",
+                    category: "Luxury Perfume",
+                    longevity: "~ 12 to 14 hours",
+                    concentration: "Eau de Parfum",
+                    quality: "Luxury Grade"
+                },
+                zen: {
+                    name: "Rizzora Zen",
+                    description: "The ultimate luxury fragrance. Rizzora Zen combines rare ingredients to create a scent of unparalleled refinement and sophistication. For those who appreciate the finest things in life.",
+                    ingredients: ["Saffron", "Oud", "Sandalwood", "Iris", "Vanilla Absolute", "White Truffle"],
+                    scentType: "Rare & Refined",
+                    category: "Luxury Perfume",
+                    longevity: "~ 12 to 16 hours",
+                    concentration: "Eau de Parfum",
+                    quality: "Luxury Grade"
+                }
+            };
 
-        function setupNavigation() {
-            populateProductGrid('standardProducts', ['core', 'ice']);
-            populateProductGrid('premiumProducts', ['femme', 'noir']);
-            populateProductGrid('luxuryProducts', ['aura', 'zen']);
+            const categories = {
+                "Standard Perfumes": ["core", "ice"],
+                "Premium Perfumes": ["femme", "noir"],
+                "Luxury Perfumes": ["aura", "zen"],
+                "Support": []
+            };
 
-            navCategoryItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const contentId = item.getAttribute('data-content');
+            function setupNavigation() {
+                populateProductGrid('standardProducts', ['core', 'ice']);
+                populateProductGrid('premiumProducts', ['femme', 'noir']);
+                populateProductGrid('luxuryProducts', ['aura', 'zen']);
 
-                    navCategoryItems.forEach(i => i.classList.remove('active'));
-                    navContents.forEach(c => c.classList.remove('active'));
+                navCategoryItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const contentId = item.getAttribute('data-content');
 
-                    item.classList.add('active');
-                    const contentElement = document.getElementById(contentId + 'Content');
-                    if (contentElement) {
-                        contentElement.classList.add('active');
+                        navCategoryItems.forEach(i => i.classList.remove('active'));
+                        navContents.forEach(c => c.classList.remove('active'));
+
+                        item.classList.add('active');
+                        const contentElement = document.getElementById(contentId + 'Content');
+                        if (contentElement) {
+                            contentElement.classList.add('active');
+                        }
+                    });
+                });
+            }
+
+            function populateProductGrid(gridId, productKeys) {
+                const grid = document.getElementById(gridId);
+                grid.innerHTML = '';
+
+                productKeys.forEach(key => {
+                    const product = productData[key];
+                    if (product) {
+                        const productItem = document.createElement('div');
+                        productItem.className = 'product-item';
+                        productItem.innerHTML = '<img src="' + getProductImage(key) + '" alt="' + product.name + '" class="product-item-image"><div class="product-item-details"><div class="product-item-name">' + product.name + '</div><div class="product-item-price">' + getProductPrice(key) + '</div></div>';
+                        productItem.addEventListener('click', () => {
+                            openProductPopup(key);
+                            closeMenu();
+                        });
+                        grid.appendChild(productItem);
                     }
                 });
-            });
-        }
+            }
 
-        function populateProductGrid(gridId, productKeys) {
-            const grid = document.getElementById(gridId);
-            grid.innerHTML = '';
+            function openMenu() {
+                isMenuOpen = true;
+                document.body.classList.add("desktop-menu-open");
+                updateCartUI();
+                updateWishlistUI();
+                menuBtn.classList.add("is-open");
+                document.body.style.overflow = "hidden";
+            }
 
-            productKeys.forEach(key => {
-                const product = productData[key];
-                if (product) {
-                    const productItem = document.createElement('div');
-                    productItem.className = 'product-item';
-                    productItem.innerHTML = '<img src="' + getProductImage(key) + '" alt="' + product.name + '" class="product-item-image"><div class="product-item-details"><div class="product-item-name">' + product.name + '</div><div class="product-item-price">' + getProductPrice(key) + '</div></div>';
-                    productItem.addEventListener('click', () => {
-                        openProductPopup(key);
-                        closeMenu();
+            function closeMenu() {
+                isMenuOpen = false;
+                document.body.classList.remove("desktop-menu-open");
+                menuBtn.classList.remove("is-open");
+                document.body.style.overflow = "";
+            }
+
+            function toggleMenu() {
+                if (isMenuOpen) {
+                    closeMenu();
+                } else {
+                    requestAnimationFrame(() => {
+                        openMenu();
                     });
-                    grid.appendChild(productItem);
+                }
+            }
+
+            function setupVideoLoop(videoElement) {
+                if (!videoElement) return;
+
+                videoElement.addEventListener('ended', function () {
+                    videoElement.currentTime = 0;
+                    setTimeout(() => {
+                        videoElement.play().catch(e => console.log('Ended play error:', e));
+                    }, 100);
+                });
+            }
+
+            function playVideoSafe(videoElement) {
+                if (!videoElement) return;
+
+                videoElement.currentTime = 0;
+
+                videoElement.play()
+                    .then(() => {
+                        console.log('Video playing successfully');
+                    })
+                    .catch(error => {
+                        console.log('Video play failed:', error.name);
+
+                        if (!videoElement.muted) {
+                            videoElement.muted = true;
+                            videoElement.play().catch(e => console.log('Muted play also failed:', e));
+                        }
+                    });
+            }
+
+            desktopVideoEl.addEventListener('loadeddata', function () {
+                desktopVideoReady = true;
+                console.log('Desktop video loaded');
+
+                setupVideoLoop(desktopVideoEl);
+
+                if (currentMode === 'desktop') {
+                    setTimeout(() => playVideoSafe(desktopVideoEl), 500);
                 }
             });
-        }
 
-        function openMenu() {
-            isMenuOpen = true;
-            document.body.classList.add("desktop-menu-open");
-            updateCartUI();
-            updateWishlistUI();
-            menuBtn.classList.add("is-open");
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeMenu() {
-            isMenuOpen = false;
-            document.body.classList.remove("desktop-menu-open");
-            menuBtn.classList.remove("is-open");
-            document.body.style.overflow = "";
-        }
-
-        function toggleMenu() {
-            if (isMenuOpen) {
-                closeMenu();
-            } else {
-                requestAnimationFrame(() => {
-                    openMenu();
-                });
-            }
-        }
-
-        function setupVideoLoop(videoElement) {
-            if (!videoElement) return;
-
-            videoElement.addEventListener('ended', function () {
-                videoElement.currentTime = 0;
-                setTimeout(() => {
-                    videoElement.play().catch(e => console.log('Ended play error:', e));
-                }, 100);
+            desktopVideoEl.addEventListener('error', function (e) {
+                console.log('Desktop video error:', desktopVideoEl.error);
+                desktopVideoReady = false;
             });
-        }
 
-        function playVideoSafe(videoElement) {
-            if (!videoElement) return;
+            function handleResize() {
+                clearTimeout(resizeTimeout);
 
-            videoElement.currentTime = 0;
+                closeMenu();
 
-            videoElement.play()
-                .then(() => {
-                    console.log('Video playing successfully');
-                })
-                .catch(error => {
-                    console.log('Video play failed:', error.name);
+                isMenuOpen = false;
+                menuBtn.classList.remove("is-open");
+                document.body.classList.remove("desktop-menu-open");
+                document.body.style.overflow = "";
 
-                    if (!videoElement.muted) {
-                        videoElement.muted = true;
-                        videoElement.play().catch(e => console.log('Muted play also failed:', e));
-                    }
-                });
-        }
-
-        desktopVideoEl.addEventListener('loadeddata', function () {
-            desktopVideoReady = true;
-            console.log('Desktop video loaded');
-
-            setupVideoLoop(desktopVideoEl);
-
-            if (currentMode === 'desktop') {
-                setTimeout(() => playVideoSafe(desktopVideoEl), 500);
-            }
-        });
-
-        desktopVideoEl.addEventListener('error', function (e) {
-            console.log('Desktop video error:', desktopVideoEl.error);
-            desktopVideoReady = false;
-        });
-
-        function handleResize() {
-            clearTimeout(resizeTimeout);
-
-            closeMenu();
-
-            isMenuOpen = false;
-            menuBtn.classList.remove("is-open");
-            document.body.classList.remove("desktop-menu-open");
-            document.body.style.overflow = "";
-
-            resizeTimeout = setTimeout(() => {
-                updateScrollButtons();
-            }, 250);
-        }
-
-        prevBtn.addEventListener('click', () => {
-            if (prevBtn.classList.contains('disabled')) return;
-            catalogueScroll.scrollBy({ left: -400, behavior: 'smooth' });
-        });
-
-        nextBtn.addEventListener('click', () => {
-            if (nextBtn.classList.contains('disabled')) return;
-            catalogueScroll.scrollBy({ left: 400, behavior: 'smooth' });
-        });
-
-        function updateScrollButtons() {
-            const scrollLeft = catalogueScroll.scrollLeft;
-            const scrollWidth = catalogueScroll.scrollWidth;
-            const clientWidth = catalogueScroll.clientWidth;
-
-            const isAtStart = scrollLeft <= 5;
-            const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 5;
-
-            prevBtn.classList.toggle('disabled', isAtStart);
-            nextBtn.classList.toggle('disabled', isAtEnd);
-        }
-
-        function openProductPopup(productKey) {
-            const product = productData[productKey];
-            if (!product) return;
-
-            currentProductKey = productKey;
-
-            popupTitle.textContent = product.name;
-            popupDescription.textContent = product.description;
-
-            const ingredientsText = product.ingredients.join(', ');
-            popupIngredients.innerHTML = '';
-            const ingredientsContainer = document.createElement('div');
-            ingredientsContainer.textContent = ingredientsText;
-            popupIngredients.appendChild(ingredientsContainer);
-
-            featureLongevity.textContent = product.longevity;
-            featureScentType.textContent = product.scentType;
-            featureConcentration.textContent = product.concentration;
-            featureQuality.textContent = product.quality;
-
-            const states = getProductStates();
-            const productState = states[productKey] || {};
-
-            addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-            addToCartBtn.className = 'popup-btn popup-btn-primary';
-            addToWishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Wishlist';
-            addToWishlistBtn.className = 'popup-btn popup-btn-secondary';
-
-            if (productState.inCart) {
-                addToCartBtn.innerHTML = '<i data-lucide="check"></i> Added';
-                addToCartBtn.classList.add('added');
-                lucide.createIcons();
+                resizeTimeout = setTimeout(() => {
+                    updateScrollButtons();
+                }, 250);
             }
 
-            if (productState.inWishlist) {
-                addToWishlistBtn.innerHTML = '<i class="fas fa-heart" style="color: #ef4444;"></i> Wishlisted';
-                addToWishlistBtn.classList.add('wishlisted');
+            prevBtn.addEventListener('click', () => {
+                if (prevBtn.classList.contains('disabled')) return;
+                catalogueScroll.scrollBy({ left: -400, behavior: 'smooth' });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (nextBtn.classList.contains('disabled')) return;
+                catalogueScroll.scrollBy({ left: 400, behavior: 'smooth' });
+            });
+
+            function updateScrollButtons() {
+                const scrollLeft = catalogueScroll.scrollLeft;
+                const scrollWidth = catalogueScroll.scrollWidth;
+                const clientWidth = catalogueScroll.clientWidth;
+
+                const isAtStart = scrollLeft <= 5;
+                const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 5;
+
+                prevBtn.classList.toggle('disabled', isAtStart);
+                nextBtn.classList.toggle('disabled', isAtEnd);
             }
 
-            addToCartBtn.onclick = () => {
-                const wasInCart = productState.inCart;
-                const result = addToCart(productKey, product);
+            function openProductPopup(productKey) {
+                const product = productData[productKey];
+                if (!product) return;
 
-                if (result) {
+                currentProductKey = productKey;
+
+                popupTitle.textContent = product.name;
+                popupDescription.textContent = product.description;
+
+                const ingredientsText = product.ingredients.join(', ');
+                popupIngredients.innerHTML = '';
+                const ingredientsContainer = document.createElement('div');
+                ingredientsContainer.textContent = ingredientsText;
+                popupIngredients.appendChild(ingredientsContainer);
+
+                featureLongevity.textContent = product.longevity;
+                featureScentType.textContent = product.scentType;
+                featureConcentration.textContent = product.concentration;
+                featureQuality.textContent = product.quality;
+
+                const states = getProductStates();
+                const productState = states[productKey] || {};
+
+                addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                addToCartBtn.className = 'popup-btn popup-btn-primary';
+                addToWishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Wishlist';
+                addToWishlistBtn.className = 'popup-btn popup-btn-secondary';
+
+                if (productState.inCart) {
                     addToCartBtn.innerHTML = '<i data-lucide="check"></i> Added';
                     addToCartBtn.classList.add('added');
                     lucide.createIcons();
-                } else {
-                    addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-                    addToCartBtn.classList.remove('added');
                 }
-            };
 
-            addToWishlistBtn.onclick = () => {
-                const wasInWishlist = productState.inWishlist;
-                const result = addToWishlist(productKey, product);
-
-                if (result) {
+                if (productState.inWishlist) {
                     addToWishlistBtn.innerHTML = '<i class="fas fa-heart" style="color: #ef4444;"></i> Wishlisted';
                     addToWishlistBtn.classList.add('wishlisted');
-                } else {
-                    addToWishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Wishlist';
-                    addToWishlistBtn.classList.remove('wishlisted');
                 }
-            };
 
-            productPopup.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+                addToCartBtn.onclick = () => {
+                    const wasInCart = productState.inCart;
+                    const result = addToCart(productKey, product);
 
-        function closeProductPopup() {
-            productPopup.classList.remove('active');
-            currentProductKey = null;
-            if (!isMenuOpen) {
+                    if (result) {
+                        addToCartBtn.innerHTML = '<i data-lucide="check"></i> Added';
+                        addToCartBtn.classList.add('added');
+                        lucide.createIcons();
+                    } else {
+                        addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                        addToCartBtn.classList.remove('added');
+                    }
+                };
+
+                addToWishlistBtn.onclick = () => {
+                    const wasInWishlist = productState.inWishlist;
+                    const result = addToWishlist(productKey, product);
+
+                    if (result) {
+                        addToWishlistBtn.innerHTML = '<i class="fas fa-heart" style="color: #ef4444;"></i> Wishlisted';
+                        addToWishlistBtn.classList.add('wishlisted');
+                    } else {
+                        addToWishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Wishlist';
+                        addToWishlistBtn.classList.remove('wishlisted');
+                    }
+                };
+
+                productPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeProductPopup() {
+                productPopup.classList.remove('active');
+                currentProductKey = null;
+                if (!isMenuOpen) {
+                    document.body.style.overflow = '';
+                }
+            }
+
+            function showEmailPopup() {
+                emailPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                resetPopupForm();
+            }
+
+            function closeEmailPopupFunc() {
+                emailPopup.classList.remove('active');
                 document.body.style.overflow = '';
+                resetPopupForm();
             }
-        }
 
-        function showEmailPopup() {
-            emailPopup.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            resetPopupForm();
-        }
-
-        function closeEmailPopupFunc() {
-            emailPopup.classList.remove('active');
-            document.body.style.overflow = '';
-            resetPopupForm();
-        }
-
-        function resetPopupForm() {
-            if (popupSubscribeForm) popupSubscribeForm.reset();
-            if (popupSubscribeBtn) {
-                popupSubscribeBtn.disabled = true;
-                popupSubscribeBtn.classList.remove('subscribed-success');
-                popupSubscribeBtn.innerHTML = '<span class="popup-btn-text">Subscribe</span><span class="popup-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>';
-            }
-        }
-
-        function initEmailPopup() {
-            if (!popupEmailInput || !popupSubscribeBtn) return;
-
-            popupSubscribeBtn.disabled = true;
-
-            popupEmailInput.addEventListener('input', function () {
-                const email = popupEmailInput.value.trim();
-                const isValid = email.includes('@') && email.includes('.') && email.length > 5;
-
-                if (isValid) {
-                    popupSubscribeBtn.disabled = false;
-                } else {
+            function resetPopupForm() {
+                if (popupSubscribeForm) popupSubscribeForm.reset();
+                if (popupSubscribeBtn) {
                     popupSubscribeBtn.disabled = true;
+                    popupSubscribeBtn.classList.remove('subscribed-success');
+                    popupSubscribeBtn.innerHTML = '<span class="popup-btn-text">Subscribe</span><span class="popup-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>';
                 }
-            });
+            }
 
-            if (popupSubscribeForm) {
-                popupSubscribeForm.addEventListener('submit', function (e) {
+            function initEmailPopup() {
+                if (!popupEmailInput || !popupSubscribeBtn) return;
+
+                popupSubscribeBtn.disabled = true;
+
+                popupEmailInput.addEventListener('input', function () {
+                    const email = popupEmailInput.value.trim();
+                    const isValid = email.includes('@') && email.includes('.') && email.length > 5;
+
+                    if (isValid) {
+                        popupSubscribeBtn.disabled = false;
+                    } else {
+                        popupSubscribeBtn.disabled = true;
+                    }
+                });
+
+                if (popupSubscribeForm) {
+                    popupSubscribeForm.addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        const email = popupEmailInput.value.trim();
+                        const zipCode = zipCodeInput ? zipCodeInput.value.trim() : '';
+
+                        if (!email.includes('@') || !email.includes('.') || email.length < 5) {
+                            alert('Please enter a valid email address with @ and domain (e.g., example@gmail.com)');
+                            return;
+                        }
+
+                        popupSubscribeBtn.disabled = true;
+                        popupSubscribeBtn.classList.add('subscribed-success');
+                        popupSubscribeBtn.innerHTML = '';
+
+                        popupSubscribeBtn.style.height = getComputedStyle(popupSubscribeBtn).height;
+
+                        console.log('Email popup subscribing:', { email, zipCode });
+
+                        setTimeout(() => {
+                            popupSubscribeBtn.disabled = true;
+                            popupSubscribeBtn.classList.remove('subscribed-success');
+                            popupSubscribeBtn.innerHTML = '<span class="popup-btn-text">Subscribe</span><span class="popup-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>';
+                            popupSubscribeBtn.style.height = '';
+
+                            closeEmailPopupFunc();
+                        }, 5000);
+                    });
+                }
+            }
+
+            function initGetInTouchForm() {
+                if (!subscribeForm || !emailInput || !subscribeBtn) return;
+
+                subscribeBtn.disabled = true;
+
+                emailInput.addEventListener('input', function () {
+                    const email = emailInput.value.trim();
+                    const isValid = email.includes('@') && email.includes('.') && email.length > 5;
+
+                    if (isValid) {
+                        subscribeBtn.disabled = false;
+                    } else {
+                        subscribeBtn.disabled = true;
+                    }
+                });
+
+                subscribeForm.addEventListener('submit', function (e) {
                     e.preventDefault();
 
-                    const email = popupEmailInput.value.trim();
-                    const zipCode = zipCodeInput ? zipCodeInput.value.trim() : '';
+                    const email = emailInput.value.trim();
 
                     if (!email.includes('@') || !email.includes('.') || email.length < 5) {
                         alert('Please enter a valid email address with @ and domain (e.g., example@gmail.com)');
                         return;
                     }
 
-                    popupSubscribeBtn.disabled = true;
-                    popupSubscribeBtn.classList.add('subscribed-success');
-                    popupSubscribeBtn.innerHTML = '';
+                    const originalHtml = subscribeBtn.innerHTML;
+                    const originalDisabled = subscribeBtn.disabled;
 
-                    popupSubscribeBtn.style.height = getComputedStyle(popupSubscribeBtn).height;
+                    subscribeBtn.disabled = true;
+                    subscribeBtn.classList.add('subscribed-success');
 
-                    console.log('Email popup subscribing:', { email, zipCode });
+                    subscribeBtn.innerHTML = '';
+
+                    subscribeBtn.style.height = getComputedStyle(subscribeBtn).height;
+
+                    console.log('Get in touch form subscribing:', { email });
 
                     setTimeout(() => {
-                        popupSubscribeBtn.disabled = true;
-                        popupSubscribeBtn.classList.remove('subscribed-success');
-                        popupSubscribeBtn.innerHTML = '<span class="popup-btn-text">Subscribe</span><span class="popup-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>';
-                        popupSubscribeBtn.style.height = '';
-
-                        closeEmailPopupFunc();
+                        subscribeForm.reset();
+                        subscribeBtn.disabled = true;
+                        subscribeBtn.classList.remove('subscribed-success');
+                        subscribeBtn.innerHTML = '<span class="btn-text">Subscribe</span><span class="btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>';
+                        subscribeBtn.style.height = '';
                     }, 5000);
                 });
             }
-        }
 
-        function initGetInTouchForm() {
-            if (!subscribeForm || !emailInput || !subscribeBtn) return;
-
-            subscribeBtn.disabled = true;
-
-            emailInput.addEventListener('input', function () {
-                const email = emailInput.value.trim();
-                const isValid = email.includes('@') && email.includes('.') && email.length > 5;
-
-                if (isValid) {
-                    subscribeBtn.disabled = false;
-                } else {
-                    subscribeBtn.disabled = true;
-                }
+            exploreBtn.addEventListener('click', () => {
+                catalogueSection.scrollIntoView({ behavior: 'smooth' });
             });
 
-            subscribeForm.addEventListener('submit', function (e) {
-                e.preventDefault();
+            function initializePage() {
+                initializeStorage();
 
-                const email = emailInput.value.trim();
+                desktopVideo.style.display = 'block';
+                currentMode = 'desktop';
 
-                if (!email.includes('@') || !email.includes('.') || email.length < 5) {
-                    alert('Please enter a valid email address with @ and domain (e.g., example@gmail.com)');
-                    return;
-                }
+                updateScrollButtons();
+                prevBtn.classList.add('disabled');
 
-                const originalHtml = subscribeBtn.innerHTML;
-                const originalDisabled = subscribeBtn.disabled;
+                setupNavigation();
 
-                subscribeBtn.disabled = true;
-                subscribeBtn.classList.add('subscribed-success');
+                setupBuyNowButtons();
 
-                subscribeBtn.innerHTML = '';
+                updateCartUI();
+                updateWishlistUI();
 
-                subscribeBtn.style.height = getComputedStyle(subscribeBtn).height;
+                initEmailPopup();
 
-                console.log('Get in touch form subscribing:', { email });
+                initGetInTouchForm();
 
-                setTimeout(() => {
-                    subscribeForm.reset();
-                    subscribeBtn.disabled = true;
-                    subscribeBtn.classList.remove('subscribed-success');
-                    subscribeBtn.innerHTML = '<span class="btn-text">Subscribe</span><span class="btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>';
-                    subscribeBtn.style.height = '';
-                }, 5000);
-            });
-        }
+                isMenuOpen = false;
+                menuBtn.classList.remove("is-open");
+                document.body.classList.remove("desktop-menu-open");
 
-        exploreBtn.addEventListener('click', () => {
-            catalogueSection.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        function initializePage() {
-            initializeStorage();
-
-            desktopVideo.style.display = 'block';
-            currentMode = 'desktop';
-
-            updateScrollButtons();
-            prevBtn.classList.add('disabled');
-
-            setupNavigation();
-
-            setupBuyNowButtons();
-
-            updateCartUI();
-            updateWishlistUI();
-
-            initEmailPopup();
-
-            initGetInTouchForm();
-
-            isMenuOpen = false;
-            menuBtn.classList.remove("is-open");
-            document.body.classList.remove("desktop-menu-open");
-
-            console.log('Page initialized in', currentMode, 'mode');
-        }
-
-        menuBtn.addEventListener("click", toggleMenu);
-
-        blur.addEventListener("click", function () {
-            if (isMenuOpen) {
-                closeMenu();
+                console.log('Page initialized in', currentMode, 'mode');
             }
-        });
-        closePopup.addEventListener("click", closeProductPopup);
 
-        if (closeEmailPopup) {
-            closeEmailPopup.addEventListener('click', closeEmailPopupFunc);
-        }
+            menuBtn.addEventListener("click", toggleMenu);
 
-        if (emailPopup) {
-            emailPopup.addEventListener('click', function (e) {
-                if (e.target === emailPopup) {
-                    closeEmailPopupFunc();
-                }
-            });
-        }
-
-        productPopup.addEventListener('wheel', (e) => {
-            e.stopPropagation();
-        });
-
-        productPopup.addEventListener('touchmove', (e) => {
-            e.stopPropagation();
-        }, { passive: false });
-
-        productPopup.addEventListener("click", (e) => {
-            if (e.target === productPopup) {
-                closeProductPopup();
-            }
-        });
-
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") {
-                if (productPopup.classList.contains('active')) {
-                    closeProductPopup();
-                }
-                else if (emailPopup.classList.contains('active')) {
-                    closeEmailPopupFunc();
-                }
-                else if (isMenuOpen) {
+            blur.addEventListener("click", function () {
+                if (isMenuOpen) {
                     closeMenu();
                 }
-            }
-        });
-
-        document.querySelectorAll('.learn-more').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const productKey = button.getAttribute('data-product');
-                openProductPopup(productKey);
             });
-        });
+            closePopup.addEventListener("click", closeProductPopup);
 
-        window.addEventListener("resize", handleResize);
-        catalogueScroll.addEventListener('scroll', updateScrollButtons);
-        window.addEventListener('DOMContentLoaded', initializePage);
+            if (closeEmailPopup) {
+                closeEmailPopup.addEventListener('click', closeEmailPopupFunc);
+            }
 
-        window.showEmailPopup = showEmailPopup;
-    </script>
+            if (emailPopup) {
+                emailPopup.addEventListener('click', function (e) {
+                    if (e.target === emailPopup) {
+                        closeEmailPopupFunc();
+                    }
+                });
+            }
+
+            productPopup.addEventListener('wheel', (e) => {
+                e.stopPropagation();
+            });
+
+            productPopup.addEventListener('touchmove', (e) => {
+                e.stopPropagation();
+            }, { passive: false });
+
+            productPopup.addEventListener("click", (e) => {
+                if (e.target === productPopup) {
+                    closeProductPopup();
+                }
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    if (productPopup.classList.contains('active')) {
+                        closeProductPopup();
+                    }
+                    else if (emailPopup.classList.contains('active')) {
+                        closeEmailPopupFunc();
+                    }
+                    else if (isMenuOpen) {
+                        closeMenu();
+                    }
+                }
+            });
+
+            document.querySelectorAll('.learn-more').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const productKey = button.getAttribute('data-product');
+                    openProductPopup(productKey);
+                });
+            });
+
+            window.addEventListener("resize", handleResize);
+            catalogueScroll.addEventListener('scroll', updateScrollButtons);
+            window.addEventListener('DOMContentLoaded', initializePage);
+
+            window.showEmailPopup = showEmailPopup;
+        </script>
 </body>
 
 </html>
