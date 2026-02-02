@@ -162,6 +162,9 @@ button:focus-visible {
     position: relative;
     z-index: 30;
     transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 /* Prevent hover effects when menu is open */
@@ -314,6 +317,37 @@ button:focus-visible {
     transform: translateY(-50%) rotate(-45deg);
 }
 
+/* Animation for closing menu icon */
+@keyframes closeToHamburger1 {
+    0% {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+    100% {
+        top: 4px;
+        transform: none;
+    }
+}
+
+@keyframes closeToHamburger2 {
+    0% {
+        top: 50%;
+        transform: translateY(-50%) rotate(-45deg);
+    }
+    100% {
+        top: 12px;
+        transform: none;
+    }
+}
+
+.menu-btn.is-closing .menu-icon span:nth-child(1) {
+    animation: closeToHamburger1 0.4s ease forwards;
+}
+
+.menu-btn.is-closing .menu-icon span:nth-child(2) {
+    animation: closeToHamburger2 0.4s ease forwards;
+}
+
 /* When topbar is hovered (menu closed) */
 .topbar-wrap:not(.menu-open):hover .menu-icon span {
     background: rgba(0, 0, 0, 0.8) !important;
@@ -347,10 +381,16 @@ body.menu-open .menu-blur {
 .desktop-expand {
     overflow: hidden;
     max-height: 0;
-    transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 200ms ease;
     background: #fff;
     border-top: none;
     position: relative;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 body.desktop-menu-open .topbar {
@@ -376,12 +416,15 @@ body.desktop-menu-open .menu-btn.is-open .menu-icon span {
 
 body.desktop-menu-open .desktop-expand {
     max-height: 500px;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .desktop-expand-content {
     display: flex;
     min-height: 400px;
     position: relative;
+    align-items: stretch;
 }
 
 .sleeping-line {
@@ -394,49 +437,45 @@ body.desktop-menu-open .desktop-expand {
     z-index: 40;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 300ms ease;
+    transform: translateZ(0) scaleX(0);
+    transform-origin: left center;
+    will-change: transform, opacity;
 }
 
 body.desktop-menu-open .sleeping-line {
     opacity: 1;
+    transform: translateZ(0) scaleX(1);
+    transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 100ms ease;
+}
+
+/* Remove standing line styles and use border instead */
+.standing-line {
+    display: none !important;
 }
 
 .nav-categories {
     width: 280px;
-    background: #fff;
-    padding: 30px 24px;
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     position: relative;
-}
-
-/* Standing line as separate element - FIXED */
-.standing-line {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 1px;
-    height: 92%;
-    background: rgba(0, 0, 0, 0.08);
-    opacity: 0;
-    transition: opacity 300ms ease;
-    z-index: 41;
-}
-
-body.desktop-menu-open .standing-line {
-    opacity: 1;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .nav-category-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 20px;
+    padding: 14px 24px;
     font-size: 15px;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.8);
     cursor: pointer;
     transition: all 200ms ease;
     position: relative;
-    margin: 2px 0;
+    margin: 2px 12px;
     border-radius: 8px;
     border-left: none;
 }
@@ -474,8 +513,8 @@ body.desktop-menu-open .standing-line {
 .nav-category-item[data-content="support"] {
     position: relative;
     margin-top: 0 !important;
-    padding: 14px 20px !important;
-    margin: 2px 0 !important;
+    padding: 14px 24px !important;
+    margin: 2px 12px !important;
 }
 
 .nav-content {
@@ -2163,13 +2202,10 @@ body.desktop-menu-open {
 
                 <div class="desktop-expand" id="desktopExpand">
                     <!-- SLEEPING LINE - SEPARATE ELEMENT -->
-                    <div class="sleeping-line"></div>
+                    <div class="sleeping-line" style="transition-delay: 100ms"></div>
                     
                     <div class="desktop-expand-content">
                         <div class="nav-categories">
-                            <!-- STANDING LINE - SEPARATE ELEMENT -->
-                            <div class="standing-line"></div>
-                            
                             <div class="nav-category-item active" data-content="standard">
                                 Standard Perfumes
                                 <span class="arrow">›</span>
@@ -2447,7 +2483,6 @@ body.desktop-menu-open {
     <section class="about-section" id="aboutSection">
         <h2 class="about-title">Our Philosophy</h2>
         <div class="features-list">
-
             <div class="feature-item-about">
                 <div class="feature-icon-about">
                     <i data-lucide="brain"></i>
@@ -2673,10 +2708,24 @@ body.desktop-menu-open {
                         Rizzora's Terms and acknowledge the Data Privacy Notice.</p>
                 </div>
             </div>
-        </div>
     </div>
 
     <script>
+        // Prevent initial animation on page load
+        const style = document.createElement('style');
+        style.textContent = `
+            .desktop-expand,
+            .sleeping-line,
+            .standing-line {
+                transition: none !important;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        setTimeout(() => {
+            document.head.removeChild(style);
+        }, 100);
+
         lucide.createIcons();
 
         const menuBtn = document.getElementById("menuBtn");
@@ -3090,49 +3139,60 @@ body.desktop-menu-open {
             });
         }
 
-function openMenu() {
-    isMenuOpen = true;
-    
-    // Remove closing state when opening
-    topbarWrap.classList.remove('menu-closing');
-    
-    topbarWrap.classList.add('menu-open');
-    document.body.classList.add("desktop-menu-open");
-    updateCartUI();
-    updateWishlistUI();
-    menuBtn.classList.add("is-open");
-    document.body.style.overflow = "hidden";
-}
+        function openMenu() {
+            isMenuOpen = true;
+            
+            // Remove any closing states
+            topbarWrap.classList.remove('menu-closing');
+            menuBtn.classList.remove("is-closing");
+            
+            topbarWrap.classList.add('menu-open');
+            document.body.classList.add("desktop-menu-open");
+            menuBtn.classList.add("is-open");
+            document.body.style.overflow = "hidden";
+            
+            updateCartUI();
+            updateWishlistUI();
+        }
 
-function closeMenu() {
-    isMenuOpen = false;
-    
-    // Remove menu classes immediately
-    topbarWrap.classList.remove('menu-open');
-    document.body.classList.remove("desktop-menu-open");
-    menuBtn.classList.remove("is-open");
-    document.body.style.overflow = "";
-    
-    // Add closing state to keep topbar opaque
-    topbarWrap.classList.add('menu-closing');
-    
-    // Remove closing state after 1.1 seconds (slightly more than transition delay)
-    setTimeout(() => {
-        topbarWrap.classList.remove('menu-closing');
-    }, 1100); // 1.1 seconds to match CSS transition delay
-}
+        function closeMenu() {
+            isMenuOpen = false;
+            
+            // Remove menu classes first - this starts closing the desktop expand section
+            topbarWrap.classList.remove('menu-open');
+            document.body.classList.remove("desktop-menu-open");
+            document.body.style.overflow = "";
+            
+            // Add closing animation to menu icon - this syncs with menu closing (400ms)
+            menuBtn.classList.remove("is-open");
+            menuBtn.classList.add("is-closing");
+            
+            // Add closing state to keep topbar opaque for 1 second
+            topbarWrap.classList.add('menu-closing');
+            
+            // Remove the menu icon closing animation after 400ms (same as menu closing)
+            setTimeout(() => {
+                menuBtn.classList.remove("is-closing");
+            }, 400);
+            
+            // Remove closing state after 1 second (for topbar opacity)
+            setTimeout(() => {
+                topbarWrap.classList.remove('menu-closing');
+            }, 1000);
+        }
 
-function toggleMenu() {
-    if (isMenuOpen) {
-        closeMenu();
-    } else {
-        // Remove any closing state if opening menu
-        topbarWrap.classList.remove('menu-closing');
-        requestAnimationFrame(() => {
-            openMenu();
-        });
-    }
-}
+        function toggleMenu() {
+            if (isMenuOpen) {
+                closeMenu();
+            } else {
+                // Remove any closing state if opening menu
+                topbarWrap.classList.remove('menu-closing');
+                requestAnimationFrame(() => {
+                    openMenu();
+                });
+            }
+        }
+
         function setupVideoLoop(videoElement) {
             if (!videoElement) return;
 
