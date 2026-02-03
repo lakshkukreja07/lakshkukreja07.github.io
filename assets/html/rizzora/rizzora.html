@@ -189,6 +189,7 @@ button:focus-visible {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     transform: translateZ(0);
+    min-height: var(--barH); /* FIX: Ensure minimum height */
 }
 
 /* Prevent hover effects when menu is open */
@@ -415,6 +416,8 @@ body.menu-open .menu-blur {
     position: relative;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    /* REMOVE any margin/padding affecting parent height */
+    margin-top: 0;
 }
 
 body.desktop-menu-open .topbar {
@@ -2107,53 +2110,62 @@ body.desktop-menu-open {
     background: #fff !important;
 }
 
-/* CART STYLES IMPROVEMENTS */
+/* CLEAN CART STYLES */
 .cart-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    min-height: 40px; /* Ensure consistent height */
 }
 
 .cart-item-count {
     font-size: 14px;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.6);
-    background: rgba(0, 0, 0, 0.05);
-    padding: 6px 12px;
-    border-radius: 20px;
 }
 
-/* Cart items */
+.cart-items-container {
+    max-height: 320px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 5px;
+}
+
+.cart-items-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.cart-items-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.cart-items-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
 .cart-item {
     display: flex;
     align-items: center;
-    padding: 16px;
-    border-radius: 12px;
-    margin-bottom: 12px;
-    background: rgba(0, 0, 0, 0.02);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    transition: all 200ms ease;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    /* REMOVE hover background transition */
 }
 
 .cart-item:hover {
-    background: rgba(0, 0, 0, 0.04);
-    border-color: rgba(0, 0, 0, 0.1);
+    /* REMOVE hover background */
+    background-color: transparent;
 }
 
-.cart-item-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    object-fit: cover;
-    margin-right: 16px;
-    background: #fff;
-    padding: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+.cart-item:last-child {
+    border-bottom: none;
 }
 
-.cart-item-details {
+.cart-item-info {
     flex: 1;
+    min-width: 0; /* Prevent text overflow issues */
 }
 
 .cart-item-name {
@@ -2161,150 +2173,160 @@ body.desktop-menu-open {
     font-size: 15px;
     color: #000;
     margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cart-item-price {
     font-weight: 600;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.8);
+    /* Ensure price displays properly */
+    display: block;
+    margin-top: 2px;
 }
 
-.cart-item-remove {
-    background: rgba(0, 0, 0, 0.05);
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 16px;
+}
+
+/* Delete button */
+.cart-item-delete {
+    background: none;
     border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.5);
-    transition: all 200ms ease;
-    margin-left: 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    margin-left: auto; /* Push to right */
 }
 
-.cart-item-remove:hover {
-    background: #ef4444;
-    color: white;
+.cart-item-delete:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
 }
 
-/* Empty state improvements */
+/* Empty state */
 .empty-state {
     text-align: center;
-    padding: 80px 20px;
+    padding: 60px 20px;
     color: rgba(0, 0, 0, 0.4);
 }
 
 .empty-state i {
-    font-size: 64px;
-    margin-bottom: 24px;
+    font-size: 48px;
+    margin-bottom: 20px;
     opacity: 0.2;
 }
 
 .empty-state p {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
     color: rgba(0, 0, 0, 0.7);
 }
 
 .empty-state .subtext {
-    font-size: 16px;
+    font-size: 14px;
     color: rgba(0, 0, 0, 0.4);
-    max-width: 280px;
+    max-width: 250px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
-/* Cart summary improvements */
-.cart-summary {
-    background: rgba(0, 0, 0, 0.02);
-    border-radius: 16px;
-    padding: 24px;
-    margin-top: 24px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+/* Cart total */
+.cart-total-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-.cart-summary-row {
+.cart-total-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
-    font-size: 15px;
+    margin-bottom: 20px;
 }
 
-.cart-summary-row.total-row {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 2px solid rgba(0, 0, 0, 0.08);
-    font-size: 18px;
-}
-
-.summary-label {
-    color: rgba(0, 0, 0, 0.7);
-    font-weight: 600;
-}
-
-.summary-value {
+.cart-total-label {
     font-weight: 700;
+    font-size: 16px;
     color: #000;
 }
 
-.total-row .summary-value {
-    font-size: 24px;
+.cart-total-amount {
     font-weight: 800;
-}
-
-.cart-divider {
-    height: 1px;
-    background: rgba(0, 0, 0, 0.1);
-    margin: 16px 0;
+    font-size: 24px;
+    color: #000;
 }
 
 .cart-checkout-btn {
     width: 100%;
-    padding: 20px;
+    padding: 16px;
     border-radius: 12px;
     background: #000;
     color: #fff;
     border: none;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 20px;
-    transition: all 200ms ease;
+    transition: all 0.2s ease;
+    position: relative; /* Add for success state */
+}
+
+.cart-checkout-btn:hover:not(.success) {
+    background: #333;
+    transform: translateY(-1px);
 }
 
 .cart-checkout-btn:hover {
     background: #333;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
 }
 
 .cart-checkout-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
-    background: #000;
 }
 
 .cart-checkout-btn:disabled:hover {
+    background: #000;
     transform: none;
-    box-shadow: none;
 }
 
-.cart-note {
-    text-align: center;
-    font-size: 13px;
-    color: rgba(0, 0, 0, 0.5);
-    margin-top: 16px;
-    margin-bottom: 0;
+.cart-checkout-btn.success {
+    background: #10b981 !important;
+    color: white !important;
+    cursor: default;
+    pointer-events: none;
 }
+
+.cart-checkout-btn.success::after {
+    content: "✓ Order Placed";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 700;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: white;
+    font-size: 15px;
+}
+
     </style>
 </head>
 
@@ -2385,7 +2407,7 @@ body.desktop-menu-open {
                             </div>
                         </div>
 
-                       <!-- UPDATED CART CONTENT -->
+<!-- CLEAN CART CONTENT -->
 <div class="nav-content cart-content" id="cartContent">
     <div class="cart-header">
         <h3 class="nav-content-title">Your Cart</h3>
@@ -2396,25 +2418,15 @@ body.desktop-menu-open {
         <!-- Cart items will be inserted here -->
     </div>
     
-    <!-- Cart summary section -->
-    <div class="cart-summary" id="cartSummary" style="display: none;">
-        <div class="cart-summary-row">
-            <div class="summary-label">Subtotal</div>
-            <div class="summary-value" id="cartSubtotal">₹0</div>
-        </div>
-        <div class="cart-summary-row">
-            <div class="summary-label">Shipping</div>
-            <div class="summary-value">Free</div>
-        </div>
-        <div class="cart-divider"></div>
-        <div class="cart-summary-row total-row">
-            <div class="summary-label">Total</div>
-            <div class="summary-value total-amount" id="cartTotal">₹0</div>
+    <!-- Cart total -->
+    <div class="cart-total-container" id="cartSummary" style="display: none;">
+        <div class="cart-total-row">
+            <div class="cart-total-label">Total</div>
+            <div class="cart-total-amount" id="cartTotal">₹0</div>
         </div>
         <button class="cart-checkout-btn" id="checkoutBtn">
-            <i class="fas fa-lock"></i> Proceed to Checkout
+            Checkout
         </button>
-        <p class="cart-note">Shipping & taxes calculated at checkout</p>
     </div>
 </div>
 
@@ -2877,7 +2889,7 @@ body.desktop-menu-open {
             </div>
     </div>
 
-    <script>
+  <script>
         // Prevent initial animation on page load
         const style = document.createElement('style');
         style.textContent = `
@@ -2931,6 +2943,7 @@ body.desktop-menu-open {
         const checkoutBtn = document.getElementById("checkoutBtn");
         const wishlistItemsContainer = document.getElementById("wishlistItemsContainer");
         const supportContent = document.getElementById("supportContent");
+        const cartItemCount = document.getElementById("cartItemCount");
 
         const emailPopup = document.getElementById("emailPopup");
         const closeEmailPopup = document.getElementById("closeEmailPopup");
@@ -2957,7 +2970,7 @@ body.desktop-menu-open {
             VIDEO_PAUSED: 'rizzora_video_paused'
         };
 
-        // Product price mapping
+        // Product price mapping - FIXED PRICES
         const productPrices = {
             core: 999,
             ice: 1199,
@@ -3003,9 +3016,8 @@ body.desktop-menu-open {
                 cart.push({
                     key: productKey,
                     name: productData.name,
-                    price: getProductPrice(productKey),
+                    price: `₹${productPrices[productKey]}`,
                     numericPrice: productPrices[productKey] || 999,
-                    image: getProductImage(productKey),
                     addedAt: new Date().toISOString()
                 });
                 localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
@@ -3016,6 +3028,7 @@ body.desktop-menu-open {
                 localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
 
                 updateCartUI();
+                showQuickConfirmation(`${productData.name} added to cart`);
                 return true;
             } else {
                 cart.splice(existingItemIndex, 1);
@@ -3027,6 +3040,7 @@ body.desktop-menu-open {
                 localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
 
                 updateCartUI();
+                showQuickConfirmation(`${productData.name} removed from cart`);
                 return false;
             }
         }
@@ -3039,8 +3053,7 @@ body.desktop-menu-open {
                 wishlist.push({
                     key: productKey,
                     name: productData.name,
-                    price: getProductPrice(productKey),
-                    image: getProductImage(productKey),
+                    price: `₹${productPrices[productKey]}`,
                     addedAt: new Date().toISOString()
                 });
                 localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(wishlist));
@@ -3051,6 +3064,7 @@ body.desktop-menu-open {
                 localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
 
                 updateWishlistUI();
+                showQuickConfirmation(`${productData.name} added to wishlist`);
                 return true;
             } else {
                 wishlist.splice(existingItemIndex, 1);
@@ -3062,20 +3076,13 @@ body.desktop-menu-open {
                 localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
 
                 updateWishlistUI();
+                showQuickConfirmation(`${productData.name} removed from wishlist`);
                 return false;
             }
         }
 
         function getProductPrice(productKey) {
-            const prices = {
-                core: 'From ₹999',
-                ice: 'From ₹1,199',
-                femme: 'From ₹1,499',
-                noir: 'From ₹1,499',
-                aura: 'From ₹1,999',
-                zen: 'From ₹2,499'
-            };
-            return prices[productKey] || '₹999';
+            return `₹${productPrices[productKey]}`;
         }
 
         function getProductImage(productKey) {
@@ -3090,71 +3097,9 @@ body.desktop-menu-open {
             return images[productKey] || '';
         }
 
-        // UPDATED CART UI FUNCTION
-        function updateCartUI() {
-            const cart = getCartItems();
-            cartItemsContainer.innerHTML = '';
-
-            if (cart.length === 0) {
-                const emptyState = document.createElement('div');
-                emptyState.className = 'empty-state';
-                emptyState.innerHTML = '<i class="fas fa-shopping-cart"></i><p>Your cart is empty</p><div class="subtext">Add items to get started</div>';
-                cartItemsContainer.appendChild(emptyState);
-                
-                // Hide summary when cart is empty
-                cartSummary.style.display = 'none';
-                checkoutBtn.disabled = true;
-                cartTotal.textContent = '₹0';
-            } else {
-                // Show summary when cart has items
-                cartSummary.style.display = 'block';
-                checkoutBtn.disabled = false;
-                
-                let totalAmount = 0;
-                
-                cart.forEach(item => {
-                    totalAmount += item.numericPrice || 0;
-                    
-                    const cartItem = document.createElement('div');
-                    cartItem.className = 'cart-item';
-                    
-                    const nameDiv = document.createElement('div');
-                    nameDiv.className = 'cart-item-name';
-                    nameDiv.textContent = item.name;
-                    
-                    const priceDiv = document.createElement('div');
-                    priceDiv.className = 'cart-item-price';
-                    priceDiv.textContent = `₹${item.numericPrice}`;
-                    
-                    const removeBtn = document.createElement('button');
-                    removeBtn.className = 'cart-item-remove';
-                    removeBtn.innerHTML = '<i class="fas fa-times"></i>';
-                    removeBtn.title = 'Remove item';
-                    removeBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        removeFromCart(item.key);
-                    });
-                    
-                    cartItem.appendChild(nameDiv);
-                    cartItem.appendChild(priceDiv);
-                    cartItem.appendChild(removeBtn);
-                    
-                    cartItemsContainer.appendChild(cartItem);
-                });
-                
-                // Update total
-                cartTotal.textContent = `₹${totalAmount}`;
-            }
-        }
-
-       function updateCartUI() {
+    function updateCartUI() {
     const cart = getCartItems();
     cartItemsContainer.innerHTML = '';
-    const cartSummary = document.getElementById('cartSummary');
-    const cartItemCount = document.getElementById('cartItemCount');
-    const cartTotal = document.getElementById('cartTotal');
-    const cartSubtotal = document.getElementById('cartSubtotal');
-    const checkoutBtn = document.getElementById('checkoutBtn');
 
     // Update item count
     cartItemCount.textContent = `${cart.length} ${cart.length === 1 ? 'item' : 'items'}`;
@@ -3162,55 +3107,82 @@ body.desktop-menu-open {
     if (cart.length === 0) {
         const emptyState = document.createElement('div');
         emptyState.className = 'empty-state';
-        emptyState.innerHTML = `
-            <i class="fas fa-shopping-cart"></i>
-            <p>Your cart is empty</p>
-            <div class="subtext">Add fragrances to experience luxury</div>
-        `;
+        emptyState.innerHTML = '<i class="fas fa-shopping-cart"></i><p>Your cart is empty</p><div class="subtext">Add items to get started</div>';
         cartItemsContainer.appendChild(emptyState);
         
+        // Hide summary when cart is empty
         cartSummary.style.display = 'none';
         checkoutBtn.disabled = true;
+        checkoutBtn.classList.remove('success');
+        checkoutBtn.innerHTML = 'Checkout';
         cartTotal.textContent = '₹0';
-        cartSubtotal.textContent = '₹0';
     } else {
+        // Show summary when cart has items
         cartSummary.style.display = 'block';
         checkoutBtn.disabled = false;
+        checkoutBtn.classList.remove('success');
+        checkoutBtn.innerHTML = 'Checkout';
         
-        let subtotal = 0;
+        let totalAmount = 0;
         
         cart.forEach((item, index) => {
-            subtotal += item.numericPrice || 0;
+            totalAmount += item.numericPrice || 0;
             
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
             cartItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-                <div class="cart-item-details">
+                <div class="cart-item-info">
                     <div class="cart-item-name">${item.name}</div>
                     <div class="cart-item-price">₹${item.numericPrice}</div>
                 </div>
-                <button class="cart-item-remove" data-index="${index}">
-                    <i class="fas fa-times"></i>
+                <button class="cart-item-delete" data-index="${index}" title="Remove item">
+                    <i class="fas fa-trash-alt"></i>
                 </button>
             `;
             
             cartItemsContainer.appendChild(cartItem);
         });
 
-        // Add event listeners to remove buttons
-        document.querySelectorAll('.cart-item-remove').forEach(button => {
+        // Add event listeners to delete buttons
+        document.querySelectorAll('.cart-item-delete').forEach(button => {
             button.addEventListener('click', (e) => {
                 const index = parseInt(e.currentTarget.getAttribute('data-index'));
-                removeFromCart(cart[index].key);
+                const cart = getCartItems();
+                const productKey = cart[index].key;
+                removeFromCart(productKey);
             });
         });
-
-        // Update totals
-        cartSubtotal.textContent = `₹${subtotal}`;
-        cartTotal.textContent = `₹${subtotal}`;
+        
+        // Update total
+        cartTotal.textContent = `₹${totalAmount}`;
     }
 }
+
+        function removeFromCart(productKey) {
+            const cart = getCartItems();
+            const productIndex = cart.findIndex(item => item.key === productKey);
+            
+            if (productIndex !== -1) {
+                const productName = cart[productIndex].name;
+                cart.splice(productIndex, 1);
+                localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
+                
+                const states = getProductStates();
+                if (states[productKey]) {
+                    states[productKey].inCart = false;
+                    localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+                }
+                
+                updateCartUI();
+                showQuickConfirmation(`${productName} removed`);
+                
+                // Update product popup if it's open for this product
+                if (currentProductKey === productKey && productPopup.classList.contains('active')) {
+                    addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                    addToCartBtn.classList.remove('added');
+                }
+            }
+        }
 
         function updateWishlistUI() {
             const wishlist = getWishlistItems();
@@ -3222,32 +3194,33 @@ body.desktop-menu-open {
                 emptyState.innerHTML = '<i class="fas fa-heart"></i><p>Your wishlist is empty</p><div class="subtext">Save items you love</div>';
                 wishlistItemsContainer.appendChild(emptyState);
             } else {
-                wishlist.forEach(item => {
+                wishlist.forEach((item, index) => {
                     const wishlistItem = document.createElement('div');
                     wishlistItem.className = 'cart-item';
                     
-                    const nameDiv = document.createElement('div');
-                    nameDiv.className = 'cart-item-name';
-                    nameDiv.textContent = item.name;
-                    
-                    const priceDiv = document.createElement('div');
-                    priceDiv.className = 'cart-item-price';
-                    priceDiv.textContent = item.price;
-                    
-                    const removeBtn = document.createElement('button');
-                    removeBtn.className = 'cart-item-remove';
-                    removeBtn.innerHTML = '<i class="fas fa-times"></i>';
-                    removeBtn.title = 'Remove from wishlist';
-                    removeBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        removeFromWishlist(item.key);
-                    });
-                    
-                    wishlistItem.appendChild(nameDiv);
-                    wishlistItem.appendChild(priceDiv);
-                    wishlistItem.appendChild(removeBtn);
+                    wishlistItem.innerHTML = `
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price}</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="cart-item-delete" data-index="${index}" title="Remove from wishlist">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    `;
                     
                     wishlistItemsContainer.appendChild(wishlistItem);
+                });
+
+                // Add event listeners to delete buttons
+                document.querySelectorAll('#wishlistItemsContainer .cart-item-delete').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const index = parseInt(e.currentTarget.getAttribute('data-index'));
+                        const wishlist = getWishlistItems();
+                        const productKey = wishlist[index].key;
+                        removeFromWishlist(productKey);
+                    });
                 });
             }
         }
@@ -3257,6 +3230,7 @@ body.desktop-menu-open {
             const productIndex = wishlist.findIndex(item => item.key === productKey);
             
             if (productIndex !== -1) {
+                const productName = wishlist[productIndex].name;
                 wishlist.splice(productIndex, 1);
                 localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(wishlist));
                 
@@ -3267,7 +3241,7 @@ body.desktop-menu-open {
                 }
                 
                 updateWishlistUI();
-                showQuickConfirmation('Item removed from wishlist');
+                showQuickConfirmation(`${productName} removed from wishlist`);
                 
                 // Update product popup if it's open for this product
                 if (currentProductKey === productKey && productPopup.classList.contains('active')) {
@@ -3321,7 +3295,8 @@ body.desktop-menu-open {
                 category: "Standard Perfume",
                 longevity: "~ 6 to 8 hours",
                 concentration: "Eau de Parfum",
-                quality: "Standard Grade"
+                quality: "Standard Grade",
+                price: "₹999"
             },
             ice: {
                 name: "Rizzora Ice",
@@ -3331,7 +3306,8 @@ body.desktop-menu-open {
                 category: "Standard Perfume",
                 longevity: "~ 8 to 10 hours",
                 concentration: "Eau de Parfum",
-                quality: "Standard Grade"
+                quality: "Standard Grade",
+                price: "₹1,199"
             },
             femme: {
                 name: "Rizzora Femme",
@@ -3341,7 +3317,8 @@ body.desktop-menu-open {
                 category: "Premium Perfume",
                 longevity: "~ 10 to 12 hours",
                 concentration: "Eau de Parfum",
-                quality: "Premium Grade"
+                quality: "Premium Grade",
+                price: "₹1,499"
             },
             noir: {
                 name: "Rizzora Noir",
@@ -3351,7 +3328,8 @@ body.desktop-menu-open {
                 category: "Premium Perfume",
                 longevity: "~ 10 to 12 hours",
                 concentration: "Eau de Parfum",
-                quality: "Premium Grade"
+                quality: "Premium Grade",
+                price: "₹1,499"
             },
             aura: {
                 name: "Rizzora Aura",
@@ -3361,7 +3339,8 @@ body.desktop-menu-open {
                 category: "Luxury Perfume",
                 longevity: "~ 12 to 14 hours",
                 concentration: "Eau de Parfum",
-                quality: "Luxury Grade"
+                quality: "Luxury Grade",
+                price: "₹1,999"
             },
             zen: {
                 name: "Rizzora Zen",
@@ -3371,7 +3350,8 @@ body.desktop-menu-open {
                 category: "Luxury Perfume",
                 longevity: "~ 12 to 16 hours",
                 concentration: "Eau de Parfum",
-                quality: "Luxury Grade"
+                quality: "Luxury Grade",
+                price: "₹2,499"
             }
         };
 
@@ -3399,6 +3379,13 @@ body.desktop-menu-open {
                     const contentElement = document.getElementById(contentId + 'Content');
                     if (contentElement) {
                         contentElement.classList.add('active');
+                        
+                        // Update UI for cart and wishlist when clicked
+                        if (contentId === 'cart') {
+                            updateCartUI();
+                        } else if (contentId === 'wishlist') {
+                            updateWishlistUI();
+                        }
                     }
                 });
             });
@@ -3420,7 +3407,7 @@ body.desktop-menu-open {
                         <div class="product-item-details">
                             <div class="product-item-name">${product.name}</div>
                             <div class="product-item-price">
-                                ${getProductPrice(key)}
+                                ${product.price}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
                                     <path d="M7 7h10v10" />
                                     <path d="M7 17 17 7" />
@@ -3449,6 +3436,7 @@ body.desktop-menu-open {
             menuBtn.classList.add("is-open");
             document.body.style.overflow = "hidden";
             
+            // Update cart UI when menu opens
             updateCartUI();
             updateWishlistUI();
         }
@@ -3613,11 +3601,13 @@ body.desktop-menu-open {
             const states = getProductStates();
             const productState = states[productKey] || {};
 
+            // Reset buttons
             addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
             addToCartBtn.className = 'popup-btn popup-btn-primary';
             addToWishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Wishlist';
             addToWishlistBtn.className = 'popup-btn popup-btn-secondary';
 
+            // Update based on current state
             if (productState.inCart) {
                 addToCartBtn.innerHTML = '<i data-lucide="check"></i> Added';
                 addToCartBtn.classList.add('added');
@@ -3630,7 +3620,6 @@ body.desktop-menu-open {
             }
 
             addToCartBtn.onclick = () => {
-                const wasInCart = productState.inCart;
                 const result = addToCart(productKey, product);
 
                 if (result) {
@@ -3644,7 +3633,6 @@ body.desktop-menu-open {
             };
 
             addToWishlistBtn.onclick = () => {
-                const wasInWishlist = productState.inWishlist;
                 const result = addToWishlist(productKey, product);
 
                 if (result) {
@@ -3789,23 +3777,52 @@ body.desktop-menu-open {
         });
 
         // Checkout button functionality
-        if (checkoutBtn) {
-            checkoutBtn.addEventListener('click', () => {
-                const cart = getCartItems();
-                if (cart.length === 0) {
-                    alert('Your cart is empty!');
-                    return;
-                }
-                
-                // Calculate total
-                let total = 0;
-                cart.forEach(item => {
-                    total += item.numericPrice || 0;
-                });
-                
-                alert(`Proceeding to checkout with total amount: ₹${total}\n\nThis is a demo. In a real implementation, this would redirect to a payment gateway.`);
-            });
+    // Checkout button functionality - FIXED
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+        const cart = getCartItems();
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
         }
+        
+        // Calculate total
+        let total = 0;
+        cart.forEach(item => {
+            total += item.numericPrice || 0;
+        });
+        
+        // Show success state
+        checkoutBtn.classList.add('success');
+        checkoutBtn.disabled = true;
+        
+        // Clear cart after successful order
+        setTimeout(() => {
+            // Clear cart
+            localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify([]));
+            
+            // Reset all product cart states
+            const states = getProductStates();
+            Object.keys(states).forEach(key => {
+                if (states[key]) {
+                    states[key].inCart = false;
+                }
+            });
+            localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+            
+            // Update UI
+            updateCartUI();
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                checkoutBtn.classList.remove('success');
+                checkoutBtn.disabled = false;
+                checkoutBtn.innerHTML = 'Checkout';
+            }, 3000);
+            
+        }, 500);
+    });
+}
 
         function initializePage() {
             initializeStorage();
@@ -3877,11 +3894,16 @@ body.desktop-menu-open {
                 }
             }
             
-            // Video pause/play shortcut
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'L') {
-                e.preventDefault();
-                toggleVideo();
-            }
+           if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'L') {
+        e.preventDefault();
+        toggleVideo();
+    }
+    
+    // ADD: Simpler shortcut - just Shift + L for all systems
+    if (e.shiftKey && e.key === 'L' && !e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+        toggleVideo();
+    }
         });
 
         document.querySelectorAll('.learn-more').forEach(button => {
