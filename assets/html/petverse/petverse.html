@@ -2,68 +2,91 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!-- Universal viewport for all displays -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- Critical: Preload fonts BEFORE screenshare -->
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>PETVERSE</title>
 
 <style>
-/* ================= UNIVERSAL RESET ================= */
+/* ================= FONT FACE - GUARANTEED LOAD ================= */
+@font-face {
+  font-family: 'ClashDisplay-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashDisplay-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashGrotesk-SemiBold';
+  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashGrotesk-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* ================= BASE ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  position: relative;
 }
 
 body {
   background: #f2f2f2;
   color: #111;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Fallback font stack */
+  font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
-  /* Universal scaling base */
-  font-size: 16px;
-}
-
-/* ================= SCALING CONTAINER ================= */
-.scaling-container {
-  width: 100%;
-  height: 100%;
   position: relative;
-  /* Base scaling unit */
-  --scale-unit: min(1vw, 1vh);
-  --safe-area-top: env(safe-area-inset-top, 0px);
 }
 
-/* ================= TOPBAR - UNIVERSAL SCALING ================= */
+/* ================= TOPBAR ================= */
 .topbar {
   position: fixed;
-  top: max(25px, calc(25px + var(--safe-area-top)));
+  top: 25px;
   left: 50%;
   transform: translateX(-50%);
-  /* Use min() and max() for consistent sizing */
-  width: min(1200px, 80%);
-  /* Scale height with viewport */
-  height: clamp(55px, 6.5vh, 65px);
+  width: 80%;
+  max-width: 1200px;
+  height: 65px;
   background: white;
   border-radius: 100px;
-  /* Responsive padding */
-  padding: 0 clamp(20px, 4vw, 40px);
+  padding: 0 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   z-index: 1000;
-  /* Animation */
   opacity: 0;
-  transform: translateX(-50%) translateY(-100%);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%) translateY(-20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .loaded .topbar {
@@ -71,65 +94,63 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
+/* Logo - Force custom font */
 .logo {
-  font-family: 'ClashDisplay-Bold';
-  /* Scale font size with viewport */
-  font-size: clamp(18px, 2.2vw, 22px);
+  font-family: 'ClashDisplay-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 22px;
   letter-spacing: 1px;
-  white-space: nowrap;
+  font-weight: 700 !important;
 }
 
+/* Navigation - Force custom font */
 .nav-links {
   display: flex;
-  gap: clamp(20px, 3.5vw, 35px);
+  gap: 35px;
 }
 
 .nav-links a {
   text-decoration: none;
   color: #444;
-  font-size: clamp(12px, 1.4vw, 14px);
-  font-family: 'ClashDisplay-Regular';
-  white-space: nowrap;
+  font-size: 14px;
+  font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 400 !important;
 }
 
 .cta-btn {
   background: black;
   color: white;
-  padding: clamp(8px, 1vh, 10px) clamp(18px, 2.2vw, 22px);
+  padding: 10px 22px;
   border-radius: 100px;
   border: none;
-  font-size: clamp(12px, 1.4vw, 14px);
+  font-size: 14px;
   cursor: pointer;
-  font-family: 'ClashDisplay-Regular';
-  white-space: nowrap;
+  font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 400 !important;
 }
 
-/* ================= HERO SECTION - UNIVERSAL SCALING ================= */
+/* ================= HERO SECTION ================= */
 .hero {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  padding-top: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   background-color: #F4EED7;
   overflow: hidden;
-  /* Dynamic padding based on topbar */
-  padding-top: clamp(120px, 15vh, 160px);
-  padding-bottom: clamp(40px, 5vh, 60px);
-  justify-content: space-between;
+  min-height: 100vh;
+  justify-content: center;
 }
 
-/* Paw Background - Scale with screen */
+/* Paw Background */
 .hero::before {
   content: "";
   position: absolute;
   inset: -50%;
   background-image: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/background-paw.png');
   background-repeat: repeat;
-  /* Scale paw size with viewport */
-  background-size: clamp(300px, 40vw, 480px) clamp(300px, 40vw, 480px);
+  background-size: 480px 480px;
   transform: rotate(20deg);
   opacity: 0.05;
   animation: movePaws 40s linear infinite;
@@ -141,16 +162,13 @@ body {
   to { background-position: 0 -1500px; }
 }
 
-/* ================= HERO CONTENT - RESPONSIVE TEXT ================= */
+/* ================= HERO CONTENT ================= */
 .hero-content {
   position: relative;
   z-index: 10;
-  width: 100%;
-  max-width: min(1200px, 90vw);
-  padding: 0 clamp(20px, 5vw, 40px);
   opacity: 0;
-  transform: translateY(-50px);
-  transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-20px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
 .loaded .hero-content {
@@ -160,34 +178,37 @@ body {
 }
 
 .hero-content h1 {
-  /* Responsive font scaling */
-  font-size: clamp(36px, 8vw, 72px);
-  margin-bottom: clamp(5px, 1vh, 15px);
+  font-size: 64px;
+  margin-bottom: -20px;
   line-height: 1.1;
 }
 
+/* Black text - Force custom font */
 .black-text {
-  font-family: 'ClashGrotesk-SemiBold';
+  font-family: 'ClashGrotesk-SemiBold', -apple-system, BlinkMacSystemFont, sans-serif !important;
   color: #000;
-  letter-spacing: clamp(0.5px, 0.1vw, 1px);
+  letter-spacing: 1px;
+  font-weight: 600 !important;
 }
 
+/* Orange text - Force custom font */
 .orange-text {
-  font-family: 'ClashGrotesk-Bold';
-  letter-spacing: clamp(1px, 0.15vw, 1.5px);
+  font-family: 'ClashGrotesk-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  letter-spacing: 1.5px;
   background: linear-gradient(90deg, #FF4F1A, #FF7A3D, #FF4F1A);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: shimmer 3s linear infinite;
+  font-weight: 700 !important;
 }
 
 @keyframes shimmer {
   to { background-position: 200% center; }
 }
 
-/* ================= CAT CONTAINER - UNIVERSAL POSITIONING ================= */
+/* ================= CAT CONTAINER - FIXED POSITIONING ================= */
 .cat-container {
   position: relative;
   z-index: 5;
@@ -196,43 +217,36 @@ body {
   align-items: flex-end;
   width: 100%;
   height: 50vh;
-  min-height: 300px;
-  max-height: 600px;
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+  margin-top: 200px;
+  margin-bottom: -200px;
 }
 
 .loaded .cat-container {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(-50px);
   transition-delay: 0.6s;
 }
 
 .cat-container img {
-  /* Dynamic image sizing */
-  width: auto;
+  width: 700px;
+  max-width: 90%;
   height: auto;
-  max-width: min(700px, 90vw);
-  max-height: min(500px, 50vh);
-  /* Position at bottom of container */
-  object-fit: contain;
-  object-position: center bottom;
-  /* Subtle shadow for depth */
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+  position: relative;
+  bottom: 0;
+  display: block;
 }
 
 /* ================= NEXT SECTION ================= */
 .next-section {
   position: relative;
   background: white;
-  height: clamp(300px, 40vh, 400px);
-  width: 100%;
+  height: 400px;
+  margin-top: -60px;
   z-index: 1;
-  margin-top: -5vh;
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
-  box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+  width: 100%;
 }
 
 /* ================= MOBILE VERSION ================= */
@@ -255,7 +269,6 @@ body {
   height: 2px;
   background: #000;
   position: relative;
-  transition: all 0.3s ease;
 }
 
 .hamburger::before,
@@ -266,7 +279,6 @@ body {
   height: 2px;
   background: #000;
   left: 0;
-  transition: all 0.3s ease;
 }
 
 .hamburger::before {
@@ -293,208 +305,288 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* Topbar mobile */
   .topbar {
-    width: 92%;
-    height: clamp(50px, 7vh, 60px);
-    padding: 0 15px;
+    width: 90%;
+    height: 60px;
+    padding: 0 20px;
   }
   
   .logo {
-    font-size: clamp(16px, 4vw, 20px);
+    font-size: 20px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
   }
   
-  /* Hide desktop elements */
   .nav-links,
   .cta-btn {
     display: none !important;
   }
   
-  /* Show mobile menu button */
   .mobile-menu-btn {
     display: block;
-    left: 15px;
   }
   
-  /* Hero adjustments */
   .hero {
-    padding-top: clamp(100px, 20vh, 140px);
+    padding-top: 120px;
   }
   
   .hero-content h1 {
-    font-size: clamp(28px, 10vw, 42px);
+    font-size: 42px;
   }
   
   .cat-container {
     height: 40vh;
-    min-height: 250px;
+    margin-top: 150px;
+    margin-bottom: -150px;
+  }
+  
+  .loaded .cat-container {
+    transform: translateY(-30px);
   }
   
   .cat-container img {
-    max-width: 85vw;
-    max-height: 35vh;
+    width: 420px;
+    max-width: 85%;
   }
 }
 
-/* ================= UNIVERSAL DISPLAY FIXES ================= */
-/* Fix for high DPI displays (4K, retina) */
+/* ================= SCREENSHARE SPECIFIC FIXES ================= */
+/* Force font loading on screenshare */
+@supports (font-display: optional) {
+  @font-face {
+    font-family: 'ClashDisplay-Regular-Screenshare';
+    src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2') format('woff2');
+    font-display: block;
+  }
+  
+  @font-face {
+    font-family: 'ClashDisplay-Bold-Screenshare';
+    src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2') format('woff2');
+    font-display: block;
+  }
+}
+
+/* Screenshare detection styles */
+body.screenshare-mode .logo {
+  font-family: 'ClashDisplay-Bold-Screenshare', 'ClashDisplay-Bold', -apple-system, sans-serif !important;
+}
+
+body.screenshare-mode .nav-links a,
+body.screenshare-mode .cta-btn {
+  font-family: 'ClashDisplay-Regular-Screenshare', 'ClashDisplay-Regular', -apple-system, sans-serif !important;
+}
+
+body.screenshare-mode .black-text {
+  font-family: 'ClashGrotesk-SemiBold', -apple-system, sans-serif !important;
+}
+
+body.screenshare-mode .orange-text {
+  font-family: 'ClashGrotesk-Bold', -apple-system, sans-serif !important;
+}
+
+/* Screenshare-specific cat positioning */
+body.screenshare-mode .cat-container {
+  margin-top: 150px;
+  margin-bottom: -150px;
+  height: 45vh;
+  align-items: center;
+}
+
+body.screenshare-mode .loaded .cat-container {
+  transform: translateY(-30px);
+}
+
+/* High DPI screens (4K) */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .hero::before {
-    opacity: 0.04;
+    background-size: 600px 600px;
+  }
+  
+  .hero-content h1 {
+    font-size: 72px;
   }
   
   .cat-container img {
     image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+  }
+  
+  /* Additional 4K adjustments */
+  .cat-container {
+    margin-top: 180px;
+    margin-bottom: -180px;
   }
 }
 
-/* Fix for very wide screens (ultrawide) */
-@media (min-aspect-ratio: 21/9) {
-  .hero::before {
-    background-size: clamp(400px, 30vw, 600px) clamp(400px, 30vw, 600px);
-  }
-  
+/* Ultra-high resolution screens (4K and above) */
+@media (min-width: 2560px) {
   .hero-content h1 {
-    font-size: clamp(48px, 5vw, 64px);
-  }
-}
-
-/* Fix for very tall screens (portrait) */
-@media (max-aspect-ratio: 3/4) {
-  .hero {
-    padding-top: clamp(80px, 25vh, 120px);
-    padding-bottom: 20px;
-  }
-  
-  .hero-content h1 {
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: 84px;
   }
   
   .cat-container {
-    height: 35vh;
-  }
-}
-
-/* Screenshare-specific fixes */
-@media (min-width: 1921px) {
-  /* When screensharing to 4K TV */
-  body {
-    zoom: 1;
-    transform: scale(1);
+    margin-top: 160px;
+    margin-bottom: -160px;
   }
   
-  .hero::before {
-    background-size: 550px 550px;
+  .cat-container img {
+    width: 900px;
+  }
+  
+  /* Screenshare specific for 4K */
+  body.screenshare-mode .cat-container {
+    margin-top: 120px;
+    margin-bottom: -120px;
+    height: 40vh;
+  }
+  
+  body.screenshare-mode .cat-container img {
+    width: 800px;
+    max-width: 85%;
   }
 }
 
-/* Prevent Safari/Chrome text size adjustments */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  .hero-content h1 {
-    -webkit-text-size-adjust: none;
-  }
+/* Prevent font flash */
+.fonts-loading * {
+  visibility: hidden;
+}
+
+.fonts-loaded * {
+  visibility: visible;
 }
 </style>
 </head>
 
-<body>
-<div class="scaling-container">
-  
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-nav-links">
-      <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">Pricing</a>
-      <a href="#">Contact</a>
-    </div>
-    <button class="mobile-cta-btn">Sign In</button>
+<body class="fonts-loading">
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-nav-links">
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Pricing</a>
+    <a href="#">Contact</a>
   </div>
-  
-  <!-- Topbar -->
-  <div class="topbar">
-    <button class="mobile-menu-btn" id="mobileMenuBtn">
-      <span class="hamburger"></span>
-    </button>
-    <div class="logo">PETVERSE</div>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">Pricing</a>
-      <a href="#">Contact</a>
-    </div>
-    <button class="cta-btn">Sign In</button>
-  </div>
-  
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>
-        <span class="black-text">FOR THE</span>
-        <span class="orange-text">PET LOVERS.</span>
-      </h1>
-    </div>
-    <div class="cat-container">
-      <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/cat.png" alt="Petverse Cat">
-    </div>
-  </section>
-  
-  <section class="next-section"></section>
+  <button class="mobile-cta-btn">Sign In</button>
 </div>
 
+<!-- Topbar -->
+<div class="topbar">
+  <button class="mobile-menu-btn" id="mobileMenuBtn">
+    <span class="hamburger"></span>
+  </button>
+  <div class="logo">PETVERSE</div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Pricing</a>
+    <a href="#">Contact</a>
+  </div>
+  <button class="cta-btn">Sign In</button>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>
+      <span class="black-text">FOR THE</span>
+      <span class="orange-text">PET LOVERS.</span>
+    </h1>
+  </div>
+  <div class="cat-container">
+    <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/cat.png" alt="Petverse Cat">
+  </div>
+</section>
+
+<section class="next-section"></section>
+
 <script>
-// Universal scaling function
-function applyUniversalScaling() {
-  const container = document.querySelector('.scaling-container');
-  const catContainer = document.querySelector('.cat-container');
-  const heroSection = document.querySelector('.hero');
+// ================= FONT LOADING GUARANTEE =================
+const fonts = [
+  'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2',
+  'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2',
+  'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2',
+  'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2'
+];
+
+// Preload all fonts
+function loadFonts() {
+  const fontPromises = fonts.map(fontUrl => {
+    return new Promise((resolve, reject) => {
+      const font = new FontFace('CustomFont', `url(${fontUrl})`);
+      font.load().then(resolve).catch(reject);
+    });
+  });
   
-  if (!container || !catContainer || !heroSection) return;
-  
-  // Get viewport dimensions
-  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-  const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-  const aspectRatio = vw / vh;
-  
-  // Adjust cat size based on aspect ratio
-  if (aspectRatio > 2) {
-    // Very wide screen (ultrawide)
-    catContainer.style.maxHeight = '45vh';
-    catContainer.style.alignItems = 'center';
-  } else if (aspectRatio < 0.8) {
-    // Tall screen (portrait)
-    catContainer.style.height = '35vh';
-    catContainer.style.minHeight = '200px';
-  } else {
-    // Normal screen
-    catContainer.style.height = '50vh';
-  }
-  
-  // Check if screensharing (high resolution)
-  const isHighDPI = window.devicePixelRatio > 1.5;
-  const isLargeScreen = vw > 2560;
-  
-  if (isHighDPI || isLargeScreen) {
-    // Apply screenshare optimizations
-    document.documentElement.style.setProperty('--scale-unit', '1px');
-    
-    // Fix cat position for 4K
-    catContainer.style.maxHeight = '55vh';
-    catContainer.querySelector('img').style.maxWidth = 'min(800px, 80vw)';
-  }
+  Promise.all(fontPromises).then(() => {
+    document.body.classList.remove('fonts-loading');
+    document.body.classList.add('fonts-loaded');
+    console.log('All custom fonts loaded successfully');
+  }).catch(error => {
+    console.warn('Some fonts failed to load, using fallback', error);
+    document.body.classList.remove('fonts-loading');
+    document.body.classList.add('fonts-loaded');
+  });
 }
 
-// Load animation
-window.addEventListener('load', function() {
-  document.body.classList.add('loaded');
-  applyUniversalScaling();
+// ================= SCREENSHARE DETECTION =================
+function detectScreenshare() {
+  // Check for common screenshare indicators
+  const isHighDPI = window.devicePixelRatio >= 2;
+  const isLargeScreen = window.innerWidth >= 2560 || window.screen.width >= 2560;
+  const isVirtualScreen = window.screen.availWidth !== window.innerWidth;
+  const hasChromeRemoteDesktop = navigator.userAgent.includes('Chrome Remote Desktop') || 
+                                 navigator.userAgent.includes('HeadlessChrome');
   
-  // Force initial layout
-  setTimeout(applyUniversalScaling, 100);
+  // More reliable screenshare detection
+  const likelyScreenshare = (isHighDPI && isLargeScreen) || 
+                           isVirtualScreen || 
+                           hasChromeRemoteDesktop ||
+                           (window.screen.width > 3840); // 4K+ displays
+  
+  if (likelyScreenshare) {
+    console.log('Screenshare/High-DPI mode detected');
+    document.body.classList.add('screenshare-mode');
+    
+    // Apply screenshare-specific adjustments
+    setTimeout(() => {
+      document.body.style.fontFamily = 'ClashDisplay-Regular, sans-serif';
+      
+      // Ensure cat container has proper positioning
+      const catContainer = document.querySelector('.cat-container');
+      if (catContainer) {
+        catContainer.style.marginTop = '150px';
+        catContainer.style.marginBottom = '-150px';
+      }
+    }, 100);
+    
+    return true;
+  }
+  
+  return false;
+}
+
+// ================= INITIALIZE =================
+window.addEventListener('load', function() {
+  // Load fonts first
+  loadFonts();
+  
+  // Detect screenshare
+  detectScreenshare();
+  
+  // Apply loaded class
+  setTimeout(() => {
+    document.body.classList.add('loaded');
+    
+    // Additional screenshare adjustments
+    if (document.body.classList.contains('screenshare-mode')) {
+      const catContainer = document.querySelector('.cat-container');
+      if (catContainer) {
+        catContainer.style.alignItems = 'center';
+      }
+    }
+    
+  }, 100);
 });
 
 // Mobile menu functionality
@@ -516,53 +608,32 @@ if (mobileMenuBtn && mobileMenu) {
   });
 }
 
-// Dynamic scaling on resize
+// Handle resize events
 let resizeTimeout;
 window.addEventListener('resize', function() {
   clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(applyUniversalScaling, 150);
+  resizeTimeout = setTimeout(() => {
+    // Re-detect screenshare on resize
+    detectScreenshare();
+    
+  }, 250);
 });
 
-// Handle screenshare display changes
-if (window.matchMedia) {
-  const mediaQuery = window.matchMedia('(min-resolution: 192dpi)');
-  mediaQuery.addEventListener('change', applyUniversalScaling);
-}
-
-// Fix for MacOS screenshare
-document.addEventListener('DOMContentLoaded', function() {
-  // Apply scaling immediately
-  applyUniversalScaling();
-  
-  // Lock viewport scaling
-  document.documentElement.style.zoom = '1';
-  document.body.style.zoom = '1';
-  document.body.style.transform = 'scale(1)';
-  
-  // Prevent any browser zoom
-  document.addEventListener('wheel', function(e) {
-    if (e.ctrlKey) {
-      e.preventDefault();
-      return false;
-    }
-  }, { passive: false });
-});
-
-// Detect if actually in screenshare mode
-function detectScreenshare() {
-  const isLikelyScreenshare = 
-    window.outerWidth !== window.innerWidth || // Browser windowed
-    window.screenTop < 0 || // Window might be offscreen
-    window.screenLeft < 0;
-  
-  if (isLikelyScreenshare) {
-    console.log('Screenshare mode detected - applying universal scaling');
-    document.body.classList.add('screenshare-mode');
+// ================= FONT FALLBACK SYSTEM =================
+// If fonts don't load within 3 seconds, force system fonts
+setTimeout(() => {
+  if (document.body.classList.contains('fonts-loading')) {
+    console.log('Fonts taking too long, forcing fallback');
+    document.body.classList.remove('fonts-loading');
+    document.body.classList.add('fonts-loaded');
+    
+    // Apply system fonts as fallback
+    const elements = document.querySelectorAll('[class*="text"], .logo, .nav-links a, .cta-btn');
+    elements.forEach(el => {
+      el.style.fontFamily = '-apple-system, BlinkMacSystemFont, sans-serif';
+    });
   }
-}
-
-// Run detection after a short delay
-setTimeout(detectScreenshare, 1000);
+}, 3000);
 </script>
 
 </body>
