@@ -72,7 +72,7 @@
             overflow-x: hidden;
         }
 
-        /* TOPBAR */
+        /* TOPBAR - Always White Tinted with Dynamic Text Color */
         .topbar {
             position: fixed;
             top: 25px;
@@ -81,17 +81,53 @@
             width: 80%;
             max-width: 1200px;
             height: 65px;
-            background: white;
+
+            /* Always white tinted background */
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px solid transparent;
             border-radius: 100px;
+
+            /* Glass reflections and shadows */
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.6),
+                inset 0 0 20px rgba(255, 255, 255, 0.2),
+                0 8px 32px rgba(31, 38, 135, 0.15);
+
+            /* Frosted glass effect */
+            backdrop-filter: blur(1px) saturate(180%);
+            -webkit-backdrop-filter: blur(1px) saturate(180%);
+
             padding: 0 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             z-index: 6000;
             opacity: 0;
             transform: translateX(-50%) translateY(-20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition: all 0.8s ease;
+            overflow: hidden;
+            cursor: pointer;
+            outline: 0;
+        }
+
+        /* Dark text for better readability on bright backgrounds */
+        .topbar.dark-text {
+            --text-color: #000;
+            --text-hover: #333;
+            --logo-color: #000;
+            --hamburger-color: #000;
+            --cta-bg: #000;
+            --cta-color: #fff;
+        }
+
+        /* Light text for dark backgrounds */
+        .topbar:not(.dark-text) {
+            --text-color: #444;
+            --text-hover: #000;
+            --logo-color: #111;
+            --hamburger-color: #000;
+            --cta-bg: #000;
+            --cta-color: #fff;
         }
 
         .loaded .topbar {
@@ -104,6 +140,8 @@
             font-size: 22px;
             letter-spacing: 1px;
             font-weight: 700 !important;
+            color: var(--logo-color);
+            transition: color 0.3s ease;
         }
 
         .nav-links {
@@ -113,15 +151,20 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #444;
+            color: var(--text-color);
             font-size: 14px;
             font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
             font-weight: 400 !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-hover);
         }
 
         .cta-btn {
-            background: black;
-            color: white;
+            background: var(--cta-bg);
+            color: var(--cta-color);
             padding: 10px 22px;
             border-radius: 100px;
             border: none;
@@ -129,6 +172,12 @@
             cursor: pointer;
             font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
             font-weight: 400 !important;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
         }
 
         /* HERO SECTION - 90% SCREEN */
@@ -144,10 +193,9 @@
             justify-content: center;
             text-align: center;
             overflow: visible;
-            /* CHANGED to visible for cat overflow */
         }
 
-        /* Paw Background - NO ROTATION */
+        /* Paw Background - FIXED DENSITY */
         .hero::before {
             content: "";
             position: absolute;
@@ -157,10 +205,14 @@
             bottom: 0;
             background-image: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/background-paws.png');
             background-repeat: repeat;
-            background-size: 120px 120px;
+            /* Use larger spacing for consistent density */
+            background-size: 250px 250px;
             opacity: 0.05;
-            animation: movePaws 40s linear infinite;
+            animation: movePaws 10s linear infinite;
             z-index: 0;
+            /* Prevent pixelation on high DPI screens */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         @keyframes movePaws {
@@ -169,7 +221,8 @@
             }
 
             to {
-                background-position: 0 -1500px;
+                background-position: 0 500px;
+                /* Move by exactly one paw size */
             }
         }
 
@@ -223,7 +276,6 @@
         .cat-container {
             position: absolute;
             bottom: -150px;
-            /* CHANGED to -150px */
             left: 0;
             width: 100%;
             z-index: 5000;
@@ -257,7 +309,6 @@
             width: 100%;
             z-index: 100;
             padding-top: 150px;
-            /* Increased to match cat at -150px */
             padding-bottom: 100px;
             margin-top: 0;
         }
@@ -343,8 +394,9 @@
             display: block;
             width: 24px;
             height: 2px;
-            background: #000;
+            background: var(--hamburger-color);
             position: relative;
+            transition: background 0.3s ease;
         }
 
         .hamburger::before,
@@ -353,8 +405,9 @@
             position: absolute;
             width: 24px;
             height: 2px;
-            background: #000;
+            background: var(--hamburger-color);
             left: 0;
+            transition: background 0.3s ease;
         }
 
         .hamburger::before {
@@ -372,12 +425,61 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 999;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 100px 20px 40px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-size: 20px;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: #000;
+        }
+
+        .mobile-cta-btn {
+            background: black;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 100px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 400;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        .mobile-cta-btn:hover {
+            transform: scale(1.05);
+            background-color: #333;
         }
 
         @media (max-width: 768px) {
@@ -385,6 +487,8 @@
                 width: 90%;
                 height: 60px;
                 padding: 0 20px;
+                backdrop-filter: blur(10px) saturate(180%);
+                -webkit-backdrop-filter: blur(10px) saturate(180%);
             }
 
             .logo {
@@ -408,6 +512,11 @@
                 min-height: 90vh;
             }
 
+            /* Adjust paw density for mobile */
+            .hero::before {
+                background-size: 180px 180px;
+            }
+
             .hero-content h1 {
                 font-size: 42px;
             }
@@ -418,7 +527,6 @@
 
             .cat-container {
                 bottom: -100px;
-                /* Adjusted for mobile */
             }
 
             .cat-container img {
@@ -428,7 +536,6 @@
 
             .next-section {
                 padding-top: 100px;
-                /* Adjusted for mobile */
                 padding-bottom: 80px;
             }
 
@@ -453,18 +560,16 @@
             }
         }
 
-        /* High DPI screens */
+        /* High DPI screens (Retina) */
         @media (-webkit-min-device-pixel-ratio: 2),
         (min-resolution: 192dpi) {
             .hero::before {
-                background-size: 600px 600px;
-            }
-
-            .hero-content h1 {
-                font-size: 72px;
+                background-size: 250px 250px;
+                /* Keep same size but crisper rendering */
             }
         }
 
+        /* Very large screens */
         @media (min-width: 2560px) {
             .hero-content h1 {
                 font-size: 84px;
@@ -472,6 +577,17 @@
 
             .cat-container img {
                 width: 900px;
+            }
+
+            .hero::before {
+                background-size: 300px 300px;
+            }
+        }
+
+        /* Small screens */
+        @media (max-width: 480px) {
+            .hero::before {
+                background-size: 150px 150px;
             }
         }
 
@@ -499,7 +615,7 @@
     </div>
 
     <!-- Topbar -->
-    <div class="topbar">
+    <div class="topbar" id="topbar">
         <button class="mobile-menu-btn" id="mobileMenuBtn">
             <span class="hamburger"></span>
         </button>
@@ -514,7 +630,7 @@
     </div>
 
     <!-- Hero Section with Cat INSIDE -->
-    <section class="hero">
+    <section class="hero" id="heroSection">
         <div class="hero-content">
             <h1>
                 <span class="black-text">FOR THE</span>
@@ -583,6 +699,63 @@
             });
         }
 
+        // Simple Background Brightness Detection
+        function updateTopbarTextColor() {
+            const topbar = document.getElementById('topbar');
+            if (!topbar) return;
+
+            // Get topbar position
+            const topbarRect = topbar.getBoundingClientRect();
+            const topbarCenterY = topbarRect.top + (topbarRect.height / 2);
+
+            // Sample multiple points for better accuracy
+            let totalBrightness = 0;
+            const samplePoints = 5;
+            const topbarWidth = topbarRect.width;
+
+            for (let i = 0; i < samplePoints; i++) {
+                const xPos = window.innerWidth / 2 + (i - 2) * (topbarWidth / 8);
+                const element = document.elementFromPoint(xPos, topbarCenterY);
+
+                if (element) {
+                    let currentElement = element;
+                    let bgColor = null;
+
+                    // Go up the DOM tree to find a background color
+                    while (currentElement && currentElement !== document.body) {
+                        bgColor = window.getComputedStyle(currentElement).backgroundColor;
+                        // Check if it's not transparent
+                        if (bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
+                            break;
+                        }
+                        currentElement = currentElement.parentElement;
+                    }
+
+                    if (bgColor && bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
+                        const rgb = bgColor.match(/\d+/g);
+                        if (rgb) {
+                            const brightness = (parseInt(rgb[0]) * 299 +
+                                parseInt(rgb[1]) * 587 +
+                                parseInt(rgb[2]) * 114) / 1000;
+                            totalBrightness += brightness;
+                        }
+                    }
+                }
+            }
+
+            // Calculate average brightness
+            const avgBrightness = totalBrightness / samplePoints;
+
+            // Apply dark text if background is bright (hero section is yellowish ~240 brightness)
+            // White section is white (255 brightness)
+            if (avgBrightness > 200 || isNaN(avgBrightness)) {
+                topbar.classList.add('dark-text');
+            } else {
+                topbar.classList.remove('dark-text');
+            }
+        }
+
+        // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -601,13 +774,27 @@
             });
         }
 
+        // Initialize on load
         window.addEventListener('load', function () {
             loadFonts();
             setTimeout(() => {
                 document.body.classList.add('loaded');
+                // Initial text color update
+                updateTopbarTextColor();
             }, 100);
         });
 
+        // Update text color on scroll
+        let scrollTimeout;
+        window.addEventListener('scroll', function () {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(updateTopbarTextColor, 100);
+        });
+
+        // Update on resize
+        window.addEventListener('resize', updateTopbarTextColor);
+
+        // Fallback font loading
         setTimeout(() => {
             if (document.body.classList.contains('fonts-loading')) {
                 document.body.classList.remove('fonts-loading');
