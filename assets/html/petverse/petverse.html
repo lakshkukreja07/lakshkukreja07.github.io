@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PETVERSE</title>
+
+<style>
+
+/* ================= FONTS ================= */
+
+@font-face {
+  font-family: 'ClashDisplay-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2') format('woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'ClashDisplay-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2') format('woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'ClashGrotesk-SemiBold';
+  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2') format('woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'ClashGrotesk-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2') format('woff2');
+  font-display: block;
+}
+
+/* ================= RESET ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  background: #f2f2f2;
+  color: #111;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar {
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 65px;
+  background: white;
+  border-radius: 100px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  z-index: 1000;
+}
+
+.logo {
+  font-family: 'ClashDisplay-Bold';
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 35px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #444;
+  font-size: 14px;
+  font-family: 'ClashDisplay-Regular';
+}
+
+.cta-btn {
+  background: black;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 100px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: 'ClashDisplay-Regular';
+}
+
+/* ================= HERO ================= */
+
+.hero {
+  position: relative;
+  padding-top: 120px;
+  margin-bottom: -120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #F4EED7;
+  overflow: hidden;
+}
+
+/* Paw Background */
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background-image: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/background-paw.png');
+  background-repeat: repeat;
+  background-size: 480px 480px;
+  transform: rotate(20deg);
+  opacity: 0.05;
+  animation: movePaws 40s linear infinite;
+  z-index: 0;
+}
+
+@keyframes movePaws {
+  from { background-position: 0 0; }
+  to { background-position: 0 -1500px; }
+}
+
+/* ================= HERO CONTENT ================= */
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content h1 {
+  font-size: 64px;
+  margin-top: 40px;
+  margin-bottom: -20px;
+}
+
+.black-text {
+  font-family: 'ClashGrotesk-SemiBold';
+  color: #000;
+  letter-spacing: 1px;
+}
+
+.orange-text {
+  font-family: 'ClashGrotesk-Bold';
+  letter-spacing: 1.5px;
+  background: linear-gradient(90deg, #FF4F1A, #FF7A3D, #FF4F1A);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+/* ================= CAT ================= */
+
+.cat-container {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.cat-container img {
+  width: 700px;
+  max-width: 90%;
+  transform: translateY(30px);
+}
+
+/* ================= NEXT SECTION ================= */
+
+.next-section {
+  position: relative;
+  background: white;
+  height: 400px;
+  margin-top: -60px;
+  z-index: 1;
+}
+
+/* ================= INITIAL FADE STATE ================= */
+
+.topbar {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.hero-content,
+.cat-container {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.loaded .topbar {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: 0.2s;
+}
+
+.loaded .hero-content {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+.loaded .cat-container {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.8s;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+
+  .hero {
+    padding-top: 180px;
+  }
+
+  .cat-container img {
+    width: 420px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="logo">PETVERSE</div>
+
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Pricing</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <button class="cta-btn">Sign In</button>
+</div>
+
+<section class="hero">
+
+  <div class="hero-content">
+    <h1>
+      <span class="black-text">FOR THE</span>
+      <span class="orange-text">PET LOVERS.</span>
+    </h1>
+  </div>
+
+  <div class="cat-container">
+    <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/cat.png" alt="Petverse Cat">
+  </div>
+
+</section>
+
+<section class="next-section"></section>
+
+<script>
+  window.addEventListener("load", function () {
+    document.body.classList.add("loaded");
+  });
+</script>
+
+</body>
+</html>
