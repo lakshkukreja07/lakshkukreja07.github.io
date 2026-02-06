@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>PETVERSE</title>
 
 <style>
@@ -12,25 +12,33 @@
 @font-face {
   font-family: 'ClashDisplay-Regular';
   src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2') format('woff2');
-  font-display: block;
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'ClashDisplay-Bold';
   src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2') format('woff2');
-  font-display: block;
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'ClashGrotesk-SemiBold';
   src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2') format('woff2');
-  font-display: block;
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'ClashGrotesk-Bold';
   src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2') format('woff2');
-  font-display: block;
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* ================= RESET ================= */
@@ -43,6 +51,8 @@
 
 html, body {
   overflow-x: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -50,6 +60,10 @@ body {
   color: #111;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: auto;
 }
 
 body::-webkit-scrollbar {
@@ -64,6 +78,7 @@ body::-webkit-scrollbar {
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
+  max-width: 1200px;
   height: 65px;
   background: white;
   border-radius: 100px;
@@ -73,12 +88,20 @@ body::-webkit-scrollbar {
   justify-content: space-between;
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   z-index: 1000;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo {
   font-family: 'ClashDisplay-Bold';
   font-size: 22px;
   letter-spacing: 1px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .nav-links {
@@ -91,6 +114,28 @@ body::-webkit-scrollbar {
   color: #444;
   font-size: 14px;
   font-family: 'ClashDisplay-Regular';
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #FF4F1A, #FF7A3D);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #000;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .cta-btn {
@@ -102,6 +147,35 @@ body::-webkit-scrollbar {
   font-size: 14px;
   cursor: pointer;
   font-family: 'ClashDisplay-Regular';
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #FF4F1A, #FF7A3D);
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.cta-btn:hover::before {
+  left: 0;
+}
+
+.cta-btn:active {
+  transform: translateY(0);
 }
 
 /* ================= HERO ================= */
@@ -116,6 +190,8 @@ body::-webkit-scrollbar {
   text-align: center;
   background-color: #F4EED7;
   overflow: hidden;
+  min-height: 100vh;
+  justify-content: center;
 }
 
 /* Paw Background */
@@ -143,18 +219,21 @@ body::-webkit-scrollbar {
 .hero-content {
   position: relative;
   z-index: 10;
+  padding: 0 20px;
 }
 
 .hero-content h1 {
   font-size: 64px;
   margin-top: 40px;
   margin-bottom: -20px;
+  line-height: 1.1;
 }
 
 .black-text {
   font-family: 'ClashGrotesk-SemiBold';
   color: #000;
   letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .orange-text {
@@ -164,7 +243,10 @@ body::-webkit-scrollbar {
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   animation: shimmer 3s linear infinite;
+  display: inline-block;
+  text-shadow: 0 4px 8px rgba(255, 79, 26, 0.15);
 }
 
 @keyframes shimmer {
@@ -179,12 +261,19 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: center;
   width: 100%;
+  padding: 0 20px;
 }
 
 .cat-container img {
   width: 700px;
   max-width: 90%;
   transform: translateY(30px);
+  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.1));
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cat-container img:hover {
+  transform: translateY(20px) scale(1.02);
 }
 
 /* ================= NEXT SECTION ================= */
@@ -195,6 +284,9 @@ body::-webkit-scrollbar {
   height: 400px;
   margin-top: -60px;
   z-index: 1;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
 }
 
 /* ================= INITIAL FADE STATE ================= */
@@ -230,23 +322,258 @@ body::-webkit-scrollbar {
   transition-delay: 0.8s;
 }
 
+/* ================= MOBILE TOPBAR ================= */
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1002;
+}
+
+.menu-icon {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #000;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: #000;
+  left: 0;
+  transition: transform 0.3s ease;
+}
+
+.menu-icon::before {
+  top: -8px;
+}
+
+.menu-icon::after {
+  top: 8px;
+}
+
+.mobile-menu-btn.active .menu-icon {
+  background: transparent;
+}
+
+.mobile-menu-btn.active .menu-icon::before {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.mobile-menu-btn.active .menu-icon::after {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: white;
+  z-index: 999;
+  padding: 100px 40px 40px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.mobile-nav.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.mobile-nav-links a {
+  text-decoration: none;
+  color: #444;
+  font-size: 20px;
+  font-family: 'ClashDisplay-Regular';
+  padding: 10px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav-links a:hover {
+  color: #000;
+}
+
+.mobile-cta-btn {
+  background: black;
+  color: white;
+  padding: 14px 32px;
+  border-radius: 100px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'ClashDisplay-Regular';
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.mobile-cta-btn:hover {
+  background: #FF4F1A;
+  transform: scale(1.05);
+}
+
 /* ================= RESPONSIVE ================= */
 
 @media (max-width: 1000px) {
-
   .hero {
     padding-top: 180px;
+    min-height: 90vh;
   }
 
   .cat-container img {
     width: 420px;
   }
+
+  .hero-content h1 {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    width: 90%;
+    padding: 0 25px;
+    height: 60px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .nav-links,
+  .cta-btn {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .hero-content h1 {
+    font-size: 42px;
+    margin-top: 60px;
+    margin-bottom: 10px;
+  }
+
+  .cat-container img {
+    width: 320px;
+    max-width: 85%;
+  }
+
+  .hero::before {
+    background-size: 320px 320px;
+  }
+
+  .next-section {
+    height: 300px;
+    margin-top: -40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    width: 92%;
+    padding: 0 20px;
+    height: 55px;
+    top: 20px;
+  }
+
+  .hero {
+    padding-top: 140px;
+    min-height: 85vh;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+    margin-top: 40px;
+  }
+
+  .orange-text, .black-text {
+    display: block;
+    line-height: 1.3;
+  }
+
+  .cat-container img {
+    width: 280px;
+    transform: translateY(20px);
+  }
+
+  .next-section {
+    height: 250px;
+    margin-top: -30px;
+  }
+}
+
+/* ================= HIGH-DPI SCREEN OPTIMIZATIONS ================= */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero::before {
+    opacity: 0.04;
+  }
+
+  .cat-container img {
+    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.08));
+  }
+
+  .topbar {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  }
+}
+
+/* ================= SMOOTH SCROLLING ================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ================= PERFORMANCE OPTIMIZATIONS ================= */
+
+.cat-container img {
+  will-change: transform;
+}
+
+.hero-content h1 {
+  will-change: transform, opacity;
+}
+
+/* ================= LOADING ENHANCEMENTS ================= */
+
+.no-js .topbar,
+.no-js .hero-content,
+.no-js .cat-container {
+  opacity: 1;
+  transform: none;
 }
 
 </style>
 </head>
 
-<body>
+<body class="no-js">
 
 <div class="topbar">
   <div class="logo">PETVERSE</div>
@@ -259,10 +586,23 @@ body::-webkit-scrollbar {
   </div>
 
   <button class="cta-btn">Sign In</button>
+  
+  <button class="mobile-menu-btn" id="mobileMenuBtn">
+    <span class="menu-icon"></span>
+  </button>
+</div>
+
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-links">
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Pricing</a>
+    <a href="#">Contact</a>
+  </div>
+  <button class="mobile-cta-btn">Sign In</button>
 </div>
 
 <section class="hero">
-
   <div class="hero-content">
     <h1>
       <span class="black-text">FOR THE</span>
@@ -273,14 +613,69 @@ body::-webkit-scrollbar {
   <div class="cat-container">
     <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/cat.png" alt="Petverse Cat">
   </div>
-
 </section>
 
 <section class="next-section"></section>
 
 <script>
+  // Remove no-js class if JavaScript is enabled
+  document.body.classList.remove('no-js');
+  
+  // Load animation
   window.addEventListener("load", function () {
     document.body.classList.add("loaded");
+  });
+  
+  // Mobile menu functionality
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  
+  if (mobileMenuBtn && mobileNav) {
+    mobileMenuBtn.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileNav.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuBtn.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+  
+  // Optimize for 4K displays
+  function optimizeForHighDPI() {
+    const isHighDPI = window.matchMedia && (
+      window.matchMedia('(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)').matches ||
+      window.devicePixelRatio >= 2
+    );
+    
+    if (isHighDPI) {
+      // Apply high DPI optimizations
+      document.documentElement.style.setProperty('--image-quality', 'high');
+    }
+  }
+  
+  // Initialize optimizations
+  window.addEventListener('DOMContentLoaded', optimizeForHighDPI);
+  
+  // Handle resize events
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      // Close mobile menu on resize to desktop
+      if (window.innerWidth > 768 && mobileNav && mobileNav.classList.contains('active')) {
+        mobileMenuBtn.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }, 250);
   });
 </script>
 
