@@ -88,7 +88,7 @@
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            z-index: 1000;
+            z-index: 6000;
             opacity: 0;
             transform: translateX(-50%) translateY(-20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
@@ -286,6 +286,45 @@
             margin: 0 auto 40px;
         }
 
+        /* FOOTER SECTION */
+        .footer {
+            position: relative;
+            background: white;
+            width: 100%;
+            padding: 40px 20px;
+            text-align: left;
+            border-top: 1px solid #eee;
+            margin-top: 0;
+            z-index: 200;
+        }
+
+        .footer-divider {
+            width: 80%;
+            max-width: 800px;
+            height: 1px;
+            background: #ddd;
+            margin: 0 auto 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+
+        .copyright {
+            font-size: 13px;
+            color: #888;
+            margin-top: 20px;
+        }
+
         /* MOBILE */
         .mobile-menu-btn {
             display: none;
@@ -400,6 +439,18 @@
             .section-content p {
                 font-size: 16px;
             }
+
+            .footer {
+                padding: 30px 15px;
+            }
+
+            .footer-content {
+                font-size: 12px;
+            }
+
+            .copyright {
+                font-size: 11px;
+            }
         }
 
         /* High DPI screens */
@@ -489,6 +540,23 @@
             </button>
         </div>
     </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025-2026 Petverse Private Limited. All rights reserved.</p>
+            <p>© Site Made By Laksh Kukreja.</p>
+            <p class="copyright">
+                All content, designs, graphics, text, and other materials displayed on this website are my original
+                creative work and are shared strictly for personal and educational purposes. Any illustrations showed in
+                the website maybe artificially generated for representational purposes of the product and might not have
+                any existence in real life. Any unauthorized copying, reproduction, redistribution, publication, or
+                commercial use of any part of this website, whether in full or in part, without prior written permission
+                from the author is strictly prohibited and may result in legal action under applicable copyright and
+                intellectual property laws.
+            </p>
+        </div>
+    </footer>
 
     <script>
         const fonts = [
