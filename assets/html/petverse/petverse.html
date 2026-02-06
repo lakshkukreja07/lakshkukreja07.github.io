@@ -1,640 +1,553 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<!-- Critical: Preload fonts BEFORE screenshare -->
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <meta charset="UTF-8">
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2"
+        as="font" type="font/woff2" crossorigin>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>PETVERSE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PETVERSE</title>
 
-<style>
-/* ================= FONT FACE - GUARANTEED LOAD ================= */
-@font-face {
-  font-family: 'ClashDisplay-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 400;
-  font-style: normal;
-}
+    <style>
+        @font-face {
+            font-family: 'ClashDisplay-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 400;
+            font-style: normal;
+        }
 
-@font-face {
-  font-family: 'ClashDisplay-Bold';
-  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 700;
-  font-style: normal;
-}
+        @font-face {
+            font-family: 'ClashDisplay-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 700;
+            font-style: normal;
+        }
 
-@font-face {
-  font-family: 'ClashGrotesk-SemiBold';
-  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 600;
-  font-style: normal;
-}
+        @font-face {
+            font-family: 'ClashGrotesk-SemiBold';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 600;
+            font-style: normal;
+        }
 
-@font-face {
-  font-family: 'ClashGrotesk-Bold';
-  src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 700;
-  font-style: normal;
-}
+        @font-face {
+            font-family: 'ClashGrotesk-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 700;
+            font-style: normal;
+        }
 
-/* ================= BASE ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-}
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
 
-body {
-  background: #f2f2f2;
-  color: #111;
-  /* Fallback font stack */
-  font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
-  overflow-x: hidden;
-  position: relative;
-}
+        body {
+            background: white;
+            color: #111;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+        }
 
-/* ================= TOPBAR ================= */
-.topbar {
-  position: fixed;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 1200px;
-  height: 65px;
-  background: white;
-  border-radius: 100px;
-  padding: 0 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  z-index: 1000;
-  opacity: 0;
-  transform: translateX(-50%) translateY(-20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
+        /* TOPBAR */
+        .topbar {
+            position: fixed;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 1200px;
+            height: 65px;
+            background: white;
+            border-radius: 100px;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(-50%) translateY(-20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
 
-.loaded .topbar {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
+        .loaded .topbar {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
 
-/* Logo - Force custom font */
-.logo {
-  font-family: 'ClashDisplay-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-size: 22px;
-  letter-spacing: 1px;
-  font-weight: 700 !important;
-}
+        .logo {
+            font-family: 'ClashDisplay-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-size: 22px;
+            letter-spacing: 1px;
+            font-weight: 700 !important;
+        }
 
-/* Navigation - Force custom font */
-.nav-links {
-  display: flex;
-  gap: 35px;
-}
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
 
-.nav-links a {
-  text-decoration: none;
-  color: #444;
-  font-size: 14px;
-  font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-weight: 400 !important;
-}
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-weight: 400 !important;
+        }
 
-.cta-btn {
-  background: black;
-  color: white;
-  padding: 10px 22px;
-  border-radius: 100px;
-  border: none;
-  font-size: 14px;
-  cursor: pointer;
-  font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-weight: 400 !important;
-}
+        .cta-btn {
+            background: black;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 100px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-weight: 400 !important;
+        }
 
-/* ================= HERO SECTION ================= */
-.hero {
-  position: relative;
-  width: 100%;
-  padding-top: 140px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: #F4EED7;
-  overflow: hidden;
-  min-height: 100vh;
-  justify-content: center;
-}
+        /* HERO SECTION - 90% SCREEN */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            min-height: 90vh;
+            background-color: #F4EED7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: visible;
+            /* CHANGED to visible for cat overflow */
+        }
 
-/* Paw Background */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -50%;
-  background-image: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/background-paw.png');
-  background-repeat: repeat;
-  background-size: 480px 480px;
-  transform: rotate(20deg);
-  opacity: 0.05;
-  animation: movePaws 40s linear infinite;
-  z-index: 0;
-}
+        /* Paw Background - NO ROTATION */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/background-paw.png');
+            background-repeat: repeat;
+            background-size: 120px 120px;
+            opacity: 0.05;
+            animation: movePaws 40s linear infinite;
+            z-index: 0;
+        }
 
-@keyframes movePaws {
-  from { background-position: 0 0; }
-  to { background-position: 0 -1500px; }
-}
+        @keyframes movePaws {
+            from {
+                background-position: 0 0;
+            }
 
-/* ================= HERO CONTENT ================= */
-.hero-content {
-  position: relative;
-  z-index: 10;
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
+            to {
+                background-position: 0 -1500px;
+            }
+        }
 
-.loaded .hero-content {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.3s;
-}
+        /* HERO CONTENT */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+            margin-bottom: 15vh;
+        }
 
-.hero-content h1 {
-  font-size: 64px;
-  margin-bottom: -20px;
-  line-height: 1.1;
-}
+        .loaded .hero-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
 
-/* Black text - Force custom font */
-.black-text {
-  font-family: 'ClashGrotesk-SemiBold', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  color: #000;
-  letter-spacing: 1px;
-  font-weight: 600 !important;
-}
+        .hero-content h1 {
+            font-size: 64px;
+            line-height: 1.1;
+        }
 
-/* Orange text - Force custom font */
-.orange-text {
-  font-family: 'ClashGrotesk-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  letter-spacing: 1.5px;
-  background: linear-gradient(90deg, #FF4F1A, #FF7A3D, #FF4F1A);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
-  font-weight: 700 !important;
-}
+        .black-text {
+            font-family: 'ClashGrotesk-SemiBold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            color: #000;
+            letter-spacing: 1px;
+            font-weight: 600 !important;
+        }
 
-@keyframes shimmer {
-  to { background-position: 200% center; }
-}
+        .orange-text {
+            font-family: 'ClashGrotesk-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #FF4F1A, #FF7A3D, #FF4F1A);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            font-weight: 700 !important;
+        }
 
-/* ================= CAT CONTAINER - FIXED POSITIONING ================= */
-.cat-container {
-  position: relative;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  width: 100%;
-  height: 50vh;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease, transform 1s ease;
-  margin-top: 200px;
-  margin-bottom: -200px;
-}
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
 
-.loaded .cat-container {
-  opacity: 1;
-  transform: translateY(-50px);
-  transition-delay: 0.6s;
-}
+        /* CAT CONTAINER - INSIDE HERO */
+        .cat-container {
+            position: absolute;
+            bottom: -150px;
+            /* CHANGED to -150px */
+            left: 0;
+            width: 100%;
+            z-index: 5000;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+            pointer-events: none;
+        }
 
-.cat-container img {
-  width: 700px;
-  max-width: 90%;
-  height: auto;
-  position: relative;
-  bottom: 0;
-  display: block;
-}
+        .loaded .cat-container {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.6s;
+        }
 
-/* ================= NEXT SECTION ================= */
-.next-section {
-  position: relative;
-  background: white;
-  height: 400px;
-  margin-top: -60px;
-  z-index: 1;
-  width: 100%;
-}
+        .cat-container img {
+            width: 700px;
+            max-width: 90%;
+            height: auto;
+            display: block;
+            z-index: 5000;
+        }
 
-/* ================= MOBILE VERSION ================= */
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1001;
-}
+        /* WHITE SECTION - ADJUSTED for cat at -150px */
+        .next-section {
+            position: relative;
+            background: white;
+            min-height: 500px;
+            width: 100%;
+            z-index: 100;
+            padding-top: 150px;
+            /* Increased to match cat at -150px */
+            padding-bottom: 100px;
+            margin-top: 0;
+        }
 
-.hamburger {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: #000;
-  position: relative;
-}
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+            position: relative;
+            z-index: 200;
+        }
 
-.hamburger::before,
-.hamburger::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 2px;
-  background: #000;
-  left: 0;
-}
+        .section-content h2 {
+            font-family: 'ClashDisplay-Bold', sans-serif;
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: #111;
+        }
 
-.hamburger::before {
-  top: -8px;
-}
+        .section-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
 
-.hamburger::after {
-  top: 8px;
-}
+        /* MOBILE */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1001;
+        }
 
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: white;
-  z-index: 999;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 100px 20px 40px;
-}
+        .hamburger {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #000;
+            position: relative;
+        }
 
-@media (max-width: 768px) {
-  .topbar {
-    width: 90%;
-    height: 60px;
-    padding: 0 20px;
-  }
-  
-  .logo {
-    font-size: 20px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .nav-links,
-  .cta-btn {
-    display: none !important;
-  }
-  
-  .mobile-menu-btn {
-    display: block;
-  }
-  
-  .hero {
-    padding-top: 120px;
-  }
-  
-  .hero-content h1 {
-    font-size: 42px;
-  }
-  
-  .cat-container {
-    height: 40vh;
-    margin-top: 150px;
-    margin-bottom: -150px;
-  }
-  
-  .loaded .cat-container {
-    transform: translateY(-30px);
-  }
-  
-  .cat-container img {
-    width: 420px;
-    max-width: 85%;
-  }
-}
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background: #000;
+            left: 0;
+        }
 
-/* ================= SCREENSHARE SPECIFIC FIXES ================= */
-/* Force font loading on screenshare */
-@supports (font-display: optional) {
-  @font-face {
-    font-family: 'ClashDisplay-Regular-Screenshare';
-    src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2') format('woff2');
-    font-display: block;
-  }
-  
-  @font-face {
-    font-family: 'ClashDisplay-Bold-Screenshare';
-    src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2') format('woff2');
-    font-display: block;
-  }
-}
+        .hamburger::before {
+            top: -8px;
+        }
 
-/* Screenshare detection styles */
-body.screenshare-mode .logo {
-  font-family: 'ClashDisplay-Bold-Screenshare', 'ClashDisplay-Bold', -apple-system, sans-serif !important;
-}
+        .hamburger::after {
+            top: 8px;
+        }
 
-body.screenshare-mode .nav-links a,
-body.screenshare-mode .cta-btn {
-  font-family: 'ClashDisplay-Regular-Screenshare', 'ClashDisplay-Regular', -apple-system, sans-serif !important;
-}
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 40px;
+        }
 
-body.screenshare-mode .black-text {
-  font-family: 'ClashGrotesk-SemiBold', -apple-system, sans-serif !important;
-}
+        @media (max-width: 768px) {
+            .topbar {
+                width: 90%;
+                height: 60px;
+                padding: 0 20px;
+            }
 
-body.screenshare-mode .orange-text {
-  font-family: 'ClashGrotesk-Bold', -apple-system, sans-serif !important;
-}
+            .logo {
+                font-size: 20px;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
 
-/* Screenshare-specific cat positioning */
-body.screenshare-mode .cat-container {
-  margin-top: 150px;
-  margin-bottom: -150px;
-  height: 45vh;
-  align-items: center;
-}
+            .nav-links,
+            .cta-btn {
+                display: none !important;
+            }
 
-body.screenshare-mode .loaded .cat-container {
-  transform: translateY(-30px);
-}
+            .mobile-menu-btn {
+                display: block;
+            }
 
-/* High DPI screens (4K) */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .hero::before {
-    background-size: 600px 600px;
-  }
-  
-  .hero-content h1 {
-    font-size: 72px;
-  }
-  
-  .cat-container img {
-    image-rendering: -webkit-optimize-contrast;
-  }
-  
-  /* Additional 4K adjustments */
-  .cat-container {
-    margin-top: 180px;
-    margin-bottom: -180px;
-  }
-}
+            .hero {
+                height: 90vh;
+                min-height: 90vh;
+            }
 
-/* Ultra-high resolution screens (4K and above) */
-@media (min-width: 2560px) {
-  .hero-content h1 {
-    font-size: 84px;
-  }
-  
-  .cat-container {
-    margin-top: 160px;
-    margin-bottom: -160px;
-  }
-  
-  .cat-container img {
-    width: 900px;
-  }
-  
-  /* Screenshare specific for 4K */
-  body.screenshare-mode .cat-container {
-    margin-top: 120px;
-    margin-bottom: -120px;
-    height: 40vh;
-  }
-  
-  body.screenshare-mode .cat-container img {
-    width: 800px;
-    max-width: 85%;
-  }
-}
+            .hero-content h1 {
+                font-size: 42px;
+            }
 
-/* Prevent font flash */
-.fonts-loading * {
-  visibility: hidden;
-}
+            .hero-content {
+                margin-bottom: 12vh;
+            }
 
-.fonts-loaded * {
-  visibility: visible;
-}
-</style>
+            .cat-container {
+                bottom: -100px;
+                /* Adjusted for mobile */
+            }
+
+            .cat-container img {
+                width: 420px;
+                max-width: 85%;
+            }
+
+            .next-section {
+                padding-top: 100px;
+                /* Adjusted for mobile */
+                padding-bottom: 80px;
+            }
+
+            .section-content h2 {
+                font-size: 36px;
+            }
+
+            .section-content p {
+                font-size: 16px;
+            }
+        }
+
+        /* High DPI screens */
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            .hero::before {
+                background-size: 600px 600px;
+            }
+
+            .hero-content h1 {
+                font-size: 72px;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            .hero-content h1 {
+                font-size: 84px;
+            }
+
+            .cat-container img {
+                width: 900px;
+            }
+        }
+
+        .fonts-loading * {
+            visibility: hidden;
+        }
+
+        .fonts-loaded * {
+            visibility: visible;
+        }
+    </style>
 </head>
 
 <body class="fonts-loading">
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-nav-links">
-    <a href="#">Home</a>
-    <a href="#">Services</a>
-    <a href="#">Pricing</a>
-    <a href="#">Contact</a>
-  </div>
-  <button class="mobile-cta-btn">Sign In</button>
-</div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Pricing</a>
+            <a href="#">Contact</a>
+        </div>
+        <button class="mobile-cta-btn">Sign In</button>
+    </div>
 
-<!-- Topbar -->
-<div class="topbar">
-  <button class="mobile-menu-btn" id="mobileMenuBtn">
-    <span class="hamburger"></span>
-  </button>
-  <div class="logo">PETVERSE</div>
-  <div class="nav-links">
-    <a href="#">Home</a>
-    <a href="#">Services</a>
-    <a href="#">Pricing</a>
-    <a href="#">Contact</a>
-  </div>
-  <button class="cta-btn">Sign In</button>
-</div>
+    <!-- Topbar -->
+    <div class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span class="hamburger"></span>
+        </button>
+        <div class="logo">PETVERSE</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Pricing</a>
+            <a href="#">Contact</a>
+        </div>
+        <button class="cta-btn">Sign In</button>
+    </div>
 
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>
-      <span class="black-text">FOR THE</span>
-      <span class="orange-text">PET LOVERS.</span>
-    </h1>
-  </div>
-  <div class="cat-container">
-    <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/cat.png" alt="Petverse Cat">
-  </div>
-</section>
+    <!-- Hero Section with Cat INSIDE -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                <span class="black-text">FOR THE</span>
+                <span class="orange-text">PET LOVERS.</span>
+            </h1>
+        </div>
 
-<section class="next-section"></section>
+        <!-- CAT IS NOW INSIDE THE HERO SECTION -->
+        <div class="cat-container">
+            <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/cat.png"
+                alt="Petverse Cat">
+        </div>
+    </section>
 
-<script>
-// ================= FONT LOADING GUARANTEE =================
-const fonts = [
-  'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2',
-  'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2',
-  'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2',
-  'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2'
-];
+    <!-- White Section -->
+    <section class="next-section">
+        <div class="section-content">
+            <h2>Welcome to Petverse</h2>
+            <p>Your ultimate destination for everything pets. Join our community of passionate pet lovers and discover
+                amazing services, products, and resources for your furry friends.</p>
+            <button class="cta-btn" style="background: #FF4F1A; color: white; padding: 12px 30px; font-size: 16px;">
+                Explore Services
+            </button>
+        </div>
+    </section>
 
-// Preload all fonts
-function loadFonts() {
-  const fontPromises = fonts.map(fontUrl => {
-    return new Promise((resolve, reject) => {
-      const font = new FontFace('CustomFont', `url(${fontUrl})`);
-      font.load().then(resolve).catch(reject);
-    });
-  });
-  
-  Promise.all(fontPromises).then(() => {
-    document.body.classList.remove('fonts-loading');
-    document.body.classList.add('fonts-loaded');
-    console.log('All custom fonts loaded successfully');
-  }).catch(error => {
-    console.warn('Some fonts failed to load, using fallback', error);
-    document.body.classList.remove('fonts-loading');
-    document.body.classList.add('fonts-loaded');
-  });
-}
+    <script>
+        const fonts = [
+            'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2',
+            'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2',
+            'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2',
+            'https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2'
+        ];
 
-// ================= SCREENSHARE DETECTION =================
-function detectScreenshare() {
-  // Check for common screenshare indicators
-  const isHighDPI = window.devicePixelRatio >= 2;
-  const isLargeScreen = window.innerWidth >= 2560 || window.screen.width >= 2560;
-  const isVirtualScreen = window.screen.availWidth !== window.innerWidth;
-  const hasChromeRemoteDesktop = navigator.userAgent.includes('Chrome Remote Desktop') || 
-                                 navigator.userAgent.includes('HeadlessChrome');
-  
-  // More reliable screenshare detection
-  const likelyScreenshare = (isHighDPI && isLargeScreen) || 
-                           isVirtualScreen || 
-                           hasChromeRemoteDesktop ||
-                           (window.screen.width > 3840); // 4K+ displays
-  
-  if (likelyScreenshare) {
-    console.log('Screenshare/High-DPI mode detected');
-    document.body.classList.add('screenshare-mode');
-    
-    // Apply screenshare-specific adjustments
-    setTimeout(() => {
-      document.body.style.fontFamily = 'ClashDisplay-Regular, sans-serif';
-      
-      // Ensure cat container has proper positioning
-      const catContainer = document.querySelector('.cat-container');
-      if (catContainer) {
-        catContainer.style.marginTop = '150px';
-        catContainer.style.marginBottom = '-150px';
-      }
-    }, 100);
-    
-    return true;
-  }
-  
-  return false;
-}
+        function loadFonts() {
+            const fontPromises = fonts.map(fontUrl => {
+                return new Promise((resolve, reject) => {
+                    const font = new FontFace('CustomFont', `url(${fontUrl})`);
+                    font.load().then(resolve).catch(reject);
+                });
+            });
 
-// ================= INITIALIZE =================
-window.addEventListener('load', function() {
-  // Load fonts first
-  loadFonts();
-  
-  // Detect screenshare
-  detectScreenshare();
-  
-  // Apply loaded class
-  setTimeout(() => {
-    document.body.classList.add('loaded');
-    
-    // Additional screenshare adjustments
-    if (document.body.classList.contains('screenshare-mode')) {
-      const catContainer = document.querySelector('.cat-container');
-      if (catContainer) {
-        catContainer.style.alignItems = 'center';
-      }
-    }
-    
-  }, 100);
-});
+            Promise.all(fontPromises).then(() => {
+                document.body.classList.remove('fonts-loading');
+                document.body.classList.add('fonts-loaded');
+            }).catch(error => {
+                document.body.classList.remove('fonts-loading');
+                document.body.classList.add('fonts-loaded');
+            });
+        }
 
-// Mobile menu functionality
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-if (mobileMenuBtn && mobileMenu) {
-  mobileMenuBtn.addEventListener('click', function() {
-    this.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-  });
-  
-  const mobileLinks = mobileMenu.querySelectorAll('a');
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenuBtn.classList.remove('active');
-      mobileMenu.classList.remove('active');
-    });
-  });
-}
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function () {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
 
-// Handle resize events
-let resizeTimeout;
-window.addEventListener('resize', function() {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    // Re-detect screenshare on resize
-    detectScreenshare();
-    
-  }, 250);
-});
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        }
 
-// ================= FONT FALLBACK SYSTEM =================
-// If fonts don't load within 3 seconds, force system fonts
-setTimeout(() => {
-  if (document.body.classList.contains('fonts-loading')) {
-    console.log('Fonts taking too long, forcing fallback');
-    document.body.classList.remove('fonts-loading');
-    document.body.classList.add('fonts-loaded');
-    
-    // Apply system fonts as fallback
-    const elements = document.querySelectorAll('[class*="text"], .logo, .nav-links a, .cta-btn');
-    elements.forEach(el => {
-      el.style.fontFamily = '-apple-system, BlinkMacSystemFont, sans-serif';
-    });
-  }
-}, 3000);
-</script>
+        window.addEventListener('load', function () {
+            loadFonts();
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
+        });
+
+        setTimeout(() => {
+            if (document.body.classList.contains('fonts-loading')) {
+                document.body.classList.remove('fonts-loading');
+                document.body.classList.add('fonts-loaded');
+            }
+        }, 3000);
+    </script>
 
 </body>
+
 </html>
