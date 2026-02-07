@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videocon</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* ===== PROMO BAR ===== */
+
+        .promo-bar {
+            height: 50px;
+            /* Changed to 50px as requested */
+            background: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .95rem;
+            /* Slightly larger font for taller bar */
+            position: relative;
+            font-weight: 400;
+        }
+
+        .promo-bar button {
+            position: absolute;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .promo-bar svg {
+            width: 20px;
+            /* Slightly larger close icon */
+            height: 20px;
+            stroke: #fff;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* ===== NAVBAR ===== */
+
+        .navbar {
+            height: 50px;
+            /* Reset to original 60px */
+            border-bottom: 1px solid #e5e5e5;
+            background: #fff;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1440px;
+            margin: auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: .5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            font-size: .95rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #111;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-icons svg {
+            width: 24px;
+            height: 24px;
+            stroke: #111;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            cursor: pointer;
+        }
+
+        /* ===== ACCOUNT WRAPPER ===== */
+
+        .account-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .account-underline {
+            position: absolute;
+            bottom: -21px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e60012;
+            opacity: 0;
+            transition: .2s ease;
+        }
+
+        /* ===== ACCOUNT PANEL ===== */
+
+        .account-panel {
+            position: fixed;
+            top: 110px;
+            /* Updated: 50px (promo) + 60px (nav) = 110px */
+            right: 0;
+            width: 380px;
+            background: #f6f6f6;
+            display: none;
+            z-index: 2000;
+        }
+
+        .account-panel.active {
+            display: block;
+        }
+
+        .account-wrapper.active .account-underline {
+            opacity: 1;
+        }
+
+        /* ===== PANEL HEADER ===== */
+
+        .panel-header {
+            display: flex;
+            gap: 16px;
+            padding: 28px 24px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .panel-header h4 {
+            font-weight: 400;
+            margin-bottom: 6px;
+        }
+
+        .panel-header a {
+            font-size: .9rem;
+            text-decoration: underline;
+            color: #000;
+            margin-right: 12px;
+        }
+
+        /* ===== MENU ROW ===== */
+
+        .menu-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .menu-row:hover {
+            background: #ececec;
+        }
+
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-left svg {
+            width: 22px;
+            height: 22px;
+            stroke: #111;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .chevron {
+            width: 20px;
+            height: 20px;
+            stroke: #111;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e5e5e5;
+        }
+
+        /* ===== HERO ===== */
+
+        .hero {
+            min-height: calc(100vh - 110px);
+            /* Updated: 50px + 60px = 110px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 20% center, #dfeceb 0%, #0b0b0b 65%);
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PROMO BAR -->
+    <div class="promo-bar">
+        Videocon V15R | From ₹45,999 incl bank offers.
+        <button onclick="this.parentElement.style.display='none'">
+            <svg viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <div class="logo">VIDEOCON</div>
+
+            <div class="nav-links">
+                <a href="#">Store</a>
+                <a href="#">Phone</a>
+                <a href="#">Tablet</a>
+                <a href="#">Wearables</a>
+                <a href="#">Audio</a>
+                <a href="#">Community</a>
+                <a href="#">Support</a>
+            </div>
+
+            <div class="nav-icons">
+
+                <!-- Search -->
+                <svg viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+
+                <!-- Cart -->
+                <svg viewBox="0 0 24 24">
+                    <circle cx="9" cy="21" r="1" />
+                    <circle cx="20" cy="21" r="1" />
+                    <path d="M1 1h4l2.68 13.39h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                </svg>
+
+                <!-- Account -->
+                <div class="account-wrapper" id="accountWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 20a6 6 0 0 0-12 0" />
+                        <circle cx="12" cy="10" r="4" />
+                        <circle cx="12" cy="12" r="10" />
+                    </svg>
+                    <div class="account-underline"></div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- ACCOUNT PANEL -->
+    <div class="account-panel" id="accountPanel">
+
+        <div class="panel-header">
+
+            <svg fill="#55a2dd" viewBox="-3.2 -3.2 38.40 38.40" width="56" height="56">
+                <path d="M16,8a5,5,0,1,0,5,5A5,5,0,0,0,16,8Z" />
+                <path
+                    d="M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2Zm7.9925,22.9258A5.0016,5.0016,0,0,0,19,20H13a5.0016,5.0016,0,0,0-4.9925,4.9258,12,12,0,1,1,15.985,0Z" />
+            </svg>
+
+            <div>
+                <h4>Welcome to Videocon</h4>
+                <a href="#">Sign up</a>
+                <a href="#">Sign in</a>
+            </div>
+
+        </div>
+
+        <div class="menu-row">
+            <div class="menu-left">Orders</div><svg class="chevron" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+            </svg>
+        </div>
+        <div class="divider"></div>
+        <div class="menu-row">
+            <div class="menu-left">Account</div><svg class="chevron" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+            </svg>
+        </div>
+        <div class="divider"></div>
+        <div class="menu-row">
+            <div class="menu-left">Achievement</div><svg class="chevron" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+            </svg>
+        </div>
+        <div class="divider"></div>
+        <div class="menu-row">
+            <div class="menu-left">Coupon</div><svg class="chevron" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+            </svg>
+        </div>
+        <div class="divider"></div>
+        <div class="menu-row">
+            <div class="menu-left">RedCoins</div><svg class="chevron" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+            </svg>
+        </div>
+        <div class="divider"></div>
+        <div class="menu-row">
+            <div class="menu-left">Red Cable Club</div><svg class="chevron" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+            </svg>
+        </div>
+
+    </div>
+
+    <section class="hero">
+        <h1>Videocon V15R</h1>
+    </section>
+
+    <script>
+        const wrapper = document.getElementById("accountWrapper");
+        const panel = document.getElementById("accountPanel");
+
+        wrapper.addEventListener("mouseenter", () => {
+            panel.classList.add("active");
+            wrapper.classList.add("active");
+        });
+
+        wrapper.addEventListener("mouseleave", () => {
+            setTimeout(() => {
+                if (!panel.matches(':hover')) {
+                    panel.classList.remove("active");
+                    wrapper.classList.remove("active");
+                }
+            }, 50);
+        });
+
+        panel.addEventListener("mouseleave", () => {
+            panel.classList.remove("active");
+            wrapper.classList.remove("active");
+        });
+    </script>
+
+</body>
+
+</html>
