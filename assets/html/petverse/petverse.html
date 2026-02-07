@@ -3,6 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/petverse_favicon.ico"
+        type="image/x-icon">
+
     <link rel="preload"
         href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2"
         as="font" type="font/woff2" crossorigin>
@@ -102,9 +107,7 @@
             align-items: center;
             justify-content: space-between;
             z-index: 6000;
-            opacity: 0;
-            transform: translateX(-50%) translateY(-20px);
-            transition: all 0.8s ease;
+            opacity: 1;
             overflow: hidden;
             cursor: pointer;
             outline: 0;
@@ -128,18 +131,19 @@
             --cta-color: #fff;
         }
 
-        .loaded .topbar {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
         .logo {
+            display: flex;
+            align-items: center;
             font-family: 'ClashDisplay-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
             font-size: 22px;
-            letter-spacing: 1px;
             font-weight: 700 !important;
             color: var(--logo-color);
             transition: color 0.3s ease;
+        }
+
+        .logo-img {
+            height: 48px;
+            margin-right: -5px;
         }
 
         .nav-links {
@@ -387,8 +391,11 @@
 
             .logo {
                 font-size: 20px;
-                position: static;
-                transform: none;
+            }
+
+            .logo-img {
+                height: 48px;
+                margin-right: -5px;
             }
 
             .nav-links,
@@ -407,6 +414,7 @@
             }
 
             .hero-content h1 {
+                margin-top: 100px;
                 font-size: 42px;
             }
 
@@ -502,7 +510,11 @@
 
     <!-- Topbar -->
     <div class="topbar" id="topbar">
-        <div class="logo">PETVERSE</div>
+        <div class="logo">
+            <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/petverse_logo.png"
+                alt="Petverse Logo" class="logo-img">
+            PETVERSE
+        </div>
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#">Services</a>
