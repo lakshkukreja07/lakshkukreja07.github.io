@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/petverse_favicon.ico"
+        type="image/x-icon">
+
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2"
+        as="font" type="font/woff2" crossorigin>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PETVERSE</title>
+
+    <style>
+        @font-face {
+            font-family: 'ClashDisplay-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ClashDisplay-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ClashGrotesk-SemiBold';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Semibold.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ClashGrotesk-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/ClashGrotesk-Bold.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: white;
+            color: #111;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* TOPBAR - Always White Tinted with Dynamic Text Color */
+        .topbar {
+            position: fixed;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 1200px;
+            height: 65px;
+
+            /* Always white tinted background */
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px solid transparent;
+            border-radius: 100px;
+
+            /* Glass reflections and shadows */
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.6),
+                inset 0 0 20px rgba(255, 255, 255, 0.2),
+                0 8px 32px rgba(31, 38, 135, 0.15);
+
+            /* Frosted glass effect */
+            backdrop-filter: blur(1px) saturate(180%);
+            -webkit-backdrop-filter: blur(1px) saturate(180%);
+
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 6000;
+            opacity: 1;
+            overflow: hidden;
+            outline: 0;
+        }
+
+        /* Dark text for better readability on bright backgrounds */
+        .topbar.dark-text {
+            --text-color: #000;
+            --text-hover: #333;
+            --logo-color: #000;
+            --cta-bg: #000;
+            --cta-color: #fff;
+        }
+
+        /* Light text for dark backgrounds */
+        .topbar:not(.dark-text) {
+            --text-color: #444;
+            --text-hover: #000;
+            --logo-color: #111;
+            --cta-bg: #000;
+            --cta-color: #fff;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'ClashDisplay-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-size: 22px;
+            font-weight: 700 !important;
+            color: var(--logo-color);
+            transition: color 0.3s ease;
+        }
+
+        .logo-img {
+            height: 48px;
+            margin-right: -5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 14px;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-weight: 400 !important;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-hover);
+        }
+
+        .nav-links a.active {
+            color: var(--text-hover);
+            font-weight: 500;
+        }
+
+        /* Clean, working underline */
+        .nav-underline {
+            position: absolute;
+            bottom: 0;
+            height: 2px;
+            background: #FF4F1A;
+            background: linear-gradient(90deg, #FF4F1A, #FF7A3D);
+            border-radius: 1px;
+            transition: left 0.3s ease, width 0.3s ease;
+            z-index: 1;
+        }
+
+        .cta-btn {
+            background: var(--cta-bg);
+            color: var(--cta-color);
+            padding: 10px 22px;
+            border-radius: 100px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-weight: 400 !important;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        /* HOME SECTION */
+        .home-section {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            min-height: 90vh;
+            background-color: #F4EED7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: visible;
+        }
+
+        /* Paw Background */
+        .home-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/background-paws.png');
+            background-repeat: repeat;
+            background-size: 250px 250px;
+            opacity: 0.05;
+            animation: movePaws 10s linear infinite;
+            z-index: 0;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        @keyframes movePaws {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 0 500px;
+            }
+        }
+
+        .home-content {
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+            margin-bottom: 15vh;
+        }
+
+        .loaded .home-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        .home-content h1 {
+            font-size: 64px;
+            line-height: 1.1;
+        }
+
+        .black-text {
+            font-family: 'ClashGrotesk-SemiBold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            color: #000;
+            letter-spacing: 1px;
+            font-weight: 600 !important;
+        }
+
+        .orange-text {
+            font-family: 'ClashGrotesk-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #FF4F1A, #FF7A3D, #FF4F1A);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            font-weight: 700 !important;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* CAT CONTAINER */
+        .cat-container {
+            position: absolute;
+            bottom: -150px;
+            left: 0;
+            width: 100%;
+            z-index: 5000;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+            pointer-events: none;
+        }
+
+        .loaded .cat-container {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.6s;
+        }
+
+        .cat-container img {
+            width: 700px;
+            max-width: 90%;
+            height: auto;
+            display: block;
+            z-index: 5000;
+        }
+
+        /* SECTIONS */
+        .about-section,
+        .services-section,
+        .pricing-section,
+        .contact-section {
+            position: relative;
+            background: white;
+            min-height: 600px;
+            width: 100%;
+            z-index: 100;
+            padding-top: 200px;
+            padding-bottom: 100px;
+            margin-top: 0;
+        }
+
+        .services-section {
+            background: #f9f9f9;
+        }
+
+        .contact-section {
+            background: #f9f9f9;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+            position: relative;
+            z-index: 200;
+        }
+
+        .section-content h2 {
+            font-family: 'ClashGrotesk-Bold', sans-serif;
+            font-size: 48px;
+            margin-bottom: 30px;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #111111, #444444, #111111);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
+            font-weight: 700 !important;
+        }
+
+        .section-content p {
+            font-size: 24px;
+            line-height: 1.6;
+            color: black;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* FOOTER */
+        .footer {
+            position: relative;
+            background: white;
+            width: 100%;
+            padding: 40px 20px;
+            text-align: left;
+            border-top: 1px solid #eee;
+            margin-top: 0;
+            z-index: 200;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .copyright {
+            font-size: 13px;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .topbar {
+                width: 90%;
+                height: 60px;
+                padding: 0 20px;
+                backdrop-filter: blur(10px) saturate(180%);
+                -webkit-backdrop-filter: blur(10px) saturate(180%);
+                justify-content: center;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .logo-img {
+                height: 48px;
+                margin-right: -5px;
+            }
+
+            .nav-links,
+            .cta-btn {
+                display: none !important;
+            }
+
+            .home-section {
+                height: 90vh;
+                min-height: 90vh;
+            }
+
+            .home-section::before {
+                background-size: 180px 180px;
+            }
+
+            .home-content h1 {
+                margin-top: 100px;
+                font-size: 42px;
+            }
+
+            .home-content {
+                margin-bottom: 12vh;
+            }
+
+            .cat-container {
+                bottom: -80px;
+            }
+
+            .cat-container img {
+                width: 420px;
+                max-width: 85%;
+            }
+
+            .black-text {
+                font-size: 32px;
+            }
+
+            .orange-text {
+                font-size: 32px;
+            }
+
+            .about-section,
+            .services-section,
+            .pricing-section,
+            .contact-section {
+                padding-top: 120px;
+                padding-bottom: 80px;
+            }
+
+            .section-content h2 {
+                font-size: 36px;
+            }
+
+            .section-content p {
+                font-size: 18px;
+            }
+
+            .footer {
+                padding: 30px 15px;
+            }
+
+            .footer-content {
+                font-size: 12px;
+            }
+
+            .copyright {
+                font-size: 11px;
+            }
+        }
+
+        .fonts-loading * {
+            visibility: hidden;
+        }
+
+        .fonts-loaded * {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="fonts-loading">
+
+    <!-- Topbar -->
+    <div class="topbar" id="topbar">
+        <div class="logo">
+            <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/petverse_logo.png"
+                alt="Petverse Logo" class="logo-img">
+            PETVERSE
+        </div>
+        <div class="nav-links">
+            <div class="nav-underline" id="navUnderline"></div>
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="cta-btn" onclick="window.location.href='#contact'">Sign In</button>
+    </div>
+
+    <!-- Home Section -->
+    <section class="home-section" id="home">
+        <div class="home-content">
+            <h1>
+                <span class="black-text">FOR THE</span>
+                <span class="orange-text">PET LOVERS.</span>
+            </h1>
+        </div>
+
+        <div class="cat-container">
+            <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/cat.png"
+                alt="Petverse Cat">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="section-content">
+            <h2>About Our Brand</h2>
+            <p>Petverse is the perfect one stop solution for all our cherished pets, we are an integrated pet care
+                platform offering services including pet ambulance, routine health checkups with digital reports, pet
+                walking & sitting subscriptions, grooming, training, nutrition consulting and vet hospital listings.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="section-content">
+            <h2>Our Services</h2>
+            <p>We offer a comprehensive range of pet care services including veterinary care, grooming, training, and
+                pet sitting.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="section-content">
+            <h2>Pricing Plans</h2>
+            <p>Affordable pricing plans tailored to your pet's needs. Choose from basic, premium, or custom packages.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="section-content">
+            <h2>Contact Us</h2>
+            <p>Get in touch with us for any queries or to schedule a consultation for your pet.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025-2026 Petverse Private Limited. All rights reserved.</p>
+            <p>© Site Made By Laksh Kukreja.</p>
+            <p class="copyright">
+                All content, designs, graphics, text, and other materials displayed on this website are my original
+                creative work and are shared strictly for personal and educational purposes. Any illustrations showed in
+                the website maybe artificially generated for representational purposes of the product and might not have
+                any existence in real life. Any unauthorized copying, reproduction, redistribution, publication, or
+                commercial use of any part of this website, whether in full or in part, without prior written permission
+                from the author is strictly prohibited and may result in legal action under applicable copyright and
+                intellectual property laws.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(() => {
+                document.body.classList.remove('fonts-loading');
+                document.body.classList.add('fonts-loaded');
+                document.body.classList.add('loaded');
+                initNavigation();
+            }, 100);
+        });
+
+        function initNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navUnderline = document.getElementById('navUnderline');
+
+            // Initialize underline position
+            updateUnderline(document.querySelector('.nav-link.active'));
+
+            // Handle clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    // Update active class
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Update underline
+                    updateUnderline(this);
+
+                    // Let the browser handle the scrolling via href
+                });
+            });
+
+            // Update on scroll - LIVE UPDATING
+            window.addEventListener('scroll', function () {
+                updateActiveSection();
+                updateTopbarTextColor();
+            });
+
+            // Initial updates
+            updateActiveSection();
+            updateTopbarTextColor();
+        }
+
+        function updateUnderline(link) {
+            const navUnderline = document.getElementById('navUnderline');
+            if (!navUnderline || !link) return;
+
+            const linkRect = link.getBoundingClientRect();
+            const parentRect = link.parentElement.getBoundingClientRect();
+
+            navUnderline.style.width = linkRect.width + 'px';
+            navUnderline.style.left = (linkRect.left - parentRect.left) + 'px';
+        }
+
+        function updateActiveSection() {
+            const sections = [
+                { id: 'home', element: document.getElementById('home') },
+                { id: 'about', element: document.getElementById('about') },
+                { id: 'services', element: document.getElementById('services') },
+                { id: 'pricing', element: document.getElementById('pricing') },
+                { id: 'contact', element: document.getElementById('contact') }
+            ];
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const scrollPosition = window.scrollY + 100; // Offset for topbar
+
+            let currentSectionId = 'home';
+
+            // Find which section is currently in view
+            for (let i = 0; i < sections.length; i++) {
+                const section = sections[i];
+                if (section.element) {
+                    const sectionTop = section.element.offsetTop;
+                    const sectionHeight = section.element.offsetHeight;
+
+                    // If we're at the last section or this section contains the scroll position
+                    if (i === sections.length - 1 && scrollPosition >= sectionTop) {
+                        currentSectionId = section.id;
+                        break;
+                    }
+                    // If scroll position is within this section
+                    else if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        currentSectionId = section.id;
+                        break;
+                    }
+                }
+            }
+
+            // Update nav links
+            navLinks.forEach(link => {
+                const linkId = link.getAttribute('href').substring(1);
+                if (linkId === currentSectionId) {
+                    link.classList.add('active');
+                    updateUnderline(link);
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        function updateTopbarTextColor() {
+            const topbar = document.getElementById('topbar');
+            if (!topbar) return;
+
+            const homeSection = document.getElementById('home');
+            const scrollPosition = window.scrollY + 100;
+
+            // Check if we're in home section (first 90vh of page)
+            if (homeSection) {
+                const homeTop = homeSection.offsetTop;
+                const homeHeight = homeSection.offsetHeight;
+
+                // If scroll position is within home section, use dark text (yellow background)
+                if (scrollPosition >= homeTop && scrollPosition < homeTop + homeHeight) {
+                    topbar.classList.add('dark-text');
+                } else {
+                    // All other sections have white background
+                    topbar.classList.remove('dark-text');
+                }
+            }
+        }
+
+        // Update on resize
+        window.addEventListener('resize', function () {
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                updateUnderline(activeLink);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
