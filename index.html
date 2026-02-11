@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laksh Kukreja</title>
+   <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M32 2C15.432 2 2 15.432 2 32s13.432 30 30 30s30-13.432 30-30S48.568 2 32 2zm11.275 44.508h-20.55V17.492h6.063v23.799h14.488v5.217z' fill='%23fff'/></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111;
+            --bg-card: #1a1a1a;
+            --border: #333;
+            --text-primary: #fafafa;
+            --text-secondary: #888;
+            --accent-blue: #0070f3;
+            --accent-purple: #8a63d2;
+            --accent-green: #17c964;
+            --accent-orange: #f5a623;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .welcome-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .welcome-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .welcome-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 24px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover .card-link {
+            gap: 12px;
+        }
+
+        .card:hover .card-link i {
+            transform: translateX(4px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .badges {
+            display: flex;
+            gap: 8px;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .badge.beta {
+            background: rgba(245, 166, 35, 0.1);
+            color: var(--accent-orange);
+            border: 1px solid rgba(245, 166, 35, 0.2);
+        }
+
+        .badge.stable {
+            background: rgba(23, 201, 100, 0.1);
+            color: var(--accent-green);
+            border: 1px solid rgba(23, 201, 100, 0.2);
+        }
+
+        .badge.date {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .version-number {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-family: 'Manrope', monospace;
+            letter-spacing: -0.5px;
+        }
+
+        .card-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: gap 0.2s;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .card-link i {
+            font-size: 12px;
+            transition: transform 0.2s;
+        }
+
+        .footer {
+            padding: 60px 0 40px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            text-align: left;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .copyright-main {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            line-height: 1.4;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .legal-notice {
+            color: #e0e0e0;
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 1000px;
+            margin-top: 8px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .legal-notice p {
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .welcome-title {
+                font-size: 36px;
+            }
+
+            .welcome-subtitle {
+                font-size: 18px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .card {
+                height: 160px;
+                padding: 20px;
+            }
+
+            .copyright-main {
+                font-size: 16px;
+            }
+
+            .legal-notice {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 28px;
+            }
+
+            .welcome-subtitle {
+                font-size: 16px;
+            }
+
+            .card {
+                height: 150px;
+                padding: 18px;
+            }
+
+            .card-title {
+                font-size: 16px;
+            }
+
+            .copyright-main {
+                font-size: 15px;
+            }
+
+            .legal-notice {
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn 0.4s ease forwards;
+            opacity: 0;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .card:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .card:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .card:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        .welcome-header {
+            animation: fadeIn 0.6s ease forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Welcome Header -->
+        <header class="welcome-header">
+            <h1 class="welcome-title">Welcome Laksh,</h1>
+            <p class="welcome-subtitle">Proceed By Choosing Any Website Build</p>
+        </header>
+
+<!-- Videocon Project Section -->
+<section class="section">
+    <div class="section-header">
+        <div class="section-icon">1</div>
+        <h2 class="section-title">Videocon Project Website</h2>
+    </div>
+
+    <div class="cards-grid">
+        <!-- Build 01 -->
+        <div class="card" onclick="window.location.href='index.html'">
+            <div class="card-header">
+                <h3 class="card-title">Final Build</h3>
+                <div class="badges">
+                    <span class="badge stable">STABLE</span>
+                    <span class="badge date">11-02-2026</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="version-number">v3.9</span>
+                <a href="assets/websites/videocon/index.html" class="card-link">
+                    Open Build
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Vendora Project Section -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">2</div>
+                <h2 class="section-title">Vendora Project Website</h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Build 01 -->
+                <div class="card" onclick="window.location.href='index.html'">
+                    <div class="card-header">
+                        <h3 class="card-title">Final Build</h3>
+                        <div class="badges">
+                            <span class="badge stable">STABLE</span>
+                            <span class="badge date">25-01-2026</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="version-number">v2.8</span>
+                        <a href="assets/websites/vendora/index.html" class="card-link">
+                            Open Build
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rizzora Project Section -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">3</div>
+                <h2 class="section-title">Rizzora Project Website</h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Build 01 -->
+                <div class="card" onclick="window.location.href='index.html'">
+                    <div class="card-header">
+                        <h3 class="card-title">Final Build</h3>
+                        <div class="badges">
+                            <span class="badge stable">STABLE</span>
+                            <span class="badge date">02-02-2026</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="version-number">v7.3</span>
+                        <a href="assets/websites/rizzora/index.html" class="card-link">
+                            Open Build
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+        </section>
+		
+        <!-- Petverse Project Section -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">4</div>
+                <h2 class="section-title">Petverse Project Website</h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Build 01 -->
+                <div class="card" onclick="window.location.href='index.html'">
+                    <div class="card-header">
+                        <h3 class="card-title">Final Build</h3>
+                        <div class="badges">
+                            <span class="badge stable">STABLE</span>
+                            <span class="badge date">09-02-2026</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="version-number">v4.8</span>
+                        <a href="assets/websites/petverse/index.html" class="card-link">
+                            Open Build
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+        </section>
+		
+		<!-- Jai Hind College Industry Project Section -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">5</div>
+                <h2 class="section-title">Jai Hind College Industry Project Website</h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Build 01 -->
+                <div class="card" onclick="window.location.href='index.html'">
+                    <div class="card-header">
+                        <h3 class="card-title">Final Build</h3>
+                        <div class="badges">
+                            <span class="badge stable">STABLE</span>
+                            <span class="badge date">12-02-2026</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="version-number">v2.1</span>
+                        <a href="assets/websites/jai_hind_college/index.html" class="card-link">
+                            Open Build
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="copyright-main">© 2020-2026 Laksh Kukreja. All Rights Reserved.</div>
+                <div class="legal-notice">
+                    <p>All content, designs, graphics, text, and other materials displayed on this website are my
+                        original creative work and are shared strictly for personal and educational purposes. Any
+                        unauthorized copying, reproduction, redistribution, publication, or commercial use of any part
+                        of this website, whether in full or in part, without prior written permission from the author is
+                        strictly prohibited and may result in legal action under applicable copyright and intellectual
+                        property laws.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function (e) {
+                    if (!e.target.closest('.card-link')) {
+                        const link = this.querySelector('.card-link');
+                        if (link) {
+                            window.location.href = link.href;
+                        }
+                    }
+                });
+
+                card.setAttribute('tabindex', '0');
+                card.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        const link = this.querySelector('.card-link');
+                        if (link) {
+                            window.location.href = link.href;
+                        }
+                    }
+                });
+
+                card.addEventListener('mouseenter', function () {
+                    this.style.zIndex = '10';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.zIndex = '';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
