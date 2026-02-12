@@ -1,0 +1,3969 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rizzora</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <style>
+:root {
+    --max: 1520px;
+    --r: 20px;
+    --barH: 80px;
+    --black: #000;
+    --white: #fff;
+    --text-dark: rgba(0, 0, 0, .92);
+    --text-muted: rgba(0, 0, 0, .68);
+    --accent: #000;
+    --accent-hover: #333;
+}
+
+/* Add font loading and fade-in to prevent jitter */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply fade-in to key text elements */
+.brand, .title, .sub, .btn, .hero-inner > * {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Stagger the animations */
+.brand { animation-delay: 0.1s; }
+.title { animation-delay: 0.3s; }
+.sub { animation-delay: 0.5s; }
+.btn { animation-delay: 0.7s; }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Manrope, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+    height: 100%;
+    background: #000;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+button:focus,
+button:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.video-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: blur(0px);
+    transform: scale(1);
+}
+
+.video-container.fade-out {
+    opacity: 0;
+    filter: blur(15px);
+    transform: scale(1.02);
+}
+
+.video-container:not(.fade-out) {
+    animation: bloomIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes bloomIn {
+    0% {
+        filter: blur(20px) brightness(1.2);
+        opacity: 0;
+        transform: scale(1.05);
+    }
+
+    70% {
+        filter: blur(5px) brightness(1.1);
+        opacity: 0.8;
+        transform: scale(1.01);
+    }
+
+    100% {
+        filter: blur(0px) brightness(1);
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.video-container video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.05);
+    will-change: transform;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, .10),
+            rgba(0, 0, 0, .30),
+            rgba(0, 0, 0, .75));
+    z-index: 1;
+}
+
+.topbar-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.topbar {
+    pointer-events: auto;
+    width: calc(100% - 44px);
+    max-width: var(--max);
+    margin-top: 12px;
+    border-radius: var(--r);
+    overflow: hidden;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 30;
+    transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    min-height: var(--barH); /* FIX: Ensure minimum height */
+}
+
+/* Prevent hover effects when menu is open */
+.topbar-wrap.menu-open .topbar {
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.topbar-wrap.menu-open .brand {
+    color: #000 !important;
+}
+
+.topbar-wrap.menu-open .signin-desktop {
+    color: #000 !important;
+}
+
+.topbar-wrap.menu-open .menu-btn.is-open .menu-icon span {
+    background: rgba(0, 0, 0, .98) !important;
+}
+
+/* Only apply hover effects when menu is NOT open */
+.topbar-wrap:not(.menu-open):hover .topbar {
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.topbar-wrap:not(.menu-open):hover .brand {
+    color: #000 !important;
+    transition: color 320ms ease;
+}
+
+.topbar-wrap:not(.menu-open):hover .signin-desktop {
+    color: #000 !important;
+    transition: color 320ms ease;
+}
+
+.topbar-wrap:not(.menu-open):hover .menu-icon span {
+    background: rgba(0, 0, 0, 0.8) !important;
+    transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.topbar-row {
+    height: var(--barH);
+    padding: 0 22px;
+    display: grid;
+    grid-template-columns: 140px 1fr 140px;
+    align-items: center;
+}
+
+.left,
+.center,
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.center {
+    justify-content: center;
+}
+
+.right {
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.brand-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.brand {
+    font-weight: 800;
+    letter-spacing: 9px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #fff !important;
+    transition: color 320ms ease;
+}
+
+.signin-desktop {
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    white-space: nowrap;
+    transition: 320ms ease;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.menu-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 0;
+    background: transparent;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: 320ms ease;
+}
+
+.menu-btn.is-open {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* Menu Icon Base Styles */
+.menu-icon {
+    width: 22px;
+    height: 16px;
+    position: relative;
+}
+
+.menu-icon span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 99px;
+    background: #fff !important;
+    transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+.menu-icon span:nth-child(1) {
+    top: 4px;
+    transform: none;
+}
+
+.menu-icon span:nth-child(2) {
+    top: 12px;
+    transform: none;
+}
+
+/* X Animation when menu opens */
+.menu-btn.is-open .menu-icon span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.menu-btn.is-open .menu-icon span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+/* Animation for closing menu icon */
+@keyframes closeToHamburger1 {
+    0% {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+    100% {
+        top: 4px;
+        transform: none;
+    }
+}
+
+@keyframes closeToHamburger2 {
+    0% {
+        top: 50%;
+        transform: translateY(-50%) rotate(-45deg);
+    }
+    100% {
+        top: 12px;
+        transform: none;
+    }
+}
+
+.menu-btn.is-closing .menu-icon span:nth-child(1) {
+    animation: closeToHamburger1 0.4s ease forwards;
+}
+
+.menu-btn.is-closing .menu-icon span:nth-child(2) {
+    animation: closeToHamburger2 0.4s ease forwards;
+}
+
+/* When topbar is hovered (menu closed) */
+.topbar-wrap:not(.menu-open):hover .menu-icon span {
+    background: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* When menu is open and topbar has menu-open class */
+.topbar-wrap.menu-open .menu-btn.is-open .menu-icon span {
+    background: rgba(0, 0, 0, .98) !important;
+}
+
+/* When desktop menu is open */
+body.desktop-menu-open .menu-btn.is-open .menu-icon span {
+    background: rgba(255, 255, 255, 0.98) !important;
+}
+
+.menu-blur {
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.22);
+    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.menu-open .menu-blur {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.desktop-expand {
+    overflow: hidden;
+    max-height: 0;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 200ms ease;
+    background: #fff;
+    border-top: none;
+    position: relative;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* REMOVE any margin/padding affecting parent height */
+    margin-top: 0;
+}
+
+body.desktop-menu-open .topbar {
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body.desktop-menu-open .brand {
+    color: #000;
+}
+
+body.desktop-menu-open .signin-desktop {
+    color: #000;
+}
+
+body.desktop-menu-open .menu-btn.is-open {
+    background: white;
+}
+
+body.desktop-menu-open .menu-btn.is-open .menu-icon span {
+    background: rgba(255, 255, 255, 0.98) !important;
+}
+
+body.desktop-menu-open .desktop-expand {
+    max-height: 500px;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.desktop-expand-content {
+    display: flex;
+    min-height: 400px;
+    position: relative;
+    align-items: stretch;
+}
+
+.sleeping-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    z-index: 40;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateZ(0) scaleX(0);
+    transform-origin: left center;
+    will-change: transform, opacity;
+}
+
+body.desktop-menu-open .sleeping-line {
+    opacity: 1;
+    transform: translateZ(0) scaleX(1);
+    transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 100ms ease;
+}
+
+/* Remove standing line styles and use border instead */
+.standing-line {
+    display: none !important;
+}
+
+.nav-categories {
+    width: 280px;
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.nav-category-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    transition: all 200ms ease;
+    position: relative;
+    margin: 0px 12px;
+    border-radius: 8px;
+    border-left: none;
+}
+
+.nav-category-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #000;
+}
+
+.nav-category-item.active {
+    background: #000 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+}
+
+.nav-category-item .arrow {
+    opacity: 0.5;
+    font-size: 12px;
+    transition: color 200ms ease;
+}
+
+.nav-category-item.active::before {
+    display: none !important;
+}
+
+.nav-category-item.active .arrow {
+    color: #fff !important;
+    opacity: 0.9;
+}
+
+.nav-content {
+    flex: 1;
+    padding: 30px 40px;
+    display: none;
+}
+
+.nav-content.active {
+    display: block;
+}
+
+.nav-content-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+
+/* UPDATED PRODUCT GRID STYLES */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.product-item {
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    background: transparent;
+    box-shadow: none;
+}
+
+.product-item:hover {
+    background: #fff;
+    transform: translateY(-4px);
+}
+
+.product-item:hover .product-item-image {
+    transform: scale(1.1);
+}
+
+.product-item:hover .product-item-name {
+    font-size: 19px;
+    color: #000;
+}
+
+.product-item:hover .product-item-price {
+    font-size: 17px;
+    color: #000;
+}
+
+.product-item-image-container {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.product-item-image {
+    max-width: 120px;
+    max-height: 120px;
+    object-fit: contain;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.9;
+}
+
+.product-item-name,
+.product-item-price {
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Center align product text */
+.product-item-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 8px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.product-item-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 12px;
+    justify-content: center;
+}
+
+.product-item-price svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.8;
+}
+
+/* Arrow movement on hover anywhere in the box */
+.product-item:hover .product-item-price svg {
+    transform: translate(2px, -2px);
+    opacity: 1;
+}
+
+/* Support content styles */
+.support-content {
+    padding: 30px 40px;
+}
+
+.support-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
+    align-items: start;
+}
+
+.support-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.support-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+}
+
+.support-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: none;
+}
+
+.support-overlay-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 400;
+    color: #fff;
+    text-transform: none;
+    letter-spacing: -0.2px;
+    text-shadow: 1px 1px 3px white;
+    pointer-events: none;
+}
+
+.support-image-links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.support-image-link {
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    transition: all 200ms ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+    min-width: 120px;
+}
+
+.support-image-link:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.support-image-link svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.support-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.support-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.support-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.support-links li {
+    margin-bottom: 12px;
+}
+
+.support-links a {
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 200ms ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 0;
+}
+
+.support-links a:hover {
+    color: #000;
+}
+
+.support-links a i {
+    width: 18px;
+    height: 18px;
+    color: rgba(0, 0, 0, 0.5);
+    transition: color 200ms ease;
+}
+
+.support-links a:hover i {
+    color: #000;
+}
+
+.support-links a svg {
+    width: 18px;
+    height: 18px;
+    color: rgba(0, 0, 0, 0.5);
+    transition: color 200ms ease;
+    flex-shrink: 0;
+}
+
+.support-links a:hover svg {
+    color: #000;
+}
+
+.cart-content {
+    padding: 30px 40px;
+}
+
+.cart-items-container {
+    max-height: 320px;
+    overflow-y: auto;
+    margin-bottom: 0;
+    padding-right: 10px;
+}
+
+.cart-items-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.cart-items-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.cart-items-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.empty-state i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+.empty-state p {
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.empty-state .subtext {
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.4);
+    max-width: 300px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+#wishlistContent {
+    padding: 30px 40px;
+}
+
+#wishlistItemsContainer {
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+#wishlistItemsContainer::-webkit-scrollbar {
+    width: 6px;
+}
+
+#wishlistItemsContainer::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+#wishlistItemsContainer::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+#wishlistItemsContainer::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.hero-inner {
+    width: 100%;
+    max-width: var(--max);
+    padding: 0 22px 60px;
+    padding-top: 120px;
+    padding-bottom: 80px;
+    position: relative;
+    z-index: 5;
+    color: #fff;
+    text-align: left;
+}
+
+.title {
+    font-size: clamp(54px, 8vw, 120px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: .92;
+    margin-bottom: 12px;
+    max-width: 800px;
+}
+
+.sub {
+    max-width: 800px;
+    font-size: 16px;
+    line-height: 1.4;
+    opacity: .9;
+    margin-bottom: 16px;
+}
+
+.btn {
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    background: rgba(255, 255, 255, .92);
+    color: #000;
+    min-width: 140px;
+    transition: 200ms ease;
+    border: 0;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #fff;
+    transform: translateY(-1px);
+}
+
+.below {
+    background: #fff;
+    color: #000;
+    padding: 0; /* Changed from 70px 0 110px to 0 */
+    margin-top: -20px;
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+/* Our Philosophy Section */
+.about-section {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 100px 40px 0; /* Changed padding from 0 40px to 100px 40px 0 */
+    background: #fff;
+}
+
+.about-title {
+    font-size: 52px;
+    letter-spacing: -1.8px;
+    line-height: 1.05;
+    color: #000;
+    margin-bottom: 60px;
+    text-align: left;
+}
+
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.feature-item-about {
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 16px;
+    padding: 20px 30px;
+}
+
+/* Left-aligned (odd items) */
+.feature-item-about:nth-child(odd) {
+    flex-direction: row;
+}
+
+/* Right-aligned (even items) */
+.feature-item-about:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.feature-icon-about {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    flex-shrink: 0;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.feature-icon-about svg {
+    width: 48px;
+    height: 48px;
+    stroke-width: 1.5;
+}
+
+.feature-content-about {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80px;
+}
+
+/* Spacing for left-aligned */
+.feature-item-about:nth-child(odd) .feature-content-about {
+    padding-left: 25px;
+}
+
+/* Spacing for right-aligned */
+.feature-item-about:nth-child(even) .feature-content-about {
+    padding-right: 25px;
+    text-align: right;
+}
+
+.feature-title-about {
+    font-size: 22px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    height: 48px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.feature-item-about:nth-child(even) .feature-title-about {
+    justify-content: flex-end;
+}
+
+.feature-desc-about {
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1.4;
+    font-size: 15px;
+    max-width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.feature-item-about:nth-child(even) .feature-desc-about {
+    text-align: right;
+    justify-content: flex-end;
+}
+
+.get-in-touch-section {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 100px 40px 80px; /* Changed padding from 0 40px 80px to 100px 40px 80px */
+    background: #fff;
+}
+
+.get-in-touch-title {
+    font-size: 52px;
+    letter-spacing: -1.8px;
+    line-height: 1.05;
+    color: #000;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.email-box {
+    background: #000;
+    color: #fff;
+    border-radius: 24px;
+    padding: 80px 60px;
+}
+
+.email-box-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+}
+
+.email-box-left {
+    flex: 1;
+    max-width: 60%;
+}
+
+.email-box-right {
+    flex: 1;
+    max-width: 40%;
+}
+
+.email-box-title {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    padding-top: 0;
+}
+
+.email-box-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    max-width: 600px;
+}
+
+.email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input {
+    padding: 18px 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 200ms ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.subscribe-btn {
+    padding: 20px 32px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: not-allowed;
+    transition: all 300ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    position: relative;
+    min-height: 60px;
+}
+
+.subscribe-btn:not(:disabled) {
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+}
+
+.subscribe-btn:not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.subscribe-btn.subscribed-success {
+    background: #10b981 !important;
+    color: #fff !important;
+    cursor: default;
+    pointer-events: none;
+    min-height: 60px;
+}
+
+.subscribe-btn.subscribed-success .btn-text,
+.subscribe-btn.subscribed-success .btn-icon {
+    opacity: 0;
+}
+
+.subscribe-btn.subscribed-success::after {
+    content: "Subscribed Successfully";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 700;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: white;
+    font-size: 18px;
+}
+
+.subscribe-btn.subscribed-success::before {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-check'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.email-legal {
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.email-legal p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin: 0;
+    text-align: left;
+}
+
+.email-legal a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+    transition: color 200ms ease;
+}
+
+.email-legal a:hover {
+    color: #fff;
+}
+
+.catalogue-wrap {
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto;
+    position: relative;
+    padding: 70px 0 0; /* Added padding here */
+}
+
+.catalogue-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 0 42px;
+}
+
+.catalogue-title {
+    margin-top: 20px;
+    font-size: 52px;
+    letter-spacing: -1.8px;
+    line-height: 1.05;
+    color: #000;
+}
+
+.catalogue-link {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 800;
+    color: #000;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 180ms ease;
+}
+
+.catalogue-link:hover {
+    background: #000;
+    color: #fff;
+}
+
+.catalogue-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 60px;
+}
+
+.catalogue-scroll {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    contain: layout paint;
+    padding: 10px 42px 30px;
+    margin: 0;
+}
+
+.catalogue-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.catalogue-card {
+    flex: 0 0 auto;
+    width: 380px;
+    height: 540px;
+    scroll-snap-align: start;
+    padding: 12px 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-image-container {
+    width: 340px;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    overflow: hidden;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    border-radius: 48px;
+}
+
+.catalogue-content {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.catalogue-card h3 {
+    font-size: 26px;
+    letter-spacing: -0.6px;
+    margin-bottom: 4px;
+    color: #000;
+    line-height: 1.2;
+}
+
+.catalogue-card p {
+    color: rgba(0, 0, 0, 0.70);
+    line-height: 1.4;
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+.catalogue-price {
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.catalogue-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+    padding-top: 0;
+    justify-content: center;
+    width: 100%;
+}
+
+/* REMOVED PILL-BTN STYLES (Buy Now button styles) */
+.pill-btn {
+    display: none;
+}
+
+.link-btn {
+    border: none;
+    background: transparent;
+    color: #000;
+    font-weight: 800;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 12px 18px;
+    border-radius: 12px;
+    transition: 180ms ease;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+.scroll-btn {
+    position: absolute;
+    bottom: 30px;
+    right: 62px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    font-weight: 300;
+    transition: all 200ms ease;
+}
+
+.scroll-btn:hover:not(.disabled) {
+    background: #000;
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.scroll-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #f5f5f5;
+    color: #999;
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.scroll-btn.disabled:hover {
+    background: #f5f5f5;
+    color: #999;
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-btn.prev {
+    right: 122px;
+}
+
+.scroll-btn.next {
+    right: 62px;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.popup-overlay.active {
+    display: flex;
+}
+
+.product-popup {
+    background: #fff;
+    border-radius: 28px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.product-popup::-webkit-scrollbar {
+    display: none;
+    width: 0;
+}
+
+.product-popup {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.popup-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 200ms ease;
+    border: none;
+    font-size: 24px;
+    color: #000;
+    line-height: 1;
+    padding: 0;
+}
+
+.popup-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: rotate(90deg);
+}
+
+.popup-content {
+    padding: 32px 40px 40px;
+}
+
+.popup-header {
+    margin-bottom: 36px;
+    position: relative;
+    padding-right: 60px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.popup-title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    margin-bottom: 0;
+    color: #000;
+    line-height: 1.2;
+    text-align: left;
+    flex: 1;
+    padding-top: 4px;
+}
+
+.popup-section {
+    margin-bottom: 32px;
+}
+
+.popup-section h4 {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.popup-section h4 i {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+}
+
+.popup-description {
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.7;
+    font-size: 16px;
+    padding-left: 26px;
+    position: relative;
+}
+
+.popup-description::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
+
+.popup-ingredients {
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.7;
+    font-size: 16px;
+    padding-left: 26px;
+    position: relative;
+}
+
+.popup-ingredients::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
+
+.popup-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.popup-btn {
+    padding: 18px 24px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: none;
+    flex: 1;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.popup-btn:hover {
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.popup-btn-primary {
+    background: #000;
+    color: #fff;
+}
+
+.popup-btn-primary:hover {
+    background: #000;
+}
+
+.popup-btn-secondary {
+    background: #fff;
+    color: #000;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.popup-btn-secondary:hover {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+.popup-btn-primary.added {
+    background: #10b981 !important;
+    color: white !important;
+}
+
+.popup-btn-secondary.wishlisted {
+    background: #fff !important;
+    color: #ef4444 !important;
+    border-color: #ef4444 !important;
+}
+
+.popup-btn i {
+    font-size: 18px;
+}
+
+.popup-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.feature-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 16px;
+}
+
+.feature-text {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1.4;
+}
+
+.feature-text strong {
+    color: #000;
+    display: block;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.email-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.email-popup-overlay.active {
+    display: flex;
+}
+
+.email-popup {
+    background: #fff;
+    border-radius: 24px;
+    max-width: 500px;
+    width: 100%;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.email-popup-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    transition: all 200ms ease;
+}
+
+.email-popup-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: rotate(90deg);
+}
+
+.email-popup-close svg {
+    width: 20px;
+    height: 20px;
+    stroke: rgba(0, 0, 0, 0.7);
+}
+
+.email-popup-content {
+    margin-top: 10px;
+}
+
+.email-popup-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.email-popup-title {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: #000;
+    margin-bottom: 12px;
+}
+
+.email-popup-subtitle {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.email-popup-offer {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+.email-popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.popup-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.popup-form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.popup-form-group input {
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #fff;
+    color: #000;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 200ms ease;
+}
+
+.popup-form-group input:focus {
+    outline: none;
+    border-color: #000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.popup-form-group input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-subscribe-btn {
+    padding: 18px 24px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.4);
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: not-allowed;
+    transition: all 300ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+    position: relative;
+    min-height: 56px;
+}
+
+.popup-subscribe-btn:not(:disabled) {
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.popup-subscribe-btn:not(:disabled):hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.popup-subscribe-btn.subscribed-success {
+    background: #10b981 !important;
+    color: #fff !important;
+    cursor: default;
+    pointer-events: none;
+    min-height: 56px;
+}
+
+.popup-subscribe-btn.subscribed-success .popup-btn-text,
+.popup-subscribe-btn.subscribed-success .popup-btn-icon {
+    opacity: 0;
+}
+
+.popup-subscribe-btn.subscribed-success::after {
+    content: "Subscribed Successfully";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 700;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: white;
+    font-size: 16px;
+}
+
+.popup-subscribe-btn.subscribed-success::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-check'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.email-popup-legal {
+    padding-top: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.email-popup-legal p {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.5;
+    margin: 0;
+    text-align: center;
+}
+
+body.desktop-menu-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 18;
+    pointer-events: auto;
+}
+
+body.desktop-menu-open {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.footer {
+    background: #fff;
+    color: #000;
+    padding: 80px 40px 40px;
+    margin-top: 0;
+}
+
+.footer-content {
+    max-width: var(--max);
+    margin: 0 auto;
+}
+
+.footer-divider {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 0 24px 0;
+}
+
+.footer-copyright {
+    text-align: left;
+    margin-bottom: 12px;
+    padding-bottom: 0;
+}
+
+.footer-copyright p {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.6;
+    margin-bottom: 4px;
+}
+
+.footer-legal {
+    padding-top: 0;
+    border-top: none;
+}
+
+.footer-legal p {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.5;
+    margin-bottom: 0;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+}
+
+.btn {
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    background: rgba(255, 255, 255, .92);
+    color: #000;
+    min-width: 140px;
+    transition: 200ms ease;
+    border: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn:hover {
+    background: #fff;
+    transform: translateY(-1px);
+}
+
+.btn svg {
+    width: 18px;
+    height: 18px;
+    margin-left: 0;
+    transition: transform 200ms ease;
+}
+
+.btn:hover svg {
+    transform: translate(2px, -2px);
+}
+
+/* Add transition delay for topbar when menu closes */
+/* When menu is closing, keep topbar opaque for 1 second */
+.topbar-wrap.menu-closing .topbar {
+    background: #fff !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+    transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1) 1s !important;
+}
+
+.topbar-wrap.menu-closing .brand,
+.topbar-wrap.menu-closing .signin-desktop {
+    color: #000 !important;
+    transition: color 320ms ease 1s !important;
+}
+
+/* During closing state, hamburger icon should be black */
+.topbar-wrap.menu-closing .menu-icon span {
+    background: rgba(0, 0, 0, 0.8) !important;
+    transition: background-color 320ms ease 1s !important;
+}
+
+/* Ensure topbar stays opaque during the entire closing animation */
+.topbar-wrap.menu-closing .topbar {
+    pointer-events: auto !important;
+}
+
+/* When menu is closed and NOT in closing state, revert to transparent on non-hover */
+.topbar-wrap:not(.menu-open):not(.menu-closing):not(:hover) .topbar {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.topbar-wrap:not(.menu-open):not(.menu-closing):not(:hover) .brand,
+.topbar-wrap:not(.menu-open):not(.menu-closing):not(:hover) .signin-desktop {
+    color: #fff !important;
+}
+
+.topbar-wrap:not(.menu-open):not(.menu-closing):not(:hover) .menu-icon span {
+    background: #fff !important;
+}
+
+/* CLEAN CART STYLES */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    min-height: 40px; /* Ensure consistent height */
+}
+
+.cart-item-count {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.cart-items-container {
+    max-height: 320px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 5px;
+}
+
+.cart-items-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.cart-items-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.cart-items-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    /* REMOVE hover background transition */
+}
+
+.cart-item:hover {
+    /* REMOVE hover background */
+    background-color: transparent;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-info {
+    flex: 1;
+    min-width: 0; /* Prevent text overflow issues */
+}
+
+.cart-item-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: #000;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cart-item-price {
+    font-weight: 600;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);
+    /* Ensure price displays properly */
+    display: block;
+    margin-top: 2px;
+}
+
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 16px;
+}
+
+/* Delete button */
+.cart-item-delete {
+    background: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    margin-left: auto; /* Push to right */
+}
+
+.cart-item-delete:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.empty-state i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    opacity: 0.2;
+}
+
+.empty-state p {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.empty-state .subtext {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.4);
+    max-width: 250px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Cart total */
+.cart-total-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cart-total-label {
+    font-weight: 700;
+    font-size: 16px;
+    color: #000;
+}
+
+.cart-total-amount {
+    font-weight: 800;
+    font-size: 24px;
+    color: #000;
+}
+
+.cart-checkout-btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    background: #000;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative; /* Add for success state */
+}
+
+.cart-checkout-btn:hover:not(.success) {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+.cart-checkout-btn:hover {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+.cart-checkout-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.cart-checkout-btn:disabled:hover {
+    background: #000;
+    transform: none;
+}
+
+.cart-checkout-btn.success {
+    background: #10b981 !important;
+    color: white !important;
+    cursor: default;
+    pointer-events: none;
+}
+
+.cart-checkout-btn.success::after {
+    content: "✓ Order Placed";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 700;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: white;
+    font-size: 15px;
+}
+
+/* Quantity controls */
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 16px;
+}
+
+.quantity-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: white;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.quantity-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.quantity-btn:active {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.quantity-value {
+    font-weight: 700;
+    font-size: 15px;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* Remove old delete button styles */
+.cart-item-delete {
+    display: none !important;
+}
+
+/* Adjust cart item layout for quantity controls */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.cart-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-item-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: #000;
+    margin-bottom: 4px;
+}
+
+.cart-item-price {
+    font-weight: 600;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);
+    display: block;
+}
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="menu-blur" id="menuBlur"></div>
+
+        <div class="topbar-wrap" id="topbarWrap">
+            <header class="topbar" id="topbar">
+                <div class="topbar-row">
+                    <div class="left">
+                        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                            <div class="menu-icon">
+                                <span></span><span></span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="center">
+                        <div class="brand-wrap">
+                            <div class="brand">RIZZORA</div>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <button class="signin-desktop">Sign In</button>
+                    </div>
+                </div>
+
+                <div class="desktop-expand" id="desktopExpand">
+                    <!-- SLEEPING LINE - SEPARATE ELEMENT -->
+                    <div class="sleeping-line" style="transition-delay: 100ms"></div>
+                    
+                    <div class="desktop-expand-content">
+                        <div class="nav-categories">
+                            <div class="nav-category-item active" data-content="standard">
+                                Standard Perfumes
+                                <span class="arrow">›</span>
+                            </div>
+                            <div class="nav-category-item" data-content="premium">
+                                Premium Perfumes
+                                <span class="arrow">›</span>
+                            </div>
+                            <div class="nav-category-item" data-content="luxury">
+                                Luxury Perfumes
+                                <span class="arrow">›</span>
+                            </div>
+                            <div class="nav-category-item" data-content="cart">
+                                Your Cart
+                                <span class="arrow">›</span>
+                            </div>
+                            <div class="nav-category-item" data-content="wishlist">
+                                Wishlist
+                                <span class="arrow">›</span>
+                            </div>
+                            <div class="nav-category-item" data-content="support">
+                                Support
+                                <span class="arrow">›</span>
+                            </div>
+                        </div>
+
+                        <div class="nav-content active" id="standardContent">
+                            <h3 class="nav-content-title">Standard Perfumes</h3>
+                            <div class="products-grid" id="standardProducts">
+                            </div>
+                        </div>
+
+                        <div class="nav-content" id="premiumContent">
+                            <h3 class="nav-content-title">Premium Perfumes</h3>
+                            <div class="products-grid" id="premiumProducts">
+                            </div>
+                        </div>
+
+                        <div class="nav-content" id="luxuryContent">
+                            <h3 class="nav-content-title">Luxury Perfumes</h3>
+                            <div class="products-grid" id="luxuryProducts">
+                            </div>
+                        </div>
+
+<!-- CLEAN CART CONTENT -->
+<div class="nav-content cart-content" id="cartContent">
+    <div class="cart-header">
+        <h3 class="nav-content-title">Your Cart</h3>
+        <div class="cart-item-count" id="cartItemCount">0 items</div>
+    </div>
+    
+    <div class="cart-items-container" id="cartItemsContainer">
+        <!-- Cart items will be inserted here -->
+    </div>
+    
+    <!-- Cart total -->
+    <div class="cart-total-container" id="cartSummary" style="display: none;">
+        <div class="cart-total-row">
+            <div class="cart-total-label">Total</div>
+            <div class="cart-total-amount" id="cartTotal">₹0</div>
+        </div>
+        <button class="cart-checkout-btn" id="checkoutBtn">
+            Checkout
+        </button>
+    </div>
+</div>
+
+                        <div class="nav-content" id="wishlistContent">
+                            <h3 class="nav-content-title">Your Wishlist</h3>
+                            <div class="cart-items-container" id="wishlistItemsContainer">
+                            </div>
+                        </div>
+
+                        <div class="nav-content support-content" id="supportContent">
+                            <div class="support-grid">
+                                <div class="support-left">
+                                    <div class="support-image-container">
+                                        <img src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/handshake.jpg"
+                                            alt="Support" class="support-image">
+                                        <div class="support-overlay-text">Support</div>
+                                    </div>
+                                    <div class="support-image-links">
+                                        <a href="#" class="support-image-link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-phone-outgoing">
+                                                <path d="m16 8 6-6" />
+                                                <path d="M22 8V2h-6" />
+                                                <path
+                                                    d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+                                            </svg>
+                                            Contact Us
+                                        </a>
+                                        <a href="#" class="support-image-link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-message-square-more">
+                                                <path
+                                                    d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
+                                                <path d="M12 11h.01" />
+                                                <path d="M16 11h.01" />
+                                                <path d="M8 11h.01" />
+                                            </svg>
+                                            Support
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="support-section">
+                                    <h4 class="support-section-title">Trending Topics</h4>
+                                    <ul class="support-links">
+                                        <li><a href="#"><i data-lucide="help-circle"></i> How to choose your scent?</a>
+                                        </li>
+                                        <li><a href="#"><i data-lucide="clock"></i> Longevity & Care Guide</a></li>
+                                        <li><a href="#"><i data-lucide="activity"></i> Skin Sensitivity & Testing</a>
+                                        </li>
+                                        <li><a href="#"><i data-lucide="gift"></i> Gifting & Customization</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="support-section">
+                                    <h4 class="support-section-title">Visit</h4>
+                                    <ul class="support-links">
+                                        <li><a href="#"><i data-lucide="shopping-bag"></i> Gift Shop</a></li>
+                                        <li><a href="#"><i data-lucide="compass"></i> Discover Scents</a></li>
+                                        <li><a href="#"><i data-lucide="help-circle"></i> FAQs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <div class="video-container" id="desktopVideo">
+            <video autoplay muted loop playsinline preload="auto" id="desktopVideoEl" crossorigin="anonymous">
+                <source
+                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/rizzora_trailer.mp4"
+                    type="video/mp4" />
+            </video>
+        </div>
+
+        <div class="overlay"></div>
+
+        <div class="hero-inner">
+            <div class="title">RIZZORA</div>
+
+            <div class="sub">
+                Confidence has a scent.
+            </div>
+
+            <button class="btn" id="exploreBtn">
+                Explore
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-up-right">
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <section class="below" id="catalogueSection">
+        <div class="catalogue-wrap">
+            <div class="catalogue-head">
+                <h2 class="catalogue-title">Explore the lineup.</h2>
+                <a class="catalogue-link" href="#">Compare all scents ›</a>
+            </div>
+
+            <div class="catalogue-container">
+                <button class="scroll-btn prev disabled" aria-label="Previous cards">‹</button>
+                <button class="scroll-btn next" aria-label="Next cards">›</button>
+
+                <div class="catalogue-scroll" id="catalogueScroll">
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image"
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora_core_catalogue.png" alt="Rizzora Core">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Core</h3>
+                            <p>Unisex. Everyday. Effortlessly Warm.</p>
+                            <div class="catalogue-price">From ₹999</div>
+                            <div class="catalogue-actions">
+                                <button class="link-btn learn-more" data-product="core">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_ice_catalogue.png"
+                                alt="Rizzora Ice">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Ice</h3>
+                            <p>Fresh, Fearless & Ice Spice Charged.</p>
+                            <div class="catalogue-price">From ₹1,199</div>
+                            <div class="catalogue-actions">
+                                <button class="link-btn learn-more" data-product="ice">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image"
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora_femme_catalogue.png" alt="Rizzora Femme">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Femme</h3>
+                            <p>Soft, Romantic Elegance & Lasting Allure.</p>
+                            <div class="catalogue-price">From ₹1,499</div>
+                            <div class="catalogue-actions">
+                                <button class="link-btn learn-more" data-product="femme">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image"
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora_noir_catalogue.png" alt="Rizzora Noir">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Noir</h3>
+                            <p>Sensual, Dark & After Hours Refined.</p>
+                            <div class="catalogue-price">From ₹1,499</div>
+                            <div class="catalogue-actions">
+                                <button class="link-btn learn-more" data-product="noir">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image"
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora_aura_catalogue.png" alt="Rizzora Aura">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Aura</h3>
+                            <p>Fresh, Hormonal & Magnetic.</p>
+                            <div class="catalogue-price">From ₹1,999</div>
+                            <div class="catalogue-actions">
+                                <button class="link-btn learn-more" data-product="aura">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="catalogue-card">
+                        <div class="product-image-container">
+                            <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_zen_catalogue.png"
+                                alt="Rizzora Zen">
+                        </div>
+                        <div class="catalogue-content">
+                            <h3>Rizzora Zen</h3>
+                            <p>Rare, Refined Freshness & Effortlessly Elite.</p>
+                            <div class="catalogue-price">From ₹2,499</div>
+                            <div class="catalogue-actions">
+                                <button class="link-btn learn-more" data-product="zen">Learn more ›</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="about-section" id="aboutSection">
+    <h2 class="about-title">Our Philosophy</h2>
+    <div class="features-list">
+        <div class="feature-item-about">
+            <div class="feature-icon-about">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 18V5"/>
+                    <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/>
+                    <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/>
+                    <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/>
+                    <path d="M18 18a4 4 0 0 0 2-7.464"/>
+                    <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/>
+                    <path d="M6 18a4 4 0 0 1-2-7.464"/>
+                    <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/>
+                </svg>
+            </div>
+            <div class="feature-content-about">
+                <h3 class="feature-title-about">Emotion-Driven Fragrance Design</h3>
+                <p class="feature-desc-about">Scientifically crafted to enhance your emotional state</p>
+            </div>
+        </div>
+
+        <div class="feature-item-about">
+            <div class="feature-icon-about">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/>
+                    <path d="M6.453 15h11.094"/>
+                    <path d="M8.5 2h7"/>
+                </svg>
+            </div>
+            <div class="feature-content-about">
+                <h3 class="feature-title-about">Long-Lasting, Skin-Safe Formulation</h3>
+                <p class="feature-desc-about">Premium ingredients that last all day without irritation</p>
+            </div>
+        </div>
+
+        <div class="feature-item-about">
+            <div class="feature-icon-about">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="1"/>
+                    <path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/>
+                    <path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/>
+                </svg>
+            </div>
+            <div class="feature-content-about">
+                <h3 class="feature-title-about">Inspired by Olfactory Neuroscience</h3>
+                <p class="feature-desc-about">Backed by research in scent and human psychology</p>
+            </div>
+        </div>
+
+        <div class="feature-item-about">
+            <div class="feature-icon-about">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>
+                </svg>
+            </div>
+            <div class="feature-content-about">
+                <h3 class="feature-title-about">Crafted With Love</h3>
+                <p class="feature-desc-about">Handcrafting each unit with love, and environmentally green</p>
+            </div>
+        </div>
+
+        <div class="feature-item-about">
+            <div class="feature-icon-about">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 2v4"/>
+                    <path d="M16 2v4"/>
+                    <rect width="18" height="18" x="3" y="4" rx="2"/>
+                    <path d="M3 10h18"/>
+                </svg>
+            </div>
+            <div class="feature-content-about">
+                <h3 class="feature-title-about">Perfect For All Occasions</h3>
+                <p class="feature-desc-about">Versatile fragrances for Work, Dates & Evenings</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="get-in-touch-section" id="getInTouchSection">
+        <h2 class="get-in-touch-title">Get In Touch</h2>
+        <div class="email-box">
+            <div class="email-box-content">
+                <div class="email-box-left">
+                    <h2 class="email-box-title">More Elevated Drops Are On The Way. Sign Up To Stay In The Loop.</h2>
+                    <p class="email-box-subtitle">Join Us for Exclusive Updates & 10% Off On Your First Purchase.</p>
+                </div>
+
+                <div class="email-box-right">
+                    <form class="email-form" id="subscribeForm">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <button type="submit" class="subscribe-btn" disabled>
+                            <span class="btn-text">Subscribe</span>
+                            <span class="btn-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-arrow-right">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="email-legal">
+                <p>By submitting, I agree to receive future communications from Rizzora and I have read and agree to
+                    <a href="#">Rizzora's Terms</a> and acknowledge the <a href="#">Data Privacy Notice</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-divider"></div>
+
+            <div class="footer-copyright">
+                <p>© 2025-2026 Rizzora Perfumes Private Limited. All rights reserved.</p>
+                <p>© Site Made By Laksh Kukreja.</p>
+            </div>
+
+            <div class="footer-legal">
+                <p>All content, designs, graphics, text, and other materials displayed on this website are my original
+                    creative work and are shared strictly for personal and educational purposes. Any illustrations
+                    showed in the website maybe artificially generated for representational purposes of the product and
+                    might not have any existence in real life. Any unauthorized copying, reproduction, redistribution,
+                    publication, or commercial use of any part of this website, whether in full or in part, without
+                    prior written permission from the author is strictly prohibited and may result in legal action under
+                    applicable copyright and intellectual property laws.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="popup-overlay" id="productPopup">
+        <div class="product-popup">
+            <button class="popup-close" id="closePopup">×</button>
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h2 class="popup-title" id="popupTitle">Product Name</h2>
+                </div>
+
+                <div class="popup-section">
+                    <h4><i class="fas fa-align-left"></i> Description</h4>
+                    <div class="popup-description" id="popupDescription">
+                        Product description will appear here.
+                    </div>
+                </div>
+
+                <div class="popup-section">
+                    <h4><i class="fas fa-flask"></i> Ingredients</h4>
+                    <div class="popup-ingredients" id="popupIngredients">
+                    </div>
+                </div>
+
+                <div class="popup-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="feature-text">
+                            <strong>Longevity</strong>
+                            <span id="featureLongevity"></span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="feature-text">
+                            <strong>Scent Type</strong>
+                            <span id="featureScentType"></span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="feature-text">
+                            <strong>Concentration</strong>
+                            <span id="featureConcentration"></span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="feature-text">
+                            <strong>Quality</strong>
+                            <span id="featureQuality"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popup-actions">
+                    <button class="popup-btn popup-btn-primary" id="addToCart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="popup-btn popup-btn-secondary" id="addToWishlist">
+                        <i class="fas fa-heart"></i> Add to Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="email-popup-overlay" id="emailPopup">
+        <div class="email-popup">
+            <button class="email-popup-close" id="closeEmailPopup">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+
+            <div class="email-popup-content">
+                <div class="email-popup-header">
+                    <h2 class="email-popup-title">Get In Touch</h2>
+                    <p class="email-popup-subtitle">Join Us To Follow Along.</p>
+                    <p class="email-popup-offer">Get 10% Discount On Your First Purchase.</p>
+                </div>
+
+                <form class="email-popup-form" id="popupSubscribeForm">
+                    <div class="popup-form-group">
+                        <label for="popupEmail">Email *</label>
+                        <input type="email" id="popupEmail" name="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <button type="submit" class="popup-subscribe-btn" disabled>
+                        <span class="popup-btn-text">Subscribe</span>
+                        <span class="popup-btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-arrow-right">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </span>
+                    </button>
+                </form>
+
+                <div class="email-popup-legal">
+                    <p>By submitting, I agree to receive future communications from Rizzora and I have read and agree to
+                        Rizzora's Terms and acknowledge the Data Privacy Notice.</p>
+                </div>
+            </div>
+    </div>
+
+<script>
+    // Prevent initial animation on page load
+    const style = document.createElement('style');
+    style.textContent = `
+        .desktop-expand,
+        .sleeping-line,
+        .standing-line {
+            transition: none !important;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    setTimeout(() => {
+        document.head.removeChild(style);
+    }, 100);
+
+    lucide.createIcons();
+
+    const menuBtn = document.getElementById("menuBtn");
+    const blur = document.getElementById("menuBlur");
+    const catalogueScroll = document.getElementById("catalogueScroll");
+    const prevBtn = document.querySelector(".scroll-btn.prev");
+    const nextBtn = document.querySelector(".scroll-btn.next");
+    const desktopVideo = document.getElementById("desktopVideo");
+    const desktopVideoEl = document.getElementById("desktopVideoEl");
+    const productPopup = document.getElementById("productPopup");
+    const closePopup = document.getElementById("closePopup");
+    const popupTitle = document.getElementById("popupTitle");
+    const popupDescription = document.getElementById("popupDescription");
+    const popupIngredients = document.getElementById("popupIngredients");
+    const featureScentType = document.getElementById("featureScentType");
+    const featureLongevity = document.getElementById("featureLongevity");
+    const featureConcentration = document.getElementById("featureConcentration");
+    const featureQuality = document.getElementById("featureQuality");
+    const addToCartBtn = document.getElementById("addToCart");
+    const addToWishlistBtn = document.getElementById("addToWishlist");
+    const exploreBtn = document.getElementById("exploreBtn");
+    const catalogueSection = document.getElementById("catalogueSection");
+    const topbarWrap = document.getElementById("topbarWrap");
+    const topbar = document.getElementById("topbar");
+    const desktopExpand = document.getElementById("desktopExpand");
+    const aboutSection = document.getElementById("aboutSection");
+
+    const navCategoryItems = document.querySelectorAll('.nav-category-item');
+    let navContents = document.querySelectorAll('.nav-content');
+    const standardProducts = document.getElementById("standardProducts");
+    const premiumProducts = document.getElementById("premiumProducts");
+    const luxuryProducts = document.getElementById("luxuryProducts");
+    const cartItemsContainer = document.getElementById("cartItemsContainer");
+    const cartSummary = document.getElementById("cartSummary");
+    const cartTotal = document.getElementById("cartTotal");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const wishlistItemsContainer = document.getElementById("wishlistItemsContainer");
+    const supportContent = document.getElementById("supportContent");
+    const cartItemCount = document.getElementById("cartItemCount");
+
+    const emailPopup = document.getElementById("emailPopup");
+    const closeEmailPopup = document.getElementById("closeEmailPopup");
+    const popupSubscribeForm = document.getElementById("popupSubscribeForm");
+    const popupEmailInput = document.getElementById("popupEmail");
+    const popupSubscribeBtn = document.querySelector('.popup-subscribe-btn');
+
+    const subscribeForm = document.getElementById('subscribeForm');
+    const emailInput = document.getElementById('email');
+    const subscribeBtn = document.querySelector('.subscribe-btn');
+
+    let isSwitching = false;
+    let currentMode = 'desktop';
+    let resizeTimeout;
+    let desktopVideoReady = false;
+    let isMenuOpen = false;
+    let currentProductKey = null;
+    let isVideoPaused = false;
+
+    const STORAGE_KEYS = {
+        CART: 'rizzora_cart',
+        WISHLIST: 'rizzora_wishlist',
+        PRODUCT_STATES: 'rizzora_product_states',
+        VIDEO_PAUSED: 'rizzora_video_paused'
+    };
+
+    // Product price mapping - FIXED PRICES
+    const productPrices = {
+        core: 999,
+        ice: 1199,
+        femme: 1499,
+        noir: 1499,
+        aura: 1999,
+        zen: 2499
+    };
+
+    function initializeStorage() {
+        if (!localStorage.getItem(STORAGE_KEYS.CART)) {
+            localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify([]));
+        }
+        if (!localStorage.getItem(STORAGE_KEYS.WISHLIST)) {
+            localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify([]));
+        }
+        if (!localStorage.getItem(STORAGE_KEYS.PRODUCT_STATES)) {
+            localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify({}));
+        }
+        const savedVideoState = localStorage.getItem(STORAGE_KEYS.VIDEO_PAUSED);
+        if (savedVideoState === 'true') {
+            isVideoPaused = true;
+        }
+    }
+
+    function getCartItems() {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.CART) || '[]');
+    }
+
+    function getWishlistItems() {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.WISHLIST) || '[]');
+    }
+
+    function getProductStates() {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.PRODUCT_STATES) || '{}');
+    }
+
+    function addToCart(productKey, productData) {
+        const cart = getCartItems();
+        const existingItemIndex = cart.findIndex(item => item.key === productKey);
+
+        if (existingItemIndex === -1) {
+            // ADD ITEM WITH QUANTITY 1
+            cart.push({
+                key: productKey,
+                name: productData.name,
+                numericPrice: productPrices[productKey],
+                quantity: 1,
+                addedAt: new Date().toISOString()
+            });
+            localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
+
+            const states = getProductStates();
+            states[productKey] = states[productKey] || {};
+            states[productKey].inCart = true;
+            localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+
+            updateCartUI();
+            return true;
+        } else {
+            // REMOVING ITEM (when clicking "Add to Cart" on already added item)
+            cart.splice(existingItemIndex, 1);
+            localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
+
+            const states = getProductStates();
+            states[productKey] = states[productKey] || {};
+            states[productKey].inCart = false;
+            localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+
+            updateCartUI();
+            return false;
+        }
+    }
+
+    function addToWishlist(productKey, productData) {
+        const wishlist = getWishlistItems();
+        const existingItemIndex = wishlist.findIndex(item => item.key === productKey);
+
+        if (existingItemIndex === -1) {
+            wishlist.push({
+                key: productKey,
+                name: productData.name,
+                price: `₹${productPrices[productKey]}`,
+                addedAt: new Date().toISOString()
+            });
+            localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(wishlist));
+
+            const states = getProductStates();
+            states[productKey] = states[productKey] || {};
+            states[productKey].inWishlist = true;
+            localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+
+            updateWishlistUI();
+            return true;
+        } else {
+            wishlist.splice(existingItemIndex, 1);
+            localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(wishlist));
+
+            const states = getProductStates();
+            states[productKey] = states[productKey] || {};
+            states[productKey].inWishlist = false;
+            localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+
+            updateWishlistUI();
+            return false;
+        }
+    }
+
+    function getProductPrice(productKey) {
+        return `₹${productPrices[productKey]}`;
+    }
+
+    function getProductImage(productKey) {
+        const images = {
+            core: 'https://lakshkukreja07.github.io/assets/src/rizzora_core_bottle.png',
+            ice: 'https://lakshkukreja07.github.io/assets/src/rizzora_ice_bottle.png',
+            femme: 'https://lakshkukreja07.github.io/assets/src/rizzora_femme_bottle.png',
+            noir: 'https://lakshkukreja07.github.io/assets/src/rizzora_noir_bottle.png',
+            aura: 'https://lakshkukreja07.github.io/assets/src/rizzora_aura_bottle.png',
+            zen: 'https://lakshkukreja07.github.io/assets/src/rizzora_zen_bottle.png'
+        };
+        return images[productKey] || '';
+    }
+
+    // UPDATED CART UI FUNCTION - SIMPLIFIED PRICE DISPLAY
+    function updateCartUI() {
+        const cart = getCartItems();
+        cartItemsContainer.innerHTML = '';
+
+        // Update item count
+        cartItemCount.textContent = `${cart.length} ${cart.length === 1 ? 'item' : 'items'}`;
+
+        if (cart.length === 0) {
+            const emptyState = document.createElement('div');
+            emptyState.className = 'empty-state';
+            emptyState.innerHTML = '<i class="fas fa-shopping-cart"></i><p>Your cart is empty</p><div class="subtext">Add items to get started</div>';
+            cartItemsContainer.appendChild(emptyState);
+            
+            // Hide summary when cart is empty
+            cartSummary.style.display = 'none';
+            checkoutBtn.disabled = true;
+            checkoutBtn.innerHTML = '<i data-lucide="lock"></i> Checkout';
+            lucide.createIcons();
+            cartTotal.textContent = '₹0';
+        } else {
+            // Show summary when cart has items
+            cartSummary.style.display = 'block';
+            checkoutBtn.disabled = false;
+            checkoutBtn.innerHTML = '<i data-lucide="lock"></i> Checkout';
+            lucide.createIcons();
+            
+            let totalAmount = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = (item.numericPrice || 0) * (item.quantity || 1);
+                totalAmount += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">₹${item.numericPrice}</div>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn minus" data-index="${index}" data-action="decrease">−</button>
+                        <span class="quantity-value">${item.quantity || 1}</span>
+                        <button class="quantity-btn plus" data-index="${index}" data-action="increase">+</button>
+                    </div>
+                `;
+                
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            // Add event listeners to quantity buttons
+            document.querySelectorAll('.quantity-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const index = parseInt(e.currentTarget.getAttribute('data-index'));
+                    const action = e.currentTarget.getAttribute('data-action');
+                    updateCartQuantity(index, action);
+                });
+            });
+            
+            // Update total
+            cartTotal.textContent = `₹${totalAmount}`;
+        }
+    }
+
+    function updateCartQuantity(index, action) {
+        const cart = getCartItems();
+        
+        if (index >= 0 && index < cart.length) {
+            const item = cart[index];
+            
+            if (!item.quantity) {
+                item.quantity = 1;
+            }
+            
+            if (action === 'increase') {
+                item.quantity += 1;
+            } else if (action === 'decrease') {
+                item.quantity -= 1;
+                
+                // Remove item if quantity reaches 0
+                if (item.quantity <= 0) {
+                    const productKey = item.key;
+                    cart.splice(index, 1);
+                    
+                    // Update product state
+                    const states = getProductStates();
+                    if (states[productKey]) {
+                        states[productKey].inCart = false;
+                        localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+                    }
+                }
+            }
+            
+            // Save updated cart
+            localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
+            
+            // Update UI
+            updateCartUI();
+            
+            // Update product popup if it's open for this product
+            if (currentProductKey === item.key && productPopup.classList.contains('active')) {
+                if (cart.find(cartItem => cartItem.key === item.key)) {
+                    addToCartBtn.innerHTML = '<i data-lucide="check"></i> Added';
+                    addToCartBtn.classList.add('added');
+                    lucide.createIcons();
+                } else {
+                    addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                    addToCartBtn.classList.remove('added');
+                }
+            }
+        }
+    }
+
+    function removeFromCart(productKey) {
+        const cart = getCartItems();
+        const productIndex = cart.findIndex(item => item.key === productKey);
+        
+        if (productIndex !== -1) {
+            cart.splice(productIndex, 1);
+            localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
+            
+            const states = getProductStates();
+            if (states[productKey]) {
+                states[productKey].inCart = false;
+                localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+            }
+            
+            updateCartUI();
+            
+            // Update product popup if it's open for this product
+            if (currentProductKey === productKey && productPopup.classList.contains('active')) {
+                addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                addToCartBtn.classList.remove('added');
+            }
+        }
+    }
+
+    function updateWishlistUI() {
+        const wishlist = getWishlistItems();
+        wishlistItemsContainer.innerHTML = '';
+
+        if (wishlist.length === 0) {
+            const emptyState = document.createElement('div');
+            emptyState.className = 'empty-state';
+            emptyState.innerHTML = '<i class="fas fa-heart"></i><p>Your wishlist is empty</p><div class="subtext">Save items you love</div>';
+            wishlistItemsContainer.appendChild(emptyState);
+        } else {
+            wishlist.forEach((item, index) => {
+                const wishlistItem = document.createElement('div');
+                wishlistItem.className = 'cart-item';
+                
+                wishlistItem.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">${item.price}</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="cart-item-delete" data-index="${index}" title="Remove from wishlist">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                `;
+                
+                wishlistItemsContainer.appendChild(wishlistItem);
+            });
+
+            // Add event listeners to delete buttons
+            document.querySelectorAll('#wishlistItemsContainer .cart-item-delete').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const index = parseInt(e.currentTarget.getAttribute('data-index'));
+                    const wishlist = getWishlistItems();
+                    const productKey = wishlist[index].key;
+                    removeFromWishlist(productKey);
+                });
+            });
+        }
+    }
+
+    function removeFromWishlist(productKey) {
+        const wishlist = getWishlistItems();
+        const productIndex = wishlist.findIndex(item => item.key === productKey);
+        
+        if (productIndex !== -1) {
+            wishlist.splice(productIndex, 1);
+            localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(wishlist));
+            
+            const states = getProductStates();
+            if (states[productKey]) {
+                states[productKey].inWishlist = false;
+                localStorage.setItem(STORAGE_KEYS.PRODUCT_STATES, JSON.stringify(states));
+            }
+            
+            updateWishlistUI();
+            
+            // Update product popup if it's open for this product
+            if (currentProductKey === productKey && productPopup.classList.contains('active')) {
+                addToWishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Wishlist';
+                addToWishlistBtn.classList.remove('wishlisted');
+            }
+        }
+    }
+
+    const productData = {
+        core: {
+            name: "Rizzora Core",
+            description: "Rizzora Core is designed to be worn anytime, by anyone. It doesn't overpower — it blends. A soft warmth unfolds slowly, sitting close to the skin and evolving naturally through the day.",
+            ingredients: ["Coconut Oil (Base)", "Jojoba Oil (Base)", "Amber Resin", "Cedarwood Extract", "Vanilla Absolute", "Clove Oil"],
+            scentType: "Woody & Warm",
+            category: "Standard Perfume",
+            longevity: "~ 6 to 8 hours",
+            concentration: "Eau de Parfum",
+            quality: "Standard Grade",
+            price: "₹999"
+        },
+        ice: {
+            name: "Rizzora Ice",
+            description: "A refreshing and invigorating scent that combines crisp freshness with a hint of spice. Rizzora Ice is designed for the fearless individual who embraces both cool confidence and fiery passion.",
+            ingredients: ["Bergamot", "Mint", "Ginger", "Icy Accord", "White Musk", "Vetiver"],
+            scentType: "Fresh & Spicy",
+            category: "Standard Perfume",
+            longevity: "~ 8 to 10 hours",
+            concentration: "Eau de Parfum",
+            quality: "Standard Grade",
+            price: "₹1,199"
+        },
+        femme: {
+            name: "Rizzora Femme",
+            description: "An elegant and romantic fragrance that captures feminine grace and timeless beauty. Rizzora Femme offers a delicate yet lasting scent that enhances natural allure with sophistication.",
+            ingredients: ["Jasmine", "Rose", "Peony", "Vanilla", "Sandalwood", "White Amber"],
+            scentType: "Floral & Sweet",
+            category: "Premium Perfume",
+            longevity: "~ 10 to 12 hours",
+            concentration: "Eau de Parfum",
+            quality: "Premium Grade",
+            price: "₹1,499"
+        },
+        noir: {
+            name: "Rizzora Noir",
+            description: "A mysterious and sensual scent for the night. Rizzora Noir combines dark, luxurious notes to create an aura of sophistication and intrigue. Perfect for evening elegance.",
+            ingredients: ["Oud", "Leather", "Patchouli", "Dark Chocolate", "Incense", "Black Rose"],
+            scentType: "Oriental & Dark",
+            category: "Premium Perfume",
+            longevity: "~ 10 to 12 hours",
+            concentration: "Eau de Parfum",
+            quality: "Premium Grade",
+            price: "₹1,499"
+        },
+        aura: {
+            name: "Rizzora Aura",
+            description: "A magnetic fragrance designed to create an irresistible aura. Rizzora Aura combines fresh top notes with deep, hormonal base notes that naturally attract and captivate.",
+            ingredients: ["Pheromones", "Ocean Breeze", "Musk", "Ambergris", "Citrus Blend", "Woody Notes"],
+            scentType: "Fresh & Musky",
+            category: "Luxury Perfume",
+            longevity: "~ 12 to 14 hours",
+            concentration: "Eau de Parfum",
+            quality: "Luxury Grade",
+            price: "₹1,999"
+        },
+        zen: {
+            name: "Rizzora Zen",
+            description: "The ultimate luxury fragrance. Rizzora Zen combines rare ingredients to create a scent of unparalleled refinement and sophistication. For those who appreciate the finest things in life.",
+            ingredients: ["Saffron", "Oud", "Sandalwood", "Iris", "Vanilla Absolute", "White Truffle"],
+            scentType: "Rare & Refined",
+            category: "Luxury Perfume",
+            longevity: "~ 12 to 16 hours",
+            concentration: "Eau de Parfum",
+            quality: "Luxury Grade",
+            price: "₹2,499"
+        }
+    };
+
+    const categories = {
+        "Standard Perfumes": ["core", "ice"],
+        "Premium Perfumes": ["femme", "noir"],
+        "Luxury Perfumes": ["aura", "zen"],
+        "Support": []
+    };
+
+    function setupNavigation() {
+        // Use the updated product grid layout with bottle images
+        populateProductGrid('standardProducts', ['core', 'ice']);
+        populateProductGrid('premiumProducts', ['femme', 'noir']);
+        populateProductGrid('luxuryProducts', ['aura', 'zen']);
+
+        navCategoryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const contentId = item.getAttribute('data-content');
+
+                navCategoryItems.forEach(i => i.classList.remove('active'));
+                navContents.forEach(c => c.classList.remove('active'));
+
+                item.classList.add('active');
+                const contentElement = document.getElementById(contentId + 'Content');
+                if (contentElement) {
+                    contentElement.classList.add('active');
+                    
+                    // Update UI for cart and wishlist when clicked
+                    if (contentId === 'cart') {
+                        updateCartUI();
+                    } else if (contentId === 'wishlist') {
+                        updateWishlistUI();
+                    }
+                }
+            });
+        });
+    }
+
+    function populateProductGrid(gridId, productKeys) {
+        const grid = document.getElementById(gridId);
+        grid.innerHTML = '';
+
+        productKeys.forEach(key => {
+            const product = productData[key];
+            if (product) {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                productItem.innerHTML = `
+                    <div class="product-item-image-container">
+                        <img src="${getProductImage(key)}" alt="${product.name}" class="product-item-image">
+                    </div>
+                    <div class="product-item-details">
+                        <div class="product-item-name">${product.name}</div>
+                        <div class="product-item-price">
+                            ${product.price}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </div>
+                    </div>
+                `;
+                productItem.addEventListener('click', () => {
+                    openProductPopup(key);
+                    closeMenu();
+                });
+                grid.appendChild(productItem);
+            }
+        });
+    }
+
+    function openMenu() {
+        isMenuOpen = true;
+        
+        // Remove any closing states
+        topbarWrap.classList.remove('menu-closing');
+        menuBtn.classList.remove("is-closing");
+        
+        topbarWrap.classList.add('menu-open');
+        document.body.classList.add("desktop-menu-open");
+        menuBtn.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        
+        // Update cart UI when menu opens
+        updateCartUI();
+        updateWishlistUI();
+    }
+
+    function closeMenu() {
+        isMenuOpen = false;
+        
+        // Remove menu classes first - this starts closing the desktop expand section
+        topbarWrap.classList.remove('menu-open');
+        document.body.classList.remove("desktop-menu-open");
+        document.body.style.overflow = "";
+        
+        // Add closing animation to menu icon - this syncs with menu closing (400ms)
+        menuBtn.classList.remove("is-open");
+        menuBtn.classList.add("is-closing");
+        
+        // Add closing state to keep topbar opaque for 1 second
+        topbarWrap.classList.add('menu-closing');
+        
+        // Remove the menu icon closing animation after 400ms (same as menu closing)
+        setTimeout(() => {
+            menuBtn.classList.remove("is-closing");
+        }, 400);
+        
+        // Remove closing state after 1 second (for topbar opacity)
+        setTimeout(() => {
+            topbarWrap.classList.remove('menu-closing');
+        }, 1000);
+    }
+
+    function toggleMenu() {
+        if (isMenuOpen) {
+            closeMenu();
+        } else {
+            // Remove any closing state if opening menu
+            topbarWrap.classList.remove('menu-closing');
+            requestAnimationFrame(() => {
+                openMenu();
+            });
+        }
+    }
+
+    function setupVideoLoop(videoElement) {
+        if (!videoElement) return;
+
+        videoElement.addEventListener('ended', function () {
+            videoElement.currentTime = 0;
+            setTimeout(() => {
+                videoElement.play().catch(e => console.log('Ended play error:', e));
+            }, 100);
+        });
+    }
+
+    function playVideoSafe(videoElement) {
+        if (!videoElement) return;
+
+        videoElement.currentTime = 0;
+
+        videoElement.play()
+            .then(() => {
+                console.log('Video playing successfully');
+            })
+            .catch(error => {
+                console.log('Video play failed:', error.name);
+
+                if (!videoElement.muted) {
+                    videoElement.muted = true;
+                    videoElement.play().catch(e => console.log('Muted play also failed:', e));
+                }
+            });
+    }
+
+    function toggleVideo() {
+        if (!desktopVideoEl) return;
+        
+        isVideoPaused = !isVideoPaused;
+        
+        if (isVideoPaused) {
+            desktopVideoEl.pause();
+            localStorage.setItem(STORAGE_KEYS.VIDEO_PAUSED, 'true');
+        } else {
+            desktopVideoEl.play().catch(e => {
+                console.log('Video play error:', e);
+            });
+            localStorage.setItem(STORAGE_KEYS.VIDEO_PAUSED, 'false');
+        }
+    }
+
+    desktopVideoEl.addEventListener('loadeddata', function () {
+        desktopVideoReady = true;
+        console.log('Desktop video loaded');
+
+        setupVideoLoop(desktopVideoEl);
+
+        if (currentMode === 'desktop' && !isVideoPaused) {
+            setTimeout(() => playVideoSafe(desktopVideoEl), 500);
+        }
+    });
+
+    desktopVideoEl.addEventListener('error', function (e) {
+        console.log('Desktop video error:', desktopVideoEl.error);
+        desktopVideoReady = false;
+    });
+
+    function handleResize() {
+        clearTimeout(resizeTimeout);
+
+        closeMenu();
+
+        isMenuOpen = false;
+        menuBtn.classList.remove("is-open");
+        document.body.classList.remove("desktop-menu-open");
+        document.body.style.overflow = "";
+
+        resizeTimeout = setTimeout(() => {
+            updateScrollButtons();
+        }, 250);
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (prevBtn.classList.contains('disabled')) return;
+        catalogueScroll.scrollBy({ left: -400, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (nextBtn.classList.contains('disabled')) return;
+        catalogueScroll.scrollBy({ left: 400, behavior: 'smooth' });
+    });
+
+    function updateScrollButtons() {
+        const scrollLeft = catalogueScroll.scrollLeft;
+        const scrollWidth = catalogueScroll.scrollWidth;
+        const clientWidth = catalogueScroll.clientWidth;
+
+        const isAtStart = scrollLeft <= 5;
+        const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 5;
+
+        prevBtn.classList.toggle('disabled', isAtStart);
+        nextBtn.classList.toggle('disabled', isAtEnd);
+    }
+
+    function openProductPopup(productKey) {
+        const product = productData[productKey];
+        if (!product) return;
+
+        currentProductKey = productKey;
+
+        popupTitle.textContent = product.name;
+        popupDescription.textContent = product.description;
+
+        const ingredientsText = product.ingredients.join(', ');
+        popupIngredients.innerHTML = '';
+        const ingredientsContainer = document.createElement('div');
+        ingredientsContainer.textContent = ingredientsText;
+        popupIngredients.appendChild(ingredientsContainer);
+
+        featureLongevity.textContent = product.longevity;
+        featureScentType.textContent = product.scentType;
+        featureConcentration.textContent = product.concentration;
+        featureQuality.textContent = product.quality;
+
+        const states = getProductStates();
+        const productState = states[productKey] || {};
+
+        // Reset buttons
+        addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+        addToCartBtn.className = 'popup-btn popup-btn-primary';
+        addToWishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Wishlist';
+        addToWishlistBtn.className = 'popup-btn popup-btn-secondary';
+
+        // Update based on current state
+        if (productState.inCart) {
+            addToCartBtn.innerHTML = '<i data-lucide="check"></i> Added';
+            addToCartBtn.classList.add('added');
+            lucide.createIcons();
+        }
+
+        if (productState.inWishlist) {
+            addToWishlistBtn.innerHTML = '<i class="fas fa-heart" style="color: #ef4444;"></i> Wishlisted';
+            addToWishlistBtn.classList.add('wishlisted');
+        }
+
+        addToCartBtn.onclick = () => {
+            const result = addToCart(productKey, product);
+
+            if (result) {
+                addToCartBtn.innerHTML = '<i data-lucide="check"></i> Added';
+                addToCartBtn.classList.add('added');
+                lucide.createIcons();
+            } else {
+                addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                addToCartBtn.classList.remove('added');
+            }
+        };
+
+        addToWishlistBtn.onclick = () => {
+            const result = addToWishlist(productKey, product);
+
+            if (result) {
+                addToWishlistBtn.innerHTML = '<i class="fas fa-heart" style="color: #ef4444;"></i> Wishlisted';
+                addToWishlistBtn.classList.add('wishlisted');
+            } else {
+                addToWishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Wishlist';
+                addToWishlistBtn.classList.remove('wishlisted');
+            }
+        };
+
+        productPopup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductPopup() {
+        productPopup.classList.remove('active');
+        currentProductKey = null;
+        if (!isMenuOpen) {
+            document.body.style.overflow = '';
+        }
+    }
+
+    function showEmailPopup() {
+        emailPopup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        resetPopupForm();
+    }
+
+    function closeEmailPopupFunc() {
+        emailPopup.classList.remove('active');
+        document.body.style.overflow = '';
+        resetPopupForm();
+    }
+
+    function resetPopupForm() {
+        if (popupSubscribeForm) popupSubscribeForm.reset();
+        if (popupSubscribeBtn) {
+            popupSubscribeBtn.disabled = true;
+            popupSubscribeBtn.classList.remove('subscribed-success');
+            popupSubscribeBtn.innerHTML = '<span class="popup-btn-text">Subscribe</span><span class="popup-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>';
+        }
+    }
+
+    function initEmailPopup() {
+        if (!popupEmailInput || !popupSubscribeBtn) return;
+
+        popupSubscribeBtn.disabled = true;
+
+        popupEmailInput.addEventListener('input', function () {
+            const email = popupEmailInput.value.trim();
+            const isValid = email.includes('@') && email.includes('.') && email.length > 5;
+
+            if (isValid) {
+                popupSubscribeBtn.disabled = false;
+            } else {
+                popupSubscribeBtn.disabled = true;
+            }
+        });
+
+        if (popupSubscribeForm) {
+            popupSubscribeForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = popupEmailInput.value.trim();
+
+                if (!email.includes('@') || !email.includes('.') || email.length < 5) {
+                    alert('Please enter a valid email address with @ and domain (e.g., example@gmail.com)');
+                    return;
+                }
+
+                popupSubscribeBtn.disabled = true;
+                popupSubscribeBtn.classList.add('subscribed-success');
+                popupSubscribeBtn.innerHTML = '';
+
+                popupSubscribeBtn.style.height = getComputedStyle(popupSubscribeBtn).height;
+
+                console.log('Email popup subscribing:', { email });
+
+                setTimeout(() => {
+                    popupSubscribeBtn.disabled = true;
+                    popupSubscribeBtn.classList.remove('subscribed-success');
+                    popupSubscribeBtn.innerHTML = '<span class="popup-btn-text">Subscribe</span><span class="popup-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>';
+                    popupSubscribeBtn.style.height = '';
+
+                    closeEmailPopupFunc();
+                }, 5000);
+            });
+        }
+    }
+
+    function initGetInTouchForm() {
+        if (!subscribeForm || !emailInput || !subscribeBtn) return;
+
+        subscribeBtn.disabled = true;
+
+        emailInput.addEventListener('input', function () {
+            const email = emailInput.value.trim();
+            const isValid = email.includes('@') && email.includes('.') && email.length > 5;
+
+            if (isValid) {
+                subscribeBtn.disabled = false;
+            } else {
+                subscribeBtn.disabled = true;
+            }
+        });
+
+        subscribeForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = emailInput.value.trim();
+
+            if (!email.includes('@') || !email.includes('.') || email.length < 5) {
+                alert('Please enter a valid email address with @ and domain (e.g., example@gmail.com)');
+                return;
+            }
+
+            const originalHtml = subscribeBtn.innerHTML;
+            const originalDisabled = subscribeBtn.disabled;
+
+            subscribeBtn.disabled = true;
+            subscribeBtn.classList.add('subscribed-success');
+
+            subscribeBtn.innerHTML = '';
+
+            subscribeBtn.style.height = getComputedStyle(subscribeBtn).height;
+
+            console.log('Get in touch form subscribing:', { email });
+
+            setTimeout(() => {
+                subscribeForm.reset();
+                subscribeBtn.disabled = true;
+                subscribeBtn.classList.remove('subscribed-success');
+                subscribeBtn.innerHTML = '<span class="btn-text">Subscribe</span><span class="btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>';
+                subscribeBtn.style.height = '';
+            }, 5000);
+        });
+    }
+
+    exploreBtn.addEventListener('click', () => {
+        catalogueSection.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Checkout button functionality - SIMPLIFIED (does nothing)
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            // Do nothing when checkout button is clicked
+            // Just leave it as a static button
+            console.log('Checkout button clicked (no action)');
+        });
+    }
+
+    function initializePage() {
+        initializeStorage();
+
+        desktopVideo.style.display = 'block';
+        currentMode = 'desktop';
+
+        updateScrollButtons();
+        prevBtn.classList.add('disabled');
+
+        setupNavigation();
+
+        updateCartUI();
+        updateWishlistUI();
+
+        initEmailPopup();
+
+        initGetInTouchForm();
+
+        isMenuOpen = false;
+        menuBtn.classList.remove("is-open");
+        document.body.classList.remove("desktop-menu-open");
+
+        console.log('Page initialized in', currentMode, 'mode');
+    }
+
+    menuBtn.addEventListener("click", toggleMenu);
+
+    blur.addEventListener("click", function () {
+    });
+    closePopup.addEventListener("click", closeProductPopup);
+
+    if (closeEmailPopup) {
+        closeEmailPopup.addEventListener('click', closeEmailPopupFunc);
+    }
+
+    if (emailPopup) {
+        emailPopup.addEventListener('click', function (e) {
+            if (e.target === emailPopup) {
+                closeEmailPopupFunc();
+            }
+        });
+    }
+
+    productPopup.addEventListener('wheel', (e) => {
+        e.stopPropagation();
+    });
+
+    productPopup.addEventListener('touchmove', (e) => {
+        e.stopPropagation();
+    }, { passive: false });
+
+    productPopup.addEventListener("click", (e) => {
+        if (e.target === productPopup) {
+            closeProductPopup();
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            if (productPopup.classList.contains('active')) {
+                closeProductPopup();
+            }
+            else if (emailPopup.classList.contains('active')) {
+                closeEmailPopupFunc();
+            }
+            else if (isMenuOpen) {
+                closeMenu();
+            }
+        }
+        
+        // Video pause/play shortcut for both Mac and Windows
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'L') {
+            e.preventDefault();
+            toggleVideo();
+        }
+        
+        // Simpler shortcut - just Shift + L for all systems
+        if (e.shiftKey && e.key === 'L' && !e.ctrlKey && !e.metaKey) {
+            e.preventDefault();
+            toggleVideo();
+        }
+    });
+
+    document.querySelectorAll('.learn-more').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const productKey = button.getAttribute('data-product');
+            openProductPopup(productKey);
+        });
+    });
+
+    window.addEventListener("resize", handleResize);
+    catalogueScroll.addEventListener('scroll', updateScrollButtons);
+    window.addEventListener('DOMContentLoaded', initializePage);
+
+    window.showEmailPopup = showEmailPopup;
+</script>
+</body>
+</html>
