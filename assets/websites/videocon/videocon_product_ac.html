@@ -1,0 +1,3416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videocon | Explore AC's</title>
+
+    <!-- Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Geist Sans';
+            src: url('https://lakshkukreja07.github.io/assets/fonts/geist/Geist-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Geist Sans';
+            src: url('https://lakshkukreja07.github.io/assets/fonts/geist/Geist-Bold.woff2') format('woff2');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Geist Sans', sans-serif;
+            font-weight: 400;
+        }
+
+        body {
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            height: 70px;
+            border-bottom: 1px solid #e5e5e5;
+            background: #fff;
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1440px;
+            margin: auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: .5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        /* ===== DESKTOP NAV LINKS ===== */
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            font-size: .95rem;
+            height: 100%;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #111;
+            position: relative;
+            padding: 25px 0;
+            cursor: pointer;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #e60012;
+        }
+
+        .nav-link.active {
+            color: #e60012;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #e60012;
+        }
+
+        /* ===== MEGA MENU ===== */
+        .mega-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            padding: 40px 0;
+        }
+
+        .mega-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mega-menu-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        /* ===== AIR CONDITIONER SPECIFIC STYLES ===== */
+        .air-conditioner-content {
+            padding: 20px 40px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .air-conditioner-series-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+        }
+
+        .air-conditioner-series-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .air-conditioner-series-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #262626;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .air-conditioner-image-container {
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 175px;
+        }
+
+        /* Standard Series Image */
+        .air-conditioner-image-standard {
+            height: 70px;
+            width: auto;
+        }
+
+        /* Pro Series Image */
+        .air-conditioner-image-pro {
+            height: 80px;
+            width: auto;
+        }
+
+        .air-conditioner-explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .air-conditioner-explore-btn:hover {
+            background: #333333;
+        }
+
+        .air-conditioner-explore-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ===== AIR PURIFIER SPECIFIC STYLES ===== */
+        .air-purifier-content {
+            padding: 20px 40px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .air-purifier-series-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+        }
+
+        .air-purifier-series-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .air-purifier-series-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #262626;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .air-purifier-image-container {
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 175px;
+        }
+
+        /* Standard Series Image */
+        .air-purifier-image-standard {
+            height: 180px;
+            width: auto;
+        }
+
+        /* Pro Series Image */
+        .air-purifier-image-pro {
+            height: 180px;
+            width: auto;
+        }
+
+        .air-purifier-explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .air-purifier-explore-btn:hover {
+            background: #333333;
+        }
+
+        .air-purifier-explore-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ===== TELEVISION SPECIFIC STYLES ===== */
+        .television-content {
+            padding: 20px 40px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .television-series-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 80px;
+        }
+
+        .television-series-column {
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+            align-items: flex-start;
+        }
+
+        .television-series-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #262626;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .television-image-container {
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 175px;
+        }
+
+        .television-image-standard {
+            height: 180px;
+            width: auto;
+        }
+
+        .television-image-pro {
+            height: 180px;
+            width: auto;
+        }
+
+        .television-image-ultra {
+            height: 180px;
+            width: auto;
+        }
+
+        .television-explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .television-explore-btn:hover {
+            background: #333333;
+        }
+
+        .television-explore-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ===== WASHING MACHINE SPECIFIC STYLES ===== */
+        .washing-machine-content {
+            padding: 20px 40px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .washing-machine-series-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+        }
+
+        .washing-machine-series-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .washing-machine-series-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #262626;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .washing-machine-image-container {
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 175px;
+        }
+
+        .washing-machine-image-front {
+            height: 175px;
+            width: auto;
+        }
+
+        .washing-machine-image-top {
+            height: 235px;
+            width: auto;
+        }
+
+        .washing-machine-explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .washing-machine-explore-btn:hover {
+            background: #333333;
+        }
+
+        .washing-machine-explore-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ===== REFRIGERATOR SPECIFIC STYLES ===== */
+        .refrigerator-content {
+            padding: 20px 40px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .refrigerator-series-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+        }
+
+        .refrigerator-series-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .refrigerator-series-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #262626;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .refrigerator-image-container {
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 175px;
+        }
+
+        /* Standard Series Image */
+        .refrigerator-image-standard {
+            height: 180px;
+            width: auto;
+        }
+
+        /* Pro Series Image */
+        .refrigerator-image-pro {
+            height: 180px;
+            width: auto;
+        }
+
+        .refrigerator-explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .refrigerator-explore-btn:hover {
+            background: #333333;
+        }
+
+        .refrigerator-explore-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ===== MEGA MENU SECTIONS ===== */
+        .mega-menu-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mega-menu-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .mega-menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mega-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .mega-menu-item:hover {
+            background: #f9f9f9;
+        }
+
+        .mega-menu-item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            flex-shrink: 0;
+        }
+
+        .mega-menu-item-details {
+            flex: 1;
+        }
+
+        .mega-menu-item-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .mega-menu-item-price {
+            font-size: 0.85rem;
+            color: #e60012;
+            font-weight: 600;
+        }
+
+        .mega-menu-item-features {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .mega-menu-category {
+            display: block;
+            font-size: 0.9rem;
+            color: #333;
+            padding: 8px 0;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .mega-menu-category:hover {
+            color: #e60012;
+        }
+
+        .mega-menu-highlight {
+            grid-column: span 2;
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mega-menu-highlight-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        .mega-menu-highlight-text {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .mega-menu-highlight-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #e60012;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .mega-menu-highlight-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Overlay for mega menu */
+        .mega-menu-overlay {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .mega-menu-overlay.active {
+            height: calc(100vh - 70px);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ===== NAV ICONS ===== */
+        .nav-icons {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-icons svg {
+            width: 24px;
+            height: 24px;
+            stroke: #111;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            cursor: pointer;
+        }
+
+        .account-wrapper,
+        .cart-wrapper,
+        .search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* ===== DESKTOP PANELS ===== */
+        .search-popup {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 380px;
+            background: #fff;
+            display: none;
+            z-index: 3001;
+            border-left: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            box-shadow: -2px 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-popup.active {
+            display: block;
+        }
+
+        .cart-panel {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 380px;
+            background: #fff;
+            display: none;
+            z-index: 3001;
+            border-left: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 40px 30px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .cart-panel.active {
+            display: block;
+        }
+
+        .account-panel {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 380px;
+            background: #fff;
+            display: none;
+            z-index: 3001;
+            border-left: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .account-panel.active {
+            display: block;
+        }
+
+        /* ===== MOBILE ELEMENTS ===== */
+        .mobile-icons {
+            display: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .mobile-search-wrapper,
+        .mobile-cart-wrapper {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-search-wrapper svg,
+        .mobile-cart-wrapper svg {
+            width: 24px;
+            height: 24px;
+            stroke: #111;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            stroke: #111;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* ===== MOBILE OVERLAYS ===== */
+        .mobile-overlay {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: #fff;
+            z-index: 3000;
+            overflow-y: auto;
+            transition: height 0.3s ease;
+            display: none;
+        }
+
+        .mobile-overlay.active {
+            height: calc(100vh - 70px);
+            display: block;
+        }
+
+        /* Mobile content styles */
+        .search-content,
+        .mobile-search-overlay {
+            padding: 25px;
+        }
+
+        .search-box,
+        .mobile-search-box {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .search-input-container,
+        .mobile-search-input-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-input-container svg,
+        .mobile-search-input-container svg {
+            width: 20px;
+            height: 20px;
+            stroke: #666;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .search-input-container input,
+        .mobile-search-input-container input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            color: #111;
+            outline: none;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: #e5e5e5;
+            margin: 12px 0;
+        }
+
+        .section-header {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .item-icon {
+            width: 18px;
+            height: 18px;
+            stroke: #666;
+            flex-shrink: 0;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .item-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .item-name {
+            font-size: 0.95rem;
+            color: #111;
+        }
+
+        .item-badge {
+            padding: 6px 6px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            min-width: 45px;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-new {
+            background: #ffd8d2;
+            color: #000;
+        }
+
+        .badge-hot {
+            background: #ffecd1;
+            color: #000;
+        }
+
+        /* Cart styles */
+        .cart-panel,
+        .mobile-cart-overlay {
+            padding: 40px 30px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .cart-icon {
+            width: 64px;
+            height: 64px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cart-span {
+            font-weight: 600;
+            color: #111;
+        }
+
+        /* Account panel styles */
+        .panel-header,
+        .mobile-account-header {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+        }
+
+        .panel-header svg,
+        .mobile-account-header svg {
+            fill: #55a2dd;
+            width: 56px;
+            height: 56px;
+        }
+
+        .auth-links,
+        .mobile-auth-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .auth-links a,
+        .mobile-auth-links a {
+            font-size: .9rem;
+            text-decoration: underline;
+            color: #000;
+        }
+
+        .auth-links a:first-child,
+        .mobile-auth-links a:first-child {
+            border-right: 1px solid #e5e5e5;
+            padding-right: 12px;
+        }
+
+        .menu-row,
+        .mobile-menu-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .menu-row:hover {
+            background: #f9f9f9;
+        }
+
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-left svg {
+            width: 22px;
+            height: 22px;
+            stroke: #111;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .chevron {
+            width: 20px;
+            height: 20px;
+            stroke: #111;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e5e5e5;
+        }
+
+        /* ===== MOBILE SPECIFIC STYLES ===== */
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 0;
+            padding: 0;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: #111;
+            font-size: 1rem;
+            padding: 14px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background .2s ease;
+        }
+
+        .mobile-nav-links a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav-links a:hover {
+            background: #f9f9f9;
+        }
+
+        .mobile-nav-links a::after {
+            content: "›";
+            font-size: 1.5rem;
+            color: #666;
+            margin-left: 10px;
+        }
+
+        .mobile-account-box {
+            background: #f5f5f5;
+            margin: 20px 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .mobile-account-header {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .mobile-account-header svg {
+            fill: #55a2dd;
+            width: 56px;
+            height: 56px;
+            flex-shrink: 0;
+        }
+
+        .mobile-auth-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .mobile-auth-links a {
+            font-size: .85rem;
+            text-decoration: underline;
+            color: #0066cc;
+        }
+
+        .mobile-auth-links a:first-child {
+            border-right: 1px solid #999;
+            padding-right: 12px;
+        }
+
+        .mobile-menu-row {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            cursor: pointer;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background .2s ease;
+        }
+
+        .mobile-menu-row:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-row:hover {
+            background: #eaeaea;
+        }
+
+        .mobile-menu-row svg {
+            width: 22px;
+            height: 22px;
+            stroke: #666;
+            stroke-width: 2;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .mobile-menu-row-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-menu-row-text {
+            font-size: 0.95rem;
+            color: #111;
+        }
+
+        .mobile-chevron {
+            width: 16px;
+            height: 16px;
+            stroke: #666;
+            stroke-width: 2;
+            fill: none;
+            flex-shrink: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #000;
+            color: #fff;
+            padding: 150px 70px;
+            margin-top: auto;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+
+        .footer-content {
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        /* Add to your existing footer styles */
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            min-width: 180px;
+        }
+
+        .footer-column h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-column a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+            line-height: 1.4;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: #333;
+            margin: 40px 0;
+            width: 100%;
+        }
+
+        .payment-social-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .payment-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .payment-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: #aaa;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .social-language {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-media-divider {
+            height: 20px;
+            width: 1px;
+            background: #666;
+            margin: 0 15px;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #aaa;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .language-selector:hover {
+            color: #fff;
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            stroke: #aaa;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: stroke 0.2s ease;
+        }
+
+        .social-icon:hover {
+            stroke: #fff;
+        }
+
+        .footer-info {
+            margin-top: 30px;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .footer-author {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .footer-notice {
+            font-size: 0.8rem;
+            color: #aaa;
+            line-height: 1.4;
+        }
+
+        /* Footer subsection styling */
+        .footer-subsection {
+            margin-bottom: 20px;
+        }
+
+        .footer-subsection h4 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 8px;
+            margin-top: 0;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .footer-subsection:first-child {
+            margin-top: 0;
+        }
+
+        .footer-subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Adjust column spacing for the new structure */
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            min-width: 180px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .navbar {
+                height: 70px;
+                padding: 0 15px !important;
+            }
+
+            .nav-container {
+                padding: 0 15px !important;
+            }
+
+            .nav-links,
+            .nav-icons,
+            .mega-menu,
+            .mega-menu-overlay {
+                display: none !important;
+            }
+
+            .mobile-icons {
+                display: flex;
+                gap: 20px;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .search-popup,
+            .account-panel,
+            .cart-panel {
+                display: none !important;
+            }
+
+            .footer {
+                padding: 80px 20px;
+            }
+
+            .footer-columns {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .payment-social-row {
+                flex-direction: column;
+                gap: 30px;
+                align-items: flex-start;
+            }
+
+            .mobile-nav-links {
+                margin-bottom: 0;
+                padding: 5px 0;
+            }
+
+            .mobile-nav-links a {
+                padding: 14px 20px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .mobile-overlay {
+                height: 0;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .mobile-overlay.active {
+                height: calc(100vh - 70px);
+                display: block;
+                overflow-y: auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+
+            .mobile-icons,
+            .mobile-overlay {
+                display: none !important;
+            }
+
+            .nav-links,
+            .nav-icons {
+                display: flex;
+            }
+
+            .search-popup,
+            .account-panel,
+            .cart-panel {
+                z-index: 3001;
+            }
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .footer-columns {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_logo_black.png" alt="Videocon Logo">
+            </div>
+
+            <!-- DESKTOP NAV LINKS -->
+            <div class="nav-links">
+                <!-- Split into two separate columns -->
+                <a class="nav-link" href="#" data-mega="air-conditioners">Air Conditioners</a>
+                <a class="nav-link" href="#" data-mega="air-purifiers">Air Purifiers</a>
+                <a class="nav-link" href="#" data-mega="televisions">Televisions</a>
+                <a class="nav-link" href="#" data-mega="washing-machines">Washing Machines</a>
+                <a class="nav-link" href="#" data-mega="refrigerators">Refrigerators</a>
+            </div>
+
+            <!-- DESKTOP ICONS -->
+            <div class="nav-icons">
+                <div class="search-wrapper" id="searchWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </div>
+
+                <div class="cart-wrapper" id="cartWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>
+                </div>
+
+                <div class="account-wrapper" id="accountWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 20a6 6 0 0 0-12 0" />
+                        <circle cx="12" cy="10" r="4" />
+                        <circle cx="12" cy="12" r="10" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- MOBILE ICONS -->
+            <div class="mobile-icons">
+                <div class="mobile-search-wrapper" id="mobileSearchWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </div>
+
+                <div class="mobile-cart-wrapper" id="mobileCartWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>
+                </div>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <svg class="menu-icon" viewBox="0 0 24 24">
+                        <path d="M4 5h16" />
+                        <path d="M4 12h16" />
+                        <path d="M4 19h16" />
+                    </svg>
+                    <svg class="close-icon" viewBox="0 0 24 24" style="display: none;">
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- DESKTOP PANELS -->
+            <div class="search-popup" id="searchPopup">
+                <div class="search-content">
+                    <div class="search-box">
+                        <div class="search-input-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="m21 21-4.34-4.34" />
+                                <circle cx="11" cy="11" r="8" />
+                            </svg>
+                            <input type="text" placeholder="Search Anything..." autofocus>
+                        </div>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <div class="section-header">Suggested Products</div>
+                    <div class="item-list">
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon 1.5 Ton AC</span>
+                                <span class="item-badge badge-new">new</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon Air Purifier Neo 5</span>
+                                <span class="item-badge badge-hot">hot</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon Smart TV X3 LCD</span>
+                                <span class="item-badge badge-hot">hot</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <div class="section-header">Trending Searches</div>
+                    <div class="item-list">
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="m21 21-4.34-4.34" />
+                                <circle cx="11" cy="11" r="8" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon Smart TV X3 LCD</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="m21 21-4.34-4.34" />
+                                <circle cx="11" cy="11" r="8" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon Air Purifier Neo 5</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="m21 21-4.34-4.34" />
+                                <circle cx="11" cy="11" r="8" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon Zeal Washing Machine</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-panel" id="cartPanel">
+                <p>Your cart is empty</p>
+                <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_cart.png" alt="Cart Icon" class="cart-icon">
+                <p>You are <span class="cart-span">₹499</span> away from free shipping.</p>
+            </div>
+
+            <div class="account-panel" id="accountPanel">
+                <div class="panel-header">
+                    <svg fill="#55a2dd" viewBox="-3.2 -3.2 38.40 38.40" width="56" height="56">
+                        <path d="M16,8a5,5,0,1,0,5,5A5,5,0,0,0,16,8Z" />
+                        <path
+                            d="M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2Zm7.9925,22.9258A5.0016,5.0016,0,0,0,19,20H13a5.0016,5.0016,0,0,0-4.9925,4.9258,12,12,0,1,1,15.985,0Z" />
+                    </svg>
+                    <div>
+                        <h4>Welcome to Videocon</h4>
+                        <div class="auth-links">
+                            <a href="#">Sign Up</a>
+                            <a href="#">Sign In</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-row">
+                    <div class="menu-left">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 10a4 4 0 0 1-8 0" />
+                            <path d="M3.103 6.034h17.794" />
+                            <path
+                                d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
+                        </svg>
+                        Orders
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+                <div class="divider"></div>
+                <div class="menu-row">
+                    <div class="menu-left">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="8" r="5" />
+                            <path d="M20 21a8 8 0 0 0-16 0" />
+                        </svg>
+                        Account Settings
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+                <div class="divider"></div>
+                <div class="menu-row">
+                    <div class="menu-left">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
+                            <circle cx="12" cy="8" r="6" />
+                        </svg>
+                        My Achievements
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+                <div class="divider"></div>
+                <div class="menu-row">
+                    <div class="menu-left">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+                            <path d="M13 5v2" />
+                            <path d="M13 17v2" />
+                            <path d="M13 11v2" />
+                        </svg>
+                        Coupons & Offers
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MEGA MENU OVERLAY -->
+    <div class="mega-menu-overlay" id="megaMenuOverlay"></div>
+
+    <!-- MEGA MENUS -->
+    <div class="mega-menu" id="airConditionersMega">
+        <div class="mega-menu-container">
+            <div class="air-conditioner-content">
+                <div class="air-conditioner-series-grid">
+                    <!-- Standard Series Column -->
+                    <div class="air-conditioner-series-column">
+                        <div class="air-conditioner-series-title">
+                            Standard Series
+                        </div>
+                        <div class="air-conditioner-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_ac.png"
+                                alt="Videocon Standard AC" class="air-conditioner-image-standard">
+                        </div>
+                        <a href="#" class="air-conditioner-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Pro Series Column -->
+                    <div class="air-conditioner-series-column">
+                        <div class="air-conditioner-series-title">
+                            Pro Series
+                        </div>
+                        <div class="air-conditioner-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_ac_2.png"
+                                alt="Videocon Pro AC" class="air-conditioner-image-pro">
+                        </div>
+                        <a href="#" class="air-conditioner-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu" id="airPurifiersMega">
+        <div class="mega-menu-container">
+            <div class="air-purifier-content">
+                <div class="air-purifier-series-grid">
+                    <!-- Standard Series Column -->
+                    <div class="air-purifier-series-column">
+                        <div class="air-purifier-series-title">
+                            Standard Series
+                        </div>
+                        <div class="air-purifier-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_airpurifier.png"
+                                alt="Videocon Standard Air Purifier" class="air-purifier-image-standard">
+                        </div>
+                        <a href="#" class="air-purifier-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Pro Series Column -->
+                    <div class="air-purifier-series-column">
+                        <div class="air-purifier-series-title">
+                            Pro Series
+                        </div>
+                        <div class="air-purifier-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_airpurifier_2.png"
+                                alt="Videocon Pro Air Purifier" class="air-purifier-image-pro">
+                        </div>
+                        <a href="#" class="air-purifier-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu" id="televisionsMega">
+        <div class="mega-menu-container">
+            <div class="television-content">
+                <div class="television-series-grid">
+                    <!-- Standard Series Column -->
+                    <div class="television-series-column">
+                        <div class="television-series-title">
+                            Standard Series
+                        </div>
+                        <div class="television-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_hd_tv.png"
+                                alt="Videocon HD TV" class="television-image-standard">
+                        </div>
+                        <a href="#" class="television-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Pro Series Column -->
+                    <div class="television-series-column">
+                        <div class="television-series-title">
+                            Pro Series
+                        </div>
+                        <div class="television-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_4k_tv.png"
+                                alt="Videocon 4K TV" class="television-image-pro">
+                        </div>
+                        <a href="#" class="television-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Ultra Series Column -->
+                    <div class="television-series-column">
+                        <div class="television-series-title">
+                            Ultra Series
+                        </div>
+                        <div class="television-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_8k_tv.png"
+                                alt="Videocon 8K TV" class="television-image-ultra">
+                        </div>
+                        <a href="#" class="television-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu" id="washingMachinesMega">
+        <div class="mega-menu-container">
+            <div class="washing-machine-content">
+                <div class="washing-machine-series-grid">
+                    <!-- Front Load Series Column -->
+                    <div class="washing-machine-series-column">
+                        <div class="washing-machine-series-title">
+                            Front Load Series
+                        </div>
+                        <div class="washing-machine-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_washing_machine.png"
+                                alt="Videocon Front Load Washing Machine" class="washing-machine-image-front">
+                        </div>
+                        <a href="#" class="washing-machine-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Top Load Series Column -->
+                    <div class="washing-machine-series-column">
+                        <div class="washing-machine-series-title">
+                            Top Load Series
+                        </div>
+                        <div class="washing-machine-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_washing_machine_topload.png"
+                                alt="Videocon Top Load Washing Machine" class="washing-machine-image-top">
+                        </div>
+                        <a href="#" class="washing-machine-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu" id="refrigeratorsMega">
+        <div class="mega-menu-container">
+            <div class="refrigerator-content">
+                <div class="refrigerator-series-grid">
+                    <!-- Standard Series Column -->
+                    <div class="refrigerator-series-column">
+                        <div class="refrigerator-series-title">
+                            Standard Series
+                        </div>
+                        <div class="refrigerator-image-container">
+                            <!-- Replace with your actual refrigerator image URL -->
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_fridge.png"
+                                alt="Videocon Standard Refrigerator" class="refrigerator-image-standard">
+                        </div>
+                        <a href="#" class="refrigerator-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Pro Series Column -->
+                    <div class="refrigerator-series-column">
+                        <div class="refrigerator-series-title">
+                            Pro Series
+                        </div>
+                        <div class="refrigerator-image-container">
+                            <!-- Replace with your actual refrigerator image URL -->
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_fridge_2.png"
+                                alt="Videocon Pro Refrigerator" class="refrigerator-image-pro">
+                        </div>
+                        <a href="#" class="refrigerator-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE OVERLAYS -->
+    <div class="mobile-overlay mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-box">
+            <div class="mobile-search-input-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="m21 21-4.34-4.34" />
+                    <circle cx="11" cy="11" r="8" />
+                </svg>
+                <input type="text" placeholder="Search Anything..." autofocus>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-header">Suggested Products</div>
+        <div class="item-list">
+            <div class="item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                </svg>
+                <div class="item-content">
+                    <span class="item-name">Videocon 1.5 Ton AC</span>
+                    <span class="item-badge badge-new">new</span>
+                </div>
+            </div>
+            <div class="item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                </svg>
+                <div class="item-content">
+                    <span class="item-name">Videocon Air Purifier Neo 5</span>
+                    <span class="item-badge badge-hot">hot</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-header">Trending Searches</div>
+        <div class="item-list">
+            <div class="item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="m21 21-4.34-4.34" />
+                    <circle cx="11" cy="11" r="8" />
+                </svg>
+                <div class="item-content">
+                    <span class="item-name">Videocon Smart TV X3 LCD</span>
+                </div>
+            </div>
+            <div class="item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="m21 21-4.34-4.34" />
+                    <circle cx="11" cy="11" r="8" />
+                </svg>
+                <div class="item-content">
+                    <span class="item-name">Videocon Air Purifier Neo 5</span>
+                </div>
+            </div>
+            <div class="item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="m21 21-4.34-4.34" />
+                    <circle cx="11" cy="11" r="8" />
+                </svg>
+                <div class="item-content">
+                    <span class="item-name">Videocon Zeal Washing Machine</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-overlay mobile-cart-overlay" id="mobileCartOverlay">
+        <p>Your cart is empty</p>
+        <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_cart.png" alt="Cart Icon" class="cart-icon">
+        <p>You are <span class="cart-span">₹499</span> away from free shipping.</p>
+    </div>
+
+    <div class="mobile-overlay mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-nav-links">
+            <a href="#">Air Conditioners</a>
+            <a href="#">Air Purifiers</a>
+            <a href="#">Televisions</a>
+            <a href="#">Washing Machines</a>
+            <a href="#">Refrigerators</a>
+        </div>
+
+        <div class="mobile-account-box">
+            <div class="mobile-account-header">
+                <svg fill="#55a2dd" viewBox="-3.2 -3.2 38.40 38.40">
+                    <path d="M16,8a5,5,0,1,0,5,5A5,5,0,0,0,16,8Z" />
+                    <path
+                        d="M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2Zm7.9925,22.9258A5.0016,5.0016,0,0,0,19,20H13a5.0016,5.0016,0,0,0-4.9925,4.9258,12,12,0,1,1,15.985,0Z" />
+                </svg>
+                <div>
+                    <h4 style="font-size: 1rem; margin-bottom: 4px; color: #111;">Welcome to Videocon</h4>
+                    <div class="mobile-auth-links">
+                        <a href="#">Sign Up</a>
+                        <a href="#">Sign In</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mobile-menu-row">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                    <path d="M3.103 6.034h17.794" />
+                    <path
+                        d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
+                </svg>
+                <div class="mobile-menu-row-content">
+                    <span class="mobile-menu-row-text">Orders</span>
+                    <svg class="mobile-chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+            </div>
+            <div class="mobile-menu-row">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="5" />
+                    <path d="M20 21a8 8 0 0 0-16 0" />
+                </svg>
+                <div class="mobile-menu-row-content">
+                    <span class="mobile-menu-row-text">Account Settings</span>
+                    <svg class="mobile-chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+            </div>
+            <div class="mobile-menu-row">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
+                    <circle cx="12" cy="8" r="6" />
+                </svg>
+                <div class="mobile-menu-row-content">
+                    <span class="mobile-menu-row-text">My Achievements</span>
+                    <svg class="mobile-chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+            </div>
+            <div class="mobile-menu-row">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+                    <path d="M13 5v2" />
+                    <path d="M13 17v2" />
+                    <path d="M13 11v2" />
+                </svg>
+                <div class="mobile-menu-row-content">
+                    <span class="mobile-menu-row-text">Coupons & Offers</span>
+                    <svg class="mobile-chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT PAGE CONTENT -->
+    <div class="product-container">
+
+        <!-- Main Product Section -->
+        <div class="product-main">
+            <!-- Left: Product Images -->
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img id="mainProductImage" src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_ac_2.png"
+                        alt="Videocon AC 1.5 Ton 5 Star">
+                </div>
+            </div>
+
+            <!-- Middle: Product Details -->
+            <div class="product-details">
+                <h1 class="product-title">Videocon AC 1.5 Ton 5 Star Inverter Split AC</h1>
+
+                <div class="product-rating">
+                    <div class="stars">
+                        ★★★★★
+                        <span class="rating-count">(4.3/5 • 1,247 ratings)</span>
+                    </div>
+                    <div class="product-id">Model: V-AC15-5S-2024</div>
+                </div>
+
+                <div class="product-price">
+                    <div class="current-price">₹39,999</div>
+                    <div class="original-price">₹48,999</div>
+                    <div class="discount">12% off</div>
+                    <div class="emi">EMI from ₹3,499/month</div>
+                </div>
+
+                <div class="product-highlights">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>5 Star Energy Rating</li>
+                        <li>Inverter Technology - Saves up to 40% electricity</li>
+                        <li>Wi-Fi & Voice Control compatible</li>
+                        <li>Copper Condenser with 10 Year Warranty</li>
+                        <li>PM 2.5 Filter & Anti-bacterial coating</li>
+                    </ul>
+                </div>
+
+                <div class="product-offers">
+                    <h3>Available Offers</h3>
+                    <ul>
+                        <li>Bank Offer: ₹3,000 instant discount on HDFC Bank Credit Cards</li>
+                        <li>No Cost EMI available on orders above ₹30,000</li>
+                        <li>Exchange Bonus: Get up to ₹5,000 off on old AC</li>
+                    </ul>
+                </div>
+
+                <div class="product-actions">
+                    <button class="btn-primary">Buy Now</button>
+                    <button class="btn-secondary">Add to Cart</button>
+                </div>
+
+                <div class="delivery-info">
+                    <div class="delivery-option">
+                        <strong>Delivery:</strong> Free delivery within 3-5 days
+                    </div>
+                    <div class="warranty">
+                        <strong>Warranty:</strong> 1 Year on product, 10 Years on compressor
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Order Summary -->
+            <div class="order-summary">
+                <h3 class="summary-title">Order Summary</h3>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span class="summary-label">Price (1 item)</span>
+                        <span class="summary-value">₹42,999</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Discount</span>
+                        <span class="summary-value discount-value">-₹6,000</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Delivery Charges</span>
+                        <span class="summary-value free-delivery">FREE</span>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total-row">
+                        <strong class="total-label">Total Amount</strong>
+                        <strong class="total-amount">₹36,999</strong>
+                    </div>
+                </div>
+                <div class="tax-info">Inclusive of all taxes</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Specifications Table -->
+    <div class="product-specs">
+        <h2 class="specs-title">Technical Specifications</h2>
+        <div class="specs-table-container">
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Specification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Capacity</td>
+                        <td>1.5 Ton</td>
+                    </tr>
+                    <tr>
+                        <td>Energy Rating</td>
+                        <td>5 Star (BEE Rating)</td>
+                    </tr>
+                    <tr>
+                        <td>Cooling Power</td>
+                        <td>5200 Watts</td>
+                    </tr>
+                    <tr>
+                        <td>Compressor Type</td>
+                        <td>Inverter Rotary</td>
+                    </tr>
+                    <tr>
+                        <td>Cooling Capacity</td>
+                        <td>5100 BTU/hr</td>
+                    </tr>
+                    <tr>
+                        <td>Noise Level</td>
+                        <td>19 dB (Silent Mode)</td>
+                    </tr>
+                    <tr>
+                        <td>Wi-Fi Connectivity</td>
+                        <td>Yes (Videocon Smart App)</td>
+                    </tr>
+                    <tr>
+                        <td>Refrigerant</td>
+                        <td>R-32 Eco Friendly</td>
+                    </tr>
+                    <tr>
+                        <td>Filter Type</td>
+                        <td>PM 2.5 + Anti-bacterial + Dust Filter</td>
+                    </tr>
+                    <tr>
+                        <td>Warranty</td>
+                        <td>1 Year Comprehensive + 10 Years Compressor</td>
+                    </tr>
+                    <tr>
+                        <td>Installation</td>
+                        <td>Free Standard Installation</td>
+                    </tr>
+                    <tr>
+                        <td>Country of Origin</td>
+                        <td>Made in India</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Customer Reviews Section -->
+    <div class="customer-reviews">
+        <h2>Customer Reviews</h2>
+        <div class="review-summary">
+            <div class="average-rating">4.3/5</div>
+            <div class="rating-bars">
+                <div class="rating-bar">
+                    <span>5★</span>
+                    <div class="bar">
+                        <div class="fill" style="width: 70%;"></div>
+                    </div>
+                    <span>856</span>
+                </div>
+                <div class="rating-bar">
+                    <span>4★</span>
+                    <div class="bar">
+                        <div class="fill" style="width: 20%;"></div>
+                    </div>
+                    <span>245</span>
+                </div>
+                <div class="rating-bar">
+                    <span>3★</span>
+                    <div class="bar">
+                        <div class="fill" style="width: 7%;"></div>
+                    </div>
+                    <span>98</span>
+                </div>
+                <div class="rating-bar">
+                    <span>2★</span>
+                    <div class="bar">
+                        <div class="fill" style="width: 2%;"></div>
+                    </div>
+                    <span>32</span>
+                </div>
+                <div class="rating-bar">
+                    <span>1★</span>
+                    <div class="bar">
+                        <div class="fill" style="width: 1%;"></div>
+                    </div>
+                    <span>16</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review">
+            <div class="review-header">
+                <div class="reviewer">Rajesh Kumar</div>
+                <div class="review-rating">★★★★★</div>
+                <div class="verified-badge">✓ Verified Purchase</div>
+            </div>
+            <div class="review-title">Excellent cooling performance!</div>
+            <div class="review-text">The AC cools my 200 sq ft room in just 5 minutes. Electricity bill reduced by
+                30% compared to my old AC. Installation was quick and professional.</div>
+            <div class="review-meta">
+                <span class="review-date">Reviewed on 15 March 2024</span>
+                <span class="review-helpful">42 people found this helpful</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-columns">
+                <!-- Column 1: Air Conditioners & Air Purifiers -->
+                <div class="footer-column">
+                    <h3>Cooling & Air</h3>
+                    <div class="footer-subsection">
+                        <h4>Air Conditioners</h4>
+                        <a href="#">Videocon AC 1 Ton 3 Star</a>
+                        <a href="#">Videocon AC 1.5 Ton 5 Star</a>
+                    </div>
+                    <div class="footer-subsection">
+                        <h4>Air Purifiers</h4>
+                        <a href="#">Videocon Air Purifier Neo</a>
+                        <a href="#">Videocon Air Purifier Pro</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Televisions & Washing Machines -->
+                <div class="footer-column">
+                    <h3>Home Essentials</h3>
+                    <div class="footer-subsection">
+                        <h4>Televisions</h4>
+                        <a href="#">Videocon HD 32" LED TV</a>
+                        <a href="#">Videocon 4K 55" LED TV</a>
+                        <a href="#">Videocon 8K 75" LED TV</a>
+                    </div>
+                    <div class="footer-subsection">
+                        <h4>Washing Machines</h4>
+                        <a href="#">Videocon Top Load Washing Machine</a>
+                        <a href="#">Videocon Front Load Washing Machine</a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Refrigerators -->
+                <div class="footer-column">
+                    <h3>Refrigerators</h3>
+                    <a href="#">Videocon Dual Shelf Refrigerator</a>
+                    <a href="#">Videocon Double Door Refrigerator</a>
+                </div>
+
+                <!-- Column 4: Explore -->
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="#">About Videocon</a>
+                    <a href="#">Community</a>
+                    <a href="#">Locate Stores</a>
+                    <a href="#">Compliance Disclosure</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">User Agreement</a>
+                    <a href="#">Terms of Sale</a>
+                    <a href="#">E-waste Management</a>
+                </div>
+
+                <!-- Column 5: Exchange Programs -->
+                <div class="footer-column">
+                    <h3>Exchange Programs</h3>
+                    <a href="#">Corporate Employee Program</a>
+                    <a href="#">Student Program</a>
+                    <a href="#">Referral Program</a>
+                </div>
+            </div>
+
+            <div class="payment-social-row">
+                <div class="payment-methods">
+                    <div class="payment-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="14" x="2" y="5" rx="2" />
+                            <line x1="2" x2="22" y1="10" y2="10" />
+                        </svg>
+                        Debit/Credit Card
+                    </div>
+                    <div class="payment-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 18v-7" />
+                            <path
+                                d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z" />
+                            <path d="M14 18v-7" />
+                            <path d="M18 18v-7" />
+                            <path d="M3 22h18" />
+                            <path d="M6 18v-7" />
+                        </svg>
+                        Netbanking
+                    </div>
+                    <div class="payment-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z" />
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+                        </svg>
+                        EMI
+                    </div>
+                    <div class="payment-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+                            <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
+                        </svg>
+                        Wallet
+                    </div>
+                </div>
+
+                <div class="social-language">
+                    <div class="social-media">
+                        <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                        </svg>
+                        <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                        </svg>
+                        <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+
+                        <div class="social-media-divider"></div>
+
+                        <div class="language-selector">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                                <path d="M2 12h20" />
+                            </svg>
+                            English (India)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-info">
+                <div class="footer-copyright">
+                    © 1979-2026 Videocon Private Limited. All rights reserved.
+                </div>
+                <div class="footer-author">
+                    © Site Made By Laksh Kukreja.
+                </div>
+                <div class="footer-notice">
+                    All content, designs, graphics, text, and other materials displayed on this website are my
+                    original
+                    creative work and are shared strictly for personal and educational purposes. Any illustrations
+                    showed in the website maybe artificially generated for representational purposes of the product
+                    and
+                    might not
+                    have any existence in real life. Any unauthorized copying, reproduction, redistribution,
+                    publication, or
+                    commercial use of any part of this website, whether in full or in part, without prior written
+                    permission from the author is strictly prohibited and may result in legal action under
+                    applicable
+                    copyright and
+                    intellectual property laws.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT PAGE SPECIFIC CSS -->
+    <style>
+        /* Product Page Styles */
+        .product-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 40px;
+            flex: 1;
+        }
+
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .product-main {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 1200px) {
+            .product-main {
+                grid-template-columns: 1fr 1.5fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .product-main {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .main-image {
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            background: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+
+        .main-image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .main-image:hover {
+            border-color: #e60012;
+            box-shadow: 0 4px 12px rgba(230, 0, 18, 0.1);
+        }
+
+        .thumbnail-images {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail {
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 8px;
+            cursor: pointer;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            transition: all 0.2s ease;
+        }
+
+        .thumbnail:hover {
+            border-color: #666;
+        }
+
+        .thumbnail.active {
+            border-color: #e60012;
+            box-shadow: 0 2px 8px rgba(230, 0, 18, 0.2);
+        }
+
+        .product-details {
+            padding-right: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            .product-details {
+                padding-right: 0;
+            }
+        }
+
+        .product-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #111;
+            line-height: 1.3;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .stars {
+            color: #ffa41c;
+            font-size: 18px;
+        }
+
+        .rating-count {
+            color: #0066cc;
+            font-size: 14px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .rating-count:hover {
+            text-decoration: underline;
+        }
+
+        .product-id {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .product-price {
+            margin-bottom: 25px;
+        }
+
+        .current-price {
+            font-size: 32px;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .original-price {
+            font-size: 18px;
+            color: #666;
+            text-decoration: line-through;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        .discount {
+            color: #e60012;
+            font-weight: 600;
+            margin-top: 5px;
+            display: inline-block;
+            margin-left: 15px;
+            background: #ffe6e6;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .emi {
+            color: #0066cc;
+            font-weight: 500;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .product-highlights h3,
+        .product-offers h3 {
+            font-size: 18px;
+            margin: 20px 0 10px;
+            color: #111;
+            font-weight: 600;
+        }
+
+        .product-highlights ul,
+        .product-offers ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .product-highlights li,
+        .product-offers li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .btn-primary,
+        .btn-secondary,
+        .btn-wishlist {
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: #ff9900;
+            border: 1px solid #a88734;
+            border-radius: 3px;
+            color: #111;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background: #ff8c00;
+            border-color: #9c7e31;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            background: #e68a00;
+            border-color: #8a6d2a;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, .2);
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #ffd814;
+            border: 1px solid #d1a624;
+            border-radius: 3px;
+            color: #111;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+            text-align: center;
+        }
+
+        .btn-secondary:hover {
+            background: #f7ca00;
+            border-color: #ca8a04;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary:active {
+            background: #e6b800;
+            border-color: #a16207;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, .2);
+            transform: translateY(0);
+        }
+
+        .btn-wishlist {
+            background: white;
+            color: #111;
+            border: 2px solid #e5e5e5;
+            flex: 0.5;
+        }
+
+        .delivery-info {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .delivery-option,
+        .warranty {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .delivery-option strong,
+        .warranty strong {
+            color: #111;
+        }
+
+        /* Order Summary Styles */
+        .order-summary {
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 30px;
+            height: fit-content;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-title {
+            margin-bottom: 25px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #111;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        .summary-details {
+            margin-bottom: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #e5e5e5;
+            align-items: center;
+        }
+
+        .summary-label {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .summary-value {
+            color: #333;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .discount-value {
+            color: #e60012;
+            font-weight: 600;
+        }
+
+        .free-delivery {
+            color: #00a854;
+            font-weight: 600;
+        }
+
+        .summary-divider {
+            height: 1px;
+            background: #e5e5e5;
+            margin: 15px 0;
+        }
+
+        .total-row {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            padding-top: 15px;
+            border-top: 2px solid #e5e5e5;
+        }
+
+        .total-label {
+            color: #111;
+            font-size: 18px;
+        }
+
+        .total-amount {
+            color: #111;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .tax-info {
+            color: #666;
+            font-size: 13px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Specifications Styles */
+        .product-specs {
+            margin: 80px 0;
+            padding: 40px 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .specs-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #111;
+            font-weight: 600;
+        }
+
+        .specs-table-container {
+            overflow-x: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .specs-table thead {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .specs-table th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #111;
+            border-bottom: 2px solid #dee2e6;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .specs-table td {
+            padding: 18px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e5;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .specs-table tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .specs-table tbody tr:hover {
+            background-color: #e9ecef;
+            transition: background-color 0.2s ease;
+        }
+
+        .specs-table td:first-child {
+            font-weight: 500;
+            color: #555;
+            width: 35%;
+        }
+
+        .specs-table td:last-child {
+            font-weight: 400;
+            color: #111;
+        }
+
+        /* Customer Reviews */
+        .customer-reviews {
+            margin: 60px 0;
+        }
+
+        .customer-reviews h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #111;
+            font-weight: 600;
+        }
+
+        .review-summary {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 40px;
+            align-items: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .average-rating {
+            font-size: 48px;
+            font-weight: 700;
+            color: #111;
+            min-width: 120px;
+        }
+
+        .rating-bars {
+            flex: 1;
+        }
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .rating-bar span:first-child {
+            min-width: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .rating-bar span:last-child {
+            min-width: 40px;
+            color: #666;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .bar {
+            flex: 1;
+            height: 10px;
+            background: #e5e5e5;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffa41c, #ff8c00);
+            border-radius: 5px;
+        }
+
+        .review {
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .review:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border-color: #0066cc;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .reviewer {
+            font-weight: 600;
+            color: #111;
+            font-size: 16px;
+        }
+
+        .review-rating {
+            color: #ffa41c;
+            font-size: 18px;
+        }
+
+        .verified-badge {
+            background: #e6f7ff;
+            color: #0066cc;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .review-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #111;
+            font-size: 18px;
+        }
+
+        .review-text {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .review-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #666;
+            font-size: 13px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .review-date {
+            font-style: italic;
+        }
+
+        .review-helpful {
+            color: #0066cc;
+            cursor: pointer;
+        }
+
+        .review-helpful:hover {
+            text-decoration: underline;
+        }
+
+        /* Related Products */
+        .related-products {
+            margin: 80px 0;
+        }
+
+        .related-title {
+            font-size: 28px;
+            margin-bottom: 35px;
+            color: #111;
+            font-weight: 600;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .related-product {
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .related-product:hover {
+            border-color: #e60012;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .related-product img {
+            max-width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            padding: 10px;
+        }
+
+        .related-product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .product-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #111;
+            font-size: 16px;
+            line-height: 1.3;
+        }
+
+        .product-price {
+            color: #111;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .product-rating-small {
+            color: #ffa41c;
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-container {
+                padding: 20px 15px;
+            }
+
+            .product-title {
+                font-size: 24px;
+            }
+
+            .current-price {
+                font-size: 28px;
+            }
+
+            .product-actions {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+
+            .review-summary {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .rating-bars {
+                width: 100%;
+            }
+
+            .specs-table th,
+            .specs-table td {
+                padding: 15px;
+                font-size: 14px;
+            }
+
+            .related-title {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-title {
+                font-size: 22px;
+            }
+
+            .current-price {
+                font-size: 26px;
+            }
+
+            .order-summary {
+                padding: 20px;
+            }
+
+            .secure-checkout {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <!-- JavaScript for Header/Footer Functionality -->
+    <script>
+        const strip = document.getElementById("reelStrip");
+        const knob = document.getElementById("leverKnob");
+        const arm = document.getElementById("leverArm");
+
+        let dragging = false;
+        let startY = 0;
+        let pullDistance = 0;
+
+        const options = [
+            "Better Luck",
+            "₹500 Cashback",
+            "20% Discount",
+            "Free Delivery"
+        ];
+
+        const itemHeight = 150;
+
+        /* Duplicate list 5 times for smooth looping */
+        const extended = [];
+        for (let i = 0; i < 5; i++) {
+            extended.push(...options);
+        }
+
+        extended.forEach(text => {
+            const div = document.createElement("div");
+            div.className = "reel-item";
+            div.textContent = text;
+            strip.appendChild(div);
+        });
+
+        /* Start centered on middle block */
+        let currentIndex = options.length * 2;
+        strip.style.transform = `translateY(${-currentIndex * itemHeight}px)`;
+
+        /* ================= LEVER ================= */
+
+        knob.addEventListener("mousedown", e => {
+            dragging = true;
+            startY = e.clientY;
+        });
+
+        document.addEventListener("mousemove", e => {
+            if (!dragging) return;
+
+            pullDistance = e.clientY - startY;
+            if (pullDistance < 0) pullDistance = 0;
+            if (pullDistance > 90) pullDistance = 90;
+
+            arm.style.transform = `translateY(${pullDistance}px)`;
+        });
+
+        document.addEventListener("mouseup", () => {
+            if (!dragging) return;
+            dragging = false;
+
+            arm.style.transition = "transform .5s cubic-bezier(.2,1.6,.3,1)";
+            arm.style.transform = "translateY(0px)";
+            setTimeout(() => arm.style.transition = "", 500);
+
+            if (pullDistance > 60) {
+                spin();
+            }
+        });
+
+        /* ================= SPIN LOGIC ================= */
+
+        function spin() {
+
+            const randomIndex = Math.floor(Math.random() * options.length);
+
+            /* Spin several full cycles */
+            const spinDistance = 15 * options.length + randomIndex;
+
+            const finalIndex = currentIndex + spinDistance;
+
+            strip.classList.add("spinning");
+
+            strip.style.transition = "transform 3s cubic-bezier(.15,.85,.25,1)";
+            strip.style.transform = `translateY(${-finalIndex * itemHeight}px)`;
+
+            setTimeout(() => {
+                strip.classList.remove("spinning");
+
+                /* Normalize index back to middle block */
+                currentIndex = options.length * 2 + randomIndex;
+
+                strip.style.transition = "none";
+                strip.style.transform = `translateY(${-currentIndex * itemHeight}px)`;
+
+            }, 3000);
+        }
+    </script>
+
+</body>
+
+</html>

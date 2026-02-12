@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videocon</title>
+
+    <style>
+        @font-face {
+            font-family: 'Geist Sans';
+            src: url('https://lakshkukreja07.github.io/assets/fonts/geist/Geist-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Geist Sans';
+            src: url('https://lakshkukreja07.github.io/assets/fonts/geist/Geist-Bold.woff2') format('woff2');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Geist Sans', sans-serif;
+            font-weight: 400;
+        }
+
+        body {
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== PROMO BAR ===== */
+        .promo-bar {
+            height: 50px;
+            background: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .99rem;
+            position: relative;
+            padding: 0 40px;
+        }
+
+        .promo-bar button {
+            position: absolute;
+            right: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .promo-bar svg {
+            width: 18px;
+            height: 18px;
+            stroke: #fff;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            height: 70px;
+            border-bottom: 1px solid #e5e5e5;
+            background: #fff;
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1440px;
+            margin: auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: .5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        /* ===== DESKTOP NAV LINKS ===== */
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            font-size: .95rem;
+            height: 100%;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #111;
+            position: relative;
+            padding: 25px 0;
+            cursor: pointer;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #e60012;
+        }
+
+        .nav-link.active {
+            color: #e60012;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #e60012;
+        }
+
+        /* ===== MEGA MENU ===== */
+        .mega-menu {
+            position: fixed;
+            top: 120px;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            padding: 40px 0;
+        }
+
+        .mega-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mega-menu-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        /* ===== AIR CONDITIONER SPECIFIC STYLES ===== */
+        .air-conditioner-content {
+            padding: 20px 40px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .air-conditioner-series-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+        }
+
+        .air-conditioner-series-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .air-conditioner-series-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #262626;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .air-conditioner-image-container {
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 175px;
+        }
+
+        /* Standard Series Image */
+        .air-conditioner-image-standard {
+            height: 70px;
+            width: auto;
+        }
+
+        /* Pro Series Image */
+        .air-conditioner-image-pro {
+            height: 80px;
+            width: auto;
+        }
+
+        .air-conditioner-explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .air-conditioner-explore-btn:hover {
+            background: #333333;
+        }
+
+        .air-conditioner-explore-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ===== AIR PURIFIER SPECIFIC STYLES ===== */
+        .air-purifier-content {
+            padding: 20px 40px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .air-purifier-series-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+        }
+
+        .air-purifier-series-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .air-purifier-series-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #262626;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .air-purifier-image-container {
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 175px;
+        }
+
+        /* Standard Series Image */
+        .air-purifier-image-standard {
+            height: 180px;
+            width: auto;
+        }
+
+        /* Pro Series Image */
+        .air-purifier-image-pro {
+            height: 180px;
+            width: auto;
+        }
+
+        .air-purifier-explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .air-purifier-explore-btn:hover {
+            background: #333333;
+        }
+
+        .air-purifier-explore-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ===== TELEVISION SPECIFIC STYLES ===== */
+        .television-content {
+            padding: 20px 40px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .television-series-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 80px;
+        }
+
+        .television-series-column {
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+            align-items: flex-start;
+        }
+
+        .television-series-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #262626;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .television-image-container {
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 175px;
+        }
+
+        .television-image-standard {
+            height: 180px;
+            width: auto;
+        }
+
+        .television-image-pro {
+            height: 180px;
+            width: auto;
+        }
+
+        .television-image-ultra {
+            height: 180px;
+            width: auto;
+        }
+
+        .television-explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .television-explore-btn:hover {
+            background: #333333;
+        }
+
+        .television-explore-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ===== WASHING MACHINE SPECIFIC STYLES ===== */
+        .washing-machine-content {
+            padding: 20px 40px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .washing-machine-series-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+        }
+
+        .washing-machine-series-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .washing-machine-series-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #262626;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .washing-machine-image-container {
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 175px;
+        }
+
+        .washing-machine-image-front {
+            height: 175px;
+            width: auto;
+        }
+
+        .washing-machine-image-top {
+            height: 235px;
+            width: auto;
+        }
+
+        .washing-machine-explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .washing-machine-explore-btn:hover {
+            background: #333333;
+        }
+
+        .washing-machine-explore-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ===== REFRIGERATOR SPECIFIC STYLES ===== */
+        .refrigerator-content {
+            padding: 20px 40px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .refrigerator-series-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+        }
+
+        .refrigerator-series-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .refrigerator-series-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #262626;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .refrigerator-image-container {
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 175px;
+        }
+
+        /* Standard Series Image */
+        .refrigerator-image-standard {
+            height: 180px;
+            width: auto;
+        }
+
+        /* Pro Series Image */
+        .refrigerator-image-pro {
+            height: 180px;
+            width: auto;
+        }
+
+        .refrigerator-explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .refrigerator-explore-btn:hover {
+            background: #333333;
+        }
+
+        .refrigerator-explore-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ===== MEGA MENU SECTIONS ===== */
+        .mega-menu-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mega-menu-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .mega-menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mega-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .mega-menu-item:hover {
+            background: #f9f9f9;
+        }
+
+        .mega-menu-item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            flex-shrink: 0;
+        }
+
+        .mega-menu-item-details {
+            flex: 1;
+        }
+
+        .mega-menu-item-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .mega-menu-item-price {
+            font-size: 0.85rem;
+            color: #e60012;
+            font-weight: 600;
+        }
+
+        .mega-menu-item-features {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .mega-menu-category {
+            display: block;
+            font-size: 0.9rem;
+            color: #333;
+            padding: 8px 0;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .mega-menu-category:hover {
+            color: #e60012;
+        }
+
+        .mega-menu-highlight {
+            grid-column: span 2;
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mega-menu-highlight-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        .mega-menu-highlight-text {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .mega-menu-highlight-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #e60012;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .mega-menu-highlight-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Overlay for mega menu */
+        .mega-menu-overlay {
+            position: fixed;
+            top: 120px;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .mega-menu-overlay.active {
+            height: calc(100vh - 120px);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ===== NAV ICONS ===== */
+        .nav-icons {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-icons svg {
+            width: 24px;
+            height: 24px;
+            stroke: #111;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            cursor: pointer;
+        }
+
+        .account-wrapper,
+        .cart-wrapper,
+        .search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* ===== DESKTOP PANELS ===== */
+        .search-popup {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 380px;
+            background: #fff;
+            display: none;
+            z-index: 3001;
+            border-left: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            box-shadow: -2px 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-popup.active {
+            display: block;
+        }
+
+        .cart-panel {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 380px;
+            background: #fff;
+            display: none;
+            z-index: 3001;
+            border-left: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 40px 30px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .cart-panel.active {
+            display: block;
+        }
+
+        .account-panel {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 380px;
+            background: #fff;
+            display: none;
+            z-index: 3001;
+            border-left: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .account-panel.active {
+            display: block;
+        }
+
+        /* ===== MOBILE ELEMENTS ===== */
+        .mobile-icons {
+            display: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .mobile-search-wrapper,
+        .mobile-cart-wrapper {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-search-wrapper svg,
+        .mobile-cart-wrapper svg {
+            width: 24px;
+            height: 24px;
+            stroke: #111;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            stroke: #111;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* ===== MOBILE OVERLAYS ===== */
+        .mobile-overlay {
+            position: fixed;
+            top: 120px;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: #fff;
+            z-index: 3000;
+            overflow-y: auto;
+            transition: height 0.3s ease;
+            display: none;
+        }
+
+        .mobile-overlay.active {
+            height: calc(100vh - 120px);
+            display: block;
+        }
+
+        /* Mobile content styles */
+        .search-content,
+        .mobile-search-overlay {
+            padding: 25px;
+        }
+
+        .search-box,
+        .mobile-search-box {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .search-input-container,
+        .mobile-search-input-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-input-container svg,
+        .mobile-search-input-container svg {
+            width: 20px;
+            height: 20px;
+            stroke: #666;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .search-input-container input,
+        .mobile-search-input-container input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            color: #111;
+            outline: none;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: #e5e5e5;
+            margin: 12px 0;
+        }
+
+        .section-header {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .item-icon {
+            width: 18px;
+            height: 18px;
+            stroke: #666;
+            flex-shrink: 0;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .item-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .item-name {
+            font-size: 0.95rem;
+            color: #111;
+        }
+
+        .item-badge {
+            padding: 6px 6px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            min-width: 45px;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-new {
+            background: #ffd8d2;
+            color: #000;
+        }
+
+        .badge-hot {
+            background: #ffecd1;
+            color: #000;
+        }
+
+        /* Cart styles */
+        .cart-panel,
+        .mobile-cart-overlay {
+            padding: 40px 30px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .cart-icon {
+            width: 64px;
+            height: 64px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cart-span {
+            font-weight: 600;
+            color: #111;
+        }
+
+        /* Account panel styles */
+        .panel-header,
+        .mobile-account-header {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+        }
+
+        .panel-header svg,
+        .mobile-account-header svg {
+            fill: #55a2dd;
+            width: 56px;
+            height: 56px;
+        }
+
+        .auth-links,
+        .mobile-auth-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .auth-links a,
+        .mobile-auth-links a {
+            font-size: .9rem;
+            text-decoration: underline;
+            color: #000;
+        }
+
+        .auth-links a:first-child,
+        .mobile-auth-links a:first-child {
+            border-right: 1px solid #e5e5e5;
+            padding-right: 12px;
+        }
+
+        .menu-row,
+        .mobile-menu-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .menu-row:hover {
+            background: #f9f9f9;
+        }
+
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-left svg {
+            width: 22px;
+            height: 22px;
+            stroke: #111;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .chevron {
+            width: 20px;
+            height: 20px;
+            stroke: #111;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e5e5e5;
+        }
+
+        /* ===== MOBILE SPECIFIC STYLES ===== */
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 0;
+            padding: 0;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: #111;
+            font-size: 1rem;
+            padding: 14px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background .2s ease;
+        }
+
+        .mobile-nav-links a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav-links a:hover {
+            background: #f9f9f9;
+        }
+
+        .mobile-nav-links a::after {
+            content: "›";
+            font-size: 1.5rem;
+            color: #666;
+            margin-left: 10px;
+        }
+
+        .mobile-account-box {
+            background: #f5f5f5;
+            margin: 20px 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .mobile-account-header {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .mobile-account-header svg {
+            fill: #55a2dd;
+            width: 56px;
+            height: 56px;
+            flex-shrink: 0;
+        }
+
+        .mobile-auth-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .mobile-auth-links a {
+            font-size: .85rem;
+            text-decoration: underline;
+            color: #0066cc;
+        }
+
+        .mobile-auth-links a:first-child {
+            border-right: 1px solid #999;
+            padding-right: 12px;
+        }
+
+        .mobile-menu-row {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            cursor: pointer;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background .2s ease;
+        }
+
+        .mobile-menu-row:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-row:hover {
+            background: #eaeaea;
+        }
+
+        .mobile-menu-row svg {
+            width: 22px;
+            height: 22px;
+            stroke: #666;
+            stroke-width: 2;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .mobile-menu-row-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-menu-row-text {
+            font-size: 0.95rem;
+            color: #111;
+        }
+
+        .mobile-chevron {
+            width: 16px;
+            height: 16px;
+            stroke: #666;
+            stroke-width: 2;
+            fill: none;
+            flex-shrink: 0;
+        }
+
+        /* ===== UPDATED HERO STYLES ===== */
+        .hero {
+            min-height: calc(100vh - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            padding: 0 20px;
+            flex: 1;
+            background: #f8f8f8;
+            /* Fallback background */
+        }
+
+        .hero-container {
+            max-width: 1440px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-left {
+            padding-left: 40px;
+        }
+
+        .hero-left h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: #111;
+        }
+
+        .hero-left p {
+            font-size: 1.25rem;
+            color: #666;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        /* REMOVED: .hero-cta styles */
+
+        .hero-right {
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/videocon/videoconbg.jpeg?raw=true');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .hero-left h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-left p {
+                font-size: 1.1rem;
+            }
+
+            .hero-right {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: calc(100vh - 120px);
+                padding: 40px 20px;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-left {
+                padding-left: 0;
+            }
+
+            .hero-left h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-left p {
+                font-size: 1rem;
+                margin: 0 auto;
+            }
+
+            .hero-right {
+                height: 300px;
+                order: -1;
+                /* Image goes above text on mobile */
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .hero-left h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-left p {
+                font-size: 1.1rem;
+            }
+
+            .hero-right {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: calc(100vh - 120px);
+                padding: 40px 20px;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-left {
+                padding-left: 0;
+            }
+
+            .hero-left h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-left p {
+                font-size: 1rem;
+                margin: 0 auto 25px;
+            }
+
+            .hero-right {
+                height: 300px;
+                order: -1;
+                /* Image goes above text on mobile */
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #000;
+            color: #fff;
+            padding: 150px 70px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        /* Add to your existing footer styles */
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            min-width: 180px;
+        }
+
+        .footer-column h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-column a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+            line-height: 1.4;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: #333;
+            margin: 40px 0;
+            width: 100%;
+        }
+
+        .payment-social-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .payment-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .payment-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: #aaa;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .social-language {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-media-divider {
+            height: 20px;
+            width: 1px;
+            background: #666;
+            margin: 0 15px;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #aaa;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .language-selector:hover {
+            color: #fff;
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            stroke: #aaa;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: stroke 0.2s ease;
+        }
+
+        .social-icon:hover {
+            stroke: #fff;
+        }
+
+        .footer-info {
+            margin-top: 30px;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .footer-author {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .footer-notice {
+            font-size: 0.8rem;
+            color: #aaa;
+            line-height: 1.4;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .promo-bar {
+                padding: 0 15px;
+                font-size: 0.85rem;
+                text-align: center;
+                padding-left: 15px;
+                padding-right: 45px;
+                height: auto;
+                min-height: 45px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                white-space: normal;
+                line-height: 1.4;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                overflow: hidden;
+                text-align: justify;
+                text-align-last: center;
+                hyphens: auto;
+            }
+
+            .promo-bar button {
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .navbar {
+                height: 70px;
+                padding: 0 15px !important;
+            }
+
+            .nav-container {
+                padding: 0 15px !important;
+            }
+
+            .nav-links,
+            .nav-icons,
+            .mega-menu,
+            .mega-menu-overlay {
+                display: none !important;
+            }
+
+            .mobile-icons {
+                display: flex;
+                gap: 20px;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .search-popup,
+            .account-panel,
+            .cart-panel {
+                display: none !important;
+            }
+
+            .hero {
+                min-height: calc(100vh - 120px);
+            }
+
+            .footer {
+                padding: 80px 20px;
+            }
+
+            .footer-columns {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .payment-social-row {
+                flex-direction: column;
+                gap: 30px;
+                align-items: flex-start;
+            }
+
+            .mobile-nav-links {
+                margin-bottom: 0;
+                padding: 5px 0;
+            }
+
+            .mobile-nav-links a {
+                padding: 14px 20px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .mobile-overlay {
+                height: 0;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .mobile-overlay.active {
+                height: calc(100vh - 120px);
+                display: block;
+                overflow-y: auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+
+            .mobile-icons,
+            .mobile-overlay {
+                display: none !important;
+            }
+
+            .nav-links,
+            .nav-icons {
+                display: flex;
+            }
+
+            .search-popup,
+            .account-panel,
+            .cart-panel {
+                z-index: 3001;
+            }
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        /* Footer subsection styling */
+        .footer-subsection {
+            margin-bottom: 20px;
+        }
+
+        .footer-subsection h4 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 8px;
+            margin-top: 0;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .footer-subsection:first-child {
+            margin-top: 0;
+        }
+
+        .footer-subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Adjust column spacing for the new structure */
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            min-width: 180px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .footer-columns {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PROMO BAR -->
+    <div class="promo-bar">
+        Videocon Smart TV's | From ₹14,999 including bank offers & Enjoy upto 6 months No Cost EMI.
+        <button onclick="this.parentElement.style.display='none'">
+            <svg viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_logo_black.png" alt="Videocon Logo">
+            </div>
+
+            <!-- DESKTOP NAV LINKS -->
+            <div class="nav-links">
+                <!-- Split into two separate columns -->
+                <a class="nav-link" href="#" data-mega="air-conditioners">Air Conditioners</a>
+                <a class="nav-link" href="#" data-mega="air-purifiers">Air Purifiers</a>
+                <a class="nav-link" href="#" data-mega="televisions">Televisions</a>
+                <a class="nav-link" href="#" data-mega="washing-machines">Washing Machines</a>
+                <a class="nav-link" href="#" data-mega="refrigerators">Refrigerators</a>
+            </div>
+
+            <!-- DESKTOP ICONS -->
+            <div class="nav-icons">
+                <div class="search-wrapper" id="searchWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </div>
+
+                <div class="cart-wrapper" id="cartWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>
+                </div>
+
+                <div class="account-wrapper" id="accountWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 20a6 6 0 0 0-12 0" />
+                        <circle cx="12" cy="10" r="4" />
+                        <circle cx="12" cy="12" r="10" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- MOBILE ICONS -->
+            <div class="mobile-icons">
+                <div class="mobile-search-wrapper" id="mobileSearchWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </div>
+
+                <div class="mobile-cart-wrapper" id="mobileCartWrapper">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>
+                </div>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <svg class="menu-icon" viewBox="0 0 24 24">
+                        <path d="M4 5h16" />
+                        <path d="M4 12h16" />
+                        <path d="M4 19h16" />
+                    </svg>
+                    <svg class="close-icon" viewBox="0 0 24 24" style="display: none;">
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- DESKTOP PANELS -->
+            <div class="search-popup" id="searchPopup">
+                <div class="search-content">
+                    <div class="search-box">
+                        <div class="search-input-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="m21 21-4.34-4.34" />
+                                <circle cx="11" cy="11" r="8" />
+                            </svg>
+                            <input type="text" placeholder="Search Anything..." autofocus>
+                        </div>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <div class="section-header">Suggested Products</div>
+                    <div class="item-list">
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon 1.5 Ton AC</span>
+                                <span class="item-badge badge-new">new</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon Air Purifier Neo 5</span>
+                                <span class="item-badge badge-hot">hot</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon Smart TV X3 LCD</span>
+                                <span class="item-badge badge-hot">hot</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <div class="section-header">Trending Searches</div>
+                    <div class="item-list">
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="m21 21-4.34-4.34" />
+                                <circle cx="11" cy="11" r="8" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon Smart TV X3 LCD</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="m21 21-4.34-4.34" />
+                                <circle cx="11" cy="11" r="8" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon Air Purifier Neo 5</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="item-icon">
+                                <path d="m21 21-4.34-4.34" />
+                                <circle cx="11" cy="11" r="8" />
+                            </svg>
+                            <div class="item-content">
+                                <span class="item-name">Videocon Zeal Washing Machine</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-panel" id="cartPanel">
+                <p>Your cart is empty</p>
+                <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_cart.png" alt="Cart Icon" class="cart-icon">
+                <p>You are <span class="cart-span">₹499</span> away from free shipping.</p>
+            </div>
+
+            <div class="account-panel" id="accountPanel">
+                <div class="panel-header">
+                    <svg fill="#55a2dd" viewBox="-3.2 -3.2 38.40 38.40" width="56" height="56">
+                        <path d="M16,8a5,5,0,1,0,5,5A5,5,0,0,0,16,8Z" />
+                        <path
+                            d="M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2Zm7.9925,22.9258A5.0016,5.0016,0,0,0,19,20H13a5.0016,5.0016,0,0,0-4.9925,4.9258,12,12,0,1,1,15.985,0Z" />
+                    </svg>
+                    <div>
+                        <h4>Welcome to Videocon</h4>
+                        <div class="auth-links">
+                            <a href="#">Sign Up</a>
+                            <a href="#">Sign In</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-row">
+                    <div class="menu-left">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 10a4 4 0 0 1-8 0" />
+                            <path d="M3.103 6.034h17.794" />
+                            <path
+                                d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
+                        </svg>
+                        Orders
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+                <div class="divider"></div>
+                <div class="menu-row">
+                    <div class="menu-left">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="8" r="5" />
+                            <path d="M20 21a8 8 0 0 0-16 0" />
+                        </svg>
+                        Account Settings
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+                <div class="divider"></div>
+                <div class="menu-row">
+                    <div class="menu-left">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
+                            <circle cx="12" cy="8" r="6" />
+                        </svg>
+                        My Achievements
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+                <div class="divider"></div>
+                <div class="menu-row">
+                    <div class="menu-left">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+                            <path d="M13 5v2" />
+                            <path d="M13 17v2" />
+                            <path d="M13 11v2" />
+                        </svg>
+                        Coupons & Offers
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MEGA MENU OVERLAY -->
+    <div class="mega-menu-overlay" id="megaMenuOverlay"></div>
+
+    <!-- MEGA MENUS -->
+    <div class="mega-menu" id="airConditionersMega">
+        <div class="mega-menu-container">
+            <div class="air-conditioner-content">
+                <div class="air-conditioner-series-grid">
+                    <!-- Standard Series Column -->
+                    <div class="air-conditioner-series-column">
+                        <div class="air-conditioner-series-title">
+                            Standard Series
+                        </div>
+                        <div class="air-conditioner-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_ac.png"
+                                alt="Videocon Standard AC" class="air-conditioner-image-standard">
+                        </div>
+                        <a href="#" class="air-conditioner-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Pro Series Column -->
+                    <div class="air-conditioner-series-column">
+                        <div class="air-conditioner-series-title">
+                            Pro Series
+                        </div>
+                        <div class="air-conditioner-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_ac_2.png"
+                                alt="Videocon Pro AC" class="air-conditioner-image-pro">
+                        </div>
+                        <a href="https://lakshkukreja07.github.io/assets/websites/videocon/videocon_product_ac.html" class="air-conditioner-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu" id="airPurifiersMega">
+        <div class="mega-menu-container">
+            <div class="air-purifier-content">
+                <div class="air-purifier-series-grid">
+                    <!-- Standard Series Column -->
+                    <div class="air-purifier-series-column">
+                        <div class="air-purifier-series-title">
+                            Standard Series
+                        </div>
+                        <div class="air-purifier-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_airpurifier.png"
+                                alt="Videocon Standard Air Purifier" class="air-purifier-image-standard">
+                        </div>
+                        <a href="#" class="air-purifier-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Pro Series Column -->
+                    <div class="air-purifier-series-column">
+                        <div class="air-purifier-series-title">
+                            Pro Series
+                        </div>
+                        <div class="air-purifier-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_airpurifier_2.png"
+                                alt="Videocon Pro Air Purifier" class="air-purifier-image-pro">
+                        </div>
+                        <a href="#" class="air-purifier-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu" id="televisionsMega">
+        <div class="mega-menu-container">
+            <div class="television-content">
+                <div class="television-series-grid">
+                    <!-- Standard Series Column -->
+                    <div class="television-series-column">
+                        <div class="television-series-title">
+                            Standard Series
+                        </div>
+                        <div class="television-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_hd_tv.png"
+                                alt="Videocon HD TV" class="television-image-standard">
+                        </div>
+                        <a href="#" class="television-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Pro Series Column -->
+                    <div class="television-series-column">
+                        <div class="television-series-title">
+                            Pro Series
+                        </div>
+                        <div class="television-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_4k_tv.png"
+                                alt="Videocon 4K TV" class="television-image-pro">
+                        </div>
+                        <a href="#" class="television-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Ultra Series Column -->
+                    <div class="television-series-column">
+                        <div class="television-series-title">
+                            Ultra Series
+                        </div>
+                        <div class="television-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_8k_tv.png"
+                                alt="Videocon 8K TV" class="television-image-ultra">
+                        </div>
+                        <a href="#" class="television-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu" id="washingMachinesMega">
+        <div class="mega-menu-container">
+            <div class="washing-machine-content">
+                <div class="washing-machine-series-grid">
+                    <!-- Front Load Series Column -->
+                    <div class="washing-machine-series-column">
+                        <div class="washing-machine-series-title">
+                            Front Load Series
+                        </div>
+                        <div class="washing-machine-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_washing_machine.png"
+                                alt="Videocon Front Load Washing Machine" class="washing-machine-image-front">
+                        </div>
+                        <a href="#" class="washing-machine-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Top Load Series Column -->
+                    <div class="washing-machine-series-column">
+                        <div class="washing-machine-series-title">
+                            Top Load Series
+                        </div>
+                        <div class="washing-machine-image-container">
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_washing_machine_topload.png"
+                                alt="Videocon Top Load Washing Machine" class="washing-machine-image-top">
+                        </div>
+                        <a href="#" class="washing-machine-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu" id="refrigeratorsMega">
+        <div class="mega-menu-container">
+            <div class="refrigerator-content">
+                <div class="refrigerator-series-grid">
+                    <!-- Standard Series Column -->
+                    <div class="refrigerator-series-column">
+                        <div class="refrigerator-series-title">
+                            Standard Series
+                        </div>
+                        <div class="refrigerator-image-container">
+                            <!-- Replace with your actual refrigerator image URL -->
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_fridge.png"
+                                alt="Videocon Standard Refrigerator" class="refrigerator-image-standard">
+                        </div>
+                        <a href="#" class="refrigerator-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Pro Series Column -->
+                    <div class="refrigerator-series-column">
+                        <div class="refrigerator-series-title">
+                            Pro Series
+                        </div>
+                        <div class="refrigerator-image-container">
+                            <!-- Replace with your actual refrigerator image URL -->
+                            <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_fridge_2.png"
+                                alt="Videocon Pro Refrigerator" class="refrigerator-image-pro">
+                        </div>
+                        <a href="#" class="refrigerator-explore-btn">
+                            Explore Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE OVERLAYS -->
+    <div class="mobile-overlay mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-box">
+            <div class="mobile-search-input-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="m21 21-4.34-4.34" />
+                    <circle cx="11" cy="11" r="8" />
+                </svg>
+                <input type="text" placeholder="Search Anything..." autofocus>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-header">Suggested Products</div>
+        <div class="item-list">
+            <div class="item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                </svg>
+                <div class="item-content">
+                    <span class="item-name">Videocon 1.5 Ton AC</span>
+                    <span class="item-badge badge-new">new</span>
+                </div>
+            </div>
+            <div class="item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                </svg>
+                <div class="item-content">
+                    <span class="item-name">Videocon Air Purifier Neo 5</span>
+                    <span class="item-badge badge-hot">hot</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-header">Trending Searches</div>
+        <div class="item-list">
+            <div class="item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="m21 21-4.34-4.34" />
+                    <circle cx="11" cy="11" r="8" />
+                </svg>
+                <div class="item-content">
+                    <span class="item-name">Videocon Smart TV X3 LCD</span>
+                </div>
+            </div>
+            <div class="item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="m21 21-4.34-4.34" />
+                    <circle cx="11" cy="11" r="8" />
+                </svg>
+                <div class="item-content">
+                    <span class="item-name">Videocon Air Purifier Neo 5</span>
+                </div>
+            </div>
+            <div class="item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="item-icon">
+                    <path d="m21 21-4.34-4.34" />
+                    <circle cx="11" cy="11" r="8" />
+                </svg>
+                <div class="item-content">
+                    <span class="item-name">Videocon Zeal Washing Machine</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-overlay mobile-cart-overlay" id="mobileCartOverlay">
+        <p>Your cart is empty</p>
+        <img src="https://lakshkukreja07.github.io/assets/src/videocon/videocon_cart.png" alt="Cart Icon" class="cart-icon">
+        <p>You are <span class="cart-span">₹499</span> away from free shipping.</p>
+    </div>
+
+    <div class="mobile-overlay mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-nav-links">
+            <a href="#">Air Conditioners</a>
+            <a href="#">Air Purifiers</a>
+            <a href="#">Televisions</a>
+            <a href="#">Washing Machines</a>
+            <a href="#">Refrigerators</a>
+        </div>
+
+        <div class="mobile-account-box">
+            <div class="mobile-account-header">
+                <svg fill="#55a2dd" viewBox="-3.2 -3.2 38.40 38.40">
+                    <path d="M16,8a5,5,0,1,0,5,5A5,5,0,0,0,16,8Z" />
+                    <path
+                        d="M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2Zm7.9925,22.9258A5.0016,5.0016,0,0,0,19,20H13a5.0016,5.0016,0,0,0-4.9925,4.9258,12,12,0,1,1,15.985,0Z" />
+                </svg>
+                <div>
+                    <h4 style="font-size: 1rem; margin-bottom: 4px; color: #111;">Welcome to Videocon</h4>
+                    <div class="mobile-auth-links">
+                        <a href="#">Sign Up</a>
+                        <a href="#">Sign In</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mobile-menu-row">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                    <path d="M3.103 6.034h17.794" />
+                    <path
+                        d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
+                </svg>
+                <div class="mobile-menu-row-content">
+                    <span class="mobile-menu-row-text">Orders</span>
+                    <svg class="mobile-chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+            </div>
+            <div class="mobile-menu-row">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="5" />
+                    <path d="M20 21a8 8 0 0 0-16 0" />
+                </svg>
+                <div class="mobile-menu-row-content">
+                    <span class="mobile-menu-row-text">Account Settings</span>
+                    <svg class="mobile-chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+            </div>
+            <div class="mobile-menu-row">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
+                    <circle cx="12" cy="8" r="6" />
+                </svg>
+                <div class="mobile-menu-row-content">
+                    <span class="mobile-menu-row-text">My Achievements</span>
+                    <svg class="mobile-chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+            </div>
+            <div class="mobile-menu-row">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+                    <path d="M13 5v2" />
+                    <path d="M13 17v2" />
+                    <path d="M13 11v2" />
+                </svg>
+                <div class="mobile-menu-row-content">
+                    <span class="mobile-menu-row-text">Coupons & Offers</span>
+                    <svg class="mobile-chevron" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Replace the existing HERO SECTION with this: -->
+    <div class="hero">
+        <div class="hero-container">
+            <div class="hero-left">
+                <h1>Welcome to Videocon</h1>
+                <p>Premium home appliances for modern living</p>
+            </div>
+            <div class="hero-right">
+                <!-- Background image will be added via CSS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-columns">
+                <!-- Column 1: Air Conditioners & Air Purifiers -->
+                <div class="footer-column">
+                    <h3>Cooling & Air</h3>
+                    <div class="footer-subsection">
+                        <h4>Air Conditioners</h4>
+                        <a href="#">Videocon AC 1 Ton 3 Star</a>
+                        <a href="#">Videocon AC 1.5 Ton 5 Star</a>
+                    </div>
+                    <div class="footer-subsection">
+                        <h4>Air Purifiers</h4>
+                        <a href="#">Videocon Air Purifier Neo</a>
+                        <a href="#">Videocon Air Purifier Pro</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Televisions & Washing Machines -->
+                <div class="footer-column">
+                    <h3>Home Essentials</h3>
+                    <div class="footer-subsection">
+                        <h4>Televisions</h4>
+                        <a href="#">Videocon HD 32" LED TV</a>
+                        <a href="#">Videocon 4K 55" LED TV</a>
+                        <a href="#">Videocon 8K 75" LED TV</a>
+                    </div>
+                    <div class="footer-subsection">
+                        <h4>Washing Machines</h4>
+                        <a href="#">Videocon Top Load Washing Machine</a>
+                        <a href="#">Videocon Front Load Washing Machine</a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Refrigerators -->
+                <div class="footer-column">
+                    <h3>Refrigerators</h3>
+                    <a href="#">Videocon Dual Shelf Refrigerator</a>
+                    <a href="#">Videocon Double Door Refrigerator</a>
+                </div>
+
+                <!-- Column 4: Explore -->
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="#">About Videocon</a>
+                    <a href="#">Community</a>
+                    <a href="#">Locate Stores</a>
+                    <a href="https://lakshkukreja07.github.io/assets/websites/videocon/videocon_spin_and_win.html">Videocon Spin & Win</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">User Agreement</a>
+                    <a href="#">Terms of Sale</a>
+                    <a href="#">E-waste Management</a>
+                </div>
+
+                <!-- Column 5: Exchange Programs -->
+                <div class="footer-column">
+                    <h3>Exchange Programs</h3>
+                    <a href="#">Corporate Employee Program</a>
+                    <a href="#">Student Program</a>
+                    <a href="#">Referral Program</a>
+                </div>
+            </div>
+
+            <div class="payment-social-row">
+                <div class="payment-methods">
+                    <div class="payment-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="14" x="2" y="5" rx="2" />
+                            <line x1="2" x2="22" y1="10" y2="10" />
+                        </svg>
+                        Debit/Credit Card
+                    </div>
+                    <div class="payment-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 18v-7" />
+                            <path
+                                d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z" />
+                            <path d="M14 18v-7" />
+                            <path d="M18 18v-7" />
+                            <path d="M3 22h18" />
+                            <path d="M6 18v-7" />
+                        </svg>
+                        Netbanking
+                    </div>
+                    <div class="payment-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z" />
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+                        </svg>
+                        EMI
+                    </div>
+                    <div class="payment-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+                            <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
+                        </svg>
+                        Wallet
+                    </div>
+                </div>
+
+                <div class="social-language">
+                    <div class="social-media">
+                        <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                        </svg>
+                        <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                        </svg>
+                        <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+
+                        <div class="social-media-divider"></div>
+
+                        <div class="language-selector">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                                <path d="M2 12h20" />
+                            </svg>
+                            English (India)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-info">
+                <div class="footer-copyright">
+                    © 1979-2026 Videocon Private Limited. All rights reserved.
+                </div>
+                <div class="footer-author">
+                    © Site Made By Laksh Kukreja.
+                </div>
+                <div class="footer-notice">
+                    All content, designs, graphics, text, and other materials displayed on this website are my original
+                    creative work and are shared strictly for personal and educational purposes. Any illustrations
+                    showed in the website maybe artificially generated for representational purposes of the product and
+                    might not
+                    have any existence in real life. Any unauthorized copying, reproduction, redistribution,
+                    publication, or
+                    commercial use of any part of this website, whether in full or in part, without prior written
+                    permission from the author is strictly prohibited and may result in legal action under applicable
+                    copyright and
+                    intellectual property laws.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== MEGA MENU FUNCTIONALITY =====
+        const navLinks = document.querySelectorAll('.nav-link');
+        const megaMenuOverlay = document.getElementById('megaMenuOverlay');
+        let activeMegaMenu = null;
+        let megaMenuTimeout = null;
+
+        // Create mega menu map - ADDED AIR PURIFIERS
+        const megaMenus = {
+            'air-conditioners': document.getElementById('airConditionersMega'),
+            'air-purifiers': document.getElementById('airPurifiersMega'),
+            'televisions': document.getElementById('televisionsMega'),
+            'washing-machines': document.getElementById('washingMachinesMega'),
+            'refrigerators': document.getElementById('refrigeratorsMega'),
+            'support': null // No mega menu for support
+        };
+
+        function closeAllMegaMenus() {
+            Object.values(megaMenus).forEach(menu => {
+                if (menu) menu.classList.remove('active');
+            });
+            megaMenuOverlay.classList.remove('active');
+            navLinks.forEach(link => link.classList.remove('active'));
+            activeMegaMenu = null;
+        }
+
+        function openMegaMenu(menuId) {
+            closeAllMegaMenus();
+            const menu = megaMenus[menuId];
+            if (menu) {
+                menu.classList.add('active');
+                megaMenuOverlay.classList.add('active');
+                navLinks.forEach(link => {
+                    if (link.dataset.mega === menuId) {
+                        link.classList.add('active');
+                    }
+                });
+                activeMegaMenu = menu;
+            }
+        }
+
+        // Hover functionality for mega menus
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                clearTimeout(megaMenuTimeout);
+                const menuId = link.dataset.mega;
+                if (menuId !== 'support') {
+                    openMegaMenu(menuId);
+                }
+            });
+
+            link.addEventListener('mouseleave', (e) => {
+                const relatedTarget = e.relatedTarget;
+                const menu = megaMenus[link.dataset.mega];
+                if (menu && !menu.contains(relatedTarget)) {
+                    megaMenuTimeout = setTimeout(() => {
+                        if (!menu.matches(':hover')) {
+                            link.classList.remove('active');
+                            menu.classList.remove('active');
+                            megaMenuOverlay.classList.remove('active');
+                            activeMegaMenu = null;
+                        }
+                    }, 100);
+                }
+            });
+        });
+
+        // Mega menu hover functionality
+        Object.values(megaMenus).forEach(menu => {
+            if (menu) {
+                menu.addEventListener('mouseenter', () => {
+                    clearTimeout(megaMenuTimeout);
+                });
+
+                menu.addEventListener('mouseleave', () => {
+                    megaMenuTimeout = setTimeout(() => {
+                        menu.classList.remove('active');
+                        megaMenuOverlay.classList.remove('active');
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        activeMegaMenu = null;
+                    }, 100);
+                });
+            }
+        });
+
+        // Overlay click to close
+        megaMenuOverlay.addEventListener('click', closeAllMegaMenus);
+
+        // Close mega menus when clicking outside
+        document.addEventListener('click', (e) => {
+            if (activeMegaMenu &&
+                !activeMegaMenu.contains(e.target) &&
+                !e.target.closest('.nav-link')) {
+                closeAllMegaMenus();
+            }
+        });
+
+        // ===== DESKTOP PANELS FUNCTIONALITY =====
+        const accountWrapper = document.getElementById("accountWrapper");
+        const accountPanel = document.getElementById("accountPanel");
+        const cartWrapper = document.getElementById("cartWrapper");
+        const cartPanel = document.getElementById("cartPanel");
+        const searchWrapper = document.getElementById("searchWrapper");
+        const searchPopup = document.getElementById("searchPopup");
+
+        let activeDesktopPanel = null;
+        let desktopHoverTimeout = null;
+
+        function closeAllDesktopPanels() {
+            accountPanel.classList.remove("active");
+            cartPanel.classList.remove("active");
+            searchPopup.classList.remove("active");
+            activeDesktopPanel = null;
+        }
+
+        function openDesktopPanel(panel, wrapper) {
+            closeAllDesktopPanels();
+            closeAllMegaMenus();
+            panel.classList.add("active");
+            activeDesktopPanel = panel;
+        }
+
+        // Desktop hover functionality for panels
+        [accountWrapper, cartWrapper, searchWrapper].forEach(wrapper => {
+            const panel = wrapper === accountWrapper ? accountPanel :
+                wrapper === cartWrapper ? cartPanel : searchPopup;
+
+            wrapper.addEventListener("mouseenter", () => {
+                clearTimeout(desktopHoverTimeout);
+                openDesktopPanel(panel, wrapper);
+            });
+
+            wrapper.addEventListener("mouseleave", (e) => {
+                const relatedTarget = e.relatedTarget;
+                if (!panel.contains(relatedTarget)) {
+                    desktopHoverTimeout = setTimeout(() => {
+                        if (!panel.matches(':hover')) {
+                            panel.classList.remove("active");
+                            activeDesktopPanel = null;
+                        }
+                    }, 150);
+                }
+            });
+
+            panel.addEventListener("mouseenter", () => {
+                clearTimeout(desktopHoverTimeout);
+            });
+
+            panel.addEventListener("mouseleave", (e) => {
+                const relatedTarget = e.relatedTarget;
+                if (!wrapper.contains(relatedTarget)) {
+                    desktopHoverTimeout = setTimeout(() => {
+                        if (!wrapper.matches(':hover')) {
+                            panel.classList.remove("active");
+                            activeDesktopPanel = null;
+                        }
+                    }, 150);
+                }
+            });
+        });
+
+        // ===== MOBILE FUNCTIONALITY =====
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const mobileCartWrapper = document.getElementById("mobileCartWrapper");
+        const mobileSearchWrapper = document.getElementById("mobileSearchWrapper");
+        const mobileCartOverlay = document.getElementById("mobileCartOverlay");
+        const mobileSearchOverlay = document.getElementById("mobileSearchOverlay");
+        const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+        const menuIcon = mobileMenuToggle.querySelector('.menu-icon');
+        const closeIcon = mobileMenuToggle.querySelector('.close-icon');
+
+        let activeMobileOverlay = null;
+
+        function closeAllMobileOverlays() {
+            mobileCartOverlay.classList.remove("active");
+            mobileSearchOverlay.classList.remove("active");
+            mobileMenuOverlay.classList.remove("active");
+            menuIcon.style.display = 'block';
+            closeIcon.style.display = 'none';
+            activeMobileOverlay = null;
+            document.body.classList.remove('no-scroll');
+        }
+
+        // Mobile menu toggle
+        mobileMenuToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (mobileMenuOverlay.classList.contains("active")) {
+                closeAllMobileOverlays();
+            } else {
+                closeAllMobileOverlays();
+                mobileMenuOverlay.classList.add("active");
+                menuIcon.style.display = 'none';
+                closeIcon.style.display = 'block';
+                activeMobileOverlay = mobileMenuOverlay;
+                document.body.classList.add('no-scroll');
+            }
+        });
+
+        // Mobile cart
+        mobileCartWrapper.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (mobileCartOverlay.classList.contains("active")) {
+                closeAllMobileOverlays();
+            } else {
+                closeAllMobileOverlays();
+                mobileCartOverlay.classList.add("active");
+                activeMobileOverlay = mobileCartOverlay;
+                document.body.classList.add('no-scroll');
+            }
+        });
+
+        // Mobile search
+        mobileSearchWrapper.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (mobileSearchOverlay.classList.contains("active")) {
+                closeAllMobileOverlays();
+            } else {
+                closeAllMobileOverlays();
+                mobileSearchOverlay.classList.add("active");
+                activeMobileOverlay = mobileSearchOverlay;
+                document.body.classList.add('no-scroll');
+                setTimeout(() => {
+                    const input = mobileSearchOverlay.querySelector('input');
+                    if (input) input.focus();
+                }, 300);
+            }
+        });
+
+        // Close mobile overlays when clicking outside
+        document.addEventListener('click', (e) => {
+            if (activeMobileOverlay && !activeMobileOverlay.contains(e.target) &&
+                !e.target.closest('.mobile-menu-toggle') &&
+                !e.target.closest('.mobile-cart-wrapper') &&
+                !e.target.closest('.mobile-search-wrapper')) {
+                closeAllMobileOverlays();
+            }
+        });
+
+        // Close overlays with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (activeMobileOverlay) {
+                    closeAllMobileOverlays();
+                }
+                if (activeMegaMenu) {
+                    closeAllMegaMenus();
+                }
+                if (activeDesktopPanel) {
+                    closeAllDesktopPanels();
+                }
+            }
+        });
+
+        // ===== COMMON FUNCTIONALITY =====
+        // Close promo bar
+        const promoCloseBtn = document.querySelector('.promo-bar button');
+        if (promoCloseBtn) {
+            promoCloseBtn.addEventListener('click', () => {
+                const promoBar = promoCloseBtn.parentElement;
+                promoBar.style.display = 'none';
+
+                // Adjust mega menu position
+                document.querySelector('.mega-menu').style.top = '70px';
+                megaMenuOverlay.style.top = '70px';
+                document.querySelector('.navbar').style.height = '70px';
+                document.querySelector('.hero').style.minHeight = 'calc(100vh - 70px)';
+            });
+        }
+
+        // Search functionality
+        const searchItems = document.querySelectorAll('.item');
+        searchItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productName = item.querySelector('.item-name').textContent;
+
+                const desktopInput = document.querySelector('.search-input-container input');
+                if (desktopInput) {
+                    desktopInput.value = productName;
+                    desktopInput.focus();
+                }
+
+                const mobileInput = document.querySelector('.mobile-search-input-container input');
+                if (mobileInput) {
+                    mobileInput.value = productName;
+                    mobileInput.focus();
+                }
+            });
+        });
+
+        // Close all menus on window resize
+        window.addEventListener('resize', () => {
+            closeAllMegaMenus();
+            closeAllDesktopPanels();
+            closeAllMobileOverlays();
+        });
+
+        // Initialize
+        function checkScreenSize() {
+            const promoBar = document.querySelector('.promo-bar');
+            const isPromoBarVisible = promoBar && promoBar.style.display !== 'none';
+
+            if (window.innerWidth <= 768) {
+                closeAllMegaMenus();
+                closeAllDesktopPanels();
+            } else {
+                closeAllMobileOverlays();
+                // Adjust positions based on promo bar visibility
+                const topPosition = isPromoBarVisible ? '120px' : '70px';
+                document.querySelectorAll('.mega-menu').forEach(menu => {
+                    menu.style.top = topPosition;
+                });
+                megaMenuOverlay.style.top = topPosition;
+            }
+        }
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+    </script>
+
+</body>
+
+</html>
