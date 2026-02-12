@@ -41,7 +41,7 @@
         }
 
         body {
-            background-color: #f8fafc;
+            background-color: white;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -236,7 +236,7 @@
 
         .main-content {
             flex: 1;
-            padding: 2.5rem 5% 3rem;
+            padding: 1.5rem 5%;
             background: white;
             display: flex;
             flex-direction: column;
@@ -294,14 +294,38 @@
             height: 100%;
             z-index: 1;
             background-color: #1A1A2E;
-            content-visibility: auto;
         }
 
-        .hero-background img {
+        .preview-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            filter: blur(20px);
+            transform: scale(1.1);
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        .full-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            z-index: 2;
+        }
+
+        .full-image.loaded {
+            opacity: 1;
         }
 
         .hero-overlay {
@@ -313,12 +337,12 @@
             background: rgba(0, 0, 0, 0.50);
             backdrop-filter: blur(3px);
             -webkit-backdrop-filter: blur(3px);
-            z-index: 2;
+            z-index: 3;
         }
 
         .hero-text {
             position: relative;
-            z-index: 3;
+            z-index: 4;
             width: 100%;
             max-width: 1100px;
             padding: 2.5rem 3rem;
@@ -362,21 +386,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .conf-event {
-            font-size: 1.8rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-            color: white;
-            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .conf-dept {
-            font-size: 1.8rem;
+        .conf-info {
+            font-size: 1.5rem;
             font-weight: 500;
             margin-bottom: 2.5rem;
             color: white;
-            opacity: 0.95;
             text-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+            line-height: 1.4;
         }
 
         .meta-info {
@@ -684,12 +700,9 @@
                 font-size: 3.6rem;
             }
 
-            .conf-event {
+            .conf-info {
                 font-size: 1.5rem;
-            }
-
-            .conf-dept {
-                font-size: 1.5rem;
+                margin-bottom: 2.5rem;
             }
 
             .meta-info {
@@ -829,20 +842,13 @@
                 text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             }
 
-            .conf-event {
+            .conf-info {
                 font-size: 1.2rem;
-                margin-bottom: 0.5rem;
-                text-align: center;
-                width: 100%;
-                text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
-            }
-
-            .conf-dept {
-                font-size: 1.1rem;
                 margin-bottom: 1.5rem;
                 text-align: center;
                 width: 100%;
                 text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+                line-height: 1.5;
             }
 
             .meta-info {
@@ -970,12 +976,9 @@
                 font-size: 1.8rem;
             }
 
-            .conf-event {
+            .conf-info {
                 font-size: 1rem;
-            }
-
-            .conf-dept {
-                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
             }
 
             .meta-info {
@@ -1086,15 +1089,19 @@
     <div id="mainContent" class="main-content">
         <div class="conf-hero">
             <div class="hero-background">
+                <img src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/refs/heads/main/assets/src/jai_hind_college/jai_hind_college_taj_hotel_preview.jpg"
+                    alt="" class="preview-image" loading="eager" fetchpriority="high" decoding="sync">
                 <img src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/refs/heads/main/assets/src/jai_hind_college/jai_hind_college_taj_hotel.png"
-                    alt="Jai Hind College building" loading="eager" fetchpriority="high" decoding="sync">
+                    alt="Jai Hind College building" class="full-image" loading="eager" fetchpriority="high"
+                    decoding="async" onload="this.classList.add('loaded')">
             </div>
             <div class="hero-overlay"></div>
             <div class="hero-text">
                 <div class="conf-title-lg">Industry 5.0:</div>
                 <div class="conf-title-line2">Governance, Technology & Sustainability</div>
-                <div class="conf-event">Annual International Conference 2026</div>
-                <div class="conf-dept">Department Of Management Studies</div>
+                <div class="conf-info">Department Of Management Studies<br>Presents<br>Annual International Conference
+                    2026
+                </div>
                 <div class="meta-info">
                     <span class="meta-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1278,6 +1285,11 @@
                 }
             }
         });
+
+        const fullImage = document.querySelector('.full-image');
+        if (fullImage.complete) {
+            fullImage.classList.add('loaded');
+        }
     </script>
 </body>
 
