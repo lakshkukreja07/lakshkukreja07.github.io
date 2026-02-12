@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/petverse_favicon.ico"
+        type="image/x-icon">
+
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/clashgrotesk-semibold.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/clashgrotesk-bold.woff2"
+        as="font" type="font/woff2" crossorigin>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PETVERSE</title>
+
+    <style>
+        @font-face {
+            font-family: 'ClashDisplay-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-regular.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ClashDisplay-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashdisplay/clashdisplay-bold.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ClashGrotesk-SemiBold';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/clashgrotesk-semibold.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ClashGrotesk-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/fonts/clashgrotesk/clashgrotesk-bold.woff2') format('woff2');
+            font-display: swap;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: white;
+            color: #111;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* TOPBAR */
+        .topbar {
+            position: fixed;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 1200px;
+            height: 65px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px solid transparent;
+            border-radius: 100px;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.6),
+                inset 0 0 20px rgba(255, 255, 255, 0.2),
+                0 8px 32px rgba(31, 38, 135, 0.15);
+            backdrop-filter: blur(1px) saturate(180%);
+            -webkit-backdrop-filter: blur(1px) saturate(180%);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 6000;
+            opacity: 1;
+            overflow: hidden;
+            outline: 0;
+        }
+
+        .topbar.dark-text {
+            --text-color: #000;
+            --text-hover: #333;
+            --logo-color: #000;
+            --cta-bg: #000;
+            --cta-color: #fff;
+        }
+
+        .topbar:not(.dark-text) {
+            --text-color: #444;
+            --text-hover: #000;
+            --logo-color: #111;
+            --cta-bg: #000;
+            --cta-color: #fff;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'ClashDisplay-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-size: 22px;
+            font-weight: 700 !important;
+            color: var(--logo-color);
+            transition: color 0.3s ease;
+        }
+
+        .logo-img {
+            height: 48px;
+            margin-right: -5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 14px;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-weight: 400 !important;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-hover);
+        }
+
+        .nav-links a.active {
+            color: var(--text-hover);
+            font-weight: 500;
+        }
+
+        .nav-underline {
+            position: absolute;
+            bottom: 0;
+            height: 2px;
+            background: #FF4F1A;
+            background: linear-gradient(90deg, #FF4F1A, #FF7A3D);
+            border-radius: 1px;
+            transition: left 0.35s cubic-bezier(.4, 0, .2, 1), width 0.35s cubic-bezier(.4, 0, .2, 1);
+            z-index: 1;
+        }
+
+        .cta-btn {
+            background: var(--cta-bg);
+            color: var(--cta-color);
+            padding: 10px 22px;
+            border-radius: 100px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-weight: 400 !important;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        /* HOME SECTION */
+        .home-section {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            min-height: 90vh;
+            background-color: #F4EED7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: visible;
+        }
+
+        .home-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/websites/petverse_background_paws.png');
+            background-repeat: repeat;
+            background-size: 250px 250px;
+            opacity: 0.05;
+            animation: movePaws 10s linear infinite;
+            z-index: 0;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        @keyframes movePaws {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 0 500px;
+            }
+        }
+
+        .home-content {
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+            margin-bottom: 15vh;
+        }
+
+        .loaded .home-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        .home-content h1 {
+            font-size: 64px;
+            line-height: 1.1;
+        }
+
+        .black-text {
+            font-family: 'ClashGrotesk-SemiBold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            color: #000;
+            letter-spacing: 1px;
+            font-weight: 600 !important;
+        }
+
+        .orange-text {
+            font-family: 'ClashGrotesk-Bold', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #FF4F1A, #FF7A3D, #FF4F1A);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            font-weight: 700 !important;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .cat-container {
+            position: absolute;
+            bottom: -150px;
+            left: 0;
+            width: 100%;
+            z-index: 5000;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+            pointer-events: none;
+        }
+
+        .loaded .cat-container {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.6s;
+        }
+
+        .cat-container img {
+            width: 700px;
+            max-width: 90%;
+            height: auto;
+            display: block;
+            z-index: 5000;
+        }
+
+        /* ABOUT SECTION */
+        .about-section {
+            position: relative;
+            background: white;
+            min-height: 600px;
+            width: 100%;
+            z-index: 100;
+            padding-top: 200px;
+            padding-bottom: 100px;
+            margin-top: 0;
+        }
+
+        /* SERVICES SECTION - UPDATED */
+        .services-section {
+            position: relative;
+            background: white;
+            min-height: 700px;
+            /* Reduced from 800px */
+            width: 100%;
+            padding-top: 120px;
+            /* Reduced from 150px */
+            padding-bottom: 120px;
+            /* Reduced from 150px */
+            margin-top: 0;
+        }
+
+        .services-header {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            /* Reduced from 80px */
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .services-header h2 {
+            font-family: 'ClashGrotesk-Bold', sans-serif;
+            font-size: 48px;
+            margin-bottom: 15px;
+            /* Reduced from 20px */
+            letter-spacing: 1.5px;
+            color: #111111;
+            font-weight: 700 !important;
+        }
+
+        .services-header p {
+            font-size: 22px;
+            /* Reduced from 24px */
+            line-height: 1.5;
+            /* Reduced from 1.6 */
+            color: #444;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Services Grid - Even smaller */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            /* Reduced from 30px */
+            width: 100%;
+            max-width: 850px;
+            /* Reduced from 900px */
+            margin: 0 auto;
+        }
+
+        .service-item {
+            background: white;
+            padding: 25px 20px;
+            /* Reduced from 30px 25px */
+            border-radius: 22px;
+            /* Reduced from 25px */
+            border: 1px solid #e0e0e0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: none;
+        }
+
+        .service-icon {
+            font-size: 28px;
+            /* Reduced from 32px */
+            margin-bottom: 18px;
+            /* Reduced from 20px */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            color: #FF4F1A;
+        }
+
+        .service-icon svg {
+            width: 24px;
+            /* Reduced from 28px */
+            height: 24px;
+            /* Reduced from 28px */
+        }
+
+        .service-item h4 {
+            font-family: 'ClashGrotesk-SemiBold', sans-serif;
+            font-size: 18px;
+            /* Reduced from 20px */
+            color: #111;
+            margin-bottom: 10px;
+            /* Reduced from 12px */
+            text-align: center;
+            width: 100%;
+        }
+
+        .service-item p {
+            font-size: 15px;
+            /* Reduced from 16px */
+            color: #666;
+            line-height: 1.5;
+            /* Reduced from 1.6 */
+            margin: 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* PRICING SECTION */
+        .pricing-section {
+            position: relative;
+            background: white;
+            min-height: 600px;
+            width: 100%;
+            padding-top: 100px;
+            padding-bottom: 150px;
+            margin-top: 0;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #FF7A3D;
+        }
+
+        .pricing-card.popular {
+            border-color: #FF4F1A;
+            background: linear-gradient(135deg, #fff8f5, #ffffff);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #FF4F1A, #FF7A3D);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-family: 'ClashGrotesk-SemiBold', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .plan-name {
+            font-family: 'ClashGrotesk-Bold', sans-serif;
+            font-size: 28px;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        .plan-price {
+            font-family: 'ClashGrotesk-Bold', sans-serif;
+            font-size: 42px;
+            color: #FF4F1A;
+            margin-bottom: 30px;
+        }
+
+        .plan-price span {
+            font-size: 16px;
+            color: #666;
+            font-family: 'ClashDisplay-Regular', sans-serif;
+        }
+
+        .plan-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 40px;
+            flex-grow: 1;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            color: #444;
+            font-size: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .plan-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #FF4F1A;
+            font-weight: bold;
+        }
+
+        .plan-button {
+            background: #111;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-family: 'ClashDisplay-Regular', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .plan-button:hover {
+            background: #FF4F1A;
+            transform: scale(1.05);
+        }
+
+        .plan-button.popular-btn {
+            background: #111;
+        }
+
+        .plan-button.popular-btn:hover {
+            background: #FF4F1A;
+        }
+
+        /* CONTACT SECTION - UPDATED */
+        .contact-section {
+            position: relative;
+            background: white;
+            min-height: 800px;
+            width: 100%;
+            padding-top: 150px;
+            padding-bottom: 150px;
+            margin-top: 0;
+        }
+
+        /* Contact Title - With subtitle */
+        .contact-title {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .contact-title h2 {
+            font-family: 'ClashGrotesk-Bold', sans-serif;
+            font-size: 48px;
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+            color: #111111;
+            font-weight: 700 !important;
+        }
+
+        .contact-title p {
+            font-size: 24px;
+            line-height: 1.6;
+            color: #444;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Contact Container - Sleeping boxes */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        /* BOTH BOXES - SLEEPING (HORIZONTAL) LAYOUT */
+        .contact-box-row {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .contact-box {
+            flex: 1;
+            background: #111;
+            border-radius: 30px;
+            padding: 40px 50px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px;
+        }
+
+        /* Contact Info Box */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-info h3 {
+            font-family: 'ClashGrotesk-Bold', sans-serif;
+            font-size: 36px;
+            color: white;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 1.5px;
+        }
+
+        /* Contact Methods */
+        .contact-methods {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .contact-method-icon {
+            width: 60px;
+            height: 60px;
+            background: #222;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FF4F1A;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .contact-method-details h4 {
+            font-family: 'ClashGrotesk-SemiBold', sans-serif;
+            font-size: 18px;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .contact-method-details p {
+            font-size: 16px;
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        /* Divider - Removed since social media is removed */
+
+        /* Newsletter Box */
+        .newsletter-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .newsletter-box h3 {
+            font-family: 'ClashGrotesk-Bold', sans-serif;
+            font-size: 36px;
+            color: white;
+            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            text-align: center;
+        }
+
+        .newsletter-subtitle {
+            font-size: 16px;
+            color: #aaa;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 30px;
+            flex: 1;
+        }
+
+        .newsletter-input {
+            padding: 18px 24px;
+            border: 2px solid #222;
+            border-radius: 15px;
+            font-family: 'ClashDisplay-Regular', sans-serif;
+            font-size: 16px;
+            color: white;
+            background: #222;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #FF4F1A;
+            box-shadow: 0 0 0 3px rgba(255, 79, 26, 0.1);
+        }
+
+        .newsletter-input::placeholder {
+            color: #888;
+        }
+
+        .newsletter-btn {
+            background: #222;
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 50px;
+            font-family: 'ClashDisplay-Regular', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .newsletter-btn:hover:not(.success) {
+            background: #FF4F1A;
+            transform: translateY(-2px);
+        }
+
+        .newsletter-btn.success {
+            background: #10B981;
+            color: white;
+        }
+
+        /* Terms Section */
+        .terms-section {
+            margin-top: auto;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+        }
+
+        .terms-text {
+            font-size: 12px;
+            color: #aaa;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .terms-text a {
+            color: white;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .terms-text a:hover {
+            color: #FF4F1A;
+        }
+
+        /* COMMON SECTION STYLES */
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+            position: relative;
+            z-index: 200;
+        }
+
+        .section-content h2 {
+            font-family: 'ClashGrotesk-Bold', sans-serif;
+            font-size: 48px;
+            margin-bottom: 30px;
+            letter-spacing: 1.5px;
+            color: #111111;
+            font-weight: 700 !important;
+        }
+
+        .section-content p {
+            font-size: 24px;
+            line-height: 1.6;
+            color: black;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* FOOTER */
+        .footer {
+            position: relative;
+            background: white;
+            width: 100%;
+            padding: 40px 20px;
+            text-align: left;
+            border-top: 1px solid #eee;
+            margin-top: 0;
+            z-index: 200;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .copyright {
+            font-size: 13px;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 1200px) {
+            .services-grid {
+                gap: 30px;
+            }
+
+            .contact-box {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+            }
+
+            .pricing-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .pricing-card:nth-child(3) {
+                grid-column: span 2;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            .contact-box-row {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .contact-box {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .topbar {
+                width: 90%;
+                height: 60px;
+                padding: 0 20px;
+                backdrop-filter: blur(10px) saturate(180%);
+                -webkit-backdrop-filter: blur(10px) saturate(180%);
+                justify-content: center;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .logo-img {
+                height: 48px;
+                margin-right: -5px;
+            }
+
+            .nav-links,
+            .cta-btn {
+                display: none !important;
+            }
+
+            .home-section {
+                height: 90vh;
+                min-height: 90vh;
+            }
+
+            .home-section::before {
+                background-size: 180px 180px;
+            }
+
+            .home-content h1 {
+                margin-top: 100px;
+                font-size: 42px;
+            }
+
+            .home-content {
+                margin-bottom: 12vh;
+            }
+
+            .cat-container {
+                bottom: -80px;
+            }
+
+            .cat-container img {
+                width: 420px;
+                max-width: 85%;
+            }
+
+            .black-text,
+            .orange-text {
+                font-size: 32px;
+            }
+
+            .about-section {
+                padding-top: 120px;
+                padding-bottom: 80px;
+            }
+
+            .services-section {
+                padding-top: 100px;
+                padding-bottom: 100px;
+            }
+
+            .services-header {
+                padding: 0 20px;
+                margin-bottom: 60px;
+            }
+
+            .services-header h2 {
+                font-size: 36px;
+            }
+
+            .services-header p {
+                font-size: 18px;
+            }
+
+            .services-container {
+                padding: 0 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                max-width: 500px;
+            }
+
+            .service-item {
+                padding: 30px 25px;
+            }
+
+            .service-icon {
+                font-size: 36px;
+                margin-bottom: 20px;
+            }
+
+            .service-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .service-item h4 {
+                font-size: 20px;
+            }
+
+            .service-item p {
+                font-size: 16px;
+            }
+
+            .pricing-section {
+                padding-top: 80px;
+                padding-bottom: 100px;
+            }
+
+            .pricing-container {
+                padding: 0 20px;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                margin: 40px auto 0;
+                gap: 30px;
+            }
+
+            .pricing-card:nth-child(3) {
+                grid-column: 1;
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .pricing-card {
+                padding: 30px;
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .plan-name {
+                font-size: 24px;
+            }
+
+            .plan-price {
+                font-size: 36px;
+            }
+
+            .contact-section {
+                padding-top: 100px;
+                padding-bottom: 100px;
+            }
+
+            .contact-title {
+                padding: 0 20px;
+                margin-bottom: 60px;
+            }
+
+            .contact-title h2 {
+                font-size: 36px;
+            }
+
+            .contact-title p {
+                font-size: 18px;
+            }
+
+            .contact-container {
+                padding: 0 20px;
+                gap: 30px;
+            }
+
+            .contact-box {
+                padding: 30px 25px;
+                min-height: 350px;
+            }
+
+            .contact-info h3,
+            .newsletter-box h3 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .contact-methods {
+                gap: 25px;
+            }
+
+            .contact-method {
+                gap: 15px;
+            }
+
+            .contact-method-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .contact-method-details h4 {
+                font-size: 16px;
+            }
+
+            .contact-method-details p {
+                font-size: 15px;
+            }
+
+            .newsletter-subtitle {
+                font-size: 15px;
+                margin-bottom: 30px;
+            }
+
+            .section-content h2 {
+                font-size: 36px;
+            }
+
+            .section-content p {
+                font-size: 18px;
+            }
+
+            .footer {
+                padding: 30px 15px;
+            }
+
+            .footer-content {
+                font-size: 12px;
+            }
+
+            .copyright {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .services-header h2 {
+                font-size: 32px;
+            }
+
+            .services-header p {
+                font-size: 16px;
+            }
+
+            .service-item {
+                padding: 25px 20px;
+            }
+
+            .service-icon {
+                font-size: 32px;
+            }
+
+            .service-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .service-item h4 {
+                font-size: 18px;
+            }
+
+            .service-item p {
+                font-size: 15px;
+            }
+
+            .pricing-card {
+                padding: 25px 20px;
+            }
+
+            .plan-name {
+                font-size: 22px;
+            }
+
+            .plan-price {
+                font-size: 32px;
+            }
+
+            .plan-features li {
+                font-size: 14px;
+                padding-left: 20px;
+            }
+
+            .contact-title h2 {
+                font-size: 32px;
+            }
+
+            .contact-info h3,
+            .newsletter-box h3 {
+                font-size: 24px;
+            }
+
+            .contact-method-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+
+            .newsletter-btn {
+                padding: 16px 20px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .services-header h2 {
+                font-size: 28px;
+            }
+
+            .home-content h1 {
+                font-size: 36px;
+                margin-top: 120px;
+            }
+
+            .black-text,
+            .orange-text {
+                font-size: 28px;
+            }
+
+            .pricing-card {
+                padding: 20px 15px;
+            }
+
+            .plan-name {
+                font-size: 20px;
+            }
+
+            .plan-price {
+                font-size: 28px;
+            }
+
+            .contact-title h2 {
+                font-size: 28px;
+            }
+
+            .contact-info h3,
+            .newsletter-box h3 {
+                font-size: 22px;
+            }
+
+            .contact-method {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .contact-method-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+        .fonts-loading * {
+            visibility: hidden;
+        }
+
+        .fonts-loaded * {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="fonts-loading">
+
+    <!-- Topbar -->
+    <div class="topbar" id="topbar">
+        <div class="logo">
+            <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/petverse_logo.png"
+                alt="Petverse Logo" class="logo-img">
+            PETVERSE
+        </div>
+        <div class="nav-links">
+            <div class="nav-underline" id="navUnderline"></div>
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="cta-btn" onclick="window.location.href='#contact'">Sign In</button>
+    </div>
+
+    <!-- Home Section -->
+    <section class="home-section" id="home">
+        <div class="home-content">
+            <h1>
+                <span class="black-text">FOR THE</span>
+                <span class="orange-text">PET LOVERS.</span>
+            </h1>
+        </div>
+
+        <div class="cat-container">
+            <img src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/cat.png"
+                alt="Petverse Cat">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="section-content">
+            <h2>About Our Brand</h2>
+            <p>Petverse is the perfect one stop solution for all our cherished pets, we are an integrated pet care
+                platform offering services including pet ambulance, routine health checkups with digital reports, pet
+                walking & sitting subscriptions, grooming, training, nutrition consulting and vet hospital listings.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section - UPDATED -->
+    <section class="services-section" id="services">
+        <!-- Services Header -->
+        <div class="services-header">
+            <h2>Our Services</h2>
+            <p>Petverse offers an integrated ecosystem of pet care services designed to address every need of your
+                beloved companions.
+                Our platform brings together the best of veterinary science, pet wellness, and modern technology.</p>
+        </div>
+
+        <div class="services-container">
+            <!-- Services Grid - Bigger and centered without image -->
+            <div class="services-grid">
+                <div class="service-item">
+                    <span class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 7v4" />
+                            <path d="M14 21v-3a2 2 0 0 0-4 0v3" />
+                            <path d="M14 9h-4" />
+                            <path d="M18 11h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h2" />
+                            <path d="M18 21V5a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16" />
+                        </svg>
+                    </span>
+                    <h4>Veterinary Care</h4>
+                    <p>24/7 emergency services, routine checkups, and specialized treatments</p>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="6" cy="6" r="3" />
+                            <path d="M8.12 8.12 12 12" />
+                            <path d="M20 4 8.12 15.88" />
+                            <circle cx="6" cy="18" r="3" />
+                            <path d="M14.8 14.8 20 20" />
+                        </svg>
+                    </span>
+                    <h4>Grooming</h4>
+                    <p>Professional grooming, spa treatments, and hygiene services</p>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+                            <path d="M22 10v6" />
+                            <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+                        </svg>
+                    </span>
+                    <h4>Training</h4>
+                    <p>Behavioral training and obedience classes for all breeds</p>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8" />
+                            <path d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7" />
+                            <path d="m2.1 21.8 6.4-6.3" />
+                            <path d="m19 5-7 7" />
+                        </svg>
+                    </span>
+                    <h4>Nutrition</h4>
+                    <p>Customized diet plans and nutritional consulting</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="section-content">
+            <h2>Pricing Plans</h2>
+            <p>Affordable pricing plans tailored to your pet's needs. Choose from basic, premium, or custom packages.
+            </p>
+        </div>
+
+        <div class="pricing-container">
+            <div class="pricing-cards">
+                <!-- Basic Care Card -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Basic Care</h3>
+                    <div class="plan-price">₹4,999<span>/mo</span></div>
+                    <ul class="plan-features">
+                        <li>10 Pet Walking Visits</li>
+                        <li>1 Routine Health Checkup</li>
+                        <li>Digital Health Report</li>
+                        <li>Discount On Grooming</li>
+                        <li>Discount On Vet Consultation</li>
+                    </ul>
+                    <button class="plan-button">Choose Plan</button>
+                </div>
+
+                <!-- Premium Care Card -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3 class="plan-name">Premium Care</h3>
+                    <div class="plan-price">₹7,999<span>/mo</span></div>
+                    <ul class="plan-features">
+                        <li>20 Pet Walking Visits</li>
+                        <li>2 Routine Health Checkup</li>
+                        <li>Free Digital Health Reports</li>
+                        <li>Nutrition Consultation</li>
+                    </ul>
+                    <button class="plan-button popular-btn">Choose Plan</button>
+                </div>
+
+                <!-- Family Care Card -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Family Care</h3>
+                    <div class="plan-price">₹14,999<span>/mo</span></div>
+                    <ul class="plan-features">
+                        <li>Walking & Sitting Services</li>
+                        <li>Monthly Health Checkup</li>
+                        <li>Grooming Twice A Month</li>
+                        <li>Training Session Every Month</li>
+                        <li>Dedicated Pet Profile With Reminders</li>
+                    </ul>
+                    <button class="plan-button">Choose Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - UPDATED -->
+    <section class="contact-section" id="contact">
+        <!-- Contact Title with subtitle -->
+        <div class="contact-title">
+            <h2>Contact Us</h2>
+            <p>We're here to help you and your furry friends. Reach out to us for any questions or support.</p>
+        </div>
+
+        <!-- Contact Content - Sleeping boxes layout -->
+        <div class="contact-container">
+            <!-- Sleeping (horizontal) boxes row -->
+            <div class="contact-box-row">
+                <!-- Contact Us Box -->
+                <div class="contact-box contact-info">
+                    <h3>Contact Us</h3>
+
+                    <!-- Contact Details -->
+                    <div class="contact-methods">
+                        <!-- Phone -->
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="contact-method-details">
+                                <h4>Phone Number</h4>
+                                <p>+91 9876543210</p>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="contact-method-details">
+                                <h4>Email Address</h4>
+                                <p>support@petverse.in</p>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="contact-method-details">
+                                <h4>Office Address</h4>
+                                <p>123 Pet Care Avenue,<br>Mumbai, Maharashtra 4000001</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter Box -->
+                <div class="contact-box newsletter-box">
+                    <h3>Stay In The Loop</h3>
+                    <p class="newsletter-subtitle">Join Us For Exciting Offers & Latest News</p>
+
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email address" required
+                            id="newsletterEmail">
+                        <button type="submit" class="newsletter-btn" id="newsletterBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="m22 2-7 20-4-9-9-4Z"></path>
+                                <path d="M22 2 11 13"></path>
+                            </svg>
+                            Subscribe
+                        </button>
+                    </form>
+
+                    <!-- Terms Section -->
+                    <div class="terms-section">
+                        <p class="terms-text">
+                            By submitting, I agree to receive future communications from Petverse and I have read and
+                            agree
+                            to
+                            <a href="#" target="_blank">Petverse's Terms</a>
+                            and acknowledge the
+                            <a href="#" target="_blank">Data Privacy Notice</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025-2026 Petverse Private Limited. All rights reserved.</p>
+            <p>© Site Made By Laksh Kukreja.</p>
+            <p class="copyright">
+                All content, designs, graphics, text, and other materials displayed on this website are my original
+                creative work and are shared strictly for personal and educational purposes. Any illustrations showed in
+                the website maybe artificially generated for representational purposes of the product and might not have
+                any existence in real life. Any unauthorized copying, reproduction, redistribution, publication, or
+                commercial use of any part of this website, whether in full or in part, without prior written permission
+                from the author is strictly prohibited and may result in legal action under applicable copyright and
+                intellectual property laws.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(() => {
+                document.body.classList.remove('fonts-loading');
+                document.body.classList.add('fonts-loaded');
+                document.body.classList.add('loaded');
+                initNavigation();
+                updateTopbarTextColor();
+                initNewsletterForm();
+            }, 100);
+        });
+
+        function initNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navUnderline = document.getElementById('navUnderline');
+
+            if (!navUnderline) return;
+
+            // Smooth underline animation
+            navUnderline.style.transition = "left 0.35s cubic-bezier(.4,0,.2,1), width 0.35s cubic-bezier(.4,0,.2,1)";
+
+            // Click handling
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    moveUnderline(this);
+                    history.replaceState(null, null, this.getAttribute("href"));
+                });
+            });
+
+            // Intersection Observer for scroll detection
+            const sections = document.querySelectorAll("section");
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute("id");
+                        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+
+                        if (activeLink) {
+                            navLinks.forEach(l => l.classList.remove('active'));
+                            activeLink.classList.add('active');
+                            moveUnderline(activeLink);
+                            history.replaceState(null, null, "#" + id);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.6
+            });
+
+            sections.forEach(section => observer.observe(section));
+
+            // Initial position
+            const active = document.querySelector('.nav-link.active');
+            if (active) moveUnderline(active);
+
+            window.addEventListener('resize', () => {
+                const active = document.querySelector('.nav-link.active');
+                if (active) moveUnderline(active);
+            });
+        }
+
+        function moveUnderline(link) {
+            const navUnderline = document.getElementById('navUnderline');
+            if (!navUnderline || !link) return;
+
+            const parent = link.parentElement;
+            const parentRect = parent.getBoundingClientRect();
+            const rect = link.getBoundingClientRect();
+
+            navUnderline.style.left = (rect.left - parentRect.left) + "px";
+            navUnderline.style.width = rect.width + "px";
+        }
+
+        function updateTopbarTextColor() {
+            const topbar = document.getElementById('topbar');
+            const homeSection = document.getElementById('home');
+            if (!topbar || !homeSection) return;
+
+            const scrollPosition = window.scrollY + 100;
+
+            if (scrollPosition < homeSection.offsetHeight) {
+                topbar.classList.add('dark-text');
+            } else {
+                topbar.classList.remove('dark-text');
+            }
+        }
+
+        function initNewsletterForm() {
+            const newsletterForm = document.getElementById('newsletterForm');
+            const newsletterBtn = document.getElementById('newsletterBtn');
+
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const emailInput = document.getElementById('newsletterEmail');
+                    const email = emailInput.value.trim();
+
+                    // Basic email validation
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                    if (!emailRegex.test(email)) {
+                        emailInput.style.borderColor = '#FF4F1A';
+                        return;
+                    }
+
+                    // Save original button content
+                    const originalContent = newsletterBtn.innerHTML;
+
+                    // Show success state INSIDE THE BUTTON
+                    newsletterBtn.classList.add('success');
+                    newsletterBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-icon lucide-circle-check">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        Email Sent Successfully
+                    `;
+                    newsletterBtn.disabled = true;
+
+                    // Reset after 5 seconds
+                    setTimeout(() => {
+                        newsletterBtn.classList.remove('success');
+                        newsletterBtn.innerHTML = originalContent;
+                        newsletterBtn.disabled = false;
+                        newsletterForm.reset();
+                        emailInput.style.borderColor = '#222';
+                    }, 5000);
+
+                    // In a real application, you would send this data to a server
+                    console.log('Newsletter subscription:', email);
+                });
+            }
+        }
+    </script>
+
+</body>
+
+</html>
