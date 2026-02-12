@@ -1,10 +1,35 @@
+<!-- ------------------------------------------------------------------- -->
+<!-- Description : Jai Hind College | Custom Build Website               -->
+<!-- Author      : © Laksh Kukreja (@lakshkukreja07)                     -->
+<!-- Updated     : Last On 13 February 2026 At 12:39AM [IST]             -->
+<!-- License     : GNU General Public License V3 | Or Later              -->
+<!-- License URI : https://www.gnu.org/licenses/gpl-3.0.en.html          -->
+<!-- Copyright   : (CC) 2022-2026 Laksh Kukreja                          -->
+<!-- GitHub URI  : https://www.github.com/lakshkukreja07                 -->
+<!-- ------------------------------------------------------------------- -->
+<!-- Note        : This Website Has Been Made, For Personal Purposes &   -->
+<!--               Ownership Is Fully Under The Author, Including The    -->
+<!--               Assets Used In The Website. Copying Any Element       -->
+<!--               Without Any Notice(s) Is Prohibited.                  -->
+<!-- ------------------------------------------------------------------- -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Jai Hind College</title>
+    <link rel="preload" as="image"
+        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/refs/heads/main/assets/src/jai_hind_college/jai_hind_college_logo.png"
+        fetchpriority="high">
+    <link rel="preload" as="image"
+        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/refs/heads/main/assets/src/jai_hind_college/jai_hind_college_taj_hotel.png"
+        fetchpriority="high">
+    <link rel="preconnect" href="https://raw.githubusercontent.com">
+    <link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
@@ -66,7 +91,7 @@
         .brand-logo span {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #0b2d4e;
+            color: #1A1A2E;
         }
 
         .nav-right {
@@ -88,7 +113,7 @@
         }
 
         .nav-right a.active {
-            color: #0b2d4e;
+            color: #1A1A2E;
             font-weight: 700;
             border-bottom: none;
         }
@@ -108,7 +133,7 @@
         .menu-bar {
             width: 26px;
             height: 2.5px;
-            background-color: #0b2d4e;
+            background-color: #1A1A2E;
             border-radius: 3px;
             position: absolute;
             transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
@@ -166,13 +191,13 @@
         }
 
         .fullscreen-menu-header {
-            color: #0b2d4e;
+            color: #1A1A2E;
             font-size: 1.2rem;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-bottom: 2.5rem;
-            border-bottom: 2px solid #0b2d4e;
+            border-bottom: 2px solid #1A1A2E;
             padding-bottom: 0.75rem;
             display: inline-block;
         }
@@ -196,7 +221,7 @@
 
         .fullscreen-nav-link {
             text-decoration: none;
-            color: #0b2d4e;
+            color: #1A1A2E;
             font-size: 2rem;
             font-weight: 700;
             display: block;
@@ -206,7 +231,7 @@
         }
 
         .fullscreen-nav-link:hover {
-            color: #1e4a6b;
+            color: #2a2a4a;
         }
 
         .main-content {
@@ -214,17 +239,19 @@
             padding: 2.5rem 5% 3rem;
             background: white;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             margin-top: 64px;
+            gap: 10rem;
         }
 
         .footer {
-            background-color: #0b2d4e;
+            background-color: #1A1A2E;
             color: rgba(255, 255, 255, 0.8);
             padding: 1.8rem 5%;
             text-align: center;
-            border-top: 1px solid #1e4a6b;
+            border-top: 1px solid #2a2a4a;
             font-size: 0.95rem;
             letter-spacing: 0.3px;
             margin-top: auto;
@@ -252,11 +279,11 @@
             min-height: 550px;
             border-radius: 32px;
             overflow: hidden;
-            margin-bottom: 2.5rem;
             display: flex;
             align-items: center;
             isolation: isolate;
             box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.65);
+            background-color: #1A1A2E;
         }
 
         .hero-background {
@@ -266,7 +293,8 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            background-color: #0b2d4e;
+            background-color: #1A1A2E;
+            content-visibility: auto;
         }
 
         .hero-background img {
@@ -282,9 +310,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
             z-index: 2;
         }
 
@@ -298,6 +326,10 @@
             color: white;
             animation: fadeSlide 0.6s ease;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         @keyframes fadeSlide {
@@ -318,6 +350,7 @@
             line-height: 1.1;
             margin-bottom: 1.2rem;
             color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .conf-title-line2 {
@@ -326,6 +359,7 @@
             line-height: 1.1;
             margin-bottom: 2.5rem;
             color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .conf-event {
@@ -333,6 +367,7 @@
             font-weight: 500;
             margin-bottom: 0.75rem;
             color: white;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
         }
 
         .conf-dept {
@@ -341,6 +376,7 @@
             margin-bottom: 2.5rem;
             color: white;
             opacity: 0.95;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
         }
 
         .meta-info {
@@ -352,9 +388,10 @@
             font-weight: 500;
             margin-top: 1.5rem;
             margin-bottom: 3rem;
-            font-size: 1.2rem;
+            font-size: 1.35rem;
             color: white;
             flex-wrap: wrap;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
         }
 
         .meta-item {
@@ -365,11 +402,12 @@
         }
 
         .meta-icon {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             stroke: white;
             stroke-width: 1.8;
             flex-shrink: 0;
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
         }
 
         .meta-info span:not(:last-child)::after {
@@ -377,9 +415,10 @@
             margin-left: 2rem;
             color: white;
             font-weight: 300;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             line-height: 1;
             vertical-align: middle;
+            text-shadow: none;
         }
 
         .btn-group {
@@ -409,36 +448,36 @@
 
         .btn-register-now {
             background: #FFD700;
-            color: black;
+            color: #1A1A2E;
             border: 2px solid #FFD700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
             transition: transform 0.2s ease;
         }
 
         .btn-register-now:hover {
             background: #FFD700;
             border-color: #FFD700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
         }
 
         .btn-submit-abstract {
             background: white;
-            color: black;
+            color: #1A1A2E;
             border: 2px solid white;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
             transition: transform 0.2s ease;
         }
 
         .btn-submit-abstract:hover {
             background: white;
             border-color: white;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
         }
 
         .arrow-up-right {
             width: 20px;
             height: 20px;
-            stroke: black;
+            stroke: #1A1A2E;
             stroke-width: 2;
             transition: transform 0.2s ease;
             flex-shrink: 0;
@@ -452,50 +491,129 @@
             transform: translate(3px, -3px);
         }
 
-        @media (max-width: 992px) {
-            .main-content {
-                padding: 2rem 4%;
-            }
+        .about-section {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 2rem;
+        }
 
-            .conf-hero {
-                min-height: 500px;
-                margin-bottom: 2rem;
-            }
+        .about-info {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #E1C776;
+            background: transparent;
+            margin-bottom: 1rem;
+            border: none;
+            padding: 0;
+            text-align: center;
+        }
 
-            .hero-text {
-                max-width: 90%;
-                padding: 2rem 2rem;
-            }
+        .about-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1A1A2E;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 2rem;
+        }
 
-            .conf-title-lg {
-                font-size: 4rem;
-            }
+        .about-subtitle {
+            font-size: 1.2rem;
+            color: #1A1A2E;
+            font-weight: 450;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto 3rem auto;
+            line-height: 1.65;
+            width: 100%;
+            padding: 0 2rem;
+        }
 
-            .conf-title-line2 {
-                font-size: 4rem;
-            }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
 
-            .conf-event {
-                font-size: 1.6rem;
-            }
+        .about-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.06);
+            border: 2px solid #e0e7ed;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: none;
+            backdrop-filter: none;
+            background: white;
+        }
 
-            .conf-dept {
-                font-size: 1.6rem;
-            }
+        .about-card:hover {
+            transform: none;
+            box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.06);
+            border-color: #e0e7ed;
+        }
 
-            .meta-info {
-                font-size: 1.1rem;
-                gap: 1.8rem;
-            }
+        .about-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.4rem;
+            border-bottom: 2px solid #e9edf2;
+            padding-bottom: 1.2rem;
+            margin-left: -1.8rem;
+            margin-right: -1.8rem;
+            padding-left: 1.8rem;
+            padding-right: 1.8rem;
+            width: calc(100% + 3.6rem);
+        }
 
-            .btn {
-                padding: 1.2rem 1.2rem;
-                font-size: 1rem;
-                min-width: 220px;
+        .about-icon {
+            width: 44px;
+            height: 44px;
+            stroke: #1A1A2E;
+            stroke-width: 1.8;
+            fill: none;
+            flex-shrink: 0;
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1A1A2E;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .about-card p {
+            font-size: 1rem;
+            color: #1A1A2E;
+            line-height: 1.65;
+            font-weight: 450;
+            margin: 0;
+        }
+
+        @media (min-width: 1025px) {
+            .about-card h3 {
+                white-space: pre-line;
             }
         }
 
-        /* Tablet devices - 769px to 1024px */
         @media (min-width: 769px) and (max-width: 1024px) {
             .top-bar {
                 flex-direction: column;
@@ -512,7 +630,7 @@
             }
 
             .brand-logo span {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
                 text-align: center;
                 display: block;
             }
@@ -525,13 +643,13 @@
                 display: flex !important;
                 width: 100%;
                 justify-content: center;
-                gap: 2.2rem;
+                gap: 1.8rem;
                 padding: 0.6rem 0;
                 flex-wrap: wrap;
             }
 
             .nav-right li a {
-                font-size: 1.05rem;
+                font-size: 0.95rem;
                 padding: 0.4rem 0;
             }
 
@@ -546,66 +664,100 @@
             .main-content {
                 margin-top: 110px;
                 padding: 2rem 4%;
-                min-height: calc(100vh - 110px);
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                gap: 8rem;
             }
 
             .conf-hero {
-                min-height: 520px;
-                width: 100%;
-                display: flex;
-                align-items: center;
+                min-height: 480px;
             }
 
             .hero-text {
-                max-width: 85%;
-                padding: 2.2rem;
+                max-width: 90%;
+                padding: 2rem;
             }
 
             .conf-title-lg {
-                font-size: 4.2rem;
-                margin-bottom: 0.8rem;
+                font-size: 3.8rem;
             }
 
             .conf-title-line2 {
-                font-size: 4rem;
-                margin-bottom: 2rem;
+                font-size: 3.6rem;
             }
 
             .conf-event {
-                font-size: 1.7rem;
-                margin-bottom: 0.5rem;
+                font-size: 1.5rem;
             }
 
             .conf-dept {
-                font-size: 1.7rem;
-                margin-bottom: 2rem;
+                font-size: 1.5rem;
             }
 
             .meta-info {
-                gap: 1.8rem;
-                font-size: 1.15rem;
-                margin-top: 1.5rem;
-                margin-bottom: 2.5rem;
-                justify-content: center;
+                gap: 1.5rem;
+                font-size: 1.2rem;
+            }
+
+            .meta-icon {
+                width: 22px;
+                height: 22px;
             }
 
             .meta-info span:not(:last-child)::after {
-                margin-left: 1.8rem;
-                font-size: 1.6rem;
+                margin-left: 1.5rem;
+                font-size: 2rem;
             }
 
             .btn-group {
-                gap: 1.8rem;
-                justify-content: center;
+                gap: 1.5rem;
             }
 
             .btn {
-                padding: 1.1rem 1.8rem;
-                font-size: 1.15rem;
-                min-width: 220px;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                min-width: 200px;
+            }
+
+            .about-title {
+                font-size: 2.4rem;
+                padding: 0 1.5rem;
+            }
+
+            .about-subtitle {
+                font-size: 1.1rem;
+                padding: 0 1.5rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .about-grid {
+                gap: 1.5rem;
+            }
+
+            .about-card {
+                padding: 1.8rem 1.5rem;
+                border: 2px solid #e0e7ed;
+            }
+
+            .about-card-header {
+                margin-left: -1.5rem;
+                margin-right: -1.5rem;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+                width: calc(100% + 3rem);
+                border-bottom: 2px solid #e9edf2;
+            }
+
+            .about-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .about-card h3 {
+                font-size: 1.3rem;
+                white-space: nowrap;
+            }
+
+            .about-card p {
+                font-size: 0.95rem;
             }
 
             .footer {
@@ -613,22 +765,10 @@
             }
         }
 
-        /* Mobile devices - up to 768px */
         @media (max-width: 768px) {
             .top-bar {
                 padding: 0.5rem 4%;
-                border-bottom: 1px solid #e2e8f0;
                 min-height: 64px;
-            }
-
-            .top-bar.translucent {
-                border-bottom: 1px solid #e2e8f0;
-            }
-
-            .brand-logo {
-                width: auto;
-                justify-content: flex-start;
-                margin-bottom: 0;
             }
 
             .brand-logo span {
@@ -652,72 +792,194 @@
             }
 
             .main-content {
-                padding: 0 4%;
+                padding: 40px 4% 0;
                 margin-top: 64px;
-                min-height: calc(100vh - 64px);
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                gap: 6rem;
+                background: white;
             }
 
             .conf-hero {
-                min-height: 0;
-                height: auto;
-                max-height: none;
-                border-radius: 24px;
-                margin-bottom: 0;
-                display: flex;
-                align-items: center;
-                width: 100%;
+                border-radius: 20px;
+                margin-top: 20px;
             }
 
             .hero-text {
-                max-width: 95%;
-                padding: 2rem 1.5rem;
+                max-width: 100%;
+                padding: 2rem 1.2rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 text-align: center;
-                margin: 0 auto;
             }
 
             .conf-title-lg {
-                font-size: 3rem;
-                margin-bottom: 0.8rem;
-                line-height: 1.1;
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+                text-align: center;
+                width: 100%;
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             }
 
             .conf-title-line2 {
-                font-size: 2.8rem;
-                margin-bottom: 1.8rem;
-                line-height: 1.1;
+                font-size: 2.2rem;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                width: 100%;
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             }
 
             .conf-event {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
                 margin-bottom: 0.5rem;
+                text-align: center;
+                width: 100%;
+                text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
             }
 
             .conf-dept {
-                font-size: 1.4rem;
-                margin-bottom: 1.8rem;
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                width: 100%;
+                text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
             }
 
             .meta-info {
-                display: flex;
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.8rem;
                 font-size: 1.1rem;
+                margin-bottom: 1.8rem;
+                width: 100%;
                 align-items: center;
-                margin-top: 1.2rem;
-                margin-bottom: 2rem;
+                text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
             }
 
             .meta-item {
                 white-space: normal;
-                gap: 14px;
+                justify-content: center;
+                width: 100%;
                 text-align: center;
+            }
+
+            .meta-icon {
+                width: 22px;
+                height: 22px;
             }
 
             .meta-info span:not(:last-child)::after {
                 content: none;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                align-items: center;
+            }
+
+            .btn {
+                padding: 0.9rem 1.2rem;
+                font-size: 0.95rem;
+                min-width: 240px;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .about-info {
+                font-size: 1.1rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 1.5rem;
+            }
+
+            .about-title {
+                font-size: 1.9rem;
+                padding: 0 1rem;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+
+            .about-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+                margin-bottom: 2.5rem;
+                line-height: 1.5;
+                color: #1A1A2E;
+                text-align: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .about-card {
+                padding: 1.5rem 1.2rem;
+                border: 2px solid #e0e7ed;
+            }
+
+            .about-card-header {
+                margin-left: -1.2rem;
+                margin-right: -1.2rem;
+                padding-left: 1.2rem;
+                padding-right: 1.2rem;
+                width: calc(100% + 2.4rem);
+                gap: 0.8rem;
+                border-bottom: 2px solid #e9edf2;
+            }
+
+            .about-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .about-card h3 {
+                font-size: 1.2rem;
+                white-space: nowrap;
+            }
+
+            .about-card p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                text-align: left;
+            }
+
+            .footer {
+                padding: 1.2rem 4%;
+            }
+
+            .footer p {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-logo img {
+                height: 40px;
+            }
+
+            .conf-hero {
+                margin-top: 1.8rem;
+            }
+
+            .conf-title-lg {
+                font-size: 2rem;
+            }
+
+            .conf-title-line2 {
+                font-size: 1.8rem;
+            }
+
+            .conf-event {
+                font-size: 1rem;
+            }
+
+            .conf-dept {
+                font-size: 0.95rem;
+            }
+
+            .meta-info {
+                font-size: 1rem;
             }
 
             .meta-icon {
@@ -725,114 +987,58 @@
                 height: 20px;
             }
 
-            .btn-group {
-                justify-content: center;
-                gap: 1.2rem;
-                flex-direction: column;
-                width: 100%;
-                align-items: center;
-                margin-bottom: 0.5rem;
-            }
-
             .btn {
-                padding: 1.1rem 1.5rem;
-                font-size: 1.1rem;
-                min-width: 260px;
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .footer {
-                padding: 1.2rem 5%;
-                margin-top: 0;
-            }
-        }
-
-        /* Small mobile devices - up to 480px */
-        @media (max-width: 480px) {
-            .top-bar {
-                padding: 0.4rem 4%;
-                min-height: 60px;
-            }
-
-            .brand-logo img {
-                height: 40px;
-            }
-
-            .main-content {
-                padding: 0 4%;
-                margin-top: 60px;
-                min-height: calc(100vh - 60px);
-            }
-
-            .hero-text {
-                padding: 1.8rem 1.2rem;
-            }
-
-            .conf-title-lg {
-                font-size: 2.4rem;
-                margin-bottom: 0.4rem;
-            }
-
-            .conf-title-line2 {
-                font-size: 2.2rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .conf-event {
-                font-size: 1.2rem;
-                margin-bottom: 0.3rem;
-            }
-
-            .conf-dept {
-                font-size: 1.2rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .meta-info {
-                font-size: 1rem;
-                gap: 0.9rem;
-                margin-top: 1rem;
-                margin-bottom: 1.8rem;
-            }
-
-            .meta-icon {
-                width: 18px;
-                height: 18px;
-            }
-
-            .btn-group {
-                gap: 1rem;
-                margin-bottom: 0.3rem;
-            }
-
-            .btn {
-                padding: 0.9rem 1.2rem;
-                font-size: 1rem;
-                min-width: 220px;
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+                min-width: 200px;
                 max-width: 260px;
             }
 
-            .arrow-up-right {
-                width: 18px;
-                height: 18px;
+            .about-info {
+                font-size: 0.95rem;
+                letter-spacing: 1.2px;
+            }
+
+            .about-title {
+                font-size: 1.6rem;
+                padding: 0 0.8rem;
+            }
+
+            .about-subtitle {
+                font-size: 0.9rem;
+                padding: 0 0.8rem;
+            }
+
+            .about-card {
+                padding: 1.2rem 1rem;
+                border: 2px solid #e0e7ed;
+            }
+
+            .about-card-header {
+                margin-left: -1rem;
+                margin-right: -1rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                width: calc(100% + 2rem);
+                border-bottom: 2px solid #e9edf2;
+            }
+
+            .about-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .about-card h3 {
+                font-size: 1.1rem;
+                white-space: nowrap;
             }
 
             .fullscreen-nav-link {
-                font-size: 1.8rem;
-            }
-
-            .footer {
-                padding: 1rem 4%;
+                font-size: 1.6rem;
             }
 
             .footer p {
-                font-size: 0.85rem;
-                margin: 0.2rem 0;
-            }
-
-            .footer .dept {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -842,7 +1048,7 @@
     <div class="top-bar" id="topBar">
         <div class="brand-logo">
             <img src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/refs/heads/main/assets/src/jai_hind_college/jai_hind_college_logo.png"
-                alt="Jai Hind College logo">
+                alt="Jai Hind College logo" loading="eager" fetchpriority="high" decoding="sync">
             <span>Jai Hind College (Empowered Autonomous)</span>
         </div>
 
@@ -880,8 +1086,8 @@
     <div id="mainContent" class="main-content">
         <div class="conf-hero">
             <div class="hero-background">
-                <img src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/refs/heads/main/assets/src/jai_hind_college/jai_hind_college_campus_buildings.jpeg"
-                    alt="Jai Hind College building">
+                <img src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/refs/heads/main/assets/src/jai_hind_college/jai_hind_college_taj_hotel.png"
+                    alt="Jai Hind College building" loading="eager" fetchpriority="high" decoding="sync">
             </div>
             <div class="hero-overlay"></div>
             <div class="hero-text">
@@ -938,6 +1144,63 @@
                 </div>
             </div>
         </div>
+
+        <section class="about-section">
+            <div class="about-info">about the conference</div>
+
+            <h2 class="about-title">A Global Platform for Human-Centric Progress</h2>
+
+            <p class="about-subtitle">A Global Platform for Human-Centric Progress The International Research Conference
+                brings together global scholars, industry leaders, policymakers and students to examine human-centric
+                technological progress and develop strategies that address emerging economic, social and environmental
+                challenges.</p>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-card-header">
+                        <svg class="about-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" />
+                        </svg>
+                        <h3>Interdisciplinary<br>Dialogue</h3>
+                    </div>
+                    <p>Foster conversations on digital intelligence for inclusive growth and sustainability, leveraging
+                        AI and digital tools for equitable access and embedding sustainability into business and
+                        governance frameworks.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-header">
+                        <svg class="about-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z" />
+                        </svg>
+                        <h3>Resilient Business<br>Models</h3>
+                    </div>
+                    <p>Disseminate research on organizational resilience amid technological disruption, addressing
+                        ethical AI deployment, circular economy transitions, and strategies for navigating geopolitical
+                        and climate uncertainties.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-header">
+                        <svg class="about-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                            <path
+                                d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+                            <path d="m21 3 1 11h-2" />
+                            <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                            <path d="M3 4h8" />
+                        </svg>
+                        <h3>Academia-Industry<br>Collaboration</h3>
+                    </div>
+                    <p>Encourage collaboration to convert innovation into practical solutions, equipping early career
+                        researchers and students with insights into ethical AI, green technologies and future-ready
+                        strategies.</p>
+                </div>
+            </div>
+        </section>
     </div>
 
     <footer class="footer">
@@ -957,6 +1220,7 @@
         document.addEventListener('click', function (e) {
             if (e.target && (e.target.id === 'submitAbstractHome' || e.target.closest('#submitAbstractHome'))) {
                 e.preventDefault();
+                window.open('https://docs.google.com/forms/d/e/1FAIpQLSeXej22Xpi-2YE0E0n0Tb0rZrGE44iylj0x5utbSWhV1bb_Mw/viewform', '_blank', 'noopener,noreferrer');
             }
         });
 
