@@ -495,10 +495,130 @@
             }
         }
 
+        /* Tablet devices - 769px to 1024px */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .top-bar {
+                flex-direction: column;
+                padding: 1rem 4% 0.75rem;
+                height: auto;
+                min-height: 110px;
+                justify-content: center;
+            }
+
+            .brand-logo {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 0.6rem;
+            }
+
+            .brand-logo span {
+                font-size: 1.4rem;
+                text-align: center;
+                display: block;
+            }
+
+            .brand-logo img {
+                height: 48px;
+            }
+
+            .nav-right {
+                display: flex !important;
+                width: 100%;
+                justify-content: center;
+                gap: 2.2rem;
+                padding: 0.6rem 0;
+                flex-wrap: wrap;
+            }
+
+            .nav-right li a {
+                font-size: 1.05rem;
+                padding: 0.4rem 0;
+            }
+
+            .menu-icon {
+                display: none !important;
+            }
+
+            .fullscreen-menu {
+                display: none !important;
+            }
+
+            .main-content {
+                margin-top: 110px;
+                padding: 2rem 4%;
+                min-height: calc(100vh - 110px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .conf-hero {
+                min-height: 520px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+            }
+
+            .hero-text {
+                max-width: 85%;
+                padding: 2.2rem;
+            }
+
+            .conf-title-lg {
+                font-size: 4.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .conf-title-line2 {
+                font-size: 4rem;
+                margin-bottom: 2rem;
+            }
+
+            .conf-event {
+                font-size: 1.7rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .conf-dept {
+                font-size: 1.7rem;
+                margin-bottom: 2rem;
+            }
+
+            .meta-info {
+                gap: 1.8rem;
+                font-size: 1.15rem;
+                margin-top: 1.5rem;
+                margin-bottom: 2.5rem;
+                justify-content: center;
+            }
+
+            .meta-info span:not(:last-child)::after {
+                margin-left: 1.8rem;
+                font-size: 1.6rem;
+            }
+
+            .btn-group {
+                gap: 1.8rem;
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 1.1rem 1.8rem;
+                font-size: 1.15rem;
+                min-width: 220px;
+            }
+
+            .footer {
+                padding: 1.5rem 5%;
+            }
+        }
+
+        /* Mobile devices - up to 768px */
         @media (max-width: 768px) {
             .top-bar {
                 padding: 0.5rem 4%;
                 border-bottom: 1px solid #e2e8f0;
+                min-height: 64px;
             }
 
             .top-bar.translucent {
@@ -515,11 +635,19 @@
                 display: none;
             }
 
+            .brand-logo img {
+                height: 45px;
+            }
+
             .nav-right {
-                display: none;
+                display: none !important;
             }
 
             .menu-icon {
+                display: flex !important;
+            }
+
+            .fullscreen-menu {
                 display: flex;
             }
 
@@ -553,11 +681,13 @@
             .conf-title-lg {
                 font-size: 3rem;
                 margin-bottom: 0.8rem;
+                line-height: 1.1;
             }
 
             .conf-title-line2 {
                 font-size: 2.8rem;
                 margin-bottom: 1.8rem;
+                line-height: 1.1;
             }
 
             .conf-event {
@@ -618,14 +748,21 @@
             }
         }
 
+        /* Small mobile devices - up to 480px */
         @media (max-width: 480px) {
-            .main-content {
-                padding: 0 4%;
-                margin-top: 64px;
+            .top-bar {
+                padding: 0.4rem 4%;
+                min-height: 60px;
             }
 
-            .conf-hero {
-                margin-bottom: 0;
+            .brand-logo img {
+                height: 40px;
+            }
+
+            .main-content {
+                padding: 0 4%;
+                margin-top: 60px;
+                min-height: calc(100vh - 60px);
             }
 
             .hero-text {
@@ -692,6 +829,10 @@
             .footer p {
                 font-size: 0.85rem;
                 margin: 0.2rem 0;
+            }
+
+            .footer .dept {
+                font-size: 0.9rem;
             }
         }
     </style>
