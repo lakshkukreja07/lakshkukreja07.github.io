@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Jai Hind College</title>
+    <link rel="icon" type="image/jpeg"
+        href="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_favicon.jpg?raw=true">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --accent: #d4af37;
+            --accent-light: #f0e68c;
+            --text: #2d2d2d;
+            --text-light: #555;
+            --bg: #fafafa;
+            --white: #ffffff;
+            --shadow-sm: 0 5px 20px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 15px 35px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 25px 45px rgba(0, 0, 0, 0.15);
+            --border-light: 1px solid rgba(212, 175, 55, 0.15);
+            --radius-card: 24px;
+            --radius-btn: 50px;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.5;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.7rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .college-logo {
+            height: 42px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ===== HERO CAROUSEL ===== */
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .carousel-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-image.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.7) 0%, rgba(22, 33, 62, 0.8) 100%);
+            z-index: 2;
+        }
+
+        /* Hero content - left aligned on desktop */
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: left;
+            color: white;
+        }
+
+        .hero-content-inner {
+            width: 100%;
+        }
+
+        .hero-title-main {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-title-main span {
+            display: block;
+        }
+
+        .hero-department {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-presents {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-conference {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            color: white;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-info-row {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(4px);
+        }
+
+        .info-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--white);
+            stroke-width: 2;
+        }
+
+        .info-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--white);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2.8rem;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: var(--radius-btn);
+            transition: all 0.25s ease;
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+            border: none;
+            cursor: pointer;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--primary);
+            stroke-width: 2;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(212, 175, 55, 0.4);
+            background: #e0c15a;
+        }
+
+        .cta-button:hover svg {
+            transform: translate(2px, -2px);
+        }
+
+        /* Right side info box - moved down on desktop */
+        .hero-right-box {
+            position: absolute;
+            right: 2rem;
+            top: 75%;
+            transform: translateY(-25%);
+            z-index: 10;
+            max-width: 280px;
+            width: 100%;
+        }
+
+        .slide-info-capsule {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            padding: 1.2rem 1.5rem;
+            border-radius: 60px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .circle-question-mark-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .slide-name-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+
+        .slide-name-text span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Control capsules container */
+        .carousel-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .capsule-play {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            padding: 8px 18px;
+            border-radius: 60px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .capsule-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            padding: 8px 18px;
+            border-radius: 60px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 500;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .counter-number {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .counter-slash {
+            color: var(--white);
+            font-weight: 300;
+            margin: 0 2px;
+        }
+
+        .counter-total {
+            color: var(--white);
+            font-weight: 400;
+        }
+
+        .play-pause-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: transform 0.2s;
+            padding: 0;
+        }
+
+        .play-pause-btn svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--white);
+            stroke-width: 2;
+            fill: transparent;
+        }
+
+        .play-pause-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .carousel-nav-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: transform 0.2s;
+            padding: 0;
+        }
+
+        .carousel-nav-btn svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--white);
+            stroke-width: 2;
+        }
+
+        .carousel-nav-btn:hover {
+            transform: scale(1.2);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 4rem 2rem;
+        }
+
+        .partners .section-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-marquee {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 1.5rem 0;
+        }
+
+        .logo-marquee::before,
+        .logo-marquee::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .logo-marquee::before {
+            left: 0;
+            background: linear-gradient(to right, var(--white), transparent);
+        }
+
+        .logo-marquee::after {
+            right: 0;
+            background: linear-gradient(to left, var(--white), transparent);
+        }
+
+        .logo-track {
+            display: flex;
+            gap: 4rem;
+            animation: scroll 15s linear infinite;
+            width: fit-content;
+        }
+
+        .logo-item {
+            flex: 0 0 auto;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+        }
+
+        .logo-item img {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(0.8);
+            transition: filter 0.3s;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-card {
+            padding: 2.5rem 1.8rem;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease,
+                border-color 0.3s ease;
+            will-change: transform, box-shadow;
+            border: 2px solid rgba(212, 175, 55, 0.15);
+            text-align: center;
+        }
+
+        .about-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg), 0 0 0 3px rgba(212, 175, 55, 0.25);
+            border-color: transparent;
+        }
+
+        .card-icon svg {
+            width: 48px;
+            height: 48px;
+            color: var(--accent);
+            stroke-width: 1.5;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .about-card:hover .card-icon svg {
+            transform: scale(1.1);
+        }
+
+        .about-card h3 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 0.98rem;
+        }
+
+        .speakers {
+            background: var(--bg);
+        }
+
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .international-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .international-grid .speaker-card {
+            width: calc(50% - 0.75rem);
+            max-width: 350px;
+            flex-shrink: 0;
+        }
+
+        .speaker-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            border: var(--border-light);
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .speaker-image {
+            width: 100%;
+            aspect-ratio: 1 / 1.1;
+            background: linear-gradient(145deg, var(--primary), #2d4263);
+            overflow: hidden;
+        }
+
+        .speaker-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top 20% center;
+            transition: transform 0.4s;
+        }
+
+        .speaker-card:hover .speaker-image img {
+            transform: scale(1.03);
+        }
+
+        .speaker-info {
+            padding: 1.4rem 1.2rem 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .speaker-name {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .speaker-title {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            flex-grow: 1;
+        }
+
+        .speaker-bio {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-style: italic;
+            border-top: 1px dashed rgba(212, 175, 55, 0.3);
+            padding-top: 0.7rem;
+        }
+
+        .schedule {
+            background: var(--white);
+        }
+
+        .schedule-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .day-header {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: -2rem;
+            width: 2px;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--bg);
+        }
+
+        .timeline-time {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .venue {
+            background: var(--bg);
+        }
+
+        .venue-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .venue-map {
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .venue-address {
+            background: var(--white);
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-icon {
+            font-size: 2.8rem;
+            color: var(--accent);
+        }
+
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .speakers-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .about-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .speakers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .venue-content {
+                grid-template-columns: 1fr;
+            }
+
+            .international-grid .speaker-card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .hero-right-box {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                margin: 1rem auto 0;
+                max-width: 90%;
+            }
+        }
+
+        /* Mobile responsive - EXACTLY LIKE DESKTOP */
+        @media (max-width: 700px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .speakers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .international-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .international-grid .speaker-card {
+                width: 100%;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                padding-left: 1.5rem;
+            }
+
+            .day-header {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 3.5rem 1.5rem;
+            }
+
+            .hero-title-main {
+                margin-bottom: 1rem;
+            }
+
+            .hero-conference {
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-info-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.6rem;
+                margin-bottom: 1.5rem;
+                justify-content: flex-start;
+            }
+
+            .hero-info-row .info-item {
+                padding: 0.5rem 1rem;
+                width: auto;
+                flex: 0 1 auto;
+                justify-content: flex-start;
+                margin-bottom: 0;
+            }
+
+            /* KNOW WHAT'S BEHIND - EXACTLY LIKE DESKTOP */
+            .hero-right-box {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin: 0.5rem 0 1rem 0;
+                max-width: 100%;
+                width: 100%;
+                display: block;
+            }
+
+            .slide-info-capsule {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 1.2rem 1.5rem;
+                /* Same as desktop */
+                gap: 12px;
+                /* Same as desktop */
+                display: flex;
+                align-items: center;
+                background: rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(8px);
+                border-radius: 60px;
+                border: 1px solid rgba(212, 175, 55, 0.3);
+            }
+
+            .circle-question-mark-icon {
+                width: 32px;
+                /* Same as desktop */
+                height: 32px;
+                /* Same as desktop */
+                flex-shrink: 0;
+                color: var(--accent);
+            }
+
+            .slide-name-text {
+                font-size: 1.1rem;
+                /* Same as desktop */
+                line-height: 0.7;
+                /* Same as desktop */
+                color: var(--white);
+                font-weight: 500;
+                margin: 0;
+                padding: 0;
+                word-break: break-word;
+            }
+
+            .slide-name-text span {
+                color: var(--accent);
+                font-weight: 600;
+                display: block;
+                /* ← NOW BLOCK */
+                margin: 0;
+                padding: 0;
+                font-size: 1.1rem;
+            }
+
+            .slide-name-text br {
+                display: block;
+                /* ← NOW BLOCK */
+            }
+
+            .carousel-controls {
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+                width: auto;
+                max-width: 90%;
+                justify-content: center;
+            }
+
+            .capsule-play {
+                padding: 6px 12px;
+                gap: 8px;
+                flex-shrink: 0;
+                background: rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(8px);
+                border-radius: 60px;
+                border: 1px solid rgba(212, 175, 55, 0.3);
+            }
+
+            .capsule-play svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .capsule-counter {
+                padding: 6px 12px;
+                min-width: 70px;
+                font-size: 1rem;
+                flex-shrink: 0;
+                background: rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(8px);
+                border-radius: 60px;
+                border: 1px solid rgba(212, 175, 55, 0.3);
+                color: var(--white);
+            }
+
+            .play-pause-btn svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .carousel-nav-btn svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .info-item {
+                padding: 0.4rem 0.9rem;
+            }
+
+            .info-text {
+                font-size: 0.95rem;
+            }
+
+            .capsule-counter {
+                font-size: 0.9rem;
+                min-width: 65px;
+            }
+
+            .carousel-controls {
+                gap: 5px;
+            }
+
+            .capsule-play {
+                padding: 5px 8px;
+                gap: 5px;
+            }
+
+            .capsule-play svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .capsule-counter {
+                padding: 5px 8px;
+                min-width: 55px;
+            }
+
+            .hero-right-box {
+                margin: 0.5rem 0 1rem 0;
+            }
+
+            .slide-info-capsule {
+                padding: 1rem 1.2rem;
+                /* Slightly smaller on very small screens */
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo-wrapper">
+                <img class="college-logo"
+                    src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_logo.png?raw=true"
+                    alt="Jai Hind College logo">
+                <span class="logo-text">Jai Hind College (Empowered Autonomous)</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#speakers">Speakers</a></li>
+                <li><a href="#themes">Themes</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel with 12 Mumbai landmark images -->
+    <div class="hero-carousel">
+        <div class="carousel-images">
+            <div class="carousel-image active"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_gateway_of_india.jpg?raw=true');"
+                data-name="Gateway of India">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_atal_bridge.jpg?raw=true');"
+                data-name="Atal Bridge">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_taj_hotel.jpg?raw=true');"
+                data-name="Taj Hotel">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_kala_ghoda.jpg?raw=true');"
+                data-name="Kala Ghoda">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_flora_fountain.jpg?raw=true');"
+                data-name="Flora Fountain">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_sanjay_gandhi_national_park.jpg?raw=true');"
+                data-name="Sanjay Gandhi National Park">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_taj_hotel.png?raw=true');"
+                data-name="Taj Hotel">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_worli_sea_link.jpg?raw=true');"
+                data-name="Worli Sea Link">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_parel_night_life.jpg?raw=true');"
+                data-name="Parel Night Life">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_local_platform.jpg?raw=true');"
+                data-name="Local Platform">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_csmt.jpg?raw=true');"
+                data-name="CSMT">
+            </div>
+            <div class="carousel-image"
+                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_marine_drive.jpg?raw=true');"
+                data-name="Marine Drive">
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <div class="hero-content-inner">
+                <h1 class="hero-title-main">
+                    Industry 5.0:<br>
+                    <span>Governance, Technology & Sustainability</span>
+                </h1>
+
+                <div class="hero-department">Department Of Management Studies</div>
+                <div class="hero-presents">Presents</div>
+                <div class="hero-conference">Annual International Conference 2026</div>
+
+                <div class="hero-info-row">
+                    <div class="info-item">
+                        <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M8 2v4" />
+                            <path d="M16 2v4" />
+                            <rect width="18" height="18" x="3" y="4" rx="2" />
+                            <path d="M3 10h18" />
+                        </svg>
+                        <span class="info-text">24th April 2026</span>
+                    </div>
+                    <div class="info-item">
+                        <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                        </svg>
+                        <span class="info-text">Jai Hind College, Mumbai</span>
+                    </div>
+                </div>
+
+                <a href="https://linktr.ee/JhcConference" target="_blank" class="cta-button">
+                    Register Now
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M7 7h10v10" />
+                        <path d="M7 17 17 7" />
+                    </svg>
+                </a>
+
+                <div class="hero-right-box">
+                    <div class="slide-info-capsule" id="slideInfoCapsule">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="circle-question-mark-icon">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                            <path d="M12 17h.01" />
+                        </svg>
+                        <div class="slide-name-text" id="slideNameDisplay">
+                            <span>Know What's Behind?</span><br>
+                            It's Gateway of India
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <div class="capsule-play">
+                <button class="carousel-nav-btn" id="prevBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </button>
+
+                <button class="play-pause-btn" id="playPauseBtn">
+                    <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" />
+                    </svg>
+                    <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <rect x="14" y="3" width="5" height="18" rx="1" />
+                        <rect x="5" y="3" width="5" height="18" rx="1" />
+                    </svg>
+                </button>
+
+                <button class="carousel-nav-btn" id="nextBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="capsule-counter" id="photoCounter">
+                <span class="counter-number" id="currentSlideDisplay">1</span>
+                <span class="counter-slash">/</span>
+                <span class="counter-total" id="totalSlidesDisplay">12</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Partners Section -->
+    <section id="partners" class="partners">
+        <div class="section-header">
+            <div class="section-label">Publishing Partners</div>
+        </div>
+
+        <div class="logo-marquee">
+            <div class="logo-track">
+                <!-- First set of logos -->
+                <div class="logo-item">
+                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_taylor_and_francis_group_logo.png?raw=true"
+                        alt="Taylor & Francis Group"
+                        onerror="this.src='https://via.placeholder.com/150x80?text=Taylor+%26+Francis'">
+                </div>
+                <div class="logo-item">
+                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_routledge_logo.png?raw=true"
+                        alt="Routledge" onerror="this.src='https://via.placeholder.com/150x80?text=Routledge'">
+                </div>
+                <div class="logo-item">
+                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_emerald_publishing_logo.png?raw=true"
+                        alt="Emerald Publishing" onerror="this.src='https://via.placeholder.com/150x80?text=Emerald'">
+                </div>
+                <div class="logo-item">
+                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_abdc_logo.png?raw=true"
+                        alt="ABDC" onerror="this.src='https://via.placeholder.com/150x80?text=ABDC'">
+                </div>
+                <div class="logo-item">
+                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_scopus_logo.png?raw=true"
+                        alt="Scopus" onerror="this.src='https://via.placeholder.com/150x80?text=Scopus'">
+                </div>
+
+                <!-- Duplicate set for seamless loop -->
+                <div class="logo-item">
+                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_taylor_and_francis_group_logo.png?raw=true"
+                        alt="Taylor & Francis Group"
+                        onerror="this.src='https://via.placeholder.com/150x80?text=Taylor+%26+Francis'">
+                </div>
+                <div class="logo-item">
+                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_routledge_logo.png?raw=true"
+                        alt="Routledge" onerror="this.src='https://via.placeholder.com/150x80?text=Routledge'">
+                </div>
+                <div class="logo-item">
+                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_emerald_publishing_logo.png?raw=true"
+                        alt="Emerald Publishing" onerror="this.src='https://via.placeholder.com/150x80?text=Emerald'">
+                </div>
+                <div class="logo-item">
+                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_abdc_logo.png?raw=true"
+                        alt="ABDC" onerror="this.src='https://via.placeholder.com/150x80?text=ABDC'">
+                </div>
+                <div class="logo-item">
+                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_scopus_logo.png?raw=true"
+                        alt="Scopus" onerror="this.src='https://via.placeholder.com/150x80?text=Scopus'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="section-header">
+            <div class="section-label">ABOUT THE CONFERENCE</div>
+            <h2 class="section-title">A Global Platform for Human-Centric Progress</h2>
+            <p class="section-description">The International Research Conference brings together global scholars,
+                industry leaders, policymakers and students to examine human-centric technological progress and develop
+                strategies that address emerging economic, social and environmental challenges.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" />
+                    </svg></div>
+                <h3>Interdisciplinary Dialogue</h3>
+                <p>Foster conversations on digital intelligence for inclusive growth and sustainability, leveraging AI
+                    and digital tools for equitable access and embedding sustainability into business and governance
+                    frameworks.</p>
+            </div>
+            <div class="about-card">
+                <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z" />
+                    </svg></div>
+                <h3>Resilient Business Models</h3>
+                <p>Disseminate research on organizational resilience amid technological disruption, addressing ethical
+                    AI deployment, circular economy transitions, and strategies for navigating geopolitical and climate
+                    uncertainties.</p>
+            </div>
+            <div class="about-card">
+                <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                        <path
+                            d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+                        <path d="m21 3 1 11h-2" />
+                        <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                        <path d="M3 4h8" />
+                    </svg></div>
+                <h3>Academia-Industry Collaboration</h3>
+                <p>Encourage collaboration to convert innovation into practical solutions, equipping early career
+                    researchers and students with insights into ethical AI, green technologies and future-ready
+                    strategies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="speakers" class="speakers">
+        <div class="section-header">
+            <div class="section-label">Featured Speakers</div>
+            <h2 class="section-title">Distinguished Panelists & Speakers</h2>
+            <p class="section-description">Learn from renowned academics and industry leaders from top institutions
+                worldwide</p>
+        </div>
+        <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Panel Discussion - National</h3>
+        <div class="speakers-grid">
+            <div class="speaker-card">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Disha-Bhanot.jpeg"
+                        alt="Dr. Disha Bhanot"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Dr. Disha Bhanot</h3>
+                    <p class="speaker-title">S.P. Jain Institute, Mumbai</p>
+                    <p class="speaker-bio">Moderator</p>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Mehul-Raithatha.jpeg"
+                        alt="Dr. Mehul Raithatha"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Dr. Mehul Raithatha</h3>
+                    <p class="speaker-title">IIM Ahmedabad</p>
+                    <p class="speaker-bio">Panelist</p>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Mousami-Prasad.jpeg"
+                        alt="Dr. Mousami Prasad"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Dr. Mousami Prasad</h3>
+                    <p class="speaker-title">IIT Kanpur</p>
+                    <p class="speaker-bio">Panelist</p>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Preeti-Virdi.jpeg"
+                        alt="Dr. Preeti Virdi"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Dr. Preeti Virdi</h3>
+                    <p class="speaker-title">IIM Visakhapatnam</p>
+                    <p class="speaker-bio">Panelist</p>
+                </div>
+            </div>
+        </div>
+        <h3 style="text-align:center; font-size:1.8rem; margin:3rem 0 1.8rem;">Panel Discussion - International</h3>
+        <div class="international-grid">
+            <div class="speaker-card">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Ashish-Kumar-Jha.jpeg"
+                        alt="Dr. Ashish Kumar Jha"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Dr. Ashish Kumar Jha</h3>
+                    <p class="speaker-title">Trinity Business School, Ireland</p>
+                    <p class="speaker-bio">Panelist</p>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Sunil-Tiwari.jpeg"
+                        alt="Dr. Sunil Tiwari"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Dr. Sunil Tiwari</h3>
+                    <p class="speaker-title">University of Bristol, England</p>
+                    <p class="speaker-bio">Panelist</p>
+                </div>
+            </div>
+        </div>
+        <h3 style="text-align:center; font-size:1.8rem; margin:3rem 0 1.8rem;">Paper Development Workshop</h3>
+        <div class="speakers-grid" style="grid-template-columns: repeat(2, 1fr); max-width:700px; margin:0 auto;">
+            <div class="speaker-card">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.Shubham-Singhania.jpeg"
+                        alt="Dr. Shubham Singhania"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Dr. Shubham Singhania</h3>
+                    <p class="speaker-title">FORE School, Gurugram</p>
+                    <p class="speaker-bio">Workshop Leader</p>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Varda-Sardana.jpeg"
+                        alt="Dr. Varda Sardana"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Dr. Varda Sardana</h3>
+                    <p class="speaker-title">Jaipuria Institute, Lucknow</p>
+                    <p class="speaker-bio">Workshop Leader</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="themes" class="about">
+        <div class="section-header">
+            <div class="section-label">Conference Themes</div>
+            <h2 class="section-title">Sub-themes & Research Areas</h2>
+            <p class="section-description">The conference welcomes submissions across multiple tracks aligned with
+                Industry 5.0</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>AI & Digital Transformation</h3>
+                <p>Role of AI and data analytics • Digital business models • Ethical AI • Productivity & customer
+                    experience</p>
+            </div>
+            <div class="about-card">
+                <h3>Finance and FinTech</h3>
+                <p>Digital payments • Blockchain • Sustainable finance • ESG investing • Financial inclusion</p>
+            </div>
+            <div class="about-card">
+                <h3>Entrepreneurship & Innovation</h3>
+                <p>Start-up ecosystems • Social/green entrepreneurship • Women & youth enterprises • Public policies</p>
+            </div>
+            <div class="about-card">
+                <h3>Sustainability & Responsible Mgmt</h3>
+                <p>Corporate sustainability • ESG reporting • Circular economy • Sustainable supply chains</p>
+            </div>
+            <div class="about-card">
+                <h3>Education & Skill Development</h3>
+                <p>New teaching methods • Sustainable careers • Industry-academia • Lifelong learning</p>
+            </div>
+            <div class="about-card">
+                <h3>Leadership & Human Values</h3>
+                <p>Human-machine collaboration • Leadership styles • Resilient workplaces • Ethics & empathy</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="schedule">
+        <div class="section-header">
+            <div class="section-label">Conference Program</div>
+            <h2 class="section-title">Schedule Overview</h2>
+            <p class="section-description">Detailed schedule to be announced</p>
+        </div>
+        <div class="schedule-timeline">
+            <div class="day-section">
+                <h3 class="day-header">24th April 2026</h3>
+                <div class="timeline-item">
+                    <div class="timeline-time">Morning</div>
+                    <div class="timeline-content">
+                        <h3>Registration & Inaugural</h3>
+                        <p>Welcome address</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">Mid-Day</div>
+                    <div class="timeline-content">
+                        <h3>Panel Discussions</h3>
+                        <p>National & International panels</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">Afternoon</div>
+                    <div class="timeline-content">
+                        <h3>Paper Development Workshop</h3>
+                        <p>Interactive session</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">Evening</div>
+                    <div class="timeline-content">
+                        <h3>Paper Presentations & Closing</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="venue" class="venue">
+        <div class="section-header">
+            <div class="section-label">Location</div>
+            <h2 class="section-title">Conference Venue</h2>
+            <p class="section-description">Jai Hind College, Mumbai</p>
+        </div>
+        <div class="venue-content">
+            <div>
+                <h3>Jai Hind College (Empowered Autonomous)</h3>
+                <p>Est. 1948, at Churchgate, Mumbai. State-of-the-art facilities.</p>
+                <div class="venue-address"><strong>Address:</strong><br>23-24, Backbay Reclamation, 'A' Road,
+                    Churchgate, Mumbai - 400020</div>
+            </div>
+            <div class="venue-map"><iframe
+                    src="https://maps.google.com/maps?q=Jai+Hind+College,+Mumbai&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <div class="section-label">Get in Touch</div>
+            <h2 class="section-title">Contact Information</h2>
+            <p class="section-description">Have questions? We're here to help</p>
+        </div>
+        <div class="contact-grid">
+            <div>
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3><a
+                    href="mailto:jhc.conference2026@jaihindcollege.edu.in">jhc.conference2026@jaihindcollege.edu.in</a>
+            </div>
+            <div>
+                <div class="contact-icon">📞</div>
+                <h3>Phone</h3><a href="tel:+912222041095">+91-22-22041095 / 0256</a>
+            </div>
+            <div>
+                <div class="contact-icon">🌐</div>
+                <h3>Website</h3><a href="https://www.jhcmanagementconference.com"
+                    target="_blank">jhcmanagementconference.com</a>
+            </div>
+        </div>
+        <div style="margin-top:2.5rem;">
+            <p><strong>Conference Convener: Dr. Rakhi Sharma</strong><br>Director - AICTE Programs, Jai Hind College</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Industry 5.0 Conference 2026</div>
+        <div class="social-links" style="display:flex; gap:2rem; justify-content:center; margin:1.5rem 0;"><a href="#"
+                style="color:var(--accent);">📘</a><a href="#" style="color:var(--accent);">🐦</a><a href="#"
+                style="color:var(--accent);">📷</a><a href="#" style="color:var(--accent);">💼</a></div>
+        <p>&copy; 2026 Department of Management Studies, Jai Hind College.</p>
+    </footer>
+
+    <script>
+        (function () {
+            const images = document.querySelectorAll('.carousel-image');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const currentSlideDisplay = document.getElementById('currentSlideDisplay');
+            const totalSlidesDisplay = document.getElementById('totalSlidesDisplay');
+            const slideNameDisplay = document.getElementById('slideNameDisplay');
+
+            const totalSlides = images.length;
+            totalSlidesDisplay.textContent = totalSlides;
+
+            let currentIndex = 0;
+            let autoPlay = true;
+            const intervalTime = 5000;
+            let progressInterval = null;
+            let isTransitioning = false;
+
+            function updateActiveSlide(index) {
+                images.forEach(img => img.classList.remove('active'));
+                currentSlideDisplay.textContent = index + 1;
+                const slideName = images[index].getAttribute('data-name') || 'Mumbai Landmark';
+                slideNameDisplay.innerHTML = `<span>Know What's Behind?</span><br>It's ${slideName}`;
+                setTimeout(() => { images[index].classList.add('active'); }, 10);
+                currentIndex = index;
+            }
+
+            function startProgressAnimation() {
+                if (progressInterval) clearInterval(progressInterval);
+                progressInterval = setInterval(() => { if (autoPlay) nextSlide(); }, intervalTime);
+            }
+
+            function stopProgressAnimation() {
+                if (progressInterval) { clearInterval(progressInterval); progressInterval = null; }
+            }
+
+            function resetProgressAndTimer() {
+                stopProgressAnimation();
+                if (autoPlay) startProgressAnimation();
+            }
+
+            function nextSlide() {
+                const nextIndex = (currentIndex + 1) % totalSlides;
+                updateActiveSlide(nextIndex);
+                resetProgressAndTimer();
+            }
+
+            function prevSlide() {
+                const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateActiveSlide(prevIndex);
+                resetProgressAndTimer();
+            }
+
+            function togglePlayPause() {
+                autoPlay = !autoPlay;
+                if (autoPlay) {
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
+                    startProgressAnimation();
+                } else {
+                    playIcon.style.display = 'block';
+                    pauseIcon.style.display = 'none';
+                    stopProgressAnimation();
+                }
+            }
+
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            playPauseBtn.addEventListener('click', togglePlayPause);
+
+            updateActiveSlide(0);
+            if (autoPlay) {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                startProgressAnimation();
+            } else {
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.about-card, .speaker-card, .timeline-item').forEach(el => {
+                el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.5s, transform 0.5s'; observer.observe(el);
+            });
+        })();
+    </script>
+</body>
+
+</html>
