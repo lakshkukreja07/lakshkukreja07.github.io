@@ -1891,6 +1891,30 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* For grids with fewer than 4 cards - center them */
+        .speakers-grid.speakers-grid-3 {
+            grid-template-columns: repeat(3, 350px);
+            justify-content: center;
+        }
+
+        @media (max-width: 1200px) {
+            .speakers-grid.speakers-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .speakers-grid.speakers-grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .speakers-grid.speakers-grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -1969,14 +1993,15 @@
 
         <div class="hero-content">
             <div class="hero-content-inner">
-                <h1 class="hero-title-main">
-                    Industry 5.0:<br>
-                    <span>Governance, Technology & Sustainability</span>
-                </h1>
 
                 <div class="hero-department">Department Of Management Studies</div>
                 <div class="hero-presents">Presents</div>
                 <div class="hero-conference">Annual International Conference 2026</div>
+
+                <h1 class="hero-title-main">
+                    Industry 5.0:<br>
+                    <span>Governance, Technology & Sustainability</span>
+                </h1>
 
                 <div class="hero-info-row">
                     <div class="info-item">
@@ -2327,8 +2352,7 @@
                 <div class="speaker-card national-speaker">
                     <div class="speaker-image"><img
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prof_ravindra_kulkarni.png"
-                            alt="Prof. Ravindra Kulkarni"
-                            style="object-fit: contain; background-color: #f5f5f5; padding: 10px;"></div>
+                            alt="Prof. Ravindra Kulkarni" style="object-fit: contain; padding: 10px;"></div>
                     <div class="speaker-info">
                         <p class="speaker-role">CHIEF GUEST</p>
                         <h3 class="speaker-name">Prof. Ravindra Kulkarni</h3>
@@ -2341,13 +2365,12 @@
             <div class="guest-col">
                 <div class="speaker-card national-speaker">
                     <div class="speaker-image"><img
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
-                            alt="Guest of Honor Name"
-                            style="object-fit: contain; background-color: #f5f5f5; padding: 10px;"></div>
+                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prin_dr_ajay_bhamare.png"
+                            alt="Guest of Honor Name" style="object-fit: contain; padding: 10px;"></div>
                     <div class="speaker-info">
                         <p class="speaker-role">GUEST OF HONOR</p>
-                        <h3 class="speaker-name">Ms. Naina Lal Kidwai</h3>
-                        <p class="speaker-title">Former Chairperson, HSBC India & Past President, FICCI</p>
+                        <h3 class="speaker-name">Prin. (Dr.) Ajay Bhamare</h3>
+                        <p class="speaker-title">Pro-Vice-Chancellor, University of Mumbai</p>
                     </div>
                 </div>
             </div>
@@ -2441,9 +2464,9 @@
             </div>
         </div>
 
-        <!-- Panel Discussion - International (4 cards in one row) -->
+        <!-- Panel Discussion - International (3 cards centered) -->
         <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Panel Discussion - International</h3>
-        <div class="speakers-grid">
+        <div class="speakers-grid speakers-grid-3">
             <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_ashish_kumar_jha.jpg"
