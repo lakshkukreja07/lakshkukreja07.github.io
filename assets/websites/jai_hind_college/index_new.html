@@ -1854,17 +1854,27 @@
             }
         }
 
-        /* Styles for centered single cards (Chief Guest & Guest of Honor) */
-        .center-card-container {
+        /* Styles for side-by-side guest sections */
+        .guests-row {
             display: flex;
+            gap: 2rem;
             justify-content: center;
-            align-items: center;
-            margin-top: 2rem;
+            align-items: stretch;
+            margin: 2rem 0 3rem;
         }
 
-        .single-center-card {
-            max-width: 350px;
-            width: 100%;
+        .guest-col {
+            flex: 1;
+            max-width: 400px;
+            min-width: 280px;
+        }
+
+        @media (max-width: 700px) {
+            .guests-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -2294,10 +2304,11 @@
                 worldwide</p>
         </div>
 
-        <!-- Chief Guest Section - Single centered card -->
-        <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Chief Guest</h3>
-        <div class="center-card-container">
-            <div class="single-center-card">
+        <!-- Chief Guest & Guest of Honor Side by Side -->
+        <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Chief Guest & Guest of Honor</h3>
+        <div class="guests-row">
+            <!-- Chief Guest Column -->
+            <div class="guest-col">
                 <div class="speaker-card national-speaker">
                     <div class="speaker-image"><img
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
@@ -2322,12 +2333,9 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Guest of Honor Section - Single centered card -->
-        <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Guest of Honor</h3>
-        <div class="center-card-container">
-            <div class="single-center-card">
+            <!-- Guest of Honor Column -->
+            <div class="guest-col">
                 <div class="speaker-card national-speaker">
                     <div class="speaker-image"><img
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
@@ -2358,7 +2366,7 @@
             <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
-                        alt="Dr. Mehul Raithatha" style="transform: scale(1.18);"></div>
+                        alt="Dr. Mehul Raithatha" style="transform: scale(1.0);"></div>
                 <div class="speaker-info">
                     <p class="speaker-role">PANELIST</p>
                     <h3 class="speaker-name">Dr. Mehul Raithatha</h3>
