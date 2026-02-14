@@ -22,7 +22,7 @@
             --accent-light: #f0e68c;
             --text: #2d2d2d;
             --text-light: #555;
-            --bg: #fafafa;
+            --bg: #ffffff;
             --white: #ffffff;
             --shadow-sm: 0 5px 20px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 15px 35px rgba(0, 0, 0, 0.1);
@@ -279,9 +279,9 @@
         /* Right side info box - moved down on desktop */
         .hero-right-box {
             position: absolute;
-            right: 2rem;
-            top: 75%;
-            transform: translateY(-25%);
+            right: 38rem;
+            top: 87%;
+            transform: translateY(-20%);
             z-index: 10;
             max-width: 280px;
             width: 100%;
@@ -322,12 +322,12 @@
         .carousel-controls {
             position: absolute;
             bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 10.5rem;
+            transform: none;
             display: flex;
             gap: 15px;
             z-index: 10;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
         }
 
@@ -459,9 +459,8 @@
             line-height: 1.6;
         }
 
-        /* Partners Section */
         .partners {
-            padding: 4rem 2rem;
+            padding: 4rem 2rem 0.1rem 2rem;
         }
 
         .partners .section-header {
@@ -546,7 +545,7 @@
                 border-color 0.3s ease;
             will-change: transform, box-shadow;
             border: 2px solid rgba(212, 175, 55, 0.15);
-            text-align: center;
+            text-align: left;
         }
 
         .about-card:hover {
@@ -573,13 +572,245 @@
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 1rem;
+            text-align: left;
         }
 
         .about-card p {
             color: var(--text-light);
             line-height: 1.7;
             font-size: 0.98rem;
+            text-align: left;
+            padding-left: 1rem;
         }
+
+        /* ----- NEW EXCLUSIVE EVENT SECTION ----- */
+        .exclusive-event {
+            margin-top: 3.5rem;
+            padding-top: 2.5rem;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .event-label {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .event-image {
+            flex: 1;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background-color: #f0f0f0;
+            /* placeholder color */
+            box-shadow: var(--shadow-md);
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .event-content {
+            flex: 1;
+        }
+
+        .event-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+        }
+
+        .event-description {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 900px) {
+            .exclusive-event {
+                flex-direction: column;
+            }
+        }
+
+        /* ----- NEW ABOUT SECTIONS (COLLEGE & DEPARTMENT) ----- */
+        .about-block {
+            margin-top: 3.5rem;
+            padding-top: 2.5rem;
+        }
+
+        .about-block:first-of-type {
+            margin-top: 2rem;
+        }
+
+        .about-block-label {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+            text-align: center;
+        }
+
+        .about-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .about-split p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 700px) {
+            .about-split {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Special case for department's three-column layout */
+        .about-split.three-col {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media (max-width: 900px) {
+            .about-split.three-col {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* ---------- REDESIGNED: WHY ATTEND (single box, two columns, left text, right map placeholder) ---------- */
+        .why-attend {
+            margin-top: 3.5rem;
+            padding-top: 2.5rem;
+        }
+
+        .attend-single-box {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.5rem 2.8rem;
+            box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(212, 175, 55, 0.18);
+            transition: all 0.25s ease;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .attend-single-box:hover {
+            box-shadow: 0 25px 45px -12px rgba(212, 175, 55, 0.2), 0 0 0 1px rgba(212, 175, 55, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .attend-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+
+        .attend-col {
+            flex: 1;
+        }
+
+        .attend-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .attend-header svg {
+            width: 28px;
+            height: 28px;
+            color: var(--accent);
+            stroke-width: 1.8;
+        }
+
+        .attend-header h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            border: none;
+            /* no underline */
+        }
+
+        .attend-list {
+            list-style: none;
+        }
+
+        .attend-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            color: var(--text);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .attend-list li::before {
+            content: "▹";
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Map placeholder styles */
+        .map-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(145deg, #f5f5f5, #e0e0e0);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--accent);
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 1rem;
+            font-size: 1rem;
+            text-align: center;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+
+        .map-placeholder:hover {
+            background: #faf8f2;
+            border-color: var(--accent);
+        }
+
+        .map-placeholder svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--accent);
+            margin-right: 10px;
+        }
+
+        @media (max-width:700px) {
+            .attend-single-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .attend-row {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        /* ---------------------------------------------------------------- */
 
         .speakers {
             background: var(--bg);
@@ -668,6 +899,119 @@
             font-style: italic;
             border-top: 1px dashed rgba(212, 175, 55, 0.3);
             padding-top: 0.7rem;
+        }
+
+        /* National Speakers Styling - UPDATED */
+        .speaker-card.national-speaker {
+            border: 2px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .speaker-card.national-speaker::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.02), transparent);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .speaker-card.national-speaker:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 40px rgba(212, 175, 55, 0.25), 0 0 0 2px rgba(212, 175, 55, 0.4);
+            border-color: transparent;
+        }
+
+        .speaker-card.national-speaker .speaker-image {
+            width: 100%;
+            aspect-ratio: 1 / 1.1;
+            background: linear-gradient(145deg, var(--primary), #2d4263);
+            overflow: hidden;
+            border-bottom: none;
+        }
+
+        .speaker-card.national-speaker .speaker-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top 20% center;
+            transition: transform 0.4s;
+            display: block;
+        }
+
+        .speaker-card.national-speaker .speaker-info {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem 1.2rem;
+            border-top: none;
+        }
+
+        .speaker-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--accent);
+            margin: 0.75rem 0;
+            opacity: 0.4;
+        }
+
+        .speaker-card.national-speaker .speaker-role {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .speaker-card.national-speaker .speaker-name {
+            font-size: 1.4rem;
+            margin-bottom: 0.25rem;
+            color: var(--primary);
+        }
+
+        .speaker-card.national-speaker .speaker-title {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .speaker-linkedin {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent);
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .speaker-linkedin:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .speaker-linkedin .linkedin-icon {
+            width: 22px;
+            height: 22px;
+        }
+
+        .speaker-card.national-speaker:hover .speaker-divider {
+            opacity: 0.7;
         }
 
         .schedule {
@@ -785,6 +1129,150 @@
             font-size: 2rem;
             color: var(--accent);
             margin-bottom: 1rem;
+        }
+
+        /* RESEARCH PAPER SUBMISSION GUIDELINES STYLES */
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .guideline-card {
+            background: var(--white);
+            padding: 2.5rem 1.8rem;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease,
+                border-color 0.3s ease;
+            will-change: transform, box-shadow;
+            border: 2px solid rgba(212, 175, 55, 0.15);
+            text-align: left;
+        }
+
+        .guideline-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg), 0 0 0 3px rgba(212, 175, 55, 0.25);
+            border-color: transparent;
+        }
+
+        .guideline-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .guideline-list {
+            list-style: none;
+        }
+
+        .guideline-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.5;
+            transition: transform 0.2s ease;
+        }
+
+        .guideline-list li:hover {
+            transform: translateX(5px);
+            color: var(--primary);
+        }
+
+        .guideline-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        /* SUBMISSION & REVIEW PROCESS STYLES */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            background: var(--white);
+            border-radius: 16px;
+            border: 2px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: default;
+        }
+
+        .process-step:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: var(--shadow-md), 0 0 0 2px rgba(212, 175, 55, 0.25);
+            border-color: transparent;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .step-description {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+            .guidelines-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .guidelines-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
         }
 
         /* Responsive */
@@ -1058,6 +1546,54 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* NEW STYLES FOR SPLIT SECTIONS */
+        .split-speakers-row {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .split-speakers-col {
+            flex: 1;
+            min-width: 0;
+            /* prevents overflow */
+        }
+
+        .split-speakers-col .section-subheading {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .split-speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+        }
+
+        /* ensure cards inside split use enhanced style (national-speaker) */
+        .split-speakers-grid .speaker-card.national-speaker {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 800px) {
+            .split-speakers-row {
+                flex-direction: column;
+            }
+
+            .split-speakers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .split-speakers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -1184,7 +1720,7 @@
                             <path d="M12 17h.01" />
                         </svg>
                         <div class="slide-name-text" id="slideNameDisplay">
-                            <span>Know What's Behind?</span><br>
+                            <span>What's Behind?</span><br>
                             It's Gateway of India
                         </div>
                     </div>
@@ -1333,6 +1869,146 @@
                     strategies.</p>
             </div>
         </div>
+
+        <!-- NEW EXCLUSIVE EVENT SECTION -->
+        <div class="exclusive-event">
+            <div class="event-image">
+                <img src="" alt="Radio Club of Bombay" style="background: #e0e0e0;"> <!-- Placeholder image -->
+            </div>
+            <div class="event-content">
+                <div class="event-label">Exclusive Event</div>
+                <h3 class="event-title">Gala Dinner at the Iconic Radio Club of Bombay</h3>
+                <p class="event-description">
+                    Delegates are welcomed to a refined gala at the historic Radio Club of Bombay, one of Mumbai's most
+                    distinguished private clubs overlooking the Arabian Sea. Designed as an intimate gathering of global
+                    scholars, industry voices, and academic leaders, the evening blends fine hospitality with
+                    conversations that extend well beyond the conference halls.<br><br>
+                    For those wishing to elevate the experience, an optional private yacht evening along Mumbai's iconic
+                    coastline will be available at an additional cost.
+                </p>
+            </div>
+        </div>
+
+        <!-- ========== REDESIGNED WHY ATTEND (two columns: left text, right map placeholder) ========== -->
+        <div class="why-attend">
+            <div class="event-label" style="text-align:center; margin-bottom:1.5rem;">WHY ATTEND</div>
+            <div class="attend-single-box">
+                <div class="attend-row">
+                    <!-- LEFT COLUMN: Why Mumbai? + Academic Value -->
+                    <div class="attend-col">
+                        <!-- Why Mumbai? moved to very left -->
+                        <div class="attend-header">
+                            <!-- flag svg -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528" />
+                            </svg>
+                            <h4>Why Mumbai?</h4>
+                        </div>
+                        <ul class="attend-list">
+                            <li>Global finance capital</li>
+                            <li>Home to India’s biggest startups</li>
+                            <li>Culture, cinema, coastline, cuisine</li>
+                            <li>Where business meets energy</li>
+                        </ul>
+
+                        <!-- Academic Value (below Why Mumbai? on left) -->
+                        <div class="attend-header" style="margin-top: 2rem;">
+                            <!-- hand svg -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" />
+                                <path
+                                    d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
+                                <path d="m2 16 6 6" />
+                                <circle cx="16" cy="9" r="2.9" />
+                                <circle cx="6" cy="5" r="3" />
+                            </svg>
+                            <h4>Academic Value</h4>
+                        </div>
+                        <ul class="attend-list">
+                            <li>Foster interdisciplinary dialogue</li>
+                            <li>Disseminate resilient business research</li>
+                            <li>Encourage academia industry collaboration</li>
+                            <li>Equip early career researchers</li>
+                        </ul>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Map Placeholder (you can add image link later) -->
+                    <div class="attend-col">
+                        <div class="attend-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M20 10c0 4.418-8 12-8 12s-8-7.582-8-12a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="3" fill="var(--accent)" stroke="none" />
+                            </svg>
+                            <h4>Conference Location</h4>
+                        </div>
+                        <div class="map-placeholder" id="mapPlaceholder">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            <span>Map will appear here<br>(Add image link later)</span>
+                        </div>
+                        <p style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem; text-align: center;">
+                            Jai Hind College, Churchgate, Mumbai
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- =========================================== -->
+
+        <!-- ABOUT OUR COLLEGE -->
+        <div class="about-block">
+            <div class="about-block-label">ABOUT OUR COLLEGE</div>
+            <div class="about-split">
+                <p>Jai Hind College, established in 1948 by a group of visionary teachers from Karachi, is a
+                    distinguished multi-faculty institution managed by the Sind Educationists' Association and
+                    affiliated to the University of Mumbai as an Empowered Autonomous College under UGC regulations.
+                    Recognized as one of Mumbai's premier higher education institutions, it offers a broad spectrum of
+                    Aided and Self-Financed programmes designed to meet contemporary academic and industry requirements
+                    while maintaining rigorous academic standards.</p>
+                <p>In alignment with the vision of the National Education Policy 2020, Jai Hind College fosters a
+                    value-based, multidisciplinary learning ecosystem that actively integrates research, innovation and
+                    skill development into the teaching-learning process. Through innovative teaching practices,
+                    skill-enhancement certificate courses, research-driven initiatives and sustained support for
+                    continuous faculty upgradation, the institution strives to offer a holistic educational experience
+                    that equips learners to thrive in an evolving global environment and contribute responsibly to
+                    nation-building.</p>
+            </div>
+        </div>
+
+        <!-- ABOUT OUR DEPARTMENT (with three columns) -->
+        <div class="about-block">
+            <div class="about-block-label">ABOUT OUR DEPARTMENT</div>
+            <div class="about-split three-col">
+                <p>The Department of Management Studies approved by AICTE and DTE, stands at the forefront of
+                    innovative, industry-integrated business education. With academic autonomy and a strong legacy of
+                    excellence, the department offers dynamic undergraduate programs Bachelor of Management Studies
+                    (BMS), Bachelor of Business Administration (BBA) (in collaboration with TCS), Bachelor of Commerce
+                    in Digital Strategy, and Bachelor of Commerce (International Accounting) integrated with ACCA- each
+                    designed to blend rigorous academics with real-world application and global relevance.</p>
+                <p>The BBA - TCS program fuses business fundamentals with industry exposure, preparing students for
+                    careers in BPM, analytics and corporate management through specialized electives and internships.
+                    The B.Com. in Digital Strategy uniquely bridges commerce with digital transformation, training
+                    students in AI tools, analytics and e-commerce strategy for roles in digital marketing, consulting
+                    and business innovation.</p>
+                <p>The B.Com. (International Accounting) with ACCA equips students with international finance expertise,
+                    granting up to 9 ACCA paper exemptions and proficiency in tools like Power BI, Python and Advanced
+                    Excel. The Bachelor in Digital Strategy is designed for students who want to lead in a technology
+                    driven business landscape. The program blends management fundamentals with emerging areas such as
+                    digital transformation, analytics, platform strategy, and innovation. Through industry aligned
+                    coursework, live projects, and practical exposure, students learn how organizations compete and grow
+                    in a digitally connected economy.</p>
+            </div>
+        </div>
     </section>
 
     <section id="speakers" class="speakers">
@@ -1344,90 +2020,184 @@
         </div>
         <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Panel Discussion - National</h3>
         <div class="speakers-grid">
-            <div class="speaker-card">
-                <div class="speaker-image"><img
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Disha-Bhanot.jpeg"
-                        alt="Dr. Disha Bhanot"></div>
-                <div class="speaker-info">
-                    <h3 class="speaker-name">Dr. Disha Bhanot</h3>
-                    <p class="speaker-title">S.P. Jain Institute, Mumbai</p>
-                    <p class="speaker-bio">Moderator</p>
-                </div>
-            </div>
-            <div class="speaker-card">
+            <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Mehul-Raithatha.jpeg"
                         alt="Dr. Mehul Raithatha"></div>
                 <div class="speaker-info">
+                    <p class="speaker-role">PANELIST</p>
                     <h3 class="speaker-name">Dr. Mehul Raithatha</h3>
                     <p class="speaker-title">IIM Ahmedabad</p>
-                    <p class="speaker-bio">Panelist</p>
+                    <div class="speaker-divider"></div>
+                    <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="linkedin-icon">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
                 </div>
             </div>
-            <div class="speaker-card">
+            <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Mousami-Prasad.jpeg"
                         alt="Dr. Mousami Prasad"></div>
                 <div class="speaker-info">
+                    <p class="speaker-role">PANELIST</p>
                     <h3 class="speaker-name">Dr. Mousami Prasad</h3>
                     <p class="speaker-title">IIT Kanpur</p>
-                    <p class="speaker-bio">Panelist</p>
+                    <div class="speaker-divider"></div>
+                    <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="linkedin-icon">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
                 </div>
             </div>
-            <div class="speaker-card">
+            <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Preeti-Virdi.jpeg"
                         alt="Dr. Preeti Virdi"></div>
                 <div class="speaker-info">
+                    <p class="speaker-role">PANELIST</p>
                     <h3 class="speaker-name">Dr. Preeti Virdi</h3>
                     <p class="speaker-title">IIM Visakhapatnam</p>
-                    <p class="speaker-bio">Panelist</p>
+                    <div class="speaker-divider"></div>
+                    <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="linkedin-icon">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="speaker-card national-speaker">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Disha-Bhanot.jpeg"
+                        alt="Dr. Disha Bhanot"></div>
+                <div class="speaker-info">
+                    <p class="speaker-role">MODERATOR</p>
+                    <h3 class="speaker-name">Dr. Disha Bhanot</h3>
+                    <p class="speaker-title">S.P. Jain Institute, Mumbai</p>
+                    <div class="speaker-divider"></div>
+                    <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="linkedin-icon">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
-        <h3 style="text-align:center; font-size:1.8rem; margin:3rem 0 1.8rem;">Panel Discussion - International</h3>
-        <div class="international-grid">
-            <div class="speaker-card">
-                <div class="speaker-image"><img
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Ashish-Kumar-Jha.jpeg"
-                        alt="Dr. Ashish Kumar Jha"></div>
-                <div class="speaker-info">
-                    <h3 class="speaker-name">Dr. Ashish Kumar Jha</h3>
-                    <p class="speaker-title">Trinity Business School, Ireland</p>
-                    <p class="speaker-bio">Panelist</p>
+
+        <!-- SPLIT SECTION: International + Workshop side by side, each with 2 cards, using national-speaker UI -->
+        <div class="split-speakers-row">
+            <!-- Left column: Panel Discussion - International -->
+            <div class="split-speakers-col">
+                <h3 class="section-subheading">Panel Discussion - International</h3>
+                <div class="split-speakers-grid">
+                    <div class="speaker-card national-speaker">
+                        <div class="speaker-image"><img
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Ashish-Kumar-Jha.jpeg"
+                                alt="Dr. Ashish Kumar Jha"></div>
+                        <div class="speaker-info">
+                            <p class="speaker-role">PANELIST</p>
+                            <h3 class="speaker-name">Dr. Ashish Kumar Jha</h3>
+                            <p class="speaker-title">Trinity Business School, Ireland</p>
+                            <div class="speaker-divider"></div>
+                            <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="linkedin-icon">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                    <rect width="4" height="12" x="2" y="9" />
+                                    <circle cx="4" cy="4" r="2" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="speaker-card national-speaker">
+                        <div class="speaker-image"><img
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Sunil-Tiwari.jpeg"
+                                alt="Dr. Sunil Tiwari"></div>
+                        <div class="speaker-info">
+                            <p class="speaker-role">PANELIST</p>
+                            <h3 class="speaker-name">Dr. Sunil Tiwari</h3>
+                            <p class="speaker-title">University of Bristol, England</p>
+                            <div class="speaker-divider"></div>
+                            <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="linkedin-icon">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                    <rect width="4" height="12" x="2" y="9" />
+                                    <circle cx="4" cy="4" r="2" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="speaker-card">
-                <div class="speaker-image"><img
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Sunil-Tiwari.jpeg"
-                        alt="Dr. Sunil Tiwari"></div>
-                <div class="speaker-info">
-                    <h3 class="speaker-name">Dr. Sunil Tiwari</h3>
-                    <p class="speaker-title">University of Bristol, England</p>
-                    <p class="speaker-bio">Panelist</p>
-                </div>
-            </div>
-        </div>
-        <h3 style="text-align:center; font-size:1.8rem; margin:3rem 0 1.8rem;">Paper Development Workshop</h3>
-        <div class="speakers-grid" style="grid-template-columns: repeat(2, 1fr); max-width:700px; margin:0 auto;">
-            <div class="speaker-card">
-                <div class="speaker-image"><img
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.Shubham-Singhania.jpeg"
-                        alt="Dr. Shubham Singhania"></div>
-                <div class="speaker-info">
-                    <h3 class="speaker-name">Dr. Shubham Singhania</h3>
-                    <p class="speaker-title">FORE School, Gurugram</p>
-                    <p class="speaker-bio">Workshop Leader</p>
-                </div>
-            </div>
-            <div class="speaker-card">
-                <div class="speaker-image"><img
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Varda-Sardana.jpeg"
-                        alt="Dr. Varda Sardana"></div>
-                <div class="speaker-info">
-                    <h3 class="speaker-name">Dr. Varda Sardana</h3>
-                    <p class="speaker-title">Jaipuria Institute, Lucknow</p>
-                    <p class="speaker-bio">Workshop Leader</p>
+            <!-- Right column: Paper Development Workshop -->
+            <div class="split-speakers-col">
+                <h3 class="section-subheading">Paper Development Workshop</h3>
+                <div class="split-speakers-grid">
+                    <div class="speaker-card national-speaker">
+                        <div class="speaker-image"><img
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.Shubham-Singhania.jpeg"
+                                alt="Dr. Shubham Singhania"></div>
+                        <div class="speaker-info">
+                            <p class="speaker-role">WORKSHOP LEADER</p>
+                            <h3 class="speaker-name">Dr. Shubham Singhania</h3>
+                            <p class="speaker-title">FORE School, Gurugram</p>
+                            <div class="speaker-divider"></div>
+                            <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="linkedin-icon">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                    <rect width="4" height="12" x="2" y="9" />
+                                    <circle cx="4" cy="4" r="2" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="speaker-card national-speaker">
+                        <div class="speaker-image"><img
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Varda-Sardana.jpeg"
+                                alt="Dr. Varda Sardana"></div>
+                        <div class="speaker-info">
+                            <p class="speaker-role">WORKSHOP LEADER</p>
+                            <h3 class="speaker-name">Dr. Varda Sardana</h3>
+                            <p class="speaker-title">Jaipuria Institute, Lucknow</p>
+                            <div class="speaker-divider"></div>
+                            <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="linkedin-icon">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                    <rect width="4" height="12" x="2" y="9" />
+                                    <circle cx="4" cy="4" r="2" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1443,28 +2213,161 @@
         <div class="about-grid">
             <div class="about-card">
                 <h3>AI & Digital Transformation</h3>
-                <p>Role of AI and data analytics • Digital business models • Ethical AI • Productivity & customer
-                    experience</p>
+                <p>• Role of AI and data analytics<br>• Digital business models<br>• Ethical AI<br>• Productivity &
+                    customer experience</p>
             </div>
             <div class="about-card">
                 <h3>Finance and FinTech</h3>
-                <p>Digital payments • Blockchain • Sustainable finance • ESG investing • Financial inclusion</p>
+                <p>• Digital payments<br>• Blockchain<br>• Sustainable finance<br>• ESG investing<br>• Financial
+                    inclusion</p>
             </div>
             <div class="about-card">
                 <h3>Entrepreneurship & Innovation</h3>
-                <p>Start-up ecosystems • Social/green entrepreneurship • Women & youth enterprises • Public policies</p>
+                <p>• Start-up ecosystems<br>• Social/green entrepreneurship<br>• Women & youth enterprises<br>• Public
+                    policies</p>
             </div>
             <div class="about-card">
                 <h3>Sustainability & Responsible Mgmt</h3>
-                <p>Corporate sustainability • ESG reporting • Circular economy • Sustainable supply chains</p>
+                <p>• Corporate sustainability<br>• ESG reporting<br>• Circular economy<br>• Sustainable supply chains
+                </p>
             </div>
             <div class="about-card">
                 <h3>Education & Skill Development</h3>
-                <p>New teaching methods • Sustainable careers • Industry-academia • Lifelong learning</p>
+                <p>• New teaching methods<br>• Sustainable careers<br>• Industry-academia<br>• Lifelong learning</p>
             </div>
             <div class="about-card">
                 <h3>Leadership & Human Values</h3>
-                <p>Human-machine collaboration • Leadership styles • Resilient workplaces • Ethics & empathy</p>
+                <p>• Human-machine collaboration<br>• Leadership styles<br>• Resilient workplaces<br>• Ethics & empathy
+                </p>
+            </div>
+        </div>
+
+        <!-- RESEARCH PAPER SUBMISSION GUIDELINES SECTION -->
+        <div style="margin-top: 5rem;">
+            <div class="section-header">
+                <div class="section-label">RESEARCH PAPER SUBMISSION GUIDELINES</div>
+            </div>
+
+            <div class="guidelines-grid">
+                <!-- Box 1: Required Information -->
+                <div class="guideline-card">
+                    <h3>Required Information</h3>
+                    <ul class="guideline-list">
+                        <li>Paper Title</li>
+                        <li>Author & Co-Author Names</li>
+                        <li>Affiliation & Institution</li>
+                        <li>Contact Number & Email IDs</li>
+                    </ul>
+                </div>
+
+                <!-- Box 2: Abstract -->
+                <div class="guideline-card">
+                    <h3>Abstract</h3>
+                    <ul class="guideline-list">
+                        <li>Max 300 Words</li>
+                        <li>4-5 Keywords</li>
+                    </ul>
+                </div>
+
+                <!-- Box 3: Full Paper -->
+                <div class="guideline-card">
+                    <h3>Full Paper</h3>
+                    <ul class="guideline-list">
+                        <li>Up to 3,500 Words</li>
+                        <li>Times New Roman, 12pt Font</li>
+                        <li>1.5 Line Spacing</li>
+                    </ul>
+                </div>
+
+                <!-- Box 4: Formatting -->
+                <div class="guideline-card">
+                    <h3>Formatting</h3>
+                    <ul class="guideline-list">
+                        <li>A4 Size Paper</li>
+                        <li>1" Margins On All Sides</li>
+                        <li>APA Citation Style</li>
+                    </ul>
+                </div>
+
+                <!-- Box 5: Plagiarism Check -->
+                <div class="guideline-card">
+                    <h3>Plagiarism Check</h3>
+                    <ul class="guideline-list">
+                        <li>Less Than 10% Allowed</li>
+                    </ul>
+                </div>
+
+                <!-- Box 6: Submission -->
+                <div class="guideline-card">
+                    <h3>Submission</h3>
+                    <ul class="guideline-list">
+                        <li>Submit Your Paper in MS Word</li>
+                        <li>Email Your Paper</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBMISSION & REVIEW PROCESS SECTION -->
+        <div style="margin-top: 5rem;">
+            <div class="section-header">
+                <div class="section-label">SUBMISSION & REVIEW PROCESS</div>
+            </div>
+
+            <div class="process-steps">
+                <!-- Step 1: Registration -->
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Registration</div>
+                        <div class="step-description">Authors register for the conference</div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Abstract Submission -->
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Abstract Submission</div>
+                        <div class="step-description">Submit your research abstract</div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Acceptance Notification -->
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Acceptance Notification</div>
+                        <div class="step-description">Receive acceptance confirmation</div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Full Paper Submission -->
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Full Paper Submission</div>
+                        <div class="step-description">Submit the complete research paper</div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Peer Review -->
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Peer Review</div>
+                        <div class="step-description">Rigorous peer review of the paper</div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Publication Offer -->
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-title">Publication Offer</div>
+                        <div class="step-description">Receive offer for publication</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1588,7 +2491,7 @@
                 images.forEach(img => img.classList.remove('active'));
                 currentSlideDisplay.textContent = index + 1;
                 const slideName = images[index].getAttribute('data-name') || 'Mumbai Landmark';
-                slideNameDisplay.innerHTML = `<span>Know What's Behind?</span><br>It's ${slideName}`;
+                slideNameDisplay.innerHTML = `<span>What's Behind?</span><br>It's ${slideName}`;
                 setTimeout(() => { images[index].classList.add('active'); }, 10);
                 currentIndex = index;
             }
@@ -1649,7 +2552,7 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
             }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-            document.querySelectorAll('.about-card, .speaker-card, .timeline-item').forEach(el => {
+            document.querySelectorAll('.about-card, .speaker-card, .timeline-item, .guideline-card, .process-step').forEach(el => {
                 el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.5s, transform 0.5s'; observer.observe(el);
             });
         })();
