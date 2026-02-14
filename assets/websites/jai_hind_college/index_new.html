@@ -1876,6 +1876,21 @@
                 gap: 1.5rem;
             }
         }
+
+        /* Workshop section styles */
+        .workshop-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 700px) {
+            .workshop-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -2305,31 +2320,19 @@
         </div>
 
         <!-- Chief Guest & Guest of Honor Side by Side -->
-        <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Chief Guest & Guest of Honor</h3>
+        <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Distinguished Guests</h3>
         <div class="guests-row">
             <!-- Chief Guest Column -->
             <div class="guest-col">
                 <div class="speaker-card national-speaker">
                     <div class="speaker-image"><img
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
-                            alt="Chief Guest Name" style="transform: scale(1.18);"></div>
+                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prof_ravindra_kulkarni.png"
+                            alt="Prof. Ravindra Kulkarni"
+                            style="object-fit: contain; background-color: #f5f5f5; padding: 10px;"></div>
                     <div class="speaker-info">
                         <p class="speaker-role">CHIEF GUEST</p>
-                        <h3 class="speaker-name">Dr. Rajendra Kumar</h3>
-                        <p class="speaker-title">Additional Secretary, Ministry of Electronics & IT, Government of India
-                        </p>
-                        <div class="speaker-divider"></div>
-                        <a href="#" class="speaker-linkedin" target="_blank" rel="noopener noreferrer"
-                            aria-label="LinkedIn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="linkedin-icon">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                                <rect width="4" height="12" x="2" y="9" />
-                                <circle cx="4" cy="4" r="2" />
-                            </svg>
-                        </a>
+                        <h3 class="speaker-name">Prof. Ravindra Kulkarni</h3>
+                        <p class="speaker-title">Vice Chancellor, University of Mumbai</p>
                     </div>
                 </div>
             </div>
@@ -2339,23 +2342,12 @@
                 <div class="speaker-card national-speaker">
                     <div class="speaker-image"><img
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
-                            alt="Guest of Honor Name" style="transform: scale(1.18);"></div>
+                            alt="Guest of Honor Name"
+                            style="object-fit: contain; background-color: #f5f5f5; padding: 10px;"></div>
                     <div class="speaker-info">
                         <p class="speaker-role">GUEST OF HONOR</p>
                         <h3 class="speaker-name">Ms. Naina Lal Kidwai</h3>
                         <p class="speaker-title">Former Chairperson, HSBC India & Past President, FICCI</p>
-                        <div class="speaker-divider"></div>
-                        <a href="#" class="speaker-linkedin" target="_blank" rel="noopener noreferrer"
-                            aria-label="LinkedIn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="linkedin-icon">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                                <rect width="4" height="12" x="2" y="9" />
-                                <circle cx="4" cy="4" r="2" />
-                            </svg>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -2366,7 +2358,7 @@
             <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
-                        alt="Dr. Mehul Raithatha" style="transform: scale(1.0);"></div>
+                        alt="Dr. Mehul Raithatha" style="object-fit: cover;"></div>
                 <div class="speaker-info">
                     <p class="speaker-role">PANELIST</p>
                     <h3 class="speaker-name">Dr. Mehul Raithatha</h3>
@@ -2387,7 +2379,7 @@
             <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mousami_prasad.jpg"
-                        alt="Dr. Mousami Prasad"></div>
+                        alt="Dr. Mousami Prasad" style="object-fit: cover;"></div>
                 <div class="speaker-info">
                     <p class="speaker-role">PANELIST</p>
                     <h3 class="speaker-name">Dr. Mousami Prasad</h3>
@@ -2408,7 +2400,7 @@
             <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_preeti_virdi.jpg"
-                        alt="Dr. Preeti Virdi"></div>
+                        alt="Dr. Preeti Virdi" style="object-fit: cover;"></div>
                 <div class="speaker-info">
                     <p class="speaker-role">PANELIST</p>
                     <h3 class="speaker-name">Dr. Preeti Virdi</h3>
@@ -2429,7 +2421,7 @@
             <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_disha_bhanot.jpg"
-                        alt="Dr. Disha Bhanot" style="object-position: center 0%;"></div>
+                        alt="Dr. Disha Bhanot" style="object-position: center 0%; object-fit: cover;"></div>
                 <div class="speaker-info">
                     <p class="speaker-role">MODERATOR</p>
                     <h3 class="speaker-name">Dr. Disha Bhanot</h3>
@@ -2449,105 +2441,118 @@
             </div>
         </div>
 
-        <!-- SPLIT SECTION: International + Workshop side by side, each with 2 cards, using national-speaker UI -->
-        <div class="split-speakers-row">
-            <!-- Left column: Panel Discussion - International -->
-            <div class="split-speakers-col">
-                <h3 class="section-subheading">Panel Discussion - International</h3>
-                <div class="split-speakers-grid">
-                    <div class="speaker-card national-speaker">
-                        <div class="speaker-image"><img
-                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_ashish_kumar_jha.jpg"
-                                alt="Dr. Ashish Kumar Jha"></div>
-                        <div class="speaker-info">
-                            <p class="speaker-role">PANELIST</p>
-                            <h3 class="speaker-name">Dr. Ashish Kumar Jha</h3>
-                            <p class="speaker-title">Trinity Business School, Ireland</p>
-                            <div class="speaker-divider"></div>
-                            <a href="https://www.tcd.ie/business/research/the-trinity-centre-for-digital-business--analytics/our-team/akjha/"
-                                class="speaker-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Website">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="linkedin-icon">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-                                    <path d="M2 12h20" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="speaker-card national-speaker">
-                        <div class="speaker-image"><img
-                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_sunil_tiwari.png"
-                                alt="Dr. Sunil Tiwari" style="transform: scale(1.22);"></div>
-                        <div class="speaker-info">
-                            <p class="speaker-role">PANELIST</p>
-                            <h3 class="speaker-name">Dr. Sunil Tiwari</h3>
-                            <p class="speaker-title">University of Bristol, England</p>
-                            <div class="speaker-divider"></div>
-                            <a href="https://www.bristol.ac.uk/people/person/Sunil-Tiwari-2fe86b81-80f7-4969-a61e-0c24efae16f7/"
-                                class="speaker-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Website">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="linkedin-icon">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-                                    <path d="M2 12h20" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+        <!-- Panel Discussion - International (4 cards in one row) -->
+        <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Panel Discussion - International</h3>
+        <div class="speakers-grid">
+            <div class="speaker-card national-speaker">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_ashish_kumar_jha.jpg"
+                        alt="Dr. Ashish Kumar Jha" style="object-fit: cover;"></div>
+                <div class="speaker-info">
+                    <p class="speaker-role">PANELIST</p>
+                    <h3 class="speaker-name">Dr. Ashish Kumar Jha</h3>
+                    <p class="speaker-title">Trinity Business School, Ireland</p>
+                    <div class="speaker-divider"></div>
+                    <a href="https://www.tcd.ie/business/research/the-trinity-centre-for-digital-business--analytics/our-team/akjha/"
+                        class="speaker-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Website">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="linkedin-icon">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                            <path d="M2 12h20" />
+                        </svg>
+                    </a>
                 </div>
             </div>
-            <!-- Right column: Paper Development Workshop -->
-            <div class="split-speakers-col">
-                <h3 class="section-subheading">Paper Development Workshop</h3>
-                <div class="split-speakers-grid">
-                    <div class="speaker-card national-speaker">
-                        <div class="speaker-image"><img
-                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_shubham_singhania.jpg"
-                                alt="Dr. Shubham Singhania"></div>
-                        <div class="speaker-info">
-                            <p class="speaker-role">WORKSHOP LEADER</p>
-                            <h3 class="speaker-name">Dr. Shubham Singhania</h3>
-                            <p class="speaker-title">FORE School, Gurugram</p>
-                            <div class="speaker-divider"></div>
-                            <a href="https://www.linkedin.com/in/dr-shubham-singhania-9aa565a1/"
-                                class="speaker-linkedin" target="_blank" rel="noopener noreferrer"
-                                aria-label="LinkedIn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="linkedin-icon">
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                                    <rect width="4" height="12" x="2" y="9" />
-                                    <circle cx="4" cy="4" r="2" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="speaker-card national-speaker">
-                        <div class="speaker-image"><img
-                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_varda_sardana.jpg"
-                                alt="Dr. Varda Sardana"></div>
-                        <div class="speaker-info">
-                            <p class="speaker-role">WORKSHOP LEADER</p>
-                            <h3 class="speaker-name">Dr. Varda Sardana</h3>
-                            <p class="speaker-title">Jaipuria Institute, Lucknow</p>
-                            <div class="speaker-divider"></div>
-                            <a href="https://www.linkedin.com/in/dr-varda-sardana-120b8684/" class="speaker-linkedin"
-                                target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="linkedin-icon">
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                                    <rect width="4" height="12" x="2" y="9" />
-                                    <circle cx="4" cy="4" r="2" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+            <div class="speaker-card national-speaker">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_sunil_tiwari.png"
+                        alt="Dr. Sunil Tiwari" style="object-fit: cover;"></div>
+                <div class="speaker-info">
+                    <p class="speaker-role">PANELIST</p>
+                    <h3 class="speaker-name">Dr. Sunil Tiwari</h3>
+                    <p class="speaker-title">University of Bristol, England</p>
+                    <div class="speaker-divider"></div>
+                    <a href="https://www.bristol.ac.uk/people/person/Sunil-Tiwari-2fe86b81-80f7-4969-a61e-0c24efae16f7/"
+                        class="speaker-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Website">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="linkedin-icon">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                            <path d="M2 12h20" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="speaker-card national-speaker">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_baidyanath_biswas.png"
+                        alt="Dr. Baidyanath Biswas" style="object-fit: cover;"></div>
+                <div class="speaker-info">
+                    <p class="speaker-role">PANELIST</p>
+                    <h3 class="speaker-name">Dr. Baidyanath Biswas</h3>
+                    <p class="speaker-title">Associate Professor, School Office Trinity Business School</p>
+                    <div class="speaker-divider"></div>
+                    <a href="https://ie.linkedin.com/in/baidyanath-biswas-47604635/" class="speaker-linkedin"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="linkedin-icon">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paper Development Workshop (2 cards in one row, same size as international) -->
+        <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Paper Development Workshop</h3>
+        <div
+            style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; max-width: 800px; margin: 0 auto;">
+            <div class="speaker-card national-speaker" style="flex: 0 1 350px;">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_shubham_singhania.jpg"
+                        alt="Dr. Shubham Singhania" style="object-fit: cover;"></div>
+                <div class="speaker-info">
+                    <p class="speaker-role">WORKSHOP LEADER</p>
+                    <h3 class="speaker-name">Dr. Shubham Singhania</h3>
+                    <p class="speaker-title">FORE School, Gurugram</p>
+                    <div class="speaker-divider"></div>
+                    <a href="https://www.linkedin.com/in/dr-shubham-singhania-9aa565a1/" class="speaker-linkedin"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="linkedin-icon">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="speaker-card national-speaker" style="flex: 0 1 350px;">
+                <div class="speaker-image"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_varda_sardana.jpg"
+                        alt="Dr. Varda Sardana" style="object-fit: cover;"></div>
+                <div class="speaker-info">
+                    <p class="speaker-role">WORKSHOP LEADER</p>
+                    <h3 class="speaker-name">Dr. Varda Sardana</h3>
+                    <p class="speaker-title">Jaipuria Institute, Lucknow</p>
+                    <div class="speaker-divider"></div>
+                    <a href="https://www.linkedin.com/in/dr-varda-sardana-120b8684/" class="speaker-linkedin"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="linkedin-icon">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -2887,8 +2892,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Venue section has been removed as requested -->
 
     <section id="contact" class="contact">
         <div class="section-header">
