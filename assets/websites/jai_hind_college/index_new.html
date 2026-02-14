@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Jai Hind College</title>
     <link rel="icon" type="image/jpeg"
-        href="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_favicon.jpg?raw=true">
+        href="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_favicon.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
@@ -768,35 +768,29 @@
             font-size: 1.2rem;
         }
 
-        /* Map placeholder styles */
+        /* Map placeholder styles - UPDATED FOR EMBED */
         .map-placeholder {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(145deg, #f5f5f5, #e0e0e0);
+            height: 300px;
+            background: none;
             border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed var(--accent);
-            color: var(--primary);
-            font-weight: 600;
+            overflow: hidden;
+            border: 2px solid var(--accent);
             margin-top: 1rem;
-            font-size: 1rem;
-            text-align: center;
-            padding: 1rem;
             transition: all 0.2s;
+            padding: 0;
+        }
+
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
         }
 
         .map-placeholder:hover {
-            background: #faf8f2;
             border-color: var(--accent);
-        }
-
-        .map-placeholder svg {
-            width: 32px;
-            height: 32px;
-            stroke: var(--accent);
-            margin-right: 10px;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
         }
 
         @media (max-width:700px) {
@@ -807,6 +801,10 @@
             .attend-row {
                 flex-direction: column;
                 gap: 2rem;
+            }
+
+            .map-placeholder {
+                height: 250px;
             }
         }
 
@@ -854,7 +852,7 @@
         .speaker-image {
             width: 100%;
             aspect-ratio: 1 / 1.1;
-            background: linear-gradient(145deg, var(--primary), #2d4263);
+            background: white;
             overflow: hidden;
         }
 
@@ -931,7 +929,7 @@
         .speaker-card.national-speaker .speaker-image {
             width: 100%;
             aspect-ratio: 1 / 1.1;
-            background: linear-gradient(145deg, var(--primary), #2d4263);
+            background: white;
             overflow: hidden;
             border-bottom: none;
         }
@@ -1798,6 +1796,10 @@
                 padding: 1rem 1.2rem;
                 /* Slightly smaller on very small screens */
             }
+
+            .map-placeholder {
+                height: 200px;
+            }
         }
 
         html {
@@ -1851,6 +1853,19 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Styles for centered single cards (Chief Guest & Guest of Honor) */
+        .center-card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .single-center-card {
+            max-width: 350px;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -1859,7 +1874,7 @@
         <div class="nav-container">
             <div class="logo-wrapper">
                 <img class="college-logo"
-                    src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_logo.png?raw=true"
+                    src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
                     alt="Jai Hind College logo">
                 <span class="logo-text">Jai Hind College (Empowered Autonomous)</span>
             </div>
@@ -1877,51 +1892,51 @@
     <div class="hero-carousel">
         <div class="carousel-images">
             <div class="carousel-image active"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_gateway_of_india.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_gateway_of_india.jpg');"
                 data-name="Gateway of India">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_atal_bridge.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_atal_bridge.jpg');"
                 data-name="Atal Bridge">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_taj_hotel.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_taj_hotel.jpg');"
                 data-name="Taj Hotel">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_kala_ghoda.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_kala_ghoda.jpg');"
                 data-name="Kala Ghoda">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_flora_fountain.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_flora_fountain.jpg');"
                 data-name="Flora Fountain">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_sanjay_gandhi_national_park.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_sanjay_gandhi_national_park.jpg');"
                 data-name="Sanjay Gandhi National Park">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_taj_hotel.png?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_taj_hotel.png');"
                 data-name="Taj Hotel">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_worli_sea_link.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_worli_sea_link.jpg');"
                 data-name="Worli Sea Link">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_parel_night_life.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_parel_night_life.jpg');"
                 data-name="Parel Night Life">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_local_platform.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_local_platform.jpg');"
                 data-name="Local Platform">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_csmt.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_csmt.jpg');"
                 data-name="CSMT">
             </div>
             <div class="carousel-image"
-                style="background-image: url('https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_marine_drive.jpg?raw=true');"
+                style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_marine_drive.jpg');"
                 data-name="Marine Drive">
             </div>
         </div>
@@ -1978,7 +1993,7 @@
                         </svg>
                         <div class="slide-name-text" id="slideNameDisplay">
                             <span>What's Behind?</span><br>
-                            It's Gateway of India
+                            Gateway of India
                         </div>
                     </div>
                 </div>
@@ -2032,47 +2047,47 @@
             <div class="logo-track">
                 <!-- First set of logos -->
                 <div class="logo-item">
-                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_taylor_and_francis_group_logo.png?raw=true"
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_taylor_and_francis_group_logo.png"
                         alt="Taylor & Francis Group"
                         onerror="this.src='https://via.placeholder.com/150x80?text=Taylor+%26+Francis'">
                 </div>
                 <div class="logo-item">
-                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_routledge_logo.png?raw=true"
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_routledge_logo.png"
                         alt="Routledge" onerror="this.src='https://via.placeholder.com/150x80?text=Routledge'">
                 </div>
                 <div class="logo-item">
-                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_emerald_publishing_logo.png?raw=true"
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_emerald_publishing_logo.png"
                         alt="Emerald Publishing" onerror="this.src='https://via.placeholder.com/150x80?text=Emerald'">
                 </div>
                 <div class="logo-item">
-                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_abdc_logo.png?raw=true"
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_abdc_logo.png"
                         alt="ABDC" onerror="this.src='https://via.placeholder.com/150x80?text=ABDC'">
                 </div>
                 <div class="logo-item">
-                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_scopus_logo.png?raw=true"
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_scopus_logo.png"
                         alt="Scopus" onerror="this.src='https://via.placeholder.com/150x80?text=Scopus'">
                 </div>
 
                 <!-- Duplicate set for seamless loop -->
                 <div class="logo-item">
-                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_taylor_and_francis_group_logo.png?raw=true"
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_taylor_and_francis_group_logo.png"
                         alt="Taylor & Francis Group"
                         onerror="this.src='https://via.placeholder.com/150x80?text=Taylor+%26+Francis'">
                 </div>
                 <div class="logo-item">
-                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_routledge_logo.png?raw=true"
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_routledge_logo.png"
                         alt="Routledge" onerror="this.src='https://via.placeholder.com/150x80?text=Routledge'">
                 </div>
                 <div class="logo-item">
-                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_emerald_publishing_logo.png?raw=true"
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_emerald_publishing_logo.png"
                         alt="Emerald Publishing" onerror="this.src='https://via.placeholder.com/150x80?text=Emerald'">
                 </div>
                 <div class="logo-item">
-                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_abdc_logo.png?raw=true"
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_abdc_logo.png"
                         alt="ABDC" onerror="this.src='https://via.placeholder.com/150x80?text=ABDC'">
                 </div>
                 <div class="logo-item">
-                    <img src="https://github.com/lakshkukreja07/lakshkukreja07.github.io/blob/main/assets/src/jai_hind_college/jai_hind_college_scopus_logo.png?raw=true"
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_scopus_logo.png"
                         alt="Scopus" onerror="this.src='https://via.placeholder.com/150x80?text=Scopus'">
                 </div>
             </div>
@@ -2130,7 +2145,8 @@
         <!-- NEW EXCLUSIVE EVENT SECTION -->
         <div class="exclusive-event">
             <div class="event-image">
-                <img src="" alt="Radio Club of Bombay" style="background: #e0e0e0;"> <!-- Placeholder image -->
+                <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_radio_club_landscape.jpg"
+                    alt="Radio Club of Bombay" style="background: #e0e0e0;"> <!-- Placeholder image -->
             </div>
             <div class="event-content">
                 <div class="event-label">Exclusive Event</div>
@@ -2146,7 +2162,7 @@
             </div>
         </div>
 
-        <!-- ========== REDESIGNED WHY ATTEND (two columns: left text, right map placeholder) ========== -->
+        <!-- ========== REDESIGNED WHY ATTEND (two columns: left text, right map) ========== -->
         <div class="why-attend">
             <div class="event-label" style="text-align:center; margin-bottom:1.5rem;">WHY ATTEND</div>
             <div class="attend-single-box">
@@ -2194,7 +2210,7 @@
                         </ul>
                     </div>
 
-                    <!-- RIGHT COLUMN: Map Placeholder (you can add image link later) -->
+                    <!-- RIGHT COLUMN: Google Maps Embed -->
                     <div class="attend-col">
                         <div class="attend-header">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -2206,15 +2222,17 @@
                             <h4>Conference Location</h4>
                         </div>
                         <div class="map-placeholder" id="mapPlaceholder">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                <circle cx="12" cy="10" r="3" />
-                            </svg>
-                            <span>Map will appear here<br>(Add image link later)</span>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.999999!2d72.8245!3d18.9289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1c73a0d5d9f%3A0x6b4c6b5f8e3c9c0!2sJai%20Hind%20College!5e0!3m2!1sen!2sin!4v1234567890"
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
                         <p style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem; text-align: center;">
-                            Jai Hind College, Churchgate, Mumbai
+                            <a href="https://maps.app.goo.gl/nXMBwA7ymqTZVXoG6" target="_blank"
+                                rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">
+                                Jai Hind College, WRMG+R34, A Rd, Churchgate, Mumbai, Maharashtra 400020
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -2275,18 +2293,79 @@
             <p class="section-description">Learn from renowned academics and industry leaders from top institutions
                 worldwide</p>
         </div>
+
+        <!-- Chief Guest Section - Single centered card -->
+        <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Chief Guest</h3>
+        <div class="center-card-container">
+            <div class="single-center-card">
+                <div class="speaker-card national-speaker">
+                    <div class="speaker-image"><img
+                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
+                            alt="Chief Guest Name" style="transform: scale(1.18);"></div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">CHIEF GUEST</p>
+                        <h3 class="speaker-name">Dr. Rajendra Kumar</h3>
+                        <p class="speaker-title">Additional Secretary, Ministry of Electronics & IT, Government of India
+                        </p>
+                        <div class="speaker-divider"></div>
+                        <a href="#" class="speaker-linkedin" target="_blank" rel="noopener noreferrer"
+                            aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="linkedin-icon">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect width="4" height="12" x="2" y="9" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guest of Honor Section - Single centered card -->
+        <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Guest of Honor</h3>
+        <div class="center-card-container">
+            <div class="single-center-card">
+                <div class="speaker-card national-speaker">
+                    <div class="speaker-image"><img
+                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
+                            alt="Guest of Honor Name" style="transform: scale(1.18);"></div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">GUEST OF HONOR</p>
+                        <h3 class="speaker-name">Ms. Naina Lal Kidwai</h3>
+                        <p class="speaker-title">Former Chairperson, HSBC India & Past President, FICCI</p>
+                        <div class="speaker-divider"></div>
+                        <a href="#" class="speaker-linkedin" target="_blank" rel="noopener noreferrer"
+                            aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="linkedin-icon">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect width="4" height="12" x="2" y="9" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Panel Discussion - National</h3>
         <div class="speakers-grid">
             <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Mehul-Raithatha.jpeg"
-                        alt="Dr. Mehul Raithatha"></div>
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
+                        alt="Dr. Mehul Raithatha" style="transform: scale(1.18);"></div>
                 <div class="speaker-info">
                     <p class="speaker-role">PANELIST</p>
                     <h3 class="speaker-name">Dr. Mehul Raithatha</h3>
                     <p class="speaker-title">IIM Ahmedabad</p>
                     <div class="speaker-divider"></div>
-                    <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                    <a href="https://in.linkedin.com/in/dr-mehul-raithatha-ba53762a" class="speaker-linkedin"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="linkedin-icon">
@@ -2299,14 +2378,15 @@
             </div>
             <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Mousami-Prasad.jpeg"
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mousami_prasad.jpg"
                         alt="Dr. Mousami Prasad"></div>
                 <div class="speaker-info">
                     <p class="speaker-role">PANELIST</p>
                     <h3 class="speaker-name">Dr. Mousami Prasad</h3>
                     <p class="speaker-title">IIT Kanpur</p>
                     <div class="speaker-divider"></div>
-                    <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                    <a href="https://in.linkedin.com/in/mousami-prasad-42430a12" class="speaker-linkedin"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="linkedin-icon">
@@ -2319,14 +2399,15 @@
             </div>
             <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Preeti-Virdi.jpeg"
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_preeti_virdi.jpg"
                         alt="Dr. Preeti Virdi"></div>
                 <div class="speaker-info">
                     <p class="speaker-role">PANELIST</p>
                     <h3 class="speaker-name">Dr. Preeti Virdi</h3>
                     <p class="speaker-title">IIM Visakhapatnam</p>
                     <div class="speaker-divider"></div>
-                    <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/preetirvirdi/" class="speaker-linkedin" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="linkedin-icon">
@@ -2339,20 +2420,21 @@
             </div>
             <div class="speaker-card national-speaker">
                 <div class="speaker-image"><img
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Disha-Bhanot.jpeg"
-                        alt="Dr. Disha Bhanot"></div>
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_disha_bhanot.jpg"
+                        alt="Dr. Disha Bhanot" style="object-position: center 0%;"></div>
                 <div class="speaker-info">
                     <p class="speaker-role">MODERATOR</p>
                     <h3 class="speaker-name">Dr. Disha Bhanot</h3>
                     <p class="speaker-title">S.P. Jain Institute, Mumbai</p>
                     <div class="speaker-divider"></div>
-                    <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                    <a href="https://www.spjimr.org/faculty/disha-bhanot/" class="speaker-linkedin" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="linkedin-icon">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                            <rect width="4" height="12" x="2" y="9" />
-                            <circle cx="4" cy="4" r="2" />
+                            class="globe-icon globe">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                            <path d="M2 12h20" />
                         </svg>
                     </a>
                 </div>
@@ -2367,42 +2449,42 @@
                 <div class="split-speakers-grid">
                     <div class="speaker-card national-speaker">
                         <div class="speaker-image"><img
-                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Ashish-Kumar-Jha.jpeg"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_ashish_kumar_jha.jpg"
                                 alt="Dr. Ashish Kumar Jha"></div>
                         <div class="speaker-info">
                             <p class="speaker-role">PANELIST</p>
                             <h3 class="speaker-name">Dr. Ashish Kumar Jha</h3>
                             <p class="speaker-title">Trinity Business School, Ireland</p>
                             <div class="speaker-divider"></div>
-                            <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                            <a href="https://www.tcd.ie/business/research/the-trinity-centre-for-digital-business--analytics/our-team/akjha/"
+                                class="speaker-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Website">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="linkedin-icon">
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                                    <rect width="4" height="12" x="2" y="9" />
-                                    <circle cx="4" cy="4" r="2" />
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                                    <path d="M2 12h20" />
                                 </svg>
                             </a>
                         </div>
                     </div>
                     <div class="speaker-card national-speaker">
                         <div class="speaker-image"><img
-                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Sunil-Tiwari.jpeg"
-                                alt="Dr. Sunil Tiwari"></div>
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_sunil_tiwari.png"
+                                alt="Dr. Sunil Tiwari" style="transform: scale(1.22);"></div>
                         <div class="speaker-info">
                             <p class="speaker-role">PANELIST</p>
                             <h3 class="speaker-name">Dr. Sunil Tiwari</h3>
                             <p class="speaker-title">University of Bristol, England</p>
                             <div class="speaker-divider"></div>
-                            <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                            <a href="https://www.bristol.ac.uk/people/person/Sunil-Tiwari-2fe86b81-80f7-4969-a61e-0c24efae16f7/"
+                                class="speaker-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Website">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="linkedin-icon">
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                                    <rect width="4" height="12" x="2" y="9" />
-                                    <circle cx="4" cy="4" r="2" />
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                                    <path d="M2 12h20" />
                                 </svg>
                             </a>
                         </div>
@@ -2415,14 +2497,16 @@
                 <div class="split-speakers-grid">
                     <div class="speaker-card national-speaker">
                         <div class="speaker-image"><img
-                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.Shubham-Singhania.jpeg"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_shubham_singhania.jpg"
                                 alt="Dr. Shubham Singhania"></div>
                         <div class="speaker-info">
                             <p class="speaker-role">WORKSHOP LEADER</p>
                             <h3 class="speaker-name">Dr. Shubham Singhania</h3>
                             <p class="speaker-title">FORE School, Gurugram</p>
                             <div class="speaker-divider"></div>
-                            <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/dr-shubham-singhania-9aa565a1/"
+                                class="speaker-linkedin" target="_blank" rel="noopener noreferrer"
+                                aria-label="LinkedIn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="linkedin-icon">
@@ -2436,14 +2520,15 @@
                     </div>
                     <div class="speaker-card national-speaker">
                         <div class="speaker-image"><img
-                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/Dr.-Varda-Sardana.jpeg"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_varda_sardana.jpg"
                                 alt="Dr. Varda Sardana"></div>
                         <div class="speaker-info">
                             <p class="speaker-role">WORKSHOP LEADER</p>
                             <h3 class="speaker-name">Dr. Varda Sardana</h3>
                             <p class="speaker-title">Jaipuria Institute, Lucknow</p>
                             <div class="speaker-divider"></div>
-                            <a href="#" class="speaker-linkedin" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/dr-varda-sardana-120b8684/" class="speaker-linkedin"
+                                target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="linkedin-icon">
@@ -2795,24 +2880,7 @@
         </div>
     </section>
 
-    <section id="venue" class="venue">
-        <div class="section-header">
-            <div class="section-label">Location</div>
-            <h2 class="section-title">Conference Venue</h2>
-            <p class="section-description">Jai Hind College, Mumbai</p>
-        </div>
-        <div class="venue-content">
-            <div>
-                <h3>Jai Hind College (Empowered Autonomous)</h3>
-                <p>Est. 1948, at Churchgate, Mumbai. State-of-the-art facilities.</p>
-                <div class="venue-address"><strong>Address:</strong><br>23-24, Backbay Reclamation, 'A' Road,
-                    Churchgate, Mumbai - 400020</div>
-            </div>
-            <div class="venue-map"><iframe
-                    src="https://maps.google.com/maps?q=Jai+Hind+College,+Mumbai&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
-        </div>
-    </section>
+    <!-- Venue section has been removed as requested -->
 
     <section id="contact" class="contact">
         <div class="section-header">
@@ -2874,7 +2942,7 @@
                 images.forEach(img => img.classList.remove('active'));
                 currentSlideDisplay.textContent = index + 1;
                 const slideName = images[index].getAttribute('data-name') || 'Mumbai Landmark';
-                slideNameDisplay.innerHTML = `<span>What's Behind?</span><br>It's ${slideName}`;
+                slideNameDisplay.innerHTML = `<span>What's Behind?</span><br>${slideName}`;
                 setTimeout(() => { images[index].classList.add('active'); }, 10);
                 currentIndex = index;
             }
