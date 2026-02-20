@@ -23,7 +23,6 @@
     --accent-hover: #333;
 }
 
-/* Add font loading and fade-in to prevent jitter */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -35,13 +34,11 @@
     }
 }
 
-/* Apply fade-in to key text elements */
 .brand, .title, .sub, .btn, .hero-inner > * {
     animation: fadeIn 0.8s ease-out forwards;
     opacity: 0;
 }
 
-/* Stagger the animations */
 .brand { animation-delay: 0.1s; }
 .title { animation-delay: 0.3s; }
 .sub { animation-delay: 0.5s; }
@@ -189,10 +186,9 @@ button:focus-visible {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     transform: translateZ(0);
-    min-height: var(--barH); /* FIX: Ensure minimum height */
+    min-height: var(--barH);
 }
 
-/* Prevent hover effects when menu is open */
 .topbar-wrap.menu-open .topbar {
     background: #fff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -210,7 +206,6 @@ button:focus-visible {
     background: rgba(0, 0, 0, .98) !important;
 }
 
-/* Only apply hover effects when menu is NOT open */
 .topbar-wrap:not(.menu-open):hover .topbar {
     background: #fff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -331,7 +326,6 @@ button:focus-visible {
     transform: none;
 }
 
-/* X Animation when menu opens */
 .menu-btn.is-open .menu-icon span:nth-child(1) {
     top: 50%;
     transform: translateY(-50%) rotate(45deg);
@@ -342,7 +336,6 @@ button:focus-visible {
     transform: translateY(-50%) rotate(-45deg);
 }
 
-/* Animation for closing menu icon */
 @keyframes closeToHamburger1 {
     0% {
         top: 50%;
@@ -373,17 +366,14 @@ button:focus-visible {
     animation: closeToHamburger2 0.4s ease forwards;
 }
 
-/* When topbar is hovered (menu closed) */
 .topbar-wrap:not(.menu-open):hover .menu-icon span {
     background: rgba(0, 0, 0, 0.8) !important;
 }
 
-/* When menu is open and topbar has menu-open class */
 .topbar-wrap.menu-open .menu-btn.is-open .menu-icon span {
     background: rgba(0, 0, 0, .98) !important;
 }
 
-/* When desktop menu is open */
 body.desktop-menu-open .menu-btn.is-open .menu-icon span {
     background: rgba(255, 255, 255, 0.98) !important;
 }
@@ -416,7 +406,6 @@ body.menu-open .menu-blur {
     position: relative;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    /* REMOVE any margin/padding affecting parent height */
     margin-top: 0;
 }
 
@@ -476,7 +465,6 @@ body.desktop-menu-open .sleeping-line {
                 opacity 100ms ease;
 }
 
-/* Remove standing line styles and use border instead */
 .standing-line {
     display: none !important;
 }
@@ -551,7 +539,6 @@ body.desktop-menu-open .sleeping-line {
     letter-spacing: -0.5px;
 }
 
-/* UPDATED PRODUCT GRID STYLES */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -620,7 +607,6 @@ body.desktop-menu-open .sleeping-line {
     flex-direction: column;
 }
 
-/* Center align product text */
 .product-item-name {
     font-size: 18px;
     font-weight: 700;
@@ -648,13 +634,11 @@ body.desktop-menu-open .sleeping-line {
     opacity: 0.8;
 }
 
-/* Arrow movement on hover anywhere in the box */
 .product-item:hover .product-item-price svg {
     transform: translate(2px, -2px);
     opacity: 1;
 }
 
-/* Support content styles */
 .support-content {
     padding: 30px 40px;
 }
@@ -938,7 +922,7 @@ body.desktop-menu-open .sleeping-line {
 .below {
     background: #fff;
     color: #000;
-    padding: 0; /* Changed from 70px 0 110px to 0 */
+    padding: 0;
     margin-top: -20px;
     position: relative;
     z-index: 5;
@@ -947,11 +931,10 @@ body.desktop-menu-open .sleeping-line {
     border-top-right-radius: 30px;
 }
 
-/* Our Philosophy Section */
 .about-section {
     max-width: var(--max);
     margin: 0 auto;
-    padding: 100px 40px 0; /* Changed padding from 0 40px to 100px 40px 0 */
+    padding: 100px 40px 0;
     background: #fff;
 }
 
@@ -979,12 +962,10 @@ body.desktop-menu-open .sleeping-line {
     padding: 20px 30px;
 }
 
-/* Left-aligned (odd items) */
 .feature-item-about:nth-child(odd) {
     flex-direction: row;
 }
 
-/* Right-aligned (even items) */
 .feature-item-about:nth-child(even) {
     flex-direction: row-reverse;
 }
@@ -1016,12 +997,10 @@ body.desktop-menu-open .sleeping-line {
     min-height: 80px;
 }
 
-/* Spacing for left-aligned */
 .feature-item-about:nth-child(odd) .feature-content-about {
     padding-left: 25px;
 }
 
-/* Spacing for right-aligned */
 .feature-item-about:nth-child(even) .feature-content-about {
     padding-right: 25px;
     text-align: right;
@@ -1061,7 +1040,7 @@ body.desktop-menu-open .sleeping-line {
 .get-in-touch-section {
     max-width: var(--max);
     margin: 0 auto;
-    padding: 100px 40px 80px; /* Changed padding from 0 40px 80px to 100px 40px 80px */
+    padding: 100px 40px 80px;
     background: #fff;
 }
 
@@ -1393,7 +1372,6 @@ body.desktop-menu-open .sleeping-line {
     width: 100%;
 }
 
-/* REMOVED PILL-BTN STYLES (Buy Now button styles) */
 .pill-btn {
     display: none;
 }
@@ -2070,8 +2048,6 @@ body.desktop-menu-open {
     transform: translate(2px, -2px);
 }
 
-/* Add transition delay for topbar when menu closes */
-/* When menu is closing, keep topbar opaque for 1 second */
 .topbar-wrap.menu-closing .topbar {
     background: #fff !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
@@ -2084,18 +2060,15 @@ body.desktop-menu-open {
     transition: color 320ms ease 1s !important;
 }
 
-/* During closing state, hamburger icon should be black */
 .topbar-wrap.menu-closing .menu-icon span {
     background: rgba(0, 0, 0, 0.8) !important;
     transition: background-color 320ms ease 1s !important;
 }
 
-/* Ensure topbar stays opaque during the entire closing animation */
 .topbar-wrap.menu-closing .topbar {
     pointer-events: auto !important;
 }
 
-/* When menu is closed and NOT in closing state, revert to transparent on non-hover */
 .topbar-wrap:not(.menu-open):not(.menu-closing):not(:hover) .topbar {
     background: transparent !important;
     box-shadow: none !important;
@@ -2110,13 +2083,12 @@ body.desktop-menu-open {
     background: #fff !important;
 }
 
-/* CLEAN CART STYLES */
 .cart-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    min-height: 40px; /* Ensure consistent height */
+    min-height: 40px;
 }
 
 .cart-item-count {
@@ -2151,11 +2123,9 @@ body.desktop-menu-open {
     justify-content: space-between;
     padding: 12px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    /* REMOVE hover background transition */
 }
 
 .cart-item:hover {
-    /* REMOVE hover background */
     background-color: transparent;
 }
 
@@ -2165,7 +2135,7 @@ body.desktop-menu-open {
 
 .cart-item-info {
     flex: 1;
-    min-width: 0; /* Prevent text overflow issues */
+    min-width: 0;
 }
 
 .cart-item-name {
@@ -2182,7 +2152,6 @@ body.desktop-menu-open {
     font-weight: 600;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.8);
-    /* Ensure price displays properly */
     display: block;
     margin-top: 2px;
 }
@@ -2194,7 +2163,6 @@ body.desktop-menu-open {
     margin-left: 16px;
 }
 
-/* Delete button */
 .cart-item-delete {
     background: none;
     border: none;
@@ -2207,7 +2175,7 @@ body.desktop-menu-open {
     justify-content: center;
     border-radius: 6px;
     transition: all 0.2s ease;
-    margin-left: auto; /* Push to right */
+    margin-left: auto;
 }
 
 .cart-item-delete:hover {
@@ -2215,7 +2183,6 @@ body.desktop-menu-open {
     background: rgba(239, 68, 68, 0.1);
 }
 
-/* Empty state */
 .empty-state {
     text-align: center;
     padding: 60px 20px;
@@ -2243,7 +2210,6 @@ body.desktop-menu-open {
     line-height: 1.5;
 }
 
-/* Cart total */
 .cart-total-container {
     margin-top: 20px;
     padding-top: 20px;
@@ -2280,7 +2246,7 @@ body.desktop-menu-open {
     font-size: 15px;
     cursor: pointer;
     transition: all 0.2s ease;
-    position: relative; /* Add for success state */
+    position: relative;
 }
 
 .cart-checkout-btn:hover:not(.success) {
@@ -2327,7 +2293,6 @@ body.desktop-menu-open {
     font-size: 15px;
 }
 
-/* Quantity controls */
 .cart-item-quantity {
     display: flex;
     align-items: center;
@@ -2367,12 +2332,10 @@ body.desktop-menu-open {
     text-align: center;
 }
 
-/* Remove old delete button styles */
 .cart-item-delete {
     display: none !important;
 }
 
-/* Adjust cart item layout for quantity controls */
 .cart-item {
     display: flex;
     align-items: center;
@@ -2430,7 +2393,6 @@ body.desktop-menu-open {
                 </div>
 
                 <div class="desktop-expand" id="desktopExpand">
-                    <!-- SLEEPING LINE - SEPARATE ELEMENT -->
                     <div class="sleeping-line" style="transition-delay: 100ms"></div>
                     
                     <div class="desktop-expand-content">
@@ -2479,7 +2441,6 @@ body.desktop-menu-open {
                             </div>
                         </div>
 
-<!-- CLEAN CART CONTENT -->
 <div class="nav-content cart-content" id="cartContent">
     <div class="cart-header">
         <h3 class="nav-content-title">Your Cart</h3>
@@ -2487,10 +2448,8 @@ body.desktop-menu-open {
     </div>
     
     <div class="cart-items-container" id="cartItemsContainer">
-        <!-- Cart items will be inserted here -->
     </div>
     
-    <!-- Cart total -->
     <div class="cart-total-container" id="cartSummary" style="display: none;">
         <div class="cart-total-row">
             <div class="cart-total-label">Total</div>
@@ -2512,7 +2471,7 @@ body.desktop-menu-open {
                             <div class="support-grid">
                                 <div class="support-left">
                                     <div class="support-image-container">
-                                        <img src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/handshake.jpg"
+                                        <img src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/rizzora/handshake.jpg"
                                             alt="Support" class="support-image">
                                         <div class="support-overlay-text">Support</div>
                                     </div>
@@ -2575,7 +2534,7 @@ body.desktop-menu-open {
         <div class="video-container" id="desktopVideo">
             <video autoplay muted loop playsinline preload="auto" id="desktopVideoEl" crossorigin="anonymous">
                 <source
-                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/rizzora_trailer.mp4"
+                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/rizzora/rizzora_trailer.mp4"
                     type="video/mp4" />
             </video>
         </div>
@@ -2616,7 +2575,7 @@ body.desktop-menu-open {
                     <div class="catalogue-card">
                         <div class="product-image-container">
                             <img class="product-image"
-                                src="https://lakshkukreja07.github.io/assets/src/rizzora_core_catalogue.png" alt="Rizzora Core">
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora/rizzora_core_catalogue.png" alt="Rizzora Core">
                         </div>
                         <div class="catalogue-content">
                             <h3>Rizzora Core</h3>
@@ -2630,7 +2589,7 @@ body.desktop-menu-open {
 
                     <div class="catalogue-card">
                         <div class="product-image-container">
-                            <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_ice_catalogue.png"
+                            <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora/rizzora_ice_catalogue.png"
                                 alt="Rizzora Ice">
                         </div>
                         <div class="catalogue-content">
@@ -2646,7 +2605,7 @@ body.desktop-menu-open {
                     <div class="catalogue-card">
                         <div class="product-image-container">
                             <img class="product-image"
-                                src="https://lakshkukreja07.github.io/assets/src/rizzora_femme_catalogue.png" alt="Rizzora Femme">
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora/rizzora_femme_catalogue.png" alt="Rizzora Femme">
                         </div>
                         <div class="catalogue-content">
                             <h3>Rizzora Femme</h3>
@@ -2661,7 +2620,7 @@ body.desktop-menu-open {
                     <div class="catalogue-card">
                         <div class="product-image-container">
                             <img class="product-image"
-                                src="https://lakshkukreja07.github.io/assets/src/rizzora_noir_catalogue.png" alt="Rizzora Noir">
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora/rizzora_noir_catalogue.png" alt="Rizzora Noir">
                         </div>
                         <div class="catalogue-content">
                             <h3>Rizzora Noir</h3>
@@ -2676,7 +2635,7 @@ body.desktop-menu-open {
                     <div class="catalogue-card">
                         <div class="product-image-container">
                             <img class="product-image"
-                                src="https://lakshkukreja07.github.io/assets/src/rizzora_aura_catalogue.png" alt="Rizzora Aura">
+                                src="https://lakshkukreja07.github.io/assets/src/rizzora/rizzora_aura_catalogue.png" alt="Rizzora Aura">
                         </div>
                         <div class="catalogue-content">
                             <h3>Rizzora Aura</h3>
@@ -2690,7 +2649,7 @@ body.desktop-menu-open {
 
                     <div class="catalogue-card">
                         <div class="product-image-container">
-                            <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora_zen_catalogue.png"
+                            <img class="product-image" src="https://lakshkukreja07.github.io/assets/src/rizzora/rizzora_zen_catalogue.png"
                                 alt="Rizzora Zen">
                         </div>
                         <div class="catalogue-content">
@@ -2962,7 +2921,6 @@ body.desktop-menu-open {
     </div>
 
 <script>
-    // Prevent initial animation on page load
     const style = document.createElement('style');
     style.textContent = `
         .desktop-expand,
@@ -3042,7 +3000,6 @@ body.desktop-menu-open {
         VIDEO_PAUSED: 'rizzora_video_paused'
     };
 
-    // Product price mapping - FIXED PRICES
     const productPrices = {
         core: 999,
         ice: 1199,
@@ -3085,7 +3042,6 @@ body.desktop-menu-open {
         const existingItemIndex = cart.findIndex(item => item.key === productKey);
 
         if (existingItemIndex === -1) {
-            // ADD ITEM WITH QUANTITY 1
             cart.push({
                 key: productKey,
                 name: productData.name,
@@ -3103,7 +3059,6 @@ body.desktop-menu-open {
             updateCartUI();
             return true;
         } else {
-            // REMOVING ITEM (when clicking "Add to Cart" on already added item)
             cart.splice(existingItemIndex, 1);
             localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
 
@@ -3167,12 +3122,10 @@ body.desktop-menu-open {
         return images[productKey] || '';
     }
 
-    // UPDATED CART UI FUNCTION - SIMPLIFIED PRICE DISPLAY
     function updateCartUI() {
         const cart = getCartItems();
         cartItemsContainer.innerHTML = '';
 
-        // Update item count
         cartItemCount.textContent = `${cart.length} ${cart.length === 1 ? 'item' : 'items'}`;
 
         if (cart.length === 0) {
@@ -3181,14 +3134,12 @@ body.desktop-menu-open {
             emptyState.innerHTML = '<i class="fas fa-shopping-cart"></i><p>Your cart is empty</p><div class="subtext">Add items to get started</div>';
             cartItemsContainer.appendChild(emptyState);
             
-            // Hide summary when cart is empty
             cartSummary.style.display = 'none';
             checkoutBtn.disabled = true;
             checkoutBtn.innerHTML = '<i data-lucide="lock"></i> Checkout';
             lucide.createIcons();
             cartTotal.textContent = '₹0';
         } else {
-            // Show summary when cart has items
             cartSummary.style.display = 'block';
             checkoutBtn.disabled = false;
             checkoutBtn.innerHTML = '<i data-lucide="lock"></i> Checkout';
@@ -3217,7 +3168,6 @@ body.desktop-menu-open {
                 cartItemsContainer.appendChild(cartItem);
             });
 
-            // Add event listeners to quantity buttons
             document.querySelectorAll('.quantity-btn').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const index = parseInt(e.currentTarget.getAttribute('data-index'));
@@ -3226,7 +3176,6 @@ body.desktop-menu-open {
                 });
             });
             
-            // Update total
             cartTotal.textContent = `₹${totalAmount}`;
         }
     }
@@ -3246,12 +3195,10 @@ body.desktop-menu-open {
             } else if (action === 'decrease') {
                 item.quantity -= 1;
                 
-                // Remove item if quantity reaches 0
                 if (item.quantity <= 0) {
                     const productKey = item.key;
                     cart.splice(index, 1);
                     
-                    // Update product state
                     const states = getProductStates();
                     if (states[productKey]) {
                         states[productKey].inCart = false;
@@ -3260,13 +3207,10 @@ body.desktop-menu-open {
                 }
             }
             
-            // Save updated cart
             localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
             
-            // Update UI
             updateCartUI();
             
-            // Update product popup if it's open for this product
             if (currentProductKey === item.key && productPopup.classList.contains('active')) {
                 if (cart.find(cartItem => cartItem.key === item.key)) {
                     addToCartBtn.innerHTML = '<i data-lucide="check"></i> Added';
@@ -3296,7 +3240,6 @@ body.desktop-menu-open {
             
             updateCartUI();
             
-            // Update product popup if it's open for this product
             if (currentProductKey === productKey && productPopup.classList.contains('active')) {
                 addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
                 addToCartBtn.classList.remove('added');
@@ -3333,7 +3276,6 @@ body.desktop-menu-open {
                 wishlistItemsContainer.appendChild(wishlistItem);
             });
 
-            // Add event listeners to delete buttons
             document.querySelectorAll('#wishlistItemsContainer .cart-item-delete').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const index = parseInt(e.currentTarget.getAttribute('data-index'));
@@ -3361,7 +3303,6 @@ body.desktop-menu-open {
             
             updateWishlistUI();
             
-            // Update product popup if it's open for this product
             if (currentProductKey === productKey && productPopup.classList.contains('active')) {
                 addToWishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Wishlist';
                 addToWishlistBtn.classList.remove('wishlisted');
@@ -3446,7 +3387,6 @@ body.desktop-menu-open {
     };
 
     function setupNavigation() {
-        // Use the updated product grid layout with bottle images
         populateProductGrid('standardProducts', ['core', 'ice']);
         populateProductGrid('premiumProducts', ['femme', 'noir']);
         populateProductGrid('luxuryProducts', ['aura', 'zen']);
@@ -3463,7 +3403,6 @@ body.desktop-menu-open {
                 if (contentElement) {
                     contentElement.classList.add('active');
                     
-                    // Update UI for cart and wishlist when clicked
                     if (contentId === 'cart') {
                         updateCartUI();
                     } else if (contentId === 'wishlist') {
@@ -3510,7 +3449,6 @@ body.desktop-menu-open {
     function openMenu() {
         isMenuOpen = true;
         
-        // Remove any closing states
         topbarWrap.classList.remove('menu-closing');
         menuBtn.classList.remove("is-closing");
         
@@ -3519,7 +3457,6 @@ body.desktop-menu-open {
         menuBtn.classList.add("is-open");
         document.body.style.overflow = "hidden";
         
-        // Update cart UI when menu opens
         updateCartUI();
         updateWishlistUI();
     }
@@ -3527,24 +3464,19 @@ body.desktop-menu-open {
     function closeMenu() {
         isMenuOpen = false;
         
-        // Remove menu classes first - this starts closing the desktop expand section
         topbarWrap.classList.remove('menu-open');
         document.body.classList.remove("desktop-menu-open");
         document.body.style.overflow = "";
         
-        // Add closing animation to menu icon - this syncs with menu closing (400ms)
         menuBtn.classList.remove("is-open");
         menuBtn.classList.add("is-closing");
         
-        // Add closing state to keep topbar opaque for 1 second
         topbarWrap.classList.add('menu-closing');
         
-        // Remove the menu icon closing animation after 400ms (same as menu closing)
         setTimeout(() => {
             menuBtn.classList.remove("is-closing");
         }, 400);
         
-        // Remove closing state after 1 second (for topbar opacity)
         setTimeout(() => {
             topbarWrap.classList.remove('menu-closing');
         }, 1000);
@@ -3554,7 +3486,6 @@ body.desktop-menu-open {
         if (isMenuOpen) {
             closeMenu();
         } else {
-            // Remove any closing state if opening menu
             topbarWrap.classList.remove('menu-closing');
             requestAnimationFrame(() => {
                 openMenu();
@@ -3684,13 +3615,11 @@ body.desktop-menu-open {
         const states = getProductStates();
         const productState = states[productKey] || {};
 
-        // Reset buttons
         addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
         addToCartBtn.className = 'popup-btn popup-btn-primary';
         addToWishlistBtn.innerHTML = '<i class="fas fa-heart"></i> Add to Wishlist';
         addToWishlistBtn.className = 'popup-btn popup-btn-secondary';
 
-        // Update based on current state
         if (productState.inCart) {
             addToCartBtn.innerHTML = '<i data-lucide="check"></i> Added';
             addToCartBtn.classList.add('added');
@@ -3859,11 +3788,8 @@ body.desktop-menu-open {
         catalogueSection.scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Checkout button functionality - SIMPLIFIED (does nothing)
     if (checkoutBtn) {
         checkoutBtn.addEventListener('click', () => {
-            // Do nothing when checkout button is clicked
-            // Just leave it as a static button
             console.log('Checkout button clicked (no action)');
         });
     }
@@ -3938,13 +3864,11 @@ body.desktop-menu-open {
             }
         }
         
-        // Video pause/play shortcut for both Mac and Windows
         if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'L') {
             e.preventDefault();
             toggleVideo();
         }
         
-        // Simpler shortcut - just Shift + L for all systems
         if (e.shiftKey && e.key === 'L' && !e.ctrlKey && !e.metaKey) {
             e.preventDefault();
             toggleVideo();
