@@ -1,7 +1,7 @@
 <!-- ------------------------------------------------------------------- -->
 <!-- Description : Jai Hind College | IMC 2026 Website (Custom Build)    -->
 <!-- Author      : © Laksh Kukreja (@lakshkukreja07)                     -->
-<!-- Updated     : Last On 20 February 2026 At 06:10PM [IST]             -->
+<!-- Updated     : Last On 25 February 2026 At 08:15PM [IST]             -->
 <!-- License     : GNU General Public License V3 | Or Later              -->
 <!-- License URI : https://www.gnu.org/licenses/gpl-3.0.en.html          -->
 <!-- Copyright   : (CC) 2022-2026 Laksh Kukreja                          -->
@@ -1075,10 +1075,13 @@
             background: var(--bg);
         }
 
+        /* Unified speaker card styles */
         .speakers-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
+            flex-wrap: wrap;
             gap: 1.5rem;
+            justify-content: center;
+            margin: 0 auto;
         }
 
         .speaker-card {
@@ -1089,19 +1092,26 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
             display: flex;
             flex-direction: column;
-            border: var(--border-light);
+            border: 2px solid rgba(212, 175, 55, 0.25);
+            width: 260px;
+            max-width: 260px;
+            flex: 0 0 auto;
         }
 
         .speaker-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 18px 35px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
         }
 
         .speaker-image {
             width: 100%;
-            aspect-ratio: 1 / 1.1;
+            aspect-ratio: 1 / 1;
             background: white;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .speaker-image img {
@@ -1117,121 +1127,62 @@
         }
 
         .speaker-info {
-            padding: 1.4rem 1.2rem 1.2rem;
+            padding: 0.8rem 0.8rem 0.8rem;
             flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .speaker-name {
-            font-family: 'Manrope', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.3rem;
-        }
-
-        .speaker-title {
-            color: var(--accent);
-            font-weight: 500;
-            font-size: 0.85rem;
-            margin-bottom: 0.8rem;
-            flex-grow: 1;
-        }
-
-        .speaker-card.national-speaker {
-            border: 2px solid rgba(212, 175, 55, 0.25);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-            padding: 0;
-        }
-
-        .speaker-card.national-speaker::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, rgba(212, 175, 55, 0.02), transparent);
-            z-index: 0;
-        }
-
-        .speaker-card.national-speaker:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 40px rgba(212, 175, 55, 0.25), 0 0 0 2px rgba(212, 175, 55, 0.4);
-            border-color: transparent;
-        }
-
-        .speaker-card.national-speaker .speaker-image {
-            width: 100%;
-            aspect-ratio: 1 / 1.1;
-            background: white;
-            overflow: hidden;
-            border-bottom: none;
-        }
-
-        .speaker-card.national-speaker .speaker-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top 20% center;
-            transition: transform 0.4s;
-            display: block;
-        }
-
-        .speaker-card.national-speaker .speaker-info {
-            position: relative;
-            z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 1.5rem 1.2rem;
-            border-top: none;
+            justify-content: flex-start;
         }
 
-        .speaker-divider {
-            width: 100%;
-            height: 1px;
-            background: var(--accent);
-            margin: 0.75rem 0;
-            opacity: 0.4;
-        }
-
-        .speaker-card.national-speaker .speaker-role {
-            font-size: 0.9rem;
+        .speaker-role {
+            font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--accent);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
             text-transform: uppercase;
         }
 
-        .speaker-card.national-speaker .speaker-name {
-            font-size: 1.4rem;
-            margin-bottom: 0.25rem;
+        .speaker-name {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
             color: var(--primary);
+            margin-bottom: 0.15rem;
+            line-height: 1.2;
         }
 
-        .speaker-card.national-speaker .speaker-title {
-            font-size: 0.9rem;
+        .speaker-title {
             color: var(--text-light);
-            margin-bottom: 0.25rem;
+            font-weight: 500;
+            font-size: 0.75rem;
+            margin-bottom: 0.4rem;
+            min-height: 2.2em;
+            line-height: 1.3;
+        }
+
+        .speaker-divider {
+            width: 50%;
+            height: 1px;
+            background: var(--accent);
+            margin: 0.3rem auto;
+            opacity: 0.4;
         }
 
         .speaker-linkedin {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: rgba(212, 175, 55, 0.1);
             color: var(--accent);
             transition: all 0.3s ease;
-            margin-top: 0.5rem;
+            margin-top: 0.25rem;
+            align-self: center;
         }
 
         .speaker-linkedin:hover {
@@ -1239,6 +1190,18 @@
             color: var(--primary);
             transform: translateY(-3px);
             box-shadow: 0 8px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .guests-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .guest-col {
+            flex: 0 0 auto;
         }
 
         .schedule {
@@ -2079,25 +2042,72 @@
                 padding: 4px 12px !important;
             }
 
+            /* Mobile speaker cards - all in 2 columns with tighter spacing */
             .speakers-grid {
-                grid-template-columns: 1fr !important;
-                gap: 1rem;
-            }
-
-            .guests-row {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .guest-col {
-                max-width: 100%;
-                min-width: auto;
-                width: 100%;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
             }
 
             .speaker-card {
+                width: 100% !important;
                 max-width: 100% !important;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .guests-row {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+                width: 100%;
+            }
+
+            .guest-col {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .speaker-image {
+                aspect-ratio: 1/1;
+                max-height: 140px;
+            }
+
+            .speaker-info {
+                padding: 0.5rem 0.3rem 0.5rem;
+            }
+
+            .speaker-name {
+                font-size: 0.9rem !important;
+                margin-bottom: 0.1rem;
+            }
+
+            .speaker-title {
+                font-size: 0.65rem !important;
+                margin-bottom: 0.3rem;
+                min-height: 2em;
+            }
+
+            .speaker-role {
+                font-size: 0.6rem !important;
+                margin-bottom: 0.1rem;
+            }
+
+            .speaker-divider {
+                width: 40%;
+                margin: 0.2rem auto;
+            }
+
+            .speaker-linkedin {
+                width: 28px;
+                height: 28px;
+                margin-top: 0.15rem;
+            }
+
+            .speaker-linkedin svg {
+                width: 16px;
+                height: 16px;
             }
 
             .attend-row {
@@ -2757,13 +2767,13 @@
             </div>
 
             <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Distinguished Guests</h3>
-            <div class="guests-row" style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-                <div class="guest-col" style="flex: 1 1 260px; max-width: 280px;">
-                    <div class="speaker-card national-speaker" style="max-width: 280px; margin: 0 auto;">
-                        <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 200px; overflow: hidden;">
-                            <img loading="lazy" width="280" height="280"
+            <div class="guests-row">
+                <div class="guest-col">
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img loading="lazy" width="260" height="260"
                                 src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prof_ravindra_kulkarni.png"
-                                alt="Prof. Ravindra Kulkarni - Vice Chancellor, University of Mumbai and Chief Guest at Jai Hind College Conference 2026"
+                                alt="Prof. Ravindra Kulkarni"
                                 style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(1);">
                         </div>
                         <div class="speaker-info">
@@ -2773,12 +2783,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="guest-col" style="flex: 1 1 260px; max-width: 280px;">
-                    <div class="speaker-card national-speaker" style="max-width: 280px; margin: 0 auto;">
-                        <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 200px; overflow: hidden;">
-                            <img loading="lazy" width="280" height="280"
+                <div class="guest-col">
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img loading="lazy" width="260" height="260"
                                 src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prin_dr_ajay_bhamare.png"
-                                alt="Prin. (Dr.) Ajay Bhamare - Pro-Vice-Chancellor, University of Mumbai and Guest of Honor at Jai Hind College Conference"
+                                alt="Prin. (Dr.) Ajay Bhamare"
                                 style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9) translateY(10px);">
                         </div>
                         <div class="speaker-info">
@@ -2793,23 +2803,23 @@
             <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Panel Discussion On Contemporary
                 Management Research</h3>
             <div class="speakers-grid">
-                <div class="speaker-card national-speaker" style="max-width: 280px; margin: 0 auto; width: 100%;">
-                    <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 220px; overflow: hidden;">
-                        <img loading="lazy" width="280" height="280"
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mehul_raithatha.png"
-                            alt="Dr. Mehul Raithatha - Panelist from IIM Ahmedabad at Jai Hind College Conference"
-                            style="width: 100%; height: 100%; object-fit: contain; object-position: top;  transform: scale(0.9);">
+                            alt="Dr. Mehul Raithatha"
+                            style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
                     </div>
-                    <div class="speaker-info" style="padding: 1rem 0.8rem;">
+                    <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name" style="font-size: 1.2rem;">Dr. Mehul Raithatha</h3>
+                        <h3 class="speaker-name">Dr. Mehul Raithatha</h3>
                         <p class="speaker-title">IIM Ahmedabad</p>
-                        <div class="speaker-divider" style="margin: 0.5rem 0;"></div>
+                        <div class="speaker-divider"></div>
                         <a href="https://in.linkedin.com/in/dr-mehul-raithatha-ba53762a" class="speaker-linkedin"
                             target="_blank" rel="noopener noreferrer"
                             aria-label="LinkedIn profile of Dr. Mehul Raithatha">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
+                                stroke-width="2">
                                 <path
                                     d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                                 <rect width="4" height="12" x="2" y="9" />
@@ -2819,23 +2829,23 @@
                     </div>
                 </div>
 
-                <div class="speaker-card national-speaker" style="max-width: 280px; margin: 0 auto; width: 100%;">
-                    <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 220px; overflow: hidden;">
-                        <img loading="lazy" width="280" height="280"
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mousami_prasad.jpg"
-                            alt="Dr. Mousami Prasad - Panelist from IIT Kanpur at Jai Hind College Conference"
-                            style="width: 100%; height: 100%; object-fit: contain; object-position: top;  transform: scale(0.9);">
+                            alt="Dr. Mousami Prasad"
+                            style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
                     </div>
-                    <div class="speaker-info" style="padding: 1rem 0.8rem;">
+                    <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name" style="font-size: 1.2rem;">Dr. Mousami Prasad</h3>
+                        <h3 class="speaker-name">Dr. Mousami Prasad</h3>
                         <p class="speaker-title">IIT Kanpur</p>
-                        <div class="speaker-divider" style="margin: 0.5rem 0;"></div>
+                        <div class="speaker-divider"></div>
                         <a href="https://in.linkedin.com/in/mousami-prasad-42430a12" class="speaker-linkedin"
                             target="_blank" rel="noopener noreferrer"
                             aria-label="LinkedIn profile of Dr. Mousami Prasad">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
+                                stroke-width="2">
                                 <path
                                     d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                                 <rect width="4" height="12" x="2" y="9" />
@@ -2845,22 +2855,22 @@
                     </div>
                 </div>
 
-                <div class="speaker-card national-speaker" style="max-width: 280px; margin: 0 auto; width: 100%;">
-                    <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 220px; overflow: hidden;">
-                        <img loading="lazy" width="280" height="280"
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_preeti_virdi.jpg"
-                            alt="Dr. Preeti Virdi - Panelist from IIM Visakhapatnam at Jai Hind College Conference"
+                            alt="Dr. Preeti Virdi"
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
                     </div>
-                    <div class="speaker-info" style="padding: 1rem 0.8rem;">
+                    <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name" style="font-size: 1.2rem;">Dr. Preeti Virdi</h3>
+                        <h3 class="speaker-name">Dr. Preeti Virdi</h3>
                         <p class="speaker-title">IIM Visakhapatnam</p>
-                        <div class="speaker-divider" style="margin: 0.5rem 0;"></div>
+                        <div class="speaker-divider"></div>
                         <a href="https://www.linkedin.com/in/preetirvirdi/" class="speaker-linkedin" target="_blank"
                             rel="noopener noreferrer" aria-label="LinkedIn profile of Dr. Preeti Virdi">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
+                                stroke-width="2">
                                 <path
                                     d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                                 <rect width="4" height="12" x="2" y="9" />
@@ -2870,22 +2880,22 @@
                     </div>
                 </div>
 
-                <div class="speaker-card national-speaker" style="max-width: 280px; margin: 0 auto; width: 100%;">
-                    <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 220px; overflow: hidden;">
-                        <img loading="lazy" width="280" height="280"
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_disha_bhanot.jpg"
-                            alt="Dr. Disha Bhanot - Moderator from SPJIMR Mumbai at Jai Hind College Conference"
+                            alt="Dr. Disha Bhanot"
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
                     </div>
-                    <div class="speaker-info" style="padding: 1rem 0.8rem;">
+                    <div class="speaker-info">
                         <p class="speaker-role">MODERATOR</p>
-                        <h3 class="speaker-name" style="font-size: 1.2rem;">Dr. Disha Bhanot</h3>
+                        <h3 class="speaker-name">Dr. Disha Bhanot</h3>
                         <p class="speaker-title">S.P. Jain Institute of Management & Research, Mumbai</p>
-                        <div class="speaker-divider" style="margin: 0.5rem 0;"></div>
+                        <div class="speaker-divider"></div>
                         <a href="https://www.spjimr.org/faculty/disha-bhanot/" class="speaker-linkedin" target="_blank"
                             rel="noopener noreferrer" aria-label="Website profile of Dr. Disha Bhanot at SPJIMR">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
+                                stroke-width="2">
                                 <circle cx="12" cy="12" r="10" />
                                 <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
                                 <path d="M2 12h20" />
@@ -2897,26 +2907,24 @@
 
             <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Panel Discussion - The Editorial
                 Panel</h3>
-            <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-
-                <div class="speaker-card national-speaker"
-                    style="max-width: 280px; margin: 0 auto; width: 100%; flex: 0 0 280px;">
-                    <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 220px; overflow: hidden;">
-                        <img loading="lazy" width="280" height="280"
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_ashish_kumar_jha.jpg"
-                            alt="Dr. Ashish Kumar Jha - Panelist from Trinity Business School Ireland at Jai Hind College Conference"
+                            alt="Dr. Ashish Kumar Jha"
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9) translateY(10px);">
                     </div>
-                    <div class="speaker-info" style="padding: 1rem 0.8rem;">
+                    <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name" style="font-size: 1.2rem;">Dr. Ashish Kumar Jha</h3>
+                        <h3 class="speaker-name">Dr. Ashish Kumar Jha</h3>
                         <p class="speaker-title">Trinity Business School, Ireland</p>
-                        <div class="speaker-divider" style="margin: 0.5rem 0;"></div>
+                        <div class="speaker-divider"></div>
                         <a href="https://www.tcd.ie/business/research/the-trinity-centre-for-digital-business--analytics/our-team/akjha/"
                             class="speaker-linkedin" target="_blank" rel="noopener noreferrer"
                             aria-label="Website profile of Dr. Ashish Kumar Jha at Trinity College">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
+                                stroke-width="2">
                                 <circle cx="12" cy="12" r="10" />
                                 <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
                                 <path d="M2 12h20" />
@@ -2925,24 +2933,23 @@
                     </div>
                 </div>
 
-                <div class="speaker-card national-speaker"
-                    style="max-width: 280px; margin: 0 auto; width: 100%; flex: 0 0 280px;">
-                    <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 220px; overflow: hidden;">
-                        <img loading="lazy" width="280" height="280"
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_sunil_tiwari.png"
-                            alt="Dr. Sunil Tiwari - Panelist from University of Bristol England at Jai Hind College Conference"
+                            alt="Dr. Sunil Tiwari"
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(1.3) translateY(10px);">
                     </div>
-                    <div class="speaker-info" style="padding: 1rem 0.8rem;">
+                    <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name" style="font-size: 1.2rem;">Dr. Sunil Tiwari</h3>
+                        <h3 class="speaker-name">Dr. Sunil Tiwari</h3>
                         <p class="speaker-title">University of Bristol, England</p>
-                        <div class="speaker-divider" style="margin: 0.5rem 0;"></div>
+                        <div class="speaker-divider"></div>
                         <a href="https://www.bristol.ac.uk/people/person/Sunil-Tiwari-2fe86b81-80f7-4969-a61e-0c24efae16f7/"
                             class="speaker-linkedin" target="_blank" rel="noopener noreferrer"
                             aria-label="Website profile of Dr. Sunil Tiwari at University of Bristol">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
+                                stroke-width="2">
                                 <circle cx="12" cy="12" r="10" />
                                 <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
                                 <path d="M2 12h20" />
@@ -2951,24 +2958,23 @@
                     </div>
                 </div>
 
-                <div class="speaker-card national-speaker"
-                    style="max-width: 280px; margin: 0 auto; width: 100%; flex: 0 0 280px;">
-                    <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 220px; overflow: hidden;">
-                        <img loading="lazy" width="280" height="280"
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_baidyanath_biswas.png"
-                            alt="Dr. Baidyanath Biswas - Panelist from Trinity Business School Ireland at Jai Hind College Conference"
+                            alt="Dr. Baidyanath Biswas"
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(1);">
                     </div>
-                    <div class="speaker-info" style="padding: 1rem 0.8rem;">
+                    <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name" style="font-size: 1.2rem;">Dr. Baidyanath Biswas</h3>
+                        <h3 class="speaker-name">Dr. Baidyanath Biswas</h3>
                         <p class="speaker-title">Trinity Business School, Ireland</p>
-                        <div class="speaker-divider" style="margin: 0.5rem 0;"></div>
+                        <div class="speaker-divider"></div>
                         <a href="https://ie.linkedin.com/in/baidyanath-biswas-47604635/" class="speaker-linkedin"
                             target="_blank" rel="noopener noreferrer"
                             aria-label="LinkedIn profile of Dr. Baidyanath Biswas">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
+                                stroke-width="2">
                                 <path
                                     d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                                 <rect width="4" height="12" x="2" y="9" />
@@ -2981,27 +2987,24 @@
 
             <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Paper Development Workshop on
                 Systematic Literature Review</h3>
-            <div
-                style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; max-width: 900px; margin: 0 auto;">
-
-                <div class="speaker-card national-speaker"
-                    style="max-width: 280px; margin: 0; width: 100%; flex: 0 0 280px;">
-                    <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 220px; overflow: hidden;">
-                        <img loading="lazy" width="280" height="280"
+            <div class="speakers-grid" style="justify-content: center; max-width: 900px; margin: 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_shubham_singhania.jpg"
-                            alt="Dr. Shubham Singhania - Workshop Leader from FORE School of Management New Delhi"
+                            alt="Dr. Shubham Singhania"
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
                     </div>
-                    <div class="speaker-info" style="padding: 1rem 0.8rem;">
+                    <div class="speaker-info">
                         <p class="speaker-role">WORKSHOP LEADER</p>
-                        <h3 class="speaker-name" style="font-size: 1.2rem;">Dr. Shubham Singhania</h3>
+                        <h3 class="speaker-name">Dr. Shubham Singhania</h3>
                         <p class="speaker-title">FORE School of Management, New Delhi</p>
-                        <div class="speaker-divider" style="margin: 0.5rem 0;"></div>
+                        <div class="speaker-divider"></div>
                         <a href="https://www.linkedin.com/in/dr-shubham-singhania-9aa565a1/" class="speaker-linkedin"
                             target="_blank" rel="noopener noreferrer"
                             aria-label="LinkedIn profile of Dr. Shubham Singhania">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
+                                stroke-width="2">
                                 <path
                                     d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                                 <rect width="4" height="12" x="2" y="9" />
@@ -3011,24 +3014,76 @@
                     </div>
                 </div>
 
-                <div class="speaker-card national-speaker"
-                    style="max-width: 280px; margin: 0; width: 100%; flex: 0 0 280px;">
-                    <div class="speaker-image" style="aspect-ratio: 1/1; max-height: 220px; overflow: hidden;">
-                        <img loading="lazy" width="280" height="280"
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_varda_sardana.jpg"
-                            alt="Dr. Varda Sardana - Workshop Leader from Jaipuria Institute Noida"
+                            alt="Dr. Varda Sardana"
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
                     </div>
-                    <div class="speaker-info" style="padding: 1rem 0.8rem;">
+                    <div class="speaker-info">
                         <p class="speaker-role">WORKSHOP LEADER</p>
-                        <h3 class="speaker-name" style="font-size: 1.2rem;">Dr. Varda Sardana</h3>
+                        <h3 class="speaker-name">Dr. Varda Sardana</h3>
                         <p class="speaker-title">Jaipuria Institute, Noida</p>
-                        <div class="speaker-divider" style="margin: 0.5rem 0;"></div>
+                        <div class="speaker-divider"></div>
                         <a href="https://www.linkedin.com/in/dr-varda-sardana-120b8684/" class="speaker-linkedin"
                             target="_blank" rel="noopener noreferrer"
                             aria-label="LinkedIn profile of Dr. Varda Sardana">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
+                                stroke-width="2">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect width="4" height="12" x="2" y="9" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Art of Case Writing</h3>
+            <div class="speakers-grid" style="justify-content: center; max-width: 900px; margin: 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
+                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_mita_dixit.png"
+                            alt="Dr. Mita Dixit"
+                            style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
+                    </div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">RESOURCE PERSON</p>
+                        <h3 class="speaker-name">Dr. Mita Dixit</h3>
+                        <p class="speaker-title">Director & Family Business Advisor (FFI-USA)</p>
+                        <div class="speaker-divider"></div>
+                        <a href="https://in.linkedin.com/in/mitadixit" class="speaker-linkedin" target="_blank"
+                            rel="noopener noreferrer" aria-label="LinkedIn profile of Dr. Mita Dixit">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect width="4" height="12" x="2" y="9" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img loading="lazy" width="260" height="260"
+                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_savita_chabbra.png"
+                            alt="Mrs. Savita Chhabra"
+                            style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
+                    </div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">GUEST OF HONOR</p>
+                        <h3 class="speaker-name">Mrs. Savita Chhabra</h3>
+                        <p class="speaker-title">Founder Chairperson, HRIPL</p>
+                        <div class="speaker-divider"></div>
+                        <a href="https://in.linkedin.com/in/savitachhabra" class="speaker-linkedin" target="_blank"
+                            rel="noopener noreferrer" aria-label="LinkedIn profile of Dr. Varda Sardana">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path
                                     d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                                 <rect width="4" height="12" x="2" y="9" />
@@ -3387,8 +3442,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_rajesh_thadani.jpg"
-                            alt="Dr. Rajesh Thadani - Board President, Jai Hind College Mumbai"
-                            style="object-fit: contain; object-position: top; transform: scale(0.9);">
+                            alt="Dr. Rajesh Thadani - Board President, Jai Hind College Mumbai">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Dr. Rajesh Thadani</div>
@@ -3406,8 +3460,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prof_dr_vijay_dabholkar.jpg"
-                            alt="Prof. (Dr.) Vijay Dabholkar - Principal, Jai Hind College Mumbai"
-                            style="object-fit: contain; object-position: top; transform: scale(1.1) translateY(-2px);">
+                            alt="Prof. (Dr.) Vijay Dabholkar - Principal, Jai Hind College Mumbai">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Prof. (Dr.) Vijay Dabholkar</div>
@@ -3425,8 +3478,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_rakhi_sharma.jpg"
-                            alt="Dr. Rakhi Sharma - Director AICTE Programs, Jai Hind College"
-                            style="object-fit: contain; object-position: top; transform: scale(1.1) translateY(-17px);">
+                            alt="Dr. Rakhi Sharma - Director AICTE Programs, Jai Hind College">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Dr. Rakhi Sharma</div>
@@ -3447,8 +3499,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_chandrakant_salunkhe.jpg"
-                            alt="Dr. Chandrakant Salunkhe - Founder & President, SME Chamber of India"
-                            style="object-fit: contain; object-position: top; transform: scale(0.9) transformY(10px);">
+                            alt="Dr. Chandrakant Salunkhe - Founder & President, SME Chamber of India">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Dr. Chandrakant Salunkhe</div>
@@ -3463,8 +3514,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_shriniwas_dhure.jpg"
-                            alt="Dr. Shriniwas Dhure - Director, Sydenham Institute Mumbai"
-                            style="object-fit: cover; object-position: top; transform: scale(1.1);">
+                            alt="Dr. Shriniwas Dhure - Director, Sydenham Institute Mumbai">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Dr. Shriniwas Dhure</div>
@@ -3480,8 +3530,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_arunima_haldar.jpg"
-                            alt="Dr. Arunima Haldar - Deputy Chairperson, SPJIMR Mumbai"
-                            style="object-fit: contain; object-position: top; transform: scale(1);">
+                            alt="Dr. Arunima Haldar - Deputy Chairperson, SPJIMR Mumbai">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Dr. Arunima Haldar</div>
@@ -3497,8 +3546,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_shishir_k_mishra.jpg"
-                            alt="Mr. Shishir Kumar Mishra - Secretary, FSIB"
-                            style="object-fit: contain; object-position: top;">
+                            alt="Mr. Shishir Kumar Mishra - Secretary, FSIB">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Mr. Shishir Kumar Mishra</div>
@@ -3519,8 +3567,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_prateek_kumar.jpg"
-                            alt="Mr. Prateek Kumar - Organising Committee Member"
-                            style="object-fit: contain; object-position: top; transform: scale(1);">
+                            alt="Mr. Prateek Kumar - Organising Committee Member">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Mr. Prateek Kumar</div>
@@ -3533,8 +3580,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_sajiri_dhumak.jpg"
-                            alt="Mrs. Sajiri Dhumak - Organising Committee Member"
-                            style="object-fit: contain; object-position: top; transform: scale(1.1);">
+                            alt="Mrs. Sajiri Dhumak - Organising Committee Member">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Mrs. Sajiri Dhumak</div>
@@ -3547,8 +3593,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ms_sravya_peethala.jpg"
-                            alt="Ms. Sravya Peethala - Organising Committee Member"
-                            style="object-fit: contain; object-position: top; transform: scale(1);">
+                            alt="Ms. Sravya Peethala - Organising Committee Member">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Ms. Sravya Peethala</div>
@@ -3567,8 +3612,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_yasmin_singaporewala.jpg"
-                            alt="Mrs. Yasmin Singaporewala - Local Organising Committee"
-                            style="object-fit: contain; object-position: top; transform: scale(1);">
+                            alt="Mrs. Yasmin Singaporewala - Local Organising Committee">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Mrs. Yasmin Singaporewala</div>
@@ -3581,8 +3625,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_saiprasad_shetty.png"
-                            alt="Mr. Saiprasad Shetty - Local Organising Committee"
-                            style="object-fit: contain; object-position: top; transform: scale(2.3) translateY(20px);">
+                            alt="Mr. Saiprasad Shetty - Local Organising Committee">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Mr. Saiprasad Shetty</div>
@@ -3595,8 +3638,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_evelyn_correia.jpg"
-                            alt="Mrs. Evelyn Correia - Local Organising Committee"
-                            style="object-fit: contain; object-position: top; transform: scale(1);">
+                            alt="Mrs. Evelyn Correia - Local Organising Committee">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Mrs. Evelyn Correia</div>
@@ -3609,8 +3651,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_dhriti_jain.jpg"
-                            alt="Mrs. Dhriti Jain - Local Organising Committee"
-                            style="object-fit: contain; object-position: top; transform: scale(1);">
+                            alt="Mrs. Dhriti Jain - Local Organising Committee">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Mrs. Dhriti Jain</div>
@@ -3623,8 +3664,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_mohit_patel.jpg"
-                            alt="Mr. Mohit Patel - Local Organising Committee"
-                            style="object-fit: contain; object-position: top; transform: scale(1.2);">
+                            alt="Mr. Mohit Patel - Local Organising Committee">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Mr. Mohit Patel</div>
@@ -3637,8 +3677,7 @@
                     <div class="patron-image">
                         <img loading="lazy" width="280" height="280"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ms_afreen_mazgaonkar.jpg"
-                            alt="Ms. Afreen Mazgaonkar - Local Organising Committee"
-                            style="object-fit: contain; object-position: top; transform: scale(1);">
+                            alt="Ms. Afreen Mazgaonkar - Local Organising Committee">
                     </div>
                     <div class="patron-info">
                         <div class="patron-name">Ms. Afreen Mazgaonkar</div>
