@@ -1,7 +1,7 @@
 <!-- ------------------------------------------------------------------- -->
 <!-- Description : Jai Hind College | IMC 2026 Website (Custom Build)    -->
 <!-- Author      : © Laksh Kukreja (@lakshkukreja07)                     -->
-<!-- Updated     : Last On 25 February 2026 At 08:15PM [IST]             -->
+<!-- Updated     : Last On 27 February 2026 At 11:29PM [IST]             -->
 <!-- License     : GNU General Public License V3 | Or Later              -->
 <!-- License URI : https://www.gnu.org/licenses/gpl-3.0.en.html          -->
 <!-- Copyright   : (CC) 2022-2026 Laksh Kukreja                          -->
@@ -612,7 +612,7 @@
             position: relative;
             width: 100%;
             background-color: #000000;
-            color: var(--accent);
+            color: #ffffff;
             padding: 12px 20px;
             z-index: 15;
             min-height: auto;
@@ -634,6 +634,12 @@
             max-width: 1400px;
             margin: 0 auto;
             width: 100%;
+            color: #ffffff;
+        }
+
+        .marquee-content i {
+            font-style: normal;
+            color: var(--accent);
         }
 
         @media (max-width: 700px) {
@@ -1075,7 +1081,6 @@
             background: var(--bg);
         }
 
-        /* Unified speaker card styles */
         .speakers-grid {
             display: flex;
             flex-wrap: wrap;
@@ -1262,20 +1267,26 @@
             margin: 0;
         }
 
-        .patron-card {
-            border: 2px solid rgba(212, 175, 55, 0.25);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
+        .guest-card-style {
             background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid rgba(212, 175, 55, 0.25);
+            width: 100%;
             height: 100%;
         }
 
-        .patron-image {
+        .guest-card-style:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .guest-card-style .patron-image {
             width: 100%;
             aspect-ratio: 1 / 1;
             background: white;
@@ -1283,52 +1294,53 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            max-height: 200px;
-            flex-shrink: 0;
         }
 
-        .patron-image img {
+        .guest-card-style .patron-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            object-position: top 20% center;
             transition: transform 0.4s;
-            display: block;
         }
 
-        .patron-info {
-            padding: 1.2rem 1rem;
-            text-align: center;
+        .guest-card-style:hover .patron-image img {
+            transform: scale(1.03);
+        }
+
+        .guest-card-style .patron-info {
+            padding: 0.8rem 0.8rem 1rem;
             flex: 1;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: flex-start;
         }
 
-        .patron-role {
-            font-size: 0.85rem;
+        .guest-card-style .patron-role {
+            font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--accent);
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.2rem;
             text-transform: uppercase;
         }
 
-        .patron-name {
-            font-size: 1.3rem;
+        .guest-card-style .patron-name {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 0.2rem;
-            line-height: 1.3;
+            margin-bottom: 0.15rem;
+            line-height: 1.2;
         }
 
-        .patron-title {
-            font-size: 0.85rem;
+        .guest-card-style .patron-title {
             color: var(--text-light);
-            line-height: 1.4;
-            min-height: 2.8em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-weight: 500;
+            font-size: 0.75rem;
+            line-height: 1.3;
         }
 
         .contact {
@@ -1631,71 +1643,104 @@
             text-align: center;
         }
 
-        .payment-steps {
-            max-width: 1000px;
+        .payment-steps-new {
+            max-width: 800px;
             margin: 2rem auto 0;
-            position: relative;
-            display: block;
         }
 
-        .payment-step {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 2rem;
+        .payment-step-new {
             margin-bottom: 2rem;
-            padding-left: 3.5rem;
-            position: relative;
-            align-items: center;
+            padding: 0.5rem 1rem;
         }
 
-        .payment-step:not(:first-child)::before {
-            content: '';
-            position: absolute;
-            left: 31px;
-            top: -30px;
-            bottom: 30px;
-            width: 2px;
-            background: var(--accent);
-            opacity: 0.3;
-            z-index: 0;
+        .payment-step-new .flex-row {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            justify-content: flex-start;
         }
 
-        .payment-step::after {
-            content: '';
-            position: absolute;
-            left: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 14px;
-            height: 14px;
+        .step-circle {
+            width: 44px;
+            height: 44px;
             background: var(--accent);
+            color: var(--primary);
             border-radius: 50%;
-            border: 3px solid var(--white);
-            box-shadow: 0 0 0 3px var(--bg);
-            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 4px;
         }
 
-        .payment-step:first-child::before {
-            display: none;
-        }
-
-        .step-time {
-            font-weight: 600;
-            color: var(--accent);
-            font-size: 1.1rem;
-            line-height: 1.5;
+        .step-text-block {
             text-align: left;
-            padding: 0.5rem 0;
-            display: block;
         }
 
-        .payment-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--text);
-            line-height: 1.5;
-            margin: 0;
-            display: block;
+        .green-cta {
+            background: #10b981;
+            color: white;
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .green-cta:hover {
+            background: #0f9f6e;
+            box-shadow: 0 18px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .brochure-modal {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 1.5rem;
+            max-width: 340px;
+            width: calc(100% - 40px);
+            z-index: 10000;
+            border: 2px dashed #002147;
+            transform: scale(0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            pointer-events: none;
+        }
+
+        .brochure-modal.active {
+            transform: scale(1);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .brochure-modal .modal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #002147;
+            color: white;
+            padding: 0.7rem 1.4rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brochure-modal .modal-link:hover {
+            background: #0a2a4a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 33, 71, 0.2);
+        }
+
+        .brochure-modal .modal-link svg {
+            stroke: white;
+            width: 20px;
+            height: 20px;
         }
 
         .brochure-fixed-overlay {
@@ -1703,63 +1748,71 @@
             bottom: 2rem;
             right: 2rem;
             z-index: 2000;
-            background: var(--accent);
-            color: var(--primary);
-            border-radius: 60px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            background: white;
+            color: black;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0rem;
-            font-weight: 600;
-            font-size: 0;
-            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px dashed #002147;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s ease;
+            animation: gentlePulse 2s infinite ease-in-out;
             text-decoration: none;
-            line-height: 1;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(4px);
-            padding: 0.5rem;
-            width: 48px;
-            height: 48px;
-            overflow: hidden;
-            white-space: nowrap;
             opacity: 0;
+            visibility: hidden;
             pointer-events: none;
         }
 
         .brochure-fixed-overlay.visible {
             opacity: 1;
+            visibility: visible;
             pointer-events: auto;
         }
 
-        .brochure-fixed-overlay svg {
-            width: 26px;
-            height: 26px;
-            stroke: var(--primary);
-            stroke-width: 2;
-            flex-shrink: 0;
+        .brochure-fixed-overlay.no-pulse {
+            animation: none;
         }
 
-        .brochure-fixed-overlay .brochure-text {
-            opacity: 0;
-            max-width: 0;
-            transition: opacity 0.2s ease, max-width 0.3s ease;
-            font-size: 1rem;
-            white-space: nowrap;
-            overflow: hidden;
+        .brochure-fixed-overlay svg {
+            width: 28px;
+            height: 28px;
+            stroke: #002147;
+            stroke-width: 2;
+            transition: transform 0.2s ease;
         }
 
         .brochure-fixed-overlay:hover {
-            width: auto;
-            padding: 0.6rem 1.4rem 0.6rem 1rem;
-            gap: 0.75rem;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 33, 71, 0.25);
         }
 
-        .brochure-fixed-overlay:hover .brochure-text {
-            opacity: 1;
-            max-width: 150px;
+        .brochure-fixed-overlay:hover svg {
+            transform: scale(1.05);
+        }
+
+        .brochure-fixed-overlay .brochure-text {
+            display: none;
+        }
+
+        @keyframes gentlePulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 8px 25px rgba(0, 33, 71, 0.3);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
         }
 
         @media (max-width: 700px) {
@@ -2042,7 +2095,6 @@
                 padding: 4px 12px !important;
             }
 
-            /* Mobile speaker cards - all in 2 columns with tighter spacing */
             .speakers-grid {
                 display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
@@ -2177,34 +2229,6 @@
                 font-size: 1.6rem !important;
             }
 
-            .payment-step {
-                grid-template-columns: 1fr;
-                padding-left: 2rem;
-                gap: 0.25rem;
-            }
-
-            .payment-step::after {
-                left: 18px;
-                top: 18px;
-                transform: none;
-            }
-
-            .payment-step:not(:first-child)::before {
-                left: 24px;
-                top: -20px;
-                bottom: 20px;
-            }
-
-            .step-time {
-                font-size: 1rem !important;
-                margin-bottom: 0.1rem;
-                padding-left: 0.5rem;
-            }
-
-            .payment-title {
-                font-size: 0.95rem !important;
-            }
-
             .fees-table th,
             .fees-table td {
                 font-size: 0.9rem;
@@ -2214,50 +2238,28 @@
             .brochure-fixed-overlay {
                 bottom: 1.5rem;
                 right: 1.5rem;
-                padding: 0.5rem 1rem;
-                width: auto;
-                height: auto;
-                gap: 0.4rem;
-                font-size: 0.85rem;
+                width: 48px;
+                height: 48px;
             }
 
             .brochure-fixed-overlay svg {
-                width: 20px;
-                height: 20px;
+                width: 24px;
+                height: 24px;
             }
 
-            .brochure-fixed-overlay .brochure-text {
-                opacity: 1;
-                max-width: 150px;
-                font-size: 0.85rem;
+            .guest-card-style {
+                width: 100%;
+                max-width: 100%;
             }
 
-            .brochure-fixed-overlay:hover {
-                padding: 0.5rem 1rem;
+            .flex-committee-wrap {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
             }
 
-            .patron-card {
-                max-width: 100% !important;
-            }
-
-            .patron-name {
-                font-size: 1.1rem !important;
-            }
-
-            .patron-title {
-                font-size: 0.8rem !important;
-            }
-
-            .contact-card {
-                padding: 1.5rem !important;
-            }
-
-            .contact-card h3 {
-                font-size: 1.2rem !important;
-            }
-
-            .contact-card a {
-                font-size: 0.9rem !important;
+            .payment-step-new .flex-row {
+                gap: 1rem;
             }
         }
 
@@ -2289,17 +2291,46 @@
 </head>
 
 <body>
-    <a href="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jhc_imc_2026.pdf"
-        class="brochure-fixed-overlay" id="brochureBtn" download="jhc_imc_2026.pdf">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+    <div class="brochure-modal" id="brochureModal">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
+                alt="Jai Hind College Logo" style="height: 48px; width: auto; object-fit: contain;">
+            <div style="text-align: left;">
+                <div style="font-weight: 700; color: var(--primary); line-height: 1.2; font-size: 1rem;">Jai Hind
+                    College</div>
+                <div style="font-size: 0.8rem; color: black; font-weight: 500;">(Empowered Autonomous)</div>
+            </div>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid rgba(0,0,0,0.1); margin: 16px 0;">
+
+        <div style="text-align: center;">
+            <p style="font-size: 1.2rem; font-weight: 700; color: black; margin: 0 0 16px 0;">✦ IMC 2026 Brochure ✦
+            </p>
+
+            <a href="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jhc_imc_2026.pdf"
+                target="_blank" class="modal-link" id="modalDownloadLink">
+                Click Here To Download
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <a href="#" class="brochure-fixed-overlay" id="brochureBtn">
+        <svg id="brochureIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path
                 d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
             <path d="M14 2v5a1 1 0 0 0 1 1h5" />
             <path d="M12 18v-6" />
-            <path d="m9 15 3 3 3-3" />
+            <path d="M7 17 17 7" />
+            <path d="M7 7h10v10" />
         </svg>
-        <span class="brochure-text">Download Brochure</span>
+        <span class="brochure-text"></span>
     </a>
 
     <nav>
@@ -2310,8 +2341,10 @@
                     alt="Jai Hind College Logo - Empowered Autonomous Institution, NAAC A+ Grade" width="48" height="48"
                     loading="eager" fetchpriority="high">
                 <div>
-                    <span class="logo-text">Jai Hind College (Empowered Autonomous)</span>
-                    <div class="logo-subtext">NAAC Reaccredited A+ Grade (4th Cycle)</div>
+                    <span class="logo-text">Jai Hind College
+                        (Empowered Autonomous)</span>
+                    <div class="logo-subtext">NAAC Reaccredited
+                        A+ Grade (4th Cycle)</div>
                 </div>
             </div>
             <ul class="nav-links">
@@ -2339,7 +2372,8 @@
             <div
                 style="font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--primary); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.25rem;">
                 Jai Hind College (Empowered Autonomous)</div>
-            <div style="font-size: 0.85rem; font-weight: 500; color: var(--accent); letter-spacing: 0.5px;">NAAC
+            <div style="font-size: 0.85rem; font-weight: 500; color: var(--accent); letter-spacing: 0.5px;">
+                NAAC
                 Reaccredited A+ Grade (4th Cycle)</div>
             <div
                 style="margin-top: 1.5rem; font-size: 1rem; font-weight: 600; color: var(--primary); opacity: 0.8; letter-spacing: 1px;">
@@ -2348,9 +2382,11 @@
 
         <ul class="mobile-nav-links">
             <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
-            <li><a href="#speakers" onclick="closeMobileMenu()">Speakers</a></li>
+            <li><a href="#speakers" onclick="closeMobileMenu()">Speakers</a>
+            </li>
             <li><a href="#themes" onclick="closeMobileMenu()">Themes</a></li>
-            <li><a href="#schedule" onclick="closeMobileMenu()">Schedule</a></li>
+            <li><a href="#schedule" onclick="closeMobileMenu()">Schedule</a>
+            </li>
             <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
         </ul>
     </div>
@@ -2360,34 +2396,41 @@
             <div class="carousel-images">
                 <div class="carousel-image active"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_gateway_of_india.jpg');"
-                    data-name="Gateway of India" role="img" aria-label="Gateway of India Mumbai landmark"></div>
+                    data-name="Gateway of India" role="img" aria-label="Gateway of India Mumbai landmark">
+                </div>
                 <div class="carousel-image"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_atal_bridge.jpg');"
                     data-name="Atal Setu" role="img" aria-label="Atal Setu Mumbai"></div>
                 <div class="carousel-image"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_taj_hotel.jpg');"
                     data-name="Taj Mahal Palace & Towers, Colaba" role="img"
-                    aria-label="Taj Mahal Palace Hotel Colaba Mumbai"></div>
+                    aria-label="Taj Mahal Palace Hotel Colaba Mumbai">
+                </div>
                 <div class="carousel-image"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_kala_ghoda.jpg');"
-                    data-name="Kala Ghoda, Fort" role="img" aria-label="Kala Ghoda Art District Fort Mumbai"></div>
+                    data-name="Kala Ghoda, Fort" role="img" aria-label="Kala Ghoda Art District Fort Mumbai">
+                </div>
                 <div class="carousel-image"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_flora_fountain.jpg');"
-                    data-name="Flora Fountain" role="img" aria-label="Flora Fountain Mumbai heritage"></div>
+                    data-name="Flora Fountain" role="img" aria-label="Flora Fountain Mumbai heritage">
+                </div>
                 <div class="carousel-image"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_sanjay_gandhi_national_park.jpg');"
                     data-name="Sanjay Gandhi National Park" role="img" aria-label="Sanjay Gandhi National Park Mumbai">
                 </div>
                 <div class="carousel-image"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_worli_sea_link.jpg');"
-                    data-name="Bandra Worli Sea Link" role="img" aria-label="Bandra Worli Sea Link Mumbai"></div>
+                    data-name="Bandra Worli Sea Link" role="img" aria-label="Bandra Worli Sea Link Mumbai">
+                </div>
                 <div class="carousel-image"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_parel_night_life.jpg');"
-                    data-name="Mumbai Skyline" role="img" aria-label="Mumbai Parel night skyline"></div>
+                    data-name="Mumbai Skyline" role="img" aria-label="Mumbai Parel night skyline">
+                </div>
                 <div class="carousel-image"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_local_platform.jpg');"
                     data-name="Churchgate Station, Mumbai" role="img"
-                    aria-label="Churchgate Station Mumbai local train"></div>
+                    aria-label="Churchgate Station Mumbai local train">
+                </div>
                 <div class="carousel-image"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_csmt.jpg');"
                     data-name="CSMT, Mumbai" role="img" aria-label="Chhatrapati Shivaji Maharaj Terminus CSMT Mumbai">
@@ -2395,19 +2438,22 @@
                 <div class="carousel-image"
                     style="background-image: url('https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_marine_drive.jpg');"
                     data-name="Queen's Necklace, Marine Drive" role="img"
-                    aria-label="Marine Drive Queens Necklace Mumbai"></div>
+                    aria-label="Marine Drive Queens Necklace Mumbai">
+                </div>
             </div>
             <div class="hero-overlay"></div>
 
-
             <div class="hero-content">
                 <div class="hero-content-inner">
-                    <div class="hero-department">Department Of Management Studies</div>
+                    <div class="hero-department">Department Of
+                        Management Studies</div>
                     <div class="hero-presents">Presents</div>
-                    <div class="hero-conference">Annual International Conference 2026</div>
+                    <div class="hero-conference">Annual
+                        International Conference 2026</div>
                     <h1 class="hero-title-main">
                         Industry 5.0:<br>
-                        <span>Governance, Technology & Sustainability</span>
+                        <span>Governance, Technology &
+                            Sustainability</span>
                     </h1>
                     <div class="hero-info-row">
                         <div class="info-item no-bg">
@@ -2418,14 +2464,16 @@
                                 <rect width="18" height="18" x="3" y="4" rx="2" />
                                 <path d="M3 10h18" />
                             </svg>
-                            <span class="info-text">24th April 2026</span>
+                            <span class="info-text">24th April
+                                2026</span>
                         </div>
                         <div class="info-item no-bg">
                             <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" aria-hidden="true">
                                 <polygon points="3 11 22 2 13 21 11 13 3 11" />
                             </svg>
-                            <span class="info-text">Jai Hind College, Mumbai</span>
+                            <span class="info-text">Jai Hind
+                                College, Mumbai</span>
                         </div>
                     </div>
                     <a href="https://linktr.ee/JhcConference" target="_blank" class="cta-button"
@@ -2451,10 +2499,12 @@
                         </svg>
                         <div class="slide-name-text" id="slideNameDisplay">
                             <div class="whats-behind-row">
-                                <span class="whats-behind-text">What's Behind?</span>
+                                <span class="whats-behind-text">What's
+                                    Behind?</span>
                             </div>
                             <div class="location-row">
-                                <span class="slide-location-text">Gateway of India</span>
+                                <span class="slide-location-text">Gateway
+                                    of India</span>
                             </div>
                         </div>
                     </div>
@@ -2497,41 +2547,51 @@
 
         <div class="hero-marquee-container">
             <div class="marquee-content">
-                <i>✦</i> IMPORTANT NOTICE: Please email your Extended Abstract / Full Paper to:
-                jhc.conference2026@jaihindcollege.edu.in <i>✦</i>
+                <i>✦</i> IMPORTANT NOTICE: Please email your
+                Extended Abstract / Full Paper to:
+                jhc.conference2026@jaihindcollege.edu.in
+                <i>✦</i>
             </div>
         </div>
 
         <section id="partners" class="partners">
             <div class="section-header">
-                <div class="section-label">Publishing Partners</div>
+                <div class="section-label">Publishing Partners
+                </div>
             </div>
             <div class="logo-marquee">
                 <div class="logo-track">
                     <div class="logo-item"><img loading="lazy" width="150" height="80"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_taylor_and_francis_group_logo.png"
-                            alt="Taylor & Francis Group - Publishing Partner"></div>
+                            alt="Taylor & Francis Group - Publishing Partner">
+                    </div>
                     <div class="logo-item"><img loading="lazy" width="150" height="80"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_iup_logo.png"
-                            alt="Taylor & Francis Group - Publishing Partner"></div>
+                            alt="Taylor & Francis Group - Publishing Partner">
+                    </div>
                     <div class="logo-item"><img loading="lazy" width="150" height="80"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_routledge_logo.png"
-                            alt="Routledge - Academic Publishing Partner"></div>
+                            alt="Routledge - Academic Publishing Partner">
+                    </div>
                     <div class="logo-item"><img loading="lazy" width="150" height="80"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_emerald_publishing_logo.png"
-                            alt="Emerald Publishing - Research Partner"></div>
+                            alt="Emerald Publishing - Research Partner">
+                    </div>
                     <div class="logo-item"><img loading="lazy" width="150" height="80"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_abdc_logo.png"
-                            alt="ABDC - Australian Business Deans Council"></div>
+                            alt="ABDC - Australian Business Deans Council">
+                    </div>
                     <div class="logo-item"><img loading="lazy" width="150" height="80"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_scopus_logo.png"
-                            alt="Scopus - Abstract and Citation Database"></div>
+                            alt="Scopus - Abstract and Citation Database">
+                    </div>
                     <div class="logo-item"><img loading="lazy" width="150" height="80"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_taylor_and_francis_group_logo.png"
                             alt="Taylor & Francis Group"></div>
                     <div class="logo-item"><img loading="lazy" width="150" height="80"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_iup_logo.png"
-                            alt="Taylor & Francis Group - Publishing Partner"></div>
+                            alt="Taylor & Francis Group - Publishing Partner">
+                    </div>
 
                     <div class="logo-item"><img loading="lazy" width="150" height="80"
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_routledge_logo.png"
@@ -2551,11 +2611,19 @@
 
         <section id="about" class="about">
             <div class="section-header">
-                <div class="section-label">ABOUT THE CONFERENCE</div>
-                <h2 class="section-title">A Global Platform for Human-Centric Progress</h2>
-                <p class="section-description">The International Research Conference brings together global scholars,
-                    industry leaders, policymakers and students to examine human-centric technological progress and
-                    develop strategies that address emerging economic, social and environmental challenges.</p>
+                <div class="section-label">ABOUT THE CONFERENCE
+                </div>
+                <h2 class="section-title">A Global Platform for
+                    Human-Centric Progress</h2>
+                <p class="section-description">The International
+                    Research Conference brings together global
+                    scholars,
+                    industry leaders, policymakers and students
+                    to examine human-centric technological
+                    progress and
+                    develop strategies that address emerging
+                    economic, social and environmental
+                    challenges.</p>
             </div>
             <div class="about-grid">
                 <div class="about-card">
@@ -2566,8 +2634,12 @@
                         </svg>
                     </div>
                     <h3>Interdisciplinary Dialogue</h3>
-                    <p>Foster conversations on digital intelligence for inclusive growth and sustainability, leveraging
-                        AI and digital tools for equitable access and embedding sustainability into business and
+                    <p>Foster conversations on digital
+                        intelligence for inclusive growth and
+                        sustainability, leveraging
+                        AI and digital tools for equitable
+                        access and embedding sustainability into
+                        business and
                         governance frameworks.</p>
                 </div>
                 <div class="about-card">
@@ -2578,8 +2650,12 @@
                         </svg>
                     </div>
                     <h3>Resilient Business Models</h3>
-                    <p>Disseminate research on organizational resilience amid technological disruption, addressing
-                        ethical AI deployment, circular economy transitions, and strategies for navigating geopolitical
+                    <p>Disseminate research on organizational
+                        resilience amid technological
+                        disruption, addressing
+                        ethical AI deployment, circular economy
+                        transitions, and strategies for
+                        navigating geopolitical
                         and climate uncertainties.</p>
                 </div>
                 <div class="about-card">
@@ -2594,8 +2670,12 @@
                         </svg>
                     </div>
                     <h3>Academia-Industry Collaboration</h3>
-                    <p>Encourage collaboration to convert innovation into practical solutions, equipping early career
-                        researchers and students with insights into ethical AI, green technologies and future-ready
+                    <p>Encourage collaboration to convert
+                        innovation into practical solutions,
+                        equipping early career
+                        researchers and students with insights
+                        into ethical AI, green technologies and
+                        future-ready
                         strategies.</p>
                 </div>
             </div>
@@ -2609,28 +2689,44 @@
                         <source
                             src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_radio_club.mp4"
                             type="video/mp4">
-                        Your browser does not support the video tag.
+                        Your browser does not support the video
+                        tag.
                     </video>
 
                     <div class="event-carousel-overlay">
-                        <div style="width: 44px; height: 44px;"></div>
+                        <div style="width: 44px; height: 44px;">
+                        </div>
                     </div>
                 </div>
 
                 <div class="event-content">
-                    <div class="event-label">EXCLUSIVE EVENT</div>
-                    <h3 class="event-title">Gala Dinner at the Iconic Bombay Presidency Radio Club</h3>
-                    <p class="event-description">Delegates are welcomed to a refined gala at the historic Radio Club of
-                        Bombay, one of Mumbai's most distinguished private clubs overlooking the Arabian Sea. Designed
-                        as an intimate gathering of global scholars, industry voices, and academic leaders, the evening
-                        blends fine hospitality with conversations that extend well beyond the conference
-                        halls.<br><br>For those wishing to elevate the experience, an optional private yacht evening
-                        along Mumbai's iconic coastline will be available at an additional cost.</p>
+                    <div class="event-label">EXCLUSIVE EVENT
+                    </div>
+                    <h3 class="event-title">Gala Dinner at the
+                        Iconic Bombay Presidency Radio Club</h3>
+                    <p class="event-description">Delegates are
+                        welcomed to a refined gala at the
+                        historic Radio Club of
+                        Bombay, one of Mumbai's most
+                        distinguished private clubs overlooking
+                        the Arabian Sea. Designed
+                        as an intimate gathering of global
+                        scholars, industry voices, and academic
+                        leaders, the evening
+                        blends fine hospitality with
+                        conversations that extend well beyond
+                        the conference
+                        halls.<br><br>For those wishing to
+                        elevate the experience, an optional
+                        private yacht evening
+                        along Mumbai's iconic coastline will be
+                        available at an additional cost.</p>
                 </div>
             </div>
 
             <div class="why-attend">
-                <div class="event-label" style="text-align:center; margin-bottom:1.5rem;">WHY ATTEND</div>
+                <div class="event-label" style="text-align:center; margin-bottom:1.5rem;">
+                    WHY ATTEND</div>
                 <div class="attend-single-box">
                     <div class="attend-row">
                         <div class="attend-col">
@@ -2645,9 +2741,12 @@
                             </div>
                             <ul class="attend-list">
                                 <li>Global finance capital</li>
-                                <li>Home to India's biggest startups</li>
-                                <li>Culture, cinema, coastline, cuisine</li>
-                                <li>Where business meets energy</li>
+                                <li>Home to India's biggest
+                                    startups</li>
+                                <li>Culture, cinema, coastline,
+                                    cuisine</li>
+                                <li>Where business meets energy
+                                </li>
                             </ul>
                             <div class="attend-header" style="margin-top: 2rem;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -2663,10 +2762,14 @@
                                 <h4>Academic Value</h4>
                             </div>
                             <ul class="attend-list">
-                                <li>Foster interdisciplinary dialogue</li>
-                                <li>Disseminate resilient business research</li>
-                                <li>Encourage academia industry collaboration</li>
-                                <li>Equip early career researchers</li>
+                                <li>Foster interdisciplinary
+                                    dialogue</li>
+                                <li>Disseminate resilient
+                                    business research</li>
+                                <li>Encourage academia industry
+                                    collaboration</li>
+                                <li>Equip early career
+                                    researchers</li>
                             </ul>
                         </div>
                         <div class="attend-col">
@@ -2689,69 +2792,133 @@
                                     title="Google Map showing Jai Hind College Mumbai location"></iframe>
                                 <div
                                     style="margin-top: 0.75rem; text-align: center; font-size: 0.85rem; color: #888; font-style: italic;">
-                                    Please Click On Directions, To Open Google Maps</div>
+                                    Please Click On Directions,
+                                    To Open Google Maps</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="about-block">
-                    <div class="about-block-label">ABOUT OUR COLLEGE</div>
+                    <div class="about-block-label">ABOUT OUR
+                        COLLEGE</div>
                     <div class="about-split"
                         style="grid-template-columns: 1fr; max-width: 1200px; margin: 0 auto; padding: 0 0.5rem;">
                         <p
                             style="color: var(--text-light); line-height: 1.8; font-size: 1rem; margin-bottom: 0rem; text-align: justify;">
-                            Jai Hind College, established in 1948 by a group of visionary teachers from Karachi, is a
-                            distinguished multi-faculty institution managed by the Sind Educationists' Association and
-                            affiliated to the University of Mumbai as an Empowered Autonomous College under UGC
-                            regulations. Recognized as one of Mumbai's premier higher education institutions, it offers
-                            a broad spectrum of Aided and Self-Financed programmes designed to meet contemporary
-                            academic and industry requirements while maintaining rigorous academic standards.
+                            Jai Hind College, established in
+                            1948 by a group of visionary
+                            teachers from Karachi, is a
+                            distinguished multi-faculty
+                            institution managed by the Sind
+                            Educationists' Association and
+                            affiliated to the University of
+                            Mumbai as an Empowered Autonomous
+                            College under UGC
+                            regulations. Recognized as one of
+                            Mumbai's premier higher education
+                            institutions, it offers
+                            a broad spectrum of Aided and
+                            Self-Financed programmes designed to
+                            meet contemporary
+                            academic and industry requirements
+                            while maintaining rigorous academic
+                            standards.
                         </p>
                         <p
                             style="color: var(--text-light); line-height: 1.8; font-size: 1rem; margin-bottom: 0rem; text-align: justify;">
-                            In alignment with the vision of the National Education Policy 2020, Jai Hind College fosters
-                            a value-based, multidisciplinary learning ecosystem that actively integrates research,
-                            innovation and skill development into the teaching-learning process. Through innovative
-                            teaching practices, skill-enhancement certificate courses, research-driven initiatives and
-                            sustained support for continuous faculty upgradation, the institution strives to offer a
-                            holistic educational experience that equips learners to thrive in an evolving global
-                            environment and contribute responsibly to nation-building.
+                            In alignment with the vision of the
+                            National Education Policy 2020, Jai
+                            Hind College fosters
+                            a value-based, multidisciplinary
+                            learning ecosystem that actively
+                            integrates research,
+                            innovation and skill development
+                            into the teaching-learning process.
+                            Through innovative
+                            teaching practices,
+                            skill-enhancement certificate
+                            courses, research-driven initiatives
+                            and
+                            sustained support for continuous
+                            faculty upgradation, the institution
+                            strives to offer a
+                            holistic educational experience that
+                            equips learners to thrive in an
+                            evolving global
+                            environment and contribute
+                            responsibly to nation-building.
                         </p>
                     </div>
                 </div>
 
                 <div class="about-block">
-                    <div class="about-block-label">ABOUT OUR DEPARTMENT</div>
+                    <div class="about-block-label">ABOUT OUR
+                        DEPARTMENT</div>
                     <div class="about-split three-col"
                         style="grid-template-columns: 1fr; max-width: 1200px; margin: 0 auto; padding: 0 0.5rem;">
                         <p
                             style="color: var(--text-light); line-height: 1.8; font-size: 1rem; margin-bottom: 0rem; text-align: justify;">
-                            The Department of Management Studies approved by AICTE and DTE, stands at the forefront of
-                            innovative, industry-integrated business education. With academic autonomy and a strong
-                            legacy of excellence, the department offers dynamic undergraduate programs Bachelor of
-                            Management Studies (BMS), Bachelor of Business Administration (BBA) (in collaboration with
-                            TCS), Bachelor of Commerce in Digital Strategy, and Bachelor of Commerce (International
-                            Accounting) integrated with ACCA- each designed to blend rigorous academics with real-world
+                            The Department of Management Studies
+                            approved by AICTE and DTE, stands at
+                            the forefront of
+                            innovative, industry-integrated
+                            business education. With academic
+                            autonomy and a strong
+                            legacy of excellence, the department
+                            offers dynamic undergraduate
+                            programs Bachelor of
+                            Management Studies (BMS), Bachelor
+                            of Business Administration (BBA) (in
+                            collaboration with
+                            TCS), Bachelor of Commerce in
+                            Digital Strategy, and Bachelor of
+                            Commerce (International
+                            Accounting) integrated with ACCA-
+                            each designed to blend rigorous
+                            academics with real-world
                             application and global relevance.
                         </p>
                         <p
                             style="color: var(--text-light); line-height: 1.8; font-size: 1rem; margin-bottom: 0rem; text-align: justify;">
-                            The BBA - TCS program fuses business fundamentals with industry exposure, preparing students
-                            for careers in BPM, analytics and corporate management through specialized electives and
-                            internships. The B.Com. in Digital Strategy uniquely bridges commerce with digital
-                            transformation, training students in AI tools, analytics and e-commerce strategy for roles
-                            in digital marketing, consulting and business innovation.
+                            The BBA - TCS program fuses business
+                            fundamentals with industry exposure,
+                            preparing students
+                            for careers in BPM, analytics and
+                            corporate management through
+                            specialized electives and
+                            internships. The B.Com. in Digital
+                            Strategy uniquely bridges commerce
+                            with digital
+                            transformation, training students in
+                            AI tools, analytics and e-commerce
+                            strategy for roles
+                            in digital marketing, consulting and
+                            business innovation.
                         </p>
                         <p
                             style="color: var(--text-light); line-height: 1.8; font-size: 1rem; margin-bottom: 0rem; text-align: justify;">
-                            The B.Com. (International Accounting) with ACCA equips students with international finance
-                            expertise, granting up to 9 ACCA paper exemptions and proficiency in tools like Power BI,
-                            Python and Advanced Excel. The Bachelor in Digital Strategy is designed for students who
-                            want to lead in a technology driven business landscape. The program blends management
-                            fundamentals with emerging areas such as digital transformation, analytics, platform
-                            strategy, and innovation. Through industry aligned coursework, live projects, and practical
-                            exposure, students learn how organizations compete and grow in a digitally connected
+                            The B.Com. (International
+                            Accounting) with ACCA equips
+                            students with international finance
+                            expertise, granting up to 9 ACCA
+                            paper exemptions and proficiency in
+                            tools like Power BI,
+                            Python and Advanced Excel. The
+                            Bachelor in Digital Strategy is
+                            designed for students who
+                            want to lead in a technology driven
+                            business landscape. The program
+                            blends management
+                            fundamentals with emerging areas
+                            such as digital transformation,
+                            analytics, platform
+                            strategy, and innovation. Through
+                            industry aligned coursework, live
+                            projects, and practical
+                            exposure, students learn how
+                            organizations compete and grow in a
+                            digitally connected
                             economy.
                         </p>
                     </div>
@@ -2760,13 +2927,18 @@
 
         <section id="speakers" class="speakers">
             <div class="section-header">
-                <div class="section-label">Featured Speakers</div>
-                <h2 class="section-title">Distinguished Panelists & Speakers</h2>
-                <p class="section-description">Learn from renowned academics and industry leaders from top institutions
+                <div class="section-label">Featured Speakers
+                </div>
+                <h2 class="section-title">Distinguished
+                    Panelists & Speakers</h2>
+                <p class="section-description">Learn from
+                    renowned academics and industry leaders from
+                    top institutions
                     worldwide</p>
             </div>
 
-            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Distinguished Guests</h3>
+            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
+                Distinguished Guests</h3>
             <div class="guests-row">
                 <div class="guest-col">
                     <div class="speaker-card">
@@ -2777,9 +2949,13 @@
                                 style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(1);">
                         </div>
                         <div class="speaker-info">
-                            <p class="speaker-role">CHIEF GUEST</p>
-                            <h3 class="speaker-name">Prof. Ravindra Kulkarni</h3>
-                            <p class="speaker-title">Vice Chancellor, University of Mumbai</p>
+                            <p class="speaker-role">CHIEF GUEST
+                            </p>
+                            <h3 class="speaker-name">Prof.
+                                Ravindra Kulkarni</h3>
+                            <p class="speaker-title">Vice
+                                Chancellor, University of Mumbai
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -2792,15 +2968,20 @@
                                 style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9) translateY(10px);">
                         </div>
                         <div class="speaker-info">
-                            <p class="speaker-role">GUEST OF HONOR</p>
-                            <h3 class="speaker-name">Prin. (Dr.) Ajay Bhamare</h3>
-                            <p class="speaker-title">Pro-Vice-Chancellor, University of Mumbai</p>
+                            <p class="speaker-role">GUEST OF
+                                HONOR</p>
+                            <h3 class="speaker-name">Prin. (Dr.)
+                                Ajay Bhamare</h3>
+                            <p class="speaker-title">
+                                Pro-Vice-Chancellor, University
+                                of Mumbai</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Panel Discussion On Contemporary
+            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
+                Panel Discussion On Contemporary
                 Management Research</h3>
             <div class="speakers-grid">
                 <div class="speaker-card">
@@ -2812,8 +2993,10 @@
                     </div>
                     <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name">Dr. Mehul Raithatha</h3>
-                        <p class="speaker-title">IIM Ahmedabad</p>
+                        <h3 class="speaker-name">Dr. Mehul
+                            Raithatha</h3>
+                        <p class="speaker-title">IIM Ahmedabad
+                        </p>
                         <div class="speaker-divider"></div>
                         <a href="https://in.linkedin.com/in/dr-mehul-raithatha-ba53762a" class="speaker-linkedin"
                             target="_blank" rel="noopener noreferrer"
@@ -2838,7 +3021,8 @@
                     </div>
                     <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name">Dr. Mousami Prasad</h3>
+                        <h3 class="speaker-name">Dr. Mousami
+                            Prasad</h3>
                         <p class="speaker-title">IIT Kanpur</p>
                         <div class="speaker-divider"></div>
                         <a href="https://in.linkedin.com/in/mousami-prasad-42430a12" class="speaker-linkedin"
@@ -2864,8 +3048,10 @@
                     </div>
                     <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name">Dr. Preeti Virdi</h3>
-                        <p class="speaker-title">IIM Visakhapatnam</p>
+                        <h3 class="speaker-name">Dr. Preeti
+                            Virdi</h3>
+                        <p class="speaker-title">IIM
+                            Visakhapatnam</p>
                         <div class="speaker-divider"></div>
                         <a href="https://www.linkedin.com/in/preetirvirdi/" class="speaker-linkedin" target="_blank"
                             rel="noopener noreferrer" aria-label="LinkedIn profile of Dr. Preeti Virdi">
@@ -2889,8 +3075,11 @@
                     </div>
                     <div class="speaker-info">
                         <p class="speaker-role">MODERATOR</p>
-                        <h3 class="speaker-name">Dr. Disha Bhanot</h3>
-                        <p class="speaker-title">S.P. Jain Institute of Management & Research, Mumbai</p>
+                        <h3 class="speaker-name">Dr. Disha
+                            Bhanot</h3>
+                        <p class="speaker-title">S.P. Jain
+                            Institute of Management & Research,
+                            Mumbai</p>
                         <div class="speaker-divider"></div>
                         <a href="https://www.spjimr.org/faculty/disha-bhanot/" class="speaker-linkedin" target="_blank"
                             rel="noopener noreferrer" aria-label="Website profile of Dr. Disha Bhanot at SPJIMR">
@@ -2905,7 +3094,8 @@
                 </div>
             </div>
 
-            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Panel Discussion - The Editorial
+            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
+                Panel Discussion - The Editorial
                 Panel</h3>
             <div class="speakers-grid">
                 <div class="speaker-card">
@@ -2917,8 +3107,10 @@
                     </div>
                     <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name">Dr. Ashish Kumar Jha</h3>
-                        <p class="speaker-title">Trinity Business School, Ireland</p>
+                        <h3 class="speaker-name">Dr. Ashish
+                            Kumar Jha</h3>
+                        <p class="speaker-title">Trinity
+                            Business School, Ireland</p>
                         <div class="speaker-divider"></div>
                         <a href="https://www.tcd.ie/business/research/the-trinity-centre-for-digital-business--analytics/our-team/akjha/"
                             class="speaker-linkedin" target="_blank" rel="noopener noreferrer"
@@ -2942,8 +3134,10 @@
                     </div>
                     <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name">Dr. Sunil Tiwari</h3>
-                        <p class="speaker-title">University of Bristol, England</p>
+                        <h3 class="speaker-name">Dr. Sunil
+                            Tiwari</h3>
+                        <p class="speaker-title">University of
+                            Bristol, England</p>
                         <div class="speaker-divider"></div>
                         <a href="https://www.bristol.ac.uk/people/person/Sunil-Tiwari-2fe86b81-80f7-4969-a61e-0c24efae16f7/"
                             class="speaker-linkedin" target="_blank" rel="noopener noreferrer"
@@ -2967,8 +3161,10 @@
                     </div>
                     <div class="speaker-info">
                         <p class="speaker-role">PANELIST</p>
-                        <h3 class="speaker-name">Dr. Baidyanath Biswas</h3>
-                        <p class="speaker-title">Trinity Business School, Ireland</p>
+                        <h3 class="speaker-name">Dr. Baidyanath
+                            Biswas</h3>
+                        <p class="speaker-title">Trinity
+                            Business School, Ireland</p>
                         <div class="speaker-divider"></div>
                         <a href="https://ie.linkedin.com/in/baidyanath-biswas-47604635/" class="speaker-linkedin"
                             target="_blank" rel="noopener noreferrer"
@@ -2985,7 +3181,8 @@
                 </div>
             </div>
 
-            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Paper Development Workshop on
+            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
+                Paper Development Workshop on
                 Systematic Literature Review</h3>
             <div class="speakers-grid" style="justify-content: center; max-width: 900px; margin: 0 auto;">
                 <div class="speaker-card">
@@ -2996,9 +3193,12 @@
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
                     </div>
                     <div class="speaker-info">
-                        <p class="speaker-role">WORKSHOP LEADER</p>
-                        <h3 class="speaker-name">Dr. Shubham Singhania</h3>
-                        <p class="speaker-title">FORE School of Management, New Delhi</p>
+                        <p class="speaker-role">WORKSHOP LEADER
+                        </p>
+                        <h3 class="speaker-name">Dr. Shubham
+                            Singhania</h3>
+                        <p class="speaker-title">FORE School of
+                            Management, New Delhi</p>
                         <div class="speaker-divider"></div>
                         <a href="https://www.linkedin.com/in/dr-shubham-singhania-9aa565a1/" class="speaker-linkedin"
                             target="_blank" rel="noopener noreferrer"
@@ -3022,9 +3222,12 @@
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
                     </div>
                     <div class="speaker-info">
-                        <p class="speaker-role">WORKSHOP LEADER</p>
-                        <h3 class="speaker-name">Dr. Varda Sardana</h3>
-                        <p class="speaker-title">Jaipuria Institute, Noida</p>
+                        <p class="speaker-role">WORKSHOP LEADER
+                        </p>
+                        <h3 class="speaker-name">Dr. Varda
+                            Sardana</h3>
+                        <p class="speaker-title">Jaipuria
+                            Institute, Noida</p>
                         <div class="speaker-divider"></div>
                         <a href="https://www.linkedin.com/in/dr-varda-sardana-120b8684/" class="speaker-linkedin"
                             target="_blank" rel="noopener noreferrer"
@@ -3041,7 +3244,8 @@
                 </div>
             </div>
 
-            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">Art of Case Writing</h3>
+            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
+                Art of Case Writing</h3>
             <div class="speakers-grid" style="justify-content: center; max-width: 900px; margin: 0 auto;">
                 <div class="speaker-card">
                     <div class="speaker-image">
@@ -3051,9 +3255,13 @@
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
                     </div>
                     <div class="speaker-info">
-                        <p class="speaker-role">RESOURCE PERSON</p>
-                        <h3 class="speaker-name">Dr. Mita Dixit</h3>
-                        <p class="speaker-title">Director & Family Business Advisor (FFI-USA)</p>
+                        <p class="speaker-role">RESOURCE PERSON
+                        </p>
+                        <h3 class="speaker-name">Dr. Mita Dixit
+                        </h3>
+                        <p class="speaker-title">Director &
+                            Family Business Advisor (FFI-USA)
+                        </p>
                         <div class="speaker-divider"></div>
                         <a href="https://in.linkedin.com/in/mitadixit" class="speaker-linkedin" target="_blank"
                             rel="noopener noreferrer" aria-label="LinkedIn profile of Dr. Mita Dixit">
@@ -3076,9 +3284,12 @@
                             style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9);">
                     </div>
                     <div class="speaker-info">
-                        <p class="speaker-role">GUEST OF HONOR</p>
-                        <h3 class="speaker-name">Mrs. Savita Chhabra</h3>
-                        <p class="speaker-title">Founder Chairperson, HRIPL</p>
+                        <p class="speaker-role">GUEST OF HONOR
+                        </p>
+                        <h3 class="speaker-name">Mrs. Savita
+                            Chhabra</h3>
+                        <p class="speaker-title">Founder
+                            Chairperson, HRIPL</p>
                         <div class="speaker-divider"></div>
                         <a href="https://in.linkedin.com/in/savitachhabra" class="speaker-linkedin" target="_blank"
                             rel="noopener noreferrer" aria-label="LinkedIn profile of Dr. Varda Sardana">
@@ -3097,48 +3308,67 @@
 
         <section id="themes" class="about">
             <div class="section-header">
-                <div class="section-label">Conference Themes</div>
-                <h2 class="section-title">Sub-themes & Research Areas</h2>
-                <p class="section-description">The conference welcomes submissions across multiple tracks aligned with
+                <div class="section-label">Conference Themes
+                </div>
+                <h2 class="section-title">Sub-themes & Research
+                    Areas</h2>
+                <p class="section-description">The conference
+                    welcomes submissions across multiple tracks
+                    aligned with
                     Industry 5.0</p>
-                <p>The Topics are not just limited to the below sub-themes.</p>
-                <p>Any other topic relating to the main theme of the conference is welcome.</p>
+                <p>The Topics are not just limited to the below
+                    sub-themes.</p>
+                <p>Any other topic relating to the main theme of
+                    the conference is welcome.</p>
             </div>
             <div class="about-grid">
                 <div class="about-card">
                     <h3>AI & Digital Transformation</h3>
-                    <p>• Role of AI and data analytics<br>• Digital business models<br>• Ethical AI<br>• Productivity &
+                    <p>• Role of AI and data analytics<br>•
+                        Digital business models<br>• Ethical
+                        AI<br>• Productivity &
                         customer experience</p>
                 </div>
                 <div class="about-card">
                     <h3>Finance and FinTech</h3>
-                    <p>• Digital payments<br>• Blockchain<br>• Sustainable finance<br>• ESG investing<br>• Financial
+                    <p>• Digital payments<br>• Blockchain<br>•
+                        Sustainable finance<br>• ESG
+                        investing<br>• Financial
                         inclusion</p>
                 </div>
                 <div class="about-card">
                     <h3>Entrepreneurship & Innovation</h3>
-                    <p>• Start-up ecosystems<br>• Social/green entrepreneurship<br>• Women & youth enterprises<br>•
+                    <p>• Start-up ecosystems<br>• Social/green
+                        entrepreneurship<br>• Women & youth
+                        enterprises<br>•
                         Public policies</p>
                 </div>
                 <div class="about-card">
                     <h3>Sustainability & Responsible Mgmt</h3>
-                    <p>• Corporate sustainability<br>• ESG reporting<br>• Circular economy<br>• Sustainable supply
+                    <p>• Corporate sustainability<br>• ESG
+                        reporting<br>• Circular economy<br>•
+                        Sustainable supply
                         chains</p>
                 </div>
                 <div class="about-card">
                     <h3>Education & Skill Development</h3>
-                    <p>• New teaching methods<br>• Sustainable careers<br>• Industry-academia<br>• Lifelong learning</p>
+                    <p>• New teaching methods<br>• Sustainable
+                        careers<br>• Industry-academia<br>•
+                        Lifelong learning</p>
                 </div>
                 <div class="about-card">
                     <h3>Leadership & Human Values</h3>
-                    <p>• Human-machine collaboration<br>• Leadership styles<br>• Resilient workplaces<br>• Ethics &
+                    <p>• Human-machine collaboration<br>•
+                        Leadership styles<br>• Resilient
+                        workplaces<br>• Ethics &
                         empathy</p>
                 </div>
             </div>
 
             <div style="margin-top: 5rem;">
                 <div class="section-header">
-                    <div class="section-label">RESEARCH PAPER SUBMISSION GUIDELINES</div>
+                    <div class="section-label">RESEARCH PAPER
+                        SUBMISSION GUIDELINES</div>
                 </div>
                 <div class="guidelines-grid">
                     <div class="guideline-card">
@@ -3151,10 +3381,13 @@
                         </ul>
                     </div>
                     <div class="guideline-card">
-                        <h3>Extended Abstract / Full Paper Submission</h3>
+                        <h3>Extended Abstract / Full Paper
+                            Submission</h3>
                         <ul class="guideline-list">
-                            <li>Extended Abstract Word Limit : Max 800 words</li>
-                            <li>Full Paper Word Limit : 3500 words</li>
+                            <li>Extended Abstract Word Limit :
+                                Max 800 words</li>
+                            <li>Full Paper Word Limit : 3500
+                                words</li>
                             <li>Background</li>
                             <li>Objective And Scope</li>
                             <li>Theory</li>
@@ -3180,7 +3413,8 @@
                     <div class="guideline-card">
                         <h3>Submission</h3>
                         <ul class="guideline-list">
-                            <li>Submit Your Paper in MS Word</li>
+                            <li>Submit Your Paper in MS Word
+                            </li>
                             <li>Email Your Paper</li>
                         </ul>
                     </div>
@@ -3189,7 +3423,8 @@
 
             <div style="margin-top: 5rem;">
                 <div class="section-header">
-                    <div class="section-label">SUBMISSION & REVIEW PROCESS</div>
+                    <div class="section-label">SUBMISSION &
+                        REVIEW PROCESS</div>
                 </div>
 
                 <div style="max-width: 800px; margin: 0 auto;">
@@ -3202,7 +3437,9 @@
                                 <div
                                     style="font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">
                                     Registration</div>
-                                <div style="color: var(--text-light);">Authors register for the conference</div>
+                                <div style="color: var(--text-light);">
+                                    Authors register for the
+                                    conference</div>
                             </div>
                         </div>
                     </div>
@@ -3215,8 +3452,10 @@
                             <div style="text-align: left;">
                                 <div
                                     style="font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">
-                                    Extended Abstract / Full Paper Submission</div>
-                                <div style="color: var(--text-light);">Submit your research</div>
+                                    Extended Abstract / Full
+                                    Paper Submission</div>
+                                <div style="color: var(--text-light);">
+                                    Submit your research</div>
                             </div>
                         </div>
                     </div>
@@ -3230,7 +3469,9 @@
                                 <div
                                     style="font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">
                                     Peer Review</div>
-                                <div style="color: var(--text-light);">Rigorous peer review of the paper</div>
+                                <div style="color: var(--text-light);">
+                                    Rigorous peer review of the
+                                    paper</div>
                             </div>
                         </div>
                     </div>
@@ -3243,8 +3484,11 @@
                             <div style="text-align: left;">
                                 <div
                                     style="font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">
-                                    Acceptance Notification</div>
-                                <div style="color: var(--text-light);">Receive acceptance confirmation</div>
+                                    Acceptance Notification
+                                </div>
+                                <div style="color: var(--text-light);">
+                                    Receive acceptance
+                                    confirmation</div>
                             </div>
                         </div>
                     </div>
@@ -3253,27 +3497,33 @@
 
             <div style="margin-top: 5rem;">
                 <div class="section-header">
-                    <div class="section-label">IMPORTANT DATES OF THE CONFERENCE</div>
+                    <div class="section-label">IMPORTANT DATES
+                        OF THE CONFERENCE</div>
                 </div>
                 <div class="dates-grid">
                     <div class="date-card">
                         <h4>Last Date Of Registration</h4>
-                        <div class="date-value">10th March 2026</div>
+                        <div class="date-value">10th March 2026
+                        </div>
                     </div>
                     <div class="date-card">
-                        <h4>Extended Abstract / Full Paper Submission</h4>
-                        <div class="date-value">10th March 2026</div>
+                        <h4>Extended Abstract / Full Paper
+                            Submission</h4>
+                        <div class="date-value">10th March 2026
+                        </div>
                     </div>
                     <div class="date-card">
                         <h4>Acceptance Notification</h4>
-                        <div class="date-value">20th March 2026</div>
+                        <div class="date-value">20th March 2026
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div style="margin-top: 5rem;">
                 <div class="section-header">
-                    <div class="section-label">CONFERENCE REGISTRATION FEES</div>
+                    <div class="section-label">CONFERENCE
+                        REGISTRATION FEES</div>
                 </div>
                 <div class="fees-table-container">
                     <table class="fees-table">
@@ -3308,51 +3558,111 @@
                         </tbody>
                     </table>
                 </div>
+                <div style="max-width:900px; margin:2rem auto 1rem; padding:0 1rem;">
+                    <p
+                        style="background: rgba(212,175,55,0.1); padding:1.2rem; border-radius:16px; margin-bottom:0.8rem; font-weight:700; color:var(--primary);">
+                        ✦ Please Note:
+                        <br> The registration fee covers the
+                        publication cost for accepted papers
+                        that meet the journal or proceedings
+                        guidelines. No separate publication
+                        charges will be levied.
+                    </p>
+                    <p style="background: #f8f8f8; padding:1rem; border-radius:12px; color:var(--text);">
+                        ✦ Reminder:
+                        <br> Registration is mandatory for all
+                        including Authors / Co-Authors & is
+                        inclusive of Breakfast, Lunch High Tea,
+                        Gala Dinner, Conference Kit & Book
+                        Proceedings.
+                    </p>
+                </div>
             </div>
 
             <div style="margin-top: 5rem;">
                 <div class="section-header">
-                    <div class="section-label">PAYMENT PROCEDURES</div>
+                    <div class="section-label">PAYMENT
+                        PROCEDURES</div>
                 </div>
-                <div class="payment-steps">
-                    <div class="payment-step">
-                        <div class="step-time">Step 01</div>
-                        <div class="step-content">
-                            <div class="payment-title">Select "Misc. Fee."</div>
+                <div class="payment-steps-new">
+                    <div class="payment-step-new">
+                        <div class="flex-row">
+                            <div class="step-circle">1</div>
+                            <div class="step-text-block">
+                                <div
+                                    style="font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">
+                                    Step 1</div>
+                                <div
+                                    style="font-size: 1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.25rem;">
+                                    Select "Misc. Fee"</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="payment-step">
-                        <div class="step-time">Step 02</div>
-                        <div class="step-content">
-                            <div class="payment-title">Enter Your Required Personal Details</div>
+                    <div class="payment-step-new">
+                        <div class="flex-row">
+                            <div class="step-circle">2</div>
+                            <div class="step-text-block">
+                                <div
+                                    style="font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">
+                                    Step 2</div>
+                                <div
+                                    style="font-size: 1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.25rem;">
+                                    Enter Your Required Personal
+                                    Details</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="payment-step">
-                        <div class="step-time">Step 03</div>
-                        <div class="step-content">
-                            <div class="payment-title">Specify The Registration Fee Applicable To Your Category In The
-                                Amount Field</div>
+                    <div class="payment-step-new">
+                        <div class="flex-row">
+                            <div class="step-circle">3</div>
+                            <div class="step-text-block">
+                                <div
+                                    style="font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">
+                                    Step 3</div>
+                                <div
+                                    style="font-size: 1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.25rem;">
+                                    Specify The Registration Fee
+                                    Applicable To Your Category
+                                    In The Amount Field</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="payment-step">
-                        <div class="step-time">Step 04</div>
-                        <div class="step-content">
-                            <div class="payment-title">In Purpose Of Amount, Kindly Mention IC-176</div>
+                    <div class="payment-step-new">
+                        <div class="flex-row">
+                            <div class="step-circle">4</div>
+                            <div class="step-text-block">
+                                <div
+                                    style="font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">
+                                    Step 4</div>
+                                <div
+                                    style="font-size: 1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.25rem;">
+                                    In Purpose Of Amount, Kindly
+                                    Mention IC-176</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="payment-step">
-                        <div class="step-time">Step 05</div>
-                        <div class="step-content">
-                            <div class="payment-title">Submit The Form & Proceed To Complete The Payment</div>
+                    <div class="payment-step-new">
+                        <div class="flex-row">
+                            <div class="step-circle">5</div>
+                            <div class="step-text-block">
+                                <div
+                                    style="font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">
+                                    Step 5</div>
+                                <div
+                                    style="font-size: 1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.25rem;">
+
+                                    Submit The Form & Proceed To
+                                    Complete The Payment</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div style="display: flex; justify-content: center; margin-top: 2rem;">
                     <a href="https://forms.eduqfix.com/sindseminarform/add?formType=0563023743543866" target="_blank"
-                        rel="noopener noreferrer" class="cta-button" style="background: #10b981;">
+                        rel="noopener noreferrer" class="cta-button green-cta">
                         Proceed To Payment
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                            style="stroke: white !important;" aria-hidden="true">
                             <path
                                 d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
                             <path d="m21.854 2.147-10.94 10.939" />
@@ -3364,7 +3674,8 @@
 
         <section id="schedule" class="schedule">
             <div class="section-header">
-                <div class="section-label">Conference Program</div>
+                <div class="section-label">Conference Program
+                </div>
                 <h2 class="section-title">Schedule Overview</h2>
             </div>
             <div class="schedule-timeline">
@@ -3378,7 +3689,8 @@
                             <rect width="18" height="18" x="3" y="4" rx="2" />
                             <path d="M3 10h18" />
                         </svg>
-                        <h3 class="day-header" style="margin-bottom: 0; padding-bottom: 0; border-bottom: none;">24th
+                        <h3 class="day-header" style="margin-bottom: 0; padding-bottom: 0; border-bottom: none;">
+                            24th
                             April 2026</h3>
                     </div>
                     <div
@@ -3388,9 +3700,13 @@
                                 src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_auditorium.jpg"
                                 alt="Registration and Inaugural Session at Jai Hind College auditorium">
                             <div class="schedule-card-content">
-                                <h3>Registration & Inaugural Session</h3>
-                                <p>Begin the day with seamless registration, followed by an inaugural ceremony featuring
-                                    welcome addresses from esteemed dignitaries.</p>
+                                <h3>Registration & Inaugural
+                                    Session</h3>
+                                <p>Begin the day with seamless
+                                    registration, followed by an
+                                    inaugural ceremony featuring
+                                    welcome addresses from
+                                    esteemed dignitaries.</p>
                             </div>
                         </div>
                         <div class="schedule-card">
@@ -3399,8 +3715,11 @@
                                 alt="Panel Discussions at Jai Hind College Conference">
                             <div class="schedule-card-content">
                                 <h3>Panel Discussions</h3>
-                                <p>Engage with thought-provoking national and international panels that bridge academic
-                                    insights with industry perspectives.</p>
+                                <p>Engage with thought-provoking
+                                    national and international
+                                    panels that bridge academic
+                                    insights with industry
+                                    perspectives.</p>
                             </div>
                         </div>
                         <div class="schedule-card">
@@ -3408,9 +3727,13 @@
                                 src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_av_room.jpg"
                                 alt="Paper Development Workshop session at Jai Hind College">
                             <div class="schedule-card-content">
-                                <h3>Paper Development Workshop</h3>
-                                <p>Participate in an interactive workshop designed to refine research papers through
-                                    expert guidance and collaborative feedback.</p>
+                                <h3>Paper Development Workshop
+                                </h3>
+                                <p>Participate in an interactive
+                                    workshop designed to refine
+                                    research papers through
+                                    expert guidance and
+                                    collaborative feedback.</p>
                             </div>
                         </div>
                         <div class="schedule-card">
@@ -3419,8 +3742,13 @@
                                 alt="Exclusive Gala Dinner at Bombay Presidency Radio Club">
                             <div class="schedule-card-content">
                                 <h3>Exclusive Gala Dinner</h3>
-                                <p>Conclude the day with an elegant gala evening at the iconic The Bombay Presidency
-                                    Radio Club, offering a refined setting for networking and meaningful conversations.
+                                <p>Conclude the day with an
+                                    elegant gala evening at the
+                                    iconic The Bombay Presidency
+                                    Radio Club, offering a
+                                    refined setting for
+                                    networking and meaningful
+                                    conversations.
                                 </p>
                             </div>
                         </div>
@@ -3430,60 +3758,49 @@
         </section>
 
         <div class="section-header" style="margin-top: 5rem;">
-            <div class="section-label" style="color: var(--accent);">Patrons</div>
+            <div class="section-label" style="color: var(--accent);">PATRONS</div>
         </div>
-        <div
+        <div class="flex-committee-wrap"
             style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; align-items: stretch; padding: 0 2rem;">
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <h2 class="section-title"
-                    style="font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--primary); line-height: 1.2; text-align: center;">
-                    Chief Patron</h2>
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_rajesh_thadani.jpg"
-                            alt="Dr. Rajesh Thadani - Board President, Jai Hind College Mumbai">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_rajesh_thadani.jpg"
+                            alt="Dr. Rajesh Thadani"
+                            style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9) translateY(15px);">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Dr. Rajesh Thadani</div>
-                        <div class="patron-role">BOARD PRESIDENT</div>
-                        <div class="patron-title">Jai Hind College<br>(Empowered Autonomous), Mumbai</div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">BOARD PRESIDENT</p>
+                        <h3 class="speaker-name">Dr. Rajesh Thadani</h3>
+                        <p class="speaker-title">Jai Hind College <br>(Empowered Autonomous), <br>Mumbai</p>
                     </div>
                 </div>
             </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <h2 class="section-title"
-                    style="font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--primary); line-height: 1.2; text-align: center;">
-                    Chairperson</h2>
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prof_dr_vijay_dabholkar.jpg"
-                            alt="Prof. (Dr.) Vijay Dabholkar - Principal, Jai Hind College Mumbai">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prof_dr_vijay_dabholkar.jpg"
+                            alt="Prof. (Dr.) Vijay Dabholkar"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.3);">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Prof. (Dr.) Vijay Dabholkar</div>
-                        <div class="patron-role">PRINCIPAL</div>
-                        <div class="patron-title">Jai Hind College<br>(Empowered Autonomous), Mumbai</div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">PRINCIPAL</p>
+                        <h3 class="speaker-name">Prof. (Dr.) Vijay Dabholkar</h3>
+                        <p class="speaker-title">Jai Hind College <br>(Empowered Autonomous), <br>Mumbai</p>
                     </div>
                 </div>
             </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <h2 class="section-title"
-                    style="font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--primary); line-height: 1.2; text-align: center;">
-                    Conference Convener</h2>
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_rakhi_sharma.jpg"
-                            alt="Dr. Rakhi Sharma - Director AICTE Programs, Jai Hind College">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_rakhi_sharma.jpg"
+                            alt="Dr. Rakhi Sharma"
+                            style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(1.1) translateX(5px);">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Dr. Rakhi Sharma</div>
-                        <div class="patron-role">DIRECTOR - AICTE PROGRAMS</div>
-                        <div class="patron-title">Jai Hind College<br>(Empowered Autonomous), Mumbai</div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">DIRECTOR - AICTE PROGRAMS</p>
+                        <h3 class="speaker-name">Dr. Rakhi Sharma</h3>
+                        <p class="speaker-title">Jai Hind College <br>(Empowered Autonomous), <br>Mumbai</p>
                     </div>
                 </div>
             </div>
@@ -3492,195 +3809,183 @@
         <div class="section-header" style="margin-top: 2rem;">
             <div class="section-label" style="color: var(--accent);">ADVISORY BOARD</div>
         </div>
-        <div
+        <div class="flex-committee-wrap"
             style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; align-items: stretch; padding: 0 2rem;">
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_chandrakant_salunkhe.jpg"
-                            alt="Dr. Chandrakant Salunkhe - Founder & President, SME Chamber of India">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_chandrakant_salunkhe.jpg"
+                            alt="Dr. Chandrakant Salunkhe"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9) translateY(20px);">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Dr. Chandrakant Salunkhe</div>
-                        <div class="patron-role" style="color: var(--accent);">Founder & President</div>
-                        <div class="patron-title">SME Chamber of India</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_shriniwas_dhure.jpg"
-                            alt="Dr. Shriniwas Dhure - Director, Sydenham Institute Mumbai">
-                    </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Dr. Shriniwas Dhure</div>
-                        <div class="patron-role" style="color: var(--accent);">Director</div>
-                        <div class="patron-title">Sydenham Institute of Management Studies, Research and
-                            Entrepreneurship Education, Mumbai</div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">Founder & President</p>
+                        <h3 class="speaker-name">Dr. Chandrakant Salunkhe</h3>
+                        <p class="speaker-title">SME Chamber of India</p>
                     </div>
                 </div>
             </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_arunima_haldar.jpg"
-                            alt="Dr. Arunima Haldar - Deputy Chairperson, SPJIMR Mumbai">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_shriniwas_dhure.jpg"
+                            alt="Dr. Shriniwas Dhure"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.2);">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Dr. Arunima Haldar</div>
-                        <div class="patron-role" style="color: var(--accent);">Deputy Chairperson</div>
-                        <div class="patron-title">Fellow Programme & Research<br>S.P. Jain Institute of Management &
-                            Research, Mumbai</div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">Director</p>
+                        <h3 class="speaker-name">Dr. Shriniwas Dhure</h3>
+                        <p class="speaker-title">Sydenham Institute</p>
                     </div>
                 </div>
             </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_shishir_k_mishra.jpg"
-                            alt="Mr. Shishir Kumar Mishra - Secretary, FSIB">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_arunima_haldar.jpg"
+                            alt="Dr. Arunima Haldar"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1);">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Mr. Shishir Kumar Mishra</div>
-                        <div class="patron-role" style="color: var(--accent);">Secretary</div>
-                        <div class="patron-title">Financial Service Institutions Bureau (FSIB)</div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">Deputy Chairperson</p>
+                        <h3 class="speaker-name">Dr. Arunima Haldar</h3>
+                        <p class="speaker-title">SPJIMR, Mumbai</p>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_shishir_k_mishra.jpg"
+                            alt="Mr. Shishir Kumar Mishra"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9);">
+                    </div>
+                    <div class="speaker-info">
+                        <p class="speaker-role">Secretary</p>
+                        <h3 class="speaker-name">Mr. Shishir Kumar Mishra</h3>
+                        <p class="speaker-title">FSIB</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="section-header" style="margin-top: 2rem;">
-            <div class="section-label" style="color: var(--accent);">ORGANISING COMMITTEE</div>
+            <div class="section-label" style="color: var(--accent);">Organizing Committee</div>
         </div>
-        <div
+        <div class="flex-committee-wrap"
             style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; align-items: stretch; padding: 0 2rem;">
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_prateek_kumar.jpg"
-                            alt="Mr. Prateek Kumar - Organising Committee Member">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_prateek_kumar.jpg"
+                            alt="Mr. Prateek Kumar"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Mr. Prateek Kumar</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_sajiri_dhumak.jpg"
-                            alt="Mrs. Sajiri Dhumak - Organising Committee Member">
-                    </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Mrs. Sajiri Dhumak</div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Mr. Prateek Kumar</h3>
                     </div>
                 </div>
             </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ms_sravya_peethala.jpg"
-                            alt="Ms. Sravya Peethala - Organising Committee Member">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_sajiri_dhumak.jpg"
+                            alt="Mrs. Sajiri Dhumak"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Ms. Sravya Peethala</div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Mrs. Sajiri Dhumak</h3>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ms_sravya_peethala.jpg"
+                            alt="Ms. Sravya Peethala"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9);">
+                    </div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Ms. Sravya Peethala</h3>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="section-header" style="margin-top: 2rem;">
-            <div class="section-label" style="color: var(--accent);">LOCAL ORGANISING COMMITTEE</div>
+            <div class="section-label" style="color: var(--accent);">Local Organizing Committee</div>
         </div>
-        <div
+        <div class="flex-committee-wrap"
             style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; align-items: stretch; padding: 0 2rem;">
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_yasmin_singaporewala.jpg"
-                            alt="Mrs. Yasmin Singaporewala - Local Organising Committee">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_yasmin_singaporewala.jpg"
+                            alt="Mrs. Yasmin Singaporewala"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9);">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Mrs. Yasmin Singaporewala</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_saiprasad_shetty.png"
-                            alt="Mr. Saiprasad Shetty - Local Organising Committee">
-                    </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Mr. Saiprasad Shetty</div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Mrs. Yasmin Singaporewala</h3>
                     </div>
                 </div>
             </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_evelyn_correia.jpg"
-                            alt="Mrs. Evelyn Correia - Local Organising Committee">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_saiprasad_shetty.png"
+                            alt="Mr. Saiprasad Shetty"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.5);">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Mrs. Evelyn Correia</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_dhriti_jain.jpg"
-                            alt="Mrs. Dhriti Jain - Local Organising Committee">
-                    </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Mrs. Dhriti Jain</div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Mr. Saiprasad Shetty</h3>
                     </div>
                 </div>
             </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_mohit_patel.jpg"
-                            alt="Mr. Mohit Patel - Local Organising Committee">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_evelyn_correia.jpg"
+                            alt="Mrs. Evelyn Correia"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Mr. Mohit Patel</div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Mrs. Evelyn Correia</h3>
                     </div>
                 </div>
             </div>
-
-            <div style="flex: 1 1 260px; max-width: 280px; display: flex; flex-direction: column;">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <img loading="lazy" width="280" height="280"
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ms_afreen_mazgaonkar.jpg"
-                            alt="Ms. Afreen Mazgaonkar - Local Organising Committee">
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_dhriti_jain.jpg"
+                            alt="Mrs. Dhriti Jain"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
                     </div>
-                    <div class="patron-info">
-                        <div class="patron-name">Ms. Afreen Mazgaonkar</div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Mrs. Dhriti Jain</h3>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_mohit_patel.jpg"
+                            alt="Mr. Mohit Patel"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.2);">
+                    </div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Mr. Mohit Patel</h3>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 0 0 auto;">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ms_afreen_mazgaonkar.jpg"
+                            alt="Ms. Afreen Mazgaonkar"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Ms. Afreen Mazgaonkar</h3>
                     </div>
                 </div>
             </div>
@@ -3816,19 +4121,27 @@
                 </div>
             </div>
             <div class="event-content">
-                <div class="event-label">MUMBAI - A BLEND OF ART, CULTURE & CUISINE</div>
-                <h3 class="event-title" id="eventTitle">Gateway of India</h3>
-                <p class="event-description" id="eventDescription">An enduring waterfront landmark best experienced
-                    early morning. Pair it with a quiet walk through Colaba before traffic builds. The scale, symmetry,
-                    and harbor setting immediately situate visitors within Mumbai's maritime past.</p>
+                <div class="event-label">MUMBAI - A BLEND OF
+                    ART, CULTURE & CUISINE</div>
+                <h3 class="event-title" id="eventTitle">Gateway
+                    of India</h3>
+                <p class="event-description" id="eventDescription">An enduring waterfront
+                    landmark best experienced
+                    early morning. Pair it with a quiet walk
+                    through Colaba before traffic builds. The
+                    scale, symmetry,
+                    and harbor setting immediately situate
+                    visitors within Mumbai's maritime past.</p>
             </div>
         </div>
 
         <section id="contact" class="contact">
             <div class="section-header">
                 <div class="section-label">Get in Touch</div>
-                <h2 class="section-title">Contact Information</h2>
-                <p class="section-description">Have questions? We're here to help</p>
+                <h2 class="section-title">Contact Information
+                </h2>
+                <p class="section-description">Have questions?
+                    We're here to help</p>
             </div>
             <div class="contact-grid">
                 <div class="contact-card">
@@ -3848,7 +4161,8 @@
                             d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
                     </svg>
                     <h3>Phone</h3>
-                    <a href="tel:+912245243096">+91 22-45243096</a>
+                    <a href="tel:+912245243096">+91
+                        22-45243096</a>
                 </div>
                 <div class="contact-card">
                     <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -3866,8 +4180,10 @@
     </main>
 
     <footer>
-        <div class="footer-logo">Annual International Conference 2026 By Department Of Management Studies</div>
-        <p>&copy; 2026 Department of Management Studies, Jai Hind College. All rights reserved.</p>
+        <div class="footer-logo">Annual International Conference
+            2026 By Department Of Management Studies</div>
+        <p>&copy; 2026 Department of Management Studies, Jai
+            Hind College. All rights reserved.</p>
     </footer>
 
     <script>
@@ -4118,31 +4434,80 @@
                 window.closeMobileMenu = closeMobileMenu;
             }
 
+            // BROCHURE BUTTON TOGGLE WITH ICON TRANSITION
             const brochureBtn = document.getElementById('brochureBtn');
+            const brochureModal = document.getElementById('brochureModal');
+            const brochureIcon = document.getElementById('brochureIcon');
 
-            if (brochureBtn) {
+            if (brochureBtn && brochureModal && brochureIcon) {
+                // FIXED: Correct SVG paths
+                const fileSVG = '<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M12 18v-6" /><path d="m9 15 3 3 3-3" />';
+                const closeSVG = '<path d="M18 6 6 18" /><path d="M6 6l12 12" />';
+
+                // Set initial icon to file SVG on page load
+                brochureIcon.innerHTML = fileSVG;
+
                 brochureBtn.addEventListener('click', function (e) {
                     e.preventDefault();
+
+                    if (brochureModal.classList.contains('active')) {
+                        // Close modal - switch to file icon with download arrow
+                        brochureModal.classList.remove('active');
+                        brochureIcon.innerHTML = fileSVG;
+                        brochureBtn.classList.remove('no-pulse');
+                    } else {
+                        // Open modal - switch to close icon (X)
+                        brochureModal.classList.add('active');
+                        brochureIcon.innerHTML = closeSVG;
+                        brochureBtn.classList.add('no-pulse');
+                    }
+                });
+
+                // Close modal when clicking outside
+                window.addEventListener('click', function (e) {
+                    if (e.target === brochureModal) {
+                        brochureModal.classList.remove('active');
+                        brochureIcon.innerHTML = fileSVG;
+                        brochureBtn.classList.remove('no-pulse');
+                    }
+                });
+
+                // Prevent modal from closing when clicking inside it
+                brochureModal.addEventListener('click', function (e) {
                     e.stopPropagation();
-
-                    window.open(
-                        'https://internationalmanagementconference.com/wp-content/uploads/2026/02/jhc_imc_2026.pdf',
-                        '_blank'
-                    );
-
-                    return false;
                 });
             }
 
             const heroCarousel = document.querySelector('.hero-carousel');
 
             function checkBrochureVisibility() {
-                if (!brochureBtn || !heroCarousel) return;
-                const heroBottom = heroCarousel.getBoundingClientRect().bottom;
-                if (heroBottom < 0) {
+                if (!brochureBtn || !brochureModal) return;
+
+                const partnersSection = document.getElementById('partners');
+                if (!partnersSection) return;
+
+                const partnersTop = partnersSection.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                // Check if Publishing Partners section is visible
+                // It becomes visible when its top is less than window height
+                const isPartnersVisible = partnersTop < windowHeight - 100;
+
+                // Handle button visibility
+                if (isPartnersVisible) {
                     brochureBtn.classList.add('visible');
                 } else {
                     brochureBtn.classList.remove('visible');
+                    // If partners section is not visible, also close the modal
+                    if (brochureModal.classList.contains('active')) {
+                        brochureModal.classList.remove('active');
+                        if (brochureIcon) {
+                            brochureIcon.innerHTML = '<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M12 18v-6" /><path d="m9 15 3 3 3-3" />';
+                        }
+                        if (brochureBtn) {
+                            brochureBtn.classList.remove('no-pulse');
+                        }
+                    }
                 }
             }
 
