@@ -1,7 +1,7 @@
 <!-- ------------------------------------------------------------------- -->
 <!-- Description : Jai Hind College | IMC 2026 Website (Custom Build)    -->
 <!-- Author      : © Laksh Kukreja (@lakshkukreja07)                     -->
-<!-- Updated     : Last On 27 February 2026 At 11:29PM [IST]             -->
+<!-- Updated     : Last On 28 February 2026 At 12:20PM [IST]             -->
 <!-- License     : GNU General Public License V3 | Or Later              -->
 <!-- License URI : https://www.gnu.org/licenses/gpl-3.0.en.html          -->
 <!-- Copyright   : (CC) 2022-2026 Laksh Kukreja                          -->
@@ -59,9 +59,9 @@
         }
 
         html {
-            scroll-behavior: smooth;
             height: 100%;
             width: 100%;
+            scroll-behavior: auto;
         }
 
         body {
@@ -300,6 +300,7 @@
             background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            background-color: #1a1a2e;
         }
 
         .carousel-image.active {
@@ -530,22 +531,6 @@
             text-align: center;
             width: fit-content;
             flex-shrink: 0;
-        }
-
-        .counter-number {
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .counter-slash {
-            color: var(--white);
-            font-weight: 300;
-            margin: 0 2px;
-        }
-
-        .counter-total {
-            color: var(--white);
-            font-weight: 400;
         }
 
         .capsule-play {
@@ -961,6 +946,7 @@
             width: 100%;
             height: 100%;
             position: relative;
+            background-color: #1a1a2e;
         }
 
         .event-carousel-image {
@@ -972,6 +958,7 @@
             object-fit: cover;
             opacity: 0;
             transition: opacity 0.5s ease;
+            will-change: opacity;
         }
 
         .event-carousel-image.active {
@@ -1267,82 +1254,6 @@
             margin: 0;
         }
 
-        .guest-card-style {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.25s, box-shadow 0.3s;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-            display: flex;
-            flex-direction: column;
-            border: 2px solid rgba(212, 175, 55, 0.25);
-            width: 100%;
-            height: 100%;
-        }
-
-        .guest-card-style:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent);
-        }
-
-        .guest-card-style .patron-image {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            background: white;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .guest-card-style .patron-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top 20% center;
-            transition: transform 0.4s;
-        }
-
-        .guest-card-style:hover .patron-image img {
-            transform: scale(1.03);
-        }
-
-        .guest-card-style .patron-info {
-            padding: 0.8rem 0.8rem 1rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            justify-content: flex-start;
-        }
-
-        .guest-card-style .patron-role {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            color: var(--accent);
-            margin-bottom: 0.2rem;
-            text-transform: uppercase;
-        }
-
-        .guest-card-style .patron-name {
-            font-family: 'Manrope', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.15rem;
-            line-height: 1.2;
-        }
-
-        .guest-card-style .patron-title {
-            color: var(--text-light);
-            font-weight: 500;
-            font-size: 0.75rem;
-            line-height: 1.3;
-        }
-
         .contact {
             background: var(--white);
             width: 100%;
@@ -1476,71 +1387,6 @@
             color: var(--text);
             font-weight: 700;
             font-size: 1.2rem;
-            line-height: 1.5;
-        }
-
-        .process-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .process-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.2rem;
-            padding: 1.2rem 1.5rem;
-            background: var(--white);
-            border-radius: 16px;
-            border: 2px solid rgba(212, 175, 55, 0.15);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: default;
-        }
-
-        .process-step:hover {
-            transform: translateX(10px) scale(1.02);
-            box-shadow: var(--shadow-md), 0 0 0 2px rgba(212, 175, 55, 0.25);
-            border-color: transparent;
-        }
-
-        .step-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--accent);
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 1.2rem;
-            border-radius: 50%;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-            margin-top: 0;
-            line-height: 1;
-        }
-
-        .process-step:hover .step-number {
-            transform: scale(1.1);
-        }
-
-        .step-content {
-            flex: 1;
-            padding-top: 8px;
-        }
-
-        .step-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-            line-height: 1.3;
-        }
-
-        .step-description {
-            color: var(--text-light);
-            font-size: 1rem;
             line-height: 1.5;
         }
 
@@ -1765,6 +1611,7 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+            will-change: transform, opacity;
         }
 
         .brochure-fixed-overlay.visible {
@@ -1813,6 +1660,11 @@
                 transform: scale(1);
                 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             }
+        }
+
+        /* Section ID styles for scroll anchors */
+        .section-anchor {
+            scroll-margin-top: calc(var(--nav-height) + 20px);
         }
 
         @media (max-width: 700px) {
@@ -2247,11 +2099,6 @@
                 height: 24px;
             }
 
-            .guest-card-style {
-                width: 100%;
-                max-width: 100%;
-            }
-
             .flex-committee-wrap {
                 display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
@@ -2260,6 +2107,10 @@
 
             .payment-step-new .flex-row {
                 gap: 1rem;
+            }
+
+            .section-anchor {
+                scroll-margin-top: calc(var(--nav-height) + 10px);
             }
         }
 
@@ -2937,8 +2788,11 @@
                     worldwide</p>
             </div>
 
-            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
-                Distinguished Guests</h3>
+            <div id="distinguished-guests" class="section-anchor">
+                <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
+                    Distinguished Guests
+                </h3>
+            </div>
             <div class="guests-row">
                 <div class="guest-col">
                     <div class="speaker-card">
@@ -2980,9 +2834,12 @@
                 </div>
             </div>
 
-            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
-                Panel Discussion On Contemporary
-                Management Research</h3>
+            <div id="panel-contemporary-research" class="section-anchor">
+                <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
+                    Panel Discussion On Contemporary
+                    Management Research
+                </h3>
+            </div>
             <div class="speakers-grid">
                 <div class="speaker-card">
                     <div class="speaker-image">
@@ -3094,9 +2951,12 @@
                 </div>
             </div>
 
-            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
-                Panel Discussion - The Editorial
-                Panel</h3>
+            <div id="panel-editorial" class="section-anchor">
+                <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
+                    Panel Discussion - The Editorial
+                    Panel
+                </h3>
+            </div>
             <div class="speakers-grid">
                 <div class="speaker-card">
                     <div class="speaker-image">
@@ -3181,9 +3041,12 @@
                 </div>
             </div>
 
-            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
-                Paper Development Workshop on
-                Systematic Literature Review</h3>
+            <div id="workshop-slr" class="section-anchor">
+                <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
+                    Paper Development Workshop on
+                    Systematic Literature Review
+                </h3>
+            </div>
             <div class="speakers-grid" style="justify-content: center; max-width: 900px; margin: 0 auto;">
                 <div class="speaker-card">
                     <div class="speaker-image">
@@ -3244,8 +3107,11 @@
                 </div>
             </div>
 
-            <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
-                Art of Case Writing</h3>
+            <div id="workshop-case-writing" class="section-anchor">
+                <h3 style="text-align:center; font-size:1.8rem; margin:2.5rem 0 1.8rem;">
+                    Art of Case Writing
+                </h3>
+            </div>
             <div class="speakers-grid" style="justify-content: center; max-width: 900px; margin: 0 auto;">
                 <div class="speaker-card">
                     <div class="speaker-image">
@@ -4262,11 +4128,6 @@
                 }
             }
 
-            function resetProgressAndTimer() {
-                stopProgressAnimation();
-                if (autoPlay) startProgressAnimation();
-            }
-
             function nextSlide() {
                 const nextIndex = (currentIndex + 1) % totalSlides;
                 updateActiveSlide(nextIndex);
@@ -4277,6 +4138,11 @@
                 const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 updateActiveSlide(prevIndex);
                 resetProgressAndTimer();
+            }
+
+            function resetProgressAndTimer() {
+                stopProgressAnimation();
+                if (autoPlay) startProgressAnimation();
             }
 
             function togglePlayPause() {
@@ -4352,19 +4218,6 @@
                 }
             }
 
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
             document.body.style.overflow = 'auto';
             document.documentElement.style.overflow = 'auto';
 
@@ -4409,10 +4262,7 @@
                             const target = document.querySelector(targetId);
                             if (target) {
                                 setTimeout(function () {
-                                    target.scrollIntoView({
-                                        behavior: 'smooth',
-                                        block: 'start'
-                                    });
+                                    window.location.hash = targetId;
                                 }, 300);
                             }
                         }
@@ -4434,36 +4284,30 @@
                 window.closeMobileMenu = closeMobileMenu;
             }
 
-            // BROCHURE BUTTON TOGGLE WITH ICON TRANSITION
             const brochureBtn = document.getElementById('brochureBtn');
             const brochureModal = document.getElementById('brochureModal');
             const brochureIcon = document.getElementById('brochureIcon');
 
             if (brochureBtn && brochureModal && brochureIcon) {
-                // FIXED: Correct SVG paths
                 const fileSVG = '<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M12 18v-6" /><path d="m9 15 3 3 3-3" />';
                 const closeSVG = '<path d="M18 6 6 18" /><path d="M6 6l12 12" />';
 
-                // Set initial icon to file SVG on page load
                 brochureIcon.innerHTML = fileSVG;
 
                 brochureBtn.addEventListener('click', function (e) {
                     e.preventDefault();
 
                     if (brochureModal.classList.contains('active')) {
-                        // Close modal - switch to file icon with download arrow
                         brochureModal.classList.remove('active');
                         brochureIcon.innerHTML = fileSVG;
                         brochureBtn.classList.remove('no-pulse');
                     } else {
-                        // Open modal - switch to close icon (X)
                         brochureModal.classList.add('active');
                         brochureIcon.innerHTML = closeSVG;
                         brochureBtn.classList.add('no-pulse');
                     }
                 });
 
-                // Close modal when clicking outside
                 window.addEventListener('click', function (e) {
                     if (e.target === brochureModal) {
                         brochureModal.classList.remove('active');
@@ -4472,13 +4316,10 @@
                     }
                 });
 
-                // Prevent modal from closing when clicking inside it
                 brochureModal.addEventListener('click', function (e) {
                     e.stopPropagation();
                 });
             }
-
-            const heroCarousel = document.querySelector('.hero-carousel');
 
             function checkBrochureVisibility() {
                 if (!brochureBtn || !brochureModal) return;
@@ -4489,20 +4330,16 @@
                 const partnersTop = partnersSection.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
 
-                // Check if Publishing Partners section is visible
-                // It becomes visible when its top is less than window height
                 const isPartnersVisible = partnersTop < windowHeight - 100;
 
-                // Handle button visibility
                 if (isPartnersVisible) {
                     brochureBtn.classList.add('visible');
                 } else {
                     brochureBtn.classList.remove('visible');
-                    // If partners section is not visible, also close the modal
                     if (brochureModal.classList.contains('active')) {
                         brochureModal.classList.remove('active');
                         if (brochureIcon) {
-                            brochureIcon.innerHTML = '<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M12 18v-6" /><path d="m9 15 3 3 3-3" />';
+                            brochureIcon.innerHTML = fileSVG;
                         }
                         if (brochureBtn) {
                             brochureBtn.classList.remove('no-pulse');
@@ -4511,7 +4348,7 @@
                 }
             }
 
-            window.addEventListener('scroll', checkBrochureVisibility);
+            window.addEventListener('scroll', checkBrochureVisibility, { passive: true });
             checkBrochureVisibility();
 
             const exclusiveVideo = document.getElementById('exclusiveVideo');
