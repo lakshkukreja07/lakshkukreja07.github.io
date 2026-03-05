@@ -1,7 +1,7 @@
 <!-- ------------------------------------------------------------------- -->
 <!-- Description : Jai Hind College | IMC 2026 Website (Custom Build)    -->
 <!-- Author      : © Laksh Kukreja (@lakshkukreja07)                     -->
-<!-- Updated     : Last On 28 February 2026 At 12:20PM [IST]             -->
+<!-- Updated     : Last On 05 March 2026 At 05:20PM [IST]                -->
 <!-- License     : GNU General Public License V3 | Or Later              -->
 <!-- License URI : https://www.gnu.org/licenses/gpl-3.0.en.html          -->
 <!-- Copyright   : (CC) 2022-2026 Laksh Kukreja                          -->
@@ -275,7 +275,8 @@
         .hero-carousel {
             position: relative;
             width: 100%;
-            height: calc(100vh - var(--nav-height));
+            min-height: calc(100vh - var(--nav-height));
+            height: auto;
             margin-top: var(--nav-height);
             pointer-events: none;
             overflow: visible;
@@ -321,12 +322,13 @@
         .hero-content {
             position: relative;
             z-index: 5;
-            height: 100%;
+            min-height: 100%;
+            height: auto;
             display: flex;
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 2rem 2rem;
             text-align: left;
             color: white;
             pointer-events: auto;
@@ -337,7 +339,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            height: 100%;
+            min-height: 100%;
+            height: auto;
             padding: 3rem 0;
         }
 
@@ -598,43 +601,70 @@
             width: 100%;
             background-color: #000000;
             color: #ffffff;
-            padding: 12px 20px;
+            padding: 12px 0;
             z-index: 15;
             min-height: auto;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            overflow: hidden;
             box-sizing: border-box;
         }
 
         .marquee-content {
-            display: block;
-            white-space: normal;
+            display: inline-block;
+            white-space: nowrap;
             font-size: 1.1rem;
             font-weight: 600;
             letter-spacing: 0.5px;
             line-height: 1.4;
-            word-wrap: break-word;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
             color: #ffffff;
+            animation: scrollLeft 20s linear infinite;
+            padding-left: 100%;
         }
 
         .marquee-content i {
             font-style: normal;
             color: var(--accent);
+            margin: 0 10px;
         }
 
-        @media (max-width: 700px) {
-            .marquee-content {
-                font-size: 0.9rem;
-                padding: 0 5px;
+        @keyframes scrollLeft {
+            0% {
+                transform: translateX(0);
             }
 
-            .hero-marquee-container {
-                padding: 10px 15px;
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Tablets and iPads */
+        @media (min-width: 701px) and (max-width: 1024px) {
+            .logo-wrapper div {
+                display: none;
+            }
+
+            .logo-wrapper {
+                gap: 0;
+            }
+
+            .college-logo {
+                height: 44px;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .carousel-controls-wrapper {
+                bottom: 1rem;
+                right: 1rem;
             }
         }
 
@@ -1205,6 +1235,22 @@
             margin: 0 auto;
         }
 
+        .flex-committee-wrap {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+            align-items: stretch;
+            padding: 0 2rem;
+        }
+
+        .flex-committee-wrap .speaker-card {
+            width: 260px;
+            max-width: 260px;
+            flex: 0 0 auto;
+        }
+
         .day-header {
             font-family: 'Manrope', sans-serif;
             font-size: 2rem;
@@ -1679,8 +1725,8 @@
             footer,
             .nav-container,
             .hero-content {
-                padding-left: var(--mobile-padding) !important;
-                padding-right: var(--mobile-padding) !important;
+                padding-left: var(--mobile-padding);
+                padding-right: var(--mobile-padding);
             }
 
             .nav-links {
@@ -1704,149 +1750,197 @@
             }
 
             .hero-carousel {
-                height: auto !important;
-                min-height: calc(100vh - var(--nav-height)) !important;
-                overflow: visible !important;
+                height: auto;
+                min-height: calc(100vh - var(--nav-height));
+                overflow: visible;
+                display: flex;
+                flex-direction: column;
             }
 
             .hero-content {
-                position: relative !important;
-                height: auto !important;
-                min-height: 100%;
-                padding-bottom: 20px !important;
-                text-align: center !important;
+                position: relative;
+                height: auto;
+                flex: 1 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0rem var(--mobile-padding) 1rem var(--mobile-padding);
+                text-align: center;
             }
 
             .hero-content-inner {
-                position: relative !important;
-                height: auto !important;
-                min-height: 100%;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-start;
-                align-items: center !important;
-                padding: 1rem 0 0 0 !important;
-                width: 100%;
+                justify-content: center;
+                align-items: center;
             }
 
-            .hero-department,
-            .hero-presents,
-            .hero-conference,
-            .hero-title-main,
-            .hero-info-row {
-                text-align: center !important;
-                width: 100%;
+            .hero-department {
+                font-size: 0.8rem;
+                margin-top: 0;
+                margin-bottom: 0.1rem;
+            }
+
+            .hero-presents {
+                font-size: 0.8rem;
+                margin-bottom: 0.1rem;
+            }
+
+            .hero-conference {
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
             }
 
             .hero-title-main {
-                text-align: center !important;
+                font-size: 1.8rem;
+                line-height: 1.2;
+                margin-bottom: 0.75rem;
+                text-align: center;
                 margin-left: auto;
                 margin-right: auto;
+                max-width: 100%;
             }
 
             .hero-info-row {
-                justify-content: center !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
+                justify-content: center;
+                margin-left: auto;
+                margin-right: auto;
+                gap: 0.75rem;
+                margin-bottom: 0.75rem;
             }
 
             .info-item.no-bg {
                 justify-content: center;
+                padding: 0.3rem 0;
+            }
+
+            .info-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .info-text {
+                font-size: 0.85rem;
             }
 
             .cta-button {
-                margin-left: auto !important;
-                margin-right: auto !important;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                margin-bottom: 1rem;
             }
 
             .carousel-controls-wrapper {
-                position: relative !important;
-                right: auto !important;
-                bottom: auto !important;
-                margin: 20px auto 40px auto !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                width: 100% !important;
-                gap: 0.75rem !important;
+                position: relative;
+                right: auto;
+                bottom: auto;
+                margin: -0.5rem auto 5rem auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                gap: 0.4rem;
+                flex-shrink: 0;
             }
 
             .carousel-controls-row {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                gap: 0.75rem !important;
-                width: 100% !important;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
+                width: 100%;
             }
 
             .slide-info-capsule {
-                max-width: fit-content !important;
-                padding: 0.6rem 1.2rem !important;
-                margin: 0 auto !important;
-                border-radius: 60px !important;
-                background: rgba(0, 0, 0, 0.4) !important;
-                gap: 12px !important;
-                align-items: flex-start !important;
-                order: 1 !important;
+                max-width: calc(100% - 5rem);
+                width: calc(100% - 5rem);
+                padding: 1rem 2rem;
+                margin: 0 auto;
+                border-radius: 60px;
+                background: rgba(0, 0, 0, 0.5);
+                gap: 8px;
+                align-items: center;
+                justify-content: flex-start;
+                order: 1;
             }
 
             .circle-question-mark-icon {
-                width: 16px !important;
-                height: 16px !important;
-                margin-top: 8px !important;
+                width: 18px;
+                height: 18px;
+                margin-top: 0;
             }
 
             .whats-behind-text {
-                font-size: 0.85rem !important;
-                white-space: nowrap !important;
+                font-size: 0.9rem;
+                white-space: nowrap;
             }
 
             .slide-location-text {
-                font-size: 0.85rem !important;
-                white-space: nowrap !important;
+                font-size: 0.9rem;
+                white-space: nowrap;
             }
 
             .whats-behind-row {
-                display: flex !important;
-                align-items: center !important;
-                line-height: 1.2 !important;
+                display: flex;
+                align-items: center;
+                line-height: 1.2;
             }
 
             .location-row {
-                display: flex !important;
-                align-items: center !important;
-                line-height: 1.2 !important;
+                display: flex;
+                align-items: center;
+                line-height: 1.2;
             }
 
             .capsule-counter {
-                padding: 0.6rem 1.2rem !important;
-                font-size: 1.2rem !important;
-                min-width: auto !important;
-                width: fit-content !important;
-                background: rgba(0, 0, 0, 0.4) !important;
-                order: 2 !important;
-                margin: 0 auto !important;
-                display: inline-flex !important;
+                max-width: calc(100% - 18rem);
+                width: calc(100% - 18rem);
+                padding: 1rem 2rem;
+                margin: 0 auto;
+                border-radius: 60px;
+                background: rgba(0, 0, 0, 0.5);
+                font-size: 1rem;
+                order: 2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .capsule-play {
-                padding: 0.6rem 1.2rem !important;
-                gap: 15px !important;
-                background: rgba(0, 0, 0, 0.4) !important;
-                order: 3 !important;
-                margin: 0 auto !important;
-                width: fit-content !important;
+                max-width: calc(100% - 15rem);
+                width: calc(100% - 15rem);
+                padding: 1rem 2rem;
+                margin: 0 auto;
+                border-radius: 60px;
+                background: rgba(0, 0, 0, 0.5);
+                gap: 15px;
+                order: 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .carousel-nav-btn svg,
             .play-pause-btn svg {
-                width: 24px !important;
-                height: 24px !important;
+                width: 22px;
+                height: 22px;
+            }
+
+            .hero-marquee-container {
+                padding: 10px var(--mobile-padding);
+            }
+
+            .marquee-content {
+                font-size: 0.8rem;
+                line-height: 1.3;
+                word-break: break-word;
             }
 
             .about-grid {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr;
                 gap: 1rem;
             }
 
@@ -1883,29 +1977,46 @@
             }
 
             .about-split {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem !important;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
             .about-split.three-col {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr;
             }
 
             .about-block-label {
-                font-size: 0.8rem !important;
-                margin-bottom: 1.2rem !important;
+                font-size: 0.8rem;
+                margin-bottom: 1.2rem;
             }
 
             .about-split p {
-                font-size: 0.9rem !important;
-                line-height: 1.6 !important;
-                text-align: left !important;
+                font-size: 0.9rem;
+                line-height: 1.6;
+                text-align: left;
             }
 
             .exclusive-event {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 2rem var(--mobile-padding);
+            }
+
+            .exclusive-event .event-label {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .exclusive-event>div:last-child {
                 flex-direction: column !important;
                 gap: 1.5rem !important;
-                padding: 2rem var(--mobile-padding) !important;
+                width: 100% !important;
+            }
+
+            .exclusive-event>div:last-child>div:first-child {
+                width: 100% !important;
+                flex: none !important;
             }
 
             .exclusive-event .event-image {
@@ -1916,61 +2027,62 @@
             .exclusive-event .event-content {
                 width: 100% !important;
                 text-align: center !important;
+                height: auto !important;
             }
 
             .exclusive-event .event-title {
-                font-size: 1.8rem !important;
+                font-size: 1.8rem;
             }
 
             .exclusive-event .event-description {
-                font-size: 1rem !important;
+                font-size: 1rem;
             }
 
             .event-carousel-overlay {
-                bottom: 10px !important;
-                left: 10px !important;
-                right: 10px !important;
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
             }
 
             .event-nav-btn {
-                width: 36px !important;
-                height: 36px !important;
+                width: 36px;
+                height: 36px;
             }
 
             .event-nav-btn svg {
-                width: 20px !important;
-                height: 20px !important;
+                width: 20px;
+                height: 20px;
             }
 
             .event-counter {
-                font-size: 0.9rem !important;
-                padding: 4px 12px !important;
+                font-size: 0.9rem;
+                padding: 4px 12px;
             }
 
             .speakers-grid {
-                display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0.75rem !important;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
             }
 
             .speaker-card {
-                width: 100% !important;
-                max-width: 100% !important;
+                width: 100%;
+                max-width: 100%;
                 display: flex;
                 flex-direction: column;
                 height: 100%;
             }
 
             .guests-row {
-                display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0.75rem !important;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
                 width: 100%;
             }
 
             .guest-col {
-                width: 100% !important;
-                max-width: 100% !important;
+                width: 100%;
+                max-width: 100%;
             }
 
             .speaker-image {
@@ -1983,18 +2095,18 @@
             }
 
             .speaker-name {
-                font-size: 0.9rem !important;
+                font-size: 0.9rem;
                 margin-bottom: 0.1rem;
             }
 
             .speaker-title {
-                font-size: 0.65rem !important;
+                font-size: 0.65rem;
                 margin-bottom: 0.3rem;
                 min-height: 2em;
             }
 
             .speaker-role {
-                font-size: 0.6rem !important;
+                font-size: 0.6rem;
                 margin-bottom: 0.1rem;
             }
 
@@ -2024,27 +2136,31 @@
             }
 
             .attend-header h4 {
-                font-size: 1.3rem !important;
+                font-size: 1.3rem;
             }
 
             .attend-list li {
-                font-size: 0.95rem !important;
+                font-size: 0.95rem;
             }
 
             .schedule-timeline>div>div {
                 grid-template-columns: 1fr !important;
             }
 
+            .schedule-card {
+                width: 100%;
+            }
+
             .schedule-card-image {
-                height: 180px !important;
+                height: 180px;
             }
 
             .schedule-card-content h3 {
-                font-size: 1.2rem !important;
+                font-size: 1.2rem;
             }
 
             .schedule-card-content p {
-                font-size: 0.9rem !important;
+                font-size: 0.9rem;
             }
 
             .map-placeholder {
@@ -2052,33 +2168,33 @@
             }
 
             .guidelines-grid {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr;
                 gap: 1rem;
             }
 
             .guideline-card {
-                padding: 1.5rem !important;
+                padding: 1.5rem;
             }
 
             .guideline-card h3 {
-                font-size: 1.3rem !important;
+                font-size: 1.3rem;
             }
 
             .dates-grid {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr;
                 gap: 1rem;
             }
 
             .date-card {
-                padding: 1.5rem !important;
+                padding: 1.5rem;
             }
 
             .date-card h4 {
-                font-size: 1.2rem !important;
+                font-size: 1.2rem;
             }
 
             .date-card .date-value {
-                font-size: 1.6rem !important;
+                font-size: 1.6rem;
             }
 
             .fees-table th,
@@ -2100,9 +2216,54 @@
             }
 
             .flex-committee-wrap {
-                display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0.75rem !important;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 0 1rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .flex-committee-wrap .speaker-card {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .flex-committee-wrap .speaker-image {
+                width: 100%;
+                aspect-ratio: 1/1;
+                max-height: 160px;
+            }
+
+            .flex-committee-wrap .speaker-info {
+                padding: 0.75rem 0.5rem;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .flex-committee-wrap .speaker-name {
+                font-size: 0.9rem;
+                margin-bottom: 0.2rem;
+                line-height: 1.3;
+            }
+
+            .flex-committee-wrap .speaker-title {
+                font-size: 0.7rem;
+                margin-bottom: 0.3rem;
+                min-height: 2.5em;
+                line-height: 1.3;
+            }
+
+            .flex-committee-wrap .speaker-role {
+                font-size: 0.65rem;
+                margin-bottom: 0.15rem;
             }
 
             .payment-step-new .flex-row {
@@ -2114,6 +2275,130 @@
             }
         }
 
+        @media (max-width: 375px) {
+            .hero-carousel {
+                min-height: calc(100vh - var(--nav-height));
+            }
+
+            .hero-title-main {
+                font-size: 1.5rem;
+            }
+
+            .hero-info-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.25rem;
+            }
+
+            .info-item.no-bg {
+                padding: 0.2rem 0;
+            }
+
+            .cta-button {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .slide-info-capsule {
+                max-width: calc(100% - 2rem);
+                width: auto;
+                padding: 0.6rem 1rem;
+                margin: 0 1rem;
+                border-radius: 60px;
+                background: rgba(0, 0, 0, 0.5);
+                gap: 8px;
+                align-items: center;
+                justify-content: flex-start;
+                order: 1;
+            }
+
+            .capsule-counter {
+                max-width: calc(100% - 2rem);
+                width: auto;
+                padding: 0.6rem 1rem;
+                margin: 0 1rem;
+                border-radius: 60px;
+                background: rgba(0, 0, 0, 0.5);
+                font-size: 0.9rem;
+                order: 2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .capsule-play {
+                max-width: calc(100% - 2rem);
+                width: auto;
+                padding: 0.6rem 1rem;
+                margin: 0 1rem;
+                border-radius: 60px;
+                background: rgba(0, 0, 0, 0.5);
+                gap: 10px;
+                order: 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .circle-question-mark-icon {
+                width: 16px;
+                height: 16px;
+                margin-top: 0;
+            }
+
+            .whats-behind-text {
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+
+            .slide-location-text {
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+
+            .carousel-nav-btn svg,
+            .play-pause-btn svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .speakers-grid {
+                gap: 0.5rem;
+            }
+
+            .speaker-name {
+                font-size: 0.8rem;
+            }
+
+            .speaker-title {
+                font-size: 0.55rem;
+            }
+
+            .event-title {
+                font-size: 1.5rem;
+            }
+
+            .marquee-content {
+                font-size: 0.7rem;
+            }
+
+            .flex-committee-wrap .speaker-image {
+                max-height: 120px;
+            }
+
+            .flex-committee-wrap .speaker-name {
+                font-size: 0.8rem;
+            }
+
+            .flex-committee-wrap .speaker-title {
+                font-size: 0.6rem;
+            }
+
+            .flex-committee-wrap .speaker-role {
+                font-size: 0.55rem;
+            }
+        }
+
         @media print {
 
             .hero-carousel,
@@ -2122,7 +2407,7 @@
             .carousel-controls-wrapper,
             .hero-right-box,
             .hero-marquee-container {
-                display: none !important;
+                display: none;
             }
 
             body {
@@ -2132,10 +2417,10 @@
 
         @media (prefers-reduced-motion: reduce) {
             * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
+                animation-duration: 0.01ms;
+                animation-iteration-count: 1;
+                transition-duration: 0.01ms;
+                scroll-behavior: auto;
             }
         }
     </style>
@@ -2222,13 +2507,13 @@
         <div class="mobile-menu-header">
             <div
                 style="font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--primary); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.25rem;">
-                Jai Hind College (Empowered Autonomous)</div>
+                Jai Hind College <br>(Empowered Autonomous)</div>
             <div style="font-size: 0.85rem; font-weight: 500; color: var(--accent); letter-spacing: 0.5px;">
                 NAAC
                 Reaccredited A+ Grade (4th Cycle)</div>
             <div
                 style="margin-top: 1.5rem; font-size: 1rem; font-weight: 600; color: var(--primary); opacity: 0.8; letter-spacing: 1px;">
-                Navigation Menu</div>
+                ✦ Navigation Menu ✦</div>
         </div>
 
         <ul class="mobile-nav-links">
@@ -2538,7 +2823,7 @@
                         controlslist="nodownload nofullscreen noremoteplayback" disablepictureinpicture
                         aria-label="Promotional video for Gala Dinner at Bombay Presidency Radio Club">
                         <source
-                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_radio_club.mp4"
+                            src="https://internationalmanagementconference.com/wp-content/uploads/2026/03/jai_hind_college_radio_club.mp4"
                             type="video/mp4">
                         Your browser does not support the video
                         tag.
@@ -3426,17 +3711,16 @@
                 </div>
                 <div style="max-width:900px; margin:2rem auto 1rem; padding:0 1rem;">
                     <p
-                        style="background: rgba(212,175,55,0.1); padding:1.2rem; border-radius:16px; margin-bottom:0.8rem; font-weight:700; color:var(--primary);">
-                        ✦ Please Note:
-                        <br> The registration fee covers the
+                        style="text-align: center; background: rgba(212,175,55,0.1); padding:1.2rem; border-radius:16px; margin-bottom:0.8rem; font-weight:700; color:var(--primary);">
+                        The registration fee covers the
                         publication cost for accepted papers
                         that meet the journal or proceedings
                         guidelines. No separate publication
                         charges will be levied.
                     </p>
-                    <p style="background: #f8f8f8; padding:1rem; border-radius:12px; color:var(--text);">
-                        ✦ Reminder:
-                        <br> Registration is mandatory for all
+                    <p
+                        style="text-align: center; background: #f8f8f8; padding:1rem; border-radius:12px; color:var(--text);">
+                        Registration is mandatory for all
                         including Authors / Co-Authors & is
                         inclusive of Breakfast, Lunch High Tea,
                         Gala Dinner, Conference Kit & Book
@@ -3626,48 +3910,41 @@
         <div class="section-header" style="margin-top: 5rem;">
             <div class="section-label" style="color: var(--accent);">PATRONS</div>
         </div>
-        <div class="flex-committee-wrap"
-            style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; align-items: stretch; padding: 0 2rem;">
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_rajesh_thadani.jpg"
-                            alt="Dr. Rajesh Thadani"
-                            style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9) translateY(15px);">
-                    </div>
-                    <div class="speaker-info">
-                        <p class="speaker-role">BOARD PRESIDENT</p>
-                        <h3 class="speaker-name">Dr. Rajesh Thadani</h3>
-                        <p class="speaker-title">Jai Hind College <br>(Empowered Autonomous), <br>Mumbai</p>
-                    </div>
+        <div class="flex-committee-wrap">
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_rajesh_thadani.jpg"
+                        alt="Dr. Rajesh Thadani"
+                        style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(0.9) translateY(15px);">
+                </div>
+                <div class="speaker-info">
+                    <p class="speaker-role">BOARD PRESIDENT</p>
+                    <h3 class="speaker-name">Dr. Rajesh Thadani</h3>
+                    <p class="speaker-title">Jai Hind College <br>(Empowered Autonomous), <br>Mumbai</p>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prof_dr_vijay_dabholkar.jpg"
-                            alt="Prof. (Dr.) Vijay Dabholkar"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.3);">
-                    </div>
-                    <div class="speaker-info">
-                        <p class="speaker-role">PRINCIPAL</p>
-                        <h3 class="speaker-name">Prof. (Dr.) Vijay Dabholkar</h3>
-                        <p class="speaker-title">Jai Hind College <br>(Empowered Autonomous), <br>Mumbai</p>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prof_dr_vijay_dabholkar.jpg"
+                        alt="Prof. (Dr.) Vijay Dabholkar"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.3);">
+                </div>
+                <div class="speaker-info">
+                    <p class="speaker-role">PRINCIPAL</p>
+                    <h3 class="speaker-name">Prof. (Dr.) Vijay Dabholkar</h3>
+                    <p class="speaker-title">Jai Hind College <br>(Empowered Autonomous), <br>Mumbai</p>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_rakhi_sharma.jpg"
-                            alt="Dr. Rakhi Sharma"
-                            style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(1.1) translateX(5px);">
-                    </div>
-                    <div class="speaker-info">
-                        <p class="speaker-role">DIRECTOR - AICTE PROGRAMS</p>
-                        <h3 class="speaker-name">Dr. Rakhi Sharma</h3>
-                        <p class="speaker-title">Jai Hind College <br>(Empowered Autonomous), <br>Mumbai</p>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_rakhi_sharma.jpg"
+                        alt="Dr. Rakhi Sharma"
+                        style="width: 100%; height: 100%; object-fit: contain; object-position: top; transform: scale(1.1) translateX(5px);">
+                </div>
+                <div class="speaker-info">
+                    <p class="speaker-role">DIRECTOR - AICTE PROGRAMS</p>
+                    <h3 class="speaker-name">Dr. Rakhi Sharma</h3>
+                    <p class="speaker-title">Jai Hind College <br>(Empowered Autonomous), <br>Mumbai</p>
                 </div>
             </div>
         </div>
@@ -3675,62 +3952,53 @@
         <div class="section-header" style="margin-top: 2rem;">
             <div class="section-label" style="color: var(--accent);">ADVISORY BOARD</div>
         </div>
-        <div class="flex-committee-wrap"
-            style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; align-items: stretch; padding: 0 2rem;">
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_chandrakant_salunkhe.jpg"
-                            alt="Dr. Chandrakant Salunkhe"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9) translateY(20px);">
-                    </div>
-                    <div class="speaker-info">
-                        <p class="speaker-role">Founder & President</p>
-                        <h3 class="speaker-name">Dr. Chandrakant Salunkhe</h3>
-                        <p class="speaker-title">SME Chamber of India</p>
-                    </div>
+        <div class="flex-committee-wrap">
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_chandrakant_salunkhe.jpg"
+                        alt="Dr. Chandrakant Salunkhe"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9) translateY(20px);">
+                </div>
+                <div class="speaker-info">
+                    <p class="speaker-role">Founder & President</p>
+                    <h3 class="speaker-name">Dr. Chandrakant Salunkhe</h3>
+                    <p class="speaker-title">SME Chamber of India</p>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_shriniwas_dhure.jpg"
-                            alt="Dr. Shriniwas Dhure"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.2);">
-                    </div>
-                    <div class="speaker-info">
-                        <p class="speaker-role">Director</p>
-                        <h3 class="speaker-name">Dr. Shriniwas Dhure</h3>
-                        <p class="speaker-title">Sydenham Institute</p>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_shriniwas_dhure.jpg"
+                        alt="Dr. Shriniwas Dhure"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.2);">
+                </div>
+                <div class="speaker-info">
+                    <p class="speaker-role">Director</p>
+                    <h3 class="speaker-name">Dr. Shriniwas Dhure</h3>
+                    <p class="speaker-title">Sydenham Institute</p>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_arunima_haldar.jpg"
-                            alt="Dr. Arunima Haldar"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1);">
-                    </div>
-                    <div class="speaker-info">
-                        <p class="speaker-role">Deputy Chairperson</p>
-                        <h3 class="speaker-name">Dr. Arunima Haldar</h3>
-                        <p class="speaker-title">SPJIMR, Mumbai</p>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_dr_arunima_haldar.jpg"
+                        alt="Dr. Arunima Haldar"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1);">
+                </div>
+                <div class="speaker-info">
+                    <p class="speaker-role">Deputy Chairperson</p>
+                    <h3 class="speaker-name">Dr. Arunima Haldar</h3>
+                    <p class="speaker-title">SPJIMR, Mumbai</p>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_shishir_k_mishra.jpg"
-                            alt="Mr. Shishir Kumar Mishra"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9);">
-                    </div>
-                    <div class="speaker-info">
-                        <p class="speaker-role">Secretary</p>
-                        <h3 class="speaker-name">Mr. Shishir Kumar Mishra</h3>
-                        <p class="speaker-title">FSIB</p>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_shishir_k_mishra.jpg"
+                        alt="Mr. Shishir Kumar Mishra"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9);">
+                </div>
+                <div class="speaker-info">
+                    <p class="speaker-role">Secretary</p>
+                    <h3 class="speaker-name">Mr. Shishir Kumar Mishra</h3>
+                    <p class="speaker-title">FSIB</p>
                 </div>
             </div>
         </div>
@@ -3738,42 +4006,35 @@
         <div class="section-header" style="margin-top: 2rem;">
             <div class="section-label" style="color: var(--accent);">Organizing Committee</div>
         </div>
-        <div class="flex-committee-wrap"
-            style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; align-items: stretch; padding: 0 2rem;">
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_prateek_kumar.jpg"
-                            alt="Mr. Prateek Kumar"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
-                    </div>
-                    <div class="speaker-info">
-                        <h3 class="speaker-name">Mr. Prateek Kumar</h3>
-                    </div>
+        <div class="flex-committee-wrap">
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_prateek_kumar.jpg"
+                        alt="Mr. Prateek Kumar"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                </div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Mr. Prateek Kumar</h3>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_sajiri_dhumak.jpg"
-                            alt="Mrs. Sajiri Dhumak"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
-                    </div>
-                    <div class="speaker-info">
-                        <h3 class="speaker-name">Mrs. Sajiri Dhumak</h3>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_sajiri_dhumak.jpg"
+                        alt="Mrs. Sajiri Dhumak"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                </div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Mrs. Sajiri Dhumak</h3>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ms_sravya_peethala.jpg"
-                            alt="Ms. Sravya Peethala"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9);">
-                    </div>
-                    <div class="speaker-info">
-                        <h3 class="speaker-name">Ms. Sravya Peethala</h3>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ms_sravya_peethala.jpg"
+                        alt="Ms. Sravya Peethala"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9);">
+                </div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Ms. Sravya Peethala</h3>
                 </div>
             </div>
         </div>
@@ -3781,223 +4042,216 @@
         <div class="section-header" style="margin-top: 2rem;">
             <div class="section-label" style="color: var(--accent);">Local Organizing Committee</div>
         </div>
-        <div class="flex-committee-wrap"
-            style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; align-items: stretch; padding: 0 2rem;">
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_yasmin_singaporewala.jpg"
-                            alt="Mrs. Yasmin Singaporewala"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9);">
-                    </div>
-                    <div class="speaker-info">
-                        <h3 class="speaker-name">Mrs. Yasmin Singaporewala</h3>
-                    </div>
+        <div class="flex-committee-wrap">
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_yasmin_singaporewala.jpg"
+                        alt="Mrs. Yasmin Singaporewala"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(0.9);">
+                </div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Mrs. Yasmin Singaporewala</h3>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_saiprasad_shetty.png"
-                            alt="Mr. Saiprasad Shetty"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.5);">
-                    </div>
-                    <div class="speaker-info">
-                        <h3 class="speaker-name">Mr. Saiprasad Shetty</h3>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_saiprasad_shetty.png"
+                        alt="Mr. Saiprasad Shetty"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.5);">
+                </div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Mr. Saiprasad Shetty</h3>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_evelyn_correia.jpg"
-                            alt="Mrs. Evelyn Correia"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
-                    </div>
-                    <div class="speaker-info">
-                        <h3 class="speaker-name">Mrs. Evelyn Correia</h3>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_evelyn_correia.jpg"
+                        alt="Mrs. Evelyn Correia"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                </div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Mrs. Evelyn Correia</h3>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_dhriti_jain.jpg"
-                            alt="Mrs. Dhriti Jain"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
-                    </div>
-                    <div class="speaker-info">
-                        <h3 class="speaker-name">Mrs. Dhriti Jain</h3>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mrs_dhriti_jain.jpg"
+                        alt="Mrs. Dhriti Jain"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                </div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Mrs. Dhriti Jain</h3>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_mohit_patel.jpg"
-                            alt="Mr. Mohit Patel"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.2);">
-                    </div>
-                    <div class="speaker-info">
-                        <h3 class="speaker-name">Mr. Mohit Patel</h3>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_mr_mohit_patel.jpg"
+                        alt="Mr. Mohit Patel"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.2);">
+                </div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Mr. Mohit Patel</h3>
                 </div>
             </div>
-            <div style="flex: 0 0 auto;">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ms_afreen_mazgaonkar.jpg"
-                            alt="Ms. Afreen Mazgaonkar"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
-                    </div>
-                    <div class="speaker-info">
-                        <h3 class="speaker-name">Ms. Afreen Mazgaonkar</h3>
-                    </div>
+            <div class="speaker-card">
+                <div class="speaker-image">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ms_afreen_mazgaonkar.jpg"
+                        alt="Ms. Afreen Mazgaonkar"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                </div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Ms. Afreen Mazgaonkar</h3>
                 </div>
             </div>
         </div>
 
-        <div class="exclusive-event">
-            <div class="event-image" id="eventCarousel">
-                <div class="event-images-container" style="position: relative; width: 100%; height: 100%;">
-                    <img class="event-carousel-image active"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_gateway_of_india.jpg"
-                        alt="Gateway of India Mumbai landmark" data-title="Gateway of India"
-                        data-description="An enduring waterfront landmark best experienced early morning. Pair it with a quiet walk through Colaba before traffic builds. The scale, symmetry, and harbor setting immediately situate visitors within Mumbai's maritime past.">
+        <div class="exclusive-event" style="align-items: center; flex-direction: column;">
+            <div class="event-label" style="text-align: center; margin-bottom: 2rem; width: 100%;">MUMBAI - A BLEND OF
+                ART, CULTURE & CUISINE</div>
+            <div style="display: flex; gap: 2.5rem; width: 100%; align-items: center;">
+                <div style="flex: 1; display: flex; flex-direction: column;">
+                    <div class="event-image" id="eventCarousel" style="width: 100%;">
+                        <div class="event-images-container" style="position: relative; width: 100%; height: 100%;">
+                            <img class="event-carousel-image active"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_gateway_of_india.jpg"
+                                alt="Gateway of India Mumbai landmark" data-title="Gateway of India"
+                                data-description="An enduring waterfront landmark best experienced early morning. Pair it with a quiet walk through Colaba before traffic builds. The scale, symmetry, and harbor setting immediately situate visitors within Mumbai's maritime past.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_csmt.jpg"
-                        alt="Chhatrapati Shivaji Maharaj Terminus CSMT Mumbai"
-                        data-title="Chhatrapati Shivaji Maharaj Terminus (CSMT)"
-                        data-description="A UNESCO listed Victorian Gothic masterpiece that remains fully operational. Even a brief exterior visit rewards architecture enthusiasts with intricate stonework and a sense of the city's colonial era infrastructure ambition.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_csmt.jpg"
+                                alt="Chhatrapati Shivaji Maharaj Terminus CSMT Mumbai"
+                                data-title="Chhatrapati Shivaji Maharaj Terminus (CSMT)"
+                                data-description="A UNESCO listed Victorian Gothic masterpiece that remains fully operational. Even a brief exterior visit rewards architecture enthusiasts with intricate stonework and a sense of the city's colonial era infrastructure ambition.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_kala_ghoda.jpg"
-                        alt="Kala Ghoda Art District Mumbai" data-title="Kala Ghoda Art District"
-                        data-description="Compact, walkable, and intellectually alive. Galleries, design stores, and restored buildings create a cultural pocket ideal for a reflective afternoon between conference sessions.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_kala_ghoda.jpg"
+                                alt="Kala Ghoda Art District Mumbai" data-title="Kala Ghoda Art District"
+                                data-description="Compact, walkable, and intellectually alive. Galleries, design stores, and restored buildings create a cultural pocket ideal for a reflective afternoon between conference sessions.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_worli_sea_link.jpg"
-                        alt="Bandra Worli Sea Link Mumbai" data-title="Bandra Worli Sea Link"
-                        data-description="A modern engineering statement that reshaped city mobility. Crossing it at dusk offers expansive Arabian Sea views and a clear visual contrast to South Mumbai's historic density.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_worli_sea_link.jpg"
+                                alt="Bandra Worli Sea Link Mumbai" data-title="Bandra Worli Sea Link"
+                                data-description="A modern engineering statement that reshaped city mobility. Crossing it at dusk offers expansive Arabian Sea views and a clear visual contrast to South Mumbai's historic density.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_britannia_and_co.jpg"
-                        alt="Britannia and Co Irani cafe Mumbai"
-                        data-title="Legendary Local Experience: Britannia & Co."
-                        data-description="A century old Irani café known for berry pulao and attentive hospitality. Efficient service makes it suitable even on a tight schedule while offering a tangible link to the city's trading history.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_britannia_and_co.jpg"
+                                alt="Britannia and Co Irani cafe Mumbai"
+                                data-title="Legendary Local Experience: Britannia & Co."
+                                data-description="A century old Irani café known for berry pulao and attentive hospitality. Efficient service makes it suitable even on a tight schedule while offering a tangible link to the city's trading history.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_masque.jpg"
-                        alt="Masque restaurant Mumbai" data-title="Modern Indian: Masque"
-                        data-description="Ingredient driven tasting menus that reinterpret Indian cuisine with technical precision. Reservations recommended well in advance. Ideal for delegates who view dining as cultural exploration.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_masque.jpg"
+                                alt="Masque restaurant Mumbai" data-title="Modern Indian: Masque"
+                                data-description="Ingredient driven tasting menus that reinterpret Indian cuisine with technical precision. Reservations recommended well in advance. Ideal for delegates who view dining as cultural exploration.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_wasabi.jpg"
-                        alt="Wasabi by Morimoto Mumbai" data-title="High End Dining: Wasabi by Morimoto"
-                        data-description="Consistently ranked among India's finest Japanese restaurants. Calm interiors and disciplined service provide a welcome counterpoint to the city's pace.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_wasabi.jpg"
+                                alt="Wasabi by Morimoto Mumbai" data-title="High End Dining: Wasabi by Morimoto"
+                                data-description="Consistently ranked among India's finest Japanese restaurants. Calm interiors and disciplined service provide a welcome counterpoint to the city's pace.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_khau_galli.jpg"
-                        alt="Khau Galli street food Ghatkopar Mumbai"
-                        data-title="Quick but Safe Street Zone: Khau Galli, Ghatkopar"
-                        data-description="Structured rows of vendors with high turnover ensure freshness. Visit with a local host if possible and sample classic pav bhaji or dosas without navigating unpredictable street clusters.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_khau_galli.jpg"
+                                alt="Khau Galli street food Ghatkopar Mumbai"
+                                data-title="Quick but Safe Street Zone: Khau Galli, Ghatkopar"
+                                data-description="Structured rows of vendors with high turnover ensure freshness. Visit with a local host if possible and sample classic pav bhaji or dosas without navigating unpredictable street clusters.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_jehangir_art_gallery.jpg"
-                        alt="Jehangir Art Gallery Mumbai" data-title="Jehangir Art Gallery"
-                        data-description="Rotating exhibitions keep programming current. Visits rarely exceed an hour, making it an efficient cultural insertion into a busy itinerary.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_jehangir_art_gallery.jpg"
+                                alt="Jehangir Art Gallery Mumbai" data-title="Jehangir Art Gallery"
+                                data-description="Rotating exhibitions keep programming current. Visits rarely exceed an hour, making it an efficient cultural insertion into a busy itinerary.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_sunset_sailing.jpg"
-                        alt="Sunset sailing Arabian Sea Mumbai" data-title="Sunset Sailing on the Arabian Sea"
-                        data-description="A measured way to experience the skyline while avoiding road congestion. Private charters are widely available through reputable operators.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_sunset_sailing.jpg"
+                                alt="Sunset sailing Arabian Sea Mumbai" data-title="Sunset Sailing on the Arabian Sea"
+                                data-description="A measured way to experience the skyline while avoiding road congestion. Private charters are widely available through reputable operators.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ncpa.jpg"
-                        alt="NCPA National Centre for Performing Arts Mumbai"
-                        data-title="National Centre for the Performing Arts (NCPA)"
-                        data-description="Hosts classical, jazz, theatre, and global touring productions. Programming often aligns with academic calendars, so schedules are worth checking in advance.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_ncpa.jpg"
+                                alt="NCPA National Centre for Performing Arts Mumbai"
+                                data-title="National Centre for the Performing Arts (NCPA)"
+                                data-description="Hosts classical, jazz, theatre, and global touring productions. Programming often aligns with academic calendars, so schedules are worth checking in advance.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_colaba_design_walk.jpg"
-                        alt="Colaba Design Walk Mumbai" data-title="Colaba Design Walk"
-                        data-description="Focus on independent retailers rather than souvenir lanes. Best explored mid morning when the neighbourhood is active yet navigable.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_colaba_design_walk.jpg"
+                                alt="Colaba Design Walk Mumbai" data-title="Colaba Design Walk"
+                                data-description="Focus on independent retailers rather than souvenir lanes. Best explored mid morning when the neighbourhood is active yet navigable.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_elephanta_caves.jpg"
-                        alt="Elephanta Caves Mumbai" data-title="Elephanta Caves"
-                        data-description="Reached by a steady ferry ride, these rock cut caves present sophisticated early Indian sculpture within a surprisingly tranquil island landscape.">
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_elephanta_caves.jpg"
+                                alt="Elephanta Caves Mumbai" data-title="Elephanta Caves"
+                                data-description="Reached by a steady ferry ride, these rock cut caves present sophisticated early Indian sculpture within a surprisingly tranquil island landscape.">
 
-                    <img class="event-carousel-image"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
-                        loading="lazy" width="600" height="450"
-                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_alibaug.jpg"
-                        alt="Alibaug beach near Mumbai" data-title="Alibaug"
-                        data-description="A coastal getaway near Mumbai, known for its serene beaches, Portuguese-style villas, and fresh seafood. Perfect for delegates looking to extend their stay and explore the Konkan coastline.">
-                </div>
+                            <img class="event-carousel-image"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;"
+                                loading="lazy" width="600" height="450"
+                                src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_alibaug.jpg"
+                                alt="Alibaug beach near Mumbai" data-title="Alibaug"
+                                data-description="A coastal getaway near Mumbai, known for its serene beaches, Portuguese-style villas, and fresh seafood. Perfect for delegates looking to extend their stay and explore the Konkan coastline.">
+                        </div>
 
-                <div class="event-carousel-overlay">
-                    <span class="event-counter" id="eventPhotoCounter"
-                        style="background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); color: white; padding: 6px 16px; border-radius: 40px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(212, 175, 55, 0.3);">1/14</span>
-                    <div class="event-nav-buttons" style="display: flex; gap: 8px;">
-                        <button class="event-nav-btn" id="eventPrevBtn" aria-label="Previous image"
-                            style="width: 44px; height: 44px; border-radius: 50%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); border: 1px solid rgba(212, 175, 55, 0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; color: white;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <path d="m18 15-6-6-6 6" />
-                            </svg>
-                        </button>
-                        <button class="event-nav-btn" id="eventNextBtn" aria-label="Next image"
-                            style="width: 44px; height: 44px; border-radius: 50%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); border: 1px solid rgba(212, 175, 55, 0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; color: white;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <path d="m6 9 6 6 6-6" />
-                            </svg>
-                        </button>
+                        <div class="event-carousel-overlay">
+                            <span class="event-counter" id="eventPhotoCounter"
+                                style="background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); color: white; padding: 6px 16px; border-radius: 40px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(212, 175, 55, 0.3);">1/14</span>
+                            <div class="event-nav-buttons" style="display: flex; gap: 8px;">
+                                <button class="event-nav-btn" id="eventPrevBtn" aria-label="Previous image"
+                                    style="width: 44px; height: 44px; border-radius: 50%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); border: 1px solid rgba(212, 175, 55, 0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; color: white;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <path d="m18 15-6-6-6 6" />
+                                    </svg>
+                                </button>
+                                <button class="event-nav-btn" id="eventNextBtn" aria-label="Next image"
+                                    style="width: 44px; height: 44px; border-radius: 50%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); border: 1px solid rgba(212, 175, 55, 0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; color: white;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <path d="m6 9 6 6 6-6" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="event-content">
-                <div class="event-label">MUMBAI - A BLEND OF
-                    ART, CULTURE & CUISINE</div>
-                <h3 class="event-title" id="eventTitle">Gateway
-                    of India</h3>
-                <p class="event-description" id="eventDescription">An enduring waterfront
-                    landmark best experienced
-                    early morning. Pair it with a quiet walk
-                    through Colaba before traffic builds. The
-                    scale, symmetry,
-                    and harbor setting immediately situate
-                    visitors within Mumbai's maritime past.</p>
+
+                <div class="event-content"
+                    style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                    <h3 class="event-title" id="eventTitle" style="margin-top: 0;">Gateway
+                        of India</h3>
+                    <p class="event-description" id="eventDescription">An enduring waterfront
+                        landmark best experienced
+                        early morning. Pair it with a quiet walk
+                        through Colaba before traffic builds. The
+                        scale, symmetry,
+                        and harbor setting immediately situate
+                        visitors within Mumbai's maritime past.</p>
+                </div>
             </div>
         </div>
 
@@ -4359,6 +4613,7 @@
                 exclusiveVideo.playsInline = true;
                 exclusiveVideo.autoplay = true;
                 exclusiveVideo.preload = 'auto';
+                exclusiveVideo.playbackRate = 1;
 
                 var playPromise = exclusiveVideo.play();
 
