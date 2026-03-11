@@ -8,4 +8,4 @@
 // GitHub URI  : https://www.github.com/lakshkukreja07                
 // -------------------------------------------------------------------
 
-window.JHC_SECURE={ACTIVATE_SECUREX:1}
+window.JHC_SECURE={ACTIVATE_SECUREX:0}
