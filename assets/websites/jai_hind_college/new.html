@@ -2,13 +2,14 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>International Management Conference 2026 | Jai Hind College</title>
     <meta name="title" content="International Management Conference 2026 | Jai Hind College">
     <meta name="description"
-        content="nternational Management Conference (IMC) organized by the Department of Management Studies at Jai Hind College (Empowered Autonomous), Mumbai. A global platform for academics, researchers, students, and industry leaders to discuss innovation, management research, and emerging business trends.">
+        content="International Management Conference (IMC) organized by the Department of Management Studies at Jai Hind College (Empowered Autonomous), Mumbai. A global platform for academics, researchers, students, and industry leaders to discuss innovation, management research, and emerging business trends.">
     <meta name="keywords"
         content="International Management Conference, IMC Mumbai, JHC IMC, Jai Hind College Conference, Management Conference India, Academic Conference Management, Business Research Conference, Entrepreneurship Conference India, Research Conference Mumbai, Management Studies Conference">
     <meta name="author" content="Laksh Kukreja">
@@ -158,6 +159,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
+        xh5 {
+            text-align: center;
+            font-size: 10px;
+        }
+
         /* ── RESET ──────────────────────────────────────────────────── */
         *,
         *::before,
@@ -1278,7 +1284,7 @@
             padding-top: 0;
         }
 
-        .why-map-frame .map-placeholder-text {
+        .why-map-frame .map-placeholder {
             position: absolute;
             inset: 0;
             display: flex;
@@ -1299,46 +1305,73 @@
             opacity: 0;
         }
 
+        /* .map-placeholder-inner — centred flex column holding pin + text */
+        .map-placeholder-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Pulsing gold circle that releases two ripple rings */
         .map-placeholder-pin {
-            width: 48px;
-            height: 48px;
+            position: relative;
+            width: 68px;
+            height: 68px;
             border-radius: 50%;
             background: rgba(212, 175, 55, .18);
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: mapPinPulse 2s ease-in-out infinite;
         }
 
-        @keyframes mapPinPulse {
+        /* Ripple rings via pseudo-elements */
+        .map-placeholder-pin::before,
+        .map-placeholder-pin::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, .6);
+            animation: mapRipple 2s ease-out infinite;
+        }
 
-            0%,
-            100% {
+        .map-placeholder-pin::after {
+            animation-delay: .9s;
+        }
+
+        @keyframes mapRipple {
+            0% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(212, 175, 55, .3);
+                opacity: .7;
             }
 
-            50% {
-                transform: scale(1.08);
-                box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+            100% {
+                transform: scale(2.4);
+                opacity: 0;
             }
         }
 
         .map-placeholder-pin svg {
-            width: 24px;
-            height: 24px;
+            width: 30px;
+            height: 30px;
             stroke: var(--accent);
             stroke-width: 2;
-            fill: none;
+            fill: rgba(212, 175, 55, .3);
             stroke-linecap: round;
             stroke-linejoin: round;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, .8)) drop-shadow(0 0 12px rgba(212, 175, 55, .45));
+            position: relative;
+            z-index: 1;
         }
 
         .map-placeholder-text {
-            font-size: .72rem;
-            font-weight: 600;
-            color: #999;
+            font-size: .76rem;
+            font-weight: 700;
+            color: #888;
             text-transform: uppercase;
+            letter-spacing: .06em;
         }
 
         .why-map-hint {
@@ -2053,6 +2086,7 @@
             position: relative;
         }
 
+        /* greyed-out connecting line */
         .date-item-spine::before {
             content: '';
             position: absolute;
@@ -2061,7 +2095,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: 2px;
-            background: rgba(212, 175, 55, .35);
+            background: rgba(160, 160, 160, .35);
             z-index: 0;
         }
 
@@ -2073,13 +2107,14 @@
             display: none;
         }
 
+        /* greyed-out dot */
         .date-item-dot {
             width: 13px;
             height: 13px;
             border-radius: 50%;
-            background: var(--accent);
+            background: #aaa;
             border: 2.5px solid #fff;
-            box-shadow: 0 0 0 2px var(--accent);
+            box-shadow: 0 0 0 2px #aaa;
             flex-shrink: 0;
             margin-top: 1.35rem;
             position: relative;
@@ -2095,6 +2130,7 @@
             padding: .85rem .75rem 1rem 1.5rem;
             display: flex;
             flex-direction: column;
+            align-items: flex-start;
             gap: .25rem;
         }
 
@@ -2105,11 +2141,31 @@
             line-height: 1.4;
         }
 
+        /* greyed-out date */
         .date-item-date {
             font-size: .95rem;
             font-weight: 800;
-            color: var(--accent);
+            color: #aaa;
             letter-spacing: -.01em;
+        }
+
+        /* "Registrations Are Closed" badge — centered under each date */
+        .date-closed-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+            margin-top: .35rem;
+            padding: .2rem .7rem;
+            background: rgba(160, 160, 160, .1);
+            border: 1px solid rgba(160, 160, 160, .35);
+            border-radius: 6px;
+            font-size: .7rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            width: fit-content;
         }
 
         /* ── REGISTRATION FEES ──────────────────────────────────────── */
@@ -4050,7 +4106,130 @@
             }
         }
 
+        /* ── WINDOWS LAPTOP / SMALL DESKTOP (1025px – 1366px) ─────── */
+        @media (min-width:1025px) and (max-width:1366px) {
+            :root {
+                --nav-h: 72px;
+            }
 
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.4rem;
+            }
+
+            .nav-links a {
+                font-size: .8rem;
+            }
+
+            .hero-content {
+                padding: 1.75rem 1.5rem;
+                gap: 1.25rem;
+            }
+
+            .hero-left {
+                max-width: 54%;
+            }
+
+            .hero-title {
+                font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+                margin-bottom: 1rem;
+            }
+
+            .hero-subtitle {
+                font-size: clamp(.9rem, 1.2vw, 1rem);
+                margin-bottom: .5rem;
+            }
+
+            .hero-meta {
+                gap: .75rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .hero-meta-item {
+                font-size: clamp(.82rem, 1.1vw, .96rem);
+            }
+
+            .btn-register {
+                font-size: .92rem;
+                padding: .78rem 1.6rem;
+            }
+
+            .countdown-bar {
+                padding: .55rem .9rem;
+                gap: .6rem;
+            }
+
+            .countdown-num {
+                font-size: 1.25rem;
+            }
+
+            .countdown-sep {
+                font-size: 1.25rem;
+            }
+
+            .countdown-unit {
+                min-width: 32px;
+            }
+
+            .hero-right {
+                width: min(38%, 340px);
+                padding-bottom: 1.75rem;
+                gap: .6rem;
+            }
+
+            .sq-box {
+                padding: .85rem 1rem;
+                border-radius: 16px;
+            }
+
+            .sq-whats-label {
+                font-size: .68rem;
+            }
+
+            .sq-location-name {
+                font-size: .78rem;
+            }
+
+            .slide-counter {
+                font-size: 1rem;
+            }
+
+            .update-link {
+                font-size: .76rem;
+                padding: .42rem .7rem;
+            }
+
+            .sq-updates-title {
+                font-size: .68rem;
+            }
+
+            .about-section,
+            .info-section,
+            .gala-section,
+            .why-section,
+            .speakers-section,
+            .themes-section,
+            .submission-section,
+            .review-section,
+            .program-section,
+            .patrons-section,
+            .mumbai-section,
+            .broadcast-section,
+            .contact-section,
+            .info-block {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .about-inner {
+                gap: 3rem;
+            }
+        }
 
         .patron-card-title {
             font-size: .78rem;
@@ -4221,6 +4400,79 @@
             .countdown-label {
                 font-size: .5rem;
             }
+        }
+
+        /* ── LIVE STATE ─────────────────────────────────────────────── */
+        .countdown-bar:has(.live-text) {
+            border-radius: 15px;
+        }
+
+        .live-dot {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ff3333;
+            flex-shrink: 0;
+            box-shadow: 0 0 5px 1px rgba(255, 80, 80, .55), 0 0 10px 2px rgba(255, 60, 60, .28);
+        }
+
+        .live-text {
+            font-family: 'Manrope', sans-serif;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-transform: uppercase;
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, .55)) drop-shadow(0 0 10px rgba(255, 255, 255, .28));
+        }
+
+        /* ── CONFETTI / PARTY POPPERS ───────────────────────────────── */
+        @keyframes popperLeft {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(var(--tr));
+                opacity: 0;
+            }
+        }
+
+        @keyframes popperRight {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(var(--tr));
+                opacity: 0;
+            }
+        }
+
+        .confetti-piece {
+            position: fixed;
+            width: 9px;
+            height: 14px;
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: 9999;
+            animation-timing-function: cubic-bezier(.22, .61, .36, 1);
+            animation-fill-mode: forwards;
+        }
+
+        .confetti-left {
+            bottom: 0;
+            left: 0;
+            animation-name: popperLeft;
+        }
+
+        .confetti-right {
+            bottom: 0;
+            right: 0;
+            animation-name: popperRight;
         }
     </style>
 </head>
@@ -4457,19 +4709,18 @@
                         </svg>UPDATES
                     </div>
                     <a class="update-link imc-update-link"
-                        href="https://www.internationalmanagementconference.com/wp-content/uploads/2026/03/jhc_imc_2026.pdf"
+                        href="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jhc_imc_agenda_2026.pdf"
                         target="_blank" rel="noopener">
-                        Official Brochure
+                        IMC Agenda
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M7 7h10v10" />
                             <path d="M7 17 17 7" />
                         </svg>
-                    </a>
-                    <a class="update-link imc-update-link"
-                        href="https://www.internationalmanagementconference.com/broadcast/?share_type=imc-website&card_id=deadlines_extended"
+                    </a> <a class="update-link imc-update-link"
+                        href="https://www.internationalmanagementconference.com/wp-content/uploads/2026/03/jhc_imc_2026.pdf"
                         target="_blank" rel="noopener">
-                        Extended Deadlines
+                        IMC Brochure
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M7 7h10v10" />
@@ -4720,13 +4971,15 @@
                 <div class="why-map-col">
                     <div class="why-map-frame" id="mapFrame">
                         <div class="map-placeholder" id="mapPlaceholder">
-                            <div class="map-placeholder-pin">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                                    <circle cx="12" cy="10" r="3" />
-                                </svg>
+                            <div class="map-placeholder-inner">
+                                <div class="map-placeholder-pin">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                </div>
+                                <span class="map-placeholder-text">Hold On Tight, Fetching Maps...</span>
                             </div>
-                            <span class="map-placeholder-text">Hold On Tight, Fetching Maps...</span>
                         </div>
                         <iframe
                             data-src="https://maps.google.com/maps?q=Jai+Hind+College,+Mumbai&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -4822,7 +5075,6 @@
                             alt="Prof. Ravindra Kulkarni" loading="lazy"
                             style="object-fit:contain; object-position:center top; transform:translateY(-10px) scale(1.1);">
                         <div class="speaker-badge">
-                            <span class="speaker-role">Chief Guest</span>
                             <span class="speaker-name">Prof. Ravindra Kulkarni</span>
                             <span class="speaker-photo-designation">Vice Chancellor, University of Mumbai</span>
                         </div>
@@ -4835,7 +5087,6 @@
                             alt="Prin. (Dr.) Ajay Bhamare" loading="lazy"
                             style="object-fit:cover; object-position:center top;">
                         <div class="speaker-badge">
-                            <span class="speaker-role">Guest of Honor</span>
                             <span class="speaker-name">Prin. (Dr.) Ajay Bhamare</span>
                             <span class="speaker-photo-designation">Pro-Vice-Chancellor, University of Mumbai</span>
                         </div>
@@ -5094,7 +5345,7 @@
                             <div class="speaker-badge">
                                 <span class="speaker-role">Workshop Leader</span>
                                 <span class="speaker-name">Dr. Varda Sardana</span>
-                                <span class="speaker-photo-designation">FORE School of Management, New Delhi</span>
+                                <span class="speaker-photo-designation">Jaipuria Institute, Noida</span>
                             </div>
                         </div>
                     </div>
@@ -5449,6 +5700,8 @@
                             </div>
                         </div>
                     </div>
+                    <span class="date-closed-badge">ALL THE PROCEDURES ARE OVER FOR THIS ANNUAL
+                        CONFERENCE EVENT.</span>
                 </div>
                 <div class="dates-fees-col">
                     <span class="info-block-eyebrow">CONFERENCE REGISTRATION FEES</span>
@@ -6466,27 +6719,108 @@
             });
 
             (function () {
-                var EVENT_MS = new Date('2026-04-24T09:00:00+05:30').getTime();
+                var CONF_DATE = new Date('2026-04-24T09:00:00+05:30');
+                var LIVE_START = new Date('2026-04-24T09:00:00+05:30');
+                var LIVE_END = new Date('2026-04-24T20:59:59+05:30');
+
+                var CONF_MS = CONF_DATE.getTime();
+                var LIVE_S = LIVE_START.getTime();
+                var LIVE_E = LIVE_END.getTime();
+
                 function pad(n) { return String(n).padStart(2, '0'); }
+
                 var barEl = document.getElementById('countdownBar');
                 var dEl = document.getElementById('cdDays');
                 var hEl = document.getElementById('cdHours');
                 var mEl = document.getElementById('cdMins');
                 var sEl = document.getElementById('cdSecs');
+
                 if (!barEl || !dEl) return;
+
+                var liveShown = false;
+                var intervalId;
+                var poppersFired = false;
+
+                /* ── Party poppers ── */
+                function launchPoppers() {
+                    if (poppersFired) return;
+                    poppersFired = true;
+
+                    var colors = ['#ff4444', '#ff9900', '#ffdd00', '#44dd44', '#4499ff', '#cc44ff', '#ff66aa', '#ffffff', '#ff6633', '#33ffcc'];
+                    var total = 120;
+                    for (var i = 0; i < total; i++) {
+                        (function (idx) {
+                            setTimeout(function () {
+                                var el = document.createElement('div');
+                                el.style.background = colors[Math.floor(Math.random() * colors.length)];
+                                var fromLeft = idx % 2 === 0;
+                                var tx = fromLeft ? (30 + Math.random() * 50) : -(30 + Math.random() * 50);
+                                var ty = -(55 + Math.random() * 40);
+                                var tr = (Math.random() * 900 - 450);
+                                el.style.setProperty('--tx', tx + 'vw');
+                                el.style.setProperty('--ty', ty + 'vh');
+                                el.style.setProperty('--tr', tr + 'deg');
+                                var dur = 1.4 + Math.random() * 1.8;
+                                el.style.animationDuration = dur + 's';
+                                el.style.width = (7 + Math.random() * 6) + 'px';
+                                el.style.height = (10 + Math.random() * 8) + 'px';
+                                el.style.borderRadius = Math.random() > .4 ? '50%' : '2px';
+                                el.className = 'confetti-piece ' + (fromLeft ? 'confetti-left' : 'confetti-right');
+                                document.body.appendChild(el);
+                                setTimeout(function () {
+                                    if (el.parentNode) el.parentNode.removeChild(el);
+                                }, (dur + .3) * 1000);
+                            }, Math.random() * 900);
+                        })(i);
+                    }
+                }
+
+                var ORIGINAL_INNER = barEl.innerHTML;
+
+                function showLive() {
+                    if (liveShown) return;
+                    liveShown = true;
+                    barEl.innerHTML = '<span class="live-dot"></span><span class="live-text">Live</span>';
+
+                    var now = Date.now();
+                    if (now < new Date('2026-04-24T09:01:00+05:30').getTime()) {
+                        launchPoppers();
+                    }
+                }
+
                 function tick() {
-                    var diff = EVENT_MS - Date.now();
-                    if (diff <= 0) {
-                        barEl.innerHTML = '<span style="font-size:.82rem;font-weight:800;color:var(--accent);letter-spacing:1px;">Conference Day! 🎉</span>';
+                    var now = Date.now();
+
+                    if (now >= LIVE_E) {
+                        barEl.style.display = 'none';
+                        clearInterval(intervalId);
                         return;
                     }
+
+                    if (now >= LIVE_S && now < LIVE_E) {
+                        showLive();
+                        return;
+                    }
+
+                    if (liveShown) {
+                        liveShown = false;
+                        barEl.innerHTML = ORIGINAL_INNER;
+                        dEl = document.getElementById('cdDays');
+                        hEl = document.getElementById('cdHours');
+                        mEl = document.getElementById('cdMins');
+                        sEl = document.getElementById('cdSecs');
+                    }
+
+                    var diff = CONF_MS - now;
+                    if (diff < 0) diff = 0;
                     dEl.textContent = pad(Math.floor(diff / 864e5));
                     hEl.textContent = pad(Math.floor((diff % 864e5) / 36e5));
                     mEl.textContent = pad(Math.floor((diff % 36e5) / 6e4));
                     sEl.textContent = pad(Math.floor((diff % 6e4) / 1e3));
                 }
+
                 tick();
-                setInterval(tick, 1000);
+                intervalId = setInterval(tick, 1000);
             })();
 
         })();
