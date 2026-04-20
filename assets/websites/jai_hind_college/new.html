@@ -3412,6 +3412,75 @@
             margin-top: .25rem;
         }
 
+        /* ── STATS MONITORING TOGGLE ─────────────────────────────── */
+        .dev-toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: rgba(30, 30, 30, .04);
+            border: 1px solid rgba(30, 30, 30, .09);
+            border-radius: 12px;
+            padding: .75rem 1rem;
+            gap: 1rem;
+        }
+
+        .dev-toggle-label {
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .dev-toggle-label span {
+            display: block;
+            font-size: .7rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .dev-toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .dev-toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .dev-toggle-track {
+            position: absolute;
+            inset: 0;
+            background: rgba(30, 30, 30, .18);
+            border-radius: 50px;
+            transition: background .2s;
+        }
+
+        .dev-toggle-switch input:checked+.dev-toggle-track {
+            background: var(--accent);
+        }
+
+        .dev-toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+            transition: transform .2s;
+        }
+
+        .dev-toggle-switch input:checked~.dev-toggle-thumb {
+            transform: translateX(20px);
+        }
+
         /* ── COPY CARD STYLES ───────────────────────────────────────── */
         .contact-copy-inline {
             background: none;
@@ -3712,6 +3781,12 @@
             .speakers-cards {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
+            }
+
+            .speakers-cards .speaker-card:only-child {
+                grid-column: 1 / -1;
+                max-width: calc(50% - .5rem);
+                justify-self: center;
             }
 
             .speaker-card {
@@ -5119,9 +5194,9 @@
 
                 <div class="speaker-card">
                     <div class="speaker-photo-wrap">
-                        <img src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prof_ravindra_kulkarni.png"
+                        <img src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jai_hind_college_dr_niranjan_hiranandani.png"
                             alt="Dr. Niranjan Hiranandani" loading="lazy"
-                            style="object-fit:contain; object-position:center top; transform:translateY(-10px) scale(1.1);">
+                            style="object-fit:contain; object-position:center top; transform:translateY(90px) scale(1.7);">
                         <div class="speaker-badge">
                             <span class="speaker-role speaker-role--chief-guest">Chief Guest</span>
                             <span class="speaker-name">Dr. Niranjan Hiranandani</span>
@@ -6363,9 +6438,23 @@
             </div>
             <p class="dev-popup-title">Developer Control Center</p>
             <p class="dev-popup-subtitle">View All Latest Updates &amp; Changes Done Entirely To The Website.</p>
+
+            <!-- Stats Monitoring Service Toggle -->
+            <div class="dev-toggle-row">
+                <div class="dev-toggle-label">
+                    Enable Stats Monitoring Service
+                    <span>Shows device &amp; session info overlay on screen</span>
+                </div>
+                <label class="dev-toggle-switch" aria-label="Enable Stats Monitoring Service">
+                    <input type="checkbox" id="devStatsToggle">
+                    <div class="dev-toggle-track"></div>
+                    <div class="dev-toggle-thumb"></div>
+                </label>
+            </div>
+
             <a class="dev-popup-cta" href="https://internationalmanagementconference.com/about" target="_blank"
                 rel="noopener">
-                Click Here
+                View All Updates Here
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="arrow-up-right-icon arrow-up-right" aria-hidden="true">
@@ -6373,8 +6462,8 @@
                     <path d="M7 17 17 7" />
                 </svg>
             </a>
-            <p class="dev-popup-shortcut">Press Esc or click outside to close &nbsp;·&nbsp; Ctrl/Cmd + Shift + U to
-                reopen</p>
+            <p class="dev-popup-shortcut" id="devPopupShortcut">Press 'ESC' To Close &nbsp;·&nbsp; <span
+                    id="devShortcutKey"></span> + Shift + U to Access Control Center</p>
         </div>
     </div>
 
@@ -6608,7 +6697,33 @@
                 var backdrop = document.getElementById('devPopupBackdrop');
                 var closeBtn = document.getElementById('devPopupClose');
 
+                // ── Platform-aware modifier key label ──
+                (function () {
+                    var isMac = /Macintosh|Mac OS X/i.test(navigator.userAgent) &&
+                        !(/iPad/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/i.test(navigator.userAgent)));
+                    var keyEl = document.getElementById('devShortcutKey');
+                    if (!keyEl) return;
+                    if (isMac) {
+                        keyEl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-bottom:1px;"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg>';
+                    } else {
+                        keyEl.textContent = 'CTRL';
+                    }
+                })();
+
+                // ── Stats toggle wiring ──
+                var statsToggle = document.getElementById('devStatsToggle');
+                if (statsToggle) {
+                    // Reflect current state when popup opens
+                    statsToggle.addEventListener('change', function () {
+                        if (window._devStatsSetEnabled) window._devStatsSetEnabled(statsToggle.checked);
+                    });
+                }
+
                 function openPopup() {
+                    // Sync toggle state with current overlay state
+                    if (statsToggle && window._devStatsEnabled) {
+                        statsToggle.checked = window._devStatsEnabled();
+                    }
                     backdrop.classList.add('open');
                     document.body.style.overflow = 'hidden';
                 }
@@ -6891,13 +7006,13 @@
 
             /* ── DEVELOPER MODE ──────────────────────────────────────── */
             (function () {
-                var ENABLE = 1;
-                if (ENABLE !== 1) return;
+                var force_active = 1;
 
                 var overlay = document.getElementById('devModeOverlay');
                 var content = document.getElementById('devModeContent');
                 if (!overlay || !content) return;
-                overlay.classList.add('active');
+
+                var statsEnabled = false;
 
                 function ua() { return navigator.userAgent || ''; }
 
@@ -6910,17 +7025,12 @@
 
                 function getPlatform() {
                     var u = ua();
-
-                    if (/iPad/i.test(u) || (navigator.maxTouchPoints > 1 && /Macintosh/i.test(u))) {
-                        return 'iPadOS';
-                    }
-
+                    if (/iPad/i.test(u) || (navigator.maxTouchPoints > 1 && /Macintosh/i.test(u))) return 'iPadOS';
                     if (/Windows/i.test(u)) return 'Windows';
                     if (/Macintosh|Mac OS X/i.test(u)) return 'macOS';
                     if (/iPhone|iPod/i.test(u)) return 'iOS';
                     if (/Android/i.test(u)) return 'Android';
                     if (/Linux/i.test(u)) return 'Linux';
-
                     return 'Unknown';
                 }
 
@@ -6934,25 +7044,14 @@
                     return 'Unknown';
                 }
 
-                function getDisplaySize() {
-                    return screen.width + 'x' + screen.height + 'px';
-                }
-
-                function getMemory() {
-                    return navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'Not disclosed';
-                }
-
-                function getCPU() {
-                    return navigator.hardwareConcurrency ? navigator.hardwareConcurrency + ' cores' : 'Unknown';
-                }
-
+                function getDisplaySize() { return screen.width + 'x' + screen.height + 'px'; }
+                function getMemory() { return navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'Not disclosed'; }
+                function getCPU() { return navigator.hardwareConcurrency ? navigator.hardwareConcurrency + ' cores' : 'Unknown'; }
                 function getLang() { return navigator.language || 'Unknown'; }
                 function getTimezone() { try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) { return 'Unknown'; } }
                 function getCookies() { return navigator.cookieEnabled ? 'Enabled' : 'Disabled'; }
 
-                function row(key, val) {
-                    return '<strong>' + key + ':</strong> ' + val + '<br>';
-                }
+                function row(key, val) { return '<strong>' + key + ':</strong> ' + val + '<br>'; }
                 function sep() { return '----------------------------------------------<br>'; }
 
                 function buildHTML() {
@@ -6960,7 +7059,7 @@
                     h += sep();
                     h += '<strong>Developer Console:</strong><br>';
                     h += sep();
-                    h += row('Build', '20th April 2026 At: 08:25PM [IST]');
+                    h += row('Build', '20th April 2026 At: 10:00PM [IST]');
                     h += row('Host', getHostType());
                     h += row('Platform', getPlatform());
                     h += row('Browser', getBrowser());
@@ -6974,7 +7073,22 @@
                     return h;
                 }
 
-                content.innerHTML = buildHTML();
+                function applyVisibility() {
+                    if (force_active === 1 || statsEnabled) {
+                        overlay.classList.add('active');
+                        content.innerHTML = buildHTML();
+                    } else {
+                        overlay.classList.remove('active');
+                    }
+                }
+
+                window._devStatsSetEnabled = function (val) {
+                    statsEnabled = val;
+                    applyVisibility();
+                };
+                window._devStatsEnabled = function () { return statsEnabled; };
+
+                applyVisibility();
 
             })();
 
