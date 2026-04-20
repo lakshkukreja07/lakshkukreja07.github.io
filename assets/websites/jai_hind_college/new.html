@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
@@ -159,11 +158,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
-        xh5 {
-            text-align: center;
-            font-size: 10px;
-        }
-
         /* ── RESET ──────────────────────────────────────────────────── */
         *,
         *::before,
@@ -4474,10 +4468,63 @@
             right: 0;
             animation-name: popperRight;
         }
+
+        /* ── DEVELOPER MODE OVERLAY ─────────────────────────────────── */
+        #devModeOverlay {
+            display: none;
+            position: fixed;
+            top: calc(var(--nav-h) + 10px);
+            left: 14px;
+            z-index: 99998;
+            pointer-events: none;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        #devModeOverlay.active {
+            display: block;
+        }
+
+        #devModeContent {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+            font-weight: 500;
+            color: #fff;
+            white-space: normal;
+            word-wrap: break-word;
+            letter-spacing: .02em;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-align: left;
+            max-width: 400px;
+            width: fit-content;
+            box-sizing: border-box;
+        }
+
+        /* Mobile fix - smaller screen */
+        @media (max-width: 700px) {
+            #devModeOverlay {
+                left: 8px;
+                right: auto;
+            }
+
+            #devModeContent {
+                max-width: calc(100vw - 30px);
+                font-size: .65rem;
+                padding: 6px 10px;
+            }
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- ── DEVELOPER MODE OVERLAY ──────────────────────────────── -->
+    <div id="devModeOverlay">
+        <span id="devModeContent">Fetching Information...</span>
+    </div>
 
     <!--  NAV ───────────────────────────────────────────────────── -->
     <nav>
@@ -5067,7 +5114,26 @@
 
             <p class="speakers-group-label">Distinguished Guests</p>
 
+            <!-- Chief Guest row (centered, above the two existing guests) -->
             <div class="speakers-cards">
+
+                <div class="speaker-card">
+                    <div class="speaker-photo-wrap">
+                        <img src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_prof_ravindra_kulkarni.png"
+                            alt="Dr. Niranjan Hiranandani" loading="lazy"
+                            style="object-fit:contain; object-position:center top; transform:translateY(-10px) scale(1.1);">
+                        <div class="speaker-badge">
+                            <span class="speaker-role speaker-role--chief-guest">Chief Guest</span>
+                            <span class="speaker-name">Dr. Niranjan Hiranandani</span>
+                            <span class="speaker-photo-designation">Managing Director &amp; Founder,<br>Hiranandani
+                                Group Of Companies</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="speakers-cards" style="margin-top:1rem;">
 
                 <div class="speaker-card">
                     <div class="speaker-photo-wrap">
@@ -6821,6 +6887,95 @@
 
                 tick();
                 intervalId = setInterval(tick, 1000);
+            })();
+
+            /* ── DEVELOPER MODE ──────────────────────────────────────── */
+            (function () {
+                var ENABLE = 1;
+                if (ENABLE !== 1) return;
+
+                var overlay = document.getElementById('devModeOverlay');
+                var content = document.getElementById('devModeContent');
+                if (!overlay || !content) return;
+                overlay.classList.add('active');
+
+                function ua() { return navigator.userAgent || ''; }
+
+                function getHostType() {
+                    var u = ua();
+                    if (/tablet|ipad/i.test(u) || (window.innerWidth >= 768 && 'ontouchstart' in window)) return 'Tablet';
+                    if (/mobile|android|iphone|ipod|blackberry|windows phone/i.test(u)) return 'Smartphone';
+                    return 'Laptop / Desktop';
+                }
+
+                function getPlatform() {
+                    var u = ua();
+
+                    if (/iPad/i.test(u) || (navigator.maxTouchPoints > 1 && /Macintosh/i.test(u))) {
+                        return 'iPadOS';
+                    }
+
+                    if (/Windows/i.test(u)) return 'Windows';
+                    if (/Macintosh|Mac OS X/i.test(u)) return 'macOS';
+                    if (/iPhone|iPod/i.test(u)) return 'iOS';
+                    if (/Android/i.test(u)) return 'Android';
+                    if (/Linux/i.test(u)) return 'Linux';
+
+                    return 'Unknown';
+                }
+
+                function getBrowser() {
+                    var u = ua();
+                    if (/Edg\//i.test(u)) return 'Microsoft Edge';
+                    if (/OPR\//i.test(u)) return 'Opera';
+                    if (/Chrome\//i.test(u) && !/Chromium/i.test(u)) return 'Google Chrome';
+                    if (/Firefox\//i.test(u)) return 'Firefox';
+                    if (/Safari\//i.test(u)) return 'Safari';
+                    return 'Unknown';
+                }
+
+                function getDisplaySize() {
+                    return screen.width + 'x' + screen.height + 'px';
+                }
+
+                function getMemory() {
+                    return navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'Not disclosed';
+                }
+
+                function getCPU() {
+                    return navigator.hardwareConcurrency ? navigator.hardwareConcurrency + ' cores' : 'Unknown';
+                }
+
+                function getLang() { return navigator.language || 'Unknown'; }
+                function getTimezone() { try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) { return 'Unknown'; } }
+                function getCookies() { return navigator.cookieEnabled ? 'Enabled' : 'Disabled'; }
+
+                function row(key, val) {
+                    return '<strong>' + key + ':</strong> ' + val + '<br>';
+                }
+                function sep() { return '----------------------------------------------<br>'; }
+
+                function buildHTML() {
+                    var h = '';
+                    h += sep();
+                    h += '<strong>Developer Console:</strong><br>';
+                    h += sep();
+                    h += row('Build', '20th April 2026 At: 08:25PM [IST]');
+                    h += row('Host', getHostType());
+                    h += row('Platform', getPlatform());
+                    h += row('Browser', getBrowser());
+                    h += row('Screen', getDisplaySize());
+                    h += row('RAM', getMemory());
+                    h += row('CPU', getCPU());
+                    h += row('Language', getLang());
+                    h += row('Timezone', getTimezone());
+                    h += row('Cookies', getCookies());
+                    h += sep();
+                    return h;
+                }
+
+                content.innerHTML = buildHTML();
+
             })();
 
         })();
