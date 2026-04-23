@@ -48,6 +48,9 @@
     <link rel="icon" href="/favicon.ico">
     <link rel="preload" as="style"
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+
     <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -777,99 +780,107 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
             text-align: center;
-            margin-bottom: 1.5rem;
         }
 
-        /* ── PUBLISHING PARTNERS ────────────────────────────────────── */
-        .partners {
-            padding: 2.5rem 0 2.5rem;
-            overflow: hidden;
+        /* ── PARTNERS BOX ───────────────────────────────────────────── */
+        .partners-row {
+            padding: 1rem 2rem;
             background: #fff;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .partners-track-wrap {
-            position: relative;
-            overflow: hidden;
+        .partners-col {
+            background: #fafafa;
+            border: 1px solid rgba(30, 30, 30, .09);
+            border-radius: 16px;
+            padding: .6rem .6rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
         }
 
-        .partners-track-wrap::before,
-        .partners-track-wrap::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100px;
-            z-index: 2;
-            pointer-events: none;
+        .partners-group {
+            padding: .65rem .8rem;
         }
 
-        .partners-track-wrap::before {
-            left: 0;
-            background: linear-gradient(to right, #fff, transparent);
+        .partners-group .section-label {
+            text-align: center;
+            margin-bottom: .5rem;
         }
 
-        .partners-track-wrap::after {
-            right: 0;
-            background: linear-gradient(to left, #fff, transparent);
-        }
-
-        @keyframes scrollLogos {
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        .partners-track {
+        .partners-logos {
             display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
             align-items: center;
-            gap: 5rem;
-            width: max-content;
-            animation: scrollLogos 16s linear infinite;
-            padding: 0 2.5rem;
+            justify-content: center;
         }
 
         .logo-item {
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            overflow: hidden;
         }
 
-        .logo-item img {
-            height: 90px;
-            width: auto;
-            max-width: 240px;
+        .logo-item img,
+        .logo-item a img {
+            width: 90px;
+            height: 40px;
             object-fit: contain;
+            display: block;
+        }
+
+        .logo-item a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 36px;
+            min-width: 90px;
+            padding: 0 .75rem;
+            background: rgba(212, 175, 55, .08);
+            border: 1.5px dashed rgba(212, 175, 55, .4);
+            border-radius: 8px;
+            font-family: 'Manrope', sans-serif;
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .logo-item .img-error-placeholder {
             position: static;
             background: transparent;
             padding-top: 0;
-            width: 90px;
-            height: 90px;
+            width: 36px;
+            height: 36px;
             justify-content: center;
         }
 
         .logo-item .img-error-placeholder .ban-circle {
-            width: 36px;
-            height: 36px;
-        }
-
-        .logo-item .img-error-placeholder svg {
             width: 20px;
             height: 20px;
         }
 
+        .logo-item .img-error-placeholder svg {
+            width: 11px;
+            height: 11px;
+        }
+
         .logo-item .img-error-placeholder .ban-label {
-            font-size: .42rem;
-            letter-spacing: 1.5px;
+            font-size: .36rem;
+            letter-spacing: 1px;
         }
 
         /* ── ABOUT THE CONFERENCE ───────────────────────────────────── */
@@ -1299,7 +1310,6 @@
             opacity: 0;
         }
 
-        /* .map-placeholder-inner — centred flex column holding pin + text */
         .map-placeholder-inner {
             display: flex;
             flex-direction: column;
@@ -1308,7 +1318,6 @@
             gap: 1rem;
         }
 
-        /* Pulsing gold circle that releases two ripple rings */
         .map-placeholder-pin {
             position: relative;
             width: 68px;
@@ -1320,7 +1329,6 @@
             justify-content: center;
         }
 
-        /* Ripple rings via pseudo-elements */
         .map-placeholder-pin::before,
         .map-placeholder-pin::after {
             content: '';
@@ -1426,21 +1434,6 @@
             color: var(--text-muted);
             line-height: 1.75;
             font-weight: 400;
-        }
-
-        @media (max-width:700px) {
-            .info-cols-wrap {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .info-section-label {
-                text-align: center;
-            }
-
-            .info-body p {
-                text-align: justify;
-            }
         }
 
         /* ── SPEAKERS SECTION ───────────────────────────────────────── */
@@ -2042,17 +2035,6 @@
             flex-direction: column;
         }
 
-        @media (max-width:700px) {
-            .dates-fees-split {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .dates-fees-col .info-block-eyebrow {
-                text-align: center !important;
-            }
-        }
-
         /* ── IMPORTANT DATES ────────────────────────────────────────── */
         .dates-grid {
             display: flex;
@@ -2135,7 +2117,6 @@
             line-height: 1.4;
         }
 
-        /* greyed-out date */
         .date-item-date {
             font-size: .95rem;
             font-weight: 800;
@@ -2143,7 +2124,6 @@
             letter-spacing: -.01em;
         }
 
-        /* "Registrations Are Closed" badge — centered under each date */
         .date-closed-badge {
             display: inline-flex;
             align-items: center;
@@ -3429,6 +3409,7 @@
             font-size: .82rem;
             font-weight: 600;
             color: var(--primary);
+            text-align: left;
         }
 
         .dev-toggle-label span {
@@ -3676,8 +3657,18 @@
                 text-align: center;
             }
 
-            .partners {
-                padding: 2rem 0 1.5rem;
+            .partners-row {
+                padding: .75rem 1rem;
+            }
+
+            .partners-col {
+                grid-template-columns: 1fr;
+                padding: .4rem .4rem;
+            }
+
+            .logo-placeholder {
+                min-width: 80px;
+                font-size: .58rem;
             }
 
             footer {
@@ -4001,7 +3992,6 @@
                 font-size: 1.1rem;
             }
 
-            /* ── ISSUE 1: Hero dynamic sizing on mobile ── */
             .hero-subtitle {
                 font-size: clamp(.82rem, 3.2vw, 1rem);
             }
@@ -4046,7 +4036,6 @@
                 padding: .42rem .65rem;
             }
 
-            /* ── ISSUE 3: Center gold titles + content for why-attend, about-college, about-department ── */
             .why-section-label {
                 text-align: center;
                 display: block;
@@ -4071,7 +4060,6 @@
                 text-align: justify;
             }
 
-            /* ── ISSUE 4: Center schedule overview (program) cards title and content ── */
             .program-card-body {
                 text-align: left;
             }
@@ -4084,16 +4072,80 @@
                 text-align: center;
             }
 
-            /* ── ISSUE 5: Center 3rd patron card (speaker-card-wrapper) ── */
             .patrons-cards .speaker-card-wrapper:last-child:nth-child(odd) {
                 grid-column: 1 / -1;
                 justify-self: center;
                 max-width: calc(50% - .5rem);
                 width: calc(50% - .5rem);
             }
+
+            .info-cols-wrap {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .info-section-label {
+                text-align: center;
+            }
+
+            .info-body p {
+                text-align: justify;
+            }
+
+            #devModeOverlay {
+                left: 8px;
+                right: auto;
+            }
+
+            #devModeContent {
+                max-width: calc(100vw - 60px);
+                font-size: .65rem;
+                padding: 6px 10px;
+            }
+
+            .logo-item img {
+                max-width: 90px;
+                max-height: 50px;
+            }
+
+            .countdown-bar {
+                padding: .6rem .9rem;
+                gap: .55rem;
+                border-radius: 16px;
+            }
+
+            .countdown-num {
+                font-size: 1.2rem;
+            }
+
+            .countdown-sep {
+                font-size: 1.2rem;
+            }
+
+            .countdown-unit {
+                min-width: 30px;
+            }
+
+            .countdown-label {
+                font-size: .5rem;
+            }
+
+            .dates-fees-split {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .dates-fees-col .info-block-eyebrow {
+                text-align: center !important;
+            }
         }
 
         @media (min-width:701px) and (max-width:1024px) {
+            .logo-item img {
+                max-width: 120px;
+                max-height: 60px;
+            }
+
             .nav-container {
                 padding: 0 1.5rem;
             }
@@ -4175,7 +4227,6 @@
             }
         }
 
-        /* ── WINDOWS LAPTOP / SMALL DESKTOP (1025px – 1366px) ─────── */
         @media (min-width:1025px) and (max-width:1366px) {
             :root {
                 --nav-h: 72px;
@@ -4297,6 +4348,18 @@
 
             .about-inner {
                 gap: 3rem;
+            }
+
+            .logo-item img {
+                max-width: 150px;
+                max-height: 70px;
+            }
+        }
+
+        @media (min-width:1367px) {
+            .logo-item img {
+                max-width: 180px;
+                max-height: 300px;
             }
         }
 
@@ -4447,30 +4510,6 @@
             filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
         }
 
-        @media (max-width:700px) {
-            .countdown-bar {
-                padding: .6rem .9rem;
-                gap: .55rem;
-                border-radius: 16px;
-            }
-
-            .countdown-num {
-                font-size: 1.2rem;
-            }
-
-            .countdown-sep {
-                font-size: 1.2rem;
-            }
-
-            .countdown-unit {
-                min-width: 30px;
-            }
-
-            .countdown-label {
-                font-size: .5rem;
-            }
-        }
-
         /* ── LIVE STATE ─────────────────────────────────────────────── */
         .countdown-bar:has(.live-text) {
             border-radius: 15px;
@@ -4497,52 +4536,6 @@
         }
 
         /* ── CONFETTI / PARTY POPPERS ───────────────────────────────── */
-        @keyframes popperLeft {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(var(--tx), var(--ty)) rotate(var(--tr));
-                opacity: 0;
-            }
-        }
-
-        @keyframes popperRight {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(var(--tx), var(--ty)) rotate(var(--tr));
-                opacity: 0;
-            }
-        }
-
-        .confetti-piece {
-            position: fixed;
-            width: 9px;
-            height: 14px;
-            border-radius: 2px;
-            pointer-events: none;
-            z-index: 9999;
-            animation-timing-function: cubic-bezier(.22, .61, .36, 1);
-            animation-fill-mode: forwards;
-        }
-
-        .confetti-left {
-            bottom: 0;
-            left: 0;
-            animation-name: popperLeft;
-        }
-
-        .confetti-right {
-            bottom: 0;
-            right: 0;
-            animation-name: popperRight;
-        }
 
         /* ── DEVELOPER MODE OVERLAY ─────────────────────────────────── */
         #devModeOverlay {
@@ -4578,19 +4571,7 @@
             box-sizing: border-box;
         }
 
-        /* Mobile fix - smaller screen */
-        @media (max-width: 700px) {
-            #devModeOverlay {
-                left: 8px;
-                right: auto;
-            }
-
-            #devModeContent {
-                max-width: calc(100vw - 30px);
-                font-size: .65rem;
-                padding: 6px 10px;
-            }
-        }
+        @media (max-width: 700px) {}
     </style>
 </head>
 
@@ -4864,52 +4845,111 @@
         </div>
     </section>
 
-    <!--  PUBLISHING PARTNERS ───────────────────────────────────── -->
-    <section class="partners">
-        <p class="section-label">PUBLISHING PARTNERS</p>
-        <div class="partners-track-wrap">
-            <div class="partners-track">
-                <!-- set 1 -->
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_taylor_and_francis_group_logo.png"
-                        alt="Taylor &amp; Francis Group"></div>
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_iup_logo.png"
-                        alt="IUP"></div>
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_routledge_logo.png"
-                        alt="Routledge"></div>
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_emerald_publishing_logo.png"
-                        alt="Emerald Publishing"></div>
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_abdc_logo.png"
-                        alt="ABDC"></div>
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_scopus_logo.png"
-                        alt="Scopus"></div>
-                <!-- set 2 — seamless duplicate -->
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_taylor_and_francis_group_logo.png"
-                        alt="Taylor &amp; Francis Group"></div>
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_iup_logo.png"
-                        alt="IUP"></div>
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_routledge_logo.png"
-                        alt="Routledge"></div>
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_emerald_publishing_logo.png"
-                        alt="Emerald Publishing"></div>
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_abdc_logo.png"
-                        alt="ABDC"></div>
-                <div class="logo-item"><img loading="lazy" width="200" height="70"
-                        src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_scopus_logo.png"
-                        alt="Scopus"></div>
+    <!--  PARTNERS ROW ──────────────────────────────────────────── -->
+    <div class="partners-row">
+        <div class="partners-col">
+
+            <!-- PUBLISHING PARTNERS: 6 logos in one row -->
+            <div class="partners-group">
+                <p class="section-label">PUBLISHING PARTNERS</p>
+                <div class="partners-logos">
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_taylor_and_francis_group_logo.png"
+                            alt="Taylor & Francis Group"></div>
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_routledge_logo.png"
+                            alt="Routledge"></div>
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_iup_logo.png"
+                            alt="IUP"></div>
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_emerald_publishing_logo.png"
+                            alt="Emerald Publishing"></div>
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_abdc_logo.png"
+                            alt="ABDC"></div>
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_scopus_logo.png"
+                            alt="Scopus"></div>
+                </div>
             </div>
+
+            <!-- MEDIA PARTNERS: 4 logos in one row -->
+            <div class="partners-group">
+                <p class="section-label">MEDIA PARTNERS</p>
+                <div class="partners-logos">
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jai_hind_college_ontv_logo.png"
+                            alt="On TV"></div>
+                    <div class="logo-item"><a href="https://www.freepressjournal.in/" target="_blank"
+                            rel="noopener noreferrer">
+                            <img loading="lazy"
+                                src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jai_hind_college_free_press_journal_logo.png"
+                                alt="Free Press Journal">
+                        </a></div>
+                    <div class="logo-item"><a href="https://epaper.sachkahoon.com/" target="_blank"
+                            rel="noopener noreferrer">
+                            <img loading="lazy"
+                                src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jai_hind_college_sach_kahoon_logo.png"
+                                alt="Sach Kahoon">
+                        </a></div>
+                    <div class="logo-item"><a href="https://www.youthincmag.com" target="_blank"
+                            rel="noopener noreferrer">
+                            <img loading="lazy"
+                                src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jai_hind_college_youth_incorporated_logo.png"
+                                alt="Youth Incorporated">
+                        </a></div>
+                </div>
+            </div>
+
+            <!-- GIFTING PARTNERS: 2 logos -->
+            <div class="partners-group">
+                <p class="section-label">GIFTING PARTNERS</p>
+                <div class="partners-logos">
+                    <div class="logo-item"><a href="https://www.bakenshake.in/" target="_blank"
+                            rel="noopener noreferrer">
+                            <img loading="lazy"
+                                src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jai_hind_college_bake_n_shake_logo.png"
+                                alt="Bake N Shake">
+                        </a></div>
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jai_hind_college_aldough_logo.png"
+                            alt="Aldough"></div>
+                </div>
+            </div>
+
+            <!-- BATH & BODY PARTNERS: 1 logo -->
+            <div class="partners-group">
+                <p class="section-label">BATH &amp; BODY PARTNERS</p>
+                <div class="partners-logos">
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jai_hind_college_plum_logo.png"
+                            alt="Plum"></div>
+                </div>
+            </div>
+
+            <!-- NUTRITION PARTNERS: 1 logo -->
+            <div class="partners-group">
+                <p class="section-label">NUTRITION PARTNERS</p>
+                <div class="partners-logos">
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jai_hind_college_phab_logo.png"
+                            alt="Phab"></div>
+                </div>
+            </div>
+
+            <!-- SUPPORTED BY: 1 logo -->
+            <div class="partners-group">
+                <p class="section-label">SUPPORTED BY</p>
+                <div class="partners-logos">
+                    <div class="logo-item"><img loading="lazy"
+                            src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/04/jai_hind_college_kk_logistics_logo.png"
+                            alt="KK Logistics"></div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
 
     <!--  ABOUT THE CONFERENCE ──────────────────────────────────── -->
     <section id="about" class="about-section">
@@ -6437,13 +6477,12 @@
                 </svg>
             </div>
             <p class="dev-popup-title">Developer Control Center</p>
-            <p class="dev-popup-subtitle">View All Latest Updates &amp; Changes Done Entirely To The Website.</p>
+            <p class="dev-popup-subtitle">Preview All Information Related To Website.</p>
 
-            <!-- Stats Monitoring Service Toggle -->
             <div class="dev-toggle-row">
                 <div class="dev-toggle-label">
                     Enable Stats Monitoring Service
-                    <span>Shows device &amp; session info overlay on screen</span>
+                    <span>View Device & Session Overlay In Real Time.</span>
                 </div>
                 <label class="dev-toggle-switch" aria-label="Enable Stats Monitoring Service">
                     <input type="checkbox" id="devStatsToggle">
@@ -6454,7 +6493,7 @@
 
             <a class="dev-popup-cta" href="https://internationalmanagementconference.com/about" target="_blank"
                 rel="noopener">
-                View All Updates Here
+                Click Here
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="arrow-up-right-icon arrow-up-right" aria-hidden="true">
@@ -6494,7 +6533,7 @@
                         '--anim-play-state', pause ? 'paused' : 'running'
                     );
                     var selectors = [
-                        '.partners-track', '.bell-ring', 'img.event-carousel-image',
+                        '.bell-ring', 'img.event-carousel-image',
                         '.slide', '[style*="animation"]'
                     ];
                     selectors.forEach(function (sel) {
@@ -6921,39 +6960,76 @@
                 var liveShown = false;
                 var intervalId;
                 var poppersFired = false;
+                var animationId = null;
 
-                /* ── Party poppers ── */
+                function loadConfetti() {
+                    return new Promise(function (resolve) {
+                        if (window.confetti) {
+                            resolve();
+                            return;
+                        }
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.9.1/tsparticles.confetti.bundle.min.js';
+                        script.onload = resolve;
+                        document.head.appendChild(script);
+                    });
+                }
+
                 function launchPoppers() {
                     if (poppersFired) return;
                     poppersFired = true;
 
-                    var colors = ['#ff4444', '#ff9900', '#ffdd00', '#44dd44', '#4499ff', '#cc44ff', '#ff66aa', '#ffffff', '#ff6633', '#33ffcc'];
-                    var total = 120;
-                    for (var i = 0; i < total; i++) {
-                        (function (idx) {
-                            setTimeout(function () {
-                                var el = document.createElement('div');
-                                el.style.background = colors[Math.floor(Math.random() * colors.length)];
-                                var fromLeft = idx % 2 === 0;
-                                var tx = fromLeft ? (30 + Math.random() * 50) : -(30 + Math.random() * 50);
-                                var ty = -(55 + Math.random() * 40);
-                                var tr = (Math.random() * 900 - 450);
-                                el.style.setProperty('--tx', tx + 'vw');
-                                el.style.setProperty('--ty', ty + 'vh');
-                                el.style.setProperty('--tr', tr + 'deg');
-                                var dur = 1.4 + Math.random() * 1.8;
-                                el.style.animationDuration = dur + 's';
-                                el.style.width = (7 + Math.random() * 6) + 'px';
-                                el.style.height = (10 + Math.random() * 8) + 'px';
-                                el.style.borderRadius = Math.random() > .4 ? '50%' : '2px';
-                                el.className = 'confetti-piece ' + (fromLeft ? 'confetti-left' : 'confetti-right');
-                                document.body.appendChild(el);
-                                setTimeout(function () {
-                                    if (el.parentNode) el.parentNode.removeChild(el);
-                                }, (dur + .3) * 1000);
-                            }, Math.random() * 900);
-                        })(i);
-                    }
+                    loadConfetti().then(function () {
+                        var heroSection = document.querySelector('.hero, main, .container') || document.body;
+                        var heroRect = heroSection.getBoundingClientRect();
+                        var topBarHeight = barEl ? barEl.offsetHeight : 0;
+                        var heroBottom = heroRect.bottom / window.innerHeight;
+                        var launchY = Math.min(heroBottom - 0.05, 0.95);
+
+                        var end = Date.now() + 3 * 1000;
+                        var schoolColors = ['#990000', '#8B0000', '#B22222', '#DC143C', '#FF0000', '#CC0000', '#FF4500', '#FF6347', '#FF1493', '#FF69B4', '#FFD700', '#FFA500', '#FFFF00', '#32CD32', '#00FF00', '#228B22', '#008000', '#00CED1', '#00BFFF', '#1E90FF', '#0000CD', '#000080', '#4B0082', '#800080', '#9400D3', '#8B008B', '#FF00FF', '#FF69B4', '#FFB6C1', '#FFFFFF', '#F5F5DC', '#FFE4B5'];
+
+                        (function frame() {
+                            var randomColor = schoolColors[Math.floor(Math.random() * schoolColors.length)];
+                            var randomColor2 = schoolColors[Math.floor(Math.random() * schoolColors.length)];
+
+                            confetti({
+                                particleCount: 6,
+                                angle: 45,
+                                spread: 55,
+                                origin: { x: 0, y: launchY },
+                                colors: [randomColor, randomColor2, '#FFD700', '#FFFFFF'],
+                                startVelocity: 100,
+                                gravity: 0.5,
+                                shapes: ['circle', 'square'],
+                                scalar: 0.8,
+                                ticks: 400,
+                                decay: 0.85,
+                                drift: 1.5,
+                                opacity: 0.7
+                            });
+
+                            confetti({
+                                particleCount: 6,
+                                angle: 135,
+                                spread: 55,
+                                origin: { x: 1, y: launchY },
+                                colors: [randomColor, randomColor2, '#FFD700', '#FFFFFF'],
+                                startVelocity: 100,
+                                gravity: 0.5,
+                                shapes: ['circle', 'square'],
+                                scalar: 0.8,
+                                ticks: 400,
+                                decay: 0.85,
+                                drift: -1.5,
+                                opacity: 0.7
+                            });
+
+                            if (Date.now() < end) {
+                                animationId = requestAnimationFrame(frame);
+                            }
+                        })();
+                    });
                 }
 
                 var ORIGINAL_INNER = barEl.innerHTML;
@@ -6964,7 +7040,7 @@
                     barEl.innerHTML = '<span class="live-dot"></span><span class="live-text">Live</span>';
 
                     var now = Date.now();
-                    if (now < new Date('2026-04-24T09:01:00+05:30').getTime()) {
+                    if (now >= LIVE_S && now < LIVE_E) {
                         launchPoppers();
                     }
                 }
@@ -6975,6 +7051,9 @@
                     if (now >= LIVE_E) {
                         barEl.style.display = 'none';
                         clearInterval(intervalId);
+                        if (animationId) {
+                            cancelAnimationFrame(animationId);
+                        }
                         return;
                     }
 
@@ -7004,9 +7083,8 @@
                 intervalId = setInterval(tick, 1000);
             })();
 
-            /* ── DEVELOPER MODE ──────────────────────────────────────── */
             (function () {
-                var force_active = 1;
+                var force_active = 0;
 
                 var overlay = document.getElementById('devModeOverlay');
                 var content = document.getElementById('devModeContent');
@@ -7017,20 +7095,62 @@
                 function ua() { return navigator.userAgent || ''; }
 
                 function getHostType() {
-                    var u = ua();
-                    if (/tablet|ipad/i.test(u) || (window.innerWidth >= 768 && 'ontouchstart' in window)) return 'Tablet';
-                    if (/mobile|android|iphone|ipod|blackberry|windows phone/i.test(u)) return 'Smartphone';
-                    return 'Laptop / Desktop';
+                    var platform = navigator.platform || '';
+                    var maxTouch = navigator.maxTouchPoints || 0;
+                    var hasTouch = maxTouch > 1;
+                    var width = window.innerWidth;
+
+                    if (platform === 'MacIntel' && hasTouch && typeof navigator.standalone !== 'undefined') {
+                        return 'Tablet';
+                    }
+
+                    if (hasTouch && width < 768 && /iPhone|iPod/.test(ua())) {
+                        return 'Smartphone';
+                    }
+
+                    if (/Android/i.test(ua()) && !/Mobile/i.test(ua()) && width >= 768) {
+                        return 'Tablet';
+                    }
+
+                    if (/Android/i.test(ua()) && /Mobile/i.test(ua())) {
+                        return 'Smartphone';
+                    }
+
+                    if (/iPad/i.test(ua())) {
+                        return 'Tablet';
+                    }
+
+                    if (/iPhone|iPod/i.test(ua())) {
+                        return 'Smartphone';
+                    }
+
+                    if (width >= 1024 && !hasTouch) {
+                        return 'Laptop / Desktop';
+                    }
+
+                    if (width >= 768 && hasTouch) {
+                        return 'Tablet';
+                    }
+
+                    return 'Smartphone';
                 }
 
                 function getPlatform() {
                     var u = ua();
-                    if (/iPad/i.test(u) || (navigator.maxTouchPoints > 1 && /Macintosh/i.test(u))) return 'iPadOS';
-                    if (/Windows/i.test(u)) return 'Windows';
-                    if (/Macintosh|Mac OS X/i.test(u)) return 'macOS';
-                    if (/iPhone|iPod/i.test(u)) return 'iOS';
-                    if (/Android/i.test(u)) return 'Android';
-                    if (/Linux/i.test(u)) return 'Linux';
+                    var platform = navigator.platform || '';
+                    var maxTouch = navigator.maxTouchPoints || 0;
+
+                    if (platform === 'MacIntel' && maxTouch > 1 && typeof navigator.standalone !== 'undefined') {
+                        if (window.innerWidth >= 768) return 'iPadOS';
+                        return 'iOS';
+                    }
+
+                    if (/iPhone|iPod/.test(u)) return 'iOS';
+                    if (/iPad/.test(u)) return 'iPadOS';
+                    if (/Macintosh|Mac OS X/.test(u)) return 'macOS';
+                    if (/Windows/.test(u)) return 'Windows';
+                    if (/Android/.test(u)) return 'Android';
+                    if (/Linux/.test(u)) return 'Linux';
                     return 'Unknown';
                 }
 
@@ -7040,35 +7160,64 @@
                     if (/OPR\//i.test(u)) return 'Opera';
                     if (/Chrome\//i.test(u) && !/Chromium/i.test(u)) return 'Google Chrome';
                     if (/Firefox\//i.test(u)) return 'Firefox';
-                    if (/Safari\//i.test(u)) return 'Safari';
+                    if (/Safari\//i.test(u) && !/Chrome/i.test(u)) return 'Safari';
                     return 'Unknown';
                 }
 
                 function getDisplaySize() { return screen.width + 'x' + screen.height + 'px'; }
-                function getMemory() { return navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'Not disclosed'; }
-                function getCPU() { return navigator.hardwareConcurrency ? navigator.hardwareConcurrency + ' cores' : 'Unknown'; }
+
+                function getMemory() {
+                    if (navigator.deviceMemory) {
+                        return navigator.deviceMemory + ' GB';
+                    }
+                    return 'Not disclosed';
+                }
+
+                function getCPU() {
+                    if (navigator.hardwareConcurrency) {
+                        return navigator.hardwareConcurrency + ' cores';
+                    }
+                    return 'Unknown';
+                }
+
                 function getLang() { return navigator.language || 'Unknown'; }
                 function getTimezone() { try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) { return 'Unknown'; } }
                 function getCookies() { return navigator.cookieEnabled ? 'Enabled' : 'Disabled'; }
 
-                function row(key, val) { return '<strong>' + key + ':</strong> ' + val + '<br>'; }
-                function sep() { return '----------------------------------------------<br>'; }
+                var labelWidth = 18;
+
+                function row(key, val, color) {
+                    var colorCode = '';
+                    if (color === 'gold') colorCode = '#d4af37';
+                    else if (color === 'cyan') colorCode = '#00FFFF';
+                    else if (color === 'suttle-yellow') colorCode = '#FFC978';
+                    else colorCode = '#cccccc';
+
+                    var paddedKey = key.padEnd(labelWidth, ' ');
+                    return '<div style="display: flex; justify-content: space-between; font-family: JetBrains Mono;"><strong style="color:' + colorCode + ';">' + paddedKey + '</strong><span style="color:#e0e0e0;">' + val + '</span></div>';
+                }
+
+                function sep() { return '<span style="color:#ffffff;">-------------------------------</span><br>'; }
 
                 function buildHTML() {
                     var h = '';
                     h += sep();
-                    h += '<strong>Developer Console:</strong><br>';
+                    h += '<div style="text-align: center;"><strong style="color: #ffffff; font-family: JetBrains Mono; text-transform: uppercase;">ABOUT YOUR DEVICE</strong></div>';
                     h += sep();
-                    h += row('Build', '20th April 2026 At: 10:00PM [IST]');
-                    h += row('Host', getHostType());
-                    h += row('Platform', getPlatform());
-                    h += row('Browser', getBrowser());
-                    h += row('Screen', getDisplaySize());
-                    h += row('RAM', getMemory());
-                    h += row('CPU', getCPU());
-                    h += row('Language', getLang());
-                    h += row('Timezone', getTimezone());
-                    h += row('Cookies', getCookies());
+                    h += row('Developer', 'Laksh Kukreja', 'suttle-yellow');
+                    h += row('Page ID', 'Main', 'suttle-yellow');
+                    h += row('Update Version', 'V1.1.4', 'suttle-yellow');
+                    h += row('Compiled On', '21st April 2026', 'suttle-yellow');
+                    h += row('Compiled At', '12:45AM [IST]', 'suttle-yellow');
+                    h += row('User Device', getHostType(), 'suttle-yellow');
+                    h += row('OS', getPlatform(), 'suttle-yellow');
+                    h += row('Browser', getBrowser(), 'suttle-yellow');
+                    h += row('Screen', getDisplaySize(), 'suttle-yellow');
+                    h += row('RAM', getMemory(), 'suttle-yellow');
+                    h += row('CPU', getCPU(), 'suttle-yellow');
+                    h += row('Language', getLang(), 'suttle-yellow');
+                    h += row('Timezone', getTimezone(), 'suttle-yellow');
+                    h += row('Cookies', getCookies(), 'suttle-yellow');
                     h += sep();
                     return h;
                 }
@@ -7089,9 +7238,7 @@
                 window._devStatsEnabled = function () { return statsEnabled; };
 
                 applyVisibility();
-
             })();
-
         })();
     </script>
 </body>
