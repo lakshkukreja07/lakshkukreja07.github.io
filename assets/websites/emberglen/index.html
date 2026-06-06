@@ -1,0 +1,2982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMBERGLEN — Craft Botanical Drinks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #faf8f4;
+            --bg2: #f3ede3;
+            --white: #ffffff;
+            --ink: #1c1917;
+            --ink2: #57534e;
+            --ink3: #a8a29e;
+            --green: #2d5a27;
+            --green-light: #e8f0e6;
+            --green-mid: #4a7c43;
+            --amber: #c8792a;
+            --amber-light: #fdf0e0;
+            --red: #c0392b;
+            --border: #e5ddd3;
+            --border2: #d6ccc0;
+            --shadow: 0 2px 12px rgba(28, 25, 23, 0.08);
+            --shadow-lg: 0 8px 40px rgba(28, 25, 23, 0.12);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ── Custom Arrow Cursor ── */
+        #cursor-wrap {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            top: 0;
+            left: 0;
+            transform: translate(-4px, -4px);
+            transition: transform 0.05s linear;
+        }
+
+        #cursor-wrap svg {
+            filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.25));
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        body.cur-hover #cursor-wrap svg {
+            transform: scale(1.3);
+        }
+
+        body.cur-click #cursor-wrap svg {
+            transform: scale(0.85) rotate(-15deg);
+        }
+
+        /* ── Announcement Bar ── */
+        .announce {
+            background: var(--green);
+            color: #fff;
+            text-align: center;
+            padding: 10px 16px;
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .announce a {
+            color: #fff;
+            text-decoration: underline;
+            cursor: none;
+        }
+
+        /* ── Nav ── */
+        nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            padding: 0 48px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .nav-logo span {
+            color: var(--green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--ink2);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+            cursor: none;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            background: var(--bg2);
+            color: var(--ink);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: none;
+            border: none;
+            cursor: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink2);
+            transition: background 0.2s, color 0.2s;
+            position: relative;
+        }
+
+        .nav-icon-btn:hover {
+            background: var(--bg2);
+            color: var(--ink);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--green);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            display: none;
+        }
+
+        .cart-count.show {
+            display: flex;
+        }
+
+        .nav-shop-btn {
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 9px 20px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: none;
+            transition: background 0.2s, transform 0.15s;
+            font-family: 'DM Sans', sans-serif;
+            white-space: nowrap;
+        }
+
+        .nav-shop-btn:hover {
+            background: var(--green-mid);
+            transform: translateY(-1px);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: none;
+            padding: 4px;
+            color: var(--ink);
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .hamburger:hover {
+            background: var(--bg2);
+        }
+
+        /* ── Mobile Drawer ── */
+        .mobile-drawer {
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .mobile-drawer.open {
+            visibility: visible;
+            pointer-events: all;
+        }
+
+        .drawer-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(28, 25, 23, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-drawer.open .drawer-overlay {
+            opacity: 1;
+        }
+
+        .drawer-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: min(320px, 88vw);
+            background: var(--white);
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.1, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+        }
+
+        .mobile-drawer.open .drawer-panel {
+            transform: translateX(0);
+        }
+
+        .drawer-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .drawer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .drawer-logo span {
+            color: var(--green);
+        }
+
+        .drawer-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: var(--bg2);
+            border: none;
+            cursor: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink);
+            transition: background 0.2s;
+        }
+
+        .drawer-close:hover {
+            background: var(--border2);
+        }
+
+        .drawer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .drawer-links a {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--ink);
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 10px;
+            transition: background 0.2s;
+            cursor: none;
+        }
+
+        .drawer-links a:hover {
+            background: var(--bg2);
+        }
+
+        /* ── Hero ── */
+        #hero {
+            background: var(--white);
+            padding: 72px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            min-height: calc(100vh - 108px);
+        }
+
+        .hero-text {
+            max-width: 560px;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--green-light);
+            color: var(--green);
+            border-radius: 100px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 4.5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--green);
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            color: var(--ink2);
+            line-height: 1.75;
+            margin-bottom: 36px;
+            font-weight: 300;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-green {
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: none;
+            transition: background 0.2s, transform 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-green:hover {
+            background: var(--green-mid);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--ink);
+            border: 1.5px solid var(--border2);
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: none;
+            transition: border-color 0.2s, background 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--ink);
+            background: var(--bg2);
+        }
+
+        .hero-trust {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .trust-item svg {
+            color: var(--green);
+            flex-shrink: 0;
+        }
+
+        .trust-item span {
+            font-size: 0.82rem;
+            color: var(--ink2);
+            font-weight: 400;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-bottles {
+            display: flex;
+            gap: 20px;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .hero-bottle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            animation: bottle-float linear infinite alternate;
+        }
+
+        .hero-bottle:nth-child(1) {
+            animation-duration: 3.4s;
+            animation-delay: 0s;
+        }
+
+        .hero-bottle:nth-child(2) {
+            animation-duration: 4s;
+            animation-delay: 0.8s;
+            transform: scale(1.12);
+        }
+
+        .hero-bottle:nth-child(3) {
+            animation-duration: 3.7s;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bottle-float {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-14px);
+            }
+        }
+
+        .hero-bottle:nth-child(2) {
+            animation-name: bottle-float-big;
+        }
+
+        @keyframes bottle-float-big {
+            from {
+                transform: scale(1.12) translateY(0);
+            }
+
+            to {
+                transform: scale(1.12) translateY(-14px);
+            }
+        }
+
+        .bottle-svg-wrap {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            width: 120px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .bottle-label {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--ink2);
+            text-align: center;
+            letter-spacing: 0.04em;
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--amber);
+            color: #fff;
+            border-radius: 100px;
+            padding: 4px 10px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(200, 121, 42, 0.4);
+        }
+
+        /* ── Social Proof Bar ── */
+        .proof-bar {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .proof-item svg {
+            color: var(--green);
+        }
+
+        .proof-item strong {
+            font-size: 0.9rem;
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .proof-item span {
+            font-size: 0.8rem;
+            color: var(--ink2);
+        }
+
+        .proof-sep {
+            width: 1px;
+            height: 28px;
+            background: var(--border2);
+        }
+
+        /* ── Section Scaffold ── */
+        .section {
+            padding: 96px 48px;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-head {
+            margin-bottom: 52px;
+        }
+
+        .section-head.center {
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--ink2);
+            font-weight: 400;
+        }
+
+        .section-sub {
+            margin-top: 12px;
+            font-size: 1rem;
+            color: var(--ink2);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        /* ── Products ── */
+        #products {
+            background: var(--white);
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1.5px solid var(--border2);
+            border-radius: 100px;
+            padding: 7px 18px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--ink2);
+            cursor: none;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .filter-btn.active {
+            background: var(--green);
+            border-color: var(--green);
+            color: #fff;
+        }
+
+        .filter-btn:hover:not(.active) {
+            border-color: var(--ink);
+            color: var(--ink);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1.5px solid var(--border);
+            overflow: hidden;
+            cursor: none;
+            transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--border2);
+        }
+
+        .product-img {
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 24px;
+        }
+
+        .product-bottle-art {
+            width: 90px;
+            height: 160px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-bottle-shine {
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 60%;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.08) 100%);
+            border-radius: 0;
+        }
+
+        .product-bottle-label {
+            position: absolute;
+            bottom: 24px;
+            left: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 8px;
+            padding: 6px;
+            text-align: center;
+        }
+
+        .product-bottle-label-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: 0.04em;
+            line-height: 1.2;
+        }
+
+        .product-badge-wrap {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-end;
+        }
+
+        .p-badge {
+            border-radius: 100px;
+            padding: 4px 10px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .p-badge.new {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .p-badge.bestseller {
+            background: var(--amber);
+            color: #fff;
+        }
+
+        .p-badge.reserve {
+            background: var(--ink);
+            color: #fff;
+        }
+
+        .p-badge.seasonal {
+            background: #7c5cbf;
+            color: #fff;
+        }
+
+        .product-body {
+            padding: 20px 20px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-cat {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .product-desc {
+            font-size: 0.83rem;
+            color: var(--ink2);
+            line-height: 1.6;
+            margin-bottom: 14px;
+            font-weight: 300;
+        }
+
+        .product-notes {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .note-chip {
+            background: var(--bg2);
+            border-radius: 6px;
+            padding: 3px 9px;
+            font-size: 0.7rem;
+            color: var(--ink2);
+            font-weight: 400;
+        }
+
+        .product-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .product-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .product-price small {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.72rem;
+            color: var(--ink3);
+            font-weight: 400;
+            display: block;
+        }
+
+        .add-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--green-light);
+            color: var(--green);
+            border: none;
+            border-radius: 10px;
+            padding: 9px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: none;
+            transition: background 0.2s, transform 0.15s;
+            font-family: 'DM Sans', sans-serif;
+            white-space: nowrap;
+        }
+
+        .add-btn:hover {
+            background: var(--green);
+            color: #fff;
+            transform: scale(1.04);
+        }
+
+        /* ── Bottle Cap Game ── */
+        #game-section {
+            background: var(--amber-light);
+            border-top: 1px solid #e8d5b8;
+            border-bottom: 1px solid #e8d5b8;
+            padding: 80px 48px;
+            text-align: center;
+        }
+
+        .game-inner {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .game-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--amber);
+            color: #fff;
+            border-radius: 100px;
+            padding: 7px 18px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .game-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+
+        .game-sub {
+            font-size: 0.95rem;
+            color: var(--ink2);
+            line-height: 1.7;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .cap-arena {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 28px;
+            cursor: none;
+        }
+
+        .cap-base {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 35%, #e8e0d0, #c8b99a);
+            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.18), inset 0 2px 6px rgba(255, 255, 255, 0.4), inset 0 -3px 8px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: filter 0.2s;
+        }
+
+        .cap-inner {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 30%, #f0e8d8, #b8a88a);
+            box-shadow: inset 0 3px 8px rgba(255, 255, 255, 0.5), inset 0 -4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .cap-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #5a4a30;
+            text-align: center;
+            letter-spacing: 0.08em;
+            user-select: none;
+            line-height: 1.3;
+        }
+
+        .cap-teeth {
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: repeating-conic-gradient(from 0deg,
+                    #b8a07a 0deg 14deg,
+                    #d4bc94 14deg 28deg);
+            z-index: -1;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .cap-grip-hint {
+            position: absolute;
+            inset: -24px;
+            border-radius: 50%;
+            border: 2px dashed rgba(200, 121, 42, 0.4);
+            animation: hint-pulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes hint-pulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.04);
+            }
+        }
+
+        .cap-resist-msg {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.78rem;
+            color: var(--amber);
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cap-resist-msg.show {
+            opacity: 1;
+        }
+
+        .game-progress-wrap {
+            margin: 44px auto 20px;
+            max-width: 340px;
+        }
+
+        .game-progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .game-progress-label span {
+            font-size: 0.8rem;
+            color: var(--ink2);
+            font-weight: 400;
+        }
+
+        .game-progress-label strong {
+            font-size: 0.9rem;
+            color: var(--amber);
+            font-weight: 700;
+        }
+
+        .game-progress-bar {
+            height: 10px;
+            background: #e8d5b8;
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .game-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--amber), #e09240);
+            border-radius: 100px;
+            width: 0%;
+            transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .game-hint {
+            font-size: 0.82rem;
+            color: var(--ink3);
+            margin-bottom: 8px;
+        }
+
+        .game-result {
+            display: none;
+            margin-top: 28px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1.5px solid #e8d5b8;
+        }
+
+        .game-result.show {
+            display: block;
+        }
+
+        .result-discount {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--amber);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .result-code {
+            display: inline-block;
+            background: var(--bg2);
+            border: 1.5px dashed var(--border2);
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: 0.12em;
+            margin: 12px 0;
+            cursor: none;
+            transition: background 0.2s;
+        }
+
+        .result-code:hover {
+            background: var(--border2);
+        }
+
+        .result-note {
+            font-size: 0.82rem;
+            color: var(--ink2);
+        }
+
+        .result-copy-btn {
+            margin-top: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--amber);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 11px 24px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: none;
+            font-family: 'DM Sans', sans-serif;
+            transition: background 0.2s;
+        }
+
+        .result-copy-btn:hover {
+            background: #b56820;
+        }
+
+        /* ── Heritage ── */
+        #heritage {
+            background: var(--bg);
+        }
+
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .heritage-img {
+            aspect-ratio: 1;
+            border-radius: var(--radius-lg);
+            background: var(--bg2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid var(--border);
+            position: relative;
+        }
+
+        .heritage-pattern {
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(45deg, transparent, transparent 28px, rgba(45, 90, 39, 0.04) 28px, rgba(45, 90, 39, 0.04) 29px),
+                repeating-linear-gradient(-45deg, transparent, transparent 28px, rgba(45, 90, 39, 0.04) 28px, rgba(45, 90, 39, 0.04) 29px);
+            position: absolute;
+            inset: 0;
+        }
+
+        .heritage-img-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 32px;
+        }
+
+        .h-stat-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .h-stat-card svg {
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .h-stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1;
+        }
+
+        .h-stat-label {
+            font-size: 0.72rem;
+            color: var(--ink2);
+            margin-top: 4px;
+        }
+
+        .heritage-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--ink);
+            margin-bottom: 20px;
+        }
+
+        .heritage-text h2 em {
+            font-style: italic;
+            color: var(--green);
+        }
+
+        .heritage-text p {
+            font-size: 0.95rem;
+            color: var(--ink2);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        .heritage-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .h-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--green-light);
+            color: var(--green);
+            border-radius: 100px;
+            padding: 7px 14px;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        /* ── Ritual Steps ── */
+        #ritual {
+            background: var(--white);
+        }
+
+        .ritual-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .ritual-card {
+            background: var(--bg);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            border: 1.5px solid var(--border);
+            transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+        }
+
+        .ritual-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+            border-color: var(--green);
+        }
+
+        .ritual-step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--green);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .ritual-icon {
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+
+        .ritual-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .ritual-card p {
+            font-size: 0.83rem;
+            color: var(--ink2);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* ── Testimonials ── */
+        #testimonials {
+            background: var(--bg2);
+        }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .testi-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1.5px solid var(--border);
+            transition: box-shadow 0.2s;
+        }
+
+        .testi-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testi-stars {
+            color: #f59e0b;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            margin-bottom: 14px;
+        }
+
+        .testi-text {
+            font-family: 'DM Serif Display', serif;
+            font-style: italic;
+            font-size: 0.97rem;
+            color: var(--ink);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .testi-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .testi-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--green-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .testi-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .testi-loc {
+            font-size: 0.72rem;
+            color: var(--ink3);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ── Newsletter ── */
+        #newsletter {
+            background: var(--green);
+            padding: 80px 48px;
+        }
+
+        .newsletter-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter-inner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-inner h2 em {
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        .newsletter-inner p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 32px;
+            font-weight: 300;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 14px 20px;
+            font-size: 0.9rem;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            background: transparent;
+        }
+
+        .newsletter-form button {
+            background: var(--amber);
+            color: #fff;
+            border: none;
+            padding: 14px 24px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: none;
+            transition: background 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .newsletter-form button:hover {
+            background: #b56820;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 72px 48px 40px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 56px;
+            margin-bottom: 56px;
+        }
+
+        .footer-brand .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+            margin-bottom: 14px;
+            letter-spacing: 0.04em;
+        }
+
+        .footer-brand .logo span {
+            color: #6db85c;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            cursor: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .footer-social:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+        }
+
+        .footer-col h4 {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul a {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            cursor: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            padding-top: 36px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom p {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ── Cart Drawer ── */
+        .cart-drawer {
+            position: fixed;
+            inset: 0;
+            z-index: 600;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .cart-drawer.open {
+            visibility: visible;
+            pointer-events: all;
+        }
+
+        .cart-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(28, 25, 23, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cart-drawer.open .cart-overlay {
+            opacity: 1;
+        }
+
+        .cart-panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: min(400px, 92vw);
+            background: var(--white);
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.1, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -4px 0 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-drawer.open .cart-panel {
+            transform: translateX(0);
+        }
+
+        .cart-head {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-head h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--ink);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-close {
+            width: 36px;
+            height: 36px;
+            background: var(--bg2);
+            border: none;
+            border-radius: 9px;
+            cursor: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink);
+            transition: background 0.2s;
+        }
+
+        .cart-close:hover {
+            background: var(--border2);
+        }
+
+        .cart-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 60px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cart-empty svg {
+            color: var(--ink3);
+        }
+
+        .cart-empty p {
+            font-size: 0.9rem;
+            color: var(--ink2);
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item-img {
+            width: 64px;
+            height: 80px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+
+        .cart-item-desc {
+            font-size: 0.78rem;
+            color: var(--ink2);
+            margin-bottom: 10px;
+        }
+
+        .cart-item-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--bg2);
+            border: none;
+            cursor: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink);
+            transition: background 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+        }
+
+        .qty-btn:hover {
+            background: var(--border2);
+        }
+
+        .qty-num {
+            font-size: 0.85rem;
+            font-weight: 600;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-item-price {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .cart-foot {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .cart-total-row span {
+            font-size: 0.85rem;
+            color: var(--ink2);
+        }
+
+        .cart-total-row strong {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: none;
+            font-family: 'DM Sans', sans-serif;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .checkout-btn:hover {
+            background: var(--green-mid);
+        }
+
+        .cart-game-hint {
+            margin-top: 12px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--amber);
+            cursor: none;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        .cart-game-hint:hover {
+            color: #b56820;
+        }
+
+        /* ── Reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ── Responsive ── */
+        @media(max-width:1024px) {
+            nav {
+                padding: 0 24px;
+            }
+
+            .nav-links,
+            .nav-shop-btn {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #hero {
+                grid-template-columns: 1fr;
+                padding: 48px 24px;
+                min-height: unset;
+                gap: 40px;
+            }
+
+            .hero-text {
+                max-width: 100%;
+            }
+
+            .hero-bottles {
+                justify-content: center;
+            }
+
+            .proof-bar {
+                padding: 20px 24px;
+                gap: 20px;
+            }
+
+            .proof-sep {
+                display: none;
+            }
+
+            .section {
+                padding: 64px 24px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ritual-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testi-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 36px;
+            }
+
+            .footer-brand {
+                grid-column: 1/-1;
+            }
+
+            #game-section {
+                padding: 64px 24px;
+            }
+
+            #newsletter {
+                padding: 64px 24px;
+            }
+
+            footer {
+                padding: 60px 24px 32px;
+            }
+        }
+
+        @media(max-width:640px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ritual-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+
+            .newsletter-form button {
+                border-radius: 0 0 12px 12px;
+            }
+
+            .hero-bottles {
+                gap: 12px;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            #cursor-wrap {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Arrow Cursor -->
+    <div id="cursor-wrap">
+        <svg width="22" height="28" viewBox="0 0 22 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L20 13L11.5 14.5L8 26L2 2Z" fill="#1c1917" stroke="#ffffff" stroke-width="1.5"
+                stroke-linejoin="round" />
+        </svg>
+    </div>
+
+    <!-- Announcement Bar -->
+    <div class="announce">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+        </svg>
+        Free shipping across India on orders above ₹1,499 — <a href="#products">Shop now</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-left">
+            <a href="#" class="nav-logo">EMBER<span>GLEN</span></a>
+            <nav class="nav-links">
+                <a href="#products">Shop</a>
+                <a href="#heritage">Our Story</a>
+                <a href="#ritual">The Ritual</a>
+                <a href="#game-section">Get Discount</a>
+            </nav>
+        </div>
+        <div class="nav-right">
+            <button class="nav-icon-btn" title="Search" onclick="void(0)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                </svg>
+            </button>
+            <button class="nav-icon-btn" title="Wishlist">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+            </button>
+            <button class="nav-icon-btn" id="cartBtn" title="Cart" onclick="openCart()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1" />
+                    <circle cx="20" cy="21" r="1" />
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <button class="nav-shop-btn" onclick="scrollTo('products')">Shop Now</button>
+            <button class="hamburger" id="hamburger" aria-label="Open menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-overlay" onclick="closeDrawer()"></div>
+        <div class="drawer-panel">
+            <div class="drawer-head">
+                <span class="drawer-logo">EMBER<span>GLEN</span></span>
+                <button class="drawer-close" onclick="closeDrawer()" aria-label="Close menu">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <nav class="drawer-links">
+                <a href="#products" onclick="closeDrawer()">Shop All</a>
+                <a href="#heritage" onclick="closeDrawer()">Our Story</a>
+                <a href="#ritual" onclick="closeDrawer()">The Ritual</a>
+                <a href="#game-section" onclick="closeDrawer()">Get Discount</a>
+                <a href="#testimonials" onclick="closeDrawer()">Reviews</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-overlay" onclick="closeCart()"></div>
+        <div class="cart-panel">
+            <div class="cart-head">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>
+                    Your Bag
+                </h3>
+                <button class="cart-close" onclick="closeCart()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="cart-body" id="cartBody"></div>
+            <div class="cart-foot" id="cartFoot" style="display:none">
+                <div class="cart-total-row">
+                    <span>Subtotal</span>
+                    <strong id="cartTotal">₹0</strong>
+                </div>
+                <button class="checkout-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                    Checkout
+                </button>
+                <p class="cart-game-hint" onclick="closeCart(); scrollTo('game-section')">🎯 Play the cap game to unlock
+                    a discount!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section id="hero-section">
+        <div id="hero">
+            <div class="hero-text">
+                <div class="hero-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 0 1 10 10" />
+                        <path d="M12 6v6l4 2" />
+                    </svg>
+                    New Seasonal Blends Available
+                </div>
+                <h1 class="hero-title">Drink <em>Boldly.</em><br>Drink Without.</h1>
+                <p class="hero-sub">Premium Scottish botanical elixirs — crafted for people who want all the pleasure,
+                    none of the alcohol. Brewed from wild Highland herbs for the mindful generation.</p>
+                <div class="hero-actions">
+                    <button class="btn-green" onclick="scrollTo('products')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 0 1-8 0" />
+                        </svg>
+                        Explore the Collection
+                    </button>
+                    <button class="btn-outline" onclick="scrollTo('heritage')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 16v-4" />
+                            <path d="M12 8h.01" />
+                        </svg>
+                        Our Story
+                    </button>
+                </div>
+                <div class="hero-trust">
+                    <div class="trust-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                        <span>0% Alcohol, always</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                        <span>Hand-crafted in Scotland</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        <span>Free delivery ₹1,499+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-bottles" id="heroBotles"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proof Bar -->
+    <div class="proof-bar reveal">
+        <div class="proof-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <div><strong>12,000+</strong> <span>happy customers</span></div>
+        </div>
+        <div class="proof-sep"></div>
+        <div class="proof-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+            <div><strong>4.9 / 5</strong> <span>average rating</span></div>
+        </div>
+        <div class="proof-sep"></div>
+        <div class="proof-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            <div><strong>47+</strong> <span>hand-sourced botanicals</span></div>
+        </div>
+        <div class="proof-sep"></div>
+        <div class="proof-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13" rx="1" />
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+            <div><strong>3–5 days</strong> <span>pan-India delivery</span></div>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <section id="products" class="section">
+        <div class="section-inner">
+            <div class="section-head reveal">
+                <span class="eyebrow">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                    </svg>
+                    The Collection
+                </span>
+                <h2 class="section-title">Elixirs of the <em>Highlands</em></h2>
+                <p class="section-sub">Each bottle is a story of foraged botanicals, cold-drawn extracts, and patient
+                    craft from the Scottish Highlands.</p>
+            </div>
+            <div class="filter-bar reveal" id="filterBar"></div>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Bottle Cap Game -->
+    <section id="game-section">
+        <div class="game-inner">
+            <div class="game-eyebrow">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+                Earn Your Discount
+            </div>
+            <h2 class="game-title">Think you can open it?</h2>
+            <p class="game-sub">Twist the bottle cap to earn a discount. It won't be easy — these caps are stubborn. The
+                harder you try, the more you unlock. Maximum you can get is <strong>67% off</strong>.</p>
+
+            <div class="cap-arena" id="capArena">
+                <div class="cap-base" id="capBase">
+                    <div class="cap-teeth"></div>
+                    <div class="cap-inner">
+                        <div class="cap-logo">EMBER<br>GLEN</div>
+                    </div>
+                </div>
+                <div class="cap-grip-hint"></div>
+                <div class="cap-resist-msg" id="capResistMsg">Resistance increasing...</div>
+            </div>
+
+            <div class="game-progress-wrap">
+                <div class="game-progress-label">
+                    <span>Discount unlocked</span>
+                    <strong id="discountVal">0%</strong>
+                </div>
+                <div class="game-progress-bar">
+                    <div class="game-progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            <p class="game-hint" id="gameHint">Click and drag to twist the cap open</p>
+
+            <div class="game-result" id="gameResult">
+                <div class="result-discount" id="resultDiscount">0%</div>
+                <p style="font-size:0.9rem;color:var(--ink2);margin-bottom:8px;">OFF your next order</p>
+                <div class="result-code" id="resultCode" onclick="copyCode()">GLEN25</div>
+                <p class="result-note">Tap the code to copy · Valid for 48 hours · One use per order</p>
+                <button class="result-copy-btn" onclick="copyCode()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    Copy Discount Code
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage -->
+    <section id="heritage" class="section">
+        <div class="section-inner">
+            <div class="heritage-grid">
+                <div class="heritage-img reveal">
+                    <div class="heritage-pattern"></div>
+                    <div class="heritage-img-inner" id="heritageStats"></div>
+                </div>
+                <div class="heritage-text reveal">
+                    <span class="eyebrow">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        </svg>
+                        Our Story
+                    </span>
+                    <h2>Born from the <em>Mist</em> of the Highlands</h2>
+                    <p>Emberglen was built on a simple belief — that the ritual of a fine drink should never require a
+                        hangover. Deep in the Scottish Highlands, where ancient herbs grow wild and the air tastes of
+                        earth and rain, we found our ingredients.</p>
+                    <p>Each bottle is hand-crafted using cold-drawn botanical extraction, a process that preserves the
+                        full complexity of every herb and flower. No shortcuts. No compromise.</p>
+                    <div class="heritage-pills">
+                        <div class="h-pill">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                            0% Alcohol Always
+                        </div>
+                        <div class="h-pill">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                                <line x1="4" y1="22" x2="4" y2="15" />
+                            </svg>
+                            Wild Foraged
+                        </div>
+                        <div class="h-pill">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>
+                            Ships to India
+                        </div>
+                        <div class="h-pill">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                            Made with Care
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ritual -->
+    <section id="ritual" class="section">
+        <div class="section-inner">
+            <div class="section-head center reveal">
+                <span class="eyebrow">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Serve it Right
+                </span>
+                <h2 class="section-title">The <em>Emberglen Ritual</em></h2>
+            </div>
+            <div class="ritual-grid" id="ritualGrid"></div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section">
+        <div class="section-inner">
+            <div class="section-head center reveal">
+                <span class="eyebrow">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    From Our Community
+                </span>
+                <h2 class="section-title">Voices of the <em>Glen</em></h2>
+            </div>
+            <div class="testi-grid reveal" id="testiGrid"></div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="newsletter">
+        <div class="newsletter-inner">
+            <span class="eyebrow"
+                style="color:rgba(255,255,255,0.6);margin-bottom:12px;display:inline-flex;align-items:center;gap:6px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                </svg>
+                Stay Connected
+            </span>
+            <h2>Sip First. <em>Know First.</em></h2>
+            <p>New blends, seasonal specials, and exclusive member discounts — straight to your inbox.</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="logo">EMBER<span>GLEN</span></span>
+                <p>Premium alcohol-free botanical elixirs from the Scottish Highlands. Crafted for those who live with
+                    intention.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social" title="Instagram">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                    </a>
+                    <a href="#" class="footer-social" title="Twitter/X">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="footer-social" title="Pinterest">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 12a4 4 0 0 1 8 0c0 3-3 6-3 6" />
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v2" />
+                        </svg>
+                    </a>
+                    <a href="#" class="footer-social" title="YouTube">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#products">All Blends</a></li>
+                    <li><a href="#products">Gift Sets</a></li>
+                    <li><a href="#products">Seasonal</a></li>
+                    <li><a href="#products">Bestsellers</a></li>
+                    <li><a href="#products">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#heritage">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Stockists</a></li>
+                    <li><a href="#">Press & Media</a></li>
+                    <li><a href="#">Wholesale</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Emberglen Ltd. Registered in Scotland.</p>
+            <p>Privacy Policy · Terms of Service · Cookie Settings</p>
+        </div>
+    </footer>
+
+    <script>
+        // ═══════════════════════════════════════════════════════
+        // EMBERGLEN SITE DATA — Edit everything here
+        // ═══════════════════════════════════════════════════════
+
+        const CURRENCY = "₹";
+
+        const PRODUCTS = [
+            {
+                id: 1, name: "Midnight Heather",
+                category: "Signature", cat_key: "signature",
+                desc: "Dark wild heather, smoked birch and Highland juniper with a velvet finish",
+                price: 2199, volume: "500ml",
+                badge: "bestseller", badgeLabel: "Best Seller",
+                notes: ["Heather", "Smoke", "Juniper", "Dark Fruit"],
+                color: "#2a1a3e", color2: "#4d2d6e", accent: "#c8a2c8"
+            },
+            {
+                id: 2, name: "Amber Glen",
+                category: "Classic", cat_key: "classic",
+                desc: "Sun-warmed meadowsweet, toasted oat and Speyside honey with golden warmth",
+                price: 1899, volume: "500ml",
+                badge: null, badgeLabel: null,
+                notes: ["Honey", "Oat", "Meadowsweet", "Warm Spice"],
+                color: "#3d2507", color2: "#7a4e10", accent: "#d4a843"
+            },
+            {
+                id: 3, name: "Sea Mist Tonic",
+                category: "Limited", cat_key: "limited",
+                desc: "Coastal samphire, Atlantic kelp and crisp sea air with a bracing mineral clarity",
+                price: 2599, volume: "500ml",
+                badge: "new", badgeLabel: "New",
+                notes: ["Samphire", "Kelp", "Citrus", "Mineral"],
+                color: "#0f2430", color2: "#1a5070", accent: "#a0d8e0"
+            },
+            {
+                id: 4, name: "Rose of Perthshire",
+                category: "Signature", cat_key: "signature",
+                desc: "Wild rose petals, gentle hibiscus and delicate elderflower from the Tay valley",
+                price: 2099, volume: "500ml",
+                badge: null, badgeLabel: null,
+                notes: ["Rose", "Hibiscus", "Elderflower", "Soft Floral"],
+                color: "#3d0d1a", color2: "#8a2040", accent: "#f0a0b0"
+            },
+            {
+                id: 5, name: "Peat & Moss",
+                category: "Reserve", cat_key: "reserve",
+                desc: "Ancient peat smoke, woodland moss, dry oak and a whisper of vanilla root",
+                price: 2899, volume: "500ml",
+                badge: "reserve", badgeLabel: "Reserve",
+                notes: ["Peat", "Oak", "Moss", "Vanilla"],
+                color: "#1a0d07", color2: "#4a2c10", accent: "#b08040"
+            },
+            {
+                id: 6, name: "Winter Solstice",
+                category: "Seasonal", cat_key: "seasonal",
+                desc: "Warm spiced sloe, cardamom, star anise and Highland winter berries",
+                price: 2399, volume: "500ml",
+                badge: "seasonal", badgeLabel: "Seasonal",
+                notes: ["Sloe", "Cardamom", "Star Anise", "Winter Berry"],
+                color: "#1a0d2e", color2: "#4a1a6e", accent: "#b090e0"
+            }
+        ];
+
+        const FILTERS = ["All", "Signature", "Classic", "Reserve", "Limited", "Seasonal"];
+
+        const RITUAL_STEPS = [
+            {
+                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+                step: "01", title: "Choose Your Blend",
+                desc: "Let the moment guide you. Contemplative evenings call for Peat & Moss; celebrations deserve Rose of Perthshire."
+            },
+            {
+                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+                step: "02", title: "Chill & Prepare",
+                desc: "Serve between 4–8°C. A single large ice sphere in a wide-mouthed glass will open the botanicals beautifully."
+            },
+            {
+                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`,
+                step: "03", title: "Garnish with Intention",
+                desc: "Each blend has a companion garnish — fresh heather, citrus peel, dried rose or a sprig of thyme."
+            },
+            {
+                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+                step: "04", title: "Sip Slowly",
+                desc: "Let the botanicals unfurl. The first sip introduces. The second reveals. The third is where it truly lives."
+            }
+        ];
+
+        const TESTIMONIALS = [
+            { text: "Peat & Moss genuinely tastes like sitting beside a Highland loch at dusk. I have no idea how they bottled that feeling.", author: "James T.", loc: "Glasgow", initial: "J" },
+            { text: "As someone who's been sober for two years, Emberglen gave me back the ritual. I finally feel like I'm not missing anything.", author: "Priya S.", loc: "Mumbai", initial: "P" },
+            { text: "The packaging alone would make me buy this. But the taste? It's genuinely unlike anything I've tried.", author: "Callum R.", loc: "Aberdeen", initial: "C" },
+            { text: "Brought the Discovery Set to a dinner party. Three people asked where they could buy more before the night ended.", author: "Tom A.", loc: "Dublin", initial: "T" },
+            { text: "Sea Mist Tonic is the most interesting non-alcoholic drink I've ever tasted. Mineral, bracing, complex. Incredible.", author: "Rachel K.", loc: "Brighton", initial: "R" },
+            { text: "Midnight Heather before bed has become my non-negotiable evening ritual. It genuinely feels meditative.", author: "Sophie H.", loc: "Bengaluru", initial: "S" }
+        ];
+
+        const HERITAGE_STATS = [
+            { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`, num: "47+", label: "Botanicals" },
+            { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`, num: "0%", label: "Alcohol" },
+            { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`, num: "4.9", label: "Rating" },
+            { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`, num: "12k+", label: "Customers" }
+        ];
+
+        // ═══════════════════════════════════════════════════════
+        // RENDER FUNCTIONS
+        // ═══════════════════════════════════════════════════════
+
+        let cart = [];
+
+        function renderHeroBotles() {
+            const wrap = document.getElementById('heroBotles');
+            const featured = [PRODUCTS[0], PRODUCTS[1], PRODUCTS[2]];
+            wrap.innerHTML = featured.map((p, i) => `
+    <div class="hero-bottle">
+      <div class="bottle-svg-wrap" style="background:linear-gradient(160deg,${p.color},${p.color2})">
+        <div class="product-bottle-shine"></div>
+        <div class="product-bottle-label">
+          <div class="product-bottle-label-name">${p.name}</div>
+        </div>
+        ${i === 1 ? `<span class="hero-badge">Fan Fav</span>` : ''}
+      </div>
+      <span class="bottle-label">${p.name}</span>
+    </div>
+  `).join('');
+        }
+
+        function renderFilters() {
+            const bar = document.getElementById('filterBar');
+            bar.innerHTML = FILTERS.map((f, i) =>
+                `<button class="filter-btn ${i === 0 ? 'active' : ''}" onclick="filterProducts('${f}',this)">${f}</button>`
+            ).join('');
+        }
+
+        function filterProducts(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProducts(cat);
+        }
+
+        function renderProducts(cat = 'All') {
+            const grid = document.getElementById('productsGrid');
+            const list = cat === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
+            grid.innerHTML = list.map(p => `
+    <div class="product-card reveal">
+      <div class="product-img" style="background:linear-gradient(160deg,${p.color}22,${p.color2}18)">
+        <div class="product-bottle-art" style="background:linear-gradient(160deg,${p.color},${p.color2})">
+          <div class="product-bottle-shine"></div>
+          <div class="product-bottle-label">
+            <div class="product-bottle-label-name">${p.name}</div>
+          </div>
+        </div>
+        <div class="product-badge-wrap">
+          ${p.badge ? `<span class="p-badge ${p.badge}">${p.badgeLabel}</span>` : ''}
+        </div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${p.category}</div>
+        <h3 class="product-name">${p.name}</h3>
+        <p class="product-desc">${p.desc}</p>
+        <div class="product-notes">
+          ${p.notes.map(n => `<span class="note-chip">${n}</span>`).join('')}
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            ${CURRENCY}${p.price.toLocaleString('en-IN')}
+            <small>${p.volume}</small>
+          </div>
+          <button class="add-btn" onclick="addToCart(${p.id})">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add to Bag
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+            observeReveal();
+        }
+
+        function renderHeritage() {
+            const c = document.getElementById('heritageStats');
+            c.innerHTML = HERITAGE_STATS.map(s => `
+    <div class="h-stat-card">
+      ${s.icon}
+      <div class="h-stat-num">${s.num}</div>
+      <div class="h-stat-label">${s.label}</div>
+    </div>
+  `).join('');
+        }
+
+        function renderRitual() {
+            const g = document.getElementById('ritualGrid');
+            g.innerHTML = RITUAL_STEPS.map(s => `
+    <div class="ritual-card reveal">
+      <div class="ritual-step-num">${s.step}</div>
+      <div class="ritual-icon">${s.icon}</div>
+      <h3>${s.title}</h3>
+      <p>${s.desc}</p>
+    </div>
+  `).join('');
+        }
+
+        function renderTestimonials() {
+            const g = document.getElementById('testiGrid');
+            g.innerHTML = TESTIMONIALS.map(t => `
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"${t.text}"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">${t.initial}</div>
+        <div>
+          <div class="testi-name">${t.author}</div>
+          <div class="testi-loc">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            ${t.loc}
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+        }
+
+        // ── Cart ──
+        function addToCart(id) {
+            const p = PRODUCTS.find(x => x.id === id);
+            const existing = cart.find(x => x.id === id);
+            if (existing) existing.qty++;
+            else cart.push({ ...p, qty: 1 });
+            updateCartUI();
+            openCart();
+        }
+
+        function updateCartUI() {
+            const count = cart.reduce((s, x) => s + x.qty, 0);
+            const cc = document.getElementById('cartCount');
+            cc.textContent = count;
+            cc.classList.toggle('show', count > 0);
+
+            const body = document.getElementById('cartBody');
+            const foot = document.getElementById('cartFoot');
+
+            if (cart.length === 0) {
+                body.innerHTML = `<div class="cart-empty">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <p>Your bag is empty</p>
+      <button class="btn-green" style="margin-top:8px;font-size:0.82rem;padding:10px 20px" onclick="closeCart();scrollTo('products')">Start Shopping</button>
+    </div>`;
+                foot.style.display = 'none';
+                return;
+            }
+
+            body.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2})"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-desc">${item.volume} · ${item.category}</div>
+        <div class="cart-item-row">
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+            <span class="qty-num">${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+          </div>
+          <span class="cart-item-price">${CURRENCY}${(item.price * item.qty).toLocaleString('en-IN')}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+            const total = cart.reduce((s, x) => s + x.price * x.qty, 0);
+            document.getElementById('cartTotal').textContent = `${CURRENCY}${total.toLocaleString('en-IN')}`;
+            foot.style.display = 'block';
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(x => x.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
+            updateCartUI();
+        }
+
+        function openCart() {
+            document.getElementById('cartDrawer').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCart() {
+            document.getElementById('cartDrawer').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // ── Mobile Drawer ──
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('mobileDrawer').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+        function closeDrawer() {
+            document.getElementById('mobileDrawer').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function scrollTo(id) {
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ── Custom Cursor ──
+        const cursorWrap = document.getElementById('cursor-wrap');
+        let cx = 0, cy = 0;
+        document.addEventListener('mousemove', e => {
+            cx = e.clientX; cy = e.clientY;
+            cursorWrap.style.left = cx + 'px';
+            cursorWrap.style.top = cy + 'px';
+        });
+        document.addEventListener('mousedown', () => document.body.classList.add('cur-click'));
+        document.addEventListener('mouseup', () => document.body.classList.remove('cur-click'));
+        document.querySelectorAll && document.addEventListener('mouseover', e => {
+            const t = e.target.closest('a,button,.product-card,.testi-card,.ritual-card,[onclick]');
+            document.body.classList.toggle('cur-hover', !!t);
+        });
+
+        // ── Reveal on Scroll ──
+        function observeReveal() {
+            const io = new IntersectionObserver(entries => {
+                entries.forEach((e, i) => {
+                    if (e.isIntersecting) {
+                        setTimeout(() => e.target.classList.add('visible'), i * 70);
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // BOTTLE CAP TWIST GAME
+        // ═══════════════════════════════════════════════════════
+
+        (function () {
+            const cap = document.getElementById('capBase');
+            const fill = document.getElementById('progressFill');
+            const valEl = document.getElementById('discountVal');
+            const hint = document.getElementById('gameHint');
+            const result = document.getElementById('gameResult');
+            const resultDiscount = document.getElementById('resultDiscount');
+            const resultCode = document.getElementById('resultCode');
+            const resistMsg = document.getElementById('capResistMsg');
+
+            const MAX_DISCOUNT = 67;
+            const RESISTANCE_LEVELS = [
+                { at: 10, msg: "It's budging a little..." },
+                { at: 25, msg: "Keep going! It's fighting back..." },
+                { at: 40, msg: "Almost there! Push harder..." },
+                { at: 55, msg: "So close! Give it everything!" },
+                { at: 65, msg: "One last push... 🤞" }
+            ];
+
+            let isDragging = false;
+            let startAngle = 0;
+            let totalRotation = 0;
+            let capRotation = 0;
+            let lastAngle = 0;
+            let discount = 0;
+            let opened = false;
+            // Resistance: starts easy, gets harder
+            let resistance = 1;
+            let resistanceMult = 1;
+
+            function getAngle(e, el) {
+                const rect = el.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return Math.atan2(clientY - cy, clientX - cx) * (180 / Math.PI);
+            }
+
+            function onStart(e) {
+                if (opened) return;
+                e.preventDefault();
+                isDragging = true;
+                startAngle = getAngle(e, cap);
+                lastAngle = startAngle;
+                document.body.classList.add('cur-click');
+            }
+
+            function onMove(e) {
+                if (!isDragging || opened) return;
+                e.preventDefault();
+                const angle = getAngle(e, cap);
+                let delta = angle - lastAngle;
+
+                // Normalize delta to [-180, 180]
+                if (delta > 180) delta -= 360;
+                if (delta < -180) delta += 360;
+
+                // Only count clockwise (positive) rotation
+                if (delta > 0) {
+                    // Apply resistance: as discount grows, it gets harder
+                    resistance = 1 + (discount / MAX_DISCOUNT) * 6; // 1x at 0%, 7x at max
+                    const effective = delta / resistance;
+                    totalRotation += effective;
+                    capRotation += delta; // Visual rotates freely
+                } else {
+                    // Allow some back-rotation
+                    capRotation += delta * 0.3;
+                    totalRotation = Math.max(0, totalRotation + delta * 0.08);
+                }
+
+                lastAngle = angle;
+
+                // Map rotation to discount (need ~600deg total to reach max)
+                discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 9));
+
+                cap.style.transform = `rotate(${capRotation}deg)`;
+                fill.style.width = (discount / MAX_DISCOUNT * 100) + '%';
+                valEl.textContent = discount + '%';
+
+                // Resistance messages
+                let shownMsg = null;
+                RESISTANCE_LEVELS.forEach(lvl => {
+                    if (discount >= lvl.at && discount < lvl.at + 10) shownMsg = lvl.msg;
+                });
+                if (shownMsg) {
+                    resistMsg.textContent = shownMsg;
+                    resistMsg.classList.add('show');
+                    setTimeout(() => resistMsg.classList.remove('show'), 1800);
+                }
+
+                // Wiggle effect at high resistance
+                if (delta > 0 && discount > 30) {
+                    const wobble = (Math.random() - 0.5) * (discount / 15);
+                    cap.style.transform = `rotate(${capRotation + wobble}deg)`;
+                }
+
+                hint.textContent = discount < 20 ? "Keep twisting! Clockwise..." :
+                    discount < 45 ? "You're making progress!" :
+                        discount < 60 ? "Don't give up!" :
+                            discount < MAX_DISCOUNT ? "Almost at maximum!" :
+                                "That's all you're getting! 😅";
+
+                if (discount >= MAX_DISCOUNT && !opened) openCap();
+            }
+
+            function onEnd() {
+                isDragging = false;
+                document.body.classList.remove('cur-click');
+                if (discount > 0 && !opened) revealResult(discount);
+            }
+
+            function revealResult(d) {
+                if (d < 5) return; // too small, don't show
+                opened = true;
+                const codes = ['GLEN', 'MIST', 'PEAT', 'BLOOM', 'EMBER', 'GLEN'];
+                const code = codes[Math.floor(Math.random() * codes.length)] + d;
+                resultDiscount.textContent = d + '%';
+                resultCode.textContent = code;
+                resultCode.dataset.code = code;
+                result.classList.add('show');
+                hint.textContent = `You earned ${d}% off! 🎉`;
+                cap.style.transform = `rotate(${capRotation + 20}deg)`;
+                cap.style.filter = 'brightness(1.2)';
+            }
+
+            function openCap() {
+                revealResult(MAX_DISCOUNT);
+            }
+
+            window.copyCode = function () {
+                const code = document.getElementById('resultCode').dataset.code || document.getElementById('resultCode').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    const btn = document.querySelector('.result-copy-btn');
+                    if (btn) {
+                        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+                        setTimeout(() => btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Discount Code`, 2000);
+                    }
+                }).catch(() => {
+                    alert('Code: ' + code);
+                });
+            };
+
+            cap.addEventListener('mousedown', onStart);
+            cap.addEventListener('touchstart', onStart, { passive: false });
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('touchmove', onMove, { passive: false });
+            document.addEventListener('mouseup', onEnd);
+            document.addEventListener('touchend', onEnd);
+        })();
+
+        // ── Init ──
+        renderHeroBotles();
+        renderFilters();
+        renderProducts();
+        renderHeritage();
+        renderRitual();
+        renderTestimonials();
+        updateCartUI();
+        setTimeout(observeReveal, 100);
+    </script>
+</body>
+
+</html>
