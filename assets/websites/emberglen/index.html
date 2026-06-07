@@ -52,7 +52,6 @@
             overflow-x: hidden;
         }
 
-        /* ── Nav (Logo Left, Links Center, Icons Right) ── */
         nav {
             background: var(--white);
             border-bottom: 1px solid var(--border);
@@ -187,7 +186,6 @@
             background: var(--bg2);
         }
 
-        /* ── Mobile Drawer ── */
         .mobile-drawer {
             position: fixed;
             inset: 0;
@@ -287,7 +285,6 @@
             background: var(--bg2);
         }
 
-        /* ── Hero ── */
         #hero {
             background: var(--white);
             padding: 72px 48px;
@@ -391,99 +388,7 @@
         }
 
         .hero-trust {
-            margin-top: 40px;
-            padding-top: 32px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            gap: 32px;
-            flex-wrap: wrap;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .trust-item svg {
-            color: var(--gold);
-            flex-shrink: 0;
-            width: 20px;
-            height: 20px;
-        }
-
-        .trust-item span {
-            font-size: 0.82rem;
-            color: var(--ink2);
-            font-weight: 400;
-        }
-
-        .hero-visual {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-bottles {
-            display: flex;
-            gap: 20px;
-            align-items: flex-end;
-            justify-content: center;
-        }
-
-        .hero-bottle {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            animation: bottle-float linear infinite alternate;
-        }
-
-        .hero-bottle:nth-child(1) {
-            animation-duration: 3.4s;
-            animation-delay: 0s;
-        }
-
-        .hero-bottle:nth-child(2) {
-            animation-duration: 4s;
-            animation-delay: 0.8s;
-            transform: scale(1.12);
-        }
-
-        .hero-bottle:nth-child(3) {
-            animation-duration: 3.7s;
-            animation-delay: 0.4s;
-        }
-
-        @keyframes bottle-float {
-            from {
-                transform: translateY(0);
-            }
-
-            to {
-                transform: translateY(-14px);
-            }
-        }
-
-        .bottle-svg-wrap {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            width: 120px;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .bottle-label {
-            font-size: 0.72rem;
-            font-weight: 500;
-            color: var(--ink2);
-            text-align: center;
-            letter-spacing: 0.04em;
+            display: none;
         }
 
         .hero-badge {
@@ -501,47 +406,10 @@
             box-shadow: 0 2px 8px rgba(166, 119, 31, 0.4);
         }
 
-        /* ── Social Proof Bar ── */
         .proof-bar {
-            background: var(--bg2);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 20px 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 48px;
-            flex-wrap: wrap;
+            display: none;
         }
 
-        .proof-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .proof-item svg {
-            color: var(--gold);
-        }
-
-        .proof-item strong {
-            font-size: 0.9rem;
-            color: var(--ink);
-            font-weight: 600;
-        }
-
-        .proof-item span {
-            font-size: 0.8rem;
-            color: var(--ink2);
-        }
-
-        .proof-sep {
-            width: 1px;
-            height: 28px;
-            background: var(--border2);
-        }
-
-        /* ── Section Scaffold ── */
         .section {
             padding: 96px 48px;
         }
@@ -595,7 +463,6 @@
             max-width: 520px;
         }
 
-        /* ── Products ── */
         #products {
             background: var(--white);
         }
@@ -829,7 +696,6 @@
             transform: scale(1.04);
         }
 
-        /* ── Bottle Cap Game ── */
         #game-section {
             background: var(--amber-light);
             border-top: 1px solid #e8d5b8;
@@ -878,7 +744,7 @@
             position: relative;
             width: 220px;
             height: 220px;
-            margin: 0 auto 28px;
+            margin: 0 auto 48px;
             cursor: pointer;
         }
 
@@ -966,7 +832,7 @@
         }
 
         .game-progress-wrap {
-            margin: 44px auto 20px;
+            margin: 20px auto 20px;
             max-width: 340px;
         }
 
@@ -1000,12 +866,14 @@
             background: linear-gradient(90deg, var(--gold), #c49a3a);
             border-radius: 100px;
             width: 0%;
-            transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: width 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .game-hint {
             font-size: 0.82rem;
-            color: var(--ink3);
+            color: var(--gold);
+            font-weight: 500;
+            margin-top: 16px;
             margin-bottom: 8px;
         }
 
@@ -1076,7 +944,6 @@
             background: #8a5f18;
         }
 
-        /* ── Heritage ── */
         #heritage {
             background: var(--bg);
         }
@@ -1187,7 +1054,6 @@
             font-weight: 500;
         }
 
-        /* ── Ritual Steps ── */
         #ritual {
             background: var(--white);
         }
@@ -1247,7 +1113,6 @@
             font-weight: 300;
         }
 
-        /* ── Testimonials ── */
         #testimonials {
             background: var(--bg2);
         }
@@ -1319,7 +1184,6 @@
             gap: 4px;
         }
 
-        /* ── Newsletter ── */
         #newsletter {
             background: var(--gold);
             padding: 80px 48px;
@@ -1391,7 +1255,6 @@
             background: #6e4c14;
         }
 
-        /* ── Footer ── */
         footer {
             background: var(--ink);
             color: rgba(255, 255, 255, 0.85);
@@ -1494,7 +1357,6 @@
             color: rgba(255, 255, 255, 0.3);
         }
 
-        /* ── Cart Drawer ── */
         .cart-drawer {
             position: fixed;
             inset: 0;
@@ -1738,7 +1600,6 @@
             color: #8a5f18;
         }
 
-        /* ── Reveal ── */
         .reveal {
             opacity: 0;
             transform: translateY(28px);
@@ -1750,7 +1611,6 @@
             transform: none;
         }
 
-        /* ── Responsive ── */
         @media (max-width: 1024px) {
             nav {
                 padding: 0 24px;
@@ -1774,19 +1634,6 @@
 
             .hero-text {
                 max-width: 100%;
-            }
-
-            .hero-bottles {
-                justify-content: center;
-            }
-
-            .proof-bar {
-                padding: 20px 24px;
-                gap: 20px;
-            }
-
-            .proof-sep {
-                display: none;
             }
 
             .section {
@@ -1862,16 +1709,11 @@
             .newsletter-form button {
                 border-radius: 0 0 12px 12px;
             }
-
-            .hero-bottles {
-                gap: 12px;
-            }
         }
 
-        /* ── Why Choose Us ── */
         .why-us-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 20px;
         }
 
@@ -1944,9 +1786,8 @@
             font-weight: 300;
         }
 
-        /* ── Cap Game Start Button ── */
         .cap-start-wrap {
-            margin: 20px auto 0;
+            margin: 16px auto 0;
             text-align: center;
         }
 
@@ -1995,8 +1836,6 @@
 </head>
 
 <body>
-
-    <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-left">
             <a href="#" class="nav-logo">EMBERGLEN</a>
@@ -2009,23 +1848,20 @@
         </div>
         <div class="nav-right">
             <button class="nav-icon-btn" title="Search" id="searchBtn" onclick="openSearch()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8" />
                     <path d="m21 21-4.35-4.35" />
                 </svg>
             </button>
             <button class="nav-icon-btn" title="Wishlist" id="wishlistBtn" onclick="openWishlist()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path
                         d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
                 <span class="cart-count" id="wishlistCount" style="background:#e05c7a"></span>
             </button>
             <button class="nav-icon-btn" id="cartBtn" title="Cart" onclick="openCart()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="9" cy="21" r="1" />
                     <circle cx="20" cy="21" r="1" />
                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
@@ -2035,8 +1871,7 @@
             <button class="nav-shop-btn"
                 onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
             <button class="hamburger" id="hamburger" aria-label="Open menu">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="3" y1="6" x2="21" y2="6" />
                     <line x1="3" y1="12" x2="21" y2="12" />
                     <line x1="3" y1="18" x2="21" y2="18" />
@@ -2045,135 +1880,95 @@
         </div>
     </nav>
 
-    <!-- Mobile Drawer -->
     <div class="mobile-drawer" id="mobileDrawer">
         <div class="drawer-overlay" onclick="closeDrawer()"></div>
         <div class="drawer-panel">
-            <div class="drawer-head">
-                <span class="drawer-logo">EMBER<span>GLEN</span></span>
-                <button class="drawer-close" onclick="closeDrawer()" aria-label="Close menu">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round">
+            <div class="drawer-head"><span class="drawer-logo">EMBER<span>GLEN</span></span><button class="drawer-close"
+                    onclick="closeDrawer()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5">
                         <line x1="18" y1="6" x2="6" y2="18" />
                         <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-            </div>
-            <nav class="drawer-links">
-                <a href="#products" onclick="closeDrawer()">Shop All</a>
-                <a href="#heritage" onclick="closeDrawer()">Our Story</a>
-                <a href="#ritual" onclick="closeDrawer()">The Ritual</a>
-                <a href="#game-section" onclick="closeDrawer()">Get Discount</a>
-                <a href="#testimonials" onclick="closeDrawer()">Reviews</a>
-            </nav>
+                    </svg></button></div>
+            <div class="drawer-links"><a href="#products" onclick="closeDrawer()">Shop All</a><a href="#heritage"
+                    onclick="closeDrawer()">Our Story</a><a href="#ritual" onclick="closeDrawer()">The Ritual</a><a
+                    href="#game-section" onclick="closeDrawer()">Get Discount</a><a href="#testimonials"
+                    onclick="closeDrawer()">Reviews</a></div>
         </div>
     </div>
 
-    <!-- Cart Drawer -->
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-overlay" onclick="closeCart()"></div>
         <div class="cart-panel">
             <div class="cart-head">
-                <h3>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="9" cy="21" r="1" />
                         <circle cx="20" cy="21" r="1" />
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                    </svg>
-                    Your Bag
-                </h3>
-                <button class="cart-close" onclick="closeCart()">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round">
+                    </svg>Your Bag</h3><button class="cart-close" onclick="closeCart()"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <line x1="18" y1="6" x2="6" y2="18" />
                         <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
+                    </svg></button>
             </div>
             <div class="cart-body" id="cartBody"></div>
             <div class="cart-foot" id="cartFoot" style="display:none">
-                <div class="cart-total-row">
-                    <span>Subtotal</span>
-                    <strong id="cartTotal">₹0</strong>
-                </div>
-                <button class="checkout-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+                <div class="cart-total-row"><span>Subtotal</span><strong id="cartTotal">₹0</strong></div><button
+                    class="checkout-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5">
                         <path d="M5 12h14" />
                         <path d="m12 5 7 7-7 7" />
-                    </svg>
-                    Checkout
-                </button>
-                <p class="cart-game-hint" onclick="closeCart(); scrollTo('game-section')">🎯 Play the cap game to unlock
+                    </svg>Checkout</button>
+                <p class="cart-game-hint" onclick="closeCart(); scrollTo('game-section')">Play the cap game to unlock
                     a discount!</p>
             </div>
         </div>
     </div>
 
-    <!-- Wishlist Drawer -->
     <div class="cart-drawer" id="wishlistDrawer">
         <div class="cart-overlay" onclick="closeWishlist()"></div>
         <div class="cart-panel">
             <div class="cart-head">
-                <h3>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path
                             d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                    Wishlist
-                </h3>
-                <button class="cart-close" onclick="closeWishlist()">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round">
+                    </svg>Wishlist</h3><button class="cart-close" onclick="closeWishlist()"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <line x1="18" y1="6" x2="6" y2="18" />
                         <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
+                    </svg></button>
             </div>
             <div class="cart-body" id="wishlistBody"></div>
         </div>
     </div>
 
-    <!-- Search Drawer -->
     <div class="cart-drawer" id="searchDrawer">
         <div class="cart-overlay" onclick="closeSearch()"></div>
         <div class="cart-panel">
             <div class="cart-head">
-                <h3>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8" />
                         <path d="m21 21-4.35-4.35" />
-                    </svg>
-                    Search
-                </h3>
-                <button class="cart-close" onclick="closeSearch()">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round">
+                    </svg>Search</h3><button class="cart-close" onclick="closeSearch()"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <line x1="18" y1="6" x2="6" y2="18" />
                         <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
+                    </svg></button>
             </div>
             <div style="padding:16px 24px 8px">
-                <div style="position:relative">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round"
+                <div style="position:relative"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2"
                         style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink3)">
                         <circle cx="11" cy="11" r="8" />
                         <path d="m21 21-4.35-4.35" />
-                    </svg>
-                    <input type="text" id="searchInput" placeholder="Search products..." oninput="doSearch(this.value)"
+                    </svg><input type="text" id="searchInput" placeholder="Search products..."
+                        oninput="doSearch(this.value)"
                         style="width:100%;padding:11px 12px 11px 38px;border:1.5px solid var(--border2);border-radius:10px;font-size:0.9rem;font-family:'Reddit Sans',sans-serif;outline:none;color:var(--ink);background:var(--white)"
                         onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border2)'">
                 </div>
             </div>
             <div class="cart-body" id="searchResults">
-                <div class="cart-empty" style="padding-top:32px">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
+                <div class="cart-empty" style="padding-top:32px"><svg width="36" height="36" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="1.5">
                         <circle cx="11" cy="11" r="8" />
                         <path d="m21 21-4.35-4.35" />
                     </svg>
@@ -2183,266 +1978,59 @@
         </div>
     </div>
 
-    <!-- Hero -->
     <section id="hero-section">
         <div id="hero">
             <div class="hero-text">
-                <div class="hero-pill">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                <div class="hero-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
-                    </svg>
-                    New Seasonal Blends Available
-                </div>
+                    </svg>New Seasonal Blends Available</div>
                 <h1 class="hero-title">Drink <em>Boldly.</em><br>Drink Without.</h1>
                 <p class="hero-sub">Premium Scottish botanical elixirs — crafted for people who want all the pleasure,
                     none of the alcohol. Brewed from wild Highland herbs for the mindful generation.</p>
                 <div class="hero-actions">
                     <button class="btn-gold"
-                        onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})"><svg
+                            width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
                             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
                             <line x1="3" y1="6" x2="21" y2="6" />
                             <path d="M16 10a4 4 0 0 1-8 0" />
-                        </svg>
-                        Explore the Collection
-                    </button>
+                        </svg>Explore the Collection</button>
                     <button class="btn-outline"
-                        onclick="document.getElementById('heritage').scrollIntoView({behavior:'smooth'})">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        onclick="document.getElementById('heritage').scrollIntoView({behavior:'smooth'})"><svg
+                            width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10" />
                             <path d="M12 16v-4" />
                             <path d="M12 8h.01" />
-                        </svg>
-                        Our Story
-                    </button>
+                        </svg>Our Story</button>
                 </div>
-                <div class="hero-trust">
-                    <div class="trust-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m11 17 2 2a1 1 0 1 0 3-3" />
-                            <path
-                                d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
-                            <path d="m21 3 1 11h-2" />
-                            <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
-                            <path d="M3 4h8" />
-                        </svg>
-                        <span>0% Alcohol, always</span>
-                    </div>
-                    <div class="trust-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m14 13-8.381 8.38a1 1 0 0 1-3.001-3L11 9.999" />
-                            <path
-                                d="M15.973 4.027A13 13 0 0 0 5.902 2.373c-1.398.342-1.092 2.158.277 2.601a19.9 19.9 0 0 1 5.822 3.024" />
-                            <path
-                                d="M16.001 11.999a19.9 19.9 0 0 1 3.024 5.824c.444 1.369 2.26 1.676 2.603.278A13 13 0 0 0 20 8.069" />
-                            <path
-                                d="M18.352 3.352a1.205 1.205 0 0 0-1.704 0l-5.296 5.296a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l5.296-5.296a1.205 1.205 0 0 0 0-1.704z" />
-                        </svg>
-                        <span>Hand-crafted in Scotland</span>
-                    </div>
-                    <div class="trust-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 19V7a2 2 0 0 0-2-2H9" />
-                            <path d="M15 19H9" />
-                            <path d="M19 19h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62L18.3 9.38a1 1 0 0 0-.78-.38H14" />
-                            <path d="M2 13v5a1 1 0 0 0 1 1h2" />
-                            <path d="M4 3 2.15 5.15a.495.495 0 0 0 .35.86h2.15a.47.47 0 0 1 .35.86L3 9.02" />
-                            <circle cx="17" cy="19" r="2" />
-                            <circle cx="7" cy="19" r="2" />
-                        </svg>
-                        <span>Free delivery ₹1,499+</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-bottles" id="heroBotles"></div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us -->
     <section id="why-us" style="background:var(--white);padding:72px 48px 80px;border-bottom:1px solid var(--border)">
         <div style="max-width:1200px;margin:0 auto">
             <div style="text-align:center;margin-bottom:52px" class="reveal">
-                <span class="eyebrow">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+                <span class="eyebrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    Why Choose Us
-                </span>
+                    </svg>Why Choose Us</span>
                 <h2 class="section-title" style="margin-top:4px">Crafted with <em>Purpose</em></h2>
                 <p class="section-sub" style="margin:12px auto 0;text-align:center">Every detail — from the botanicals
                     to the bottle — is designed with intention.</p>
             </div>
-            <div class="why-us-grid reveal">
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m11 17 2 2a1 1 0 1 0 3-3" />
-                            <path
-                                d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
-                            <path d="m21 3 1 11h-2" />
-                            <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
-                            <path d="M3 4h8" />
-                        </svg>
-                    </div>
-                    <div class="why-num">0%</div>
-                    <div class="why-label">Alcohol, always</div>
-                    <p class="why-desc">Every single blend is completely alcohol-free. Always. No exceptions.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m14 13-8.381 8.38a1 1 0 0 1-3.001-3L11 9.999" />
-                            <path
-                                d="M15.973 4.027A13 13 0 0 0 5.902 2.373c-1.398.342-1.092 2.158.277 2.601a19.9 19.9 0 0 1 5.822 3.024" />
-                            <path
-                                d="M16.001 11.999a19.9 19.9 0 0 1 3.024 5.824c.444 1.369 2.26 1.676 2.603.278A13 13 0 0 0 20 8.069" />
-                            <path
-                                d="M18.352 3.352a1.205 1.205 0 0 0-1.704 0l-5.296 5.296a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l5.296-5.296a1.205 1.205 0 0 0 0-1.704z" />
-                        </svg>
-                    </div>
-                    <div class="why-num" style="font-size:1.4rem">Scotland</div>
-                    <div class="why-label">Hand-crafted origin</div>
-                    <p class="why-desc">Cold-drawn botanical extraction in the Scottish Highlands. No shortcuts.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 19V7a2 2 0 0 0-2-2H9" />
-                            <path d="M15 19H9" />
-                            <path d="M19 19h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62L18.3 9.38a1 1 0 0 0-.78-.38H14" />
-                            <path d="M2 13v5a1 1 0 0 0 1 1h2" />
-                            <path d="M4 3 2.15 5.15a.495.495 0 0 0 .35.86h2.15a.47.47 0 0 1 .35.86L3 9.02" />
-                            <circle cx="17" cy="19" r="2" />
-                            <circle cx="7" cy="19" r="2" />
-                        </svg>
-                    </div>
-                    <div class="why-num">Free</div>
-                    <div class="why-label">Delivery on ₹1,499+</div>
-                    <p class="why-desc">Free pan-India shipping on all orders above ₹1,499. No hidden fees.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                        </svg>
-                    </div>
-                    <div class="why-num">12,000+</div>
-                    <div class="why-label">Happy customers</div>
-                    <p class="why-desc">A growing community of mindful drinkers across India and beyond.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon
-                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                        </svg>
-                    </div>
-                    <div class="why-num">4.9 / 5</div>
-                    <div class="why-label">Average rating</div>
-                    <p class="why-desc">Consistently top-rated by verified buyers for taste, quality and packaging.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
-                            <line x1="4" y1="22" x2="4" y2="15" />
-                        </svg>
-                    </div>
-                    <div class="why-num">47+</div>
-                    <div class="why-label">Hand-sourced botanicals</div>
-                    <p class="why-desc">Wild-foraged Highland herbs, flowers and roots — each selected for complexity.
-                    </p>
-                </div>
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="3" width="15" height="13" rx="1" />
-                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-                            <circle cx="5.5" cy="18.5" r="2.5" />
-                            <circle cx="18.5" cy="18.5" r="2.5" />
-                        </svg>
-                    </div>
-                    <div class="why-num">3–5 Days</div>
-                    <div class="why-label">Pan-India delivery</div>
-                    <p class="why-desc">Swift, tracked delivery to your door — anywhere across India.</p>
-                </div>
-            </div>
+            <div class="why-us-grid reveal" id="whyUsGrid"></div>
         </div>
     </section>
 
-    <!-- Proof Bar -->
-    <div class="proof-bar reveal">
-        <div class="proof-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-            <div><strong>12,000+</strong> <span>happy customers</span></div>
-        </div>
-        <div class="proof-sep"></div>
-        <div class="proof-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polygon
-                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <div><strong>4.9 / 5</strong> <span>average rating</span></div>
-        </div>
-        <div class="proof-sep"></div>
-        <div class="proof-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-            <div><strong>47+</strong> <span>hand-sourced botanicals</span></div>
-        </div>
-        <div class="proof-sep"></div>
-        <div class="proof-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <rect x="1" y="3" width="15" height="13" rx="1" />
-                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-                <circle cx="5.5" cy="18.5" r="2.5" />
-                <circle cx="18.5" cy="18.5" r="2.5" />
-            </svg>
-            <div><strong>3–5 days</strong> <span>pan-India delivery</span></div>
-        </div>
-    </div>
-
-    <!-- Products -->
     <section id="products" class="section">
         <div class="section-inner">
-            <div class="section-head reveal">
-                <span class="eyebrow">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+            <div class="section-head reveal"><span class="eyebrow"><svg width="12" height="12" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5">
                         <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
                         <line x1="3" y1="6" x2="21" y2="6" />
-                    </svg>
-                    The Collection
-                </span>
+                    </svg>The Collection</span>
                 <h2 class="section-title">Elixirs of the <em>Highlands</em></h2>
                 <p class="section-sub">Each bottle is a story of foraged botanicals, cold-drawn extracts, and patient
                     craft from the Scottish Highlands.</p>
@@ -2452,21 +2040,17 @@
         </div>
     </section>
 
-    <!-- Bottle Cap Game -->
     <section id="game-section">
         <div class="game-inner">
-            <div class="game-eyebrow">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round">
+            <div class="game-eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.5">
                     <polygon
                         points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-                Earn Your Discount
-            </div>
+                </svg>Earn Your Discount</div>
             <h2 class="game-title">Think you can open it?</h2>
-            <p class="game-sub">Twist the bottle cap to earn a discount. It won't be easy — these caps are stubborn. The
-                harder you try, the more you unlock. Maximum you can get is <strong>67% off</strong>.</p>
-            <div class="cap-arena cap-locked" id="capArena">
+            <p class="game-sub">Twist the bottle cap to earn a discount. Maximum you can get is <strong>20%
+                    off</strong>. The cap is extremely stubborn — fight the resistance!</p>
+            <div class="cap-arena" id="capArena">
                 <div class="cap-base" id="capBase">
                     <div class="cap-teeth"></div>
                     <div class="cap-inner">
@@ -2478,42 +2062,34 @@
             </div>
             <div class="cap-start-wrap" id="capStartWrap">
                 <div class="cap-countdown" id="capCountdown" style="display:none"></div>
-                <button class="cap-start-btn" id="capStartBtn" onclick="startCapGame()">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+                <button class="cap-start-btn" id="capStartBtn" onclick="startCapGame()"><svg width="15" height="15"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <polygon points="5 3 19 12 5 21 5 3" />
-                    </svg>
-                    Start
-                </button>
+                    </svg>Start</button>
             </div>
             <div class="game-progress-wrap">
-                <div class="game-progress-label">
-                    <span>Discount unlocked</span>
-                    <strong id="discountVal">0%</strong>
+                <div class="game-progress-label"><span>Discount unlocked</span><strong id="discountVal">0%</strong>
                 </div>
                 <div class="game-progress-bar">
                     <div class="game-progress-fill" id="progressFill"></div>
                 </div>
             </div>
-            <p class="game-hint" id="gameHint">Click and drag to twist the cap open</p>
+            <p class="game-hint" id="gameHint">Click Start to play</p>
             <div class="game-result" id="gameResult">
                 <div class="result-discount" id="resultDiscount">0%</div>
-                <p style="font-size:0.9rem;color:var(--ink2);margin-bottom:8px;">OFF your next order</p>
-                <div class="result-code" id="resultCode" onclick="copyCode()">GLEN25</div>
+                <p style="font-size:0.9rem;color:var(--ink2);margin-bottom:8px;" id="resultMessage">OFF your next order
+                </p>
+                <div class="result-code" id="resultCode" onclick="copyCode()">GLEN0</div>
                 <p class="result-note">Tap the code to copy · Valid for 48 hours · One use per order</p>
-                <button class="result-copy-btn" onclick="copyCode()">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+                <button class="result-copy-btn" onclick="copyCode()"><svg width="15" height="15" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                    </svg>
-                    Copy Discount Code
-                </button>
+                    </svg>Copy Discount Code</button>
             </div>
         </div>
     </section>
 
-    <!-- Heritage -->
     <section id="heritage" class="section">
         <div class="section-inner">
             <div class="heritage-grid">
@@ -2521,14 +2097,10 @@
                     <div class="heritage-pattern"></div>
                     <div class="heritage-img-inner" id="heritageStats"></div>
                 </div>
-                <div class="heritage-text reveal">
-                    <span class="eyebrow">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <div class="heritage-text reveal"><span class="eyebrow"><svg width="12" height="12" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5">
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                        </svg>
-                        Our Story
-                    </span>
+                        </svg>Our Story</span>
                     <h2>Born from the <em>Mist</em> of the Highlands</h2>
                     <p>Emberglen was built on a simple belief — that the ritual of a fine drink should never require a
                         hangover. Deep in the Scottish Highlands, where ancient herbs grow wild and the air tastes of
@@ -2536,148 +2108,100 @@
                     <p>Each bottle is hand-crafted using cold-drawn botanical extraction, a process that preserves the
                         full complexity of every herb and flower. No shortcuts. No compromise.</p>
                     <div class="heritage-pills">
-                        <div class="h-pill">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <div class="h-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                            </svg>
-                            0% Alcohol Always
-                        </div>
-                        <div class="h-pill">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            </svg>0% Alcohol Always</div>
+                        <div class="h-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
                                 <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
                                 <line x1="4" y1="22" x2="4" y2="15" />
-                            </svg>
-                            Wild Foraged
-                        </div>
-                        <div class="h-pill">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            </svg>Wild Foraged</div>
+                        <div class="h-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
                                 <circle cx="12" cy="12" r="10" />
                                 <line x1="2" y1="12" x2="22" y2="12" />
                                 <path
                                     d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                            </svg>
-                            Ships to India
-                        </div>
-                        <div class="h-pill">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            </svg>Ships to India</div>
+                        <div class="h-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
                                 <path
                                     d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                            Made with Care
-                        </div>
+                            </svg>Made with Care</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Ritual -->
     <section id="ritual" class="section">
         <div class="section-inner">
-            <div class="section-head center reveal">
-                <span class="eyebrow">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+            <div class="section-head center reveal"><span class="eyebrow"><svg width="12" height="12"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <circle cx="12" cy="12" r="10" />
                         <polyline points="12 6 12 12 16 14" />
-                    </svg>
-                    Serve it Right
-                </span>
+                    </svg>Serve it Right</span>
                 <h2 class="section-title">The <em>Emberglen Ritual</em></h2>
             </div>
             <div class="ritual-grid" id="ritualGrid"></div>
         </div>
     </section>
 
-    <!-- Testimonials -->
     <section id="testimonials" class="section">
         <div class="section-inner">
-            <div class="section-head center reveal">
-                <span class="eyebrow">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+            <div class="section-head center reveal"><span class="eyebrow"><svg width="12" height="12"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    From Our Community
-                </span>
+                    </svg>From Our Community</span>
                 <h2 class="section-title">Voices of the <em>Glen</em></h2>
             </div>
             <div class="testi-grid reveal" id="testiGrid"></div>
         </div>
     </section>
 
-    <!-- Newsletter -->
     <section id="newsletter">
-        <div class="newsletter-inner">
-            <span class="eyebrow"
-                style="color:rgba(255,255,255,0.6);margin-bottom:12px;display:inline-flex;align-items:center;gap:6px">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round">
+        <div class="newsletter-inner"><span class="eyebrow"
+                style="color:rgba(255,255,255,0.6);margin-bottom:12px;display:inline-flex;align-items:center;gap:6px"><svg
+                    width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
-                </svg>
-                Stay Connected
-            </span>
+                </svg>Stay Connected</span>
             <h2>Sip First. <em>Know First.</em></h2>
             <p>New blends, seasonal specials, and exclusive member discounts — straight to your inbox.</p>
-            <div class="newsletter-form">
-                <input type="email" placeholder="Enter your email address">
-                <button>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+            <div class="newsletter-form"><input type="email" placeholder="Enter your email address"><button><svg
+                        width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <path d="M5 12h14" />
                         <path d="m12 5 7 7-7 7" />
-                    </svg>
-                    Subscribe
-                </button>
-            </div>
+                    </svg>Subscribe</button></div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-top">
-            <div class="footer-brand">
-                <span class="logo">EMBER<span>GLEN</span></span>
+            <div class="footer-brand"><span class="logo">EMBER<span>GLEN</span></span>
                 <p>Premium alcohol-free botanical elixirs from the Scottish Highlands. Crafted for those who live with
                     intention.</p>
-                <div class="footer-socials">
-                    <a href="#" class="footer-social" title="Instagram">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <div class="footer-socials"><a href="#" class="footer-social"><svg width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                        </svg>
-                    </a>
-                    <a href="#" class="footer-social" title="Twitter/X">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </svg></a><a href="#" class="footer-social"><svg width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2">
                             <path
                                 d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                        </svg>
-                    </a>
-                    <a href="#" class="footer-social" title="Pinterest">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </svg></a><a href="#" class="footer-social"><svg width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M8 12a4 4 0 0 1 8 0c0 3-3 6-3 6" />
                             <circle cx="12" cy="12" r="10" />
                             <path d="M12 8v2" />
-                        </svg>
-                    </a>
-                    <a href="#" class="footer-social" title="YouTube">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </svg></a><a href="#" class="footer-social"><svg width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2">
                             <path
                                 d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
                             <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
-                        </svg>
-                    </a>
-                </div>
+                        </svg></a></div>
             </div>
             <div class="footer-col">
                 <h4>Shop</h4>
@@ -2717,7 +2241,6 @@
     </footer>
 
     <script>
-        // Product Data
         const PRODUCTS = [
             { id: 1, name: "Midnight Heather", category: "Signature", desc: "Dark wild heather, smoked birch and Highland juniper with a velvet finish", price: 2199, volume: "500ml", badge: "bestseller", badgeLabel: "Best Seller", notes: ["Heather", "Smoke", "Juniper", "Dark Fruit"], color: "#2a1a3e", color2: "#4d2d6e" },
             { id: 2, name: "Amber Glen", category: "Classic", desc: "Sun-warmed meadowsweet, toasted oat and Speyside honey with golden warmth", price: 1899, volume: "500ml", badge: null, badgeLabel: null, notes: ["Honey", "Oat", "Meadowsweet", "Warm Spice"], color: "#3d2507", color2: "#7a4e10" },
@@ -2746,184 +2269,129 @@
             { num: "12k+", label: "Customers" }
         ];
 
+        const WHY_US_DATA = [
+            { icon: '<path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/>', num: "0%", label: "Alcohol, always", desc: "Every single blend is completely alcohol-free. Always. No exceptions." },
+            { icon: '<path d="m14 13-8.381 8.38a1 1 0 0 1-3.001-3L11 9.999"/><path d="M15.973 4.027A13 13 0 0 0 5.902 2.373c-1.398.342-1.092 2.158.277 2.601a19.9 19.9 0 0 1 5.822 3.024"/><path d="M16.001 11.999a19.9 19.9 0 0 1 3.024 5.824c.444 1.369 2.26 1.676 2.603.278A13 13 0 0 0 20 8.069"/><path d="M18.352 3.352a1.205 1.205 0 0 0-1.704 0l-5.296 5.296a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l5.296-5.296a1.205 1.205 0 0 0 0-1.704z"/>', num: "Scotland", label: "Hand-crafted origin", desc: "Cold-drawn botanical extraction in the Scottish Highlands. No shortcuts." },
+            { icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>', num: "12,000+", label: "Happy customers", desc: "A growing community of mindful drinkers across India and beyond." },
+            { icon: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>', num: "4.9 / 5", label: "Average rating", desc: "Consistently top-rated by verified buyers for taste, quality and packaging." },
+            { icon: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>', num: "47+", label: "Hand-sourced botanicals", desc: "Wild-foraged Highland herbs, flowers and roots — each selected for complexity." }
+        ];
+
         let cart = [];
         let wishlist = [];
+        let gameActive = false;
+        let gameTimer = null;
+        let gameStartTime = 0;
+        let currentGameCleanup = null;
 
-        function renderHeroBotles() {
-            const wrap = document.getElementById('heroBotles');
-            const featured = [PRODUCTS[0], PRODUCTS[1], PRODUCTS[2]];
-            wrap.innerHTML = featured.map((p, i) => `<div class="hero-bottle"><div class="bottle-svg-wrap" style="background:linear-gradient(160deg,${p.color},${p.color2})"><div class="product-bottle-shine"></div><div class="product-bottle-label"><div class="product-bottle-label-name">${p.name}</div></div>${i === 1 ? '<span class="hero-badge">Fan Fav</span>' : ''}</div><span class="bottle-label">${p.name}</span></div>`).join('');
-        }
-
-        function renderFilters() {
-            document.getElementById('filterBar').innerHTML = FILTERS.map((f, i) => `<button class="filter-btn ${i === 0 ? 'active' : ''}" onclick="filterProducts('${f}',this)">${f}</button>`).join('');
-        }
-
-        function filterProducts(cat, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderProducts(cat);
-        }
-
-        function renderProducts(cat = 'All') {
-            const list = cat === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
-            document.getElementById('productsGrid').innerHTML = list.map(p => {
-                const isWished = wishlist.some(w => w.id === p.id);
-                return `<div class="product-card reveal"><div class="product-img" style="background:linear-gradient(160deg,${p.color}22,${p.color2}18)"><div class="product-bottle-art" style="background:linear-gradient(160deg,${p.color},${p.color2})"><div class="product-bottle-shine"></div><div class="product-bottle-label"><div class="product-bottle-label-name">${p.name}</div></div></div><div class="product-badge-wrap">${p.badge ? `<span class="p-badge ${p.badge}">${p.badgeLabel}</span>` : ''}</div><button onclick="toggleWishlist(${p.id})" style="position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.92);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s" title="${isWished ? 'Remove from wishlist' : 'Add to wishlist'}"><svg width="14" height="14" viewBox="0 0 24 24" fill="${isWished ? '#e05c7a' : 'none'}" stroke="${isWished ? '#e05c7a' : '#888'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="product-body"><div class="product-cat">${p.category}</div><h3 class="product-name">${p.name}</h3><p class="product-desc">${p.desc}</p><div class="product-notes">${p.notes.map(n => `<span class="note-chip">${n}</span>`).join('')}</div><div class="product-footer"><div class="product-price">₹${p.price.toLocaleString('en-IN')}<small>${p.volume}</small></div><button class="add-btn" onclick="addToCart(${p.id})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add to Bag</button></div></div></div>`;
-            }).join('');
-            observeReveal();
-        }
-
-        function renderHeritage() {
-            document.getElementById('heritageStats').innerHTML = HERITAGE_STATS.map(s => `<div class="h-stat-card"><div class="h-stat-num">${s.num}</div><div class="h-stat-label">${s.label}</div></div>`).join('');
-        }
-
-        function renderRitual() {
-            document.getElementById('ritualGrid').innerHTML = RITUAL_STEPS.map(s => `<div class="ritual-card reveal"><div class="ritual-step-num">${s.step}</div><h3>${s.title}</h3><p>${s.desc}</p></div>`).join('');
-        }
-
-        function renderTestimonials() {
-            document.getElementById('testiGrid').innerHTML = TESTIMONIALS.map(t => `<div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"${t.text}"</p><div class="testi-author"><div class="testi-avatar">${t.initial}</div><div><div class="testi-name">${t.author}</div><div class="testi-loc"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${t.loc}</div></div></div></div>`).join('');
-        }
-
-        function addToCart(id) {
-            const p = PRODUCTS.find(x => x.id === id);
-            const existing = cart.find(x => x.id === id);
-            if (existing) existing.qty++;
-            else cart.push({ ...p, qty: 1 });
-            updateCartUI();
-            openCart();
-        }
-
-        function updateCartUI() {
-            const count = cart.reduce((s, x) => s + x.qty, 0);
-            document.getElementById('cartCount').textContent = count;
-            document.getElementById('cartCount').classList.toggle('show', count > 0);
-            const body = document.getElementById('cartBody');
-            const foot = document.getElementById('cartFoot');
-            if (cart.length === 0) {
-                body.innerHTML = `<div class="cart-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><p>Your bag is empty</p></div>`;
-                foot.style.display = 'none';
-                return;
-            }
-            body.innerHTML = cart.map(item => `<div class="cart-item"><div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-desc">${item.volume} · ${item.category}</div><div class="cart-item-row"><div class="qty-control"><button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button><span class="qty-num">${item.qty}</span><button class="qty-btn" onclick="changeQty(${item.id},1)">+</button></div><span class="cart-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</span></div></div></div>`).join('');
-            const total = cart.reduce((s, x) => s + x.price * x.qty, 0);
-            document.getElementById('cartTotal').textContent = `₹${total.toLocaleString('en-IN')}`;
-            foot.style.display = 'block';
-        }
-
-        function changeQty(id, delta) {
-            const item = cart.find(x => x.id === id);
-            if (!item) return;
-            item.qty += delta;
-            if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
-            updateCartUI();
-        }
-
-        // ── Wishlist ──
-        function toggleWishlist(id) {
-            const p = PRODUCTS.find(x => x.id === id);
-            const idx = wishlist.findIndex(x => x.id === id);
-            if (idx >= 0) wishlist.splice(idx, 1);
-            else wishlist.push({ ...p });
-            updateWishlistUI();
-            renderProducts(document.querySelector('.filter-btn.active')?.textContent || 'All');
-        }
-
-        function updateWishlistUI() {
-            const count = wishlist.length;
-            const countEl = document.getElementById('wishlistCount');
-            countEl.textContent = count;
-            countEl.classList.toggle('show', count > 0);
-            const body = document.getElementById('wishlistBody');
-            if (wishlist.length === 0) {
-                body.innerHTML = `<div class="cart-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><p>No wishlisted items yet</p></div>`;
-                return;
-            }
-            body.innerHTML = wishlist.map(item => `<div class="cart-item"><div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-desc">${item.volume} · ${item.category}</div><div class="cart-item-row"><span style="font-size:0.85rem;color:var(--ink2)">₹${item.price.toLocaleString('en-IN')}</span><div style="display:flex;gap:8px"><button class="add-btn" style="font-size:0.75rem;padding:6px 12px" onclick="addToCart(${item.id});closeWishlist()">Add to Bag</button><button onclick="toggleWishlist(${item.id})" style="width:28px;height:28px;border-radius:8px;background:var(--bg2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#e05c7a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div></div></div>`).join('');
-        }
-
+        function renderHeroBotles() { }
+        function renderWhyUs() { const grid = document.getElementById('whyUsGrid'); if (!grid) return; grid.innerHTML = WHY_US_DATA.map(w => `<div class="why-card"><div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${w.icon}</svg></div><div class="why-num">${w.num}</div><div class="why-label">${w.label}</div><p class="why-desc">${w.desc}</p></div>`).join(''); }
+        function renderFilters() { const filterBar = document.getElementById('filterBar'); if (!filterBar) return; filterBar.innerHTML = FILTERS.map((f, i) => `<button class="filter-btn ${i === 0 ? 'active' : ''}" onclick="filterProducts('${f}',this)">${f}</button>`).join(''); }
+        function filterProducts(cat, btn) { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderProducts(cat); }
+        function renderProducts(cat = 'All') { const list = cat === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat); const grid = document.getElementById('productsGrid'); if (!grid) return; grid.innerHTML = list.map(p => { const isWished = wishlist.some(w => w.id === p.id); return `<div class="product-card reveal"><div class="product-img" style="background:linear-gradient(160deg,${p.color}22,${p.color2}18)"><div class="product-bottle-art" style="background:linear-gradient(160deg,${p.color},${p.color2})"><div class="product-bottle-shine"></div><div class="product-bottle-label"><div class="product-bottle-label-name">${p.name}</div></div></div><div class="product-badge-wrap">${p.badge ? `<span class="p-badge ${p.badge}">${p.badgeLabel}</span>` : ''}</div><button onclick="toggleWishlist(${p.id})" style="position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.92);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s" title="${isWished ? 'Remove from wishlist' : 'Add to wishlist'}"><svg width="14" height="14" viewBox="0 0 24 24" fill="${isWished ? '#e05c7a' : 'none'}" stroke="${isWished ? '#e05c7a' : '#888'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="product-body"><div class="product-cat">${p.category}</div><h3 class="product-name">${p.name}</h3><p class="product-desc">${p.desc}</p><div class="product-notes">${p.notes.map(n => `<span class="note-chip">${n}</span>`).join('')}</div><div class="product-footer"><div class="product-price">₹${p.price.toLocaleString('en-IN')}<small>${p.volume}</small></div><button class="add-btn" onclick="addToCart(${p.id})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add to Bag</button></div></div></div>`; }).join(''); observeReveal(); }
+        function renderHeritage() { const statsContainer = document.getElementById('heritageStats'); if (!statsContainer) return; statsContainer.innerHTML = HERITAGE_STATS.map(s => `<div class="h-stat-card"><div class="h-stat-num">${s.num}</div><div class="h-stat-label">${s.label}</div></div>`).join(''); }
+        function renderRitual() { const ritualGrid = document.getElementById('ritualGrid'); if (!ritualGrid) return; ritualGrid.innerHTML = RITUAL_STEPS.map(s => `<div class="ritual-card reveal"><div class="ritual-step-num">${s.step}</div><h3>${s.title}</h3><p>${s.desc}</p></div>`).join(''); }
+        function renderTestimonials() { const testiGrid = document.getElementById('testiGrid'); if (!testiGrid) return; testiGrid.innerHTML = TESTIMONIALS.map(t => `<div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"${t.text}"</p><div class="testi-author"><div class="testi-avatar">${t.initial}</div><div><div class="testi-name">${t.author}</div><div class="testi-loc"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${t.loc}</div></div></div></div>`).join(''); }
+        function addToCart(id) { const p = PRODUCTS.find(x => x.id === id); const existing = cart.find(x => x.id === id); if (existing) existing.qty++; else cart.push({ ...p, qty: 1 }); updateCartUI(); openCart(); }
+        function updateCartUI() { const count = cart.reduce((s, x) => s + x.qty, 0); const cartCountEl = document.getElementById('cartCount'); if (cartCountEl) { cartCountEl.textContent = count; cartCountEl.classList.toggle('show', count > 0); } const body = document.getElementById('cartBody'); const foot = document.getElementById('cartFoot'); if (!body || !foot) return; if (cart.length === 0) { body.innerHTML = `<div class="cart-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><p>Your bag is empty</p></div>`; foot.style.display = 'none'; return; } body.innerHTML = cart.map(item => `<div class="cart-item"><div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-desc">${item.volume} · ${item.category}</div><div class="cart-item-row"><div class="qty-control"><button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button><span class="qty-num">${item.qty}</span><button class="qty-btn" onclick="changeQty(${item.id},1)">+</button></div><span class="cart-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</span></div></div></div>`).join(''); const total = cart.reduce((s, x) => s + x.price * x.qty, 0); const cartTotalEl = document.getElementById('cartTotal'); if (cartTotalEl) cartTotalEl.textContent = `₹${total.toLocaleString('en-IN')}`; foot.style.display = 'block'; }
+        function changeQty(id, delta) { const item = cart.find(x => x.id === id); if (!item) return; item.qty += delta; if (item.qty <= 0) cart = cart.filter(x => x.id !== id); updateCartUI(); }
+        function toggleWishlist(id) { const p = PRODUCTS.find(x => x.id === id); const idx = wishlist.findIndex(x => x.id === id); if (idx >= 0) wishlist.splice(idx, 1); else wishlist.push({ ...p }); updateWishlistUI(); renderProducts(document.querySelector('.filter-btn.active')?.textContent || 'All'); }
+        function updateWishlistUI() { const count = wishlist.length; const countEl = document.getElementById('wishlistCount'); if (countEl) { countEl.textContent = count; countEl.classList.toggle('show', count > 0); } const body = document.getElementById('wishlistBody'); if (!body) return; if (wishlist.length === 0) { body.innerHTML = `<div class="cart-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><p>No wishlisted items yet</p></div>`; return; } body.innerHTML = wishlist.map(item => `<div class="cart-item"><div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-desc">${item.volume} · ${item.category}</div><div class="cart-item-row"><span style="font-size:0.85rem;color:var(--ink2)">₹${item.price.toLocaleString('en-IN')}</span><div style="display:flex;gap:8px"><button class="add-btn" style="font-size:0.75rem;padding:6px 12px" onclick="addToCart(${item.id});closeWishlist()">Add to Bag</button><button onclick="toggleWishlist(${item.id})" style="width:28px;height:28px;border-radius:8px;background:var(--bg2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#e05c7a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div></div></div>`).join(''); }
         function openWishlist() { updateWishlistUI(); document.getElementById('wishlistDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; }
         function closeWishlist() { document.getElementById('wishlistDrawer').classList.remove('open'); document.body.style.overflow = ''; }
-
-        // ── Search ──
-        function openSearch() { document.getElementById('searchDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => document.getElementById('searchInput').focus(), 300); }
-        function closeSearch() { document.getElementById('searchDrawer').classList.remove('open'); document.body.style.overflow = ''; document.getElementById('searchInput').value = ''; doSearch(''); }
-
-        function doSearch(query) {
-            const results = document.getElementById('searchResults');
-            const q = query.trim().toLowerCase();
-            if (!q) {
-                results.innerHTML = `<div class="cart-empty" style="padding-top:32px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><p style="margin-top:8px">Type to search blends</p></div>`;
-                return;
-            }
-            const found = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.notes.some(n => n.toLowerCase().includes(q)));
-            if (!found.length) {
-                results.innerHTML = `<div class="cart-empty" style="padding-top:32px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><p style="margin-top:8px">No products found</p></div>`;
-                return;
-            }
-            results.innerHTML = found.map(p => `<div class="cart-item" style="cursor:pointer" onclick="closeSearch();document.getElementById('products').scrollIntoView({behavior:'smooth'})"><div class="cart-item-img" style="background:linear-gradient(160deg,${p.color},${p.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${p.name}</div><div class="cart-item-desc">${p.volume} · ${p.category}</div><div class="cart-item-row"><span class="cart-item-price">₹${p.price.toLocaleString('en-IN')}</span><button class="add-btn" style="font-size:0.75rem;padding:6px 12px" onclick="event.stopPropagation();addToCart(${p.id})">Add to Bag</button></div></div></div>`).join('');
-        }
-
         function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; }
         function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.body.style.overflow = ''; }
-        document.getElementById('hamburger').addEventListener('click', () => { document.getElementById('mobileDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; });
+        function openSearch() { document.getElementById('searchDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => document.getElementById('searchInput')?.focus(), 300); }
+        function closeSearch() { document.getElementById('searchDrawer').classList.remove('open'); document.body.style.overflow = ''; document.getElementById('searchInput').value = ''; doSearch(''); }
         function closeDrawer() { document.getElementById('mobileDrawer').classList.remove('open'); document.body.style.overflow = ''; }
-        function observeReveal() {
-            const io = new IntersectionObserver(entries => { entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 70); io.unobserve(e.target); } }); }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
-        }
+        function doSearch(query) { const results = document.getElementById('searchResults'); if (!results) return; const q = query.trim().toLowerCase(); if (!q) { results.innerHTML = `<div class="cart-empty" style="padding-top:32px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><p style="margin-top:8px">Type to search blends</p></div>`; return; } const found = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.notes.some(n => n.toLowerCase().includes(q))); if (!found.length) { results.innerHTML = `<div class="cart-empty" style="padding-top:32px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><p style="margin-top:8px">No products found</p></div>`; return; } results.innerHTML = found.map(p => `<div class="cart-item" style="cursor:pointer" onclick="closeSearch();document.getElementById('products').scrollIntoView({behavior:'smooth'})"><div class="cart-item-img" style="background:linear-gradient(160deg,${p.color},${p.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${p.name}</div><div class="cart-item-desc">${p.volume} · ${p.category}</div><div class="cart-item-row"><span class="cart-item-price">₹${p.price.toLocaleString('en-IN')}</span><button class="add-btn" style="font-size:0.75rem;padding:6px 12px" onclick="event.stopPropagation();addToCart(${p.id})">Add to Bag</button></div></div></div>`).join(''); }
+        function observeReveal() { const io = new IntersectionObserver(entries => { entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 70); io.unobserve(e.target); } }); }, { threshold: 0.1 }); document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el)); }
 
-        // ── Cap Game ──
-        function startCapGame() {
-            const btn = document.getElementById('capStartBtn');
-            const countdown = document.getElementById('capCountdown');
-            const arena = document.getElementById('capArena');
-            btn.disabled = true;
-            btn.style.display = 'none';
-            countdown.style.display = 'block';
-            let count = 5;
-            countdown.textContent = count;
-            const timer = setInterval(() => {
-                count--;
-                if (count <= 0) {
-                    clearInterval(timer);
-                    countdown.style.display = 'none';
-                    document.getElementById('capStartWrap').style.display = 'none';
-                    arena.classList.remove('cap-locked');
-                    document.getElementById('gameHint').textContent = 'Grab and twist clockwise to open...';
-                } else {
-                    countdown.textContent = count;
-                }
-            }, 1000);
-        }
-
-        (function () {
+        function resetCapUIPosition() {
             const cap = document.getElementById('capBase');
+            if (cap) cap.style.transform = 'rotate(0deg)';
+        }
+
+        function endGame(earnedDiscount) {
+            if (!gameActive) return;
+            gameActive = false;
+            if (gameTimer) clearInterval(gameTimer);
+            if (currentGameCleanup) currentGameCleanup();
+
             const fill = document.getElementById('progressFill');
             const valEl = document.getElementById('discountVal');
             const hint = document.getElementById('gameHint');
             const result = document.getElementById('gameResult');
             const resultDiscount = document.getElementById('resultDiscount');
             const resultCode = document.getElementById('resultCode');
-            const MAX_DISCOUNT = 67;
+            const resultMessage = document.getElementById('resultMessage');
+            const startWrap = document.getElementById('capStartWrap');
+            const countdownEl = document.getElementById('capCountdown');
 
-            // Physics state
+            if (countdownEl) countdownEl.style.display = 'none';
+            if (startWrap) startWrap.style.display = 'block';
+
+            const startBtn = document.getElementById('capStartBtn');
+            if (startBtn) {
+                startBtn.disabled = false;
+                startBtn.style.display = 'inline-flex';
+            }
+
+            resetCapUIPosition();
+
+            if (earnedDiscount > 0) {
+                const code = "GLEN" + earnedDiscount;
+                if (resultDiscount) resultDiscount.textContent = earnedDiscount + '%';
+                if (resultCode) { resultCode.textContent = code; resultCode.dataset.code = code; }
+                if (resultMessage) resultMessage.textContent = 'OFF your next order';
+                if (hint) hint.textContent = "You earned " + earnedDiscount + "% off!";
+            } else {
+                if (resultDiscount) resultDiscount.textContent = '0%';
+                if (resultCode) { resultCode.textContent = 'TRYAGAIN'; resultCode.dataset.code = ''; }
+                if (resultMessage) resultMessage.textContent = 'Better luck next time';
+                if (hint) hint.textContent = "Time's up! No discount this time.";
+            }
+            if (result) result.classList.add('show');
+
+            if (fill) fill.style.width = '0%';
+            if (valEl) valEl.textContent = '0%';
+        }
+
+        function initializeCapGamePhysics() {
+            const cap = document.getElementById('capBase');
+            const fill = document.getElementById('progressFill');
+            const valEl = document.getElementById('discountVal');
+            const hint = document.getElementById('gameHint');
+
+            if (!cap) return;
+
+            const MAX_DISCOUNT = 20;
             let isDragging = false;
-            let totalRotation = 0;   // net positive (clockwise) progress
-            let capRotation = 0;     // visual angle
+            let totalRotation = 0;
+            let capRotation = 0;
             let lastAngle = 0;
-            let angularVelocity = 0; // current spin velocity (deg/frame)
-            let lastDelta = 0;
+            let angularVelocity = 0;
             let discount = 0;
             let opened = false;
             let animFrame = null;
+            let timeoutId = null;
+            const FRICTION = 0.96;
+            const GRAVITY_PULLBACK = 1.4;
+            const RESISTANCE_BASE = 5.5;
+            const RESISTANCE_SCALE = 22;
 
-            // Physics constants
-            const FRICTION = 0.88;          // velocity decay per frame
-            const GRAVITY_PULLBACK = 0.55;  // degrees pulled back per frame (counter-clockwise gravity)
-            const RESISTANCE_BASE = 2.2;    // base resistance multiplier
-            const RESISTANCE_SCALE = 9;     // extra resistance at max discount
+            const gameEndTime = Date.now() + 5000;
+
+            function checkTimeLimit() {
+                if (opened) return;
+                const elapsed = Date.now() - gameStartTime;
+                if (elapsed >= 5000) {
+                    endGame(discount);
+                    cleanup();
+                } else {
+                    timeoutId = setTimeout(checkTimeLimit, 100);
+                }
+            }
 
             function getAngle(e, el) {
                 const rect = el.getBoundingClientRect();
@@ -2935,30 +2403,25 @@
 
             function physicsLoop() {
                 if (isDragging || opened) return;
-                if (Math.abs(angularVelocity) < 0.05 && Math.abs(totalRotation) < 0.5) {
+                if (Math.abs(angularVelocity) < 0.02 && Math.abs(totalRotation) < 0.2) {
                     cancelAnimationFrame(animFrame);
                     return;
                 }
-                // Gravity pulls cap back (counter-clockwise)
                 angularVelocity -= GRAVITY_PULLBACK * (1 + discount / MAX_DISCOUNT);
-                // Friction
                 angularVelocity *= FRICTION;
-                // Apply to visual rotation
                 capRotation += angularVelocity;
-                // If clockwise velocity slows, totalRotation can slip back
                 if (angularVelocity < 0) {
-                    totalRotation = Math.max(0, totalRotation + angularVelocity * 0.4);
+                    totalRotation = Math.max(0, totalRotation + angularVelocity * 0.25);
                 }
-                discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 9));
+                discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 32));
                 cap.style.transform = `rotate(${capRotation}deg)`;
-                fill.style.width = (discount / MAX_DISCOUNT * 100) + '%';
-                valEl.textContent = discount + '%';
+                if (fill) fill.style.width = (discount / MAX_DISCOUNT * 100) + '%';
+                if (valEl) valEl.textContent = discount + '%';
                 animFrame = requestAnimationFrame(physicsLoop);
             }
 
             function onStart(e) {
                 if (opened) return;
-                if (document.getElementById('capArena').classList.contains('cap-locked')) return;
                 e.preventDefault();
                 isDragging = true;
                 cancelAnimationFrame(animFrame);
@@ -2973,84 +2436,61 @@
                 let delta = angle - lastAngle;
                 if (delta > 180) delta -= 360;
                 if (delta < -180) delta += 360;
-
-                // Resistance increases with progress — like a real tight cap
                 const resistance = RESISTANCE_BASE + (discount / MAX_DISCOUNT) * RESISTANCE_SCALE;
-
                 if (delta > 0) {
-                    // Clockwise: apply resistance
                     const netDelta = delta / resistance;
                     totalRotation += netDelta;
                     capRotation += netDelta;
                     angularVelocity = netDelta;
-                    // Add wobble/jitter at high resistance
-                    if (discount > 30) {
-                        const jitter = (Math.random() - 0.5) * (discount / 20);
+                    if (discount > 8) {
+                        const jitter = (Math.random() - 0.5) * (discount / 6);
                         capRotation += jitter;
                     }
                 } else {
-                    // Counter-clockwise: cap snaps back faster (gravity helps)
-                    const snapBack = delta * 0.45;
+                    const snapBack = delta * 0.65;
                     capRotation += snapBack;
-                    totalRotation = Math.max(0, totalRotation + snapBack * 0.25);
+                    totalRotation = Math.max(0, totalRotation + snapBack * 0.12);
                     angularVelocity = snapBack;
                 }
-
-                lastDelta = delta;
                 lastAngle = angle;
-                discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 9));
+                discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 32));
                 cap.style.transform = `rotate(${capRotation}deg)`;
-                fill.style.width = (discount / MAX_DISCOUNT * 100) + '%';
-                valEl.textContent = discount + '%';
-                hint.textContent = discount < 15 ? "Keep twisting clockwise..." : discount < 35 ? "It's resisting — push harder!" : discount < 55 ? "Don't let it slip back!" : discount < MAX_DISCOUNT ? "So close — fight the pull!" : "Maximum unlocked! 🎉";
-
+                if (fill) fill.style.width = (discount / MAX_DISCOUNT * 100) + '%';
+                if (valEl) valEl.textContent = discount + '%';
+                if (hint) {
+                    if (discount < 4) hint.textContent = "Extreme resistance... keep twisting!";
+                    else if (discount < 10) hint.textContent = "It's fighting back! Push harder!";
+                    else if (discount < MAX_DISCOUNT) hint.textContent = "Almost there — don't let go!";
+                    else hint.textContent = "Maximum 20% unlocked!";
+                }
                 if (discount >= MAX_DISCOUNT && !opened) {
-                    triggerOpen();
+                    opened = true;
+                    endGame(MAX_DISCOUNT);
+                    cleanup();
                 }
             }
 
             function onEnd() {
                 if (!isDragging) return;
                 isDragging = false;
-                // Release: physics kicks in — gravity pulls it back
-                animFrame = requestAnimationFrame(physicsLoop);
-                if (!opened && discount > 0) {
-                    // Show result after slight delay
-                    setTimeout(() => {
-                        if (!opened) {
-                            opened = true;
-                            const code = "GLEN" + discount;
-                            resultDiscount.textContent = discount + '%';
-                            resultCode.textContent = code;
-                            resultCode.dataset.code = code;
-                            result.classList.add('show');
-                            hint.textContent = `You earned ${discount}% off! 🎉`;
-                        }
-                    }, 1200);
+                if (!opened) {
+                    animFrame = requestAnimationFrame(physicsLoop);
                 }
             }
 
-            function triggerOpen() {
-                opened = true;
-                const code = "GLEN" + MAX_DISCOUNT;
-                resultDiscount.textContent = MAX_DISCOUNT + '%';
-                resultCode.textContent = code;
-                resultCode.dataset.code = code;
-                result.classList.add('show');
-                hint.textContent = `Maximum ${MAX_DISCOUNT}% unlocked! 🎉`;
-                cap.style.filter = 'brightness(1.3)';
-                cancelAnimationFrame(animFrame);
+            function cleanup() {
+                if (animFrame) cancelAnimationFrame(animFrame);
+                if (timeoutId) clearTimeout(timeoutId);
+                cap.removeEventListener('mousedown', onStart);
+                cap.removeEventListener('touchstart', onStart);
+                document.removeEventListener('mousemove', onMove);
+                document.removeEventListener('touchmove', onMove);
+                document.removeEventListener('mouseup', onEnd);
+                document.removeEventListener('touchend', onEnd);
             }
 
-            window.copyCode = function () {
-                const code = document.getElementById('resultCode').dataset.code || document.getElementById('resultCode').textContent;
-                navigator.clipboard.writeText(code).then(() => {
-                    const btn = document.querySelector('.result-copy-btn');
-                    const orig = btn.innerHTML;
-                    btn.innerHTML = '✓ Copied!';
-                    setTimeout(() => btn.innerHTML = orig, 2000);
-                });
-            };
+            currentGameCleanup = cleanup;
+            timeoutId = setTimeout(checkTimeLimit, 100);
 
             cap.addEventListener('mousedown', onStart);
             cap.addEventListener('touchstart', onStart, { passive: false });
@@ -3058,9 +2498,85 @@
             document.addEventListener('touchmove', onMove, { passive: false });
             document.addEventListener('mouseup', onEnd);
             document.addEventListener('touchend', onEnd);
-        })();
+        }
 
-        renderHeroBotles(); renderFilters(); renderProducts(); renderHeritage(); renderRitual(); renderTestimonials(); updateCartUI(); updateWishlistUI(); setTimeout(observeReveal, 100);
+        function startCapGame() {
+            if (gameActive) return;
+
+            const btn = document.getElementById('capStartBtn');
+            const countdownEl = document.getElementById('capCountdown');
+            const startWrap = document.getElementById('capStartWrap');
+            const hint = document.getElementById('gameHint');
+            const result = document.getElementById('gameResult');
+            const fill = document.getElementById('progressFill');
+            const valEl = document.getElementById('discountVal');
+
+            if (result) result.classList.remove('show');
+            if (fill) fill.style.width = '0%';
+            if (valEl) valEl.textContent = '0%';
+            resetCapUIPosition();
+
+            if (!btn || !countdownEl || !startWrap) return;
+
+            gameActive = true;
+            btn.disabled = true;
+            btn.style.display = 'none';
+            countdownEl.style.display = 'block';
+            startWrap.style.display = 'block';
+
+            let count = 3;
+            gameStartTime = Date.now();
+            countdownEl.textContent = count;
+            if (hint) hint.textContent = "Get ready... " + count;
+
+            if (gameTimer) clearInterval(gameTimer);
+            gameTimer = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countdownEl.textContent = count;
+                    if (hint) hint.textContent = "Get ready... " + count;
+                } else if (count === 0) {
+                    clearInterval(gameTimer);
+                    gameTimer = null;
+                    countdownEl.style.display = 'none';
+                    startWrap.style.display = 'none';
+                    if (hint) hint.textContent = "GO! Twist the cap! You have 5 seconds!";
+                    gameStartTime = Date.now();
+                    initializeCapGamePhysics();
+                }
+            }, 1000);
+        }
+
+        window.copyCode = function () {
+            const codeEl = document.getElementById('resultCode');
+            const code = (codeEl?.dataset.code || codeEl?.textContent || "");
+            if (code && code !== "TRYAGAIN") {
+                navigator.clipboard.writeText(code).then(() => {
+                    const btn = document.querySelector('.result-copy-btn');
+                    if (btn) {
+                        const orig = btn.innerHTML;
+                        btn.innerHTML = 'Copied!';
+                        setTimeout(() => btn.innerHTML = orig, 2000);
+                    }
+                });
+            }
+        };
+
+        document.getElementById('hamburger')?.addEventListener('click', () => {
+            document.getElementById('mobileDrawer').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+
+        renderHeroBotles();
+        renderWhyUs();
+        renderFilters();
+        renderProducts();
+        renderHeritage();
+        renderRitual();
+        renderTestimonials();
+        updateCartUI();
+        updateWishlistUI();
+        setTimeout(observeReveal, 100);
     </script>
 </body>
 
