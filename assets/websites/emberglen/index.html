@@ -10,21 +10,21 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap"
         rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --bg: #faf8f4;
+            --bg: #ffffff;
             --bg2: #f3ede3;
             --white: #ffffff;
             --ink: #1c1917;
             --ink2: #57534e;
             --ink3: #a8a29e;
-            --green: #2d5a27;
-            --green-light: #e8f0e6;
-            --green-mid: #4a7c43;
+            --gold: #A6771F;
+            --gold-light: #fbf5e8;
+            --gold-mid: #8a5f18;
             --amber: #c8792a;
             --amber-light: #fdf0e0;
-            --red: #c0392b;
             --border: #e5ddd3;
             --border2: #d6ccc0;
             --shadow: 0 2px 12px rgba(28, 25, 23, 0.08);
@@ -46,59 +46,13 @@
         }
 
         body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--bg);
+            font-family: 'Reddit Sans', sans-serif;
+            background: var(--white);
             color: var(--ink);
             overflow-x: hidden;
-            cursor: none;
         }
 
-        /* ── Custom Arrow Cursor ── */
-        #cursor-wrap {
-            position: fixed;
-            pointer-events: none;
-            z-index: 99999;
-            top: 0;
-            left: 0;
-            transform: translate(-4px, -4px);
-            transition: transform 0.05s linear;
-        }
-
-        #cursor-wrap svg {
-            filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.25));
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        body.cur-hover #cursor-wrap svg {
-            transform: scale(1.3);
-        }
-
-        body.cur-click #cursor-wrap svg {
-            transform: scale(0.85) rotate(-15deg);
-        }
-
-        /* ── Announcement Bar ── */
-        .announce {
-            background: var(--green);
-            color: #fff;
-            text-align: center;
-            padding: 10px 16px;
-            font-size: 0.78rem;
-            font-weight: 400;
-            letter-spacing: 0.04em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .announce a {
-            color: #fff;
-            text-decoration: underline;
-            cursor: none;
-        }
-
-        /* ── Nav ── */
+        /* ── Nav (Logo Left, Links Center, Icons Right) ── */
         nav {
             background: var(--white);
             border-bottom: 1px solid var(--border);
@@ -116,11 +70,11 @@
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 32px;
+            flex: 1;
         }
 
         .nav-logo {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: 1.45rem;
             font-weight: 700;
             color: var(--ink);
@@ -129,36 +83,33 @@
             white-space: nowrap;
         }
 
-        .nav-logo span {
-            color: var(--green);
-        }
-
         .nav-links {
             display: flex;
-            gap: 4px;
+            gap: 32px;
+            flex: 2;
+            justify-content: center;
         }
 
         .nav-links a {
             font-size: 0.85rem;
-            font-weight: 400;
+            font-weight: 500;
             color: var(--ink2);
             text-decoration: none;
-            padding: 6px 14px;
-            border-radius: 8px;
-            transition: background 0.2s, color 0.2s;
-            cursor: none;
+            padding: 6px 0;
+            transition: color 0.2s;
             white-space: nowrap;
         }
 
         .nav-links a:hover {
-            background: var(--bg2);
-            color: var(--ink);
+            color: var(--gold);
         }
 
         .nav-right {
             display: flex;
             align-items: center;
             gap: 8px;
+            flex: 1;
+            justify-content: flex-end;
         }
 
         .nav-icon-btn {
@@ -167,7 +118,7 @@
             border-radius: 10px;
             background: none;
             border: none;
-            cursor: none;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -178,7 +129,7 @@
 
         .nav-icon-btn:hover {
             background: var(--bg2);
-            color: var(--ink);
+            color: var(--gold);
         }
 
         .cart-count {
@@ -188,7 +139,7 @@
             width: 16px;
             height: 16px;
             border-radius: 50%;
-            background: var(--green);
+            background: var(--gold);
             color: #fff;
             font-size: 0.6rem;
             font-weight: 500;
@@ -203,21 +154,21 @@
         }
 
         .nav-shop-btn {
-            background: var(--green);
+            background: var(--gold);
             color: #fff;
             border: none;
             border-radius: 10px;
             padding: 9px 20px;
             font-size: 0.82rem;
             font-weight: 500;
-            cursor: none;
+            cursor: pointer;
             transition: background 0.2s, transform 0.15s;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Reddit Sans', sans-serif;
             white-space: nowrap;
         }
 
         .nav-shop-btn:hover {
-            background: var(--green-mid);
+            background: var(--gold-mid);
             transform: translateY(-1px);
         }
 
@@ -225,7 +176,7 @@
             display: none;
             background: none;
             border: none;
-            cursor: none;
+            cursor: pointer;
             padding: 4px;
             color: var(--ink);
             border-radius: 8px;
@@ -288,14 +239,14 @@
         }
 
         .drawer-logo {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: 1.3rem;
             font-weight: 700;
             color: var(--ink);
         }
 
         .drawer-logo span {
-            color: var(--green);
+            color: var(--gold);
         }
 
         .drawer-close {
@@ -304,7 +255,7 @@
             border-radius: 9px;
             background: var(--bg2);
             border: none;
-            cursor: none;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -330,7 +281,6 @@
             padding: 12px 16px;
             border-radius: 10px;
             transition: background 0.2s;
-            cursor: none;
         }
 
         .drawer-links a:hover {
@@ -347,7 +297,7 @@
             align-items: center;
             max-width: 1280px;
             margin: 0 auto;
-            min-height: calc(100vh - 108px);
+            min-height: calc(100vh - 68px);
         }
 
         .hero-text {
@@ -358,8 +308,8 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--green-light);
-            color: var(--green);
+            background: var(--gold-light);
+            color: var(--gold);
             border-radius: 100px;
             padding: 6px 14px;
             font-size: 0.75rem;
@@ -369,7 +319,7 @@
         }
 
         .hero-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: clamp(2.4rem, 4.5vw, 4rem);
             font-weight: 700;
             line-height: 1.1;
@@ -380,7 +330,7 @@
 
         .hero-title em {
             font-style: italic;
-            color: var(--green);
+            color: var(--gold);
         }
 
         .hero-sub {
@@ -398,24 +348,24 @@
             align-items: center;
         }
 
-        .btn-green {
-            background: var(--green);
+        .btn-gold {
+            background: var(--gold);
             color: #fff;
             border: none;
             border-radius: 12px;
             padding: 14px 28px;
             font-size: 0.9rem;
             font-weight: 500;
-            cursor: none;
+            cursor: pointer;
             transition: background 0.2s, transform 0.2s;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Reddit Sans', sans-serif;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
 
-        .btn-green:hover {
-            background: var(--green-mid);
+        .btn-gold:hover {
+            background: var(--gold-mid);
             transform: translateY(-1px);
         }
 
@@ -427,17 +377,17 @@
             padding: 14px 28px;
             font-size: 0.9rem;
             font-weight: 500;
-            cursor: none;
+            cursor: pointer;
             transition: border-color 0.2s, background 0.2s;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Reddit Sans', sans-serif;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
 
         .btn-outline:hover {
-            border-color: var(--ink);
-            background: var(--bg2);
+            border-color: var(--gold);
+            background: var(--gold-light);
         }
 
         .hero-trust {
@@ -456,8 +406,10 @@
         }
 
         .trust-item svg {
-            color: var(--green);
+            color: var(--gold);
             flex-shrink: 0;
+            width: 20px;
+            height: 20px;
         }
 
         .trust-item span {
@@ -514,20 +466,6 @@
             }
         }
 
-        .hero-bottle:nth-child(2) {
-            animation-name: bottle-float-big;
-        }
-
-        @keyframes bottle-float-big {
-            from {
-                transform: scale(1.12) translateY(0);
-            }
-
-            to {
-                transform: scale(1.12) translateY(-14px);
-            }
-        }
-
         .bottle-svg-wrap {
             border-radius: 20px;
             overflow: hidden;
@@ -552,7 +490,7 @@
             position: absolute;
             top: -8px;
             right: -8px;
-            background: var(--amber);
+            background: var(--gold);
             color: #fff;
             border-radius: 100px;
             padding: 4px 10px;
@@ -560,7 +498,7 @@
             font-weight: 600;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(200, 121, 42, 0.4);
+            box-shadow: 0 2px 8px rgba(166, 119, 31, 0.4);
         }
 
         /* ── Social Proof Bar ── */
@@ -583,7 +521,7 @@
         }
 
         .proof-item svg {
-            color: var(--green);
+            color: var(--gold);
         }
 
         .proof-item strong {
@@ -629,12 +567,12 @@
             font-weight: 600;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--green);
+            color: var(--gold);
             margin-bottom: 12px;
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: clamp(1.8rem, 3vw, 2.8rem);
             font-weight: 700;
             line-height: 1.15;
@@ -677,20 +615,20 @@
             font-size: 0.8rem;
             font-weight: 500;
             color: var(--ink2);
-            cursor: none;
+            cursor: pointer;
             transition: all 0.2s;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Reddit Sans', sans-serif;
         }
 
         .filter-btn.active {
-            background: var(--green);
-            border-color: var(--green);
+            background: var(--gold);
+            border-color: var(--gold);
             color: #fff;
         }
 
         .filter-btn:hover:not(.active) {
-            border-color: var(--ink);
-            color: var(--ink);
+            border-color: var(--gold);
+            color: var(--gold);
         }
 
         .products-grid {
@@ -704,7 +642,7 @@
             border-radius: var(--radius-lg);
             border: 1.5px solid var(--border);
             overflow: hidden;
-            cursor: none;
+            cursor: pointer;
             transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
             display: flex;
             flex-direction: column;
@@ -713,7 +651,7 @@
         .product-card:hover {
             box-shadow: var(--shadow-lg);
             transform: translateY(-4px);
-            border-color: var(--border2);
+            border-color: var(--gold);
         }
 
         .product-img {
@@ -744,7 +682,6 @@
             right: 60%;
             bottom: 0;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.08) 100%);
-            border-radius: 0;
         }
 
         .product-bottle-label {
@@ -759,12 +696,11 @@
         }
 
         .product-bottle-label-name {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', serif;
             font-size: 0.6rem;
             font-weight: 700;
             color: var(--ink);
             letter-spacing: 0.04em;
-            line-height: 1.2;
         }
 
         .product-badge-wrap {
@@ -785,13 +721,9 @@
             letter-spacing: 0.05em;
         }
 
-        .p-badge.new {
-            background: var(--green);
-            color: #fff;
-        }
-
+        .p-badge.new,
         .p-badge.bestseller {
-            background: var(--amber);
+            background: var(--gold);
             color: #fff;
         }
 
@@ -815,19 +747,18 @@
         .product-cat {
             font-size: 0.7rem;
             font-weight: 500;
-            color: var(--green);
+            color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 0.08em;
             margin-bottom: 6px;
         }
 
         .product-name {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: 1.15rem;
             font-weight: 700;
             color: var(--ink);
             margin-bottom: 8px;
-            line-height: 1.2;
         }
 
         .product-desc {
@@ -851,7 +782,6 @@
             padding: 3px 9px;
             font-size: 0.7rem;
             color: var(--ink2);
-            font-weight: 400;
         }
 
         .product-footer {
@@ -864,14 +794,13 @@
         }
 
         .product-price {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: 1.3rem;
             font-weight: 700;
             color: var(--ink);
         }
 
         .product-price small {
-            font-family: 'DM Sans', sans-serif;
             font-size: 0.72rem;
             color: var(--ink3);
             font-weight: 400;
@@ -882,21 +811,20 @@
             display: flex;
             align-items: center;
             gap: 7px;
-            background: var(--green-light);
-            color: var(--green);
+            background: var(--gold-light);
+            color: var(--gold);
             border: none;
             border-radius: 10px;
             padding: 9px 16px;
             font-size: 0.8rem;
             font-weight: 600;
-            cursor: none;
+            cursor: pointer;
             transition: background 0.2s, transform 0.15s;
-            font-family: 'DM Sans', sans-serif;
-            white-space: nowrap;
+            font-family: 'Reddit Sans', sans-serif;
         }
 
         .add-btn:hover {
-            background: var(--green);
+            background: var(--gold);
             color: #fff;
             transform: scale(1.04);
         }
@@ -919,7 +847,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--amber);
+            background: var(--gold);
             color: #fff;
             border-radius: 100px;
             padding: 7px 18px;
@@ -931,7 +859,7 @@
         }
 
         .game-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: clamp(1.8rem, 3.5vw, 2.6rem);
             font-weight: 700;
             color: var(--ink);
@@ -951,7 +879,7 @@
             width: 220px;
             height: 220px;
             margin: 0 auto 28px;
-            cursor: none;
+            cursor: pointer;
         }
 
         .cap-base {
@@ -963,7 +891,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: filter 0.2s;
         }
 
         .cap-inner {
@@ -979,23 +906,21 @@
         }
 
         .cap-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.9rem;
+            font-family: 'Reddit Sans', sans-serif;
+            font-size: 0.72rem;
             font-weight: 700;
             color: #5a4a30;
             text-align: center;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.06em;
             user-select: none;
-            line-height: 1.3;
+            white-space: nowrap;
         }
 
         .cap-teeth {
             position: absolute;
             inset: -6px;
             border-radius: 50%;
-            background: repeating-conic-gradient(from 0deg,
-                    #b8a07a 0deg 14deg,
-                    #d4bc94 14deg 28deg);
+            background: repeating-conic-gradient(from 0deg, #b8a07a 0deg 14deg, #d4bc94 14deg 28deg);
             z-index: -1;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
@@ -1004,7 +929,7 @@
             position: absolute;
             inset: -24px;
             border-radius: 50%;
-            border: 2px dashed rgba(200, 121, 42, 0.4);
+            border: 2px dashed rgba(166, 119, 31, 0.4);
             animation: hint-pulse 2s ease-in-out infinite;
             pointer-events: none;
         }
@@ -1029,7 +954,7 @@
             left: 50%;
             transform: translateX(-50%);
             font-size: 0.78rem;
-            color: var(--amber);
+            color: var(--gold);
             font-weight: 500;
             white-space: nowrap;
             opacity: 0;
@@ -1055,12 +980,11 @@
         .game-progress-label span {
             font-size: 0.8rem;
             color: var(--ink2);
-            font-weight: 400;
         }
 
         .game-progress-label strong {
             font-size: 0.9rem;
-            color: var(--amber);
+            color: var(--gold);
             font-weight: 700;
         }
 
@@ -1073,7 +997,7 @@
 
         .game-progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--amber), #e09240);
+            background: linear-gradient(90deg, var(--gold), #c49a3a);
             border-radius: 100px;
             width: 0%;
             transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1099,10 +1023,10 @@
         }
 
         .result-discount {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: 3.5rem;
             font-weight: 700;
-            color: var(--amber);
+            color: var(--gold);
             line-height: 1;
             margin-bottom: 8px;
         }
@@ -1118,7 +1042,7 @@
             color: var(--ink);
             letter-spacing: 0.12em;
             margin: 12px 0;
-            cursor: none;
+            cursor: pointer;
             transition: background 0.2s;
         }
 
@@ -1136,20 +1060,20 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--amber);
+            background: var(--gold);
             color: #fff;
             border: none;
             border-radius: 10px;
             padding: 11px 24px;
             font-size: 0.85rem;
             font-weight: 600;
-            cursor: none;
-            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            font-family: 'Reddit Sans', sans-serif;
             transition: background 0.2s;
         }
 
         .result-copy-btn:hover {
-            background: #b56820;
+            background: #8a5f18;
         }
 
         /* ── Heritage ── */
@@ -1180,8 +1104,8 @@
             width: 100%;
             height: 100%;
             background:
-                repeating-linear-gradient(45deg, transparent, transparent 28px, rgba(45, 90, 39, 0.04) 28px, rgba(45, 90, 39, 0.04) 29px),
-                repeating-linear-gradient(-45deg, transparent, transparent 28px, rgba(45, 90, 39, 0.04) 28px, rgba(45, 90, 39, 0.04) 29px);
+                repeating-linear-gradient(45deg, transparent, transparent 28px, rgba(166, 119, 31, 0.04) 28px, rgba(166, 119, 31, 0.04) 29px),
+                repeating-linear-gradient(-45deg, transparent, transparent 28px, rgba(166, 119, 31, 0.04) 28px, rgba(166, 119, 31, 0.04) 29px);
             position: absolute;
             inset: 0;
         }
@@ -1205,16 +1129,15 @@
         }
 
         .h-stat-card svg {
-            color: var(--green);
+            color: var(--gold);
             margin-bottom: 8px;
         }
 
         .h-stat-num {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--ink);
-            line-height: 1;
         }
 
         .h-stat-label {
@@ -1224,7 +1147,7 @@
         }
 
         .heritage-text h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: clamp(1.8rem, 3vw, 2.6rem);
             font-weight: 700;
             line-height: 1.2;
@@ -1234,7 +1157,7 @@
 
         .heritage-text h2 em {
             font-style: italic;
-            color: var(--green);
+            color: var(--gold);
         }
 
         .heritage-text p {
@@ -1256,8 +1179,8 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            background: var(--green-light);
-            color: var(--green);
+            background: var(--gold-light);
+            color: var(--gold);
             border-radius: 100px;
             padding: 7px 14px;
             font-size: 0.78rem;
@@ -1287,14 +1210,14 @@
         .ritual-card:hover {
             box-shadow: var(--shadow-lg);
             transform: translateY(-3px);
-            border-color: var(--green);
+            border-color: var(--gold);
         }
 
         .ritual-step-num {
             width: 36px;
             height: 36px;
             border-radius: 10px;
-            background: var(--green);
+            background: var(--gold);
             color: #fff;
             display: flex;
             align-items: center;
@@ -1305,12 +1228,12 @@
         }
 
         .ritual-icon {
-            color: var(--green);
+            color: var(--gold);
             margin-bottom: 12px;
         }
 
         .ritual-card h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: 1rem;
             font-weight: 700;
             color: var(--ink);
@@ -1348,7 +1271,7 @@
         }
 
         .testi-stars {
-            color: #f59e0b;
+            color: var(--gold);
             font-size: 0.85rem;
             letter-spacing: 3px;
             margin-bottom: 14px;
@@ -1373,14 +1296,13 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: var(--green-light);
+            background: var(--gold-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--green);
+            color: var(--gold);
             font-weight: 700;
             font-size: 0.85rem;
-            flex-shrink: 0;
         }
 
         .testi-name {
@@ -1399,7 +1321,7 @@
 
         /* ── Newsletter ── */
         #newsletter {
-            background: var(--green);
+            background: var(--gold);
             padding: 80px 48px;
         }
 
@@ -1410,7 +1332,7 @@
         }
 
         .newsletter-inner h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: clamp(1.8rem, 3vw, 2.4rem);
             font-weight: 700;
             color: #fff;
@@ -1444,21 +1366,21 @@
             outline: none;
             padding: 14px 20px;
             font-size: 0.9rem;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Reddit Sans', sans-serif;
             color: var(--ink);
             background: transparent;
         }
 
         .newsletter-form button {
-            background: var(--amber);
+            background: var(--gold-mid);
             color: #fff;
             border: none;
             padding: 14px 24px;
             font-size: 0.85rem;
             font-weight: 600;
-            cursor: none;
+            cursor: pointer;
             transition: background 0.2s;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Reddit Sans', sans-serif;
             white-space: nowrap;
             display: flex;
             align-items: center;
@@ -1466,7 +1388,7 @@
         }
 
         .newsletter-form button:hover {
-            background: #b56820;
+            background: #6e4c14;
         }
 
         /* ── Footer ── */
@@ -1484,7 +1406,7 @@
         }
 
         .footer-brand .logo {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: 1.4rem;
             font-weight: 700;
             color: #fff;
@@ -1494,7 +1416,7 @@
         }
 
         .footer-brand .logo span {
-            color: #6db85c;
+            color: #c49a3a;
         }
 
         .footer-brand p {
@@ -1520,13 +1442,13 @@
             justify-content: center;
             color: rgba(255, 255, 255, 0.5);
             text-decoration: none;
-            cursor: none;
+            cursor: pointer;
             transition: background 0.2s, color 0.2s;
         }
 
         .footer-social:hover {
             background: rgba(255, 255, 255, 0.16);
-            color: #fff;
+            color: #c49a3a;
         }
 
         .footer-col h4 {
@@ -1549,12 +1471,12 @@
             font-size: 0.88rem;
             color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
-            cursor: none;
+            cursor: pointer;
             transition: color 0.2s;
         }
 
         .footer-col ul a:hover {
-            color: #fff;
+            color: #c49a3a;
         }
 
         .footer-bottom {
@@ -1625,7 +1547,7 @@
         }
 
         .cart-head h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--ink);
@@ -1640,7 +1562,7 @@
             background: var(--bg2);
             border: none;
             border-radius: 9px;
-            cursor: none;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1730,13 +1652,12 @@
             border-radius: 8px;
             background: var(--bg2);
             border: none;
-            cursor: none;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--ink);
             transition: background 0.2s;
-            font-family: 'DM Sans', sans-serif;
             font-size: 1rem;
         }
 
@@ -1775,7 +1696,7 @@
         }
 
         .cart-total-row strong {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Reddit Sans', sans-serif;
             font-size: 1.3rem;
             font-weight: 700;
             color: var(--ink);
@@ -1783,15 +1704,15 @@
 
         .checkout-btn {
             width: 100%;
-            background: var(--green);
+            background: var(--gold);
             color: #fff;
             border: none;
             border-radius: 12px;
             padding: 14px;
             font-size: 0.9rem;
             font-weight: 600;
-            cursor: none;
-            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            font-family: 'Reddit Sans', sans-serif;
             transition: background 0.2s;
             display: flex;
             align-items: center;
@@ -1800,21 +1721,21 @@
         }
 
         .checkout-btn:hover {
-            background: var(--green-mid);
+            background: var(--gold-mid);
         }
 
         .cart-game-hint {
             margin-top: 12px;
             text-align: center;
             font-size: 0.75rem;
-            color: var(--amber);
-            cursor: none;
+            color: var(--gold);
+            cursor: pointer;
             text-decoration: underline;
             transition: color 0.2s;
         }
 
         .cart-game-hint:hover {
-            color: #b56820;
+            color: #8a5f18;
         }
 
         /* ── Reveal ── */
@@ -1830,7 +1751,7 @@
         }
 
         /* ── Responsive ── */
-        @media(max-width:1024px) {
+        @media (max-width: 1024px) {
             nav {
                 padding: 0 24px;
             }
@@ -1911,7 +1832,7 @@
             }
         }
 
-        @media(max-width:640px) {
+        @media (max-width: 640px) {
             .products-grid {
                 grid-template-columns: 1fr;
             }
@@ -1945,63 +1866,162 @@
             .hero-bottles {
                 gap: 12px;
             }
+        }
 
-            body {
-                cursor: auto;
+        /* ── Why Choose Us ── */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .why-us-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            #cursor-wrap {
-                display: none;
+            #why-us {
+                padding: 56px 24px 64px !important;
             }
+        }
+
+        @media (max-width: 600px) {
+            .why-us-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+        }
+
+        .why-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+        }
+
+        .why-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .why-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            color: var(--gold);
+        }
+
+        .why-num {
+            font-family: 'Reddit Sans', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .why-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            margin-bottom: 10px;
+        }
+
+        .why-desc {
+            font-size: 0.8rem;
+            color: var(--ink2);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* ── Cap Game Start Button ── */
+        .cap-start-wrap {
+            margin: 20px auto 0;
+            text-align: center;
+        }
+
+        .cap-start-btn {
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 13px 32px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Reddit Sans', sans-serif;
+            transition: background 0.2s, transform 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cap-start-btn:hover {
+            background: var(--gold-mid);
+            transform: translateY(-1px);
+        }
+
+        .cap-start-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .cap-countdown {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: 'Reddit Sans', sans-serif;
+            line-height: 1;
+            margin: 8px 0;
+        }
+
+        .cap-locked {
+            pointer-events: none;
+            opacity: 0.4;
+            filter: grayscale(0.5);
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Arrow Cursor -->
-    <div id="cursor-wrap">
-        <svg width="22" height="28" viewBox="0 0 22 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L20 13L11.5 14.5L8 26L2 2Z" fill="#1c1917" stroke="#ffffff" stroke-width="1.5"
-                stroke-linejoin="round" />
-        </svg>
-    </div>
-
-    <!-- Announcement Bar -->
-    <div class="announce">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path
-                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-        </svg>
-        Free shipping across India on orders above ₹1,499 — <a href="#products">Shop now</a>
-    </div>
-
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-left">
-            <a href="#" class="nav-logo">EMBER<span>GLEN</span></a>
-            <nav class="nav-links">
-                <a href="#products">Shop</a>
-                <a href="#heritage">Our Story</a>
-                <a href="#ritual">The Ritual</a>
-                <a href="#game-section">Get Discount</a>
-            </nav>
+            <a href="#" class="nav-logo">EMBERGLEN</a>
+        </div>
+        <div class="nav-links">
+            <a href="#products">Shop</a>
+            <a href="#heritage">Our Story</a>
+            <a href="#ritual">The Ritual</a>
+            <a href="#game-section">Get Discount</a>
         </div>
         <div class="nav-right">
-            <button class="nav-icon-btn" title="Search" onclick="void(0)">
+            <button class="nav-icon-btn" title="Search" id="searchBtn" onclick="openSearch()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="11" cy="11" r="8" />
                     <path d="m21 21-4.35-4.35" />
                 </svg>
             </button>
-            <button class="nav-icon-btn" title="Wishlist">
+            <button class="nav-icon-btn" title="Wishlist" id="wishlistBtn" onclick="openWishlist()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path
                         d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
+                <span class="cart-count" id="wishlistCount" style="background:#e05c7a"></span>
             </button>
             <button class="nav-icon-btn" id="cartBtn" title="Cart" onclick="openCart()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -2012,7 +2032,8 @@
                 </svg>
                 <span class="cart-count" id="cartCount">0</span>
             </button>
-            <button class="nav-shop-btn" onclick="scrollTo('products')">Shop Now</button>
+            <button class="nav-shop-btn"
+                onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
             <button class="hamburger" id="hamburger" aria-label="Open menu">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -2090,15 +2111,85 @@
         </div>
     </div>
 
+    <!-- Wishlist Drawer -->
+    <div class="cart-drawer" id="wishlistDrawer">
+        <div class="cart-overlay" onclick="closeWishlist()"></div>
+        <div class="cart-panel">
+            <div class="cart-head">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                    Wishlist
+                </h3>
+                <button class="cart-close" onclick="closeWishlist()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="cart-body" id="wishlistBody"></div>
+        </div>
+    </div>
+
+    <!-- Search Drawer -->
+    <div class="cart-drawer" id="searchDrawer">
+        <div class="cart-overlay" onclick="closeSearch()"></div>
+        <div class="cart-panel">
+            <div class="cart-head">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    Search
+                </h3>
+                <button class="cart-close" onclick="closeSearch()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div style="padding:16px 24px 8px">
+                <div style="position:relative">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink3)">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Search products..." oninput="doSearch(this.value)"
+                        style="width:100%;padding:11px 12px 11px 38px;border:1.5px solid var(--border2);border-radius:10px;font-size:0.9rem;font-family:'Reddit Sans',sans-serif;outline:none;color:var(--ink);background:var(--white)"
+                        onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border2)'">
+                </div>
+            </div>
+            <div class="cart-body" id="searchResults">
+                <div class="cart-empty" style="padding-top:32px">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <p style="margin-top:8px">Type to search blends</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero -->
     <section id="hero-section">
         <div id="hero">
             <div class="hero-text">
                 <div class="hero-pill">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2a10 10 0 0 1 10 10" />
-                        <path d="M12 6v6l4 2" />
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                        <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
                     </svg>
                     New Seasonal Blends Available
                 </div>
@@ -2106,7 +2197,8 @@
                 <p class="hero-sub">Premium Scottish botanical elixirs — crafted for people who want all the pleasure,
                     none of the alcohol. Brewed from wild Highland herbs for the mindful generation.</p>
                 <div class="hero-actions">
-                    <button class="btn-green" onclick="scrollTo('products')">
+                    <button class="btn-gold"
+                        onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
@@ -2115,7 +2207,8 @@
                         </svg>
                         Explore the Collection
                     </button>
-                    <button class="btn-outline" onclick="scrollTo('heritage')">
+                    <button class="btn-outline"
+                        onclick="document.getElementById('heritage').scrollIntoView({behavior:'smooth'})">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10" />
@@ -2127,25 +2220,40 @@
                 </div>
                 <div class="hero-trust">
                     <div class="trust-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                            <path
+                                d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+                            <path d="m21 3 1 11h-2" />
+                            <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                            <path d="M3 4h8" />
                         </svg>
                         <span>0% Alcohol, always</span>
                     </div>
                     <div class="trust-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m14 13-8.381 8.38a1 1 0 0 1-3.001-3L11 9.999" />
+                            <path
+                                d="M15.973 4.027A13 13 0 0 0 5.902 2.373c-1.398.342-1.092 2.158.277 2.601a19.9 19.9 0 0 1 5.822 3.024" />
+                            <path
+                                d="M16.001 11.999a19.9 19.9 0 0 1 3.024 5.824c.444 1.369 2.26 1.676 2.603.278A13 13 0 0 0 20 8.069" />
+                            <path
+                                d="M18.352 3.352a1.205 1.205 0 0 0-1.704 0l-5.296 5.296a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l5.296-5.296a1.205 1.205 0 0 0 0-1.704z" />
                         </svg>
                         <span>Hand-crafted in Scotland</span>
                     </div>
                     <div class="trust-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                            <circle cx="12" cy="10" r="3" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 19V7a2 2 0 0 0-2-2H9" />
+                            <path d="M15 19H9" />
+                            <path d="M19 19h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62L18.3 9.38a1 1 0 0 0-.78-.38H14" />
+                            <path d="M2 13v5a1 1 0 0 0 1 1h2" />
+                            <path d="M4 3 2.15 5.15a.495.495 0 0 0 .35.86h2.15a.47.47 0 0 1 .35.86L3 9.02" />
+                            <circle cx="17" cy="19" r="2" />
+                            <circle cx="7" cy="19" r="2" />
                         </svg>
                         <span>Free delivery ₹1,499+</span>
                     </div>
@@ -2153,6 +2261,129 @@
             </div>
             <div class="hero-visual">
                 <div class="hero-bottles" id="heroBotles"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" style="background:var(--white);padding:72px 48px 80px;border-bottom:1px solid var(--border)">
+        <div style="max-width:1200px;margin:0 auto">
+            <div style="text-align:center;margin-bottom:52px" class="reveal">
+                <span class="eyebrow">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    Why Choose Us
+                </span>
+                <h2 class="section-title" style="margin-top:4px">Crafted with <em>Purpose</em></h2>
+                <p class="section-sub" style="margin:12px auto 0;text-align:center">Every detail — from the botanicals
+                    to the bottle — is designed with intention.</p>
+            </div>
+            <div class="why-us-grid reveal">
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                            <path
+                                d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+                            <path d="m21 3 1 11h-2" />
+                            <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                            <path d="M3 4h8" />
+                        </svg>
+                    </div>
+                    <div class="why-num">0%</div>
+                    <div class="why-label">Alcohol, always</div>
+                    <p class="why-desc">Every single blend is completely alcohol-free. Always. No exceptions.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m14 13-8.381 8.38a1 1 0 0 1-3.001-3L11 9.999" />
+                            <path
+                                d="M15.973 4.027A13 13 0 0 0 5.902 2.373c-1.398.342-1.092 2.158.277 2.601a19.9 19.9 0 0 1 5.822 3.024" />
+                            <path
+                                d="M16.001 11.999a19.9 19.9 0 0 1 3.024 5.824c.444 1.369 2.26 1.676 2.603.278A13 13 0 0 0 20 8.069" />
+                            <path
+                                d="M18.352 3.352a1.205 1.205 0 0 0-1.704 0l-5.296 5.296a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l5.296-5.296a1.205 1.205 0 0 0 0-1.704z" />
+                        </svg>
+                    </div>
+                    <div class="why-num" style="font-size:1.4rem">Scotland</div>
+                    <div class="why-label">Hand-crafted origin</div>
+                    <p class="why-desc">Cold-drawn botanical extraction in the Scottish Highlands. No shortcuts.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 19V7a2 2 0 0 0-2-2H9" />
+                            <path d="M15 19H9" />
+                            <path d="M19 19h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62L18.3 9.38a1 1 0 0 0-.78-.38H14" />
+                            <path d="M2 13v5a1 1 0 0 0 1 1h2" />
+                            <path d="M4 3 2.15 5.15a.495.495 0 0 0 .35.86h2.15a.47.47 0 0 1 .35.86L3 9.02" />
+                            <circle cx="17" cy="19" r="2" />
+                            <circle cx="7" cy="19" r="2" />
+                        </svg>
+                    </div>
+                    <div class="why-num">Free</div>
+                    <div class="why-label">Delivery on ₹1,499+</div>
+                    <p class="why-desc">Free pan-India shipping on all orders above ₹1,499. No hidden fees.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <div class="why-num">12,000+</div>
+                    <div class="why-label">Happy customers</div>
+                    <p class="why-desc">A growing community of mindful drinkers across India and beyond.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                    </div>
+                    <div class="why-num">4.9 / 5</div>
+                    <div class="why-label">Average rating</div>
+                    <p class="why-desc">Consistently top-rated by verified buyers for taste, quality and packaging.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                            <line x1="4" y1="22" x2="4" y2="15" />
+                        </svg>
+                    </div>
+                    <div class="why-num">47+</div>
+                    <div class="why-label">Hand-sourced botanicals</div>
+                    <p class="why-desc">Wild-foraged Highland herbs, flowers and roots — each selected for complexity.
+                    </p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13" rx="1" />
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                            <circle cx="5.5" cy="18.5" r="2.5" />
+                            <circle cx="18.5" cy="18.5" r="2.5" />
+                        </svg>
+                    </div>
+                    <div class="why-num">3–5 Days</div>
+                    <div class="why-label">Pan-India delivery</div>
+                    <p class="why-desc">Swift, tracked delivery to your door — anywhere across India.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -2235,18 +2466,26 @@
             <h2 class="game-title">Think you can open it?</h2>
             <p class="game-sub">Twist the bottle cap to earn a discount. It won't be easy — these caps are stubborn. The
                 harder you try, the more you unlock. Maximum you can get is <strong>67% off</strong>.</p>
-
-            <div class="cap-arena" id="capArena">
+            <div class="cap-arena cap-locked" id="capArena">
                 <div class="cap-base" id="capBase">
                     <div class="cap-teeth"></div>
                     <div class="cap-inner">
-                        <div class="cap-logo">EMBER<br>GLEN</div>
+                        <div class="cap-logo">EMBERGLEN</div>
                     </div>
                 </div>
                 <div class="cap-grip-hint"></div>
                 <div class="cap-resist-msg" id="capResistMsg">Resistance increasing...</div>
             </div>
-
+            <div class="cap-start-wrap" id="capStartWrap">
+                <div class="cap-countdown" id="capCountdown" style="display:none"></div>
+                <button class="cap-start-btn" id="capStartBtn" onclick="startCapGame()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3" />
+                    </svg>
+                    Start
+                </button>
+            </div>
             <div class="game-progress-wrap">
                 <div class="game-progress-label">
                     <span>Discount unlocked</span>
@@ -2257,7 +2496,6 @@
                 </div>
             </div>
             <p class="game-hint" id="gameHint">Click and drag to twist the cap open</p>
-
             <div class="game-result" id="gameResult">
                 <div class="result-discount" id="resultDiscount">0%</div>
                 <p style="font-size:0.9rem;color:var(--ink2);margin-bottom:8px;">OFF your next order</p>
@@ -2479,138 +2717,46 @@
     </footer>
 
     <script>
-        // ═══════════════════════════════════════════════════════
-        // EMBERGLEN SITE DATA — Edit everything here
-        // ═══════════════════════════════════════════════════════
-
-        const CURRENCY = "₹";
-
+        // Product Data
         const PRODUCTS = [
-            {
-                id: 1, name: "Midnight Heather",
-                category: "Signature", cat_key: "signature",
-                desc: "Dark wild heather, smoked birch and Highland juniper with a velvet finish",
-                price: 2199, volume: "500ml",
-                badge: "bestseller", badgeLabel: "Best Seller",
-                notes: ["Heather", "Smoke", "Juniper", "Dark Fruit"],
-                color: "#2a1a3e", color2: "#4d2d6e", accent: "#c8a2c8"
-            },
-            {
-                id: 2, name: "Amber Glen",
-                category: "Classic", cat_key: "classic",
-                desc: "Sun-warmed meadowsweet, toasted oat and Speyside honey with golden warmth",
-                price: 1899, volume: "500ml",
-                badge: null, badgeLabel: null,
-                notes: ["Honey", "Oat", "Meadowsweet", "Warm Spice"],
-                color: "#3d2507", color2: "#7a4e10", accent: "#d4a843"
-            },
-            {
-                id: 3, name: "Sea Mist Tonic",
-                category: "Limited", cat_key: "limited",
-                desc: "Coastal samphire, Atlantic kelp and crisp sea air with a bracing mineral clarity",
-                price: 2599, volume: "500ml",
-                badge: "new", badgeLabel: "New",
-                notes: ["Samphire", "Kelp", "Citrus", "Mineral"],
-                color: "#0f2430", color2: "#1a5070", accent: "#a0d8e0"
-            },
-            {
-                id: 4, name: "Rose of Perthshire",
-                category: "Signature", cat_key: "signature",
-                desc: "Wild rose petals, gentle hibiscus and delicate elderflower from the Tay valley",
-                price: 2099, volume: "500ml",
-                badge: null, badgeLabel: null,
-                notes: ["Rose", "Hibiscus", "Elderflower", "Soft Floral"],
-                color: "#3d0d1a", color2: "#8a2040", accent: "#f0a0b0"
-            },
-            {
-                id: 5, name: "Peat & Moss",
-                category: "Reserve", cat_key: "reserve",
-                desc: "Ancient peat smoke, woodland moss, dry oak and a whisper of vanilla root",
-                price: 2899, volume: "500ml",
-                badge: "reserve", badgeLabel: "Reserve",
-                notes: ["Peat", "Oak", "Moss", "Vanilla"],
-                color: "#1a0d07", color2: "#4a2c10", accent: "#b08040"
-            },
-            {
-                id: 6, name: "Winter Solstice",
-                category: "Seasonal", cat_key: "seasonal",
-                desc: "Warm spiced sloe, cardamom, star anise and Highland winter berries",
-                price: 2399, volume: "500ml",
-                badge: "seasonal", badgeLabel: "Seasonal",
-                notes: ["Sloe", "Cardamom", "Star Anise", "Winter Berry"],
-                color: "#1a0d2e", color2: "#4a1a6e", accent: "#b090e0"
-            }
+            { id: 1, name: "Midnight Heather", category: "Signature", desc: "Dark wild heather, smoked birch and Highland juniper with a velvet finish", price: 2199, volume: "500ml", badge: "bestseller", badgeLabel: "Best Seller", notes: ["Heather", "Smoke", "Juniper", "Dark Fruit"], color: "#2a1a3e", color2: "#4d2d6e" },
+            { id: 2, name: "Amber Glen", category: "Classic", desc: "Sun-warmed meadowsweet, toasted oat and Speyside honey with golden warmth", price: 1899, volume: "500ml", badge: null, badgeLabel: null, notes: ["Honey", "Oat", "Meadowsweet", "Warm Spice"], color: "#3d2507", color2: "#7a4e10" },
+            { id: 3, name: "Sea Mist Tonic", category: "Limited", desc: "Coastal samphire, Atlantic kelp and crisp sea air with a bracing mineral clarity", price: 2599, volume: "500ml", badge: "new", badgeLabel: "New", notes: ["Samphire", "Kelp", "Citrus", "Mineral"], color: "#0f2430", color2: "#1a5070" },
+            { id: 4, name: "Rose of Perthshire", category: "Signature", desc: "Wild rose petals, gentle hibiscus and delicate elderflower from the Tay valley", price: 2099, volume: "500ml", badge: null, badgeLabel: null, notes: ["Rose", "Hibiscus", "Elderflower", "Soft Floral"], color: "#3d0d1a", color2: "#8a2040" },
+            { id: 5, name: "Peat & Moss", category: "Reserve", desc: "Ancient peat smoke, woodland moss, dry oak and a whisper of vanilla root", price: 2899, volume: "500ml", badge: "reserve", badgeLabel: "Reserve", notes: ["Peat", "Oak", "Moss", "Vanilla"], color: "#1a0d07", color2: "#4a2c10" },
+            { id: 6, name: "Winter Solstice", category: "Seasonal", desc: "Warm spiced sloe, cardamom, star anise and Highland winter berries", price: 2399, volume: "500ml", badge: "seasonal", badgeLabel: "Seasonal", notes: ["Sloe", "Cardamom", "Star Anise", "Winter Berry"], color: "#1a0d2e", color2: "#4a1a6e" }
         ];
 
         const FILTERS = ["All", "Signature", "Classic", "Reserve", "Limited", "Seasonal"];
-
         const RITUAL_STEPS = [
-            {
-                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
-                step: "01", title: "Choose Your Blend",
-                desc: "Let the moment guide you. Contemplative evenings call for Peat & Moss; celebrations deserve Rose of Perthshire."
-            },
-            {
-                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
-                step: "02", title: "Chill & Prepare",
-                desc: "Serve between 4–8°C. A single large ice sphere in a wide-mouthed glass will open the botanicals beautifully."
-            },
-            {
-                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`,
-                step: "03", title: "Garnish with Intention",
-                desc: "Each blend has a companion garnish — fresh heather, citrus peel, dried rose or a sprig of thyme."
-            },
-            {
-                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
-                step: "04", title: "Sip Slowly",
-                desc: "Let the botanicals unfurl. The first sip introduces. The second reveals. The third is where it truly lives."
-            }
+            { step: "01", title: "Choose Your Blend", desc: "Let the moment guide you. Contemplative evenings call for Peat & Moss; celebrations deserve Rose of Perthshire." },
+            { step: "02", title: "Chill & Prepare", desc: "Serve between 4–8°C. A single large ice sphere in a wide-mouthed glass will open the botanicals beautifully." },
+            { step: "03", title: "Garnish with Intention", desc: "Each blend has a companion garnish — fresh heather, citrus peel, dried rose or a sprig of thyme." },
+            { step: "04", title: "Sip Slowly", desc: "Let the botanicals unfurl. The first sip introduces. The second reveals. The third is where it truly lives." }
         ];
-
         const TESTIMONIALS = [
-            { text: "Peat & Moss genuinely tastes like sitting beside a Highland loch at dusk. I have no idea how they bottled that feeling.", author: "James T.", loc: "Glasgow", initial: "J" },
-            { text: "As someone who's been sober for two years, Emberglen gave me back the ritual. I finally feel like I'm not missing anything.", author: "Priya S.", loc: "Mumbai", initial: "P" },
-            { text: "The packaging alone would make me buy this. But the taste? It's genuinely unlike anything I've tried.", author: "Callum R.", loc: "Aberdeen", initial: "C" },
-            { text: "Brought the Discovery Set to a dinner party. Three people asked where they could buy more before the night ended.", author: "Tom A.", loc: "Dublin", initial: "T" },
-            { text: "Sea Mist Tonic is the most interesting non-alcoholic drink I've ever tasted. Mineral, bracing, complex. Incredible.", author: "Rachel K.", loc: "Brighton", initial: "R" },
-            { text: "Midnight Heather before bed has become my non-negotiable evening ritual. It genuinely feels meditative.", author: "Sophie H.", loc: "Bengaluru", initial: "S" }
+            { text: "Peat & Moss genuinely tastes like sitting beside a Highland loch at dusk.", author: "James T.", loc: "Glasgow", initial: "J" },
+            { text: "As someone who's been sober for two years, Emberglen gave me back the ritual.", author: "Priya S.", loc: "Mumbai", initial: "P" },
+            { text: "The packaging alone would make me buy this.", author: "Callum R.", loc: "Aberdeen", initial: "C" }
         ];
-
         const HERITAGE_STATS = [
-            { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`, num: "47+", label: "Botanicals" },
-            { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`, num: "0%", label: "Alcohol" },
-            { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`, num: "4.9", label: "Rating" },
-            { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`, num: "12k+", label: "Customers" }
+            { num: "47+", label: "Botanicals" },
+            { num: "0%", label: "Alcohol" },
+            { num: "4.9", label: "Rating" },
+            { num: "12k+", label: "Customers" }
         ];
-
-        // ═══════════════════════════════════════════════════════
-        // RENDER FUNCTIONS
-        // ═══════════════════════════════════════════════════════
 
         let cart = [];
+        let wishlist = [];
 
         function renderHeroBotles() {
             const wrap = document.getElementById('heroBotles');
             const featured = [PRODUCTS[0], PRODUCTS[1], PRODUCTS[2]];
-            wrap.innerHTML = featured.map((p, i) => `
-    <div class="hero-bottle">
-      <div class="bottle-svg-wrap" style="background:linear-gradient(160deg,${p.color},${p.color2})">
-        <div class="product-bottle-shine"></div>
-        <div class="product-bottle-label">
-          <div class="product-bottle-label-name">${p.name}</div>
-        </div>
-        ${i === 1 ? `<span class="hero-badge">Fan Fav</span>` : ''}
-      </div>
-      <span class="bottle-label">${p.name}</span>
-    </div>
-  `).join('');
+            wrap.innerHTML = featured.map((p, i) => `<div class="hero-bottle"><div class="bottle-svg-wrap" style="background:linear-gradient(160deg,${p.color},${p.color2})"><div class="product-bottle-shine"></div><div class="product-bottle-label"><div class="product-bottle-label-name">${p.name}</div></div>${i === 1 ? '<span class="hero-badge">Fan Fav</span>' : ''}</div><span class="bottle-label">${p.name}</span></div>`).join('');
         }
 
         function renderFilters() {
-            const bar = document.getElementById('filterBar');
-            bar.innerHTML = FILTERS.map((f, i) =>
-                `<button class="filter-btn ${i === 0 ? 'active' : ''}" onclick="filterProducts('${f}',this)">${f}</button>`
-            ).join('');
+            document.getElementById('filterBar').innerHTML = FILTERS.map((f, i) => `<button class="filter-btn ${i === 0 ? 'active' : ''}" onclick="filterProducts('${f}',this)">${f}</button>`).join('');
         }
 
         function filterProducts(cat, btn) {
@@ -2620,88 +2766,26 @@
         }
 
         function renderProducts(cat = 'All') {
-            const grid = document.getElementById('productsGrid');
             const list = cat === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
-            grid.innerHTML = list.map(p => `
-    <div class="product-card reveal">
-      <div class="product-img" style="background:linear-gradient(160deg,${p.color}22,${p.color2}18)">
-        <div class="product-bottle-art" style="background:linear-gradient(160deg,${p.color},${p.color2})">
-          <div class="product-bottle-shine"></div>
-          <div class="product-bottle-label">
-            <div class="product-bottle-label-name">${p.name}</div>
-          </div>
-        </div>
-        <div class="product-badge-wrap">
-          ${p.badge ? `<span class="p-badge ${p.badge}">${p.badgeLabel}</span>` : ''}
-        </div>
-      </div>
-      <div class="product-body">
-        <div class="product-cat">${p.category}</div>
-        <h3 class="product-name">${p.name}</h3>
-        <p class="product-desc">${p.desc}</p>
-        <div class="product-notes">
-          ${p.notes.map(n => `<span class="note-chip">${n}</span>`).join('')}
-        </div>
-        <div class="product-footer">
-          <div class="product-price">
-            ${CURRENCY}${p.price.toLocaleString('en-IN')}
-            <small>${p.volume}</small>
-          </div>
-          <button class="add-btn" onclick="addToCart(${p.id})">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Add to Bag
-          </button>
-        </div>
-      </div>
-    </div>
-  `).join('');
+            document.getElementById('productsGrid').innerHTML = list.map(p => {
+                const isWished = wishlist.some(w => w.id === p.id);
+                return `<div class="product-card reveal"><div class="product-img" style="background:linear-gradient(160deg,${p.color}22,${p.color2}18)"><div class="product-bottle-art" style="background:linear-gradient(160deg,${p.color},${p.color2})"><div class="product-bottle-shine"></div><div class="product-bottle-label"><div class="product-bottle-label-name">${p.name}</div></div></div><div class="product-badge-wrap">${p.badge ? `<span class="p-badge ${p.badge}">${p.badgeLabel}</span>` : ''}</div><button onclick="toggleWishlist(${p.id})" style="position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.92);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s" title="${isWished ? 'Remove from wishlist' : 'Add to wishlist'}"><svg width="14" height="14" viewBox="0 0 24 24" fill="${isWished ? '#e05c7a' : 'none'}" stroke="${isWished ? '#e05c7a' : '#888'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="product-body"><div class="product-cat">${p.category}</div><h3 class="product-name">${p.name}</h3><p class="product-desc">${p.desc}</p><div class="product-notes">${p.notes.map(n => `<span class="note-chip">${n}</span>`).join('')}</div><div class="product-footer"><div class="product-price">₹${p.price.toLocaleString('en-IN')}<small>${p.volume}</small></div><button class="add-btn" onclick="addToCart(${p.id})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add to Bag</button></div></div></div>`;
+            }).join('');
             observeReveal();
         }
 
         function renderHeritage() {
-            const c = document.getElementById('heritageStats');
-            c.innerHTML = HERITAGE_STATS.map(s => `
-    <div class="h-stat-card">
-      ${s.icon}
-      <div class="h-stat-num">${s.num}</div>
-      <div class="h-stat-label">${s.label}</div>
-    </div>
-  `).join('');
+            document.getElementById('heritageStats').innerHTML = HERITAGE_STATS.map(s => `<div class="h-stat-card"><div class="h-stat-num">${s.num}</div><div class="h-stat-label">${s.label}</div></div>`).join('');
         }
 
         function renderRitual() {
-            const g = document.getElementById('ritualGrid');
-            g.innerHTML = RITUAL_STEPS.map(s => `
-    <div class="ritual-card reveal">
-      <div class="ritual-step-num">${s.step}</div>
-      <div class="ritual-icon">${s.icon}</div>
-      <h3>${s.title}</h3>
-      <p>${s.desc}</p>
-    </div>
-  `).join('');
+            document.getElementById('ritualGrid').innerHTML = RITUAL_STEPS.map(s => `<div class="ritual-card reveal"><div class="ritual-step-num">${s.step}</div><h3>${s.title}</h3><p>${s.desc}</p></div>`).join('');
         }
 
         function renderTestimonials() {
-            const g = document.getElementById('testiGrid');
-            g.innerHTML = TESTIMONIALS.map(t => `
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"${t.text}"</p>
-      <div class="testi-author">
-        <div class="testi-avatar">${t.initial}</div>
-        <div>
-          <div class="testi-name">${t.author}</div>
-          <div class="testi-loc">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            ${t.loc}
-          </div>
-        </div>
-      </div>
-    </div>
-  `).join('');
+            document.getElementById('testiGrid').innerHTML = TESTIMONIALS.map(t => `<div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"${t.text}"</p><div class="testi-author"><div class="testi-avatar">${t.initial}</div><div><div class="testi-name">${t.author}</div><div class="testi-loc"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${t.loc}</div></div></div></div>`).join('');
         }
 
-        // ── Cart ──
         function addToCart(id) {
             const p = PRODUCTS.find(x => x.id === id);
             const existing = cart.find(x => x.id === id);
@@ -2713,43 +2797,18 @@
 
         function updateCartUI() {
             const count = cart.reduce((s, x) => s + x.qty, 0);
-            const cc = document.getElementById('cartCount');
-            cc.textContent = count;
-            cc.classList.toggle('show', count > 0);
-
+            document.getElementById('cartCount').textContent = count;
+            document.getElementById('cartCount').classList.toggle('show', count > 0);
             const body = document.getElementById('cartBody');
             const foot = document.getElementById('cartFoot');
-
             if (cart.length === 0) {
-                body.innerHTML = `<div class="cart-empty">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-      <p>Your bag is empty</p>
-      <button class="btn-green" style="margin-top:8px;font-size:0.82rem;padding:10px 20px" onclick="closeCart();scrollTo('products')">Start Shopping</button>
-    </div>`;
+                body.innerHTML = `<div class="cart-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><p>Your bag is empty</p></div>`;
                 foot.style.display = 'none';
                 return;
             }
-
-            body.innerHTML = cart.map(item => `
-    <div class="cart-item">
-      <div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2})"></div>
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-desc">${item.volume} · ${item.category}</div>
-        <div class="cart-item-row">
-          <div class="qty-control">
-            <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
-            <span class="qty-num">${item.qty}</span>
-            <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
-          </div>
-          <span class="cart-item-price">${CURRENCY}${(item.price * item.qty).toLocaleString('en-IN')}</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
-
+            body.innerHTML = cart.map(item => `<div class="cart-item"><div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-desc">${item.volume} · ${item.category}</div><div class="cart-item-row"><div class="qty-control"><button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button><span class="qty-num">${item.qty}</span><button class="qty-btn" onclick="changeQty(${item.id},1)">+</button></div><span class="cart-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</span></div></div></div>`).join('');
             const total = cart.reduce((s, x) => s + x.price * x.qty, 0);
-            document.getElementById('cartTotal').textContent = `${CURRENCY}${total.toLocaleString('en-IN')}`;
+            document.getElementById('cartTotal').textContent = `₹${total.toLocaleString('en-IN')}`;
             foot.style.display = 'block';
         }
 
@@ -2761,60 +2820,83 @@
             updateCartUI();
         }
 
-        function openCart() {
-            document.getElementById('cartDrawer').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeCart() {
-            document.getElementById('cartDrawer').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        // ── Mobile Drawer ──
-        document.getElementById('hamburger').addEventListener('click', () => {
-            document.getElementById('mobileDrawer').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        });
-        function closeDrawer() {
-            document.getElementById('mobileDrawer').classList.remove('open');
-            document.body.style.overflow = '';
+        // ── Wishlist ──
+        function toggleWishlist(id) {
+            const p = PRODUCTS.find(x => x.id === id);
+            const idx = wishlist.findIndex(x => x.id === id);
+            if (idx >= 0) wishlist.splice(idx, 1);
+            else wishlist.push({ ...p });
+            updateWishlistUI();
+            renderProducts(document.querySelector('.filter-btn.active')?.textContent || 'All');
         }
 
-        function scrollTo(id) {
-            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        function updateWishlistUI() {
+            const count = wishlist.length;
+            const countEl = document.getElementById('wishlistCount');
+            countEl.textContent = count;
+            countEl.classList.toggle('show', count > 0);
+            const body = document.getElementById('wishlistBody');
+            if (wishlist.length === 0) {
+                body.innerHTML = `<div class="cart-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><p>No wishlisted items yet</p></div>`;
+                return;
+            }
+            body.innerHTML = wishlist.map(item => `<div class="cart-item"><div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-desc">${item.volume} · ${item.category}</div><div class="cart-item-row"><span style="font-size:0.85rem;color:var(--ink2)">₹${item.price.toLocaleString('en-IN')}</span><div style="display:flex;gap:8px"><button class="add-btn" style="font-size:0.75rem;padding:6px 12px" onclick="addToCart(${item.id});closeWishlist()">Add to Bag</button><button onclick="toggleWishlist(${item.id})" style="width:28px;height:28px;border-radius:8px;background:var(--bg2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#e05c7a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div></div></div>`).join('');
         }
 
-        // ── Custom Cursor ──
-        const cursorWrap = document.getElementById('cursor-wrap');
-        let cx = 0, cy = 0;
-        document.addEventListener('mousemove', e => {
-            cx = e.clientX; cy = e.clientY;
-            cursorWrap.style.left = cx + 'px';
-            cursorWrap.style.top = cy + 'px';
-        });
-        document.addEventListener('mousedown', () => document.body.classList.add('cur-click'));
-        document.addEventListener('mouseup', () => document.body.classList.remove('cur-click'));
-        document.querySelectorAll && document.addEventListener('mouseover', e => {
-            const t = e.target.closest('a,button,.product-card,.testi-card,.ritual-card,[onclick]');
-            document.body.classList.toggle('cur-hover', !!t);
-        });
+        function openWishlist() { updateWishlistUI(); document.getElementById('wishlistDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeWishlist() { document.getElementById('wishlistDrawer').classList.remove('open'); document.body.style.overflow = ''; }
 
-        // ── Reveal on Scroll ──
+        // ── Search ──
+        function openSearch() { document.getElementById('searchDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => document.getElementById('searchInput').focus(), 300); }
+        function closeSearch() { document.getElementById('searchDrawer').classList.remove('open'); document.body.style.overflow = ''; document.getElementById('searchInput').value = ''; doSearch(''); }
+
+        function doSearch(query) {
+            const results = document.getElementById('searchResults');
+            const q = query.trim().toLowerCase();
+            if (!q) {
+                results.innerHTML = `<div class="cart-empty" style="padding-top:32px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><p style="margin-top:8px">Type to search blends</p></div>`;
+                return;
+            }
+            const found = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.notes.some(n => n.toLowerCase().includes(q)));
+            if (!found.length) {
+                results.innerHTML = `<div class="cart-empty" style="padding-top:32px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><p style="margin-top:8px">No products found</p></div>`;
+                return;
+            }
+            results.innerHTML = found.map(p => `<div class="cart-item" style="cursor:pointer" onclick="closeSearch();document.getElementById('products').scrollIntoView({behavior:'smooth'})"><div class="cart-item-img" style="background:linear-gradient(160deg,${p.color},${p.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${p.name}</div><div class="cart-item-desc">${p.volume} · ${p.category}</div><div class="cart-item-row"><span class="cart-item-price">₹${p.price.toLocaleString('en-IN')}</span><button class="add-btn" style="font-size:0.75rem;padding:6px 12px" onclick="event.stopPropagation();addToCart(${p.id})">Add to Bag</button></div></div></div>`).join('');
+        }
+
+        function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.body.style.overflow = ''; }
+        document.getElementById('hamburger').addEventListener('click', () => { document.getElementById('mobileDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; });
+        function closeDrawer() { document.getElementById('mobileDrawer').classList.remove('open'); document.body.style.overflow = ''; }
         function observeReveal() {
-            const io = new IntersectionObserver(entries => {
-                entries.forEach((e, i) => {
-                    if (e.isIntersecting) {
-                        setTimeout(() => e.target.classList.add('visible'), i * 70);
-                        io.unobserve(e.target);
-                    }
-                });
-            }, { threshold: 0.1 });
+            const io = new IntersectionObserver(entries => { entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 70); io.unobserve(e.target); } }); }, { threshold: 0.1 });
             document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
         }
 
-        // ═══════════════════════════════════════════════════════
-        // BOTTLE CAP TWIST GAME
-        // ═══════════════════════════════════════════════════════
+        // ── Cap Game ──
+        function startCapGame() {
+            const btn = document.getElementById('capStartBtn');
+            const countdown = document.getElementById('capCountdown');
+            const arena = document.getElementById('capArena');
+            btn.disabled = true;
+            btn.style.display = 'none';
+            countdown.style.display = 'block';
+            let count = 5;
+            countdown.textContent = count;
+            const timer = setInterval(() => {
+                count--;
+                if (count <= 0) {
+                    clearInterval(timer);
+                    countdown.style.display = 'none';
+                    document.getElementById('capStartWrap').style.display = 'none';
+                    arena.classList.remove('cap-locked');
+                    document.getElementById('gameHint').textContent = 'Grab and twist clockwise to open...';
+                } else {
+                    countdown.textContent = count;
+                }
+            }, 1000);
+        }
 
         (function () {
             const cap = document.getElementById('capBase');
@@ -2824,44 +2906,64 @@
             const result = document.getElementById('gameResult');
             const resultDiscount = document.getElementById('resultDiscount');
             const resultCode = document.getElementById('resultCode');
-            const resistMsg = document.getElementById('capResistMsg');
-
             const MAX_DISCOUNT = 67;
-            const RESISTANCE_LEVELS = [
-                { at: 10, msg: "It's budging a little..." },
-                { at: 25, msg: "Keep going! It's fighting back..." },
-                { at: 40, msg: "Almost there! Push harder..." },
-                { at: 55, msg: "So close! Give it everything!" },
-                { at: 65, msg: "One last push... 🤞" }
-            ];
 
+            // Physics state
             let isDragging = false;
-            let startAngle = 0;
-            let totalRotation = 0;
-            let capRotation = 0;
+            let totalRotation = 0;   // net positive (clockwise) progress
+            let capRotation = 0;     // visual angle
             let lastAngle = 0;
+            let angularVelocity = 0; // current spin velocity (deg/frame)
+            let lastDelta = 0;
             let discount = 0;
             let opened = false;
-            // Resistance: starts easy, gets harder
-            let resistance = 1;
-            let resistanceMult = 1;
+            let animFrame = null;
+
+            // Physics constants
+            const FRICTION = 0.88;          // velocity decay per frame
+            const GRAVITY_PULLBACK = 0.55;  // degrees pulled back per frame (counter-clockwise gravity)
+            const RESISTANCE_BASE = 2.2;    // base resistance multiplier
+            const RESISTANCE_SCALE = 9;     // extra resistance at max discount
 
             function getAngle(e, el) {
                 const rect = el.getBoundingClientRect();
-                const cx = rect.left + rect.width / 2;
-                const cy = rect.top + rect.height / 2;
+                const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
                 const clientX = e.touches ? e.touches[0].clientX : e.clientX;
                 const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-                return Math.atan2(clientY - cy, clientX - cx) * (180 / Math.PI);
+                return Math.atan2(clientY - cy, clientX - cx) * 180 / Math.PI;
+            }
+
+            function physicsLoop() {
+                if (isDragging || opened) return;
+                if (Math.abs(angularVelocity) < 0.05 && Math.abs(totalRotation) < 0.5) {
+                    cancelAnimationFrame(animFrame);
+                    return;
+                }
+                // Gravity pulls cap back (counter-clockwise)
+                angularVelocity -= GRAVITY_PULLBACK * (1 + discount / MAX_DISCOUNT);
+                // Friction
+                angularVelocity *= FRICTION;
+                // Apply to visual rotation
+                capRotation += angularVelocity;
+                // If clockwise velocity slows, totalRotation can slip back
+                if (angularVelocity < 0) {
+                    totalRotation = Math.max(0, totalRotation + angularVelocity * 0.4);
+                }
+                discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 9));
+                cap.style.transform = `rotate(${capRotation}deg)`;
+                fill.style.width = (discount / MAX_DISCOUNT * 100) + '%';
+                valEl.textContent = discount + '%';
+                animFrame = requestAnimationFrame(physicsLoop);
             }
 
             function onStart(e) {
                 if (opened) return;
+                if (document.getElementById('capArena').classList.contains('cap-locked')) return;
                 e.preventDefault();
                 isDragging = true;
-                startAngle = getAngle(e, cap);
-                lastAngle = startAngle;
-                document.body.classList.add('cur-click');
+                cancelAnimationFrame(animFrame);
+                angularVelocity = 0;
+                lastAngle = getAngle(e, cap);
             }
 
             function onMove(e) {
@@ -2869,93 +2971,84 @@
                 e.preventDefault();
                 const angle = getAngle(e, cap);
                 let delta = angle - lastAngle;
-
-                // Normalize delta to [-180, 180]
                 if (delta > 180) delta -= 360;
                 if (delta < -180) delta += 360;
 
-                // Only count clockwise (positive) rotation
+                // Resistance increases with progress — like a real tight cap
+                const resistance = RESISTANCE_BASE + (discount / MAX_DISCOUNT) * RESISTANCE_SCALE;
+
                 if (delta > 0) {
-                    // Apply resistance: as discount grows, it gets harder
-                    resistance = 1 + (discount / MAX_DISCOUNT) * 6; // 1x at 0%, 7x at max
-                    const effective = delta / resistance;
-                    totalRotation += effective;
-                    capRotation += delta; // Visual rotates freely
+                    // Clockwise: apply resistance
+                    const netDelta = delta / resistance;
+                    totalRotation += netDelta;
+                    capRotation += netDelta;
+                    angularVelocity = netDelta;
+                    // Add wobble/jitter at high resistance
+                    if (discount > 30) {
+                        const jitter = (Math.random() - 0.5) * (discount / 20);
+                        capRotation += jitter;
+                    }
                 } else {
-                    // Allow some back-rotation
-                    capRotation += delta * 0.3;
-                    totalRotation = Math.max(0, totalRotation + delta * 0.08);
+                    // Counter-clockwise: cap snaps back faster (gravity helps)
+                    const snapBack = delta * 0.45;
+                    capRotation += snapBack;
+                    totalRotation = Math.max(0, totalRotation + snapBack * 0.25);
+                    angularVelocity = snapBack;
                 }
 
+                lastDelta = delta;
                 lastAngle = angle;
-
-                // Map rotation to discount (need ~600deg total to reach max)
                 discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 9));
-
                 cap.style.transform = `rotate(${capRotation}deg)`;
                 fill.style.width = (discount / MAX_DISCOUNT * 100) + '%';
                 valEl.textContent = discount + '%';
+                hint.textContent = discount < 15 ? "Keep twisting clockwise..." : discount < 35 ? "It's resisting — push harder!" : discount < 55 ? "Don't let it slip back!" : discount < MAX_DISCOUNT ? "So close — fight the pull!" : "Maximum unlocked! 🎉";
 
-                // Resistance messages
-                let shownMsg = null;
-                RESISTANCE_LEVELS.forEach(lvl => {
-                    if (discount >= lvl.at && discount < lvl.at + 10) shownMsg = lvl.msg;
-                });
-                if (shownMsg) {
-                    resistMsg.textContent = shownMsg;
-                    resistMsg.classList.add('show');
-                    setTimeout(() => resistMsg.classList.remove('show'), 1800);
+                if (discount >= MAX_DISCOUNT && !opened) {
+                    triggerOpen();
                 }
-
-                // Wiggle effect at high resistance
-                if (delta > 0 && discount > 30) {
-                    const wobble = (Math.random() - 0.5) * (discount / 15);
-                    cap.style.transform = `rotate(${capRotation + wobble}deg)`;
-                }
-
-                hint.textContent = discount < 20 ? "Keep twisting! Clockwise..." :
-                    discount < 45 ? "You're making progress!" :
-                        discount < 60 ? "Don't give up!" :
-                            discount < MAX_DISCOUNT ? "Almost at maximum!" :
-                                "That's all you're getting! 😅";
-
-                if (discount >= MAX_DISCOUNT && !opened) openCap();
             }
 
             function onEnd() {
+                if (!isDragging) return;
                 isDragging = false;
-                document.body.classList.remove('cur-click');
-                if (discount > 0 && !opened) revealResult(discount);
+                // Release: physics kicks in — gravity pulls it back
+                animFrame = requestAnimationFrame(physicsLoop);
+                if (!opened && discount > 0) {
+                    // Show result after slight delay
+                    setTimeout(() => {
+                        if (!opened) {
+                            opened = true;
+                            const code = "GLEN" + discount;
+                            resultDiscount.textContent = discount + '%';
+                            resultCode.textContent = code;
+                            resultCode.dataset.code = code;
+                            result.classList.add('show');
+                            hint.textContent = `You earned ${discount}% off! 🎉`;
+                        }
+                    }, 1200);
+                }
             }
 
-            function revealResult(d) {
-                if (d < 5) return; // too small, don't show
+            function triggerOpen() {
                 opened = true;
-                const codes = ['GLEN', 'MIST', 'PEAT', 'BLOOM', 'EMBER', 'GLEN'];
-                const code = codes[Math.floor(Math.random() * codes.length)] + d;
-                resultDiscount.textContent = d + '%';
+                const code = "GLEN" + MAX_DISCOUNT;
+                resultDiscount.textContent = MAX_DISCOUNT + '%';
                 resultCode.textContent = code;
                 resultCode.dataset.code = code;
                 result.classList.add('show');
-                hint.textContent = `You earned ${d}% off! 🎉`;
-                cap.style.transform = `rotate(${capRotation + 20}deg)`;
-                cap.style.filter = 'brightness(1.2)';
-            }
-
-            function openCap() {
-                revealResult(MAX_DISCOUNT);
+                hint.textContent = `Maximum ${MAX_DISCOUNT}% unlocked! 🎉`;
+                cap.style.filter = 'brightness(1.3)';
+                cancelAnimationFrame(animFrame);
             }
 
             window.copyCode = function () {
                 const code = document.getElementById('resultCode').dataset.code || document.getElementById('resultCode').textContent;
                 navigator.clipboard.writeText(code).then(() => {
                     const btn = document.querySelector('.result-copy-btn');
-                    if (btn) {
-                        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
-                        setTimeout(() => btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Discount Code`, 2000);
-                    }
-                }).catch(() => {
-                    alert('Code: ' + code);
+                    const orig = btn.innerHTML;
+                    btn.innerHTML = '✓ Copied!';
+                    setTimeout(() => btn.innerHTML = orig, 2000);
                 });
             };
 
@@ -2967,15 +3060,7 @@
             document.addEventListener('touchend', onEnd);
         })();
 
-        // ── Init ──
-        renderHeroBotles();
-        renderFilters();
-        renderProducts();
-        renderHeritage();
-        renderRitual();
-        renderTestimonials();
-        updateCartUI();
-        setTimeout(observeReveal, 100);
+        renderHeroBotles(); renderFilters(); renderProducts(); renderHeritage(); renderRitual(); renderTestimonials(); updateCartUI(); updateWishlistUI(); setTimeout(observeReveal, 100);
     </script>
 </body>
 
