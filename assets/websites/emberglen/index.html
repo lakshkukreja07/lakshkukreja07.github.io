@@ -286,15 +286,21 @@
         }
 
         #hero {
-            background: var(--white);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.3) 100%), url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/emberglen/banner.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
             padding: 72px 48px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 64px;
             align-items: center;
-            max-width: 1280px;
-            margin: 0 auto;
+            max-width: 100%;
+            width: 100%;
             min-height: calc(100vh - 68px);
+            position: relative;
+            margin: 0;
         }
 
         .hero-text {
@@ -305,8 +311,8 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--gold-light);
-            color: var(--gold);
+            background: rgba(166, 119, 31, 0.95);
+            color: white;
             border-radius: 100px;
             padding: 6px 14px;
             font-size: 0.75rem;
@@ -320,19 +326,19 @@
             font-size: clamp(2.4rem, 4.5vw, 4rem);
             font-weight: 700;
             line-height: 1.1;
-            color: var(--ink);
+            color: white;
             margin-bottom: 20px;
             letter-spacing: -0.01em;
         }
 
         .hero-title em {
             font-style: italic;
-            color: var(--gold);
+            color: #ffd700;
         }
 
         .hero-sub {
             font-size: 1.05rem;
-            color: var(--ink2);
+            color: rgba(255, 255, 255, 0.92);
             line-height: 1.75;
             margin-bottom: 36px;
             font-weight: 300;
@@ -368,8 +374,8 @@
 
         .btn-outline {
             background: transparent;
-            color: var(--ink);
-            border: 1.5px solid var(--border2);
+            color: white;
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
             border-radius: 12px;
             padding: 14px 28px;
             font-size: 0.9rem;
@@ -384,7 +390,7 @@
 
         .btn-outline:hover {
             border-color: var(--gold);
-            background: var(--gold-light);
+            background: rgba(166, 119, 31, 0.2);
         }
 
         .hero-trust {
@@ -701,27 +707,44 @@
             border-top: 1px solid #e8d5b8;
             border-bottom: 1px solid #e8d5b8;
             padding: 80px 48px;
+        }
+
+        .game-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .game-left {
             text-align: center;
         }
 
-        .game-inner {
-            max-width: 680px;
-            margin: 0 auto;
+        .game-header {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         .game-eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             background: var(--gold);
             color: #fff;
             border-radius: 100px;
-            padding: 7px 18px;
-            font-size: 0.75rem;
+            padding: 8px 20px;
+            font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+        }
+
+        .game-eyebrow svg {
+            width: 18px;
+            height: 18px;
         }
 
         .game-title {
@@ -729,22 +752,23 @@
             font-size: clamp(1.8rem, 3.5vw, 2.6rem);
             font-weight: 700;
             color: var(--ink);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .game-sub {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--ink2);
-            line-height: 1.7;
-            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto;
             font-weight: 300;
         }
 
         .cap-arena {
             position: relative;
-            width: 220px;
-            height: 220px;
-            margin: 0 auto 48px;
+            width: 240px;
+            height: 240px;
+            margin: 40px auto 24px;
             cursor: pointer;
         }
 
@@ -760,8 +784,8 @@
         }
 
         .cap-inner {
-            width: 160px;
-            height: 160px;
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
             background: radial-gradient(circle at 40% 30%, #f0e8d8, #b8a88a);
             box-shadow: inset 0 3px 8px rgba(255, 255, 255, 0.5), inset 0 -4px 10px rgba(0, 0, 0, 0.2);
@@ -773,7 +797,7 @@
 
         .cap-logo {
             font-family: 'Reddit Sans', sans-serif;
-            font-size: 0.72rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: #5a4a30;
             text-align: center;
@@ -784,7 +808,7 @@
 
         .cap-teeth {
             position: absolute;
-            inset: -6px;
+            inset: -8px;
             border-radius: 50%;
             background: repeating-conic-gradient(from 0deg, #b8a07a 0deg 14deg, #d4bc94 14deg 28deg);
             z-index: -1;
@@ -793,7 +817,7 @@
 
         .cap-grip-hint {
             position: absolute;
-            inset: -24px;
+            inset: -28px;
             border-radius: 50%;
             border: 2px dashed rgba(166, 119, 31, 0.4);
             animation: hint-pulse 2s ease-in-out infinite;
@@ -814,44 +838,12 @@
             }
         }
 
-        .cap-resist-msg {
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.78rem;
-            color: var(--gold);
-            font-weight: 500;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .cap-resist-msg.show {
-            opacity: 1;
-        }
-
         .game-progress-wrap {
-            margin: 20px auto 20px;
-            max-width: 340px;
-        }
-
-        .game-progress-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .game-progress-label span {
-            font-size: 0.8rem;
-            color: var(--ink2);
-        }
-
-        .game-progress-label strong {
-            font-size: 0.9rem;
-            color: var(--gold);
-            font-weight: 700;
+            margin-top: 36px;
+            width: 100%;
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .game-progress-bar {
@@ -869,21 +861,77 @@
             transition: width 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
+        .discount-value {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
         .game-hint {
             font-size: 0.82rem;
             color: var(--gold);
             font-weight: 500;
             margin-top: 16px;
-            margin-bottom: 8px;
+        }
+
+        .cap-start-wrap {
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .cap-start-btn {
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 13px 32px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Reddit Sans', sans-serif;
+            transition: background 0.2s, transform 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cap-start-btn:hover {
+            background: var(--gold-mid);
+            transform: translateY(-1px);
+        }
+
+        .cap-start-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .cap-countdown {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: 'Reddit Sans', sans-serif;
+            line-height: 1;
+            margin: 8px 0;
+        }
+
+        .game-right {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .game-result {
             display: none;
-            margin-top: 28px;
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 28px;
-            border: 1.5px solid #e8d5b8;
         }
 
         .game-result.show {
@@ -892,7 +940,7 @@
 
         .result-discount {
             font-family: 'Reddit Sans', sans-serif;
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 700;
             color: var(--gold);
             line-height: 1;
@@ -919,7 +967,7 @@
         }
 
         .result-note {
-            font-size: 0.82rem;
+            font-size: 0.75rem;
             color: var(--ink2);
         }
 
@@ -942,6 +990,20 @@
 
         .result-copy-btn:hover {
             background: #8a5f18;
+        }
+
+        .better-luck {
+            text-align: center;
+        }
+
+        .better-luck p {
+            font-size: 1.2rem;
+            color: var(--ink2);
+            margin-bottom: 8px;
+        }
+
+        .better-luck small {
+            color: var(--ink3);
         }
 
         #heritage {
@@ -993,11 +1055,6 @@
             text-align: center;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-        }
-
-        .h-stat-card svg {
-            color: var(--gold);
-            margin-bottom: 8px;
         }
 
         .h-stat-num {
@@ -1091,11 +1148,6 @@
             font-size: 0.8rem;
             font-weight: 700;
             margin-bottom: 16px;
-        }
-
-        .ritual-icon {
-            color: var(--gold);
-            margin-bottom: 12px;
         }
 
         .ritual-card h3 {
@@ -1630,6 +1682,7 @@
                 padding: 48px 24px;
                 min-height: unset;
                 gap: 40px;
+                background-position: 30% center;
             }
 
             .hero-text {
@@ -1670,6 +1723,11 @@
                 padding: 64px 24px;
             }
 
+            .game-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
             #newsletter {
                 padding: 64px 24px;
             }
@@ -1708,6 +1766,14 @@
 
             .newsletter-form button {
                 border-radius: 0 0 12px 12px;
+            }
+
+            .game-right {
+                padding: 24px;
+            }
+
+            #hero {
+                background-position: 40% center;
             }
         }
 
@@ -1784,53 +1850,6 @@
             color: var(--ink2);
             line-height: 1.6;
             font-weight: 300;
-        }
-
-        .cap-start-wrap {
-            margin: 16px auto 0;
-            text-align: center;
-        }
-
-        .cap-start-btn {
-            background: var(--gold);
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            padding: 13px 32px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: 'Reddit Sans', sans-serif;
-            transition: background 0.2s, transform 0.15s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cap-start-btn:hover {
-            background: var(--gold-mid);
-            transform: translateY(-1px);
-        }
-
-        .cap-start-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .cap-countdown {
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: var(--gold);
-            font-family: 'Reddit Sans', sans-serif;
-            line-height: 1;
-            margin: 8px 0;
-        }
-
-        .cap-locked {
-            pointer-events: none;
-            opacity: 0.4;
-            filter: grayscale(0.5);
         }
     </style>
 </head>
@@ -1918,8 +1937,9 @@
                         <path d="M5 12h14" />
                         <path d="m12 5 7 7-7 7" />
                     </svg>Checkout</button>
-                <p class="cart-game-hint" onclick="closeCart(); scrollTo('game-section')">Play the cap game to unlock
-                    a discount!</p>
+                <p class="cart-game-hint"
+                    onclick="closeCart(); document.getElementById('game-section').scrollIntoView({behavior:'smooth'})">
+                    Play the cap game to unlock a discount!</p>
             </div>
         </div>
     </div>
@@ -2040,52 +2060,48 @@
         </div>
     </section>
 
+    <!-- GAME SECTION -->
     <section id="game-section">
-        <div class="game-inner">
-            <div class="game-eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2.5">
-                    <polygon
-                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>Earn Your Discount</div>
-            <h2 class="game-title">Think you can open it?</h2>
-            <p class="game-sub">Twist the bottle cap to earn a discount. Maximum you can get is <strong>20%
-                    off</strong>. The cap is extremely stubborn — fight the resistance!</p>
-            <div class="cap-arena" id="capArena">
-                <div class="cap-base" id="capBase">
-                    <div class="cap-teeth"></div>
-                    <div class="cap-inner">
-                        <div class="cap-logo">EMBERGLEN</div>
+        <div style="text-align:center;padding:0 48px;margin-bottom:0;">
+            <div class="game-header" style="max-width:700px;margin:0 auto 0;">
+                <div class="game-eyebrow" style="display:inline-flex;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z" />
+                    </svg>
+                    Earn Your Discount
+                </div>
+                <h2 class="game-title">Think you can open it?</h2>
+                <p class="game-sub">Twist the bottle cap to earn a discount. Maximum you can get is <strong>20%
+                        off</strong>. The cap is extremely stubborn — fight the resistance!</p>
+            </div>
+        </div>
+        <div class="game-container">
+            <div class="game-left">
+                <div class="cap-arena" id="capArena">
+                    <div class="cap-base" id="capBase">
+                        <div class="cap-teeth"></div>
+                        <div class="cap-inner">
+                            <div class="cap-logo">EMBERGLEN</div>
+                        </div>
                     </div>
+                    <div class="cap-grip-hint"></div>
                 </div>
-                <div class="cap-grip-hint"></div>
-                <div class="cap-resist-msg" id="capResistMsg">Resistance increasing...</div>
-            </div>
-            <div class="cap-start-wrap" id="capStartWrap">
-                <div class="cap-countdown" id="capCountdown" style="display:none"></div>
-                <button class="cap-start-btn" id="capStartBtn" onclick="startCapGame()"><svg width="15" height="15"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polygon points="5 3 19 12 5 21 5 3" />
-                    </svg>Start</button>
-            </div>
-            <div class="game-progress-wrap">
-                <div class="game-progress-label"><span>Discount unlocked</span><strong id="discountVal">0%</strong>
+                <div class="game-progress-wrap">
+                    <div class="game-progress-bar">
+                        <div class="game-progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="discount-value" id="discountVal">0%</div>
                 </div>
-                <div class="game-progress-bar">
-                    <div class="game-progress-fill" id="progressFill"></div>
+                <div class="cap-start-wrap" id="capStartWrap">
+                    <div class="cap-countdown" id="capCountdown" style="display:none"></div>
+                    <button class="cap-start-btn" id="capStartBtn">Start</button>
                 </div>
+                <p class="game-hint" id="gameHint">Click Start to play</p>
             </div>
-            <p class="game-hint" id="gameHint">Click Start to play</p>
-            <div class="game-result" id="gameResult">
-                <div class="result-discount" id="resultDiscount">0%</div>
-                <p style="font-size:0.9rem;color:var(--ink2);margin-bottom:8px;" id="resultMessage">OFF your next order
-                </p>
-                <div class="result-code" id="resultCode" onclick="copyCode()">GLEN0</div>
-                <p class="result-note">Tap the code to copy · Valid for 48 hours · One use per order</p>
-                <button class="result-copy-btn" onclick="copyCode()"><svg width="15" height="15" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2.5">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                    </svg>Copy Discount Code</button>
+            <div class="game-right" id="gameRight" style="display:none;">
+                <div id="gameResultContainer"></div>
             </div>
         </div>
     </section>
@@ -2117,13 +2133,6 @@
                                 <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
                                 <line x1="4" y1="22" x2="4" y2="15" />
                             </svg>Wild Foraged</div>
-                        <div class="h-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5">
-                                <circle cx="12" cy="12" r="10" />
-                                <line x1="2" y1="12" x2="22" y2="12" />
-                                <path
-                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                            </svg>Ships to India</div>
                         <div class="h-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2.5">
                                 <path
@@ -2235,22 +2244,20 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Emberglen Ltd. Registered in Scotland.</p>
+            <p>© 2026 Emberglen Pvt. Ltd. <br>© Developed By Laksh Kukreja (@lakshkukreja07). All Rights Reserved.</p>
             <p>Privacy Policy · Terms of Service · Cookie Settings</p>
         </div>
     </footer>
 
     <script>
         const PRODUCTS = [
-            { id: 1, name: "Midnight Heather", category: "Signature", desc: "Dark wild heather, smoked birch and Highland juniper with a velvet finish", price: 2199, volume: "500ml", badge: "bestseller", badgeLabel: "Best Seller", notes: ["Heather", "Smoke", "Juniper", "Dark Fruit"], color: "#2a1a3e", color2: "#4d2d6e" },
-            { id: 2, name: "Amber Glen", category: "Classic", desc: "Sun-warmed meadowsweet, toasted oat and Speyside honey with golden warmth", price: 1899, volume: "500ml", badge: null, badgeLabel: null, notes: ["Honey", "Oat", "Meadowsweet", "Warm Spice"], color: "#3d2507", color2: "#7a4e10" },
-            { id: 3, name: "Sea Mist Tonic", category: "Limited", desc: "Coastal samphire, Atlantic kelp and crisp sea air with a bracing mineral clarity", price: 2599, volume: "500ml", badge: "new", badgeLabel: "New", notes: ["Samphire", "Kelp", "Citrus", "Mineral"], color: "#0f2430", color2: "#1a5070" },
-            { id: 4, name: "Rose of Perthshire", category: "Signature", desc: "Wild rose petals, gentle hibiscus and delicate elderflower from the Tay valley", price: 2099, volume: "500ml", badge: null, badgeLabel: null, notes: ["Rose", "Hibiscus", "Elderflower", "Soft Floral"], color: "#3d0d1a", color2: "#8a2040" },
-            { id: 5, name: "Peat & Moss", category: "Reserve", desc: "Ancient peat smoke, woodland moss, dry oak and a whisper of vanilla root", price: 2899, volume: "500ml", badge: "reserve", badgeLabel: "Reserve", notes: ["Peat", "Oak", "Moss", "Vanilla"], color: "#1a0d07", color2: "#4a2c10" },
-            { id: 6, name: "Winter Solstice", category: "Seasonal", desc: "Warm spiced sloe, cardamom, star anise and Highland winter berries", price: 2399, volume: "500ml", badge: "seasonal", badgeLabel: "Seasonal", notes: ["Sloe", "Cardamom", "Star Anise", "Winter Berry"], color: "#1a0d2e", color2: "#4a1a6e" }
+            { id: 1, name: "Midnight Heather", category: "Signature", desc: "Dark wild heather, smoked birch and Highland juniper with a velvet finish", price: 2199, volume: "500ml", badge: "bestseller", badgeLabel: "Best Seller", notes: ["Heather", "Smoke", "Juniper", "Dark Fruit"], color: "#2a1a3e", color2: "#4d2d6e", image: "https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/emberglen/prod1.jpeg" },
+            { id: 2, name: "Amber Glen", category: "Classic", desc: "Sun-warmed meadowsweet, toasted oat and Speyside honey with golden warmth", price: 1899, volume: "500ml", badge: null, badgeLabel: null, notes: ["Honey", "Oat", "Meadowsweet", "Warm Spice"], color: "#3d2507", color2: "#7a4e10", image: "https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/emberglen/prod2.jpeg" },
+            { id: 3, name: "Sea Mist Tonic", category: "Limited", desc: "Coastal samphire, Atlantic kelp and crisp sea air with a bracing mineral clarity", price: 2599, volume: "500ml", badge: "new", badgeLabel: "New", notes: ["Samphire", "Kelp", "Citrus", "Mineral"], color: "#0f2430", color2: "#1a5070", image: "https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/emberglen/prod3.jpeg" },
+            { id: 4, name: "Rose of Perthshire", category: "Signature", desc: "Wild rose petals, gentle hibiscus and delicate elderflower from the Tay valley", price: 2099, volume: "500ml", badge: null, badgeLabel: null, notes: ["Rose", "Hibiscus", "Elderflower", "Soft Floral"], color: "#3d0d1a", color2: "#8a2040", image: "https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/emberglen/prod4.jpeg" }
         ];
 
-        const FILTERS = ["All", "Signature", "Classic", "Reserve", "Limited", "Seasonal"];
+        const FILTERS = ["All", "Signature", "Classic", "Limited"];
         const RITUAL_STEPS = [
             { step: "01", title: "Choose Your Blend", desc: "Let the moment guide you. Contemplative evenings call for Peat & Moss; celebrations deserve Rose of Perthshire." },
             { step: "02", title: "Chill & Prepare", desc: "Serve between 4–8°C. A single large ice sphere in a wide-mouthed glass will open the botanicals beautifully." },
@@ -2258,9 +2265,11 @@
             { step: "04", title: "Sip Slowly", desc: "Let the botanicals unfurl. The first sip introduces. The second reveals. The third is where it truly lives." }
         ];
         const TESTIMONIALS = [
-            { text: "Peat & Moss genuinely tastes like sitting beside a Highland loch at dusk.", author: "James T.", loc: "Glasgow", initial: "J" },
-            { text: "As someone who's been sober for two years, Emberglen gave me back the ritual.", author: "Priya S.", loc: "Mumbai", initial: "P" },
-            { text: "The packaging alone would make me buy this.", author: "Callum R.", loc: "Aberdeen", initial: "C" }
+            { text: "Proud To Say Our Very Own Students Startup Has Created A Product Which Is Unique With Taste & Approach. Must Try Once!", author: "Mr. Tabriz M", loc: "India", initial: "TM" },
+            { text: "Addictive More Than Alcholic Drinks, I Just Love The Flavours!", author: "Mr. Malay Kela", loc: "India", initial: "MK" },
+            { text: "Definately A Strong Product In Market Which Is My New Choice Over Diet Coke!", author: "Mr. Prateek Kumar", loc: "India", initial: "PK" },
+            { text: "From Jai Hind College To Scotland, Glad I Can Order Embergland Drinks Anywhere.", author: "Dr. Rakhi Sharma", loc: "India", initial: "RS" },
+            { text: "The Packaging & Price Offer Attracts Me Like Anything.", author: "Ms. Catherine J.", loc: "Scotland", initial: "CJ" }
         ];
         const HERITAGE_STATS = [
             { num: "47+", label: "Botanicals" },
@@ -2279,24 +2288,21 @@
 
         let cart = [];
         let wishlist = [];
-        let gameActive = false;
-        let gameTimer = null;
-        let gameStartTime = 0;
-        let currentGameCleanup = null;
+        let gamePlayed = false;
 
         function renderHeroBotles() { }
         function renderWhyUs() { const grid = document.getElementById('whyUsGrid'); if (!grid) return; grid.innerHTML = WHY_US_DATA.map(w => `<div class="why-card"><div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${w.icon}</svg></div><div class="why-num">${w.num}</div><div class="why-label">${w.label}</div><p class="why-desc">${w.desc}</p></div>`).join(''); }
         function renderFilters() { const filterBar = document.getElementById('filterBar'); if (!filterBar) return; filterBar.innerHTML = FILTERS.map((f, i) => `<button class="filter-btn ${i === 0 ? 'active' : ''}" onclick="filterProducts('${f}',this)">${f}</button>`).join(''); }
         function filterProducts(cat, btn) { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderProducts(cat); }
-        function renderProducts(cat = 'All') { const list = cat === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat); const grid = document.getElementById('productsGrid'); if (!grid) return; grid.innerHTML = list.map(p => { const isWished = wishlist.some(w => w.id === p.id); return `<div class="product-card reveal"><div class="product-img" style="background:linear-gradient(160deg,${p.color}22,${p.color2}18)"><div class="product-bottle-art" style="background:linear-gradient(160deg,${p.color},${p.color2})"><div class="product-bottle-shine"></div><div class="product-bottle-label"><div class="product-bottle-label-name">${p.name}</div></div></div><div class="product-badge-wrap">${p.badge ? `<span class="p-badge ${p.badge}">${p.badgeLabel}</span>` : ''}</div><button onclick="toggleWishlist(${p.id})" style="position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.92);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s" title="${isWished ? 'Remove from wishlist' : 'Add to wishlist'}"><svg width="14" height="14" viewBox="0 0 24 24" fill="${isWished ? '#e05c7a' : 'none'}" stroke="${isWished ? '#e05c7a' : '#888'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="product-body"><div class="product-cat">${p.category}</div><h3 class="product-name">${p.name}</h3><p class="product-desc">${p.desc}</p><div class="product-notes">${p.notes.map(n => `<span class="note-chip">${n}</span>`).join('')}</div><div class="product-footer"><div class="product-price">₹${p.price.toLocaleString('en-IN')}<small>${p.volume}</small></div><button class="add-btn" onclick="addToCart(${p.id})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add to Bag</button></div></div></div>`; }).join(''); observeReveal(); }
+        function renderProducts(cat = 'All') { const list = cat === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat); const grid = document.getElementById('productsGrid'); if (!grid) return; grid.innerHTML = list.map(p => { const isWished = wishlist.some(w => w.id === p.id); return `<div class="product-card reveal"><div class="product-img" style="background:linear-gradient(160deg,${p.color}22,${p.color2}18);padding:0;overflow:hidden;position:relative;">${p.image ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none';this.parentElement.style.padding='24px';this.parentElement.innerHTML+='<div class=\\'product-bottle-art\\' style=\\'background:linear-gradient(160deg,${p.color},${p.color2})\\'><div class=\\'product-bottle-shine\\'></div><div class=\\'product-bottle-label\\'><div class=\\'product-bottle-label-name\\'>${p.name}</div></div></div>'">` : `<div class="product-bottle-art" style="background:linear-gradient(160deg,${p.color},${p.color2})"><div class="product-bottle-shine"></div><div class="product-bottle-label"><div class="product-bottle-label-name">${p.name}</div></div></div>`}<div class="product-badge-wrap" style="position:absolute;top:16px;right:16px;">${p.badge ? `<span class="p-badge ${p.badge}">${p.badgeLabel}</span>` : ''}</div><button onclick="toggleWishlist(${p.id})" style="position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.92);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s" title="${isWished ? 'Remove from wishlist' : 'Add to wishlist'}"><svg width="14" height="14" viewBox="0 0 24 24" fill="${isWished ? '#e05c7a' : 'none'}" stroke="${isWished ? '#e05c7a' : '#888'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="product-body"><div class="product-cat">${p.category}</div><h3 class="product-name">${p.name}</h3><p class="product-desc">${p.desc}</p><div class="product-notes">${p.notes.map(n => `<span class="note-chip">${n}</span>`).join('')}</div><div class="product-footer"><div class="product-price">₹${p.price.toLocaleString('en-IN')}<small>${p.volume}</small></div><button class="add-btn" onclick="addToCart(${p.id})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add to Bag</button></div></div></div>`; }).join(''); observeReveal(); }
         function renderHeritage() { const statsContainer = document.getElementById('heritageStats'); if (!statsContainer) return; statsContainer.innerHTML = HERITAGE_STATS.map(s => `<div class="h-stat-card"><div class="h-stat-num">${s.num}</div><div class="h-stat-label">${s.label}</div></div>`).join(''); }
         function renderRitual() { const ritualGrid = document.getElementById('ritualGrid'); if (!ritualGrid) return; ritualGrid.innerHTML = RITUAL_STEPS.map(s => `<div class="ritual-card reveal"><div class="ritual-step-num">${s.step}</div><h3>${s.title}</h3><p>${s.desc}</p></div>`).join(''); }
         function renderTestimonials() { const testiGrid = document.getElementById('testiGrid'); if (!testiGrid) return; testiGrid.innerHTML = TESTIMONIALS.map(t => `<div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"${t.text}"</p><div class="testi-author"><div class="testi-avatar">${t.initial}</div><div><div class="testi-name">${t.author}</div><div class="testi-loc"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${t.loc}</div></div></div></div>`).join(''); }
         function addToCart(id) { const p = PRODUCTS.find(x => x.id === id); const existing = cart.find(x => x.id === id); if (existing) existing.qty++; else cart.push({ ...p, qty: 1 }); updateCartUI(); openCart(); }
-        function updateCartUI() { const count = cart.reduce((s, x) => s + x.qty, 0); const cartCountEl = document.getElementById('cartCount'); if (cartCountEl) { cartCountEl.textContent = count; cartCountEl.classList.toggle('show', count > 0); } const body = document.getElementById('cartBody'); const foot = document.getElementById('cartFoot'); if (!body || !foot) return; if (cart.length === 0) { body.innerHTML = `<div class="cart-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><p>Your bag is empty</p></div>`; foot.style.display = 'none'; return; } body.innerHTML = cart.map(item => `<div class="cart-item"><div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-desc">${item.volume} · ${item.category}</div><div class="cart-item-row"><div class="qty-control"><button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button><span class="qty-num">${item.qty}</span><button class="qty-btn" onclick="changeQty(${item.id},1)">+</button></div><span class="cart-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</span></div></div></div>`).join(''); const total = cart.reduce((s, x) => s + x.price * x.qty, 0); const cartTotalEl = document.getElementById('cartTotal'); if (cartTotalEl) cartTotalEl.textContent = `₹${total.toLocaleString('en-IN')}`; foot.style.display = 'block'; }
+        function updateCartUI() { const count = cart.reduce((s, x) => s + x.qty, 0); const cartCountEl = document.getElementById('cartCount'); if (cartCountEl) { cartCountEl.textContent = count; cartCountEl.classList.toggle('show', count > 0); } const body = document.getElementById('cartBody'); const foot = document.getElementById('cartFoot'); if (!body || !foot) return; if (cart.length === 0) { body.innerHTML = `<div class="cart-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><p>Your bag is empty</p></div>`; foot.style.display = 'none'; return; } body.innerHTML = cart.map(item => `<div class="cart-item"><div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2});overflow:hidden;padding:0;">${item.image ? `<img src="${item.image}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;">` : ''}</div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-desc">${item.volume} · ${item.category}</div><div class="cart-item-row"><div class="qty-control"><button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button><span class="qty-num">${item.qty}</span><button class="qty-btn" onclick="changeQty(${item.id},1)">+</button></div><span class="cart-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</span></div></div></div>`).join(''); const total = cart.reduce((s, x) => s + x.price * x.qty, 0); const cartTotalEl = document.getElementById('cartTotal'); if (cartTotalEl) cartTotalEl.textContent = `₹${total.toLocaleString('en-IN')}`; foot.style.display = 'block'; }
         function changeQty(id, delta) { const item = cart.find(x => x.id === id); if (!item) return; item.qty += delta; if (item.qty <= 0) cart = cart.filter(x => x.id !== id); updateCartUI(); }
         function toggleWishlist(id) { const p = PRODUCTS.find(x => x.id === id); const idx = wishlist.findIndex(x => x.id === id); if (idx >= 0) wishlist.splice(idx, 1); else wishlist.push({ ...p }); updateWishlistUI(); renderProducts(document.querySelector('.filter-btn.active')?.textContent || 'All'); }
-        function updateWishlistUI() { const count = wishlist.length; const countEl = document.getElementById('wishlistCount'); if (countEl) { countEl.textContent = count; countEl.classList.toggle('show', count > 0); } const body = document.getElementById('wishlistBody'); if (!body) return; if (wishlist.length === 0) { body.innerHTML = `<div class="cart-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><p>No wishlisted items yet</p></div>`; return; } body.innerHTML = wishlist.map(item => `<div class="cart-item"><div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-desc">${item.volume} · ${item.category}</div><div class="cart-item-row"><span style="font-size:0.85rem;color:var(--ink2)">₹${item.price.toLocaleString('en-IN')}</span><div style="display:flex;gap:8px"><button class="add-btn" style="font-size:0.75rem;padding:6px 12px" onclick="addToCart(${item.id});closeWishlist()">Add to Bag</button><button onclick="toggleWishlist(${item.id})" style="width:28px;height:28px;border-radius:8px;background:var(--bg2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#e05c7a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div></div></div>`).join(''); }
+        function updateWishlistUI() { const count = wishlist.length; const countEl = document.getElementById('wishlistCount'); if (countEl) { countEl.textContent = count; countEl.classList.toggle('show', count > 0); } const body = document.getElementById('wishlistBody'); if (!body) return; if (wishlist.length === 0) { body.innerHTML = `<div class="cart-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><p>No wishlisted items yet</p></div>`; return; } body.innerHTML = wishlist.map(item => `<div class="cart-item"><div class="cart-item-img" style="background:linear-gradient(160deg,${item.color},${item.color2});overflow:hidden;padding:0;">${item.image ? `<img src="${item.image}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;">` : ''}</div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-desc">${item.volume} · ${item.category}</div><div class="cart-item-row"><span style="font-size:0.85rem;color:var(--ink2)">₹${item.price.toLocaleString('en-IN')}</span><div style="display:flex;gap:8px"><button class="add-btn" style="font-size:0.75rem;padding:6px 12px" onclick="addToCart(${item.id});closeWishlist()">Add to Bag</button><button onclick="toggleWishlist(${item.id})" style="width:28px;height:28px;border-radius:8px;background:var(--bg2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#e05c7a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div></div></div>`).join(''); }
         function openWishlist() { updateWishlistUI(); document.getElementById('wishlistDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; }
         function closeWishlist() { document.getElementById('wishlistDrawer').classList.remove('open'); document.body.style.overflow = ''; }
         function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.body.style.overflow = 'hidden'; }
@@ -2307,9 +2313,42 @@
         function doSearch(query) { const results = document.getElementById('searchResults'); if (!results) return; const q = query.trim().toLowerCase(); if (!q) { results.innerHTML = `<div class="cart-empty" style="padding-top:32px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><p style="margin-top:8px">Type to search blends</p></div>`; return; } const found = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.notes.some(n => n.toLowerCase().includes(q))); if (!found.length) { results.innerHTML = `<div class="cart-empty" style="padding-top:32px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><p style="margin-top:8px">No products found</p></div>`; return; } results.innerHTML = found.map(p => `<div class="cart-item" style="cursor:pointer" onclick="closeSearch();document.getElementById('products').scrollIntoView({behavior:'smooth'})"><div class="cart-item-img" style="background:linear-gradient(160deg,${p.color},${p.color2})"></div><div class="cart-item-info"><div class="cart-item-name">${p.name}</div><div class="cart-item-desc">${p.volume} · ${p.category}</div><div class="cart-item-row"><span class="cart-item-price">₹${p.price.toLocaleString('en-IN')}</span><button class="add-btn" style="font-size:0.75rem;padding:6px 12px" onclick="event.stopPropagation();addToCart(${p.id})">Add to Bag</button></div></div></div>`).join(''); }
         function observeReveal() { const io = new IntersectionObserver(entries => { entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 70); io.unobserve(e.target); } }); }, { threshold: 0.1 }); document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el)); }
 
+        // GAME LOGIC
+        let gameActive = false;
+        let gameTimer = null;
+        let gameStartTime = 0;
+        let currentGameCleanup = null;
+
         function resetCapUIPosition() {
             const cap = document.getElementById('capBase');
             if (cap) cap.style.transform = 'rotate(0deg)';
+        }
+
+        function showResult(earnedDiscount) {
+            const container = document.getElementById('gameResultContainer');
+            if (!container) return;
+            const gameRight = document.getElementById('gameRight');
+            if (gameRight) gameRight.style.display = 'flex';
+
+            if (earnedDiscount > 0) {
+                const code = "GLEN" + earnedDiscount;
+                container.innerHTML = `
+                    <div class="game-result show">
+                        <div class="result-discount">${earnedDiscount}%</div>
+                        <p style="font-size:0.9rem;color:var(--ink2);margin-bottom:8px;">OFF your next order</p>
+                        <div class="result-code" onclick="copyCode('${code}')">${code}</div>
+                        <p class="result-note">Tap the code to copy · Valid for 48 hours · One use per order</p>
+                        <button class="result-copy-btn" onclick="copyCode('${code}')">Copy Discount Code</button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="better-luck">
+                        <p style="font-size:1.2rem;font-weight:600;margin-bottom:8px;">Better luck next time</p>
+                        <small>You earned 0% discount. Refresh the page to try again.</small>
+                    </div>
+                `;
+            }
         }
 
         function endGame(earnedDiscount) {
@@ -2321,40 +2360,19 @@
             const fill = document.getElementById('progressFill');
             const valEl = document.getElementById('discountVal');
             const hint = document.getElementById('gameHint');
-            const result = document.getElementById('gameResult');
-            const resultDiscount = document.getElementById('resultDiscount');
-            const resultCode = document.getElementById('resultCode');
-            const resultMessage = document.getElementById('resultMessage');
             const startWrap = document.getElementById('capStartWrap');
             const countdownEl = document.getElementById('capCountdown');
 
             if (countdownEl) countdownEl.style.display = 'none';
-            if (startWrap) startWrap.style.display = 'block';
-
-            const startBtn = document.getElementById('capStartBtn');
-            if (startBtn) {
-                startBtn.disabled = false;
-                startBtn.style.display = 'inline-flex';
-            }
+            if (startWrap) startWrap.style.display = 'none';
 
             resetCapUIPosition();
 
-            if (earnedDiscount > 0) {
-                const code = "GLEN" + earnedDiscount;
-                if (resultDiscount) resultDiscount.textContent = earnedDiscount + '%';
-                if (resultCode) { resultCode.textContent = code; resultCode.dataset.code = code; }
-                if (resultMessage) resultMessage.textContent = 'OFF your next order';
-                if (hint) hint.textContent = "You earned " + earnedDiscount + "% off!";
-            } else {
-                if (resultDiscount) resultDiscount.textContent = '0%';
-                if (resultCode) { resultCode.textContent = 'TRYAGAIN'; resultCode.dataset.code = ''; }
-                if (resultMessage) resultMessage.textContent = 'Better luck next time';
-                if (hint) hint.textContent = "Time's up! No discount this time.";
-            }
-            if (result) result.classList.add('show');
-
             if (fill) fill.style.width = '0%';
             if (valEl) valEl.textContent = '0%';
+            if (hint) hint.textContent = earnedDiscount > 0 ? "You earned " + earnedDiscount + "% off!" : "Time's up! No discount this time.";
+
+            showResult(earnedDiscount);
         }
 
         function initializeCapGamePhysics() {
@@ -2375,12 +2393,11 @@
             let opened = false;
             let animFrame = null;
             let timeoutId = null;
-            const FRICTION = 0.96;
-            const GRAVITY_PULLBACK = 1.4;
-            const RESISTANCE_BASE = 5.5;
-            const RESISTANCE_SCALE = 22;
-
-            const gameEndTime = Date.now() + 5000;
+            let releaseTimeout = null;
+            const FRICTION = 0.98;
+            const GRAVITY_PULLBACK = 0.8;
+            const RESISTANCE_BASE = 6.5;
+            const RESISTANCE_SCALE = 24;
 
             function checkTimeLimit() {
                 if (opened) return;
@@ -2402,18 +2419,29 @@
             }
 
             function physicsLoop() {
-                if (isDragging || opened) return;
-                if (Math.abs(angularVelocity) < 0.02 && Math.abs(totalRotation) < 0.2) {
+                if (isDragging || opened || !gameActive) {
                     cancelAnimationFrame(animFrame);
                     return;
                 }
+                if (Math.abs(angularVelocity) < 0.01 && Math.abs(totalRotation) < 0.1) {
+                    cancelAnimationFrame(animFrame);
+                    if (releaseTimeout) clearTimeout(releaseTimeout);
+                    releaseTimeout = setTimeout(() => {
+                        if (!opened && gameActive && totalRotation < 5) {
+                            endGame(0);
+                            cleanup();
+                        }
+                    }, 1000);
+                    return;
+                }
+                if (releaseTimeout) clearTimeout(releaseTimeout);
                 angularVelocity -= GRAVITY_PULLBACK * (1 + discount / MAX_DISCOUNT);
                 angularVelocity *= FRICTION;
                 capRotation += angularVelocity;
-                if (angularVelocity < 0) {
-                    totalRotation = Math.max(0, totalRotation + angularVelocity * 0.25);
+                if (angularVelocity < 0 && totalRotation > 0) {
+                    totalRotation = Math.max(0, totalRotation + angularVelocity * 0.15);
                 }
-                discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 32));
+                discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 45));
                 cap.style.transform = `rotate(${capRotation}deg)`;
                 if (fill) fill.style.width = (discount / MAX_DISCOUNT * 100) + '%';
                 if (valEl) valEl.textContent = discount + '%';
@@ -2424,6 +2452,7 @@
                 if (opened) return;
                 e.preventDefault();
                 isDragging = true;
+                if (releaseTimeout) clearTimeout(releaseTimeout);
                 cancelAnimationFrame(animFrame);
                 angularVelocity = 0;
                 lastAngle = getAngle(e, cap);
@@ -2442,18 +2471,14 @@
                     totalRotation += netDelta;
                     capRotation += netDelta;
                     angularVelocity = netDelta;
-                    if (discount > 8) {
-                        const jitter = (Math.random() - 0.5) * (discount / 6);
-                        capRotation += jitter;
-                    }
                 } else {
-                    const snapBack = delta * 0.65;
+                    const snapBack = delta * 0.5;
                     capRotation += snapBack;
-                    totalRotation = Math.max(0, totalRotation + snapBack * 0.12);
+                    totalRotation = Math.max(0, totalRotation + snapBack * 0.08);
                     angularVelocity = snapBack;
                 }
                 lastAngle = angle;
-                discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 32));
+                discount = Math.min(MAX_DISCOUNT, Math.floor(totalRotation / 45));
                 cap.style.transform = `rotate(${capRotation}deg)`;
                 if (fill) fill.style.width = (discount / MAX_DISCOUNT * 100) + '%';
                 if (valEl) valEl.textContent = discount + '%';
@@ -2473,7 +2498,7 @@
             function onEnd() {
                 if (!isDragging) return;
                 isDragging = false;
-                if (!opened) {
+                if (!opened && gameActive) {
                     animFrame = requestAnimationFrame(physicsLoop);
                 }
             }
@@ -2481,6 +2506,7 @@
             function cleanup() {
                 if (animFrame) cancelAnimationFrame(animFrame);
                 if (timeoutId) clearTimeout(timeoutId);
+                if (releaseTimeout) clearTimeout(releaseTimeout);
                 cap.removeEventListener('mousedown', onStart);
                 cap.removeEventListener('touchstart', onStart);
                 document.removeEventListener('mousemove', onMove);
@@ -2501,23 +2527,24 @@
         }
 
         function startCapGame() {
-            if (gameActive) return;
+            if (gamePlayed) return;
 
             const btn = document.getElementById('capStartBtn');
             const countdownEl = document.getElementById('capCountdown');
             const startWrap = document.getElementById('capStartWrap');
             const hint = document.getElementById('gameHint');
-            const result = document.getElementById('gameResult');
             const fill = document.getElementById('progressFill');
             const valEl = document.getElementById('discountVal');
+            const container = document.getElementById('gameResultContainer');
 
-            if (result) result.classList.remove('show');
             if (fill) fill.style.width = '0%';
             if (valEl) valEl.textContent = '0%';
+            if (container) container.innerHTML = '';
             resetCapUIPosition();
 
             if (!btn || !countdownEl || !startWrap) return;
 
+            gamePlayed = true;
             gameActive = true;
             btn.disabled = true;
             btn.style.display = 'none';
@@ -2547,10 +2574,8 @@
             }, 1000);
         }
 
-        window.copyCode = function () {
-            const codeEl = document.getElementById('resultCode');
-            const code = (codeEl?.dataset.code || codeEl?.textContent || "");
-            if (code && code !== "TRYAGAIN") {
+        window.copyCode = function (code) {
+            if (code && code !== "") {
                 navigator.clipboard.writeText(code).then(() => {
                     const btn = document.querySelector('.result-copy-btn');
                     if (btn) {
@@ -2566,6 +2591,8 @@
             document.getElementById('mobileDrawer').classList.add('open');
             document.body.style.overflow = 'hidden';
         });
+
+        document.getElementById('capStartBtn')?.addEventListener('click', startCapGame);
 
         renderHeroBotles();
         renderWhyUs();
