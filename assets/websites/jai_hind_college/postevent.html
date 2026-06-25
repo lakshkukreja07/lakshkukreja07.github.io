@@ -315,50 +315,29 @@
 
         .hero-headline-year {
             display: block;
-            font-weight: 900;
-            line-height: 0.75;
-            margin-bottom: 0.05em;
-            user-select: none;
-            overflow: visible;
-        }
-
-        .hero-year-svg {
-            display: block;
-            width: 100%;
-            max-width: 780px;
-            height: auto;
-            overflow: visible;
-            margin-bottom: -0.12em;
-        }
-
-        .hero-year-svg text {
             font-family: 'Clash Grotesk', sans-serif;
             font-weight: 900;
-            font-style: normal;
-            font-size: 300px;
-            fill: rgba(255, 255, 255, 1);
-            stroke-width: 4px;
-            stroke-linejoin: round;
-            paint-order: stroke fill;
-            letter-spacing: 0px;
+            font-size: 10rem;
+            color: rgba(255, 255, 255, 1);
+            text-align: center;
         }
 
         .hero-headline-main {
             font-family: 'Sentient', sans-serif;
             font-weight: 700;
-            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            font-size: 4rem;
             color: rgba(255, 255, 255, 1);
-            letter-spacing: 0px;
-            line-height: 1.05;
+            text-align: center;
+            line-height: 1;
         }
 
         .hero-subline {
             font-family: 'Clash Grotesk', sans-serif;
             font-weight: 400;
             font-size: clamp(rem, 1.5vw, 1.1rem);
-            color: rgba(255, 255, 255, .6);
-            letter-spacing: 0.01em;
-            line-height: 1.7;
+            color: rgba(255, 255, 255, 1);
+            line-height: 1.4;
+            text-align: center;
             max-width: 500px;
         }
 
@@ -792,6 +771,19 @@
                 min-height: 240px;
             }
 
+            .hero-headline-year {
+                font-size: 4rem;
+            }
+
+            .hero-headline-main {
+                font-size: 2rem;
+            }
+
+            .hero-subline {
+                font-size: 1rem;
+            }
+
+
             .slide-controls {
                 bottom: .9rem;
                 gap: .6rem;
@@ -931,12 +923,7 @@
         <div class="hero-content">
             <div class="hero-text-block">
                 <h1 class="hero-headline">
-                    <span class="hero-headline-year" aria-hidden="true">
-                        <svg class="hero-year-svg" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true" preserveAspectRatio="xMinYMid meet">
-                            <text x="0" y="178" letter-spacing="-4">2026</text>
-                        </svg>
-                    </span>
+                    <span class="hero-headline-year" aria-hidden="true">2026</span>
                     <span class="hero-headline-main">First Edition</span>
                 </h1>
                 <p class="hero-subline">Presenting International Management Conference.</p>
