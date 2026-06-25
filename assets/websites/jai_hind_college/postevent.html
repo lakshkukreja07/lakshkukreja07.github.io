@@ -1,1 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en_us">
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <title>IMC | Jai Hind College</title>
+    <meta name="description"
+        content="International Management Conference 2026, Jai Hind College (Empowered Autonomous), Mumbai." />
+    <link rel="icon" type="image/png"
+        href="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png" />
+
+    <style>
+        /* ── CLASH GROTESK VARIABLE FONT ── */
+        @font-face {
+            font-family: 'Clash Grotesk';
+            src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashgrotesk/clashgrotesk-variable.ttf') format('truetype-variations');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ── TANKER FONT ── */
+        @font-face {
+            font-family: 'Tanker';
+            src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/tanker/tanker-regular.ttf') format('truetype');
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ── SENTINENT VARIABLE FONT ── */
+        @font-face {
+            font-family: 'Sentient';
+            src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/sentient-variable.ttf') format('truetype-variations');
+            font-weight: 200 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --nav-h: 84px;
+            --nav-h-mobile: 64px;
+            --accent: #fcaf17;
+            --accent-dark: #e19808;
+            --transition: .8s cubic-bezier(.25, .46, .45, .94);
+            --bg: #0a0a0a;
+            --dot-color: rgba(255, 255, 255, .3);
+            --dot-active-bg: rgba(255, 255, 255, .12);
+            --slide-duration: 5s;
+            --slide-accent: rgba(212, 175, 55, .3);
+        }
+
+        html {
+            height: 100%;
+            scroll-behavior: smooth;
+            background: var(--bg);
+        }
+
+        body {
+            font-family: 'Clash Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ── NAV ── TRANSPARENT → BLUR ON SCROLL ── */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-h);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            background: transparent;
+            backdrop-filter: blur(0px) saturate(100%);
+            -webkit-backdrop-filter: blur(0px) saturate(100%);
+            border-bottom: 1px solid transparent;
+            transition: background 0.5s ease, backdrop-filter 0.5s ease,
+                -webkit-backdrop-filter 0.5s ease, border-color 0.5s ease,
+                height var(--transition);
+        }
+
+        .site-nav.scrolled {
+            background: rgba(8, 8, 12, 0.55);
+            backdrop-filter: blur(28px) saturate(200%);
+            -webkit-backdrop-filter: blur(28px) saturate(200%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-container {
+            max-width: 1480px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: .85rem;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .college-logo {
+            height: 54px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav-broadcast {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: .85rem;
+            letter-spacing: .2px;
+            color: #fff;
+            padding: .6rem 1rem;
+            border-radius: 499px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background .3s ease;
+            background: transparent;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .nav-broadcast:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* ── HERO ────────────────────────────────────────────────────── */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 560px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: var(--bg);
+        }
+
+        .hero-accent-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: rgba(212, 175, 55, 0.3);
+            filter: blur(60px);
+            transform: scale(1.2);
+            opacity: 0;
+            transition: opacity 1s ease, background 0.8s ease;
+            pointer-events: none;
+        }
+
+        .hero-accent-bg.visible {
+            opacity: 0.6;
+        }
+
+        .slides {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: translateX(100%);
+            will-change: transform, opacity;
+            transition: transform 1s cubic-bezier(.25, .46, .45, .94),
+                opacity 1s cubic-bezier(.25, .46, .45, .94);
+        }
+
+        .slide.active {
+            transform: translateX(0);
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .slide.exit-left {
+            transform: translateX(-100%);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        /* ── GRADIENT OVERLAYS WITH DYNAMIC COLORS ── */
+        .hero-gradient-top {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            background: linear-gradient(180deg,
+                    rgba(0, 0, 0, .6) 0%,
+                    rgba(0, 0, 0, .1) 35%,
+                    rgba(0, 0, 0, .2) 65%,
+                    rgba(0, 0, 0, .85) 100%);
+            pointer-events: none;
+            transition: background 0.8s ease;
+        }
+
+        .hero-gradient-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 45%;
+            z-index: 3;
+            background: linear-gradient(0deg,
+                    rgba(10, 20, 60, 0.85) 0%,
+                    rgba(10, 20, 60, 0.5) 25%,
+                    rgba(10, 20, 60, 0.2) 50%,
+                    transparent 100%);
+            pointer-events: none;
+            transition: background 0.8s ease;
+        }
+
+        .hero-bottom-color-bleed {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            z-index: 3;
+            background: linear-gradient(0deg,
+                    rgba(10, 20, 60, 0.25) 0%,
+                    rgba(10, 20, 60, 0.12) 30%,
+                    rgba(10, 20, 60, 0.04) 60%,
+                    transparent 100%);
+            pointer-events: none;
+            transition: background 0.8s ease;
+        }
+
+        .hero-scrim {
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            background: #000;
+            opacity: var(--scrim-opacity, 0);
+            pointer-events: none;
+            transition: opacity .1s linear;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 1480px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+            min-height: 100vh;
+            padding-bottom: 7rem;
+        }
+
+        .hero-text-block {
+            max-width: 780px;
+            animation: heroFadeUp 1.2s cubic-bezier(.22, 1, .36, 1) both;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes heroFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(32px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-headline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            line-height: 1;
+            margin-bottom: 1.4rem;
+        }
+
+        .hero-headline-year {
+            display: block;
+            font-weight: 900;
+            line-height: 0.75;
+            margin-bottom: 0.05em;
+            user-select: none;
+            overflow: visible;
+        }
+
+        .hero-year-svg {
+            display: block;
+            width: 100%;
+            max-width: 780px;
+            height: auto;
+            overflow: visible;
+            margin-bottom: -0.12em;
+        }
+
+        .hero-year-svg text {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 900;
+            font-style: normal;
+            font-size: 300px;
+            fill: rgba(255, 255, 255, 1);
+            stroke-width: 4px;
+            stroke-linejoin: round;
+            paint-order: stroke fill;
+            letter-spacing: 0px;
+        }
+
+        .hero-headline-main {
+            font-family: 'Sentient', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            color: rgba(255, 255, 255, 1);
+            letter-spacing: 0px;
+            line-height: 1.05;
+        }
+
+        .hero-subline {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 400;
+            font-size: clamp(rem, 1.5vw, 1.1rem);
+            color: rgba(255, 255, 255, .6);
+            letter-spacing: 0.01em;
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        .slide-controls {
+            position: absolute;
+            right: 2.5rem;
+            bottom: 2.5rem;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .slide-dots {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .slide-dots button {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--dot-color);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            overflow: visible;
+            transition: all .3s ease;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-dots button.active {
+            width: 64px;
+            height: 8px;
+            border-radius: 499px;
+            background: var(--dot-active-bg);
+            overflow: hidden;
+        }
+
+        .slide-dots button .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background: #fff;
+            border-radius: 499px;
+        }
+
+        .slide-dots button.active .progress-fill {
+            animation: barFill var(--slide-duration) linear forwards;
+        }
+
+        .slide-dots button.active.paused .progress-fill {
+            animation-play-state: paused;
+        }
+
+        @keyframes barFill {
+            from {
+                width: 0%;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        .slide-dots button:not(.active):hover {
+            background: rgba(255, 255, 255, .6);
+            transform: scale(1.2);
+        }
+
+        .slide-pause {
+            background: none;
+            border: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: all .25s ease;
+            position: relative;
+            width: 24px;
+            height: 24px;
+        }
+
+        .slide-pause::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--dot-color);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all .25s ease;
+            pointer-events: none;
+        }
+
+        .slide-pause:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slide-pause svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── RECAP SECTION ── */
+        .recap-section {
+            position: relative;
+            background: var(--bg);
+            margin-top: -1px;
+            padding: 0 0 6rem;
+            overflow: hidden;
+        }
+
+        .recap-navy-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70%;
+            background: linear-gradient(180deg,
+                    rgba(10, 20, 60, 0.3) 0%,
+                    rgba(10, 20, 60, 0.15) 25%,
+                    rgba(10, 20, 60, 0.05) 50%,
+                    transparent 75%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .recap-bleed {
+            position: absolute;
+            top: -280px;
+            left: 0;
+            right: 0;
+            height: 420px;
+            z-index: 0;
+            pointer-events: none;
+            transition: background 0.8s ease;
+            background: linear-gradient(180deg,
+                    rgba(10, 20, 60, 0.15) 0%,
+                    rgba(10, 20, 60, 0.08) 25%,
+                    rgba(10, 20, 60, 0.02) 50%,
+                    transparent 75%);
+        }
+
+        .recap-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2.5rem 0;
+        }
+
+        .recap-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: .72rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0.85;
+        }
+
+        .recap-label-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(252, 175, 23, 0.4), transparent);
+            max-width: 120px;
+        }
+
+        .recap-heading {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .recap-heading em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .recap-desc {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 300;
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 3.5rem;
+            color: rgba(255, 255, 255, .55);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .recap-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .recap-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 2.5rem;
+        }
+
+        .recap-stat-divider {
+            width: 1px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-num {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #fff;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .stat-plus {
+            color: var(--accent);
+            font-size: 0.65em;
+        }
+
+        .stat-label {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 400;
+            font-size: .75rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .4);
+            margin-top: .4rem;
+        }
+
+        .recap-photo-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 12px;
+            margin-bottom: 4rem;
+            height: 520px;
+        }
+
+        .recap-photo {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .recap-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(.25, .46, .45, .94);
+        }
+
+        .recap-photo:hover img {
+            transform: scale(1.04);
+        }
+
+        .recap-photo-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(3, 10, 26, 0.6) 100%);
+        }
+
+        .recap-photo--tall {
+            height: 100%;
+        }
+
+        .recap-photo-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .recap-photo--half {
+            flex: 1;
+        }
+
+        .recap-quote {
+            border-left: 2px solid var(--accent);
+            padding: 1.2rem 0 1.2rem 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .recap-quote-mark {
+            display: block;
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 4rem;
+            line-height: 0.5;
+            color: var(--accent);
+            opacity: 0.4;
+            margin-bottom: 0.8rem;
+        }
+
+        .recap-quote blockquote {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, .75);
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .recap-quote cite {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 400;
+            font-size: .8rem;
+            color: var(--accent);
+            letter-spacing: .08em;
+            font-style: normal;
+        }
+
+        @media (max-width: 980px) {
+            :root {
+                --nav-h: var(--nav-h-mobile);
+            }
+
+            .nav-container {
+                padding: 0 1.25rem;
+            }
+
+            .college-logo {
+                height: 34px;
+            }
+
+            .nav-title {
+                font-size: .55rem;
+                letter-spacing: .3px;
+            }
+
+            .hero {
+                height: 60vh;
+                min-height: 320px;
+            }
+
+            .hero-content {
+                padding: 0 1.25rem;
+                padding-bottom: 5rem;
+                min-height: 60vh;
+            }
+
+            .hero-headline-year {
+                font-size: clamp(4rem, 18vw, 6rem);
+            }
+
+            .slide-controls {
+                right: 50%;
+                bottom: 1.25rem;
+                transform: translateX(50%);
+                gap: .8rem;
+            }
+
+            .slide-dots {
+                gap: 0.4rem;
+            }
+
+            .slide-dots button {
+                width: 7px;
+                height: 7px;
+            }
+
+            .slide-dots button.active {
+                width: 48px;
+                height: 7px;
+            }
+
+            .slide-pause {
+                width: 20px;
+                height: 20px;
+            }
+
+            .slide-pause svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .slide-pause::before {
+                inset: -3px;
+            }
+
+            .recap-inner {
+                padding: 3.5rem 1.25rem 0;
+            }
+
+            .recap-photo-grid {
+                height: 360px;
+            }
+
+            .recap-stat {
+                padding: 1rem 1.5rem;
+            }
+
+            .recap-stat-divider {
+                height: 36px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                height: 60vh;
+                min-height: 240px;
+            }
+
+            .slide-controls {
+                bottom: .9rem;
+                gap: .6rem;
+            }
+
+            .slide-dots {
+                gap: 0.35rem;
+            }
+
+            .slide-dots button {
+                width: 6px;
+                height: 6px;
+            }
+
+            .slide-dots button.active {
+                width: 36px;
+                height: 6px;
+            }
+
+            .slide-pause {
+                width: 16px;
+                height: 16px;
+            }
+
+            .slide-pause svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .slide-pause::before {
+                inset: -2px;
+            }
+
+            .nav-title {
+                font-size: .45rem;
+                letter-spacing: .2px;
+            }
+
+            .recap-photo-grid {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .recap-photo--tall {
+                height: 280px;
+            }
+
+            .recap-photo-col {
+                flex-direction: row;
+            }
+
+            .recap-photo--half {
+                height: 180px;
+            }
+
+            .recap-stats {
+                gap: 0;
+            }
+
+            .recap-stat {
+                padding: .8rem 1rem;
+            }
+
+            .recap-stat-divider {
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .nav-title {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .slide,
+            .site-nav,
+            .slide-dots button .progress-fill,
+            .hero-gradient-top,
+            .hero-gradient-bottom,
+            .hero-bottom-color-bleed,
+            .recap-section,
+            .recap-bleed,
+            .hero-text-block {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="site-nav" id="siteNav">
+        <div class="nav-container">
+            <a class="logo-wrapper" href="#" aria-label="Home">
+                <img class="college-logo"
+                    src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
+                    alt="Jai Hind College Logo" width="42" height="42" loading="eager" />
+            </a>
+            <div class="nav-right">
+                <span class="nav-broadcast">
+                    Broadcast
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="margin-left: 5px; display: inline-block; align-items: bottom;">
+                        <path d="M7 7h10v10" />
+                        <path d="M7 17 17 7" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="hero-accent-bg" id="heroAccentBg"></div>
+
+        <div class="slides" id="slides">
+            <div class="slide active"
+                style="background-image:url('https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/1.jpg')">
+            </div>
+            <div class="slide"
+                style="background-image:url('https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/2.jpg')">
+            </div>
+            <div class="slide"
+                style="background-image:url('https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/3.jpg')">
+            </div>
+        </div>
+
+        <div class="hero-gradient-top" id="heroGradientTop"></div>
+        <div class="hero-gradient-bottom" id="heroGradientBottom"></div>
+        <div class="hero-bottom-color-bleed" id="heroColorBleed"></div>
+
+        <div class="hero-scrim" id="heroScrim"></div>
+
+        <div class="hero-content">
+            <div class="hero-text-block">
+                <h1 class="hero-headline">
+                    <span class="hero-headline-year" aria-hidden="true">
+                        <svg class="hero-year-svg" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true" preserveAspectRatio="xMinYMid meet">
+                            <text x="0" y="178" letter-spacing="-4">2026</text>
+                        </svg>
+                    </span>
+                    <span class="hero-headline-main">First Edition</span>
+                </h1>
+                <p class="hero-subline">Presenting International Management Conference.</p>
+                <p class="hero-subline">Based On Industry 5.0: Governance, Technology & Sustainability.</p>
+            </div>
+        </div>
+
+        <div class="slide-controls">
+            <button class="slide-pause" id="slidePause" aria-label="Pause slideshow">
+                <svg id="iconPause" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5.92 24.096q0 0.832 0.576 1.408t1.44 0.608h4.032q0.832 0 1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-4.032q-0.832 0-1.44 0.576t-0.576 1.44v16.16zM18.016 24.096q0 0.832 0.608 1.408t1.408 0.608h4.032q0.832 0 1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-4.032q-0.832 0-1.408 0.576t-0.608 1.44v16.16z"
+                        fill="#ffffff" />
+                </svg>
+                <svg id="iconPlay" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+                    <path
+                        d="M5.92 24.096q0 1.088 0.928 1.728 0.512 0.288 1.088 0.288 0.448 0 0.896-0.224l16.16-8.064q0.48-0.256 0.8-0.736t0.288-1.088-0.288-1.056-0.8-0.736l-16.16-8.064q-0.448-0.224-0.896-0.224-0.544 0-1.088 0.288-0.928 0.608-0.928 1.728v16.16z"
+                        fill="#ffffff" />
+                </svg>
+            </button>
+            <div class="slide-dots" id="slideDots"></div>
+        </div>
+    </section>
+
+    <section class="recap-section" id="recap">
+        <div class="recap-navy-bg"></div>
+        <div class="recap-bleed" id="infoBleed"></div>
+
+        <div class="recap-inner">
+            <div class="recap-label">
+                <span class="recap-label-line"></span>
+                <span>IMC 2026 Recap</span>
+                <span class="recap-label-line"></span>
+            </div>
+
+            <h2 class="recap-heading">
+                We came. We spoke.<br>
+                <em>We changed things.</em>
+            </h2>
+            <p class="recap-desc">
+                Three days of relentless ideas, landmark keynotes, and cross-industry dialogue — the 2026 International
+                Management Conference at Jai Hind College set a new benchmark for what management education can look
+                like.
+            </p>
+
+            <div class="recap-stats">
+                <div class="recap-stat">
+                    <span class="stat-num">1200<span class="stat-plus">+</span></span>
+                    <span class="stat-label">Attendees</span>
+                </div>
+                <div class="recap-stat-divider"></div>
+                <div class="recap-stat">
+                    <span class="stat-num">48<span class="stat-plus">+</span></span>
+                    <span class="stat-label">Speakers</span>
+                </div>
+                <div class="recap-stat-divider"></div>
+                <div class="recap-stat">
+                    <span class="stat-num">3</span>
+                    <span class="stat-label">Power-packed Days</span>
+                </div>
+                <div class="recap-stat-divider"></div>
+                <div class="recap-stat">
+                    <span class="stat-num">20<span class="stat-plus">+</span></span>
+                    <span class="stat-label">Industry Verticals</span>
+                </div>
+            </div>
+
+            <div class="recap-photo-grid">
+                <div class="recap-photo recap-photo--tall">
+                    <img src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/6.jpg"
+                        alt="IMC 2026" loading="lazy" />
+                    <div class="recap-photo-overlay"></div>
+                </div>
+                <div class="recap-photo-col">
+                    <div class="recap-photo recap-photo--half">
+                        <img src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/8.jpg"
+                            alt="IMC 2026" loading="lazy" />
+                        <div class="recap-photo-overlay"></div>
+                    </div>
+                    <div class="recap-photo recap-photo--half">
+                        <img src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/1.jpg"
+                            alt="IMC 2026" loading="lazy" />
+                        <div class="recap-photo-overlay"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recap-quote">
+                <span class="recap-quote-mark">"</span>
+                <blockquote>The energy in that auditorium was unlike anything we've witnessed. This was not a conference
+                    — it was a movement.</blockquote>
+                <cite>— Dean, Jai Hind College</cite>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            'use strict';
+
+            const slides = Array.from(document.querySelectorAll('.slide'));
+            const slideUrls = slides.map(s => s.style.backgroundImage.slice(5, -2));
+            const dotsWrap = document.getElementById('slideDots');
+            const pauseBtn = document.getElementById('slidePause');
+            const iconPause = document.getElementById('iconPause');
+            const iconPlay = document.getElementById('iconPlay');
+            const nav = document.getElementById('siteNav');
+            const hero = document.getElementById('hero');
+            const accentBg = document.getElementById('heroAccentBg');
+            const gradientTop = document.getElementById('heroGradientTop');
+            const gradientBottom = document.getElementById('heroGradientBottom');
+            const colorBleed = document.getElementById('heroColorBleed');
+            const infoBleed = document.getElementById('infoBleed');
+
+            let current = 0,
+                playing = true,
+                timer = null;
+            let isTransitioning = false;
+            let remainingTime = 0;
+            const SLIDE_DURATION = 5000;
+
+            const colorCache = {};
+
+            function extractColors(url, cb) {
+                if (colorCache[url]) {
+                    cb(colorCache[url]);
+                    return;
+                }
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 50;
+                    canvas.height = 50;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, 50, 50);
+
+                    const imageData = ctx.getImageData(0, 30, 50, 20);
+                    const data = imageData.data;
+                    let r = 0,
+                        g = 0,
+                        b = 0,
+                        count = 0;
+                    for (let i = 0; i < data.length; i += 4) {
+                        r += data[i];
+                        g += data[i + 1];
+                        b += data[i + 2];
+                        count++;
+                    }
+                    r = Math.round(r / count);
+                    g = Math.round(g / count);
+                    b = Math.round(b / count);
+
+                    const centerData = ctx.getImageData(20, 20, 10, 10);
+                    const cData = centerData.data;
+                    let cr = 0,
+                        cg = 0,
+                        cb2 = 0,
+                        cCount = 0;
+                    for (let i = 0; i < cData.length; i += 4) {
+                        cr += cData[i];
+                        cg += cData[i + 1];
+                        cb2 += cData[i + 2];
+                        cCount++;
+                    }
+                    const accentR = Math.round(cr / cCount);
+                    const accentG = Math.round(cg / cCount);
+                    const accentB = Math.round(cb2 / cCount);
+
+                    const topData = ctx.getImageData(0, 0, 50, 20);
+                    const tData = topData.data;
+                    let tr = 0,
+                        tg = 0,
+                        tb = 0,
+                        tCount = 0;
+                    for (let i = 0; i < tData.length; i += 4) {
+                        tr += tData[i];
+                        tg += tData[i + 1];
+                        tb += tData[i + 2];
+                        tCount++;
+                    }
+                    tr = Math.round(tr / tCount);
+                    tg = Math.round(tg / tCount);
+                    tb = Math.round(tb / tCount);
+
+                    const result = {
+                        bottom: `${r},${g},${b}`,
+                        accent: `${accentR},${accentG},${accentB}`,
+                        full: `${r},${g},${b}`,
+                        topColor: `${tr},${tg},${tb}`
+                    };
+                    colorCache[url] = result;
+                    cb(result);
+                };
+                img.onerror = () => {
+                    const fallback = {
+                        bottom: '20,20,25',
+                        accent: '120,80,200',
+                        full: '20,20,25',
+                        topColor: '20,20,25'
+                    };
+                    colorCache[url] = fallback;
+                    cb(fallback);
+                };
+                img.src = url;
+            }
+
+            function updateColors(index, showAccent = true) {
+                const url = slideUrls[index];
+                if (!url) return;
+
+                extractColors(url, (colors) => {
+                    accentBg.style.background = `rgba(${colors.accent}, 0.5)`;
+                    if (showAccent) {
+                        accentBg.classList.add('visible');
+                    } else {
+                        accentBg.classList.remove('visible');
+                    }
+
+                    // INFO BLEED - LIGHTER FOR BLENDING
+                    if (infoBleed) {
+                        const accentParts = colors.accent.split(',');
+                        const r = parseInt(accentParts[0]);
+                        const g = parseInt(accentParts[1]);
+                        const b = parseInt(accentParts[2]);
+                        const purpleR = Math.min(255, r + 40);
+                        const purpleG = Math.min(255, g - 30);
+                        const purpleB = Math.min(255, b + 60);
+                        infoBleed.style.background = `
+                            linear-gradient(180deg,
+                                rgba(${purpleR}, ${purpleG}, ${purpleB}, 0.08) 0%,
+                                rgba(${purpleR}, ${purpleG}, ${purpleB}, 0.04) 25%,
+                                rgba(${purpleR}, ${purpleG}, ${purpleB}, 0.01) 50%,
+                                transparent 75%
+                            )
+                        `;
+                        infoBleed.style.opacity = '0.9';
+                    }
+
+                    // TOP fade - matching bottom style
+                    const topColor = colors.topColor || colors.bottom;
+                    gradientTop.style.background =
+                        `linear-gradient(180deg, rgba(${topColor}, 0.95) 0%, rgba(${topColor}, 0.6) 25%, rgba(${topColor}, 0.25) 50%, transparent 100%)`;
+
+                    // BOTTOM fade - RICH NAVY BLUE (fixed)
+                    gradientBottom.style.background =
+                        `linear-gradient(0deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0.5) 50%, transparent 100%)`;
+
+                    // color bleed - RICH NAVY BLUE (fixed)
+                    colorBleed.style.background =
+                        `linear-gradient(0deg, rgba(10, 20, 60, 0.25) 0%, rgba(10, 20, 60, 0.12) 30%, rgba(10, 20, 60, 0.04) 60%, transparent 100%)`;
+                });
+            }
+
+            slides.forEach((_, i) => {
+                const b = document.createElement('button');
+                b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                if (i === 0) b.classList.add('active');
+
+                const fill = document.createElement('span');
+                fill.className = 'progress-fill';
+                b.appendChild(fill);
+
+                b.addEventListener('click', () => {
+                    if (!isTransitioning) {
+                        resetProgress(current);
+                        goTo(i);
+                        if (playing) startTimer();
+                    }
+                });
+                dotsWrap.appendChild(b);
+            });
+
+            const dots = Array.from(dotsWrap.children);
+
+            function resetProgress(index) {
+                const fill = dots[index].querySelector('.progress-fill');
+                if (fill) {
+                    fill.style.animation = 'none';
+                    fill.style.width = '0%';
+                    void fill.offsetWidth;
+                }
+            }
+
+            function goTo(idx) {
+                if (isTransitioning) return;
+                isTransitioning = true;
+
+                const next = (idx + slides.length) % slides.length;
+                const currentSlide = slides[current];
+                const nextSlide = slides[next];
+
+                updateColors(next, true);
+
+                currentSlide.classList.remove('active', 'exit-left');
+                nextSlide.classList.remove('active', 'exit-left');
+
+                void currentSlide.offsetWidth;
+
+                currentSlide.classList.add('exit-left');
+                nextSlide.classList.add('active');
+
+                dots[current].classList.remove('active');
+                dots[next].classList.add('active');
+
+                resetProgress(current);
+
+                const newFill = dots[next].querySelector('.progress-fill');
+                if (newFill) {
+                    newFill.style.animation = 'none';
+                    newFill.style.width = '0%';
+                    void newFill.offsetWidth;
+                    newFill.style.animation = `barFill ${SLIDE_DURATION}ms linear forwards`;
+                    if (!playing) {
+                        newFill.style.animationPlayState = 'paused';
+                        dots[next].classList.add('paused');
+                    } else {
+                        dots[next].classList.remove('paused');
+                    }
+                }
+
+                setTimeout(() => {
+                    currentSlide.classList.remove('exit-left');
+                    setTimeout(() => {
+                        accentBg.classList.remove('visible');
+                    }, 300);
+                    isTransitioning = false;
+                }, 1000);
+
+                current = next;
+
+                if (playing) {
+                    clearInterval(timer);
+                    timer = setInterval(() => {
+                        if (!isTransitioning && playing) {
+                            goTo(current + 1);
+                        }
+                    }, SLIDE_DURATION);
+                }
+            }
+
+            function startTimer() {
+                clearInterval(timer);
+                if (remainingTime > 0 && remainingTime < SLIDE_DURATION) {
+                    timer = setTimeout(() => {
+                        if (!isTransitioning && playing) {
+                            goTo(current + 1);
+                        }
+                    }, remainingTime);
+                    remainingTime = 0;
+                } else {
+                    timer = setInterval(() => {
+                        if (!isTransitioning && playing) {
+                            goTo(current + 1);
+                        }
+                    }, SLIDE_DURATION);
+                }
+            }
+
+            function stopTimer() {
+                clearInterval(timer);
+                clearTimeout(timer);
+                timer = null;
+            }
+
+            pauseBtn.addEventListener('click', () => {
+                playing = !playing;
+                iconPause.style.display = playing ? '' : 'none';
+                iconPlay.style.display = playing ? 'none' : '';
+                pauseBtn.setAttribute('aria-label', playing ? 'Pause slideshow' : 'Play slideshow');
+
+                const activeDot = dots[current];
+                const fill = activeDot.querySelector('.progress-fill');
+
+                if (playing) {
+                    if (fill) {
+                        fill.style.animationPlayState = 'running';
+                        activeDot.classList.remove('paused');
+                    }
+                    const progress = fill ? parseFloat(fill.style.width) || 0 : 0;
+                    remainingTime = Math.max(0, SLIDE_DURATION - (progress / 100) * SLIDE_DURATION);
+                    startTimer();
+                } else {
+                    if (fill) {
+                        const computedStyle = window.getComputedStyle(fill);
+                        const width = parseFloat(computedStyle.width) || 0;
+                        const parentWidth = parseFloat(computedStyle.parentElement?.style?.width) || 64;
+                        const progressPercent = Math.min(100, (width / parentWidth) * 100);
+                        remainingTime = Math.max(0, SLIDE_DURATION - (progressPercent / 100) * SLIDE_DURATION);
+                        fill.style.animationPlayState = 'paused';
+                        activeDot.classList.add('paused');
+                    }
+                    stopTimer();
+                }
+            });
+
+            updateColors(0, false);
+
+            const firstFill = dots[0].querySelector('.progress-fill');
+            if (firstFill) {
+                firstFill.style.animation = `barFill ${SLIDE_DURATION}ms linear forwards`;
+            }
+            startTimer();
+
+            let ticking = false;
+
+            function updateOnScroll() {
+                const y = window.scrollY;
+                nav.classList.toggle('scrolled', y > 40);
+                const heroHeight = hero.offsetHeight;
+                const progress = Math.min(Math.max(y / heroHeight, 0), 1);
+                hero.style.setProperty('--scrim-opacity', (progress * 0.7).toFixed(3));
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateOnScroll);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            updateOnScroll();
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => updateOnScroll(), 100);
+            });
+
+        })();
+    </script>
+</body>
+
+</html>
