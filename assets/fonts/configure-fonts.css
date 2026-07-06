@@ -123,7 +123,7 @@
 /* ---------- COOLVETICA ---------- */
 /* Regular | Weight: 400 */
 @font-face {
-  font-family: 'Coolvetica';
+  font-family: 'Coolvetica Regular';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/coolvetica/otf/coolvetica-rg.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
@@ -131,7 +131,7 @@
 }
 /* Regular Italic | Weight: 400 */
 @font-face {
-  font-family: 'Coolvetica';
+  font-family: 'Coolvetica Regular Italic';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/coolvetica/otf/coolvetica-rg-it.otf') format('opentype');
   font-weight: 400;
   font-style: italic;
@@ -139,7 +139,7 @@
 }
 /* Heavy Condensed | Weight: 900 */
 @font-face {
-  font-family: 'Coolvetica';
+  font-family: 'Coolvetica Heavy';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/coolvetica/otf/coolvetica-hv-comp.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
@@ -147,7 +147,7 @@
 }
 /* Regular Condensed | Weight: 400 */
 @font-face {
-  font-family: 'Coolvetica';
+  font-family: 'Coolvetica Regular Condensed';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/coolvetica/otf/coolvetica-rg-cond.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
@@ -155,7 +155,7 @@
 }
 /* Regular Crammed | Weight: 400 */
 @font-face {
-  font-family: 'Coolvetica';
+  font-family: 'Coolvetica Regular Crammed';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/coolvetica/otf/coolvetica-rg-cram.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
