@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en_us">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
@@ -8,6 +9,22 @@
         content="International Management Conference 2026, Jai Hind College (Empowered Autonomous), Mumbai." />
     <link rel="icon" type="image/png"
         href="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png" />
+
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://lakshkukreja07.github.io" />
+    <link rel="dns-prefetch" href="https://lakshkukreja07.github.io" />
+
+    <!-- Preload critical fonts -->
+    <link rel="preload"
+        href="https://lakshkukreja07.github.io/assets/fonts/clashgrotesk/woff2/clashgrotesk-variable.woff2" as="font"
+        type="font/woff2" crossorigin />
+    <link rel="preload"
+        href="https://lakshkukreja07.github.io/assets/fonts/clashgrotesk/woff2/clashgrotesk-regular.woff2" as="font"
+        type="font/woff2" crossorigin />
+    <link rel="preload" href="https://lakshkukreja07.github.io/assets/fonts/coolvetica/otf/coolvetica-hv-comp.otf"
+        as="font" type="font/opentype" crossorigin />
+    <link rel="preload" href="https://lakshkukreja07.github.io/assets/fonts/sentient/woff2/sentient-bold.woff2"
+        as="font" type="font/woff2" crossorigin />
 
     <!-- Universal Font Support -->
     <link rel="stylesheet" href="https://lakshkukreja07.github.io/assets/fonts/configure-fonts.css" />
@@ -36,7 +53,7 @@
         }
 
         body {
-            font-family: 'Clash Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Clash Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg);
             color: #fff;
             min-height: 100vh;
@@ -636,10 +653,11 @@
         }
 
         /* ============================================================
-           RESPONSIVE - PHONE ONLY CENTER
+           RESPONSIVE - PHONE ONLY
            ============================================================ */
 
-        @media (max-width: 980px) {
+        /* Phones and small tablets */
+        @media (max-width: 700px) {
             :root {
                 --nav-h: var(--nav-h-mobile);
             }
@@ -652,6 +670,7 @@
                 height: 34px;
             }
 
+            /* ── HERO PHONE OVERRIDES ── */
             .hero {
                 height: 75vh;
                 min-height: 400px;
@@ -667,36 +686,37 @@
             .hero-text-block {
                 align-items: center;
                 text-align: center;
+                max-width: 100%;
             }
 
             .hero-headline {
                 align-items: center;
                 justify-content: center;
                 flex-wrap: wrap;
+                gap: 0.3rem;
             }
 
+            /* ── TEXT SIZES - PHONE ── */
             .hero-headline-main {
-                font-size: 4.5rem;
+                font-size: 6rem;
                 text-align: center;
             }
 
             .hero-headline-year {
-                font-size: 2rem;
+                font-size: 1rem;
                 margin-left: 0;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0rem;
+                letter-spacing: 0.5rem;
             }
 
             .hero-headline-event {
-                font-size: 1.5rem;
-                letter-spacing: 14px;
+                font-size: 1rem;
                 margin-left: 0;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.6rem;
+                letter-spacing: 1rem;
             }
 
-            .hero-headline {
-                gap: 0.3rem;
-            }
-
+            /* ── CONTROLS - PHONE ── */
             .slide-controls {
                 right: 50%;
                 bottom: 1.25rem;
@@ -705,7 +725,7 @@
             }
 
             .slide-dots {
-                gap: 0.8rem;
+                gap: 1rem;
             }
 
             .slide-dots button {
@@ -714,7 +734,7 @@
             }
 
             .slide-dots button.active {
-                width: 60px;
+                width: 90px;
                 height: 14px;
             }
 
@@ -732,6 +752,7 @@
                 inset: -6px;
             }
 
+            /* ── RECAP - PHONE ── */
             .recap-inner {
                 padding: 3.5rem 1.25rem 0;
             }
@@ -749,7 +770,8 @@
             }
         }
 
-        @media (max-width: 600px) {
+        /* Small phones (iPhone SE, etc.) */
+        @media (max-width: 375px) {
             .hero {
                 height: 75vh;
                 min-height: 350px;
@@ -759,72 +781,56 @@
                 padding: 0 1rem;
                 padding-bottom: 4rem;
                 min-height: 75vh;
-                align-items: center;
             }
 
-            .hero-text-block {
-                align-items: center;
-                text-align: center;
-            }
-
-            .hero-headline {
-                align-items: center;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 0.2rem;
-            }
-
+            /* ── TEXT SIZES - SMALL PHONE ── */
             .hero-headline-main {
-                font-size: 4rem;
-                text-align: center;
+                font-size: 3rem;
             }
 
             .hero-headline-year {
-                font-size: 1.8rem;
-                margin-left: 0;
-                margin-bottom: 0.4rem;
+                font-size: 1.5rem;
             }
 
             .hero-headline-event {
-                font-size: 1.3rem;
+                font-size: 1rem;
                 letter-spacing: 10px;
-                margin-left: 0;
-                margin-bottom: 0.4rem;
             }
 
-            .slide-controls {
-                bottom: .9rem;
-                gap: 1.2rem;
+            .hero-headline {
+                gap: 0.2rem;
             }
 
-            .slide-dots {
-                gap: 0.8rem;
-            }
-
+            /* ── CONTROLS - SMALL PHONE ── */
             .slide-dots button {
-                width: 14px;
-                height: 14px;
+                width: 12px;
+                height: 12px;
             }
 
             .slide-dots button.active {
-                width: 60px;
-                height: 14px;
+                width: 70px;
+                height: 12px;
             }
 
             .slide-pause {
-                width: 32px;
-                height: 32px;
+                width: 28px;
+                height: 28px;
             }
 
             .slide-pause svg {
-                width: 32px;
-                height: 32px;
+                width: 28px;
+                height: 28px;
             }
 
-            .slide-pause::before {
-                inset: -6px;
+            .slide-controls {
+                gap: 1rem;
             }
 
+            .slide-dots {
+                gap: 0.6rem;
+            }
+
+            /* ── RECAP - SMALL PHONE ── */
             .recap-photo-grid {
                 grid-template-columns: 1fr;
                 height: auto;
@@ -852,45 +858,6 @@
 
             .recap-stat-divider {
                 height: 30px;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .hero-headline-main {
-                font-size: 3.5rem;
-            }
-
-            .hero-headline-year {
-                font-size: 1.5rem;
-            }
-
-            .hero-headline-event {
-                font-size: 1.1rem;
-                letter-spacing: 8px;
-            }
-
-            .hero-headline {
-                gap: 0.1rem;
-            }
-
-            .slide-dots button {
-                width: 12px;
-                height: 12px;
-            }
-
-            .slide-dots button.active {
-                width: 50px;
-                height: 12px;
-            }
-
-            .slide-pause {
-                width: 28px;
-                height: 28px;
-            }
-
-            .slide-pause svg {
-                width: 28px;
-                height: 28px;
             }
 
             .nav-title {
