@@ -422,7 +422,6 @@
 @font-face {
   font-family: 'Psilograph Thin';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Thin.otf') format('opentype');
-  font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
@@ -430,7 +429,6 @@
 @font-face {
   font-family: 'Psilograph ExtraLight';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-ExtraLight.otf') format('opentype');
-  font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
@@ -438,7 +436,6 @@
 @font-face {
   font-family: 'Psilograph Light';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Light.otf') format('opentype');
-  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
@@ -446,7 +443,6 @@
 @font-face {
   font-family: 'Psilograph Regular';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Regular.otf') format('opentype');
-  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -454,7 +450,6 @@
 @font-face {
   font-family: 'Psilograph Medium';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Medium.otf') format('opentype');
-  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
@@ -462,7 +457,6 @@
 @font-face {
   font-family: 'Psilograph SemiBold';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-SemiBold.otf') format('opentype');
-  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
@@ -470,7 +464,6 @@
 @font-face {
   font-family: 'Psilograph Bold';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Bold.otf') format('opentype');
-  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -478,7 +471,6 @@
 @font-face {
   font-family: 'Psilograph ExtraBold';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-ExtraBold.otf') format('opentype');
-  font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
@@ -486,7 +478,6 @@
 @font-face {
   font-family: 'Psilograph Black';
   src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Black.otf') format('opentype');
-  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
