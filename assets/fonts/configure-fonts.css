@@ -1,0 +1,621 @@
+/* ============================================================
+   CONFIGURE-FONTS.CSS
+   Universal font stack for lakshkukreja07 projects
+   Usage: @import url("https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/configure-fonts.css");
+   ============================================================ */
+
+/* ---------- CLASH DISPLAY ---------- */
+/* Variable: Weight 200–900 */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashdisplay/woff2/clashdisplay-variable.woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* ExtraLight | Weight: 200 */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashdisplay/woff2/clashdisplay-extralight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+/* Light | Weight: 300 */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashdisplay/woff2/clashdisplay-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashdisplay/woff2/clashdisplay-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Medium | Weight: 500 */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashdisplay/woff2/clashdisplay-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* SemiBold | Weight: 600 */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashdisplay/woff2/clashdisplay-semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+/* Bold | Weight: 700 */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashdisplay/woff2/clashdisplay-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- CLASH GROTESK ---------- */
+/* Variable: Weight 200–900 */
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashgrotesk/woff2/clashgrotesk-variable.woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* ExtraLight | Weight: 200 */
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashgrotesk/woff2/clashgrotesk-extralight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+/* Light | Weight: 300 */
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashgrotesk/woff2/clashgrotesk-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashgrotesk/woff2/clashgrotesk-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Medium | Weight: 500 */
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashgrotesk/woff2/clashgrotesk-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* SemiBold | Weight: 600 */
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashgrotesk/woff2/clashgrotesk-semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+/* Bold | Weight: 700 */
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/clashgrotesk/woff2/clashgrotesk-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- COOLVETICA ---------- */
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/coolvetica/otf/coolvetica-rg.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Regular Italic | Weight: 400 */
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/coolvetica/otf/coolvetica-rg-it.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+/* Heavy Condensed | Weight: 900 */
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/coolvetica/otf/coolvetica-hv-comp.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* Regular Condensed | Weight: 400 */
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/coolvetica/otf/coolvetica-rg-cond.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Regular Crammed | Weight: 400 */
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/coolvetica/otf/coolvetica-rg-cram.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- EXCON ---------- */
+/* Variable: Weight 100–900 */
+@font-face {
+  font-family: 'Excon';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/excon/woff2/excon-variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* Thin | Weight: 100 */
+@font-face {
+  font-family: 'Excon';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/excon/woff2/excon-thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+/* Light | Weight: 300 */
+@font-face {
+  font-family: 'Excon';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/excon/woff2/excon-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'Excon';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/excon/woff2/excon-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Medium | Weight: 500 */
+@font-face {
+  font-family: 'Excon';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/excon/woff2/excon-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* Bold | Weight: 700 */
+@font-face {
+  font-family: 'Excon';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/excon/woff2/excon-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* Black | Weight: 900 */
+@font-face {
+  font-family: 'Excon';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/excon/woff2/excon-black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- GEIST ---------- */
+/* Variable: Weight 100–900 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist[wght].woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* Variable Italic: Weight 100–900 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-italic[wght].woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+/* Thin | Weight: 100 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+/* Thin Italic | Weight: 100 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-thinitalic.woff2') format('woff2');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+/* ExtraLight | Weight: 200 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-extralight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+/* ExtraLight Italic | Weight: 200 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-extralightitalic.woff2') format('woff2');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+/* Light | Weight: 300 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+/* Light Italic | Weight: 300 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-lightitalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Regular Italic | Weight: 400 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+/* Medium | Weight: 500 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* Medium Italic | Weight: 500 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-mediumitalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+/* SemiBold | Weight: 600 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+/* SemiBold Italic | Weight: 600 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-semibolditalic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+/* Bold | Weight: 700 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* Bold Italic | Weight: 700 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-bolditalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+/* ExtraBold | Weight: 800 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-extrabold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+/* ExtraBold Italic | Weight: 800 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-extrabolditalic.woff2') format('woff2');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+/* Black | Weight: 900 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* Black Italic | Weight: 900 */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/geist/woff2/geist-blackitalic.woff2') format('woff2');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---------- GOLDNIC ---------- */
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'Goldnic';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/goldnic/otf/goldnic.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- NTYPE-82 ---------- */
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'NType82';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/ntype-82/otf/NType82-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Headline | Weight: 700 */
+@font-face {
+  font-family: 'NType82';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/ntype-82/otf/NType82-Headline.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* Mono Regular | Weight: 400 */
+@font-face {
+  font-family: 'NType82 Mono';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/ntype-82/otf/NType82Mono-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- PSILOGRAPH ---------- */
+/* Thin | Weight: 100 */
+@font-face {
+  font-family: 'Psilograph';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+/* ExtraLight | Weight: 200 */
+@font-face {
+  font-family: 'Psilograph';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-ExtraLight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+/* Light | Weight: 300 */
+@font-face {
+  font-family: 'Psilograph';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'Psilograph';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Medium | Weight: 500 */
+@font-face {
+  font-family: 'Psilograph';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* SemiBold | Weight: 600 */
+@font-face {
+  font-family: 'Psilograph';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+/* Bold | Weight: 700 */
+@font-face {
+  font-family: 'Psilograph';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* ExtraBold | Weight: 800 */
+@font-face {
+  font-family: 'Psilograph';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-ExtraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+/* Black | Weight: 900 */
+@font-face {
+  font-family: 'Psilograph';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/psilograph/otf/Psilograph-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- SENTIENT ---------- */
+/* Variable: Weight 200–700 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-variable.woff2') format('woff2-variations');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* Variable Italic: Weight 200–700 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-variableitalic.woff2') format('woff2-variations');
+  font-weight: 200 700;
+  font-style: italic;
+  font-display: swap;
+}
+/* ExtraLight | Weight: 200 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-extralight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+/* ExtraLight Italic | Weight: 200 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-extralightitalic.woff2') format('woff2');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+/* Light | Weight: 300 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+/* Light Italic | Weight: 300 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-lightitalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Italic | Weight: 400 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+/* Medium | Weight: 500 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* Medium Italic | Weight: 500 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-mediumitalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+/* Bold | Weight: 700 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* Bold Italic | Weight: 700 */
+@font-face {
+  font-family: 'Sentient';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/sentient/woff2/sentient-bolditalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---------- TALLER ---------- */
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'Taller';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/taller/ttf/taller.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- TANKER ---------- */
+/* Regular | Weight: 400 */
+@font-face {
+  font-family: 'Tanker';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/tanker/woff2/tanker-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- ZURICH LTXCN BT ---------- */
+/* Light | Weight: 300 */
+@font-face {
+  font-family: 'Zurich LtXcn BT';
+  src: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/fonts/zurich-ltxcn-bt/ttf/zurich-ltxcn-bt-light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
