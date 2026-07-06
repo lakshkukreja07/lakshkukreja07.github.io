@@ -742,6 +742,12 @@
                 height: 10px;
             }
 
+            /* PHONE: Hover effect hatao */
+            .slide-dots button:not(.active):hover {
+                background: var(--dot-color);
+                transform: none;
+            }
+
             .slide-pause {
                 width: 24px;
                 height: 24px;
@@ -754,6 +760,12 @@
 
             .slide-pause::before {
                 inset: -6px;
+            }
+
+            /* PHONE: Pause button hover hatao */
+            .slide-pause:hover::before {
+                opacity: 0;
+                transform: scale(0.8);
             }
 
             /* ── RECAP - PHONE ── */
@@ -1157,6 +1169,9 @@
                 iconPause.style.display = playing ? '' : 'none';
                 iconPlay.style.display = playing ? 'none' : '';
                 pauseBtn.setAttribute('aria-label', playing ? 'Pause slideshow' : 'Play slideshow');
+
+                // Phone pe hover effect hatao immediately
+                pauseBtn.blur();
 
                 const activeDot = dots[current];
                 const fill = activeDot.querySelector('.progress-fill');
