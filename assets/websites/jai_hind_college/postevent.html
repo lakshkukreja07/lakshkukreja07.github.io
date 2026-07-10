@@ -23,8 +23,6 @@
         type="font/woff2" crossorigin />
     <link rel="preload" href="https://lakshkukreja07.github.io/assets/fonts/coolvetica/otf/coolvetica-hv-comp.otf"
         as="font" type="font/opentype" crossorigin />
-    <link rel="preload" href="https://lakshkukreja07.github.io/assets/fonts/sentient/woff2/sentient-bold.woff2"
-        as="font" type="font/woff2" crossorigin />
 
     <!-- Universal Font Support -->
     <link rel="stylesheet" href="https://lakshkukreja07.github.io/assets/fonts/configure-fonts.css" />
@@ -58,6 +56,29 @@
             color: #fff;
             min-height: 100vh;
             overflow-x: hidden;
+            cursor: auto;
+        }
+
+        /* ── CURSOR GLOW ── */
+        #cursor-glow {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(252, 175, 23, 0.035) 45%, transparent 72%);
+            transform: translate(-50%, -50%);
+            transition: width .45s cubic-bezier(.25, .8, .25, 1), height .45s cubic-bezier(.25, .8, .25, 1), opacity .4s ease;
+            will-change: transform;
+            mix-blend-mode: screen;
+            opacity: .8;
+        }
+
+        #cursor-glow.active {
+            width: 190px;
+            height: 190px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(252, 175, 23, 0.06) 45%, transparent 72%);
         }
 
         img {
@@ -77,7 +98,7 @@
             left: 0;
             width: 100%;
             height: var(--nav-h);
-            z-index: 1000;
+            z-index: 10000;
             display: flex;
             align-items: center;
             background: transparent;
@@ -98,7 +119,7 @@
             max-width: 1480px;
             width: 100%;
             margin: 0 auto;
-            padding: 0 2.5rem;
+            padding: 0 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -447,234 +468,417 @@
         .recap-section {
             position: relative;
             background: var(--bg);
-            margin-top: -1px;
-            padding: 0 0 6rem;
+            padding: 5rem 0 3rem;
             overflow: hidden;
-        }
-
-        .recap-navy-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70%;
-            background: linear-gradient(180deg,
-                    rgba(0, 0, 0, 0.3) 0%,
-                    rgba(0, 0, 0, 0.15) 25%,
-                    rgba(0, 0, 0, 0.05) 50%,
-                    transparent 75%);
-            z-index: 0;
-            pointer-events: none;
         }
 
         .recap-inner {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 5rem 2.5rem 0;
+            padding: 0 2.5rem;
+            text-align: center;
         }
 
-        .recap-label {
+        .recap-title {
+            font-family: 'Coolvetica Heavy', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: #fff;
+            text-align: center;
+            line-height: 1;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .recap-text {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 300;
+            text-align: center;
+            color: rgba(255, 255, 255, .7);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .recap-text strong {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .recap-text .highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ── MOMENTS SECTION ── */
+        .moments-section {
+            position: relative;
+            background: var(--bg);
+            padding: 3rem 0 6rem;
+            overflow: hidden;
+        }
+
+        .moments-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+
+        .moments-title {
+            font-family: 'Coolvetica Heavy', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: #fff;
+            text-align: center;
+            line-height: 1;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .moments-sub {
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 300;
+            text-align: center;
+            color: rgba(255, 255, 255, .5);
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .view-gallery-btn {
+            padding: 0.8rem 2.5rem;
+            border: 1.5px solid var(--accent);
+            border-radius: 50px;
+            background: transparent;
+            color: #fff;
+            font-family: 'Clash Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-gallery-btn:hover {
+            background: var(--accent);
+            color: #0a0a0a;
+        }
+
+        /* ── LIGHTBOX ── */
+        :root {
+            --lb-bg: #0a0a0a;
+            --lb-ink: #ffffff;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: radial-gradient(ellipse at 50% 0%, #17171a 0%, var(--lb-bg) 65%);
+            display: none;
+            flex-direction: column;
+            padding: calc(var(--nav-h) + 2rem) 3rem 2.5rem;
+            color: var(--lb-ink);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+        }
+
+        /* ── HEADER ── */
+        .lightbox-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+        }
+
+        .lightbox-header-left {
             display: flex;
             align-items: center;
             gap: 1rem;
+        }
+
+        .lightbox-heading {
             font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 600;
-            font-size: .72rem;
-            letter-spacing: .25em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 2rem;
-            opacity: 0.85;
+            font-weight: 500;
+            font-size: 1.4rem;
+            letter-spacing: 0.2px;
+            color: var(--lb-ink);
         }
 
-        .recap-label-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(252, 175, 23, 0.4), transparent);
-            max-width: 120px;
-        }
-
-        .recap-heading {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: clamp(2.2rem, 5vw, 4rem);
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            color: #fff;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .recap-heading em {
-            font-style: italic;
-            color: var(--accent);
-        }
-
-        .recap-desc {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 300;
-            text-align: center;
-            max-width: 680px;
-            margin: 0 auto 3.5rem;
-            color: rgba(255, 255, 255, .55);
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-
-        .recap-stats {
+        .lightbox-topbar-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--lb-ink);
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0;
-            margin-bottom: 4rem;
-            flex-wrap: wrap;
+            transition: all .25s ease;
+            flex-shrink: 0;
         }
 
-        .recap-stat {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1.5rem 2.5rem;
+        .lightbox-topbar-btn.labeled {
+            width: auto;
+            border-radius: 50px;
+            padding: 0 1rem 0 .8rem;
+            gap: .5rem;
         }
 
-        .recap-stat-divider {
-            width: 1px;
-            height: 48px;
-            background: rgba(255, 255, 255, 0.1);
+        .lightbox-topbar-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
         }
 
-        .stat-num {
+        .lightbox-topbar-btn:hover svg {
+            stroke: #0a0a0a;
+        }
+
+        .lightbox-topbar-label {
             font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: #fff;
-            letter-spacing: -0.03em;
-            line-height: 1;
+            font-size: 0.78rem;
+            font-weight: 500;
         }
 
-        .stat-plus {
-            color: var(--accent);
-            font-size: 0.65em;
+        .lightbox-topbar-btn:hover .lightbox-topbar-label {
+            color: #0a0a0a;
         }
 
-        .stat-label {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 400;
-            font-size: .75rem;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .4);
-            margin-top: .4rem;
+        .lightbox-topbar-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--lb-ink);
+            stroke-width: 1.75;
         }
 
-        .recap-photo-grid {
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 12px;
-            margin-bottom: 4rem;
-            height: 520px;
-        }
-
-        .recap-photo {
+        /* ── PEEK CAROUSEL ── */
+        .lightbox-carousel {
             position: relative;
-            overflow: hidden;
-            border-radius: 6px;
-        }
-
-        .recap-photo img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(.25, .46, .45, .94);
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+            cursor: grab;
         }
 
-        .recap-photo:hover img {
-            transform: scale(1.04);
-        }
-
-        .recap-photo-overlay {
-            position: absolute;
+        /* ── IMAGE ZOOM OVERLAY (maximize a single image) ── */
+        .lightbox-zoom {
+            position: fixed;
             inset: 0;
-            background: linear-gradient(180deg, transparent 40%, rgba(3, 10, 26, 0.6) 100%);
+            z-index: 10010;
+            background: #000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
         }
 
-        .recap-photo--tall {
+        .lightbox-zoom.active {
+            display: flex;
+        }
+
+        .lightbox-zoom img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .lightbox-zoom-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+        }
+
+        .lightbox-carousel.dragging {
+            cursor: grabbing;
+        }
+
+        .lightbox-image-track {
+            display: flex;
             height: 100%;
+            gap: 1.75rem;
+            will-change: transform;
         }
 
-        .recap-photo-col {
+        .lightbox-image-track.animating {
+            transition: transform .55s cubic-bezier(.25, .46, .45, .94);
+        }
+
+        .lightbox-image-slide {
+            flex: 0 0 auto;
+            width: min(56vw, 760px);
+            height: 100%;
             display: flex;
             flex-direction: column;
-            gap: 12px;
         }
 
-        .recap-photo--half {
+        .lightbox-image-slide img {
+            width: 100%;
             flex: 1;
+            min-height: 0;
+            object-fit: cover;
+            border-radius: 6px;
+            user-select: none;
+            -webkit-user-drag: none;
         }
 
-        .recap-quote {
-            border-left: 2px solid var(--accent);
-            padding: 1.2rem 0 1.2rem 2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .recap-quote-mark {
-            display: block;
+        .lightbox-caption {
+            margin-top: .9rem;
             font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 4rem;
-            line-height: 0.5;
-            color: var(--accent);
-            opacity: 0.4;
-            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.55);
         }
 
-        .recap-quote blockquote {
+        .lightbox-drag-hint {
+            position: absolute;
+            left: 33%;
+            top: 45%;
+            transform: translate(-50%, -50%);
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: rgba(252, 175, 23, 0.85);
+            backdrop-filter: blur(8px);
+            color: #0a0a0a;
             font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 300;
-            font-size: 1.15rem;
-            font-style: italic;
-            color: rgba(255, 255, 255, .75);
-            line-height: 1.7;
-            margin-bottom: 0.6rem;
+            font-weight: 500;
+            font-size: 0.72rem;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity .3s ease;
         }
 
-        .recap-quote cite {
+        .lightbox-carousel.dragging .lightbox-drag-hint,
+        .lightbox-drag-hint.hidden {
+            opacity: 0;
+        }
+
+        /* ── FOOTER: GTA progress bar + counter + arrows ── */
+        .lightbox-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            margin-top: 1.75rem;
+        }
+
+        .lightbox-progress-gta {
+            flex: 1;
+            max-width: 140px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            background: rgba(18, 18, 22, .55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 50px;
+            padding: 0 7px;
+            cursor: pointer;
+        }
+
+        .lightbox-progress-fill {
+            height: 3px;
+            width: 4px;
+            border-radius: 2px;
+            background: #fff;
+            transition: width .12s ease-out;
+        }
+
+        .lightbox-footer-right {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .lightbox-counter {
             font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 400;
-            font-size: .8rem;
-            color: var(--accent);
-            letter-spacing: .08em;
-            font-style: normal;
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.55);
+            white-space: nowrap;
         }
 
-        /* ============================================================
-           RESPONSIVE - PHONE ONLY
-           ============================================================ */
+        .lightbox-bottombar-right {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
 
-        /* Phones and small tablets */
+        .lightbox-bottombar-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--lb-ink);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .lightbox-bottombar-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .lightbox-bottombar-btn:hover svg {
+            stroke: #0a0a0a;
+        }
+
+        .lightbox-bottombar-btn svg {
+            width: 17px;
+            height: 17px;
+            stroke: var(--lb-ink);
+            stroke-width: 1.75;
+        }
+
+        /* ── RESPONSIVE ── */
         @media (max-width: 700px) {
             :root {
                 --nav-h: var(--nav-h-mobile);
             }
 
             .nav-container {
-                padding: 0 1.25rem;
+                padding: 0 1rem;
             }
 
             .college-logo {
-                height: 48px;
+                height: 40px;
             }
 
             .nav-broadcast {
-                font-size: 1rem;
+                font-size: 0.85rem;
+                padding: 0.4rem 0.8rem;
             }
 
-            /* ── HERO PHONE OVERRIDES ── */
             .hero {
                 height: 75vh;
                 min-height: 400px;
@@ -682,7 +886,7 @@
 
             .hero-content {
                 padding: 0 1.25rem;
-                padding-bottom: 5rem;
+                padding-bottom: 4rem;
                 min-height: 75vh;
                 align-items: center;
             }
@@ -697,187 +901,192 @@
                 align-items: center;
                 justify-content: center;
                 flex-wrap: wrap;
-                gap: 0.3rem;
+                gap: 0.2rem;
             }
 
-            /* ── TEXT SIZES - PHONE ── */
             .hero-headline-main {
-                font-size: 6rem;
+                font-size: 3.5rem;
                 text-align: center;
             }
 
             .hero-headline-year {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 margin-left: 0;
-                margin-bottom: 0rem;
-                letter-spacing: 0.5rem;
+                margin-bottom: 0.3rem;
+                letter-spacing: 0.3rem;
             }
 
             .hero-headline-event {
-                font-size: 1rem;
+                font-size: 0.85rem;
                 margin-left: 0;
-                margin-bottom: 0.6rem;
-                letter-spacing: 1rem;
+                margin-bottom: 0.4rem;
+                letter-spacing: 0.8rem;
             }
 
-            /* ── CONTROLS - PHONE ── */
             .slide-controls {
                 right: 50%;
-                bottom: 1.25rem;
+                bottom: 1rem;
                 transform: translateX(50%);
-                gap: 1.2rem;
-            }
-
-            .slide-dots {
                 gap: 1rem;
             }
 
+            .slide-dots {
+                gap: 0.7rem;
+            }
+
             .slide-dots button {
-                width: 10px;
-                height: 10px;
+                width: 9px;
+                height: 9px;
             }
 
             .slide-dots button.active {
-                width: 80px;
-                height: 10px;
+                width: 60px;
+                height: 9px;
             }
 
-            /* PHONE: Hover effect hatao */
             .slide-dots button:not(.active):hover {
                 background: var(--dot-color);
                 transform: none;
             }
 
             .slide-pause {
-                width: 24px;
-                height: 24px;
+                width: 28px;
+                height: 28px;
             }
 
             .slide-pause svg {
-                width: 24px;
-                height: 24px;
+                width: 28px;
+                height: 28px;
             }
 
             .slide-pause::before {
-                inset: -6px;
+                inset: -4px;
             }
 
-            /* PHONE: Pause button hover hatao */
             .slide-pause:hover::before {
                 opacity: 0;
                 transform: scale(0.8);
             }
 
-            /* ── RECAP - PHONE ── */
-            .recap-inner {
-                padding: 3.5rem 1.25rem 0;
+            .recap-inner,
+            .moments-inner {
+                padding: 0 1.25rem;
             }
 
-            .recap-photo-grid {
-                height: 360px;
+            .recap-section {
+                padding: 3rem 0 2rem;
             }
 
-            .recap-stat {
-                padding: 1rem 1.5rem;
+            .moments-section {
+                padding: 2rem 0 4rem;
             }
 
-            .recap-stat-divider {
+            .recap-text {
+                font-size: 0.95rem;
+                line-height: 1.8;
+            }
+
+            .view-gallery-btn {
+                padding: 0.6rem 1.8rem;
+                font-size: 0.8rem;
+            }
+
+            .lightbox {
+                padding: calc(var(--nav-h) + 1.5rem) 1.25rem 1.5rem;
+            }
+
+            .lightbox-header {
+                margin-bottom: 1.25rem;
+            }
+
+            .lightbox-topbar-btn {
+                width: 36px;
                 height: 36px;
             }
-        }
 
-        /* Small phones (iPhone SE, etc.) */
-        @media (max-width: 375px) {
-            .hero {
-                height: 75vh;
-                min-height: 350px;
+            .lightbox-topbar-btn svg {
+                width: 15px;
+                height: 15px;
             }
 
-            .hero-content {
-                padding: 0 1rem;
-                padding-bottom: 4rem;
-                min-height: 75vh;
-            }
-
-            /* ── TEXT SIZES - SMALL PHONE ── */
-            .hero-headline-main {
-                font-size: 3rem;
-            }
-
-            .hero-headline-year {
-                font-size: 1.5rem;
-            }
-
-            .hero-headline-event {
-                font-size: 1rem;
-                letter-spacing: 10px;
-            }
-
-            .hero-headline {
-                gap: 0.2rem;
-            }
-
-            /* ── CONTROLS - SMALL PHONE ── */
-            .slide-dots button {
-                width: 12px;
-                height: 12px;
-            }
-
-            .slide-dots button.active {
-                width: 70px;
-                height: 12px;
-            }
-
-            .slide-pause {
-                width: 28px;
-                height: 28px;
-            }
-
-            .slide-pause svg {
-                width: 28px;
-                height: 28px;
-            }
-
-            .slide-controls {
+            .lightbox-image-track {
                 gap: 1rem;
             }
 
-            .slide-dots {
-                gap: 0.6rem;
+            .lightbox-image-slide {
+                width: 82vw;
             }
 
-            /* ── RECAP - SMALL PHONE ── */
-            .recap-photo-grid {
-                grid-template-columns: 1fr;
-                height: auto;
+            .lightbox-caption {
+                font-size: 0.75rem;
             }
 
-            .recap-photo--tall {
-                height: 280px;
+            .lightbox-drag-hint {
+                display: none;
             }
 
-            .recap-photo-col {
-                flex-direction: row;
+            .lightbox-footer {
+                margin-top: 1.1rem;
+                gap: .75rem;
             }
 
-            .recap-photo--half {
-                height: 180px;
+            .lightbox-progress-gta {
+                max-width: 100px;
+                height: 26px;
             }
 
-            .recap-stats {
-                gap: 0;
+            .lightbox-footer-right {
+                gap: .75rem;
             }
 
-            .recap-stat {
-                padding: .8rem 1rem;
+            .lightbox-counter {
+                font-size: 0.65rem;
+                letter-spacing: 1px;
             }
 
-            .recap-stat-divider {
+            .lightbox-bottombar-btn {
+                width: 34px;
+                height: 34px;
+            }
+
+            .lightbox-bottombar-btn svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero-headline-main {
+                font-size: 6rem;
+            }
+
+            .hero-headline-year {
+                font-size: 1.2rem;
+                letter-spacing: 0.35rem;
+            }
+
+            .hero-headline-event {
+                font-size: 1.2rem;
+                letter-spacing: 0.95rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .lightbox-image-slide {
+                width: 88vw;
+            }
+
+            .lightbox-bottombar-btn {
+                width: 30px;
                 height: 30px;
             }
 
-            .nav-title {
-                display: none;
+            .lightbox-bottombar-btn svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            .lightbox-counter {
+                font-size: 0.62rem;
             }
         }
 
@@ -896,9 +1105,12 @@
 
 <body>
 
+    <!-- ── CURSOR GLOW ── -->
+    <div id="cursor-glow"></div>
+
     <nav class="site-nav" id="siteNav">
         <div class="nav-container">
-            <a class="logo-wrapper" href="#" aria-label="Home">
+            <a class="logo-wrapper" href="https://www.internationalmanagementconference.com" aria-label="Home">
                 <img class="college-logo"
                     src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
                     alt="Jai Hind College Logo" width="42" height="42" loading="eager" />
@@ -962,91 +1174,156 @@
         </div>
     </section>
 
-    <section class="recap-section" id="recap">
-        <div class="recap-navy-bg"></div>
-
+    <!-- ── RECAP SECTION ── -->
+    <section class="recap-section">
         <div class="recap-inner">
-            <div class="recap-label">
-                <span class="recap-label-line"></span>
-                <span>IMC 2026 Recap</span>
-                <span class="recap-label-line"></span>
-            </div>
-
-            <h2 class="recap-heading">
-                We came. We spoke.<br>
-                <em>We changed things.</em>
-            </h2>
-            <p class="recap-desc">
-                Three days of relentless ideas, landmark keynotes, and cross-industry dialogue — the 2026 International
-                Management Conference at Jai Hind College set a new benchmark for what management education can look
-                like.
+            <h2 class="recap-title">RECAP</h2>
+            <p class="recap-text">
+                International Management Conference<br>
+                <strong>Industry 5.0: Governance, Technology & Sustainability</strong><br><br>
+                Hosted By <strong>Department Of Management Studies</strong> At <strong>Jai Hind College (Empowered
+                    Autonomous), Mumbai</strong>.<br><br>
+                Our <span class="highlight">First Edition</span> Event Was Conducted On <strong>24th April
+                    2026</strong>.<br>
+                With Prestigious Event Guests Like <strong>Niranjan Hiranandani</strong> &amp; Others,<br>
+                Concluding The Evening At <strong>Bombay Presidency Radio Club, Colaba, Mumbai</strong>.
             </p>
-
-            <div class="recap-stats">
-                <div class="recap-stat">
-                    <span class="stat-num">1200<span class="stat-plus">+</span></span>
-                    <span class="stat-label">Attendees</span>
-                </div>
-                <div class="recap-stat-divider"></div>
-                <div class="recap-stat">
-                    <span class="stat-num">48<span class="stat-plus">+</span></span>
-                    <span class="stat-label">Speakers</span>
-                </div>
-                <div class="recap-stat-divider"></div>
-                <div class="recap-stat">
-                    <span class="stat-num">3</span>
-                    <span class="stat-label">Power-packed Days</span>
-                </div>
-                <div class="recap-stat-divider"></div>
-                <div class="recap-stat">
-                    <span class="stat-num">20<span class="stat-plus">+</span></span>
-                    <span class="stat-label">Industry Verticals</span>
-                </div>
-            </div>
-
-            <div class="recap-photo-grid">
-                <div class="recap-photo recap-photo--tall">
-                    <img src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/6.jpg"
-                        alt="IMC 2026" loading="lazy" />
-                    <div class="recap-photo-overlay"></div>
-                </div>
-                <div class="recap-photo-col">
-                    <div class="recap-photo recap-photo--half">
-                        <img src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/8.jpg"
-                            alt="IMC 2026" loading="lazy" />
-                        <div class="recap-photo-overlay"></div>
-                    </div>
-                    <div class="recap-photo recap-photo--half">
-                        <img src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/1.jpg"
-                            alt="IMC 2026" loading="lazy" />
-                        <div class="recap-photo-overlay"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="recap-quote">
-                <span class="recap-quote-mark">"</span>
-                <blockquote>The energy in that auditorium was unlike anything we've witnessed. This was not a conference
-                    — it was a movement.</blockquote>
-                <cite>— Dean, Jai Hind College</cite>
-            </div>
-
         </div>
     </section>
+
+    <!-- ── MOMENTS SECTION ── -->
+    <section class="moments-section">
+        <div class="moments-inner">
+            <h2 class="moments-title">MOMENTS</h2>
+            <p class="moments-sub">Celebrating Moments &amp; Revisiting Our First Edition Of Event.</p>
+
+            <button class="view-gallery-btn" id="openGalleryBtn">View Gallery →</button>
+        </div>
+    </section>
+
+    <!-- ── LIGHTBOX CAROUSEL ── -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-header">
+                <div class="lightbox-header-left">
+                    <button class="lightbox-topbar-btn" id="lightboxClose" aria-label="Close">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6 6 18" />
+                            <path d="m6 6 12 12" />
+                        </svg>
+                    </button>
+                    <h2 class="lightbox-heading">Gallery</h2>
+                </div>
+                <button class="lightbox-topbar-btn labeled" id="lightboxFullscreen" aria-label="Maximize">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M15 3h6v6" />
+                        <path d="m21 3-7 7" />
+                        <path d="m3 21 7-7" />
+                        <path d="M9 21H3v-6" />
+                    </svg>
+                    <span class="lightbox-topbar-label" id="fullscreenLabel">Maximize</span>
+                </button>
+            </div>
+
+            <div class="lightbox-carousel" id="lightboxWrapper">
+                <div class="lightbox-image-track" id="lightboxTrack">
+                    <!-- Slides inserted by JS -->
+                </div>
+                <div class="lightbox-drag-hint" id="lightboxDragHint">Drag</div>
+            </div>
+
+            <div class="lightbox-footer">
+                <div class="lightbox-progress-gta" id="lightboxProgressGTA">
+                    <div class="lightbox-progress-fill" id="lightboxProgressFill"></div>
+                </div>
+                <div class="lightbox-footer-right">
+                    <span class="lightbox-counter" id="lightboxCounter">1 OF 6</span>
+                    <div class="lightbox-bottombar-right">
+                        <button class="lightbox-bottombar-btn" id="lightboxPrev" aria-label="Previous">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m15 18-6-6 6-6" />
+                            </svg>
+                        </button>
+                        <button class="lightbox-bottombar-btn" id="lightboxNext" aria-label="Next">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m9 18 6-6-6-6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lightbox-zoom" id="lightboxZoom">
+        <button class="lightbox-topbar-btn lightbox-zoom-close" id="lightboxZoomClose" aria-label="Minimize">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+            </svg>
+        </button>
+        <img id="lightboxZoomImg" src="" alt="">
+    </div>
 
     <script>
         (function () {
             'use strict';
 
+            // ── CURSOR GLOW ──
+            const glow = document.getElementById('cursor-glow');
+            let mouseX = -200,
+                mouseY = -200;
+            let currentX = -200,
+                currentY = -200;
+            let glowActive = false;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                const target = e.target;
+                const isInteractive = target.closest(
+                    'a, button, .nav-broadcast, .slide-dots button, .slide-pause, .view-gallery-btn, .lightbox-topbar-btn, .lightbox-bottombar-btn, [role="button"]'
+                );
+                glowActive = !!isInteractive;
+            });
+
+            function animateGlow() {
+                currentX += (mouseX - currentX) * 0.12;
+                currentY += (mouseY - currentY) * 0.12;
+
+                glow.style.left = currentX + 'px';
+                glow.style.top = currentY + 'px';
+
+                if (glowActive) {
+                    glow.classList.add('active');
+                } else {
+                    glow.classList.remove('active');
+                }
+
+                requestAnimationFrame(animateGlow);
+            }
+
+            if ('ontouchstart' in window) {
+                glow.style.display = 'none';
+                document.body.style.cursor = 'auto';
+            } else {
+                animateGlow();
+            }
+
+            // ── SLIDESHOW ──
             const slides = Array.from(document.querySelectorAll('.slide'));
-            const slideUrls = slides.map(s => s.style.backgroundImage.slice(5, -2));
             const dotsWrap = document.getElementById('slideDots');
             const pauseBtn = document.getElementById('slidePause');
             const iconPause = document.getElementById('iconPause');
             const iconPlay = document.getElementById('iconPlay');
             const nav = document.getElementById('siteNav');
             const hero = document.getElementById('hero');
-            const scrim = document.getElementById('heroScrim');
 
             let current = 0,
                 playing = true,
@@ -1055,7 +1332,6 @@
             let remainingTime = 0;
             const SLIDE_DURATION = 5000;
 
-            // ── DOTS ──
             slides.forEach((_, i) => {
                 const b = document.createElement('button');
                 b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
@@ -1077,7 +1353,6 @@
 
             const dots = Array.from(dotsWrap.children);
 
-            // ── HELPERS ──
             function resetProgress(index) {
                 const fill = dots[index].querySelector('.progress-fill');
                 if (fill) {
@@ -1163,14 +1438,11 @@
                 timer = null;
             }
 
-            // ── PAUSE/PLAY ──
             pauseBtn.addEventListener('click', () => {
                 playing = !playing;
                 iconPause.style.display = playing ? '' : 'none';
                 iconPlay.style.display = playing ? 'none' : '';
                 pauseBtn.setAttribute('aria-label', playing ? 'Pause slideshow' : 'Play slideshow');
-
-                // Phone pe hover effect hatao immediately
                 pauseBtn.blur();
 
                 const activeDot = dots[current];
@@ -1198,7 +1470,6 @@
                 }
             });
 
-            // ── INIT ──
             const firstFill = dots[0].querySelector('.progress-fill');
             if (firstFill) {
                 firstFill.style.animation = `barFill ${SLIDE_DURATION}ms linear forwards`;
@@ -1231,6 +1502,145 @@
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => updateOnScroll(), 100);
             });
+
+            // ── LIGHTBOX CAROUSEL ──
+            const galleryImages = [
+                { src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/1.jpg', caption: 'International Management Conference 2026' },
+                { src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/2.jpg', caption: 'Industry 5.0: Governance, Technology, Sustainability' },
+                { src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/3.jpg', caption: 'Department of Management Studies' },
+                { src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/6.jpg', caption: 'Jai Hind College, Mumbai' },
+                { src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/8.jpg', caption: 'Panel Discussions & Keynotes' },
+                { src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/1.jpg', caption: 'Conference Highlights' }
+            ];
+
+            const lightbox = document.getElementById('lightbox');
+            const lightboxCarousel = document.getElementById('lightboxWrapper');
+            const lightboxTrack = document.getElementById('lightboxTrack');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+            const lightboxCounter = document.getElementById('lightboxCounter');
+            const progressTrack = document.getElementById('lightboxProgressGTA');
+            const progressFill = document.getElementById('lightboxProgressFill');
+            const dragHint = document.getElementById('lightboxDragHint');
+            const openGalleryBtn = document.getElementById('openGalleryBtn');
+            const lightboxFullscreen = document.getElementById('lightboxFullscreen');
+            const fullscreenLabel = document.getElementById('fullscreenLabel');
+
+            let currentImage = 0;
+            let isLightboxOpen = false;
+            let isFullscreen = false;
+            const totalImages = galleryImages.length;
+
+            function buildSlides() {
+                lightboxTrack.innerHTML = galleryImages.map((img, i) =>
+                    `<div class="lightbox-image-slide"><img src="${img.src}" alt="Gallery ${i + 1}" loading="lazy"><div class="lightbox-caption">${img.caption}</div></div>`
+                ).join('');
+            }
+
+            function slideMetrics() {
+                const slide = lightboxTrack.querySelector('.lightbox-image-slide');
+                const gap = parseFloat(getComputedStyle(lightboxTrack).gap) || 0;
+                return { step: slide.offsetWidth + gap, wrapW: lightboxCarousel.offsetWidth, slideW: slide.offsetWidth };
+            }
+
+            function updateStage(animate) {
+                const { step, wrapW, slideW } = slideMetrics();
+                const offset = (wrapW - slideW) / 2 - currentImage * step;
+                lightboxTrack.classList.toggle('animating', animate !== false);
+                lightboxTrack.style.transform = `translateX(${offset}px)`;
+
+                lightboxCounter.textContent = (currentImage + 1) + ' OF ' + totalImages;
+                const trackW = progressTrack.clientWidth - 14;
+                const pct = totalImages > 1 ? currentImage / (totalImages - 1) : 1;
+                progressFill.style.width = Math.max(4, pct * trackW) + 'px';
+                dragHint.classList.toggle('hidden', currentImage > 0);
+            }
+
+            progressTrack.addEventListener('click', (e) => {
+                const rect = progressTrack.getBoundingClientRect();
+                const pct = (e.clientX - rect.left) / rect.width;
+                goToImage(Math.round(pct * (totalImages - 1)));
+            });
+
+            function goToImage(index) {
+                currentImage = Math.max(0, Math.min(totalImages - 1, index));
+                updateStage(true);
+            }
+
+            function openLightbox(index) {
+                currentImage = index || 0;
+                isLightboxOpen = true;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                buildSlides();
+                requestAnimationFrame(() => updateStage(false));
+            }
+
+            function closeLightbox() {
+                isLightboxOpen = false;
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+                if (isFullscreen) closeZoom();
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (!isLightboxOpen) return;
+                if (e.key === 'Escape') { isFullscreen ? closeZoom() : closeLightbox(); }
+                if (e.key === 'ArrowLeft') goToImage(currentImage - 1);
+                if (e.key === 'ArrowRight') goToImage(currentImage + 1);
+            });
+
+            window.addEventListener('resize', () => { if (isLightboxOpen) updateStage(false); });
+
+            // ── DRAG / SWIPE THE CAROUSEL ──
+            let dragStartX = 0, dragging = false;
+            const dragThreshold = 60;
+
+            function dragStart(x) {
+                dragging = true;
+                dragStartX = x;
+                lightboxCarousel.classList.add('dragging');
+            }
+            function dragEnd(x) {
+                if (!dragging) return;
+                dragging = false;
+                lightboxCarousel.classList.remove('dragging');
+                const diff = dragStartX - x;
+                if (Math.abs(diff) > dragThreshold) goToImage(currentImage + (diff > 0 ? 1 : -1));
+                else updateStage(true);
+            }
+
+            lightboxCarousel.addEventListener('mousedown', (e) => dragStart(e.clientX));
+            window.addEventListener('mouseup', (e) => dragEnd(e.clientX));
+            lightboxCarousel.addEventListener('touchstart', (e) => dragStart(e.touches[0].clientX), { passive: true });
+            lightboxCarousel.addEventListener('touchend', (e) => dragEnd(e.changedTouches[0].clientX), { passive: true });
+
+            openGalleryBtn.addEventListener('click', () => openLightbox(0));
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); goToImage(currentImage - 1); });
+            lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); goToImage(currentImage + 1); });
+
+            // ── MAXIMIZE: zoom the current image only ──
+            const lightboxZoom = document.getElementById('lightboxZoom');
+            const lightboxZoomImg = document.getElementById('lightboxZoomImg');
+            const lightboxZoomClose = document.getElementById('lightboxZoomClose');
+
+            function openZoom() {
+                lightboxZoomImg.src = galleryImages[currentImage].src;
+                lightboxZoom.classList.add('active');
+                isFullscreen = true;
+                fullscreenLabel.textContent = 'Minimize';
+            }
+            function closeZoom() {
+                lightboxZoom.classList.remove('active');
+                isFullscreen = false;
+                fullscreenLabel.textContent = 'Maximize';
+            }
+
+            lightboxFullscreen.addEventListener('click', () => isFullscreen ? closeZoom() : openZoom());
+            lightboxZoomClose.addEventListener('click', closeZoom);
+            lightboxZoom.addEventListener('click', (e) => { if (e.target === lightboxZoom) closeZoom(); });
 
         })();
     </script>
