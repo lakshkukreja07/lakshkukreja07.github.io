@@ -755,2463 +755,50 @@
             -webkit-user-drag: none;
         }
 
+
         .lightbox-divider {
             width: 100%;
             height: 1px;
             background: rgba(255, 255, 255, 0.2);
-            margin: 0.5rem 0 0.5rem 0;
+            margin: 0.75rem 0 0.75rem 0;
             border: none;
             flex-shrink: 0;
+            border-radius: 5px;
         }
 
         .lightbox-caption-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 0.2rem;
+            gap: 0.75rem;
             flex-shrink: 0;
-            padding-top: 0.1rem;
+            padding-top: 0;
         }
 
         .lightbox-caption-prefix {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.5rem;
             font-family: 'Clash Grotesk', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 1.5px;
             color: rgba(255, 255, 255, 0.35);
         }
 
         .lightbox-caption-prefix .info-icon {
             flex-shrink: 0;
             stroke: rgba(255, 255, 255, 0.35);
-            width: 14px;
-            height: 14px;
-        }
-
-        .lightbox-caption-text {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.4;
-            margin: 0;
-        }
-
-        .lightbox-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .lightbox-progress-gta {
-            flex: 1;
-            max-width: 140px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50px;
-            padding: 0 7px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .lightbox-progress-gta:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .lightbox-progress-fill {
-            height: 3px;
-            width: 4px;
-            border-radius: 2px;
-            background: #fff;
-            transition: width .12s ease-out;
-        }
-
-        .lightbox-footer-right {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .lightbox-counter {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-size: 0.78rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 100);
-            white-space: nowrap;
-        }
-
-        .lightbox-bottombar-right {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .lightbox-bottombar-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: var(--lb-ink);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .lightbox-bottombar-btn:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
-            transform: scale(1.05);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .lightbox-bottombar-btn:hover svg {
-            stroke: #ffffff;
-        }
-
-        .lightbox-bottombar-btn svg {
-            width: 17px;
-            height: 17px;
-            stroke: var(--lb-ink);
-            stroke-width: 1.75;
-        }
-
-        .zoom-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 10010;
-            background: #000;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        }
-
-        .zoom-overlay.active {
-            display: flex;
-        }
-
-        .zoom-overlay-header {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            right: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 10;
-        }
-
-        .zoom-overlay-header-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .zoom-overlay-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: #fff;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .zoom-overlay-btn:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
-            transform: scale(1.05);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .zoom-overlay-btn:hover svg {
-            stroke: #ffffff;
-        }
-
-        .zoom-overlay-btn svg {
-            width: 20px;
-            height: 20px;
-            stroke: #fff;
-            stroke-width: 1.75;
-            fill: none;
-        }
-
-        .zoom-overlay-btn.labeled {
-            width: auto;
-            border-radius: 50px;
-            padding: 0 1.2rem 0 0.9rem;
-            gap: .5rem;
-        }
-
-        .zoom-overlay-btn .btn-label {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .zoom-overlay-btn:hover .btn-label {
-            color: #ffffff;
-        }
-
-        .zoom-overlay-btn .minimize-icon {
-            width: 20px;
-            height: 20px;
-            stroke: #fff;
-            stroke-width: 1.75;
-            fill: none;
-        }
-
-        .zoom-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            cursor: grab;
-            touch-action: none;
-        }
-
-        .zoom-container.dragging {
-            cursor: grabbing;
-        }
-
-        .zoom-image-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .zoom-image-wrapper img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: none;
-            transform-origin: center center;
-            user-select: none;
-            -webkit-user-drag: none;
-            will-change: transform;
-        }
-
-        .zoom-controls {
-            position: absolute;
-            bottom: 2.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 0.6rem 1.2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            z-index: 20;
-        }
-
-        .zoom-controls button {
-            width: auto;
-            height: 36px;
-            border: none;
-            background: transparent;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            font-weight: 400;
-            padding: 0 0.4rem;
-            font-family: 'Clash Grotesk', sans-serif;
-            letter-spacing: 0.3px;
-        }
-
-        .zoom-controls button:hover {
-            color: #ffffff;
-            background: transparent;
-        }
-
-        .zoom-controls .zoom-level {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
-            min-width: 65px;
-            text-align: center;
-            letter-spacing: 0.5px;
-            padding: 0 0.2rem;
-        }
-
-        .zoom-controls .zoom-reset {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 500;
-            padding: 0 0.8rem;
-            border-radius: 50px;
-            background: transparent;
-            color: rgba(255, 255, 255, 0.5);
-            border: none;
-            cursor: pointer;
-            height: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .zoom-controls .zoom-reset:hover {
-            color: #ffffff;
-            background: transparent;
-        }
-
-        .zoom-controls .divider {
-            width: 1px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        @media (max-width: 1024px) and (min-width: 701px) {
-            .lightbox-image-slide {
-                width: min(56vw, 600px);
-                height: 100%;
-                flex-shrink: 0;
-            }
-
-            .lightbox-image-slide img {
-                width: 100%;
-                flex: 1;
-                min-height: 0;
-                object-fit: cover;
-                border-radius: 12px;
-            }
-
-            .lightbox-carousel::before,
-            .lightbox-carousel::after {
-                width: 60px;
-            }
-
-            .lightbox-carousel::before {
-                left: 0;
-                background: linear-gradient(to right,
-                        rgba(10, 10, 10, 0.95) 0%,
-                        rgba(10, 10, 10, 0.5) 20%,
-                        transparent 100%);
-            }
-
-            .lightbox-carousel::after {
-                right: 0;
-                background: linear-gradient(to left,
-                        rgba(10, 10, 10, 0.95) 0%,
-                        rgba(10, 10, 10, 0.5) 20%,
-                        transparent 100%);
-            }
-
-            .lightbox-carousel.at-start::before {
-                opacity: 0;
-            }
-
-            .lightbox-carousel.at-end::after {
-                opacity: 0;
-            }
-
-            .zoom-overlay {
-                padding: 0;
-            }
-        }
-
-        @media (max-width: 700px) {
-            :root {
-                --nav-h: var(--nav-h-mobile);
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .college-logo {
-                height: 40px;
-            }
-
-            .nav-broadcast {
-                font-size: 0.85rem;
-                padding: 0.4rem 0.8rem;
-            }
-
-            .hero {
-                height: 85vh;
-                min-height: 400px;
-            }
-
-            .hero-content {
-                padding: 0 1.25rem;
-                padding-bottom: 4rem;
-                min-height: 75vh;
-                align-items: center;
-            }
-
-            .hero-text-block {
-                align-items: center;
-                text-align: center;
-                max-width: 100%;
-            }
-
-            .hero-headline {
-                align-items: center;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 0.2rem;
-            }
-
-            .hero-headline-main {
-                font-size: 3.5rem;
-                text-align: center;
-            }
-
-            .hero-headline-year {
-                font-size: 0.9rem;
-                margin-left: 0;
-                margin-bottom: 0.3rem;
-                letter-spacing: 0.3rem;
-            }
-
-            .hero-headline-event {
-                font-size: 0.85rem;
-                margin-left: 0;
-                margin-bottom: 0.4rem;
-                letter-spacing: 0.8rem;
-            }
-
-            .slide-controls {
-                right: 50%;
-                bottom: 1rem;
-                transform: translateX(50%);
-                gap: 1rem;
-            }
-
-            .slide-dots {
-                gap: 0.7rem;
-            }
-
-            .slide-dots button {
-                width: 9px;
-                height: 9px;
-            }
-
-            .slide-dots button.active {
-                width: 60px;
-                height: 9px;
-            }
-
-            .slide-dots button:not(.active):hover {
-                background: var(--dot-color);
-                transform: none;
-            }
-
-            .slide-pause {
-                width: 28px;
-                height: 28px;
-            }
-
-            .slide-pause svg {
-                width: 28px;
-                height: 28px;
-            }
-
-            .slide-pause::before {
-                inset: -4px;
-            }
-
-            .slide-pause:hover::before {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-
-            .recap-inner,
-            .moments-inner {
-                padding: 0 1.25rem;
-            }
-
-            .recap-section {
-                padding: 3rem 0 2rem;
-            }
-
-            .moments-section {
-                padding: 2rem 0 4rem;
-            }
-
-            .recap-text {
-                font-size: 0.95rem;
-                line-height: 1.8;
-            }
-
-            .view-gallery-btn {
-                padding: 0.6rem 1.8rem;
-                font-size: 0.8rem;
-            }
-
-            .lightbox {
-                padding: calc(var(--nav-h) + 1.5rem) 1.25rem 1.5rem;
-            }
-
-            .lightbox-header {
-                margin-bottom: 1.25rem;
-            }
-
-            .lightbox-topbar-btn {
-                width: 36px;
-                height: 36px;
-            }
-
-            .lightbox-topbar-btn svg {
-                width: 15px;
-                height: 15px;
-            }
-
-            .lightbox-carousel::before,
-            .lightbox-carousel::after {
-                display: none !important;
-            }
-
-            .lightbox-image-track {
-                gap: 1rem;
-            }
-
-            .lightbox-image-slide {
-                width: 82vw;
-                height: 100%;
-                padding-bottom: 0.5rem;
-            }
-
-            .lightbox-image-slide img {
-                width: 100%;
-                flex: 1;
-                min-height: 0;
-                object-fit: cover;
-                border-radius: 12px;
-            }
-
-            .lightbox-divider {
-                width: 100%;
-                margin: 0.4rem 0 0.4rem 0;
-            }
-
-            .lightbox-caption-prefix {
-                font-size: 0.6rem;
-            }
-
-            .lightbox-caption-prefix .info-icon {
-                width: 12px;
-                height: 12px;
-            }
-
-            .lightbox-caption-text {
-                font-size: 0.75rem;
-            }
-
-            .lightbox-footer {
-                margin-top: 1.1rem;
-                gap: .75rem;
-            }
-
-            .lightbox-progress-gta {
-                max-width: 100px;
-                height: 26px;
-            }
-
-            .lightbox-footer-right {
-                gap: .75rem;
-            }
-
-            .lightbox-counter {
-                font-size: 0.65rem;
-                letter-spacing: 1px;
-            }
-
-            .lightbox-bottombar-btn {
-                width: 34px;
-                height: 34px;
-            }
-
-            .lightbox-bottombar-btn svg {
-                width: 14px;
-                height: 14px;
-            }
-
-            .zoom-overlay {
-                padding: 0;
-            }
-
-            .zoom-overlay-header {
-                top: 0.8rem;
-                left: 0.8rem;
-                right: 0.8rem;
-            }
-
-            .zoom-overlay-btn {
-                width: 36px;
-                height: 36px;
-            }
-
-            .zoom-overlay-btn svg {
-                width: 16px;
-                height: 16px;
-            }
-
-            .zoom-overlay-btn.labeled {
-                padding: 0 0.9rem 0 0.7rem;
-            }
-
-            .zoom-overlay-btn .btn-label {
-                font-size: 0.7rem;
-            }
-
-            .zoom-controls {
-                padding: 0.4rem 0.9rem;
-                gap: 0.5rem;
-                bottom: 1.5rem;
-            }
-
-            .zoom-controls button {
-                height: 30px;
-                font-size: 1rem;
-                padding: 0 0.3rem;
-            }
-
-            .zoom-controls .zoom-level {
-                font-size: 0.75rem;
-                min-width: 55px;
-            }
-
-            .zoom-controls .zoom-reset {
-                font-size: 0.65rem;
-                height: 26px;
-                padding: 0 0.6rem;
-            }
-
-            .zoom-controls .divider {
-                height: 16px;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .hero-headline-main {
-                font-size: 6rem;
-            }
-
-            .hero-headline-year {
-                font-size: 1.2rem;
-                letter-spacing: 0.35rem;
-            }
-
-            .hero-headline-event {
-                font-size: 1.2rem;
-                letter-spacing: 0.95rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .lightbox-image-slide {
-                width: 88vw;
-            }
-
-            .lightbox-bottombar-btn {
-                width: 30px;
-                height: 30px;
-            }
-
-            .lightbox-bottombar-btn svg {
-                width: 14px;
-                height: 14px;
-            }
-
-            .lightbox-counter {
-                font-size: 0.62rem;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            .slide,
-            .site-nav,
-            .slide-dots button .progress-fill,
-            .hero-text-block {
-                transition: none !important;
-                animation: none !important;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <div id="cursor-glow"></div>
-
-    <nav class="site-nav" id="siteNav">
-        <div class="nav-container">
-            <a class="logo-wrapper" href="https://www.internationalmanagementconference.com" aria-label="Home">
-                <img class="college-logo"
-                    src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
-                    alt="Jai Hind College Logo" width="42" height="42" loading="eager" />
-            </a>
-            <div class="nav-right">
-                <span class="nav-broadcast">
-                    Broadcast
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        style="margin-left: 5px; display: inline-block; align-items: bottom;">
-                        <path d="M7 7h10v10" />
-                        <path d="M7 17 17 7" />
-                    </svg>
-                </span>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero" id="hero">
-        <div class="slides" id="slides">
-            <div class="slide active"
-                style="background-image:url('https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/1.jpg')">
-            </div>
-            <div class="slide"
-                style="background-image:url('https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/2.jpg')">
-            </div>
-            <div class="slide"
-                style="background-image:url('https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/3.jpg')">
-            </div>
-        </div>
-
-        <div class="hero-gradient-top"></div>
-        <div class="hero-gradient-bottom"></div>
-        <div class="hero-accent-glow"></div>
-        <div class="hero-scrim" id="heroScrim"></div>
-
-        <div class="hero-content">
-            <div class="hero-text-block">
-                <h1 class="hero-headline">
-                    <span class="hero-headline-event" aria-hidden="true">IMC</span>
-                    <span class="hero-headline-main">First Edition</span>
-                    <span class="hero-headline-year" aria-hidden="true">2026</span>
-                </h1>
-            </div>
-        </div>
-
-        <div class="slide-controls">
-            <button class="slide-pause" id="slidePause" aria-label="Pause slideshow">
-                <svg id="iconPause" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M5.92 24.096q0 0.832 0.576 1.408t1.44 0.608h4.032q0.832 0 1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-4.032q-0.832 0-1.44 0.576t-0.576 1.44v16.16zM18.016 24.096q0 0.832 0.608 1.408t1.408 0.608h4.032q0.832 0 1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-4.032q-0.832 0-1.408 0.576t-0.608 1.44v16.16z"
-                        fill="#ffffff" />
-                </svg>
-                <svg id="iconPlay" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="display:none;">
-                    <path
-                        d="M5.92 24.096q0 1.088 0.928 1.728 0.512 0.288 1.088 0.288 0.448 0 0.896-0.224l16.16-8.064q0.48-0.256 0.8-0.736t0.288-1.088-0.288-1.056-0.8-0.736l-16.16-8.064q-0.448-0.224-0.896-0.224-0.544 0-1.088 0.288-0.928 0.608-0.928 1.728v16.16z"
-                        fill="#ffffff" />
-                </svg>
-            </button>
-            <div class="slide-dots" id="slideDots"></div>
-        </div>
-    </section>
-
-    <section class="recap-section">
-        <div class="recap-inner">
-            <h2 class="recap-title">RECAP</h2>
-            <p class="recap-text">
-                International Management Conference<br>
-                <strong>Industry 5.0: Governance, Technology & Sustainability</strong><br><br>
-                Hosted By <strong>Department Of Management Studies</strong> At <strong>Jai Hind College (Empowered
-                    Autonomous), Mumbai</strong>.<br><br>
-                Our <span class="highlight">First Edition</span> Event Was Conducted On <strong>24th April
-                    2026</strong>.<br>
-                With Prestigious Event Guests Like <strong>Niranjan Hiranandani</strong> &amp; Others,<br>
-                Concluding The Evening At <strong>Bombay Presidency Radio Club, Colaba, Mumbai</strong>.
-            </p>
-        </div>
-    </section>
-
-    <section class="moments-section">
-        <div class="moments-inner">
-            <h2 class="moments-title">MOMENTS</h2>
-            <p class="moments-sub">Celebrating Moments &amp; Revisiting Our First Edition Of Event.</p>
-
-            <button class="view-gallery-btn" id="openGalleryBtn">View Gallery →</button>
-        </div>
-    </section>
-
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <div class="lightbox-header">
-                <div class="lightbox-header-left">
-                    <button class="lightbox-topbar-btn" id="lightboxClose" aria-label="Close">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 6 6 18" />
-                            <path d="m6 6 12 12" />
-                        </svg>
-                    </button>
-                    <h2 class="lightbox-heading">Gallery</h2>
-                </div>
-                <button class="lightbox-topbar-btn labeled" id="lightboxMaximize" aria-label="Maximize">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M15 3h6v6" />
-                        <path d="m21 3-7 7" />
-                        <path d="m3 21 7-7" />
-                        <path d="M9 21H3v-6" />
-                    </svg>
-                    <span class="lightbox-topbar-label" id="maximizeLabel">MAXIMIZE</span>
-                </button>
-            </div>
-
-            <div class="lightbox-carousel" id="lightboxWrapper">
-                <div class="lightbox-image-track" id="lightboxTrack">
-                </div>
-            </div>
-
-            <div class="lightbox-footer">
-                <div class="lightbox-progress-gta" id="lightboxProgressGTA">
-                    <div class="lightbox-progress-fill" id="lightboxProgressFill"></div>
-                </div>
-                <div class="lightbox-footer-right">
-                    <span class="lightbox-counter" id="lightboxCounter"> 1 OF 6</span>
-                    <div class="lightbox-bottombar-right">
-                        <button class="lightbox-bottombar-btn" id="lightboxPrev" aria-label="Previous">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="m15 18-6-6 6-6" />
-                            </svg>
-                        </button>
-                        <button class="lightbox-bottombar-btn" id="lightboxNext" aria-label="Next">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="m9 18 6-6-6-6" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="zoom-overlay" id="zoomOverlay">
-        <div class="zoom-overlay-header">
-            <div class="zoom-overlay-header-left">
-                <button class="zoom-overlay-btn labeled" id="zoomClose" aria-label="Minimize">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="minimize-icon">
-                        <path d="m14 10 7-7" />
-                        <path d="M20 10h-6V4" />
-                        <path d="m3 21 7-7" />
-                        <path d="M4 14h6v6" />
-                    </svg>
-                    <span class="btn-label" id="zoomMinimizeLabel">MINIMIZE</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="zoom-container" id="zoomContainer">
-            <div class="zoom-image-wrapper" id="zoomImageWrapper">
-                <img id="zoomImage" src="" alt="Zoomed image">
-            </div>
-        </div>
-
-        <div class="zoom-controls">
-            <button id="zoomOut" aria-label="Zoom out">−</button>
-            <div class="divider"></div>
-            <span class="zoom-level" id="zoomLevel">100%</span>
-            <div class="divider"></div>
-            <button id="zoomIn" aria-label="Zoom in">+</button>
-            <div class="divider"></div>
-            <button class="zoom-reset" id="zoomReset">RESET</button>
-        </div>
-    </div>
-
-    <script>
-        (function () {
-            'use strict';
-
-            const glow = document.getElementById('cursor-glow');
-            let mouseX = -200,
-                mouseY = -200;
-            let currentX = -200,
-                currentY = -200;
-            let glowActive = false;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-
-                const target = e.target;
-                const isInteractive = target.closest(
-                    'a, button, .nav-broadcast, .slide-dots button, .slide-pause, .view-gallery-btn, .lightbox-topbar-btn, .lightbox-bottombar-btn, .zoom-overlay-btn, .zoom-controls button, .zoom-controls .zoom-reset, [role="button"]'
-                );
-                glowActive = !!isInteractive;
-            });
-
-            function animateGlow() {
-                const smoothFactor = 0.9;
-
-                currentX += (mouseX - currentX) * smoothFactor;
-                currentY += (mouseY - currentY) * smoothFactor;
-
-                if (Math.abs(mouseX - currentX) < 1) currentX = mouseX;
-                if (Math.abs(mouseY - currentY) < 1) currentY = mouseY;
-
-                glow.style.left = currentX + 'px';
-                glow.style.top = currentY + 'px';
-
-                if (glowActive) {
-                    glow.classList.add('active');
-                } else {
-                    glow.classList.remove('active');
-                }
-
-                requestAnimationFrame(animateGlow);
-            }
-
-            if ('ontouchstart' in window) {
-                glow.style.display = 'none';
-                document.body.style.cursor = 'auto';
-            } else {
-                animateGlow();
-            }
-
-            const slides = Array.from(document.querySelectorAll('.slide'));
-            const dotsWrap = document.getElementById('slideDots');
-            const pauseBtn = document.getElementById('slidePause');
-            const iconPause = document.getElementById('iconPause');
-            const iconPlay = document.getElementById('iconPlay');
-            const nav = document.getElementById('siteNav');
-            const hero = document.getElementById('hero');
-
-            let current = 0,
-                playing = true,
-                timer = null;
-            let isTransitioning = false;
-            let remainingTime = 0;
-            const SLIDE_DURATION = 5000;
-
-            slides.forEach((_, i) => {
-                const b = document.createElement('button');
-                b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-                if (i === 0) b.classList.add('active');
-
-                const fill = document.createElement('span');
-                fill.className = 'progress-fill';
-                b.appendChild(fill);
-
-                b.addEventListener('click', () => {
-                    if (!isTransitioning) {
-                        resetProgress(current);
-                        goTo(i);
-                        if (playing) startTimer();
-                    }
-                });
-                dotsWrap.appendChild(b);
-            });
-
-            const dots = Array.from(dotsWrap.children);
-
-            function resetProgress(index) {
-                const fill = dots[index].querySelector('.progress-fill');
-                if (fill) {
-                    fill.style.animation = 'none';
-                    fill.style.width = '0%';
-                    void fill.offsetWidth;
-                }
-            }
-
-            function goTo(idx) {
-                if (isTransitioning) return;
-                isTransitioning = true;
-
-                const next = (idx + slides.length) % slides.length;
-                const currentSlide = slides[current];
-                const nextSlide = slides[next];
-
-                currentSlide.classList.remove('active', 'exit-left');
-                nextSlide.classList.remove('active', 'exit-left');
-
-                void currentSlide.offsetWidth;
-
-                currentSlide.classList.add('exit-left');
-                nextSlide.classList.add('active');
-
-                dots[current].classList.remove('active');
-                dots[next].classList.add('active');
-
-                resetProgress(current);
-
-                const newFill = dots[next].querySelector('.progress-fill');
-                if (newFill) {
-                    newFill.style.animation = 'none';
-                    newFill.style.width = '0%';
-                    void newFill.offsetWidth;
-                    newFill.style.animation = `barFill ${SLIDE_DURATION}ms linear forwards`;
-                    if (!playing) {
-                        newFill.style.animationPlayState = 'paused';
-                        dots[next].classList.add('paused');
-                    } else {
-                        dots[next].classList.remove('paused');
-                    }
-                }
-
-                setTimeout(() => {
-                    currentSlide.classList.remove('exit-left');
-                    isTransitioning = false;
-                }, 1000);
-
-                current = next;
-
-                if (playing) {
-                    clearInterval(timer);
-                    timer = setInterval(() => {
-                        if (!isTransitioning && playing) {
-                            goTo(current + 1);
-                        }
-                    }, SLIDE_DURATION);
-                }
-            }
-
-            function startTimer() {
-                clearInterval(timer);
-                if (remainingTime > 0 && remainingTime < SLIDE_DURATION) {
-                    timer = setTimeout(() => {
-                        if (!isTransitioning && playing) {
-                            goTo(current + 1);
-                        }
-                    }, remainingTime);
-                    remainingTime = 0;
-                } else {
-                    timer = setInterval(() => {
-                        if (!isTransitioning && playing) {
-                            goTo(current + 1);
-                        }
-                    }, SLIDE_DURATION);
-                }
-            }
-
-            function stopTimer() {
-                clearInterval(timer);
-                clearTimeout(timer);
-                timer = null;
-            }
-
-            pauseBtn.addEventListener('click', () => {
-                playing = !playing;
-                iconPause.style.display = playing ? '' : 'none';
-                iconPlay.style.display = playing ? 'none' : '';
-                pauseBtn.setAttribute('aria-label', playing ? 'Pause slideshow' : 'Play slideshow');
-                pauseBtn.blur();
-
-                const activeDot = dots[current];
-                const fill = activeDot.querySelector('.progress-fill');
-
-                if (playing) {
-                    if (fill) {
-                        fill.style.animationPlayState = 'running';
-                        activeDot.classList.remove('paused');
-                    }
-                    const progress = fill ? parseFloat(fill.style.width) || 0 : 0;
-                    remainingTime = Math.max(0, SLIDE_DURATION - (progress / 100) * SLIDE_DURATION);
-                    startTimer();
-                } else {
-                    if (fill) {
-                        const computedStyle = window.getComputedStyle(fill);
-                        const width = parseFloat(computedStyle.width) || 0;
-                        const parentWidth = parseFloat(computedStyle.parentElement?.style?.width) || 64;
-                        const progressPercent = Math.min(100, (width / parentWidth) * 100);
-                        remainingTime = Math.max(0, SLIDE_DURATION - (progressPercent / 100) * SLIDE_DURATION);
-                        fill.style.animationPlayState = 'paused';
-                        activeDot.classList.add('paused');
-                    }
-                    stopTimer();
-                }
-            });
-
-            const firstFill = dots[0].querySelector('.progress-fill');
-            if (firstFill) {
-                firstFill.style.animation = `barFill ${SLIDE_DURATION}ms linear forwards`;
-            }
-            startTimer();
-
-            let ticking = false;
-
-            function updateOnScroll() {
-                const y = window.scrollY;
-                nav.classList.toggle('scrolled', y > 40);
-                const heroHeight = hero.offsetHeight;
-                const progress = Math.min(Math.max(y / heroHeight, 0), 1);
-                hero.style.setProperty('--scrim-opacity', (progress * 0.7).toFixed(3));
-                ticking = false;
-            }
-
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(updateOnScroll);
-                    ticking = true;
-                }
-            }, { passive: true });
-
-            updateOnScroll();
-
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => updateOnScroll(), 100);
-            });
-
-            const galleryImages = [{
-                src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/1.jpg',
-                srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/1.jpg',
-                caption: 'International Management Conference 2026'
-            },
-            {
-                src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/2.jpg',
-                srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/2.jpg',
-                caption: 'Industry 5.0: Governance, Technology, Sustainability'
-            },
-            {
-                src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/3.jpg',
-                srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/3.jpg',
-                caption: 'Department of Management Studies'
-            },
-            {
-                src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/6.jpg',
-                srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/6.jpg',
-                caption: 'Jai Hind College, Mumbai'
-            },
-            {
-                src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/8.jpg',
-                srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/8.jpg',
-                caption: 'Panel Discussions & Keynotes'
-            },
-            {
-                src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/1.jpg',
-                srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/1.jpg',
-                caption: 'Conference Highlights'
-            }
-            ];
-
-            const lightbox = document.getElementById('lightbox');
-            const lightboxCarousel = document.getElementById('lightboxWrapper');
-            const lightboxTrack = document.getElementById('lightboxTrack');
-            const lightboxClose = document.getElementById('lightboxClose');
-            const lightboxPrev = document.getElementById('lightboxPrev');
-            const lightboxNext = document.getElementById('lightboxNext');
-            const lightboxCounter = document.getElementById('lightboxCounter');
-            const progressTrack = document.getElementById('lightboxProgressGTA');
-            const progressFill = document.getElementById('lightboxProgressFill');
-            const openGalleryBtn = document.getElementById('openGalleryBtn');
-            const lightboxMaximize = document.getElementById('lightboxMaximize');
-            const maximizeLabel = document.getElementById('maximizeLabel');
-
-            const zoomOverlay = document.getElementById('zoomOverlay');
-            const zoomContainer = document.getElementById('zoomContainer');
-            const zoomImageWrapper = document.getElementById('zoomImageWrapper');
-            const zoomImage = document.getElementById('zoomImage');
-            const zoomClose = document.getElementById('zoomClose');
-            const zoomMinimizeLabel = document.getElementById('zoomMinimizeLabel');
-            const zoomIn = document.getElementById('zoomIn');
-            const zoomOut = document.getElementById('zoomOut');
-            const zoomReset = document.getElementById('zoomReset');
-            const zoomLevel = document.getElementById('zoomLevel');
-
-            let currentImage = 0;
-            let isLightboxOpen = false;
-            let isZoomOpen = false;
-            let zoomScale = 1;
-            const MIN_ZOOM = 1;
-            const MAX_ZOOM = 3;
-            let zoomPanX = 0;
-            let zoomPanY = 0;
-            let isDragging = false;
-            let dragStartX = 0;
-            let dragStartY = 0;
-            let dragStartPanX = 0;
-            let dragStartPanY = 0;
-
-            // Pinch zoom state
-            let lastPinchDist = 0;
-            let pinchScale = 1;
-
-            const totalImages = galleryImages.length;
-            let fadeTimeout;
-
-            function updateFadeVisibility() {
-                const track = lightboxTrack;
-                const carousel = lightboxCarousel;
-                const containerWidth = carousel.clientWidth;
-                const trackWidth = track.scrollWidth;
-                const scrollPos = Math.abs(parseFloat(track.style.transform.replace('translateX(', '').replace('px)', '')) ||
-                    0);
-
-                if (scrollPos < 10) {
-                    carousel.classList.add('at-start');
-                } else {
-                    carousel.classList.remove('at-start');
-                }
-
-                if (scrollPos + containerWidth >= trackWidth - 10) {
-                    carousel.classList.add('at-end');
-                } else {
-                    carousel.classList.remove('at-end');
-                }
-            }
-
-            function buildSlides() {
-                lightboxTrack.innerHTML = galleryImages.map((img, i) =>
-                    `<div class="lightbox-image-slide">
-                        <img src="${img.src}" alt="Gallery ${i + 1}" loading="lazy">
-                        <div class="lightbox-divider"></div>
-                        <div class="lightbox-caption-wrapper">
-                            <div class="lightbox-caption-prefix">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="info-icon"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                                About This Image
-                            </div>
-                            <p class="lightbox-caption-text">${img.caption}</p>
-                        </div>
-                    </div>`
-                ).join('');
-            }
-
-            function slideMetrics() {
-                const slide = lightboxTrack.querySelector('.lightbox-image-slide');
-                const gap = parseFloat(getComputedStyle(lightboxTrack).gap) || 0;
-                return { step: slide.offsetWidth + gap, wrapW: lightboxCarousel.offsetWidth, slideW: slide.offsetWidth };
-            }
-
-            function updateStage(animate) {
-                const { step, wrapW, slideW } = slideMetrics();
-                const offset = (wrapW - slideW) / 2 - currentImage * step;
-                lightboxTrack.classList.toggle('animating', animate !== false);
-                lightboxTrack.style.transform = `translateX(${offset}px)`;
-
-                lightboxCounter.textContent = 'Currently Viewing: ' + (currentImage + 1) + ' OF ' + totalImages;
-                const trackW = progressTrack.clientWidth - 14;
-                const pct = totalImages > 1 ? currentImage / (totalImages - 1) : 1;
-                const targetWidth = Math.max(4, pct * trackW);
-
-                progressFill.style.transition = 'width 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                progressFill.style.width = targetWidth + 'px';
-
-                clearTimeout(progressFill._transitionTimeout);
-                progressFill._transitionTimeout = setTimeout(() => {
-                    progressFill.style.transition = 'none';
-                }, 600);
-
-                clearTimeout(fadeTimeout);
-                fadeTimeout = setTimeout(updateFadeVisibility, 600);
-            }
-
-            progressTrack.addEventListener('click', (e) => {
-                const rect = progressTrack.getBoundingClientRect();
-                const pct = (e.clientX - rect.left) / rect.width;
-                goToImage(Math.round(pct * (totalImages - 1)));
-            });
-
-            function goToImage(index) {
-                currentImage = Math.max(0, Math.min(totalImages - 1, index));
-                updateStage(true);
-            }
-
-            function openLightbox(index) {
-                currentImage = index || 0;
-                isLightboxOpen = true;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                buildSlides();
-                requestAnimationFrame(() => updateStage(false));
-            }
-
-            function closeLightbox() {
-                isLightboxOpen = false;
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-                if (isZoomOpen) closeZoom();
-            }
-
-            document.addEventListener('keydown', (e) => {
-                if (!isLightboxOpen) return;
-                if (e.key === 'Escape') {
-                    if (isZoomOpen) { closeZoom(); return; }
-                    closeLightbox();
-                }
-                if (isZoomOpen) {
-                    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') return;
-                } else {
-                    if (e.key === 'ArrowLeft') goToImage(currentImage - 1);
-                    if (e.key === 'ArrowRight') goToImage(currentImage + 1);
-                }
-            });
-
-            window.addEventListener('resize', () => {
-                if (isLightboxOpen) {
-                    updateStage(false);
-                    setTimeout(updateFadeVisibility, 100);
-                }
-            });
-
-            let dragStartXPos = 0,
-                dragging = false;
-            const dragThreshold = 60;
-
-            function dragStartGallery(x) {
-                dragging = true;
-                dragStartXPos = x;
-                lightboxCarousel.classList.add('dragging');
-            }
-
-            function dragEndGallery(x) {
-                if (!dragging) return;
-                dragging = false;
-                lightboxCarousel.classList.remove('dragging');
-                const diff = dragStartXPos - x;
-                if (Math.abs(diff) > dragThreshold) goToImage(currentImage + (diff > 0 ? 1 : -1));
-                else updateStage(true);
-            }
-
-            lightboxCarousel.addEventListener('mousedown', (e) => dragStartGallery(e.clientX));
-            window.addEventListener('mouseup', (e) => dragEndGallery(e.clientX));
-            lightboxCarousel.addEventListener('touchstart', (e) => dragStartGallery(e.touches[0].clientX), { passive: true });
-            lightboxCarousel.addEventListener('touchend', (e) => dragEndGallery(e.changedTouches[0].clientX), { passive: true });
-
-            openGalleryBtn.addEventListener('click', () => openLightbox(0));
-            lightboxClose.addEventListener('click', closeLightbox);
-            lightboxPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
-                goToImage(currentImage - 1);
-            });
-            lightboxNext.addEventListener('click', (e) => {
-                e.stopPropagation();
-                goToImage(currentImage + 1);
-            });
-
-            // ===== ZOOM FUNCTIONS =====
-            function getImageBounds() {
-                const img = zoomImage;
-                const container = zoomContainer;
-                const imgRect = img.getBoundingClientRect();
-                const containerRect = container.getBoundingClientRect();
-
-                // Calculate image dimensions after transform
-                const scale = zoomScale;
-                const naturalWidth = img.naturalWidth || img.width || 1;
-                const naturalHeight = img.naturalHeight || img.height || 1;
-
-                // Calculate display size
-                const containerAspect = containerRect.width / containerRect.height;
-                const imgAspect = naturalWidth / naturalHeight;
-
-                let displayWidth, displayHeight;
-                if (imgAspect > containerAspect) {
-                    displayWidth = containerRect.width;
-                    displayHeight = containerRect.width / imgAspect;
-                } else {
-                    displayHeight = containerRect.height;
-                    displayWidth = containerRect.height * imgAspect;
-                }
-
-                displayWidth *= scale;
-                displayHeight *= scale;
-
-                return { width: displayWidth, height: displayHeight };
-            }
-
-            function clampPan() {
-                const bounds = getImageBounds();
-                const containerRect = zoomContainer.getBoundingClientRect();
-
-                // Calculate max pan limits
-                const maxX = Math.max(0, (bounds.width - containerRect.width) / 2);
-                const maxY = Math.max(0, (bounds.height - containerRect.height) / 2);
-
-                // Clamp pan to image bounds
-                zoomPanX = Math.max(-maxX, Math.min(maxX, zoomPanX));
-                zoomPanY = Math.max(-maxY, Math.min(maxY, zoomPanY));
-            }
-
-            function updateZoomTransform() {
-                const scale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoomScale));
-
-                // Clamp pan to prevent black borders
-                if (scale > 1) {
-                    clampPan();
-                } else {
-                    zoomPanX = 0;
-                    zoomPanY = 0;
-                }
-
-                zoomImage.style.transform = `scale(${scale}) translate(${zoomPanX / scale}px, ${zoomPanY / scale}px)`;
-                zoomLevel.textContent = Math.round(scale * 100) + '%';
-            }
-
-            function zoomAt(amount, centerX, centerY) {
-                const oldScale = zoomScale;
-                const newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoomScale * amount));
-                if (newScale === oldScale) return;
-
-                const rect = zoomImageWrapper.getBoundingClientRect();
-                const cx = centerX !== undefined ? centerX : rect.width / 2;
-                const cy = centerY !== undefined ? centerY : rect.height / 2;
-
-                const ratio = newScale / oldScale;
-                zoomPanX = (zoomPanX - cx) * ratio + cx;
-                zoomPanY = (zoomPanY - cy) * ratio + cy;
-
-                zoomScale = newScale;
-
-                // If zoomed out to 1 or less, center the image
-                if (zoomScale <= 1) {
-                    zoomPanX = 0;
-                    zoomPanY = 0;
-                }
-
-                updateZoomTransform();
-            }
-
-            function resetZoom() {
-                zoomScale = 1;
-                zoomPanX = 0;
-                zoomPanY = 0;
-                updateZoomTransform();
-            }
-
-            zoomIn.addEventListener('click', () => zoomAt(1.2, window.innerWidth / 2, window.innerHeight / 2));
-            zoomOut.addEventListener('click', () => zoomAt(0.8, window.innerWidth / 2, window.innerHeight / 2));
-            zoomReset.addEventListener('click', resetZoom);
-
-            zoomContainer.addEventListener('wheel', (e) => {
-                e.preventDefault();
-                const delta = e.deltaY > 0 ? 0.9 : 1.1;
-                zoomAt(delta, e.clientX - zoomContainer.getBoundingClientRect().left, e.clientY - zoomContainer
-                    .getBoundingClientRect().top);
-            }, { passive: false });
-
-            // Mouse drag
-            zoomContainer.addEventListener('mousedown', (e) => {
-                if (zoomScale <= 1) return;
-                isDragging = true;
-                dragStartX = e.clientX;
-                dragStartY = e.clientY;
-                dragStartPanX = zoomPanX;
-                dragStartPanY = zoomPanY;
-                zoomContainer.classList.add('dragging');
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                const dx = e.clientX - dragStartX;
-                const dy = e.clientY - dragStartY;
-                zoomPanX = dragStartPanX + dx;
-                zoomPanY = dragStartPanY + dy;
-                updateZoomTransform();
-            });
-
-            window.addEventListener('mouseup', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    zoomContainer.classList.remove('dragging');
-                    // Recenter if zoomed out
-                    if (zoomScale <= 1) {
-                        zoomPanX = 0;
-                        zoomPanY = 0;
-                        updateZoomTransform();
-                    }
-                }
-            });
-
-            // Touch pinch zoom
-            let initialPinchDist = 0;
-            let initialPinchScale = 1;
-            let initialPinchPanX = 0;
-            let initialPinchPanY = 0;
-            let lastTouchX = 0;
-            let lastTouchY = 0;
-            let isPinching = false;
-
-            function getPinchDistance(touches) {
-                if (touches.length < 2) return 0;
-                const dx = touches[0].clientX - touches[1].clientX;
-                const dy = touches[0].clientY - touches[1].clientY;
-                return Math.sqrt(dx * dx + dy * dy);
-            }
-
-            function getPinchCenter(touches) {
-                if (touches.length < 2) return { x: 0, y: 0 };
-                return {
-                    x: (touches[0].clientX + touches[1].clientX) / 2,
-                    y: (touches[0].clientY + touches[1].clientY) / 2
-                };
-            }
-
-            zoomContainer.addEventListener('touchstart', (e) => {
-                const touches = e.touches;
-                if (touches.length === 2) {
-                    isPinching = true;
-                    initialPinchDist = getPinchDistance(touches);
-                    initialPinchScale = zoomScale;
-                    initialPinchPanX = zoomPanX;
-                    initialPinchPanY = zoomPanY;
-                    const center = getPinchCenter(touches);
-                    lastTouchX = center.x;
-                    lastTouchY = center.y;
-                } else if (touches.length === 1 && zoomScale > 1) {
-                    isDragging = true;
-                    dragStartX = touches[0].clientX;
-                    dragStartY = touches[0].clientY;
-                    dragStartPanX = zoomPanX;
-                    dragStartPanY = zoomPanY;
-                    zoomContainer.classList.add('dragging');
-                }
-            }, { passive: true });
-
-            zoomContainer.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-                const touches = e.touches;
-
-                if (isPinching && touches.length === 2) {
-                    const dist = getPinchDistance(touches);
-                    if (initialPinchDist > 0) {
-                        const ratio = dist / initialPinchDist;
-                        const newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, initialPinchScale * ratio));
-
-                        // Apply zoom at pinch center
-                        const center = getPinchCenter(touches);
-                        const rect = zoomContainer.getBoundingClientRect();
-                        const cx = center.x - rect.left;
-                        const cy = center.y - rect.top;
-
-                        const oldScale = initialPinchScale;
-                        const scaleRatio = newScale / oldScale;
-                        zoomPanX = (initialPinchPanX - cx) * scaleRatio + cx;
-                        zoomPanY = (initialPinchPanY - cy) * scaleRatio + cy;
-                        zoomScale = newScale;
-
-                        if (zoomScale <= 1) {
-                            zoomPanX = 0;
-                            zoomPanY = 0;
-                        }
-
-                        updateZoomTransform();
-                    }
-                } else if (isDragging && touches.length === 1 && zoomScale > 1) {
-                    const dx = touches[0].clientX - dragStartX;
-                    const dy = touches[0].clientY - dragStartY;
-                    zoomPanX = dragStartPanX + dx;
-                    zoomPanY = dragStartPanY + dy;
-                    updateZoomTransform();
-                }
-            }, { passive: false });
-
-            zoomContainer.addEventListener('touchend', (e) => {
-                if (isPinching) {
-                    isPinching = false;
-                    if (zoomScale <= 1) {
-                        zoomPanX = 0;
-                        zoomPanY = 0;
-                        updateZoomTransform();
-                    }
-                }
-                if (isDragging) {
-                    isDragging = false;
-                    zoomContainer.classList.remove('dragging');
-                    if (zoomScale <= 1) {
-                        zoomPanX = 0;
-                        zoomPanY = 0;
-                        updateZoomTransform();
-                    }
-                }
-            }, { passive: true });
-
-            document.addEventListener('keydown', (e) => {
-                if (!isZoomOpen) return;
-                if (e.key === '+' || e.key === '=') {
-                    e.preventDefault();
-                    zoomAt(1.2, window.innerWidth / 2, window.innerHeight / 2);
-                }
-                if (e.key === '-') {
-                    e.preventDefault();
-                    zoomAt(0.8, window.innerWidth / 2, window.innerHeight / 2);
-                }
-                if (e.key === '0') {
-                    e.preventDefault();
-                    resetZoom();
-                }
-            });
-
-            lightboxMaximize.addEventListener('click', () => {
-                if (isZoomOpen) {
-                    closeZoom();
-                } else {
-                    openZoom();
-                }
-            });
-
-            zoomClose.addEventListener('click', closeZoom);
-
-            zoomOverlay.addEventListener('click', (e) => {
-                if (e.target === zoomOverlay) closeZoom();
-            });
-
-            function openZoom() {
-                isZoomOpen = true;
-                zoomImage.src = galleryImages[currentImage].srcFull;
-                zoomScale = 1;
-                zoomPanX = 0;
-                zoomPanY = 0;
-                updateZoomTransform();
-                zoomOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                maximizeLabel.textContent = 'MINIMIZE';
-                zoomMinimizeLabel.textContent = 'MINIMIZE';
-            }
-
-            function closeZoom() {
-                isZoomOpen = false;
-                zoomOverlay.classList.remove('active');
-                document.body.style.overflow = 'hidden';
-                maximizeLabel.textContent = 'MAXIMIZE';
-            }
-
-        })();
-    </script>
-</body>
-
-</html><!DOCTYPE html>
-<html lang="en_us">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-    <title>IMC | Jai Hind College</title>
-    <meta name="description"
-        content="International Management Conference 2026, Jai Hind College (Empowered Autonomous), Mumbai." />
-    <link rel="icon" type="image/png"
-        href="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png" />
-
-    <link rel="preconnect" href="https://lakshkukreja07.github.io" />
-    <link rel="dns-prefetch" href="https://lakshkukreja07.github.io" />
-
-    <link rel="preload"
-        href="https://lakshkukreja07.github.io/assets/fonts/clashgrotesk/woff2/clashgrotesk-variable.woff2" as="font"
-        type="font/woff2" crossorigin />
-    <link rel="preload"
-        href="https://lakshkukreja07.github.io/assets/fonts/clashgrotesk/woff2/clashgrotesk-regular.woff2" as="font"
-        type="font/woff2" crossorigin />
-    <link rel="preload" href="https://lakshkukreja07.github.io/assets/fonts/coolvetica/otf/coolvetica-hv-comp.otf"
-        as="font" type="font/opentype" crossorigin />
-
-    <link rel="stylesheet" href="https://lakshkukreja07.github.io/assets/fonts/configure-fonts.css" />
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --nav-h: 84px;
-            --nav-h-mobile: 64px;
-            --accent: #fcaf17;
-            --bg: #0a0a0a;
-            --dot-color: rgba(255, 255, 255, .3);
-            --dot-active-bg: rgba(255, 255, 255, .12);
-            --slide-duration: 5s;
-        }
-
-        html {
-            height: 100%;
-            scroll-behavior: smooth;
-            background: var(--bg);
-        }
-
-        body {
-            font-family: 'Clash Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg);
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            cursor: auto;
-        }
-
-        #cursor-glow {
-            position: fixed;
-            pointer-events: none;
-            z-index: 99999;
-            width: 750px;
-            height: 750px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(252, 175, 23, 0.035) 45%, transparent 72%);
-            transform: translate(-50%, -50%);
-            transition: width .45s cubic-bezier(.25, .8, .25, 1), height .45s cubic-bezier(.25, .8, .25, 1), opacity .4s ease;
-            will-change: transform;
-            mix-blend-mode: screen;
-            opacity: .75;
-        }
-
-        #cursor-glow.active {
-            width: 190px;
-            height: 190px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(252, 175, 23, 0.06) 45%, transparent 72%);
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .site-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--nav-h);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            background: transparent;
-            backdrop-filter: blur(0px);
-            -webkit-backdrop-filter: blur(0px);
-            border-bottom: 1px solid transparent;
-            transition: background 0.5s ease, backdrop-filter 0.5s ease, border-color 0.5s ease;
-        }
-
-        .site-nav.scrolled {
-            background: rgba(8, 8, 12, 0.55);
-            backdrop-filter: blur(10px) saturate(200%);
-            -webkit-backdrop-filter: blur(10px) saturate(200%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-        }
-
-        .nav-container {
-            max-width: 1480px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: .85rem;
-            text-decoration: none;
-            flex-shrink: 0;
-        }
-
-        .college-logo {
-            height: 54px;
-            width: auto;
-            display: block;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .nav-broadcast {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 500;
-            font-size: .85rem;
-            letter-spacing: .2px;
-            color: #fff;
-            padding: .6rem 1rem;
-            border-radius: 499px;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: background .3s ease;
-            background: transparent;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .nav-broadcast:hover {
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            min-height: 560px;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            background: var(--bg);
-        }
-
-        .slides {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .slide {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transform: translateX(100%);
-            will-change: transform, opacity;
-            transition: transform 1s cubic-bezier(.25, .46, .45, .94),
-                opacity 1s cubic-bezier(.25, .46, .45, .94);
-        }
-
-        .slide.active {
-            transform: translateX(0);
-            opacity: 1;
-            z-index: 2;
-        }
-
-        .slide.exit-left {
-            transform: translateX(-100%);
-            opacity: 0;
-            z-index: 1;
-        }
-
-        .hero-gradient-top {
-            position: absolute;
-            inset: 0;
-            z-index: 3;
-            background: linear-gradient(180deg,
-                    rgba(0, 0, 0, 0.85) 0%,
-                    rgba(0, 0, 0, 0.4) 20%,
-                    rgba(0, 0, 0, 0.15) 40%,
-                    rgba(0, 0, 0, 0.15) 60%,
-                    rgba(0, 0, 0, 0.4) 80%,
-                    rgba(0, 0, 0, 0.85) 100%);
-            pointer-events: none;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-        }
-
-        .hero-gradient-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 55%;
-            z-index: 3;
-            background: linear-gradient(0deg,
-                    rgba(0, 0, 0, 0.95) 0%,
-                    rgba(0, 0, 0, 0.6) 30%,
-                    rgba(0, 0, 0, 0.25) 60%,
-                    transparent 100%);
-            pointer-events: none;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-        }
-
-        .hero-accent-glow {
-            position: absolute;
-            bottom: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 50%;
-            z-index: 2;
-            background: radial-gradient(ellipse at center, rgba(252, 175, 23, 0.12), transparent 70%);
-            pointer-events: none;
-            filter: blur(60px);
-        }
-
-        .hero-scrim {
-            position: absolute;
-            inset: 0;
-            z-index: 4;
-            background: #000;
-            opacity: var(--scrim-opacity, 0);
-            pointer-events: none;
-            transition: opacity .1s linear;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 5;
-            width: 100%;
-            max-width: 1480px;
-            margin: 0 auto;
-            padding: 0 2.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-end;
-            min-height: 100vh;
-            padding-bottom: 2rem;
-        }
-
-        .hero-text-block {
-            max-width: 780px;
-            animation: heroFadeUp 1.2s cubic-bezier(.22, 1, .36, 1) both;
-            animation-delay: 0.3s;
-            display: flex;
-            align-items: flex-end;
-            gap: 0rem;
-        }
-
-        @keyframes heroFadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(32px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-headline {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-end;
-            gap: 0;
-            line-height: 1;
-        }
-
-        .hero-headline-year {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-size: 1.5rem;
-            color: transparent;
-            text-align: center;
-            letter-spacing: 1.5px;
-            line-height: 1;
-            background: linear-gradient(180deg, #ff6b35, #f7931e, #ffd700);
-            -webkit-background-clip: text;
-            background-clip: text;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
-            margin-left: 0.1rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .hero-headline-event {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-size: 1rem;
-            color: transparent;
-            text-align: center;
-            letter-spacing: 17px;
-            line-height: 1;
-            background: linear-gradient(180deg, #f276cd, #f963cc, #f826b9);
-            -webkit-background-clip: text;
-            background-clip: text;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
-            margin-left: 0.1rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .hero-headline-main {
-            font-family: 'Coolvetica Heavy', sans-serif;
-            font-size: 6rem;
-            color: white;
-            text-align: left;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1;
-        }
-
-        .slide-controls {
-            position: absolute;
-            right: 2.5rem;
-            bottom: 2.5rem;
-            z-index: 5;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .slide-dots {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .slide-dots button {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--dot-color);
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            position: relative;
-            overflow: visible;
-            transition: all .3s ease;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .slide-dots button.active {
-            width: 64px;
-            height: 8px;
-            border-radius: 499px;
-            background: var(--dot-active-bg);
-            overflow: hidden;
-        }
-
-        .slide-dots button .progress-fill {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 0%;
-            background: #fff;
-            border-radius: 499px;
-        }
-
-        .slide-dots button.active .progress-fill {
-            animation: barFill var(--slide-duration) linear forwards;
-        }
-
-        .slide-dots button.active.paused .progress-fill {
-            animation-play-state: paused;
-        }
-
-        @keyframes barFill {
-            from {
-                width: 0%;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
-        .slide-dots button:not(.active):hover {
-            background: rgba(255, 255, 255, .6);
-            transform: scale(1.2);
-        }
-
-        .slide-pause {
-            background: none;
-            border: none;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            padding: 4px;
-            border-radius: 50%;
-            transition: all .25s ease;
-            position: relative;
-            width: 24px;
-            height: 24px;
-        }
-
-        .slide-pause::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: var(--dot-color);
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all .25s ease;
-            pointer-events: none;
-        }
-
-        .slide-pause:hover::before {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .slide-pause svg {
-            width: 24px;
-            height: 24px;
-            fill: #fff;
-            position: relative;
-            z-index: 1;
-        }
-
-        .recap-section {
-            position: relative;
-            background: var(--bg);
-            padding: 5rem 0 3rem;
-            overflow: hidden;
-        }
-
-        .recap-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 2.5rem;
-            text-align: center;
-        }
-
-        .recap-title {
-            font-family: 'Coolvetica Heavy', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            color: #fff;
-            text-align: center;
-            line-height: 1;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
-
-        .recap-text {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 300;
-            text-align: center;
-            color: rgba(255, 255, 255, .7);
-            font-size: 1.05rem;
-            line-height: 1.9;
-            max-width: 750px;
-            margin: 0 auto;
-        }
-
-        .recap-text strong {
-            color: #fff;
-            font-weight: 500;
-        }
-
-        .recap-text .highlight {
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        .moments-section {
-            position: relative;
-            background: var(--bg);
-            padding: 3rem 0 6rem;
-            overflow: hidden;
-        }
-
-        .moments-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 2.5rem;
-            text-align: center;
-        }
-
-        .moments-title {
-            font-family: 'Coolvetica Heavy', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            color: #fff;
-            text-align: center;
-            line-height: 1;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .moments-sub {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 300;
-            text-align: center;
-            color: rgba(255, 255, 255, .5);
-            font-size: 1rem;
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-        }
-
-        .view-gallery-btn {
-            padding: 0.8rem 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: #fff;
-            font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-        }
-
-        .view-gallery-btn:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-        }
-
-        :root {
-            --lb-bg: #0a0a0a;
-            --lb-ink: #ffffff;
-        }
-
-        .lightbox {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: radial-gradient(ellipse at 50% 0%, #17171a 0%, var(--lb-bg) 65%);
-            display: none;
-            flex-direction: column;
-            padding: calc(var(--nav-h) + 2rem) 3rem 2.5rem;
-            color: var(--lb-ink);
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            position: relative;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-height: 0;
-        }
-
-        .lightbox-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2.5rem;
-        }
-
-        .lightbox-header-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .lightbox-heading {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-weight: 500;
-            font-size: 2rem;
-            letter-spacing: 0.5px;
-            color: var(--lb-ink);
-        }
-
-        .lightbox-topbar-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: var(--lb-ink);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .lightbox-topbar-btn.labeled {
-            width: auto;
-            border-radius: 50px;
-            padding: 0 1.2rem 0 0.9rem;
-            gap: .5rem;
-        }
-
-        .lightbox-topbar-btn:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
-            transform: scale(1.05);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .lightbox-topbar-btn:hover svg {
-            stroke: #ffffff;
-        }
-
-        .lightbox-topbar-label {
-            font-family: 'Clash Grotesk', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .lightbox-topbar-btn:hover .lightbox-topbar-label {
-            color: #ffffff;
-        }
-
-        .lightbox-topbar-btn svg {
             width: 18px;
             height: 18px;
-            stroke: var(--lb-ink);
-            stroke-width: 1.75;
-        }
-
-        .lightbox-carousel {
-            position: relative;
-            width: 100%;
-            flex: 1;
-            min-height: 0;
-            overflow: hidden;
-            cursor: grab;
-        }
-
-        .lightbox-carousel::before,
-        .lightbox-carousel::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            z-index: 5;
-            pointer-events: none;
-            width: 120px;
-        }
-
-        .lightbox-carousel::before {
-            left: 0;
-            background: linear-gradient(to right,
-                    rgba(10, 10, 10, 0.9) 0%,
-                    rgba(10, 10, 10, 0.6) 30%,
-                    rgba(10, 10, 10, 0.2) 60%,
-                    transparent 100%);
-        }
-
-        .lightbox-carousel::after {
-            right: 0;
-            background: linear-gradient(to left,
-                    rgba(10, 10, 10, 0.9) 0%,
-                    rgba(10, 10, 10, 0.6) 30%,
-                    rgba(10, 10, 10, 0.2) 60%,
-                    transparent 100%);
-        }
-
-        .lightbox-carousel.at-start::before {
-            opacity: 0;
-        }
-
-        .lightbox-carousel.at-end::after {
-            opacity: 0;
-        }
-
-        .lightbox-carousel.dragging {
-            cursor: grabbing;
-        }
-
-        .lightbox-image-track {
-            display: flex;
-            height: 100%;
-            gap: 1.75rem;
-            will-change: transform;
-        }
-
-        .lightbox-image-track.animating {
-            transition: transform .55s cubic-bezier(.25, .46, .45, .94);
-        }
-
-        .lightbox-image-slide {
-            flex: 0 0 auto;
-            width: min(56vw, 760px);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            padding-bottom: 0.5rem;
-        }
-
-        .lightbox-image-slide img {
-            width: 100%;
-            flex: 1;
-            min-height: 0;
-            object-fit: cover;
-            border-radius: 6px 6px 0 0;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-
-        .lightbox-divider {
-            width: 100%;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.2);
-            margin: 0.5rem 0 0.5rem 0;
-            border: none;
-            flex-shrink: 0;
-        }
-
-        .lightbox-caption-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-            flex-shrink: 0;
-            padding-top: 0.1rem;
-        }
-
-        .lightbox-caption-prefix {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-family: 'Clash Grotesk', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.35);
-        }
-
-        .lightbox-caption-prefix .info-icon {
-            flex-shrink: 0;
-            stroke: rgba(255, 255, 255, 0.35);
-            width: 14px;
-            height: 14px;
         }
 
         .lightbox-caption-text {
             font-family: 'Clash Grotesk', sans-serif;
-            font-size: 0.85rem;
+            font-size: 1rem;
             color: rgba(255, 255, 255, 0.85);
-            line-height: 1.4;
+            line-height: 1;
             margin: 0;
+            letter-spacing: 0.5px;
         }
 
         .lightbox-footer {
@@ -3321,6 +908,7 @@
             align-items: center;
             justify-content: center;
             padding: 0;
+            overflow: hidden;
         }
 
         .zoom-overlay.active {
@@ -3329,8 +917,8 @@
 
         .zoom-overlay-header {
             position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
+            top: 2rem;
+            left: 2rem;
             right: 1.5rem;
             display: flex;
             align-items: center;
@@ -3431,11 +1019,12 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
+            background: #000;
         }
 
         .zoom-image-wrapper img {
-            max-width: 100%;
-            max-height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             transition: none;
             transform-origin: center center;
@@ -3701,11 +1290,11 @@
             }
 
             .lightbox {
-                padding: calc(var(--nav-h) + 1.5rem) 1.25rem 1.5rem;
+                padding: calc(var(--nav-h) + 1rem) 1.25rem 1.5rem;
             }
 
             .lightbox-header {
-                margin-bottom: 1.25rem;
+                margin-bottom: 0.75rem;
             }
 
             .lightbox-topbar-btn {
@@ -3729,8 +1318,8 @@
 
             .lightbox-image-slide {
                 width: 82vw;
-                height: 100%;
-                padding-bottom: 0.5rem;
+                height: 90%;
+                padding-bottom: 0.75rem;
             }
 
             .lightbox-image-slide img {
@@ -3743,20 +1332,35 @@
 
             .lightbox-divider {
                 width: 100%;
-                margin: 0.4rem 0 0.4rem 0;
+                height: 1px;
+                background: rgba(255, 255, 255, 0.2);
+                margin: 0.75rem 0 0.75rem 0;
+                border: none;
+                flex-shrink: 0;
+                border-radius: 5px;
+            }
+
+            .lightbox-caption-wrapper {
+                margin-left: 0.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                line-height: 1.4;
+                flex-shrink: 0;
+                padding-top: 0;
             }
 
             .lightbox-caption-prefix {
-                font-size: 0.6rem;
+                font-size: 1.2rem;
             }
 
             .lightbox-caption-prefix .info-icon {
-                width: 12px;
-                height: 12px;
+                width: 18px;
+                height: 18px;
             }
 
             .lightbox-caption-text {
-                font-size: 0.75rem;
+                font-size: 1.4rem;
             }
 
             .lightbox-footer {
@@ -3765,8 +1369,9 @@
             }
 
             .lightbox-progress-gta {
-                max-width: 100px;
-                height: 26px;
+                max-width: 140px;
+                height: 34px;
+                padding: 0 10px;
             }
 
             .lightbox-footer-right {
@@ -3779,13 +1384,13 @@
             }
 
             .lightbox-bottombar-btn {
-                width: 34px;
-                height: 34px;
+                width: 48px;
+                height: 48px;
             }
 
             .lightbox-bottombar-btn svg {
-                width: 14px;
-                height: 14px;
+                width: 34px;
+                height: 34px;
             }
 
             .zoom-overlay {
@@ -3793,8 +1398,8 @@
             }
 
             .zoom-overlay-header {
-                top: 0.8rem;
-                left: 0.8rem;
+                top: 1.5rem;
+                left: 1.5rem;
                 right: 0.8rem;
             }
 
@@ -4022,7 +1627,6 @@
                     <div class="lightbox-progress-fill" id="lightboxProgressFill"></div>
                 </div>
                 <div class="lightbox-footer-right">
-                    <span class="lightbox-counter" id="lightboxCounter"> 1 OF 6</span>
                     <div class="lightbox-bottombar-right">
                         <button class="lightbox-bottombar-btn" id="lightboxPrev" aria-label="Previous">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -4036,6 +1640,7 @@
                                 <path d="m9 18 6-6-6-6" />
                             </svg>
                         </button>
+                        <span class="lightbox-counter" id="lightboxCounter"> 1 OF 6</span>
                     </div>
                 </div>
             </div>
@@ -4314,34 +1919,28 @@
             const galleryImages = [{
                 src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/1.jpg',
                 srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/1.jpg',
-                caption: 'International Management Conference 2026'
-            },
-            {
+                caption: 'Dr. Niranjan Hiranandani With Momento'
+            }, {
                 src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/2.jpg',
                 srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/2.jpg',
                 caption: 'Industry 5.0: Governance, Technology, Sustainability'
-            },
-            {
+            }, {
                 src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/3.jpg',
                 srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/3.jpg',
                 caption: 'Department of Management Studies'
-            },
-            {
+            }, {
                 src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/6.jpg',
                 srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/6.jpg',
                 caption: 'Jai Hind College, Mumbai'
-            },
-            {
+            }, {
                 src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/8.jpg',
                 srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/8.jpg',
                 caption: 'Panel Discussions & Keynotes'
-            },
-            {
+            }, {
                 src: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/1.jpg',
                 srcFull: 'https://www.internationalmanagementconference.com/wp-content/uploads/2026/05/1.jpg',
                 caption: 'Conference Highlights'
-            }
-            ];
+            }];
 
             const lightbox = document.getElementById('lightbox');
             const lightboxCarousel = document.getElementById('lightboxWrapper');
@@ -4372,7 +1971,7 @@
             let isZoomOpen = false;
             let zoomScale = 1;
             const MIN_ZOOM = 1;
-            const MAX_ZOOM = 3;
+            const MAX_ZOOM = 5;
             let zoomPanX = 0;
             let zoomPanY = 0;
             let isDragging = false;
@@ -4381,9 +1980,10 @@
             let dragStartPanX = 0;
             let dragStartPanY = 0;
 
-            // Pinch zoom state
-            let lastPinchDist = 0;
-            let pinchScale = 1;
+            let imgNaturalWidth = 1;
+            let imgNaturalHeight = 1;
+            let imgDisplayWidth = 1;
+            let imgDisplayHeight = 1;
 
             const totalImages = galleryImages.length;
             let fadeTimeout;
@@ -4416,8 +2016,11 @@
                         <div class="lightbox-divider"></div>
                         <div class="lightbox-caption-wrapper">
                             <div class="lightbox-caption-prefix">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="info-icon"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                                About This Image
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+</svg>
+                                about
                             </div>
                             <p class="lightbox-caption-text">${img.caption}</p>
                         </div>
@@ -4437,7 +2040,7 @@
                 lightboxTrack.classList.toggle('animating', animate !== false);
                 lightboxTrack.style.transform = `translateX(${offset}px)`;
 
-                lightboxCounter.textContent = 'Currently Viewing: ' + (currentImage + 1) + ' OF ' + totalImages;
+                lightboxCounter.textContent = 'IMAGE ' + (currentImage + 1) + ' OF ' + totalImages;
                 const trackW = progressTrack.clientWidth - 14;
                 const pct = totalImages > 1 ? currentImage / (totalImages - 1) : 1;
                 const targetWidth = Math.max(4, pct * trackW);
@@ -4537,62 +2140,52 @@
                 goToImage(currentImage + 1);
             });
 
-            // ===== ZOOM FUNCTIONS =====
-            function getImageBounds() {
-                const img = zoomImage;
-                const container = zoomContainer;
-                const imgRect = img.getBoundingClientRect();
-                const containerRect = container.getBoundingClientRect();
+            // ===== ZOOM FUNCTIONS - ANDROID GALLERY STYLE =====
 
-                // Calculate image dimensions after transform
-                const scale = zoomScale;
-                const naturalWidth = img.naturalWidth || img.width || 1;
-                const naturalHeight = img.naturalHeight || img.height || 1;
+            function updateImageDisplaySize() {
+                const rect = zoomImageWrapper.getBoundingClientRect();
+                const containerRect = zoomContainer.getBoundingClientRect();
 
-                // Calculate display size
+                imgNaturalWidth = zoomImage.naturalWidth || zoomImage.width || 1;
+                imgNaturalHeight = zoomImage.naturalHeight || zoomImage.height || 1;
+
                 const containerAspect = containerRect.width / containerRect.height;
-                const imgAspect = naturalWidth / naturalHeight;
+                const imgAspect = imgNaturalWidth / imgNaturalHeight;
 
-                let displayWidth, displayHeight;
                 if (imgAspect > containerAspect) {
-                    displayWidth = containerRect.width;
-                    displayHeight = containerRect.width / imgAspect;
+                    imgDisplayWidth = containerRect.width;
+                    imgDisplayHeight = containerRect.width / imgAspect;
                 } else {
-                    displayHeight = containerRect.height;
-                    displayWidth = containerRect.height * imgAspect;
+                    imgDisplayHeight = containerRect.height;
+                    imgDisplayWidth = containerRect.height * imgAspect;
                 }
-
-                displayWidth *= scale;
-                displayHeight *= scale;
-
-                return { width: displayWidth, height: displayHeight };
             }
 
             function clampPan() {
-                const bounds = getImageBounds();
                 const containerRect = zoomContainer.getBoundingClientRect();
+                const scaledWidth = imgDisplayWidth * zoomScale;
+                const scaledHeight = imgDisplayHeight * zoomScale;
 
-                // Calculate max pan limits
-                const maxX = Math.max(0, (bounds.width - containerRect.width) / 2);
-                const maxY = Math.max(0, (bounds.height - containerRect.height) / 2);
+                const maxPanX = Math.max(0, (scaledWidth - containerRect.width) / 2);
+                const maxPanY = Math.max(0, (scaledHeight - containerRect.height) / 2);
 
-                // Clamp pan to image bounds
-                zoomPanX = Math.max(-maxX, Math.min(maxX, zoomPanX));
-                zoomPanY = Math.max(-maxY, Math.min(maxY, zoomPanY));
+                zoomPanX = Math.max(-maxPanX, Math.min(maxPanX, zoomPanX));
+                zoomPanY = Math.max(-maxPanY, Math.min(maxPanY, zoomPanY));
             }
 
             function updateZoomTransform() {
                 const scale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoomScale));
 
-                // Clamp pan to prevent black borders
                 if (scale > 1) {
                     clampPan();
                 } else {
                     zoomPanX = 0;
                     zoomPanY = 0;
+                    zoomScale = 1;
                 }
 
-                zoomImage.style.transform = `scale(${scale}) translate(${zoomPanX / scale}px, ${zoomPanY / scale}px)`;
+                const transform = `scale(${scale}) translate(${zoomPanX / scale}px, ${zoomPanY / scale}px)`;
+                zoomImage.style.transform = transform;
                 zoomLevel.textContent = Math.round(scale * 100) + '%';
             }
 
@@ -4611,7 +2204,6 @@
 
                 zoomScale = newScale;
 
-                // If zoomed out to 1 or less, center the image
                 if (zoomScale <= 1) {
                     zoomPanX = 0;
                     zoomPanY = 0;
@@ -4627,18 +2219,25 @@
                 updateZoomTransform();
             }
 
-            zoomIn.addEventListener('click', () => zoomAt(1.2, window.innerWidth / 2, window.innerHeight / 2));
-            zoomOut.addEventListener('click', () => zoomAt(0.8, window.innerWidth / 2, window.innerHeight / 2));
+            zoomIn.addEventListener('click', () => {
+                const rect = zoomContainer.getBoundingClientRect();
+                zoomAt(1.2, rect.width / 2, rect.height / 2);
+            });
+
+            zoomOut.addEventListener('click', () => {
+                const rect = zoomContainer.getBoundingClientRect();
+                zoomAt(0.8, rect.width / 2, rect.height / 2);
+            });
+
             zoomReset.addEventListener('click', resetZoom);
 
             zoomContainer.addEventListener('wheel', (e) => {
                 e.preventDefault();
+                const rect = zoomContainer.getBoundingClientRect();
                 const delta = e.deltaY > 0 ? 0.9 : 1.1;
-                zoomAt(delta, e.clientX - zoomContainer.getBoundingClientRect().left, e.clientY - zoomContainer
-                    .getBoundingClientRect().top);
+                zoomAt(delta, e.clientX - rect.left, e.clientY - rect.top);
             }, { passive: false });
 
-            // Mouse drag
             zoomContainer.addEventListener('mousedown', (e) => {
                 if (zoomScale <= 1) return;
                 isDragging = true;
@@ -4662,7 +2261,6 @@
                 if (isDragging) {
                     isDragging = false;
                     zoomContainer.classList.remove('dragging');
-                    // Recenter if zoomed out
                     if (zoomScale <= 1) {
                         zoomPanX = 0;
                         zoomPanY = 0;
@@ -4671,13 +2269,10 @@
                 }
             });
 
-            // Touch pinch zoom
             let initialPinchDist = 0;
             let initialPinchScale = 1;
             let initialPinchPanX = 0;
             let initialPinchPanY = 0;
-            let lastTouchX = 0;
-            let lastTouchY = 0;
             let isPinching = false;
 
             function getPinchDistance(touches) {
@@ -4703,9 +2298,6 @@
                     initialPinchScale = zoomScale;
                     initialPinchPanX = zoomPanX;
                     initialPinchPanY = zoomPanY;
-                    const center = getPinchCenter(touches);
-                    lastTouchX = center.x;
-                    lastTouchY = center.y;
                 } else if (touches.length === 1 && zoomScale > 1) {
                     isDragging = true;
                     dragStartX = touches[0].clientX;
@@ -4726,7 +2318,6 @@
                         const ratio = dist / initialPinchDist;
                         const newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, initialPinchScale * ratio));
 
-                        // Apply zoom at pinch center
                         const center = getPinchCenter(touches);
                         const rect = zoomContainer.getBoundingClientRect();
                         const cx = center.x - rect.left;
@@ -4778,11 +2369,13 @@
                 if (!isZoomOpen) return;
                 if (e.key === '+' || e.key === '=') {
                     e.preventDefault();
-                    zoomAt(1.2, window.innerWidth / 2, window.innerHeight / 2);
+                    const rect = zoomContainer.getBoundingClientRect();
+                    zoomAt(1.2, rect.width / 2, rect.height / 2);
                 }
                 if (e.key === '-') {
                     e.preventDefault();
-                    zoomAt(0.8, window.innerWidth / 2, window.innerHeight / 2);
+                    const rect = zoomContainer.getBoundingClientRect();
+                    zoomAt(0.8, rect.width / 2, rect.height / 2);
                 }
                 if (e.key === '0') {
                     e.preventDefault();
@@ -4807,10 +2400,23 @@
             function openZoom() {
                 isZoomOpen = true;
                 zoomImage.src = galleryImages[currentImage].srcFull;
-                zoomScale = 1;
-                zoomPanX = 0;
-                zoomPanY = 0;
-                updateZoomTransform();
+
+                zoomImage.onload = function () {
+                    updateImageDisplaySize();
+                    zoomScale = 1;
+                    zoomPanX = 0;
+                    zoomPanY = 0;
+                    updateZoomTransform();
+                };
+
+                if (zoomImage.complete && zoomImage.naturalWidth > 0) {
+                    updateImageDisplaySize();
+                    zoomScale = 1;
+                    zoomPanX = 0;
+                    zoomPanY = 0;
+                    updateZoomTransform();
+                }
+
                 zoomOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 maximizeLabel.textContent = 'MINIMIZE';
