@@ -14,13 +14,13 @@
         rel="stylesheet">
     <style>
         :root {
-            --ink: #17130e;
-            --paper: #f7f1e4;
+            --ink: #191308;
+            --paper: #f5f5f5;
             --card: #ffffff;
-            --brass: #c9973f;
-            --brass-l: #93611c;
-            --wine: #7a2436;
-            --line: rgba(23, 19, 14, .12);
+            --brass: #ff5722;
+            --brass-l: #c23b0e;
+            --wine: #0047ff;
+            --line: rgba(25, 19, 8, .12);
             --r: 14px;
             --ease: cubic-bezier(.22, .8, .28, 1);
         }
@@ -298,7 +298,7 @@
             font-weight: 600;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: rgba(18, 24, 31, 0.4);
+            color: rgba(25, 19, 8, 0.42);
             text-align: center;
             margin-bottom: 0.5rem;
             z-index: 5;
@@ -368,7 +368,7 @@
         }
 
         .introduction p.lede {
-            color: rgba(18, 24, 31, .68);
+            color: rgba(25, 19, 8, .7);
             font-size: 1.05rem;
             max-width: 38ch;
             line-height: 1.6;
@@ -427,29 +427,46 @@
             border-radius: var(--r);
             padding: 1.6rem;
             color: var(--ink);
+            width: 100%;
             max-width: 420px;
+            height: 190px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        .introduction-card .k {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: .68rem;
-            font-weight: 600;
-            letter-spacing: .1em;
-            color: var(--brass-l);
-            text-transform: uppercase
+        .cc-hl {
+            transition: color .4s var(--ease);
         }
 
         .introduction-card p {
-            margin-top: .6rem;
-            font-size: .92rem;
-            line-height: 1.6;
-            color: rgba(18, 24, 31, .72)
+            margin-top: .9rem;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--ink);
+            transition: opacity .2s ease;
+            flex: 1;
+            display: flex;
+            align-items: center;
         }
 
-        .introduction-card .names {
-            margin-top: 1rem;
-            font-size: .82rem;
-            color: rgba(18, 24, 31, .5)
+        .cc-dots {
+            display: flex;
+            gap: .4rem;
+            margin-top: 1.1rem;
+        }
+
+        .cc-dots span {
+            width: 18px;
+            height: 3px;
+            border-radius: 2px;
+            background: var(--line);
+            transition: background .3s;
+        }
+
+        .cc-dots span.active {
+            background: var(--ink);
         }
 
         .belt {
@@ -485,7 +502,7 @@
             font-size: .68rem;
             font-weight: 600;
             letter-spacing: .08em;
-            color: rgba(18, 24, 31, .5);
+            color: rgba(25, 19, 8, .5);
             text-transform: uppercase
         }
 
@@ -505,7 +522,7 @@
 
         .head p {
             margin-top: 1rem;
-            color: #4b4438;
+            color: rgba(25, 19, 8, .62);
             line-height: 1.65;
             font-size: 1.02rem
         }
@@ -550,7 +567,7 @@
 
         .cell p {
             font-size: .92rem;
-            color: #5a5346;
+            color: rgba(25, 19, 8, .58);
             line-height: 1.55
         }
 
@@ -585,7 +602,7 @@
         }
 
         .about p {
-            color: rgba(18, 24, 31, .7);
+            color: rgba(25, 19, 8, .7);
             line-height: 1.7;
             font-size: 1.02rem;
             margin-bottom: 1rem
@@ -701,7 +718,7 @@
 
         .mcard p {
             font-size: .82rem;
-            color: #5a5346;
+            color: rgba(25, 19, 8, .62);
             line-height: 1.45
         }
 
@@ -751,7 +768,7 @@
         }
 
         .ev p {
-            color: rgba(18, 24, 31, .65);
+            color: rgba(25, 19, 8, .65);
             font-size: .92rem;
             line-height: 1.55;
             max-width: 38ch
@@ -772,7 +789,7 @@
         }
 
         .cta p {
-            color: rgba(18, 24, 31, .6);
+            color: rgba(25, 19, 8, .62);
             max-width: 44ch;
             margin: 0 auto 2rem
         }
@@ -794,7 +811,7 @@
             background: var(--paper);
             border-top: 1px solid var(--line);
             padding: 2.6rem 0;
-            color: rgba(18, 24, 31, .55);
+            color: rgba(25, 19, 8, .5);
             font-size: .85rem
         }
 
@@ -1025,11 +1042,10 @@
     <section class="introduction" id="top">
         <div class="introduction-in">
             <div>
-                <p class="eyebrow">Jai Hind College (Empowered Autonomous)</p>
-                <h1>The Incubator &amp; Accelerator Centre</h1>
-                <p class="lede">You know that idea you keep talking about but never start? This is the room where
-                    people like you actually build it, with mentors, lab space, IP support and funding pathways,
-                    while you're still a student.</p>
+                <p class="eyebrow">Jai Hind College (Empowered Autonomous) · Est. 2007</p>
+                <h1>Incubator &amp; Accelerator Centre</h1>
+                <p class="lede">We've spent almost two decades turning Jai Hind students' half-baked ideas into
+                    actual companies — 70+ so far, backed by 95+ mentors who've built, scaled and sold their own.</p>
                 <div class="btn-row">
                     <a class="btn btn-primary" href="https://forms.gle/pkk8YXcVLg9dCSgn9" target="_blank"
                         rel="noopener">Apply for Incubation
@@ -1042,63 +1058,57 @@
                     <a class="btn btn-ghost" href="#about">How it works</a>
                 </div>
             </div>
-            <div class="introduction-card">
-                <span class="k">Guiding lights</span>
-                <p>Under the guidance of Principal Dr. Vijay Dabholkar, Academic Advisor Dr. Ashok Wadia and
-                    Mentor‑in‑Charge Dr. Rakhi Sharma, the centre pairs every founder with practitioners who've built
-                    and exited before.</p>
-                <div class="names">95+ mentors from venture, law, marketing &amp; product</div>
+            <div class="introduction-card" id="committeeCard">
+                <p id="ccMessage">Stuck with a startup? <span class="cc-hl" style="color:#c2410c">Reach us.</span></p>
+                <div class="cc-dots" id="ccDots"></div>
             </div>
         </div>
     </section>
 
     <div class="belt">
         <div class="wrap">
-            <div class="stat"><b><em>70+</em></b><span>Startups incubated</span></div>
-            <div class="stat"><b><em>95+</em></b><span>Industry mentors</span></div>
-            <div class="stat"><b><em>3,000+</em></b><span>Expo footfall</span></div>
-            <div class="stat"><b><em>6</em></b><span>Years of cohorts</span></div>
+            <div class="stat"><b><em>70+</em></b><span>Startups built here</span></div>
+            <div class="stat"><b><em>95+</em></b><span>Mentors who show up</span></div>
+            <div class="stat"><b><em>3,000+</em></b><span>People at one Expo</span></div>
+            <div class="stat"><b><em>2007</em></b><span>The year we started</span></div>
         </div>
     </div>
 
     <section id="what-we-do">
         <div class="wrap">
             <div class="head r">
-                <p class="eyebrow">What we do</p>
-                <h2>Six ways we back a founder</h2>
-                <p>From the first sketch of an idea to the pitch that raises a round — support is structured, not
-                    scattered.</p>
+                <p class="eyebrow">What actually happens here</p>
+                <h2>Six things. Not sixty.</h2>
+                <p>No fluff modules or filler workshops — just the parts that matter between an idea and a real
+                    company.</p>
             </div>
             <div class="grid-6 r">
                 <div class="cell"><span class="n">01</span>
                     <h3>Incubate Startups</h3>
-                    <p>Turn an idea into a venture with mentorship, workspace and a dedicated incubation centre on
-                        campus.</p>
+                    <p>Desk space, a start‑up lab, and mentors who'll tell you the idea's bad before your users do.
+                    </p>
                 </div>
                 <div class="cell"><span class="n">02</span>
                     <h3>Mentoring Sessions</h3>
-                    <p>Sit with industry leaders who help refine strategy, pressure‑test the model and unblock real
-                        problems.</p>
+                    <p>Founders and operators who've actually shipped things — not consultants who've read about
+                        it.</p>
                 </div>
                 <div class="cell"><span class="n">03</span>
                     <h3>Internship Fair</h3>
-                    <p>We connect growing startups with student talent, and students with real, working roles inside
-                        them.</p>
+                    <p>Twice a year, we put growing startups in a room with students who actually want in.</p>
                 </div>
                 <div class="cell"><span class="n">04</span>
                     <h3>IPR Awareness</h3>
-                    <p>Understand and protect what you've built, with hands‑on guidance on patents, trademarks and
-                        filings.</p>
+                    <p>Patents, trademarks, filings — sorted before a bigger company decides your idea was theirs
+                        first.</p>
                 </div>
                 <div class="cell"><span class="n">05</span>
                     <h3>Startup Exposition</h3>
-                    <p>Showcase your venture to investors and industry, and build the connections that outlast the
-                        event.</p>
+                    <p>One day, 3,000+ people, and every investor in the room actually paying attention.</p>
                 </div>
                 <div class="cell"><span class="n">06</span>
                     <h3>Ignite Programme</h3>
-                    <p>Build durable, fundable ventures with a structured curriculum run alongside the Wadhwani
-                        Foundation.</p>
+                    <p>Built with the Wadhwani Foundation, for founders who want a curriculum instead of vibes.</p>
                 </div>
             </div>
         </div>
@@ -1107,15 +1117,16 @@
     <section class="about" id="about">
         <div class="wrap">
             <div class="r">
-                <p class="eyebrow">About the centre</p>
-                <h2>A safe harbour for the start‑up stage</h2>
-                <p>The Jai Hind College (Empowered Autonomous) Incubator &amp; Accelerator Centre exists for ventures
-                    that are still finding their footing — early, unproven, and worth backing anyway.</p>
-                <p>We believe in contributing to the nation by building a wholesome start‑up ecosystem: mentoring and
-                    supporting budding entrepreneurs under the guidance of our Principal, Academic Advisor and Academic
-                    Head.</p>
-                <p class="quote">"Every startup that comes through our doors gets a ring added to what they already know
-                    — mentorship, not instruction."</p>
+                <p class="eyebrow">The centre</p>
+                <h2>Started in 2007. Still doing the unglamorous work.</h2>
+                <p>90% of Indian startups fail within five years. The Jai Hind College (Empowered Autonomous)
+                    Incubator &amp; Accelerator Centre exists so those odds aren't the only thing deciding your
+                    startup's fate.</p>
+                <p>Principal Dr. Vijay Dabholkar, Academic Advisor Dr. Ashok Wadia and Mentor‑in‑Charge Dr. Rakhi
+                    Sharma have run this since 2007 — alongside an Accelerator Programme built with the Wadhwani
+                    Foundation.</p>
+                <p class="quote">"Watching the start‑up culture grow and young minds turn ideas into impact gives
+                    me immense happiness." — Dr. Rakhi Sharma</p>
             </div>
             <div class="ringwrap r">
                 <svg viewBox="0 0 440 440" aria-hidden="true">
@@ -1127,10 +1138,10 @@
                     <circle cx="220" cy="220" r="172" fill="none" stroke="var(--brass)" stroke-width="1.2" opacity=".35"
                         stroke-dasharray="2 5" />
                     <circle cx="220" cy="220" r="215" fill="none" stroke="var(--line)" stroke-width="1.2" />
-                    <text x="220" y="16" text-anchor="middle" fill="rgba(18,24,31,.4)"
-                        font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="600">EST. COHORT
-                        2020</text>
-                    <text x="220" y="432" text-anchor="middle" fill="rgba(18,24,31,.4)"
+                    <text x="220" y="16" text-anchor="middle" fill="rgba(25,19,8,.4)"
+                        font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="600">RUNNING
+                        SINCE 2007</text>
+                    <text x="220" y="432" text-anchor="middle" fill="rgba(25,19,8,.4)"
                         font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="600">CURRENT
                         COHORT</text>
                 </svg>
@@ -1141,8 +1152,8 @@
     <section id="facilities">
         <div class="wrap">
             <div class="head r">
-                <p class="eyebrow">Our facilities</p>
-                <h2>What's inside the centre</h2>
+                <p class="eyebrow">What's actually inside</p>
+                <h2>Nothing you'll have to imagine</h2>
             </div>
             <div class="fac r">
                 <div class="fac-item"><span class="idx">/01</span>
@@ -1176,8 +1187,8 @@
     <section class="mentors" id="mentors">
         <div class="wrap">
             <div class="head r">
-                <p class="eyebrow">Our guiding lights</p>
-                <h2>Mentors who've built before</h2>
+                <p class="eyebrow">The people, not the platitudes</p>
+                <h2>Mentors who've actually built something</h2>
             </div>
             <div class="mstrip r">
                 <div class="mcard"><span class="role">Venture</span>
@@ -1211,19 +1222,19 @@
     <section id="events">
         <div class="wrap">
             <div class="head r">
-                <p class="eyebrow">Events you can't miss</p>
-                <h2>Built for founders and talent alike</h2>
+                <p class="eyebrow">Two dates worth keeping</p>
+                <h2>It happens twice a year, mostly</h2>
             </div>
             <div class="events r">
                 <div class="ev"><span class="tag">Twice yearly</span>
                     <h3>Internship Fair</h3>
-                    <p>Startups meet talent — a direct line between founders who need hands and students who want real
-                        work.</p>
+                    <p>Founders need hands. Students need real experience. We stopped waiting for LinkedIn to fix
+                        that.</p>
                 </div>
                 <div class="ev alt"><span class="tag">Annual</span>
                     <h3>Startup Expo</h3>
-                    <p>Founders showcase, investors scout, and the wider ecosystem gets a look at what's being built on
-                        campus.</p>
+                    <p>Your startup has potential — it just needs the right spotlight. Investors, press, and 3,000+
+                        people show up to give it one.</p>
                 </div>
             </div>
         </div>
@@ -1231,9 +1242,9 @@
 
     <section class="cta" id="apply">
         <div class="wrap">
-            <p class="eyebrow">Ready when you are</p>
-            <h2>Bring us the idea. We'll help with the rest.</h2>
-            <p>Applications are reviewed on a rolling basis — mentorship, workspace and IP guidance start from day one.
+            <p class="eyebrow">Your move</p>
+            <h2>The form takes two minutes. The rest takes longer.</h2>
+            <p>Applications are rolling — mentorship, workspace and IP support start on day one, not day ninety.
             </p>
             <div class="btn-row">
                 <a class="btn btn-primary" href="https://forms.gle/pkk8YXcVLg9dCSgn9" target="_blank"
@@ -1300,6 +1311,39 @@
                 closeMenu();
             }
         });
+
+        const ccData = [
+            { pre: 'Stuck with a startup? ', hl: 'Reach us.', post: '', fg: '#c2410c' },
+            { pre: "Don't build alone. We've got ", hl: '95+ people', post: " who've been there.", fg: '#1d4ed8' },
+            { pre: 'Real founders. ', hl: 'Real funding paths.', post: ' Zero jargon.', fg: '#15803d' },
+            { pre: 'Protect the idea ', hl: 'before you pitch it.', post: '', fg: '#be185d' },
+            { pre: 'Got the spark? ', hl: "We'll help you build the fire.", post: '', fg: '#6d28d9' },
+        ];
+        const ccMessage = document.getElementById('ccMessage');
+        const ccDots = document.getElementById('ccDots');
+        let ccIndex = 0;
+
+        ccData.forEach((_, i) => {
+            const dot = document.createElement('span');
+            if (i === 0) dot.classList.add('active');
+            ccDots.appendChild(dot);
+        });
+
+        function renderCC(i) {
+            const item = ccData[i];
+            ccMessage.style.opacity = 0;
+            setTimeout(() => {
+                ccMessage.innerHTML = item.pre + '<span class="cc-hl" style="color:' + item.fg + '">' + item.hl + '</span>' + item.post;
+                ccMessage.style.opacity = 1;
+            }, 200);
+            [...ccDots.children].forEach((d, di) => d.classList.toggle('active', di === i));
+        }
+
+        renderCC(0);
+        setInterval(() => {
+            ccIndex = (ccIndex + 1) % ccData.length;
+            renderCC(ccIndex);
+        }, 3400);
 
         const io = new IntersectionObserver(es => es.forEach(e => {
             if (e.isIntersecting) {
