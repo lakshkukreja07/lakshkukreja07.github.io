@@ -14,14 +14,13 @@
         rel="stylesheet">
     <style>
         :root {
-            --ink: #12181f;
-            --paper: #f4f0e8;
-            --paper-dim: #e9e4d6;
+            --ink: #17130e;
+            --paper: #f7f1e4;
             --card: #ffffff;
-            --brass: #b3823f;
-            --brass-l: #8f6529;
-            --moss: #3d5a44;
-            --line: rgba(18, 24, 31, .12);
+            --brass: #c9973f;
+            --brass-l: #93611c;
+            --wine: #7a2436;
+            --line: rgba(23, 19, 14, .12);
             --r: 14px;
             --ease: cubic-bezier(.22, .8, .28, 1);
         }
@@ -36,15 +35,9 @@
             scroll-behavior: smooth
         }
 
-        @media(prefers-reduced-motion:reduce) {
-            html {
-                scroll-behavior: auto
-            }
-
-            * {
-                animation-duration: .01ms !important;
-                transition-duration: .01ms !important
-            }
+        body.no-scroll {
+            overflow: hidden;
+            height: 100%;
         }
 
         body {
@@ -223,110 +216,57 @@
             appearance: none;
         }
 
-        .nav-pill .burger svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .nav-pill .burger svg path {
-            stroke: var(--ink);
-            stroke-width: 2;
-            transition: none;
-        }
-
-        .nav-pill .burger .close-icon {
-            display: none;
+        .nav-pill .burger .hamburger {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-            font-size: 28px;
-            line-height: 38px;
-            text-align: center;
-            color: var(--ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
-        .nav-pill .burger.open svg path {
-            opacity: 0;
+        .nav-pill .burger .hamburger span {
+            position: absolute;
+            width: 18px;
+            height: 2px;
+            background: var(--ink);
+            border-radius: 2px;
+            transition: all 0.3s ease;
         }
 
-        .nav-pill .burger.open .close-icon {
-            display: block;
+        .nav-pill .burger .hamburger span:nth-child(1) {
+            transform: translateY(-4px);
         }
 
-        @media(min-width:861px) {
-            .nav-pill .burger {
-                display: none !important;
-            }
+        .nav-pill .burger .hamburger span:nth-child(2) {
+            transform: translateY(4px);
         }
 
-        @media(max-width:860px) {
-            nav {
-                padding: 0 clamp(16px, 3vw, 24px);
-            }
-
-            .nav-pill {
-                padding: 14px 18px;
-                min-height: 72px;
-                justify-content: space-between;
-                border-radius: 100px;
-            }
-
-            .nav-pill .brand {
-                position: static;
-                transform: none;
-                z-index: 10;
-            }
-
-            .nav-pill .brand img {
-                height: clamp(44px, 5.5vw, 52px);
-            }
-
-            .nav-pill .nav-links {
-                display: none;
-            }
-
-            .nav-pill .burger {
-                display: block;
-                position: static;
-                transform: none;
-                z-index: 10;
-                width: 38px;
-                height: 38px;
-            }
-
-            .nav-pill .burger .close-icon {
-                font-size: 28px;
-                line-height: 38px;
-            }
+        .nav-pill .burger.open .hamburger span:nth-child(1) {
+            transform: translateY(0) rotate(45deg);
         }
 
-        @media(max-width:480px) {
-            nav {
-                top: clamp(10px, 1.5vh, 14px);
-                padding: 0 clamp(12px, 2vw, 16px);
-            }
+        .nav-pill .burger.open .hamburger span:nth-child(2) {
+            transform: translateY(0) rotate(-45deg);
+        }
 
-            .nav-pill {
-                padding: 12px 14px;
-                min-height: 64px;
-                border-radius: 60px;
-            }
 
-            .nav-pill .brand img {
-                height: clamp(38px, 5vw, 44px);
-            }
 
-            .nav-pill .burger {
-                width: 34px;
-                height: 34px;
-            }
 
-            .nav-pill .burger .close-icon {
-                font-size: 24px;
-                line-height: 34px;
-            }
+
+
+
+        .nav-pill.menu-open {
+            background: none;
+            box-shadow: none;
+        }
+
+        .nav-pill.menu-open .fx-layer,
+        .nav-pill.menu-open .tint-layer,
+        .nav-pill.menu-open .shine-layer {
+            display: none;
         }
 
         .mobile-menu {
@@ -336,61 +276,20 @@
             z-index: 99;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             padding: 2rem;
+            padding-top: 18vh;
             transform: translateY(-100%);
             transition: none;
             gap: 1.6rem;
             pointer-events: none;
+            overflow: hidden;
+            height: 100vh;
         }
 
         .mobile-menu.open {
             transform: translateY(0);
             pointer-events: auto;
-        }
-
-        .mobile-menu .mobile-header {
-            position: absolute;
-            top: clamp(20px, 4vh, 40px);
-            left: 0;
-            right: 0;
-            padding: 0 clamp(20px, 4vw, 32px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .mobile-menu .mobile-header img {
-            height: clamp(44px, 5.5vw, 52px);
-            width: auto;
-            border-radius: 8px;
-            display: block;
-            object-fit: contain;
-        }
-
-        .mobile-menu .mobile-header .mobile-close {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.5), inset 0 -0.5px 0 rgba(0, 0, 0, 0.05);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--ink);
-            position: relative;
-            z-index: 10;
-        }
-
-        .mobile-menu .mobile-header .mobile-close:hover {
-            background: rgba(255, 255, 255, 0.5);
         }
 
         .mobile-menu .menu-title {
@@ -417,6 +316,8 @@
         .mobile-menu a:hover {
             color: var(--brass-l);
         }
+
+
 
         .introduction {
             min-height: 100svh;
@@ -450,23 +351,9 @@
             padding: 0 clamp(1rem, 3vw, 2.5rem);
         }
 
-        @media(max-width:900px) {
-            .introduction-in {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 0 clamp(1rem, 4vw, 1.5rem);
-            }
-        }
 
-        @media(max-width:600px) {
-            .introduction {
-                padding: 80px 0 40px;
-            }
 
-            .introduction-in {
-                padding: 0 clamp(0.75rem, 3vw, 1rem);
-            }
-        }
+
 
         .introduction h1 {
             color: var(--ink);
@@ -503,6 +390,10 @@
             font-weight: 700;
             font-size: .9rem;
             transition: transform .25s var(--ease), background .2s
+        }
+
+        .btn-icon {
+            flex-shrink: 0;
         }
 
         .btn-primary {
@@ -562,7 +453,7 @@
         }
 
         .belt {
-            background: var(--paper-dim);
+            background: var(--paper);
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
             padding: 2.4rem 0
@@ -574,11 +465,7 @@
             gap: 1.5rem
         }
 
-        @media(max-width:760px) {
-            .belt .wrap {
-                grid-template-columns: repeat(2, 1fr)
-            }
-        }
+
 
         .stat b {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -633,17 +520,9 @@
             overflow: hidden
         }
 
-        @media(max-width:860px) {
-            .grid-6 {
-                grid-template-columns: repeat(2, 1fr)
-            }
-        }
 
-        @media(max-width:560px) {
-            .grid-6 {
-                grid-template-columns: 1fr
-            }
-        }
+
+
 
         .cell {
             background: var(--paper);
@@ -676,8 +555,10 @@
         }
 
         .about {
-            background: var(--paper-dim);
-            color: var(--ink)
+            background: var(--paper);
+            color: var(--ink);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line)
         }
 
         .about .wrap {
@@ -687,12 +568,7 @@
             align-items: center
         }
 
-        @media(max-width:900px) {
-            .about .wrap {
-                grid-template-columns: 1fr;
-                gap: 2.5rem
-            }
-        }
+
 
         .about .eyebrow {
             color: var(--brass-l)
@@ -755,11 +631,7 @@
             gap: 1.1rem
         }
 
-        @media(max-width:860px) {
-            .fac {
-                grid-template-columns: repeat(2, 1fr)
-            }
-        }
+
 
         .fac-item {
             border: 1px solid var(--line);
@@ -784,7 +656,9 @@
         }
 
         .mentors {
-            background: var(--paper-dim)
+            background: var(--paper);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line)
         }
 
         .mstrip {
@@ -837,11 +711,7 @@
             gap: 1.3rem
         }
 
-        @media(max-width:760px) {
-            .events {
-                grid-template-columns: 1fr
-            }
-        }
+
 
         .ev {
             position: relative;
@@ -872,7 +742,7 @@
         }
 
         .ev.alt .tag {
-            color: var(--moss)
+            color: var(--wine)
         }
 
         .ev h3 {
@@ -888,7 +758,7 @@
         }
 
         .cta {
-            background: var(--paper-dim);
+            background: var(--paper);
             text-align: center;
             padding-top: 5rem;
             padding-bottom: 5rem
@@ -956,6 +826,152 @@
             opacity: 1;
             transform: translateY(0)
         }
+
+        @media(min-width:861px) {
+            .nav-pill .burger {
+                display: none !important;
+            }
+        }
+
+        @media(max-width:860px) {
+            nav {
+                padding: 0 clamp(16px, 3vw, 24px);
+            }
+
+            .nav-pill {
+                padding: 14px 18px;
+                min-height: 72px;
+                justify-content: space-between;
+                border-radius: 100px;
+            }
+
+            .nav-pill .brand {
+                position: absolute;
+                left: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+            }
+
+            .nav-pill .brand img {
+                height: clamp(44px, 5.5vw, 52px);
+            }
+
+            .nav-pill .nav-links {
+                display: none;
+            }
+
+            .nav-pill .burger {
+                display: block;
+                position: absolute;
+                right: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+                width: 38px;
+                height: 38px;
+                margin-left: 0;
+                flex-shrink: 0;
+            }
+
+            .nav-pill .burger .hamburger span {
+                width: 18px;
+            }
+
+            .grid-6 {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .fac {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:480px) {
+            nav {
+                top: clamp(10px, 1.5vh, 14px);
+                padding: 0 clamp(12px, 2vw, 16px);
+            }
+
+            .nav-pill {
+                padding: 12px 14px;
+                min-height: 64px;
+                border-radius: 60px;
+            }
+
+            .nav-pill .brand {
+                left: 14px;
+            }
+
+            .nav-pill .brand img {
+                height: clamp(38px, 5vw, 44px);
+            }
+
+            .nav-pill .burger {
+                right: 14px;
+                width: 32px;
+                height: 32px;
+            }
+
+            .nav-pill .burger .hamburger span {
+                width: 16px;
+            }
+
+            .nav-pill .burger .hamburger span:nth-child(1) {
+                transform: translateY(-3.5px);
+            }
+
+            .nav-pill .burger .hamburger span:nth-child(2) {
+                transform: translateY(3.5px);
+            }
+
+            .mobile-menu {
+                padding-top: 15vh;
+            }
+
+            .mobile-menu a {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media(max-width:900px) {
+            .introduction-in {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 clamp(1rem, 4vw, 1.5rem);
+            }
+
+            .about .wrap {
+                grid-template-columns: 1fr;
+                gap: 2.5rem
+            }
+        }
+
+        @media(max-width:600px) {
+            .introduction {
+                padding: 80px 0 40px;
+            }
+
+            .introduction-in {
+                padding: 0 clamp(0.75rem, 3vw, 1rem);
+            }
+        }
+
+        @media(max-width:760px) {
+            .belt .wrap {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .events {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(max-width:560px) {
+            .grid-6 {
+                grid-template-columns: 1fr
+            }
+        }
     </style>
 </head>
 
@@ -988,24 +1004,16 @@
                     <li><a href="#events">Events</a></li>
                 </ul>
                 <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="Menu / Menu_Duo_LG">
-                            <path id="Vector" d="M3 15H21M3 9H21" stroke="#000000" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"></path>
-                        </g>
-                    </svg>
-                    <span class="close-icon">✕</span>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                    </div>
                 </button>
             </div>
         </div>
     </nav>
 
     <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-header">
-            <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
-                alt="Jai Hind College Logo" onerror="this.style.display='none'">
-            <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
-        </div>
         <div class="menu-title">MENU</div>
         <a href="#about">About</a>
         <a href="#what-we-do">Programmes</a>
@@ -1018,12 +1026,19 @@
         <div class="introduction-in">
             <div>
                 <p class="eyebrow">Jai Hind College (Empowered Autonomous)</p>
-                <h1>Where student ventures<br>get their <em>first ring</em> of growth.</h1>
-                <p class="lede">A working incubator, not a workshop series — labs, mentors, IP support and capital
-                    pathways for founders building while they study.</p>
+                <h1>The Incubator &amp; Accelerator Centre</h1>
+                <p class="lede">You know that idea you keep talking about but never start? This is the room where
+                    people like you actually build it, with mentors, lab space, IP support and funding pathways,
+                    while you're still a student.</p>
                 <div class="btn-row">
                     <a class="btn btn-primary" href="https://forms.gle/pkk8YXcVLg9dCSgn9" target="_blank"
-                        rel="noopener">Apply for Incubation ↗</a>
+                        rel="noopener">Apply for Incubation
+                        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17 17 7" />
+                            <path d="M7 7h10v10" />
+                        </svg>
+                    </a>
                     <a class="btn btn-ghost" href="#about">How it works</a>
                 </div>
             </div>
@@ -1222,7 +1237,13 @@
             </p>
             <div class="btn-row">
                 <a class="btn btn-primary" href="https://forms.gle/pkk8YXcVLg9dCSgn9" target="_blank"
-                    rel="noopener">Apply for Incubation ↗</a>
+                    rel="noopener">Apply for Incubation
+                    <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7" />
+                        <path d="M7 7h10v10" />
+                    </svg>
+                </a>
                 <a class="btn btn-ghost" href="mailto:incubation.centre@jaihindcollege.edu.in">Email the team</a>
             </div>
         </div>
@@ -1245,27 +1266,23 @@
 
         const burger = document.getElementById('burger');
         const menu = document.getElementById('mobileMenu');
-        const closeBtn = document.getElementById('mobileClose');
         const navPill = document.getElementById('navPill');
+        const body = document.body;
 
         function openMenu() {
             menu.classList.add('open');
             burger.classList.add('open');
+            navPill.classList.add('menu-open');
             burger.setAttribute('aria-expanded', 'true');
-            if (window.innerWidth <= 860) {
-                navPill.style.opacity = '0';
-                navPill.style.pointerEvents = 'none';
-            }
+            body.classList.add('no-scroll');
         }
 
         function closeMenu() {
             menu.classList.remove('open');
             burger.classList.remove('open');
+            navPill.classList.remove('menu-open');
             burger.setAttribute('aria-expanded', 'false');
-            if (window.innerWidth <= 860) {
-                navPill.style.opacity = '1';
-                navPill.style.pointerEvents = 'auto';
-            }
+            body.classList.remove('no-scroll');
         }
 
         burger.addEventListener('click', () => {
@@ -1276,20 +1293,11 @@
             }
         });
 
-        closeBtn.addEventListener('click', closeMenu);
-
         menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 860) {
-                navPill.style.opacity = '1';
-                navPill.style.pointerEvents = 'auto';
-                if (menu.classList.contains('open')) {
-                    closeMenu();
-                }
-            } else if (!menu.classList.contains('open')) {
-                navPill.style.opacity = '1';
-                navPill.style.pointerEvents = 'auto';
+            if (window.innerWidth > 860 && menu.classList.contains('open')) {
+                closeMenu();
             }
         });
 
