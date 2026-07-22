@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>Incubator & Accelerator Centre | Jai Hind College</title>
+    <meta name="description"
+        content="Jai Hind College (Empowered Autonomous) Incubator & Accelerator Centre — mentorship, IP support and a working ecosystem for student-owned startups in Mumbai.">
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #191308;
+            --paper: #f5f5f5;
+            --card: #ffffff;
+            --brass: #ff5722;
+            --brass-l: #c23b0e;
+            --wine: #0047ff;
+            --line: rgba(25, 19, 8, .12);
+            --r: 14px;
+            --ease: cubic-bezier(.22, .8, .28, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 400;
+            color: var(--ink);
+            background: var(--paper);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--brass);
+            outline-offset: 3px
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 4vw, 2.5rem)
+        }
+
+        .eyebrow {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--brass-l);
+            display: flex;
+            align-items: center;
+            gap: .55em
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--brass-l);
+            flex: none
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            letter-spacing: -.01em;
+            line-height: 1.05
+        }
+
+        nav {
+            position: fixed;
+            top: clamp(12px, 2vh, 20px);
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 clamp(12px, 2vw, 24px);
+            pointer-events: none;
+        }
+
+        .nav-in {
+            max-width: 1180px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .nav-pill {
+            pointer-events: auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 60px;
+            min-height: 76px;
+            border-radius: 100px;
+            overflow: hidden;
+            box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.5), inset 0 -0.5px 0 rgba(0, 0, 0, 0.05), 0 8px 32px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-pill .fx-layer {
+            position: absolute;
+            z-index: 0;
+            inset: 0;
+            -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px);
+            filter: url(#glass-distortion);
+            overflow: hidden;
+            border-radius: 100px;
+        }
+
+        .nav-pill .tint-layer {
+            z-index: 1;
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.50);
+            border-radius: 100px;
+        }
+
+        .nav-pill .shine-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            overflow: hidden;
+            border-radius: 100px;
+            box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
+                inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-pill .brand {
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-pill .brand img {
+            height: clamp(44px, 4.8vw, 56px);
+            width: auto;
+            border-radius: 8px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .nav-pill .nav-links {
+            display: flex;
+            gap: clamp(1.2rem, 2vw, 2.4rem);
+            list-style: none;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            z-index: 3;
+        }
+
+        .nav-pill .nav-links a {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+            font-weight: 600;
+            color: rgba(18, 24, 31, .7);
+            transition: color .2s;
+            white-space: nowrap;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-pill .nav-links a:hover {
+            color: var(--ink)
+        }
+
+        .nav-pill .burger {
+            display: none;
+            background: none;
+            border: 0;
+            width: 38px;
+            height: 38px;
+            flex: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+            position: relative;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .nav-pill .burger .hamburger {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pill .burger .hamburger span {
+            position: absolute;
+            width: 18px;
+            height: 2px;
+            background: var(--ink);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pill .burger .hamburger span:nth-child(1) {
+            transform: translateY(-4px);
+        }
+
+        .nav-pill .burger .hamburger span:nth-child(2) {
+            transform: translateY(4px);
+        }
+
+        .nav-pill .burger.open .hamburger span:nth-child(1) {
+            transform: translateY(0) rotate(45deg);
+        }
+
+        .nav-pill .burger.open .hamburger span:nth-child(2) {
+            transform: translateY(0) rotate(-45deg);
+        }
+
+
+
+
+
+
+
+        .nav-pill.menu-open {
+            background: none;
+            box-shadow: none;
+        }
+
+        .nav-pill.menu-open .fx-layer,
+        .nav-pill.menu-open .tint-layer,
+        .nav-pill.menu-open .shine-layer {
+            display: none;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: var(--paper);
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            padding-top: 18vh;
+            transform: translateY(-100%);
+            transition: none;
+            gap: 1.6rem;
+            pointer-events: none;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .mobile-menu.open {
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .mobile-menu .menu-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(25, 19, 8, 0.42);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            z-index: 5;
+        }
+
+        .mobile-menu a {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--ink);
+            z-index: 5;
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--brass-l);
+        }
+
+
+
+        .introduction {
+            min-height: 100svh;
+            background: var(--paper);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 0 60px;
+            overflow: hidden;
+        }
+
+        .introduction::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+            background-size: 64px 64px;
+            opacity: .6
+        }
+
+        .introduction-in {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 3rem;
+            align-items: end;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 3vw, 2.5rem);
+        }
+
+
+
+
+
+        .introduction h1 {
+            color: var(--ink);
+            font-size: clamp(2.5rem, 5.6vw, 4.4rem);
+            margin: 1.1rem 0 1.4rem;
+            max-width: 14ch;
+        }
+
+        .introduction h1 em {
+            font-style: italic;
+            color: var(--brass-l)
+        }
+
+        .introduction p.lede {
+            color: rgba(25, 19, 8, .7);
+            font-size: 1.05rem;
+            max-width: 38ch;
+            line-height: 1.6;
+            margin-bottom: 2rem
+        }
+
+        .btn-row {
+            display: flex;
+            gap: .9rem;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5em;
+            padding: 14px 26px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: .9rem;
+            transition: transform .25s var(--ease), background .2s
+        }
+
+        .btn-icon {
+            flex-shrink: 0;
+        }
+
+        .btn-primary {
+            background: var(--ink);
+            color: var(--paper)
+        }
+
+        .btn-primary:hover {
+            background: var(--brass-l);
+            transform: translateY(-2px)
+        }
+
+        .btn-ghost {
+            border: 1px solid var(--line);
+            color: var(--ink);
+            background: rgba(255, 255, 255, .35);
+            backdrop-filter: blur(8px)
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--brass-l);
+            color: var(--brass-l);
+            transform: translateY(-2px)
+        }
+
+        .introduction-card {
+            background: rgba(255, 255, 255, .5);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
+            border-radius: var(--r);
+            padding: 1.6rem;
+            color: var(--ink);
+            width: 100%;
+            max-width: 420px;
+            height: 190px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .cc-hl {
+            transition: color .4s var(--ease);
+        }
+
+        .introduction-card p {
+            margin-top: .9rem;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--ink);
+            transition: opacity .2s ease;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .cc-dots {
+            display: flex;
+            gap: .4rem;
+            margin-top: 1.1rem;
+        }
+
+        .cc-dots span {
+            width: 18px;
+            height: 3px;
+            border-radius: 2px;
+            background: var(--line);
+            transition: background .3s;
+        }
+
+        .cc-dots span.active {
+            background: var(--ink);
+        }
+
+        .belt {
+            background: var(--paper);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 2.4rem 0
+        }
+
+        .belt .wrap {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem
+        }
+
+
+
+        .stat b {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(2rem, 3.4vw, 2.7rem);
+            color: var(--ink);
+            font-weight: 700;
+            display: block
+        }
+
+        .stat b em {
+            font-style: normal;
+            color: var(--brass-l)
+        }
+
+        .stat span {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            color: rgba(25, 19, 8, .5);
+            text-transform: uppercase
+        }
+
+        section {
+            padding: clamp(4.5rem, 8vw, 7.5rem) 0
+        }
+
+        .head {
+            max-width: 640px;
+            margin-bottom: 3rem
+        }
+
+        .head h2 {
+            font-size: clamp(2rem, 4vw, 2.9rem);
+            margin-top: .8rem
+        }
+
+        .head p {
+            margin-top: 1rem;
+            color: rgba(25, 19, 8, .62);
+            line-height: 1.65;
+            font-size: 1.02rem
+        }
+
+        .grid-6 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+            border-radius: var(--r);
+            overflow: hidden
+        }
+
+
+
+
+
+        .cell {
+            background: var(--paper);
+            padding: 2.1rem 1.8rem;
+            transition: background .25s
+        }
+
+        .cell:hover {
+            background: var(--card)
+        }
+
+        .cell .n {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: .72rem;
+            font-weight: 600;
+            color: var(--brass);
+            margin-bottom: 1rem;
+            display: block
+        }
+
+        .cell h3 {
+            font-size: 1.18rem;
+            margin-bottom: .55rem
+        }
+
+        .cell p {
+            font-size: .92rem;
+            color: rgba(25, 19, 8, .58);
+            line-height: 1.55
+        }
+
+        .about {
+            background: var(--paper);
+            color: var(--ink);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .about .wrap {
+            display: grid;
+            grid-template-columns: .95fr 1.05fr;
+            gap: 4rem;
+            align-items: center
+        }
+
+
+
+        .about .eyebrow {
+            color: var(--brass-l)
+        }
+
+        .about .eyebrow::before {
+            background: var(--brass-l)
+        }
+
+        .about h2 {
+            color: var(--ink);
+            font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+            margin: .9rem 0 1.3rem
+        }
+
+        .about p {
+            color: rgba(25, 19, 8, .7);
+            line-height: 1.7;
+            font-size: 1.02rem;
+            margin-bottom: 1rem
+        }
+
+        .about .quote {
+            margin-top: 1.6rem;
+            padding-left: 1.1rem;
+            border-left: 2px solid var(--brass);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 500;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--ink)
+        }
+
+        .ringwrap {
+            position: relative;
+            aspect-ratio: 1;
+            max-width: 440px;
+            margin: 0 auto;
+            width: 100%
+        }
+
+        .ringwrap svg {
+            width: 100%;
+            height: 100%
+        }
+
+        .ring-label {
+            position: absolute;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: .62rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            color: rgba(18, 24, 31, .5);
+            text-transform: uppercase
+        }
+
+        .fac {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.1rem
+        }
+
+
+
+        .fac-item {
+            border: 1px solid var(--line);
+            border-radius: var(--r);
+            padding: 1.6rem 1.3rem;
+            background: var(--card)
+        }
+
+        .fac-item .idx {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: .68rem;
+            font-weight: 600;
+            color: var(--brass);
+            display: block;
+            margin-bottom: .9rem
+        }
+
+        .fac-item h3 {
+            font-size: 1.02rem;
+            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif
+        }
+
+        .mentors {
+            background: var(--paper);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .mstrip {
+            display: flex;
+            gap: 1.1rem;
+            overflow-x: auto;
+            padding-bottom: .5rem;
+            scrollbar-width: none
+        }
+
+        .mstrip::-webkit-scrollbar {
+            display: none
+        }
+
+        .mcard {
+            flex: 0 0 220px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--r);
+            padding: 1.3rem
+        }
+
+        .mcard .role {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: .62rem;
+            font-weight: 600;
+            color: var(--brass);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-bottom: .5rem;
+            display: block
+        }
+
+        .mcard h3 {
+            font-size: 1.02rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            margin-bottom: .3rem
+        }
+
+        .mcard p {
+            font-size: .82rem;
+            color: rgba(25, 19, 8, .62);
+            line-height: 1.45
+        }
+
+        .events {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.3rem
+        }
+
+
+
+        .ev {
+            position: relative;
+            border-radius: var(--r);
+            padding: 2.2rem;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: var(--ink);
+            background: var(--card);
+            border: 1px solid var(--line)
+        }
+
+        .ev.alt {
+            background: #eef1ea;
+            border-color: rgba(61, 90, 68, .18)
+        }
+
+        .ev .tag {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            color: var(--brass-l);
+            text-transform: uppercase;
+            margin-bottom: 1rem
+        }
+
+        .ev.alt .tag {
+            color: var(--wine)
+        }
+
+        .ev h3 {
+            font-size: 1.7rem;
+            margin-bottom: .6rem
+        }
+
+        .ev p {
+            color: rgba(25, 19, 8, .65);
+            font-size: .92rem;
+            line-height: 1.55;
+            max-width: 38ch
+        }
+
+        .cta {
+            background: var(--paper);
+            text-align: center;
+            padding-top: 5rem;
+            padding-bottom: 5rem
+        }
+
+        .cta h2 {
+            color: var(--ink);
+            font-size: clamp(2rem, 4.4vw, 3.1rem);
+            max-width: 16ch;
+            margin: 1rem auto 1.8rem
+        }
+
+        .cta p {
+            color: rgba(25, 19, 8, .62);
+            max-width: 44ch;
+            margin: 0 auto 2rem
+        }
+
+        .cta .eyebrow {
+            justify-content: center;
+            color: var(--brass-l)
+        }
+
+        .cta .eyebrow::before {
+            background: var(--brass-l)
+        }
+
+        .cta .btn-row {
+            justify-content: center
+        }
+
+        footer {
+            background: var(--paper);
+            border-top: 1px solid var(--line);
+            padding: 2.6rem 0;
+            color: rgba(25, 19, 8, .5);
+            font-size: .85rem
+        }
+
+        footer .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem
+        }
+
+        footer a:hover {
+            color: var(--brass-l)
+        }
+
+        .foot-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none
+        }
+
+        .r {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .7s var(--ease), transform .7s var(--ease)
+        }
+
+        .r.in {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        @media(min-width:861px) {
+            .nav-pill .burger {
+                display: none !important;
+            }
+        }
+
+        @media(max-width:860px) {
+            nav {
+                padding: 0 clamp(16px, 3vw, 24px);
+            }
+
+            .nav-pill {
+                padding: 14px 18px;
+                min-height: 72px;
+                justify-content: space-between;
+                border-radius: 100px;
+            }
+
+            .nav-pill .brand {
+                position: absolute;
+                left: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+            }
+
+            .nav-pill .brand img {
+                height: clamp(44px, 5.5vw, 52px);
+            }
+
+            .nav-pill .nav-links {
+                display: none;
+            }
+
+            .nav-pill .burger {
+                display: block;
+                position: absolute;
+                right: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+                width: 38px;
+                height: 38px;
+                margin-left: 0;
+                flex-shrink: 0;
+            }
+
+            .nav-pill .burger .hamburger span {
+                width: 18px;
+            }
+
+            .grid-6 {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .fac {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:480px) {
+            nav {
+                top: clamp(10px, 1.5vh, 14px);
+                padding: 0 clamp(12px, 2vw, 16px);
+            }
+
+            .nav-pill {
+                padding: 12px 14px;
+                min-height: 64px;
+                border-radius: 60px;
+            }
+
+            .nav-pill .brand {
+                left: 14px;
+            }
+
+            .nav-pill .brand img {
+                height: clamp(38px, 5vw, 44px);
+            }
+
+            .nav-pill .burger {
+                right: 14px;
+                width: 32px;
+                height: 32px;
+            }
+
+            .nav-pill .burger .hamburger span {
+                width: 16px;
+            }
+
+            .nav-pill .burger .hamburger span:nth-child(1) {
+                transform: translateY(-3.5px);
+            }
+
+            .nav-pill .burger .hamburger span:nth-child(2) {
+                transform: translateY(3.5px);
+            }
+
+            .mobile-menu {
+                padding-top: 15vh;
+            }
+
+            .mobile-menu a {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media(max-width:900px) {
+            .introduction-in {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 clamp(1rem, 4vw, 1.5rem);
+            }
+
+            .about .wrap {
+                grid-template-columns: 1fr;
+                gap: 2.5rem
+            }
+        }
+
+        @media(max-width:600px) {
+            .introduction {
+                padding: 80px 0 40px;
+            }
+
+            .introduction-in {
+                padding: 0 clamp(0.75rem, 3vw, 1rem);
+            }
+        }
+
+        @media(max-width:760px) {
+            .belt .wrap {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .events {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(max-width:560px) {
+            .grid-6 {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <svg style="position:absolute;width:0;height:0;">
+        <defs>
+            <filter id="glass-distortion">
+                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.02" numOctaves="3" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
+    <nav>
+        <div class="nav-in">
+            <div class="nav-pill" id="navPill">
+                <div class="fx-layer"></div>
+                <div class="tint-layer"></div>
+                <div class="shine-layer"></div>
+                <a class="brand" href="#top">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
+                        alt="Jai Hind College Logo" onerror="this.style.display='none'">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#what-we-do">Programmes</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#mentors">Mentors</a></li>
+                    <li><a href="#events">Events</a></li>
+                </ul>
+                <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="menu-title">MENU</div>
+        <a href="#about">About</a>
+        <a href="#what-we-do">Programmes</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#mentors">Mentors</a>
+        <a href="#events">Events</a>
+    </div>
+
+    <section class="introduction" id="top">
+        <div class="introduction-in">
+            <div>
+                <p class="eyebrow">Jai Hind College (Empowered Autonomous) · Est. 2007</p>
+                <h1>Incubator &amp; Accelerator Centre</h1>
+                <p class="lede">Dedicated to empowering student-owned startups to scale faster, creating a strong
+                    network of student entrepreneurs, and accelerating innovation.</p>
+                <div class="btn-row">
+                    <a class="btn btn-primary" href="https://forms.gle/pkk8YXcVLg9dCSgn9" target="_blank"
+                        rel="noopener">Apply for Incubation
+                        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17 17 7" />
+                            <path d="M7 7h10v10" />
+                        </svg>
+                    </a>
+                    <a class="btn btn-ghost" href="#about">How it works</a>
+                </div>
+            </div>
+            <div class="introduction-card" id="committeeCard">
+                <p id="ccMessage">Stuck with a startup? <span class="cc-hl" style="color:#c2410c">Reach us.</span></p>
+                <div class="cc-dots" id="ccDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="belt">
+        <div class="wrap">
+            <div class="stat"><b><em>70+</em></b><span>Startups Incubatees</span></div>
+            <div class="stat"><b><em>95+</em></b><span>Industrial Mentors</span></div>
+            <div class="stat"><b><em>3,000+</em></b><span>Footfall</span></div>
+            <div class="stat"><b><em>IAC</em></b><span>Student Startup Ecosystem</span></div>
+        </div>
+    </div>
+
+    <section id="what-we-do">
+        <div class="wrap">
+            <div class="head r">
+                <p class="eyebrow">What actually happens here</p>
+                <h2>Six ways we help ideas move forward.</h2>
+                <p>From incubation and mentoring to IP awareness and exposure — practical support for student
+                    entrepreneurs.</p>
+            </div>
+            <div class="grid-6 r">
+                <div class="cell"><span class="n">01</span>
+                    <h3>Incubate Startups</h3>
+                    <p>Turn your innovative ideas into thriving ventures with expert mentorship, resources, and a
+                        dedicated incubation center.</p>
+                </div>
+                <div class="cell"><span class="n">02</span>
+                    <h3>Mentoring Sessions</h3>
+                    <p>Seasoned industry leaders guide you to refine strategies, solve challenges, and grow.</p>
+                </div>
+                <div class="cell"><span class="n">03</span>
+                    <h3>Internship Fair</h3>
+                    <p>Connect growing startups with top talent and interns with impactful, real-world opportunities.
+                    </p>
+                </div>
+                <div class="cell"><span class="n">04</span>
+                    <h3>IPR Awareness</h3>
+                    <p>Protect your innovative ideas with expert insights on intellectual property rights.</p>
+                </div>
+                <div class="cell"><span class="n">05</span>
+                    <h3>Startup Exposition</h3>
+                    <p>Showcase groundbreaking innovation, network with investors, and gain invaluable exposure.</p>
+                </div>
+                <div class="cell"><span class="n">06</span>
+                    <h3>Ignite Programme</h3>
+                    <p>Learn to build impactful and successful ventures with the Wadhwani Foundation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="wrap">
+            <div class="r">
+                <p class="eyebrow">The centre</p>
+                <h2>A safe harbour for young business ventures.</h2>
+                <p>The Jai Hind College (Empowered Autonomous) Incubator &amp; Accelerator Centre is a safe harbour for
+                    young business ventures grappling about in their start-up stage.</p>
+                <p>Jai Hind College believes in contributing to the nation by creating a wholesome start-up ecosystem by
+                    mentoring and supporting budding entrepreneurs under the guidance of Principal Dr. Vijay Dabholkar,
+                    Academic Advisor Dr. Ashok Wadia and Academic Head Dr. Rakhi Sharma.</p>
+                <p class="quote">Fostering a culture of innovation — from an early idea to a stronger entrepreneurial
+                    journey.</p>
+            </div>
+            <div class="ringwrap r">
+                <svg viewBox="0 0 440 440" aria-hidden="true">
+                    <circle cx="220" cy="220" r="30" fill="var(--brass)" />
+                    <circle cx="220" cy="220" r="60" fill="none" stroke="var(--line)" stroke-width="1.2" />
+                    <circle cx="220" cy="220" r="95" fill="none" stroke="var(--brass)" stroke-width="1.2" opacity=".6"
+                        stroke-dasharray="2 5" />
+                    <circle cx="220" cy="220" r="132" fill="none" stroke="var(--line)" stroke-width="1.2" />
+                    <circle cx="220" cy="220" r="172" fill="none" stroke="var(--brass)" stroke-width="1.2" opacity=".35"
+                        stroke-dasharray="2 5" />
+                    <circle cx="220" cy="220" r="215" fill="none" stroke="var(--line)" stroke-width="1.2" />
+                    <text x="220" y="16" text-anchor="middle" fill="rgba(25,19,8,.4)"
+                        font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="600">FOSTERING
+                        INNOVATION</text>
+                    <text x="220" y="432" text-anchor="middle" fill="rgba(25,19,8,.4)"
+                        font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="600">STUDENT
+                        ENTREPRENEURS</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section id="facilities">
+        <div class="wrap">
+            <div class="head r">
+                <p class="eyebrow">What's actually inside</p>
+                <h2>A space designed around building.</h2>
+            </div>
+            <div class="fac r">
+                <div class="fac-item"><span class="idx">/01</span>
+                    <h3>Start‑Up Labs</h3>
+                </div>
+                <div class="fac-item"><span class="idx">/02</span>
+                    <h3>IP Literacy</h3>
+                </div>
+                <div class="fac-item"><span class="idx">/03</span>
+                    <h3>Networking Support</h3>
+                </div>
+                <div class="fac-item"><span class="idx">/04</span>
+                    <h3>Start‑Up Internships</h3>
+                </div>
+                <div class="fac-item"><span class="idx">/05</span>
+                    <h3>Tailored Mentoring</h3>
+                </div>
+                <div class="fac-item"><span class="idx">/06</span>
+                    <h3>Team Building Support</h3>
+                </div>
+                <div class="fac-item"><span class="idx">/07</span>
+                    <h3>Pitching Rounds</h3>
+                </div>
+                <div class="fac-item"><span class="idx">/08</span>
+                    <h3>Co‑Working Space</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mentors" id="mentors">
+        <div class="wrap">
+            <div class="head r">
+                <p class="eyebrow">Our guiding lights</p>
+                <h2>Guidance from people with real-world experience</h2>
+            </div>
+            <div class="mstrip r">
+                <div class="mcard"><span class="role">Venture</span>
+                    <h3>Anil Joshi</h3>
+                    <p>Founder &amp; Managing Partner, Unicorn Ventures</p>
+                </div>
+                <div class="mcard"><span class="role">Strategy</span>
+                    <h3>Peshwa Acharya</h3>
+                    <p>President – Group Strategy &amp; Director, Brightcom · Founder, Think as Consumers</p>
+                </div>
+                <div class="mcard"><span class="role">Impact</span>
+                    <h3>Shriyans Bhandari</h3>
+                    <p>Founder &amp; CEO, Greensole · Director, Herotage Girls School</p>
+                </div>
+                <div class="mcard"><span class="role">Fundraising</span>
+                    <h3>Ranganath Thota</h3>
+                    <p>Founder &amp; CEO, Fueladream.com</p>
+                </div>
+                <div class="mcard"><span class="role">Marketing</span>
+                    <h3>Rajiv Dingra</h3>
+                    <p>Founder &amp; CEO, WATConsult</p>
+                </div>
+                <div class="mcard"><span class="role">Legal</span>
+                    <h3>Prof. Azmeen Kasad</h3>
+                    <p>Legal Consultant · Professor of Law</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="events">
+        <div class="wrap">
+            <div class="head r">
+                <p class="eyebrow">Events you can’t miss</p>
+                <h2>Where ideas, talent and opportunity meet</h2>
+            </div>
+            <div class="events r">
+                <div class="ev"><span class="tag">Internship Fair · Jan &amp; Sept 2025</span>
+                    <h3>Internship Fair</h3>
+                    <p>Connect with leading companies offering internship opportunities. Whether you’re a startup
+                        seeking passionate talent or a student ready to make an impact, the fair is a gateway to growth
+                        and learning.</p>
+                </div>
+                <div class="ev alt"><span class="tag">Startup Exposition · 2023 / 2024 / 2025</span>
+                    <h3>Startup Expo</h3>
+                    <p>Step into a world of innovation where industry experts mentor, guide and inspire. Showcase ideas,
+                        gain insights and build meaningful connections in an entrepreneurial ecosystem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="apply">
+        <div class="wrap">
+            <p class="eyebrow">Your move</p>
+            <h2>Have an idea worth building?</h2>
+            <p>Have questions about IAC’s programs or events? Connect with the team and explore incubation, mentoring,
+                IP support, internship opportunities and startup exposure.
+            </p>
+            <div class="btn-row">
+                <a class="btn btn-primary" href="https://forms.gle/pkk8YXcVLg9dCSgn9" target="_blank"
+                    rel="noopener">Apply for Incubation
+                    <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7" />
+                        <path d="M7 7h10v10" />
+                    </svg>
+                </a>
+                <a class="btn btn-ghost" href="mailto:incubation.centre@jaihindcollege.edu.in">Email the team</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <span>© <span id="yr"></span> Incubator &amp; Accelerator Centre, Jai Hind College (Empowered
+                Autonomous)</span>
+            <ul class="foot-links">
+                <li><a href="https://in.linkedin.com/company/incubator-accelerator-centre" target="_blank"
+                        rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:incubation.centre@jaihindcollege.edu.in">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+
+        const burger = document.getElementById('burger');
+        const menu = document.getElementById('mobileMenu');
+        const navPill = document.getElementById('navPill');
+        const body = document.body;
+
+        function openMenu() {
+            menu.classList.add('open');
+            burger.classList.add('open');
+            navPill.classList.add('menu-open');
+            burger.setAttribute('aria-expanded', 'true');
+            body.classList.add('no-scroll');
+        }
+
+        function closeMenu() {
+            menu.classList.remove('open');
+            burger.classList.remove('open');
+            navPill.classList.remove('menu-open');
+            burger.setAttribute('aria-expanded', 'false');
+            body.classList.remove('no-scroll');
+        }
+
+        burger.addEventListener('click', () => {
+            if (menu.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 860 && menu.classList.contains('open')) {
+                closeMenu();
+            }
+        });
+
+        const ccData = [
+            { pre: 'Stuck with a startup? ', hl: 'Reach us.', post: '', fg: '#c2410c' },
+            { pre: "Don't build alone. We've got ", hl: '95+ people', post: " who've been there.", fg: '#1d4ed8' },
+            { pre: 'Real founders. ', hl: 'Real funding paths.', post: ' Zero jargon.', fg: '#15803d' },
+            { pre: 'Protect the idea ', hl: 'before you pitch it.', post: '', fg: '#be185d' },
+            { pre: 'Got the spark? ', hl: "We'll help you build the fire.", post: '', fg: '#6d28d9' },
+        ];
+        const ccMessage = document.getElementById('ccMessage');
+        const ccDots = document.getElementById('ccDots');
+        let ccIndex = 0;
+
+        ccData.forEach((_, i) => {
+            const dot = document.createElement('span');
+            if (i === 0) dot.classList.add('active');
+            ccDots.appendChild(dot);
+        });
+
+        function renderCC(i) {
+            const item = ccData[i];
+            ccMessage.style.opacity = 0;
+            setTimeout(() => {
+                ccMessage.innerHTML = item.pre + '<span class="cc-hl" style="color:' + item.fg + '">' + item.hl + '</span>' + item.post;
+                ccMessage.style.opacity = 1;
+            }, 200);
+            [...ccDots.children].forEach((d, di) => d.classList.toggle('active', di === i));
+        }
+
+        renderCC(0);
+        setInterval(() => {
+            ccIndex = (ccIndex + 1) % ccData.length;
+            renderCC(ccIndex);
+        }, 3400);
+
+        const io = new IntersectionObserver(es => es.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+            }
+        }), { threshold: .15 });
+        document.querySelectorAll('.r').forEach(el => io.observe(el));
+    </script>
+</body>
+
+</html>
