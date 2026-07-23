@@ -2092,6 +2092,192 @@
                 will-change: auto
             }
         }
+
+
+        .about-content {
+            max-width: 1040px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: clamp(24px, 4vh, 42px) !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .about-kicker,
+        .about-lead,
+        .about-body {
+            opacity: var(--reveal, 0) !important;
+            transform: translateY(var(--rise, 42px)) !important;
+            filter: blur(var(--blur, 4px)) !important;
+            will-change: transform, opacity;
+        }
+
+        .about-kicker {
+            margin: 0 !important;
+            font-size: clamp(.95rem, 1.25vw, 1.15rem) !important;
+            line-height: 1.55 !important;
+        }
+
+        .about-lead {
+            max-width: 34ch !important;
+            margin: 0 !important;
+            font-size: clamp(2rem, 3.35vw, 3.45rem) !important;
+            line-height: 1.2 !important;
+        }
+
+        .about-body {
+            max-width: 82ch !important;
+            margin: 0 !important;
+            font-size: clamp(1.12rem, 1.52vw, 1.34rem) !important;
+            line-height: 1.9 !important;
+        }
+
+        .about-mark {
+            width: 40px !important;
+            opacity: .085 !important;
+            filter: drop-shadow(0 0 12px rgba(116, 181, 245, .10)) !important;
+        }
+
+        @media (max-width:860px) {
+            .about-content {
+                gap: clamp(22px, 3.5vh, 34px) !important
+            }
+
+            .about-kicker {
+                font-size: .9rem !important
+            }
+
+            .about-lead {
+                font-size: clamp(1.85rem, 5vw, 2.8rem) !important
+            }
+
+            .about-body {
+                font-size: clamp(1rem, 2.2vw, 1.16rem) !important;
+                line-height: 1.8 !important
+            }
+
+            .about-mark {
+                width: 34px !important;
+                opacity: .07 !important
+            }
+        }
+
+        @media (max-width:520px) {
+            .about-us {
+                height: 175svh !important
+            }
+
+            .about-content {
+                gap: 22px !important
+            }
+
+            .about-kicker {
+                font-size: .78rem !important;
+                line-height: 1.6 !important
+            }
+
+            .about-lead {
+                font-size: clamp(1.7rem, 8vw, 2.35rem) !important
+            }
+
+            .about-body {
+                font-size: .98rem !important;
+                line-height: 1.72 !important
+            }
+
+            .about-mark {
+                width: 28px !important;
+                opacity: .06 !important
+            }
+        }
+
+
+        /* Shared decorative SVG visibility */
+        .about-mark,
+        .wwd-mark {
+            opacity: .11 !important;
+            filter: drop-shadow(0 0 12px rgba(116, 181, 245, .12)) !important;
+        }
+
+        /* What We Do: keep the glass/content hidden until programme 1 actually begins */
+        .wwd-visual {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transform: translateY(18px) !important;
+            transition: opacity .28s ease, transform .4s var(--ease), visibility 0s linear .28s !important;
+            pointer-events: none;
+        }
+
+        .what-we-do.wwd-program-active .wwd-visual {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            transition: opacity .28s ease, transform .4s var(--ease), visibility 0s !important;
+            pointer-events: auto;
+        }
+
+        @media (max-width:520px) {
+
+            /* About Us: all text centered only on phones */
+            .about-heading,
+            .about-content,
+            .about-kicker,
+            .about-lead,
+            .about-body {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            .about-content {
+                align-items: center !important
+            }
+
+            .about-kicker {
+                padding-left: 0 !important
+            }
+
+            .about-lead,
+            .about-body {
+                max-width: 100% !important
+            }
+
+            /* What We Do mobile order: title -> liquid box -> content wheel */
+            .wwd-inner {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                padding-top: 104px !important;
+            }
+
+            .wwd-heading {
+                order: 1 !important;
+                align-self: center !important;
+                margin: 0 auto 24px !important;
+                text-align: center !important;
+            }
+
+            .wwd-content {
+                display: contents !important;
+            }
+
+            .wwd-visual {
+                order: 2 !important;
+                align-self: center !important;
+                margin: 0 auto 24px !important;
+            }
+
+            .wwd-wheel {
+                order: 3 !important;
+                width: 100% !important;
+            }
+
+            .about-mark,
+            .wwd-mark {
+                opacity: .085 !important;
+                filter: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -3130,6 +3316,7 @@
                     progress <
                     programmeStart
                 ) {
+                    section.classList.remove('wwd-program-active');
 
                     items.forEach(
                         item => {
@@ -3165,6 +3352,8 @@
 
                     return;
                 }
+
+                section.classList.add('wwd-program-active');
 
                 const programmeProgress =
                     clamp(
@@ -3351,20 +3540,29 @@
             function renderAbout() {
                 ticking = false;
                 const p = Math.max(0, Math.min(1, (scrollY - start) / range));
-                const highlight = Math.max(0, Math.min(1, p / .28));
-                const reveal = Math.max(0, Math.min(1, (p - .22) / .30));
+                const highlight = Math.max(0, Math.min(1, p / .24));
                 const h = Math.round(highlight * 1000) / 1000;
-                const o = Math.round(reveal * 1000) / 1000;
 
                 if (h !== lastH) {
                     about.style.setProperty('--about-highlight', h);
                     lastH = h;
                 }
-                if (o !== lastO) {
-                    about.style.setProperty('--about-content-opacity', o);
-                    about.style.setProperty('--about-content-y', `${(1 - o) * 28}px`);
-                    lastO = o;
-                }
+
+                const blocks = [
+                    ['.about-kicker', .18, .38],
+                    ['.about-lead', .30, .54],
+                    ['.about-body', .44, .76]
+                ];
+
+                blocks.forEach(([selector, from, to]) => {
+                    const el = about.querySelector(selector);
+                    if (!el) return;
+                    const r = Math.max(0, Math.min(1, (p - from) / (to - from)));
+                    const eased = 1 - Math.pow(1 - r, 3);
+                    el.style.setProperty('--reveal', eased.toFixed(3));
+                    el.style.setProperty('--rise', `${((1 - eased) * 42).toFixed(1)}px`);
+                    el.style.setProperty('--blur', `${((1 - eased) * 4).toFixed(1)}px`);
+                });
             }
 
             function requestAbout() {
