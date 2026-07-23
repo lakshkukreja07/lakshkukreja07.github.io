@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>IAC · Jai Hind College</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #0b0e14;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --ink: #191308;
+            --paper: #f5f5f5;
+            --brass: #ff5722;
+            --brass-l: #c23b0e;
+            --line: rgba(255, 255, 255, .15);
+            --ease: cubic-bezier(.22, .8, .28, 1);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ---- nav (pill) with Liquid Glass ---- */
+        nav {
+            position: fixed;
+            top: clamp(12px, 2vh, 20px);
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 clamp(12px, 2vw, 24px);
+            pointer-events: none;
+        }
+
+        .nav-in {
+            max-width: 930px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .nav-pill {
+            pointer-events: auto;
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 118px;
+            min-height: 76px;
+            border-radius: 100px;
+            overflow: hidden;
+
+            /*
+             * Apple-like Liquid Glass treatment matching the visible Music Player:
+             * optical refraction remains active, while a restrained translucent
+             * material layer gives the glass enough body to stay visible.
+             */
+            backdrop-filter: url(#liquid-glass-filter) blur(1px) saturate(1.15);
+            -webkit-backdrop-filter: url(#liquid-glass-filter) blur(1px) saturate(1.15);
+            background: rgba(72, 72, 74, .28);
+            border: 1px solid rgba(255, 255, 255, .105);
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, .18),
+                inset 0 .5px 0 rgba(255, 255, 255, .16);
+        }
+
+        /* Very restrained optical rim — no thick white outline. */
+        .nav-pill::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            background:
+                linear-gradient(180deg,
+                    rgba(255, 255, 255, .055) 0%,
+                    rgba(255, 255, 255, .012) 48%,
+                    rgba(0, 0, 0, .025) 100%);
+        }
+
+        .nav-pill .brand {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-pill .brand img {
+            height: clamp(44px, 4.8vw, 56px);
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .nav-pill .nav-links {
+            display: flex;
+            gap: clamp(1.15rem, 1.65vw, 1.8rem);
+            list-style: none;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            z-index: 3;
+        }
+
+        .nav-pill .nav-links a {
+            font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+            font-weight: 600;
+            color: rgba(255, 255, 255, .92);
+            transition: color .2s, opacity .2s;
+            white-space: nowrap;
+            text-shadow: none;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav-pill .nav-links a:hover {
+            color: #fff;
+            opacity: .78;
+        }
+
+        .nav-pill .burger {
+            display: none;
+            background: none;
+            border: 0;
+            width: 38px;
+            height: 38px;
+            flex: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+            position: relative;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .nav-pill .burger .hamburger {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pill .burger .hamburger span {
+            position: absolute;
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pill .burger .hamburger span:nth-child(1) {
+            transform: translateY(-4px);
+        }
+
+        .nav-pill .burger .hamburger span:nth-child(2) {
+            transform: translateY(4px);
+        }
+
+        .nav-pill .burger.open .hamburger span:nth-child(1) {
+            transform: translateY(0) rotate(45deg);
+        }
+
+        .nav-pill .burger.open .hamburger span:nth-child(2) {
+            transform: translateY(0) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 14, 20, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            padding-top: 18vh;
+            transform: translateY(-100%);
+            transition: none;
+            gap: 1.6rem;
+            pointer-events: none;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .mobile-menu.open {
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .mobile-menu .menu-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            z-index: 5;
+        }
+
+        .mobile-menu a {
+            font-weight: 700;
+            font-size: 2rem;
+            color: #fff;
+            z-index: 5;
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--brass-l);
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        @media (max-width: 860px) {
+            .nav-in {
+                max-width: 1180px;
+            }
+
+            .nav-pill {
+                padding: 14px 18px;
+                min-height: 72px;
+                justify-content: space-between;
+            }
+
+            .nav-pill .brand {
+                left: 18px;
+            }
+
+            .nav-pill .nav-links {
+                display: none;
+            }
+
+            .nav-pill .burger {
+                display: block;
+                position: absolute;
+                right: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-pill {
+                padding: 12px 14px;
+                min-height: 64px;
+                border-radius: 60px;
+            }
+
+            .nav-pill .brand {
+                left: 14px;
+            }
+
+            .nav-pill .brand img {
+                height: clamp(38px, 5vw, 44px);
+            }
+
+            .nav-pill .burger {
+                right: 14px;
+                width: 32px;
+                height: 32px;
+            }
+
+            .nav-pill .burger .hamburger span {
+                width: 16px;
+            }
+
+            .nav-pill .burger .hamburger span:nth-child(1) {
+                transform: translateY(-3.5px);
+            }
+
+            .nav-pill .burger .hamburger span:nth-child(2) {
+                transform: translateY(3.5px);
+            }
+
+            .mobile-menu {
+                padding-top: 15vh;
+            }
+
+            .mobile-menu a {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* ---- hero with earth bg + checkerboard (unchanged) ---- */
+        .introduction {
+            min-height: 100svh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 0 60px;
+            overflow: hidden;
+            background-color: #0b0e14;
+        }
+
+        .introduction::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/earth.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.85;
+            z-index: 0;
+        }
+
+        .introduction::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg,
+                    rgba(13, 15, 19, 0.24) 0%,
+                    rgba(24, 27, 32, 0.13) 42%,
+                    rgba(20, 23, 28, 0.08) 70%,
+                    rgba(10, 12, 16, 0.14) 100%),
+                rgba(128, 132, 138, 0.035);
+        }
+
+        .introduction-in {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1180px;
+            min-height: calc(100svh - 160px);
+            margin: 0 auto;
+            padding: clamp(3.8rem, 7.5vh, 5.4rem) clamp(1rem, 3vw, 2.5rem) 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            gap: 0;
+            align-items: center;
+        }
+
+        .hero-copy {
+            align-self: center;
+            max-width: 720px;
+            transform: translateY(-3vh);
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: 1.25rem;
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .58);
+        }
+
+        .hero-kicker::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: rgba(255, 255, 255, .38);
+        }
+
+        .introduction h1 {
+            margin: 0;
+            max-width: 11ch;
+            font-size: clamp(3.4rem, 7.2vw, 6.7rem);
+            line-height: .93;
+            font-weight: 600;
+            letter-spacing: -.055em;
+            color: #fff;
+            text-wrap: balance;
+            text-shadow: 0 8px 38px rgba(0, 0, 0, .32);
+        }
+
+        .introduction h1 span {
+            display: block;
+            font-weight: 500;
+            background: linear-gradient(108deg,
+                    #f4f9ff 0%,
+                    #d8eaff 13%,
+                    #a9d1ff 27%,
+                    #6eaff5 45%,
+                    #3f8fe7 66%,
+                    #246fc9 84%,
+                    #1859aa 100%);
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter:
+                drop-shadow(0 0 16px rgba(73, 145, 224, 0.14)) drop-shadow(0 0 34px rgba(39, 108, 196, 0.08));
+        }
+
+        .introduction p.lede {
+            max-width: 55ch;
+            margin: 1.4rem 0 1.8rem;
+            color: rgba(255, 255, 255, .92);
+            font-size: clamp(.98rem, 1.3vw, 1.12rem);
+            font-weight: 500;
+            line-height: 1.7;
+            text-shadow:
+                0 0 12px rgba(255, 255, 255, .10),
+                0 0 24px rgba(92, 137, 190, .12),
+                0 2px 12px rgba(0, 0, 0, .32);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .btn-row {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .55em;
+            min-height: 48px;
+            padding: 0 22px;
+            border-radius: 999px;
+            font-weight: 650;
+            font-size: .88rem;
+            transition: transform .25s var(--ease), background .2s, border-color .2s;
+        }
+
+        .btn-icon {
+            flex-shrink: 0;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, .94);
+            color: #0b0e14;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, .16);
+        }
+
+        .btn-primary:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            border: 1px solid rgba(255, 255, 255, .16);
+            color: rgba(255, 255, 255, .9);
+            background: rgba(255, 255, 255, .055);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(255, 255, 255, .28);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .hero-side {
+            align-self: end;
+            justify-self: end;
+            width: min(100%, 340px);
+            padding-bottom: .5rem;
+        }
+
+        .hero-side-label {
+            margin-bottom: .8rem;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .42);
+        }
+
+        .hero-side p {
+            font-size: .96rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .68);
+        }
+
+        .hero-meta {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(255, 255, 255, .11);
+            padding-top: 1.25rem;
+        }
+
+        .hero-meta-item {
+            min-height: 58px;
+            padding: .15rem 1.5rem;
+            border-left: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .hero-meta-item:first-child {
+            padding-left: 0;
+            border-left: 0;
+        }
+
+        .hero-meta strong {
+            display: block;
+            margin-bottom: .25rem;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .42);
+        }
+
+        .hero-meta span {
+            font-size: .92rem;
+            line-height: 1.45;
+            color: rgba(255, 255, 255, .86);
+        }
+
+        @media (max-width: 900px) {
+            .introduction-in {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                align-content: center;
+                gap: 2rem;
+                padding-top: 4.8rem;
+            }
+
+            .hero-copy {
+                transform: translateY(-1.5vh);
+            }
+
+            .hero-side {
+                justify-self: start;
+                width: min(100%, 560px);
+                padding-bottom: 0;
+            }
+
+            .hero-meta {
+                grid-column: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .introduction {
+                padding: 70px 0 24px;
+            }
+
+            .introduction-in {
+                min-height: calc(100svh - 94px);
+                padding: 3.6rem 1.15rem 1rem;
+                gap: 1.7rem;
+            }
+
+            .introduction h1 {
+                font-size: clamp(3rem, 15vw, 4.5rem);
+            }
+
+            .hero-side {
+                display: none;
+            }
+
+            .hero-meta {
+                grid-template-columns: 1fr;
+                gap: .8rem;
+                padding-top: 1rem;
+            }
+
+            .hero-meta-item,
+            .hero-meta-item:first-child {
+                min-height: auto;
+                padding: .2rem 0;
+                border-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Dynamic KUBE Searchbox-style Liquid Glass filter.
+         The displacement/specular maps are generated from the actual topbar size. -->
+    <svg id="liquidGlassSvg" width="0" height="0" style="position:absolute;overflow:hidden;pointer-events:none"
+        aria-hidden="true">
+        <defs>
+            <filter id="liquid-glass-filter" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+                <feImage id="liquidDisplacementImage" result="displacement_map" x="0" y="0" width="1" height="1"
+                    preserveAspectRatio="none" />
+                <feDisplacementMap id="liquidDisplacement" in="SourceGraphic" in2="displacement_map" scale="0"
+                    xChannelSelector="R" yChannelSelector="G" result="refracted" />
+                <feImage id="liquidSpecularImage" result="specular_map" x="0" y="0" width="1" height="1"
+                    preserveAspectRatio="none" />
+                <feColorMatrix in="specular_map" type="saturate" values="4" result="specular_sat" />
+                <feComponentTransfer in="specular_sat" result="specular_alpha">
+                    <feFuncA type="linear" slope=".20" />
+                </feComponentTransfer>
+                <feBlend in="refracted" in2="specular_alpha" mode="screen" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- NAV (with Liquid Glass) -->
+    <nav>
+        <div class="nav-in">
+            <div class="nav-pill" id="navPill">
+                <a class="brand" href="#top">
+                    <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
+                        alt="Jai Hind College Logo" onerror="this.style.display='none'" />
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#top">Home</a></li>
+                    <li><a href="#top">About</a></li>
+                    <li><a href="#top">Programmes</a></li>
+                    <li><a href="#top">Facilities</a></li>
+                    <li><a href="#top">Mentors</a></li>
+                </ul>
+                <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="menu-title">MENU</div>
+        <a href="#top">Home</a>
+        <a href="#top">About</a>
+        <a href="#top">Programmes</a>
+        <a href="#top">Facilities</a>
+        <a href="#top">Mentors</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="introduction" id="top">
+        <div class="introduction-in">
+            <div class="hero-copy">
+                <h1>Ideas into <span>impact.</span></h1>
+                <p class="lede">The Incubator &amp; Accelerator Centre helps student founders turn ambitious ideas into
+                    real ventures — with mentorship, resources, industry access and a community built to move faster.
+                </p>
+                <div class="btn-row">
+                    <a class="btn btn-primary" href="https://forms.gle/pkk8YXcVLg9dCSgn9" target="_blank"
+                        rel="noopener">Apply for Incubation
+                        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17 17 7" />
+                            <path d="M7 7h10v10" />
+                        </svg>
+                    </a>
+                    <a class="btn btn-ghost" href="#about">Explore IAC</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+        // ---- KUBE Searchbox Liquid Glass generator ----
+        // Searchbox parameters shown in KUBE article:
+        // specular opacity .20, saturation 4, refraction .70, blur 1.0.
+        const liquidGlass = (() => {
+            const nav = document.getElementById('navPill');
+            const filter = document.getElementById('liquid-glass-filter');
+            const displacementImage = document.getElementById('liquidDisplacementImage');
+            const specularImage = document.getElementById('liquidSpecularImage');
+            const displacementNode = document.getElementById('liquidDisplacement');
+
+            const params = {
+                bezelWidth: 18,
+                glassThickness: 70,
+                refractiveIndex: 1.5,
+                refractionLevel: .70,
+                specularOpacity: .20,
+                specularSaturation: 4
+            };
+
+            // KUBE's Convex Squircle surface:
+            // y = fourthRoot(1 - (1-x)^4)
+            const surface = x => Math.pow(
+                Math.max(0, 1 - Math.pow(1 - Math.max(0, Math.min(1, x)), 4)),
+                .25
+            );
+
+            const derivative = x => {
+                const d = .001;
+                return (surface(Math.min(1, x + d)) -
+                    surface(Math.max(0, x - d))) / (2 * d);
+            };
+
+            // Snell-Descartes based 2D ray displacement magnitude.
+            function displacementAt(t) {
+                if (t >= 1) return 0;
+                const slope = derivative(Math.max(.002, Math.min(.998, t)));
+                const theta1 = Math.atan(Math.abs(slope));
+                const theta2 = Math.asin(
+                    Math.min(.999, Math.sin(theta1) / params.refractiveIndex)
+                );
+                const bend = Math.tan(Math.max(0, theta1 - theta2));
+                return bend * params.glassThickness * (1 - t);
+            }
+
+            function roundedRectSDF(px, py, w, h, radius) {
+                const cx = w / 2, cy = h / 2;
+                const qx = Math.abs(px - cx) - (w / 2 - radius);
+                const qy = Math.abs(py - cy) - (h / 2 - radius);
+                const ox = Math.max(qx, 0), oy = Math.max(qy, 0);
+                return Math.hypot(ox, oy) + Math.min(Math.max(qx, qy), 0) - radius;
+            }
+
+            function build() {
+                const rect = nav.getBoundingClientRect();
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                const w = Math.max(1, Math.round(rect.width));
+                const h = Math.max(1, Math.round(rect.height));
+                const radius = h / 2;
+                const bezel = Math.min(params.bezelWidth, radius - 1);
+
+                // Use CSS pixel resolution. It maps 1:1 to filter coordinates.
+                const canvas = document.createElement('canvas');
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext('2d', { willReadFrequently: true });
+                const image = ctx.createImageData(w, h);
+
+                const mags = new Float32Array(128);
+                let maxDisp = 0;
+                for (let i = 0; i < 128; i++) {
+                    const t = i / 127;
+                    const m = displacementAt(t);
+                    mags[i] = m;
+                    if (Number.isFinite(m)) maxDisp = Math.max(maxDisp, m);
+                }
+                maxDisp = Math.max(maxDisp, 1);
+
+                for (let y = 0; y < h; y++) {
+                    for (let x = 0; x < w; x++) {
+                        const i = (y * w + x) * 4;
+                        const sdf = roundedRectSDF(x + .5, y + .5, w, h, radius);
+                        const inside = Math.max(0, -sdf);
+
+                        let vx = 0, vy = 0;
+                        if (inside < bezel) {
+                            const t = inside / bezel;
+                            const mi = Math.min(127, Math.max(0, Math.round(t * 127)));
+                            const mag = mags[mi] / maxDisp;
+
+                            // Numerical inward normal of rounded-rect distance field.
+                            const eps = .5;
+                            const gx =
+                                roundedRectSDF(x + .5 + eps, y + .5, w, h, radius) -
+                                roundedRectSDF(x + .5 - eps, y + .5, w, h, radius);
+                            const gy =
+                                roundedRectSDF(x + .5, y + .5 + eps, w, h, radius) -
+                                roundedRectSDF(x + .5, y + .5 - eps, w, h, radius);
+                            const gl = Math.hypot(gx, gy) || 1;
+
+                            // inward vector: convex glass keeps sampling inside
+                            vx = -(gx / gl) * mag;
+                            vy = -(gy / gl) * mag;
+                        }
+
+                        image.data[i] = Math.round(128 + vx * 127);
+                        image.data[i + 1] = Math.round(128 + vy * 127);
+                        image.data[i + 2] = 128;
+                        image.data[i + 3] = 255;
+                    }
+                }
+                ctx.putImageData(image, 0, 0);
+
+                // Separate specular rim map, as KUBE combines refraction + highlight.
+                const spec = document.createElement('canvas');
+                spec.width = w;
+                spec.height = h;
+                const sctx = spec.getContext('2d');
+                sctx.clearRect(0, 0, w, h);
+                const g = sctx.createLinearGradient(0, 0, w, h);
+                g.addColorStop(0, 'rgba(255,255,255,.48)');
+                g.addColorStop(.28, 'rgba(255,255,255,.10)');
+                g.addColorStop(.65, 'rgba(255,255,255,.03)');
+                g.addColorStop(1, 'rgba(255,255,255,.24)');
+                sctx.strokeStyle = g;
+                sctx.lineWidth = 1;
+                sctx.beginPath();
+                if (sctx.roundRect) {
+                    sctx.roundRect(1.5, 1.5, w - 3, h - 3, Math.max(1, radius - 1.5));
+                } else {
+                    sctx.rect(1.5, 1.5, w - 3, h - 3);
+                }
+                sctx.stroke();
+
+                filter.setAttribute('x', '0');
+                filter.setAttribute('y', '0');
+                filter.setAttribute('width', String(w));
+                filter.setAttribute('height', String(h));
+                filter.setAttribute('filterUnits', 'userSpaceOnUse');
+                filter.setAttribute('primitiveUnits', 'userSpaceOnUse');
+
+                displacementImage.setAttribute('width', String(w));
+                displacementImage.setAttribute('height', String(h));
+                specularImage.setAttribute('width', String(w));
+                specularImage.setAttribute('height', String(h));
+
+                displacementImage.setAttribute('href', canvas.toDataURL('image/png'));
+                specularImage.setAttribute('href', spec.toDataURL('image/png'));
+
+                // normalized map is rescaled to the physical max displacement.
+                displacementNode.setAttribute(
+                    'scale',
+                    String(maxDisp * params.refractionLevel)
+                );
+            }
+
+            let raf;
+            const schedule = () => {
+                cancelAnimationFrame(raf);
+                raf = requestAnimationFrame(build);
+            };
+
+            if ('ResizeObserver' in window) new ResizeObserver(schedule).observe(nav);
+            window.addEventListener('resize', schedule, { passive: true });
+            window.addEventListener('load', schedule, { once: true });
+            schedule();
+
+            return { rebuild: schedule };
+        })();
+
+        // ---- mobile menu toggle ----
+        const burger = document.getElementById('burger');
+        const menu = document.getElementById('mobileMenu');
+        const navPill = document.getElementById('navPill');
+        const body = document.body;
+
+        function openMenu() {
+            menu.classList.add('open');
+            burger.classList.add('open');
+            navPill.classList.add('menu-open');
+            burger.setAttribute('aria-expanded', 'true');
+            body.classList.add('no-scroll');
+        }
+        function closeMenu() {
+            menu.classList.remove('open');
+            burger.classList.remove('open');
+            navPill.classList.remove('menu-open');
+            burger.setAttribute('aria-expanded', 'false');
+            body.classList.remove('no-scroll');
+        }
+        burger.addEventListener('click', () => {
+            menu.classList.contains('open') ? closeMenu() : openMenu();
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 860 && menu.classList.contains('open')) closeMenu();
+        });
+    </script>
+
+</body>
+
+</html>
