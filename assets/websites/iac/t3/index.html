@@ -2988,6 +2988,109 @@
                 margin-top: clamp(12px, 2dvh, 22px) !important
             }
         }
+
+        @media(max-width:520px) {
+            .about-sticky {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important
+            }
+
+            .about-heading,
+            .about-content,
+            .about-mark {
+                transition: opacity .28s ease, transform .38s cubic-bezier(.22, .61, .36, 1) !important
+            }
+
+            .what-we-do {
+                content-visibility: visible !important
+            }
+
+            .wwd-inner {
+                contain: none !important
+            }
+        }
+
+        @media(max-width:520px) {
+            .about-us {
+                height: 300dvh !important;
+                min-height: 300dvh !important;
+                overflow: clip !important
+            }
+
+            .about-sticky {
+                position: sticky !important;
+                top: 0 !important;
+                height: 100dvh !important;
+                min-height: 100dvh !important;
+                overflow: hidden !important
+            }
+
+            .about-in {
+                height: 100dvh !important;
+                min-height: 100dvh !important;
+                padding: clamp(96px, 13dvh, 116px) 0 clamp(34px, 5dvh, 54px) !important;
+                display: flex !important;
+                flex-direction: column !important
+            }
+
+            .about-heading {
+                flex: 0 0 auto !important
+            }
+
+            .about-content {
+                flex: 1 1 auto !important;
+                justify-content: center !important;
+                gap: clamp(18px, 2.8dvh, 26px) !important
+            }
+
+            .about-kicker,
+            .about-lead,
+            .about-body {
+                will-change: opacity, transform;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden
+            }
+        }
+
+        @media(max-width:520px) {
+            .wwd-inner {
+                height: 100svh !important;
+                min-height: 100svh !important;
+                padding-top: clamp(92px, 12svh, 108px) !important;
+                padding-bottom: clamp(18px, 3svh, 28px) !important
+            }
+
+            .wwd-visual {
+                width: min(80vw, 350px) !important;
+                min-height: clamp(270px, 37svh, 330px) !important;
+                height: auto !important;
+                padding: clamp(20px, 5vw, 28px) !important;
+                margin-bottom: clamp(10px, 1.5svh, 16px) !important
+            }
+
+            .wwd-icon-stage {
+                width: clamp(62px, 18vw, 80px) !important;
+                height: clamp(62px, 18vw, 80px) !important;
+                flex-basis: clamp(62px, 18vw, 80px) !important;
+                margin-bottom: clamp(14px, 2svh, 20px) !important
+            }
+
+            .wwd-icon {
+                width: 100% !important;
+                height: 100% !important
+            }
+
+            .wwd-number,
+            .wwd-number.visible {
+                margin-top: clamp(10px, 1.5svh, 16px) !important
+            }
+
+            .wwd-wheel {
+                margin-top: 0 !important;
+                transform: translateY(clamp(-18px, -2.2svh, -10px)) translateZ(0) !important
+            }
+        }
     </style>
 </head>
 
@@ -4262,11 +4365,17 @@
                     lastH = h;
                 }
 
-                const blocks = [
-                    ['.about-kicker', .18, .38],
-                    ['.about-lead', .30, .54],
-                    ['.about-body', .44, .76]
-                ];
+                const blocks = window.innerWidth <= 520
+                    ? [
+                        ['.about-kicker', .10, .28],
+                        ['.about-lead', .30, .52],
+                        ['.about-body', .56, .88]
+                    ]
+                    : [
+                        ['.about-kicker', .18, .38],
+                        ['.about-lead', .30, .54],
+                        ['.about-body', .44, .76]
+                    ];
 
                 blocks.forEach(([selector, from, to]) => {
                     const el = about.querySelector(selector);
