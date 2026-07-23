@@ -384,7 +384,7 @@
             position: absolute;
             width: 40px;
             aspect-ratio: 1;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480"><path d="M480 0H0l240 240L480 0zM480 240H0l240 240 240-240z" fill="%239ecbfa"></path></svg>');
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480"><path d="M450 210H312.4l97.3-97.3a30 30 0 1 0-42.4-42.4L270 167.6V30a30 30 0 1 0-60 0v137.6l-97.3-97.3a30 30 0 1 0-42.4 42.4l97.3 97.3H30a30 30 0 1 0 0 60h137.6l-97.3 97.3a30 30 0 1 0 42.4 42.4l97.3-97.3V450a30 30 0 1 0 60 0V312.4l97.3 97.3a30 30 0 1 0 42.4-42.4L312.4 270H450a30 30 0 1 0 0-60Z" fill="%239ecbfa"></path></svg>');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -468,14 +468,14 @@
         .wwd-heading::before {
             left: -.015em;
             right: -.045em;
-            top: 4%;
-            bottom: 0;
+            top: 19%;
+            bottom: 12%;
             background: linear-gradient(94deg,
-                    rgba(126, 190, 244, .78) 0%,
-                    rgba(153, 207, 250, .84) 20%,
-                    rgba(113, 181, 240, .80) 48%,
-                    rgba(146, 203, 249, .84) 72%,
-                    rgba(106, 174, 235, .78) 100%);
+                    rgba(73, 162, 255, .38) 0%,
+                    rgba(105, 188, 255, .46) 22%,
+                    rgba(54, 148, 246, .42) 50%,
+                    rgba(94, 181, 255, .45) 76%,
+                    rgba(42, 132, 232, .36) 100%);
             clip-path: polygon(0 8%,
                     5% 3%,
                     11% 6%,
@@ -514,9 +514,9 @@
             top: 15%;
             bottom: 7%;
             background: linear-gradient(90deg,
-                    rgba(201, 229, 255, .18),
-                    rgba(225, 241, 255, .30),
-                    rgba(188, 220, 250, .13));
+                    rgba(104, 187, 255, .06),
+                    rgba(150, 211, 255, .12),
+                    rgba(84, 168, 245, .05));
             clip-path: polygon(0 13%,
                     13% 4%,
                     26% 11%,
@@ -1963,9 +1963,9 @@
         .about-heading::before {
             left: -.015em;
             right: -.045em;
-            top: 4%;
-            bottom: 0;
-            background: linear-gradient(94deg, rgba(126, 190, 244, .78), rgba(153, 207, 250, .84) 20%, rgba(113, 181, 240, .80) 48%, rgba(146, 203, 249, .84) 72%, rgba(106, 174, 235, .78));
+            top: 19%;
+            bottom: 12%;
+            background: linear-gradient(94deg, rgba(73, 162, 255, .38), rgba(105, 188, 255, .46) 22%, rgba(54, 148, 246, .42) 50%, rgba(94, 181, 255, .45) 76%, rgba(42, 132, 232, .36));
             clip-path: polygon(0 8%, 5% 3%, 11% 6%, 18% 2%, 27% 5%, 36% 2%, 45% 6%, 55% 2%, 65% 5%, 74% 1%, 84% 5%, 93% 2%, 100% 7%, 99% 92%, 94% 97%, 86% 94%, 77% 98%, 67% 95%, 58% 99%, 48% 95%, 38% 98%, 28% 94%, 19% 99%, 10% 95%, 3% 98%, 0 92%);
             opacity: .96;
         }
@@ -1975,7 +1975,7 @@
             right: .01em;
             top: 15%;
             bottom: 7%;
-            background: linear-gradient(90deg, rgba(201, 229, 255, .18), rgba(225, 241, 255, .30), rgba(188, 220, 250, .13));
+            background: linear-gradient(90deg, rgba(104, 187, 255, .06), rgba(150, 211, 255, .12), rgba(84, 168, 245, .05));
             clip-path: polygon(0 13%, 13% 4%, 26% 11%, 41% 3%, 55% 9%, 70% 2%, 84% 8%, 100% 4%, 99% 86%, 84% 93%, 69% 87%, 53% 95%, 36% 88%, 18% 94%, 0 87%);
             mix-blend-mode: screen;
         }
@@ -2123,6 +2123,12 @@
             margin: 0 !important;
             font-size: clamp(2rem, 3.35vw, 3.45rem) !important;
             line-height: 1.2 !important;
+            background: var(--impact-gradient) !important;
+            background-size: 100% 100% !important;
+            background-clip: text !important;
+            -webkit-background-clip: text !important;
+            color: transparent !important;
+            -webkit-text-fill-color: transparent !important;
         }
 
         .about-body {
@@ -2195,7 +2201,7 @@
         /* Shared decorative SVG visibility */
         .about-mark,
         .wwd-mark {
-            opacity: .11 !important;
+            opacity: .16 !important;
             filter: drop-shadow(0 0 12px rgba(116, 181, 245, .12)) !important;
         }
 
@@ -2274,8 +2280,340 @@
 
             .about-mark,
             .wwd-mark {
-                opacity: .085 !important;
+                opacity: .12 !important;
                 filter: none !important;
+            }
+        }
+
+        @media (max-width:520px) {
+            .what-we-do {
+                height: 400vh !important;
+                contain: layout paint
+            }
+
+            .wwd-wheel {
+                transform: translateZ(0);
+                will-change: opacity, transform
+            }
+
+            .wwd-item {
+                filter: none !important;
+                will-change: transform, opacity;
+                backface-visibility: hidden;
+                -webkit-font-smoothing: antialiased
+            }
+
+            .wwd-visual {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                transform: translateZ(0) !important
+            }
+
+            .what-we-do.wwd-program-active .wwd-visual {
+                transform: translateZ(0) !important
+            }
+        }
+
+        @media (min-width:521px) and (max-height:760px) {
+            .wwd-inner {
+                padding-top: clamp(88px, 13vh, 104px) !important;
+                padding-bottom: 14px !important;
+                gap: 4px !important
+            }
+
+            .wwd-heading {
+                font-size: clamp(2.35rem, 7.5vh, 3.6rem) !important
+            }
+
+            .wwd-content {
+                grid-template-columns: minmax(0, 1.35fr) minmax(210px, .65fr) !important;
+                gap: clamp(18px, 3vw, 40px) !important
+            }
+
+            .wwd-wheel {
+                height: min(45vh, 310px) !important;
+                min-height: 210px !important
+            }
+
+            .wwd-item {
+                font-size: clamp(1.55rem, min(3vw, 5vh), 2.65rem) !important
+            }
+
+            .wwd-visual {
+                width: min(100%, 270px, 36vh) !important;
+                padding: 10px !important
+            }
+
+            .wwd-icon-stage,
+            .wwd-icon {
+                width: min(82px, 12vh) !important;
+                height: min(82px, 12vh) !important
+            }
+
+            .wwd-icon-stage {
+                flex-basis: min(82px, 12vh) !important;
+                margin-bottom: 14px !important
+            }
+
+            .wwd-description {
+                font-size: clamp(.76rem, 1.15vw, .92rem) !important;
+                line-height: 1.4 !important
+            }
+
+            .wwd-number.visible {
+                margin-top: 12px !important
+            }
+        }
+
+        @media (min-width:521px) and (max-height:620px) {
+            .wwd-inner {
+                padding-top: 78px !important;
+                padding-bottom: 8px !important
+            }
+
+            .wwd-heading {
+                font-size: clamp(2rem, 7vh, 2.8rem) !important
+            }
+
+            .wwd-content {
+                grid-template-columns: minmax(0, 1.45fr) minmax(180px, .55fr) !important;
+                gap: 16px !important
+            }
+
+            .wwd-wheel {
+                height: 38vh !important;
+                min-height: 170px !important
+            }
+
+            .wwd-visual {
+                width: min(230px, 34vh) !important
+            }
+
+            .wwd-icon-stage,
+            .wwd-icon {
+                width: min(62px, 10vh) !important;
+                height: min(62px, 10vh) !important
+            }
+
+            .wwd-icon-stage {
+                flex-basis: min(62px, 10vh) !important;
+                margin-bottom: 8px !important
+            }
+
+            .wwd-description {
+                font-size: clamp(.68rem, 1vw, .8rem) !important;
+                line-height: 1.32 !important
+            }
+
+            .wwd-number.visible {
+                margin-top: 8px !important;
+                font-size: .78rem !important
+            }
+        }
+
+        @media (max-width:520px) {
+
+            .wwd-heading::before,
+            .about-heading::before {
+                top: 22% !important;
+                bottom: 15% !important
+            }
+        }
+
+        @media (min-width:521px) and (max-height:760px) {
+            .wwd-inner {
+                padding-top: clamp(104px, 17vh, 124px) !important
+            }
+
+            .wwd-heading {
+                margin-bottom: clamp(10px, 2vh, 18px) !important
+            }
+
+            .wwd-wheel {
+                height: min(42vh, 280px) !important;
+                min-height: 190px !important
+            }
+
+            .wwd-visual {
+                width: min(100%, 270px, 38vh) !important;
+                padding: clamp(16px, 2.4vh, 22px) !important
+            }
+
+            .wwd-icon-stage,
+            .wwd-icon {
+                width: min(68px, 10vh) !important;
+                height: min(68px, 10vh) !important
+            }
+
+            .wwd-icon-stage {
+                flex-basis: min(68px, 10vh) !important;
+                margin-bottom: clamp(10px, 1.7vh, 14px) !important
+            }
+
+            .wwd-description {
+                font-size: clamp(.72rem, 1vw, .88rem) !important;
+                line-height: 1.38 !important;
+                max-width: 95% !important
+            }
+
+            .wwd-number.visible {
+                margin-top: clamp(8px, 1.4vh, 12px) !important;
+                font-size: .82rem !important
+            }
+        }
+
+        @media (min-width:521px) and (max-height:620px) {
+            .wwd-inner {
+                padding-top: 94px !important
+            }
+
+            .wwd-heading {
+                margin-bottom: 8px !important
+            }
+
+            .wwd-wheel {
+                height: 36vh !important;
+                min-height: 155px !important
+            }
+
+            .wwd-visual {
+                width: min(220px, 38vh) !important;
+                padding: 14px !important
+            }
+
+            .wwd-icon-stage,
+            .wwd-icon {
+                width: min(54px, 9vh) !important;
+                height: min(54px, 9vh) !important
+            }
+
+            .wwd-icon-stage {
+                flex-basis: min(54px, 9vh) !important;
+                margin-bottom: 8px !important
+            }
+
+            .wwd-description {
+                font-size: clamp(.65rem, .92vw, .76rem) !important;
+                line-height: 1.3 !important
+            }
+
+            .wwd-number.visible {
+                margin-top: 7px !important;
+                font-size: .72rem !important
+            }
+        }
+
+        @media (min-width:521px) and (max-height:760px) {
+            .introduction {
+                padding-top: clamp(88px, 14vh, 108px) !important;
+                padding-bottom: 24px !important
+            }
+
+            .introduction-in {
+                min-height: calc(100svh - clamp(112px, 18vh, 140px)) !important;
+                padding-top: clamp(24px, 5vh, 42px) !important;
+                padding-bottom: 18px !important
+            }
+
+            .introduction h1 {
+                font-size: clamp(3rem, min(7vw, 11vh), 5.4rem) !important
+            }
+
+            .lede {
+                margin: clamp(.8rem, 2vh, 1.15rem) 0 clamp(1rem, 2.4vh, 1.4rem) !important;
+                font-size: clamp(.88rem, 1.2vw, 1.02rem) !important;
+                line-height: 1.55 !important
+            }
+
+            .btn {
+                min-height: 44px !important;
+                padding: 0 20px !important
+            }
+
+            .about-in {
+                padding-top: clamp(104px, 17vh, 124px) !important;
+                padding-bottom: 24px !important
+            }
+
+            .about-heading {
+                margin-bottom: clamp(24px, 4vh, 38px) !important;
+                font-size: clamp(2.35rem, 7.5vh, 3.6rem) !important
+            }
+
+            .about-content {
+                gap: clamp(16px, 3vh, 28px) !important
+            }
+
+            .about-kicker {
+                margin-bottom: clamp(8px, 1.5vh, 14px) !important
+            }
+
+            .about-lead {
+                font-size: clamp(1.65rem, min(3.1vw, 5.2vh), 2.75rem) !important;
+                line-height: 1.14 !important
+            }
+
+            .about-body {
+                font-size: clamp(.82rem, 1.1vw, .98rem) !important;
+                line-height: 1.55 !important
+            }
+        }
+
+        @media (min-width:521px) and (max-height:620px) {
+            .introduction {
+                padding-top: 78px !important;
+                padding-bottom: 14px !important
+            }
+
+            .introduction-in {
+                min-height: calc(100svh - 92px) !important;
+                padding-top: 16px !important;
+                padding-bottom: 10px !important
+            }
+
+            .introduction h1 {
+                font-size: clamp(2.65rem, min(6.5vw, 10vh), 4.4rem) !important
+            }
+
+            .lede {
+                margin: .65rem 0 .85rem !important;
+                font-size: clamp(.78rem, 1.05vw, .9rem) !important;
+                line-height: 1.45 !important
+            }
+
+            .btn {
+                min-height: 40px !important;
+                padding: 0 17px !important;
+                font-size: .78rem !important
+            }
+
+            .about-in {
+                padding-top: 94px !important;
+                padding-bottom: 14px !important
+            }
+
+            .about-heading {
+                margin-bottom: 18px !important;
+                font-size: clamp(2rem, 7vh, 2.8rem) !important
+            }
+
+            .about-content {
+                gap: 12px !important
+            }
+
+            .about-kicker {
+                margin-bottom: 6px !important;
+                font-size: .72rem !important
+            }
+
+            .about-lead {
+                font-size: clamp(1.4rem, min(2.8vw, 4.7vh), 2.15rem) !important;
+                line-height: 1.1 !important
+            }
+
+            .about-body {
+                font-size: clamp(.72rem, .95vw, .84rem) !important;
+                line-height: 1.42 !important
             }
         }
     </style>
@@ -3382,15 +3720,18 @@
                         items.length - 1
                     );
 
+                const mobile =
+                    window.innerWidth <= 520;
+
+                const shortViewport =
+                    window.innerHeight <= 760;
+
                 const spacing =
-                    Math.min(
-                        Math.max(
-                            window.innerHeight *
-                            .105,
-                            68
-                        ),
-                        88
-                    );
+                    mobile
+                        ? Math.min(Math.max(window.innerHeight * .075, 48), 60)
+                        : shortViewport
+                            ? Math.min(Math.max(window.innerHeight * .075, 44), 58)
+                            : Math.min(Math.max(window.innerHeight * .105, 68), 88);
 
                 items.forEach(
                     (item, index) => {
@@ -3417,22 +3758,21 @@
                             reveal;
 
                         const scale =
-                            Math.max(
-                                .82,
-                                1 -
-                                distance *
-                                .065
-                            );
+                            mobile
+                                ? Math.max(.9, 1 - distance * .035)
+                                : Math.max(.82, 1 - distance * .065);
 
                         const blur =
-                            Math.max(
-                                0,
-                                (
-                                    distance -
-                                    1.85
-                                ) *
-                                .18
-                            );
+                            mobile
+                                ? 0
+                                : Math.max(
+                                    0,
+                                    (
+                                        distance -
+                                        1.85
+                                    ) *
+                                    .18
+                                );
 
                         item.style.setProperty(
                             '--wheel-y',
