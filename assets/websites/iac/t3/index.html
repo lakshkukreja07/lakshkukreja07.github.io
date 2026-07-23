@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -2865,6 +2866,7 @@
 
             .introduction,
             .about,
+            .contact-us,
             .what-we-do {
                 overscroll-behavior-y: contain
             }
@@ -2894,6 +2896,7 @@
 
             .introduction,
             .about,
+            .contact-us,
             .what-we-do {
                 overscroll-behavior-y: auto !important
             }
@@ -3091,7 +3094,66 @@
                 transform: translateY(clamp(-18px, -2.2svh, -10px)) translateZ(0) !important
             }
         }
-    </style>
+
+        .contact-us{height:430svh}
+        .contact-content{display:flex;flex-direction:column;gap:clamp(22px,3vh,34px);max-width:1040px}
+        .contact-subtitle{max-width:38ch;color:rgba(232,240,249,.86);font-size:clamp(1.25rem,2vw,2rem);line-height:1.5;font-weight:550;letter-spacing:-.02em}
+        .contact-links{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+        .contact-card{display:flex;align-items:center;gap:14px;min-height:76px;padding:18px 20px;border:1px solid rgba(205,228,250,.13);border-radius:22px;background:rgba(255,255,255,.025);box-shadow:0 12px 34px rgba(0,0,0,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:transform .25s var(--ease),background .25s}
+        .contact-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.055)}
+        .contact-card svg{width:34px;height:34px;flex:0 0 34px;fill:#8fc5ff}
+        .contact-card span{font-size:clamp(.82rem,1vw,.98rem);font-weight:650;overflow-wrap:anywhere}
+        .contact-map{position:relative;width:100%;height:clamp(210px,29vh,310px);overflow:hidden;border-radius:28px;border:1px solid rgba(205,228,250,.13);box-shadow:0 18px 46px rgba(0,0,0,.24)}
+        .contact-subtitle,.contact-card,.contact-map{opacity:var(--contact-reveal,1);transform:translateY(var(--contact-rise,36px));filter:blur(var(--contact-blur,4px));will-change:opacity,transform}
+        @media(max-width:860px){
+            .contact-us{height:450svh}
+            .contact-links{grid-template-columns:1fr}
+            .contact-card{min-height:66px}
+            .contact-map{height:clamp(200px,27vh,280px)}
+        }
+        @media(max-width:520px){
+            .contact-us{height:500dvh!important;min-height:500dvh!important;overflow:clip!important}
+            .contact-in{height:100dvh!important;min-height:100dvh!important;padding:clamp(92px,12dvh,108px) 0 clamp(24px,4dvh,38px)!important}
+            .contact-content{flex:1;justify-content:center;gap:clamp(14px,2dvh,20px);text-align:center}
+            .contact-subtitle{font-size:clamp(.98rem,4.5vw,1.22rem);line-height:1.45;margin:auto}
+            .contact-links{gap:10px}
+            .contact-card{min-height:54px;padding:12px 16px;border-radius:18px}
+            .contact-card svg{width:27px;height:27px;flex-basis:27px}
+            .contact-card span{font-size:.78rem}
+            .contact-map{height:clamp(160px,22dvh,210px);border-radius:20px}
+        }
+
+    
+        .contact-grid{display:grid;grid-template-columns:minmax(280px,.72fr) minmax(420px,1.28fr);gap:clamp(18px,2.5vw,32px);align-items:stretch;width:100%}
+        .contact-links{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);gap:16px;height:100%}
+        .contact-card{height:100%;min-height:0}
+        .contact-map{height:100%;min-height:260px}
+        @media(max-width:860px){
+            .contact-grid{grid-template-columns:minmax(220px,.8fr) minmax(300px,1.2fr);gap:16px}
+            .contact-links{gap:12px}
+        }
+        @media(max-width:650px){
+            .contact-grid{grid-template-columns:1fr}
+            .contact-links{grid-template-rows:repeat(3,auto)}
+            .contact-card{min-height:54px}
+            .contact-map{height:clamp(160px,22dvh,210px);min-height:160px}
+        }
+
+    
+        .contact-grid{grid-template-columns:1fr 1fr}
+        .contact-card{position:relative;padding:16px 64px 16px 18px}
+        .contact-card .contact-icon{width:34px;height:34px;flex:0 0 34px;fill:#8fc5ff}
+        .contact-card-copy{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0;text-align:left}
+        .contact-card-copy small{color:rgba(173,202,231,.62);font-size:.62rem;font-weight:750;letter-spacing:.16em;line-height:1}
+        .contact-card-copy strong{color:rgba(240,246,252,.92);font-size:clamp(.76rem,.92vw,.92rem);font-weight:600;line-height:1.25;overflow-wrap:anywhere}
+        .contact-card .contact-arrow{position:absolute;right:22px;top:50%;width:24px;height:24px;transform:translateY(-50%);color:rgba(190,220,249,.72);fill:none;transition:transform .25s var(--ease),color .25s}
+        .contact-card:hover .contact-arrow{transform:translate(3px,-3px);color:#fff}
+        @media(max-width:650px){
+            .contact-grid{grid-template-columns:1fr}
+            .contact-card{padding-right:56px}
+        }
+
+    .map-place-card{position:absolute;z-index:3;top:14px;left:14px;display:flex;justify-content:space-between;gap:20px;width:min(390px,calc(100% - 28px));padding:18px 20px;border-radius:4px;background:#fff;color:#292929;box-shadow:0 2px 8px rgba(0,0,0,.3);font-family:Arial,sans-serif}.map-place-copy{display:flex;flex-direction:column;gap:7px;line-height:1.28}.map-place-copy strong{font-size:20px;font-weight:600}.map-place-copy>span{font-size:14px;color:#5f5f5f}.map-place-copy .map-rating{margin-top:4px}.map-rating b{color:#e67c00;font-size:18px}.map-rating u{color:#1a73e8;text-decoration:none}.map-open-icon{width:28px;height:28px;flex:0 0 28px;color:#1a73e8;margin-top:3px}@media(max-width:860px){.map-place-card{top:10px;left:10px;width:calc(100% - 20px);padding:13px 14px}.map-place-copy strong{font-size:16px}.map-place-copy>span{font-size:11px}.map-open-icon{width:23px;height:23px;flex-basis:23px}}.site-footer{position:relative;background:#04070b;border-top:1px solid rgba(170,205,240,.1);padding:clamp(42px,6vw,72px) 24px}.footer-in{width:min(1180px,100%);margin:auto}.footer-copy{color:rgba(238,245,252,.88);font-size:clamp(.78rem,1vw,.9rem);font-weight:600;margin:0 0 18px}.footer-disclaimer{max-width:1100px;color:rgba(190,205,221,.56);font-size:clamp(.68rem,.82vw,.78rem);line-height:1.75;margin:0;text-align:justify}@media(max-width:520px){.site-footer{padding:38px 22px}.footer-copy{text-align:center;line-height:1.55}.footer-disclaimer{text-align:left;font-size:.68rem;line-height:1.7}}</style>
 </head>
 
 <body>
@@ -3157,11 +3219,9 @@
                 </a>
 
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#home">Programmes</a></li>
-                    <li><a href="#home">Facilities</a></li>
-                    <li><a href="#home">Mentors</a></li>
+                    <li><a href="#about" data-scroll="about">About Us</a></li>
+                    <li><a href="#what-we-do" data-scroll="what-we-do">What We Do</a></li>
+                    <li><a href="#contact" data-scroll="contact">Contact Us</a></li>
                 </ul>
 
                 <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
@@ -3179,11 +3239,9 @@
         <div class="menu-welcome">Welcome To,</div>
         <div class="menu-brand">Incubator & Accelerator Center</div>
         <div class="menu-title">MENU</div>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#home">Programmes</a>
-        <a href="#home">Facilities</a>
-        <a href="#home">Mentors</a>
+        <a href="#about" data-scroll="about">About Us</a>
+        <a href="#what-we-do" data-scroll="what-we-do">What We Do</a>
+        <a href="#contact" data-scroll="contact">Contact Us</a>
         <div class="menu-credit">✦ Built By Laksh Kukreja ✦</div>
     </div>
 
@@ -3310,6 +3368,56 @@
             </div>
         </div>
     </section>
+
+
+    <section class="about-us contact-us" id="contact">
+        <div class="about-sticky">
+            <div class="about-marks" aria-hidden="true">
+                <i class="about-mark"></i><i class="about-mark"></i><i class="about-mark"></i><i class="about-mark"></i>
+            </div>
+            <div class="about-in contact-in">
+                <h2 class="about-heading">Contact Us</h2>
+                <div class="contact-content">
+                    <p class="contact-subtitle">Ready To Launch Your Start Up?<br>Reach Out To Us With Following Options.<br>We Are Looking Forward To Have You.</p>
+                    <div class="contact-grid">
+                    <div class="contact-links">
+                        <a class="contact-card" href="https://in.linkedin.com/company/incubator-accelerator-centre" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <svg class="contact-icon" viewBox="0 0 50 50" aria-hidden="true"><path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6v-10c0-2-1-4-3.5-4.04h-.08C27,24.96,26,27.02,26,29v10h-6V20h6v2.56S27.93,20,31.81,20C35.78,20,39,22.73,39,28.26V39z"/></svg>
+                            <span class="contact-card-copy"><small>LINKED IN</small><strong>Incubator &amp; Accelerator Centre</strong></span>
+                            <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                        </a>
+                        <a class="contact-card" href="https://www.instagram.com/iac.jaihindcollege/" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg class="contact-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M22.3,8.4c-.8,0-1.4.6-1.4,1.4s.6,1.4,1.4,1.4,1.4-.6,1.4-1.4-.6-1.4-1.4-1.4z"/><path d="M16,10.2c-3.3,0-5.9,2.7-5.9,5.9S12.7,22,16,22s5.9-2.7,5.9-5.9-2.6-5.9-5.9-5.9zm0,9.7c-2.1,0-3.8-1.7-3.8-3.8s1.7-3.8,3.8-3.8,3.8,1.7,3.8,3.8-1.7,3.8-3.8,3.8z"/><path d="M20.8,4h-9.5C7.2,4,4,7.2,4,11.2v9.5c0,4,3.2,7.2,7.2,7.2h9.5c4,0,7.2-3.2,7.2-7.2v-9.5C28,7.2,24.8,4,20.8,4zm4.9,16.8c0,2.7-2.2,5-5,5h-9.5c-2.7,0-5-2.2-5-5v-9.5c0-2.7,2.2-5,5-5h9.5c2.7,0,5,2.2,5,5v9.5z"/></svg>
+                            <span class="contact-card-copy"><small>INSTAGRAM</small><strong>@iac.jaihindcollege</strong></span>
+                            <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                        </a>
+                        <a class="contact-card" href="mailto:incubation.centre@jaihindcollege.edu.in?subject=Enqiry%20Through%20Official%20Website" aria-label="Email">
+                            <svg class="contact-icon" viewBox="0 0 512 512" aria-hidden="true"><path d="M510.678,112.275c-2.308-11.626-7.463-22.265-14.662-31.054-1.518-1.915-3.104-3.63-4.823-5.345-12.755-12.818-30.657-20.814-50.214-20.814H71.021c-19.557,0-37.395,7.996-50.21,20.814-1.715,1.715-3.301,3.43-4.823,5.345C8.785,90.009,3.63,100.649,1.386,112.275.464,116.762,0,121.399,0,126.087V385.92c0,9.968,2.114,19.55,5.884,28.203,3.497,8.26,8.653,15.734,14.926,22.001,1.59,1.586,3.169,3.044,4.892,4.494,12.286,10.175,28.145,16.32,45.319,16.32h369.958c17.18,0,33.108-6.145,45.323-16.384,1.718-1.386,3.305-2.844,4.891-4.43,6.27-6.267,11.425-13.741,14.994-22.001v-.064c3.769-8.653,5.812-18.171,5.812-28.138V126.087c.001-4.688-.456-9.325-1.321-13.812zM46.509,101.571c6.345-6.338,14.866-10.175,24.512-10.175h369.958c9.646,0,18.242,3.837,24.512,10.175,1.122,1.129,2.179,2.387,3.112,3.637L274.696,274.203c-5.348,4.687-11.954,7.002-18.696,7.002-6.674,0-13.276-2.315-18.695-7.002L43.472,105.136c.858-1.25,1.915-2.436,3.037-3.565zM36.334,385.92V142.735L176.658,265.15,36.405,387.435c-.071-.464-.071-.986-.071-1.515zm404.645,34.677H71.021c-6.281,0-12.158-1.651-17.174-4.552l147.978-128.959,13.815,12.018c11.561,10.046,26.028,15.134,40.36,15.134,14.406,0,28.872-5.088,40.432-15.134l13.808-12.018,147.92,128.959c-5.023,2.901-10.9,4.552-17.181,4.552zm34.687-34.677c0,.529,0,1.051-.068,1.515L335.346,265.221,475.666,142.8v243.12z"/></svg>
+                            <span class="contact-card-copy"><small>EMAIL</small><strong>incubation.centre@jaihindcollege.edu.in</strong></span>
+                            <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                        </a>
+                    </div>
+                    <div class="contact-map">
+                        <iframe
+                            src="https://maps.google.com/maps?q=Jai+Hind+College,+Mumbai&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            id="mapIframe" width="100%" height="100%"
+                            style="border:0;position:absolute;top:0;left:0;width:100%;height:100%;"
+                            allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"
+                            title="Google Map showing Jai Hind College Mumbai location">
+                        </iframe>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-in">
+            <p class="footer-copy">© 2020-2026 Incubator &amp; Accelerator Center. All rights reserved.</p>
+            <p class="footer-disclaimer">All content, designs, graphics, text, and other materials displayed on this website are my original creative work and are shared strictly for personal and educational purposes. Any illustrations showed in the website maybe artificially generated for representational purposes of the product and might not have any existence in real life. Any unauthorized copying, reproduction, redistribution, publication, or commercial use of any part of this website, whether in full or in part, without prior written permission from the author is strictly prohibited and may result in legal action under applicable copyright and intellectual property laws.</p>
+        </div>
+    </footer>
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -4342,9 +4450,7 @@
         })();
 
 
-        (() => {
-            const about = document.querySelector('.about-us');
-            if (!about) return;
+        document.querySelectorAll('.about-us').forEach(about => {
 
             let start = 0, range = 1, ticking = false, lastH = -1, lastO = -1;
 
@@ -4401,9 +4507,14 @@
                 measureAbout();
                 requestAbout();
             }, { passive: true });
-        })();
+        });
 
-    </script>
+    
+        (()=>{const section=document.querySelector('.contact-us');if(!section)return;const heading=section.querySelector('.about-heading'),subtitle=section.querySelector('.contact-subtitle'),cards=[...section.querySelectorAll('.contact-card')],map=section.querySelector('.contact-map');let raf=0;const clamp=(v,a,b)=>Math.min(Math.max(v,a),b),smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};function reveal(el,v){if(!el)return;el.style.setProperty('--contact-reveal',v.toFixed(4));el.style.setProperty('--contact-rise',`${(36*(1-v)).toFixed(1)}px`);el.style.setProperty('--contact-blur',`${(4*(1-v)).toFixed(2)}px`)}function render(){raf=0;const r=section.getBoundingClientRect(),range=Math.max(1,section.offsetHeight-innerHeight),p=clamp(-r.top,0,range)/range;heading.style.setProperty('--about-highlight',smooth(.015,.1,p).toFixed(4));reveal(subtitle,smooth(.08,.2,p));cards.forEach((card,i)=>reveal(card,smooth(.2+i*.12,.34+i*.12,p)));reveal(map,smooth(.58,.76,p))}function queue(){if(!raf)raf=requestAnimationFrame(render)}render();addEventListener('scroll',queue,{passive:true});addEventListener('resize',queue,{passive:true})})();
+
+        document.addEventListener('click',e=>{const link=e.target.closest('a[data-scroll]');if(!link)return;const target=document.getElementById(link.dataset.scroll);if(!target)return;e.preventDefault();closeMenu();target.scrollIntoView({behavior:'smooth',block:'start'});if(location.hash)history.replaceState(null,'',location.pathname+location.search)},true);
+        if(location.hash)history.replaceState(null,'',location.pathname+location.search);
+</script>
 
 </body>
 
