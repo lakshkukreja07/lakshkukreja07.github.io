@@ -2841,15 +2841,151 @@
 
         @media(max-width:520px) {
             .introduction-in {
-                padding-top: 2.96rem !important
+                padding-top: .5rem !important
             }
 
             .lede {
-                margin-top: 1.05rem !important
+                margin-top: .9rem !important
             }
 
             .btn-row {
-                margin-top: 2.35rem !important
+                margin-top: 5rem !important
+            }
+        }
+
+        @media(max-width:520px) {
+            html {
+                scroll-snap-type: y mandatory
+            }
+
+            section {
+                scroll-snap-align: start;
+                scroll-snap-stop: always
+            }
+
+            .introduction,
+            .about,
+            .what-we-do {
+                overscroll-behavior-y: contain
+            }
+
+            .about-content,
+            .about-heading,
+            .wwd-heading,
+            .wwd-content,
+            .introduction h1,
+            .lede,
+            .btn-row {
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+                transform: translateZ(0)
+            }
+        }
+
+        @media(max-width:520px) {
+            html {
+                scroll-snap-type: none !important
+            }
+
+            section {
+                scroll-snap-align: none !important;
+                scroll-snap-stop: normal !important
+            }
+
+            .introduction,
+            .about,
+            .what-we-do {
+                overscroll-behavior-y: auto !important
+            }
+
+            .btn-row {
+                margin-top: 7rem !important
+            }
+        }
+
+        @media(max-width:520px) {
+            .about-us {
+                height: auto !important;
+                min-height: 100dvh !important;
+                overflow: visible !important
+            }
+
+            .about-sticky {
+                position: relative !important;
+                top: auto !important;
+                height: auto !important;
+                min-height: 100dvh !important;
+                overflow: visible !important
+            }
+
+            .about-in {
+                height: auto !important;
+                min-height: 100dvh !important;
+                padding: clamp(96px, 13dvh, 118px) 0 clamp(56px, 8dvh, 84px) !important
+            }
+
+            .about-heading {
+                margin-bottom: clamp(34px, 5dvh, 48px) !important
+            }
+
+            .about-content {
+                gap: clamp(20px, 3.5dvh, 30px) !important
+            }
+
+            .about-body {
+                padding-bottom: 0 !important
+            }
+
+            .wwd-inner {
+                padding-top: clamp(96px, 13dvh, 116px) !important
+            }
+
+            .wwd-heading {
+                margin-bottom: clamp(28px, 4dvh, 42px) !important
+            }
+
+            .wwd-visual {
+                width: min(82vw, 360px) !important;
+                aspect-ratio: auto !important;
+                min-height: clamp(300px, 43dvh, 390px) !important;
+                height: auto !important;
+                padding: clamp(24px, 6vw, 34px) !important;
+                overflow: hidden !important;
+                display: flex !important;
+                justify-content: center !important
+            }
+
+            .wwd-icon-stage {
+                width: clamp(68px, 20vw, 88px) !important;
+                height: clamp(68px, 20vw, 88px) !important;
+                flex-basis: clamp(68px, 20vw, 88px) !important;
+                margin: 0 auto clamp(20px, 3dvh, 28px) !important
+            }
+
+            .wwd-detail {
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important
+            }
+
+            .wwd-description {
+                font-size: clamp(.82rem, 3.7vw, .98rem) !important;
+                line-height: 1.5 !important;
+                text-align: center !important
+            }
+
+            .wwd-number,
+            .wwd-number.visible {
+                position: static !important;
+                inset: auto !important;
+                align-self: center !important;
+                margin: clamp(16px, 2.5dvh, 24px) auto 0 !important;
+                transform: none !important
+            }
+
+            .wwd-wheel {
+                margin-top: clamp(12px, 2dvh, 22px) !important
             }
         }
     </style>
