@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <title>IAC · Jai Hind College</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -16,33 +18,44 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --ease: cubic-bezier(.22, .8, .28, 1);
+            --impact-gradient: linear-gradient(108deg,
+                    #f4f9ff 0%,
+                    #d8eaff 13%,
+                    #a9d1ff 27%,
+                    #6eaff5 45%,
+                    #3f8fe7 66%,
+                    #246fc9 84%,
+                    #1859aa 100%);
+        }
+
+        html {
+            scroll-behavior: auto;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #0b0e14;
+            background: #070a0f;
             color: #fff;
             overflow-x: hidden;
         }
 
-        :root {
-            --ink: #191308;
-            --paper: #f5f5f5;
-            --brass: #ff5722;
-            --brass-l: #c23b0e;
-            --line: rgba(255, 255, 255, .15);
-            --ease: cubic-bezier(.22, .8, .28, 1);
+        body.no-scroll {
+            overflow: hidden;
+            height: 100%;
         }
 
         a {
-            text-decoration: none;
             color: inherit;
+            text-decoration: none;
         }
 
         img {
-            max-width: 100%;
             display: block;
+            max-width: 100%;
         }
 
-        /* ---- nav (pill) with Liquid Glass ---- */
         nav {
             position: fixed;
             top: clamp(12px, 2vh, 20px);
@@ -54,165 +67,140 @@
         }
 
         .nav-in {
-            max-width: 930px;
-            margin: 0 auto;
             width: 100%;
+            max-width: 930px;
+            margin: auto;
         }
 
         .nav-pill {
-            pointer-events: auto;
             position: relative;
             isolation: isolate;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 14px 118px;
             min-height: 76px;
-            border-radius: 100px;
+            padding: 14px 118px;
             overflow: hidden;
-
-            /*
-             * Apple-like Liquid Glass treatment matching the visible Music Player:
-             * optical refraction remains active, while a restrained translucent
-             * material layer gives the glass enough body to stay visible.
-             */
-            backdrop-filter: url(#liquid-glass-filter) blur(1px) saturate(1.15);
-            -webkit-backdrop-filter: url(#liquid-glass-filter) blur(1px) saturate(1.15);
-            background: rgba(72, 72, 74, .28);
-            border: 1px solid rgba(255, 255, 255, .105);
-            box-shadow:
-                0 8px 24px rgba(0, 0, 0, .18),
-                inset 0 .5px 0 rgba(255, 255, 255, .16);
+            border: 0;
+            border-radius: 100px;
+            background: transparent;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .10);
+            backdrop-filter: url(#liquid-glass-filter) blur(3.2px);
+            -webkit-backdrop-filter: url(#liquid-glass-filter) blur(3.2px);
+            pointer-events: auto;
         }
 
-        /* Very restrained optical rim — no thick white outline. */
         .nav-pill::before {
             content: "";
             position: absolute;
             inset: 0;
             z-index: 0;
-            pointer-events: none;
             border-radius: inherit;
-            background:
-                linear-gradient(180deg,
-                    rgba(255, 255, 255, .055) 0%,
-                    rgba(255, 255, 255, .012) 48%,
-                    rgba(0, 0, 0, .025) 100%);
+            box-shadow:
+                inset 0 .55px 0 rgba(255, 255, 255, .16),
+                inset 0 -.55px 0 rgba(255, 255, 255, .045);
+            pointer-events: none;
         }
 
-        .nav-pill .brand {
+        .brand {
             position: absolute;
             left: 18px;
             top: 50%;
-            transform: translateY(-50%);
             z-index: 10;
-            display: flex;
-            align-items: center;
+            transform: translateY(-50%);
         }
 
-        .nav-pill .brand img {
-            height: clamp(44px, 4.8vw, 56px);
+        .brand img {
             width: auto;
+            height: clamp(44px, 4.8vw, 56px);
             border-radius: 8px;
             object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .3));
         }
 
-        .nav-pill .nav-links {
+        .nav-links {
+            position: relative;
+            z-index: 3;
             display: flex;
+            align-items: center;
             gap: clamp(1.15rem, 1.65vw, 1.8rem);
             list-style: none;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-            z-index: 3;
         }
 
-        .nav-pill .nav-links a {
-            font-size: clamp(0.9rem, 1.1vw, 1.05rem);
-            font-weight: 600;
+        .nav-links a {
             color: rgba(255, 255, 255, .92);
-            transition: color .2s, opacity .2s;
+            font-size: clamp(.9rem, 1.1vw, 1.05rem);
+            font-weight: 600;
             white-space: nowrap;
-            text-shadow: none;
-            -webkit-font-smoothing: antialiased;
+            transition: color .2s, opacity .2s;
         }
 
-        .nav-pill .nav-links a:hover {
+        .nav-links a:hover {
             color: #fff;
             opacity: .78;
         }
 
-        .nav-pill .burger {
+        .burger {
+            position: relative;
+            z-index: 10;
             display: none;
-            background: none;
-            border: 0;
             width: 38px;
             height: 38px;
-            flex: none;
-            cursor: pointer;
             padding: 0;
-            z-index: 10;
-            position: relative;
-            -webkit-appearance: none;
-            appearance: none;
+            border: 0;
+            background: none;
+            cursor: pointer;
         }
 
-        .nav-pill .burger .hamburger {
+        .hamburger {
             position: absolute;
             inset: 0;
-            width: 100%;
-            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
         }
 
-        .nav-pill .burger .hamburger span {
+        .hamburger span {
             position: absolute;
             width: 18px;
             height: 2px;
-            background: #fff;
             border-radius: 2px;
-            transition: all 0.3s ease;
+            background: #fff;
+            transition: transform .3s ease;
         }
 
-        .nav-pill .burger .hamburger span:nth-child(1) {
+        .hamburger span:first-child {
             transform: translateY(-4px);
         }
 
-        .nav-pill .burger .hamburger span:nth-child(2) {
+        .hamburger span:last-child {
             transform: translateY(4px);
         }
 
-        .nav-pill .burger.open .hamburger span:nth-child(1) {
-            transform: translateY(0) rotate(45deg);
+        .burger.open .hamburger span:first-child {
+            transform: rotate(45deg);
         }
 
-        .nav-pill .burger.open .hamburger span:nth-child(2) {
-            transform: translateY(0) rotate(-45deg);
+        .burger.open .hamburger span:last-child {
+            transform: rotate(-45deg);
         }
 
         .mobile-menu {
             position: fixed;
             inset: 0;
-            background: rgba(11, 14, 20, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             z-index: 99;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2rem;
-            padding-top: 18vh;
-            transform: translateY(-100%);
-            transition: none;
             gap: 1.6rem;
+            padding: 18vh 2rem 2rem;
+            background: rgba(11, 14, 20, .95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transform: translateY(-100%);
+            transition: transform .45s var(--ease);
             pointer-events: none;
-            overflow: hidden;
-            height: 100vh;
         }
 
         .mobile-menu.open {
@@ -220,389 +208,846 @@
             pointer-events: auto;
         }
 
-        .mobile-menu .menu-title {
-            font-size: 0.85rem;
+        .menu-title {
+            color: rgba(255, 255, 255, .4);
+            font-size: .85rem;
             font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.4);
-            text-align: center;
-            margin-bottom: 0.5rem;
-            z-index: 5;
+            letter-spacing: .15em;
         }
 
         .mobile-menu a {
-            font-weight: 700;
             font-size: 2rem;
-            color: #fff;
-            z-index: 5;
-            text-align: center;
+            font-weight: 700;
         }
 
-        .mobile-menu a:hover {
-            color: var(--brass-l);
-        }
-
-        body.no-scroll {
-            overflow: hidden;
-            height: 100%;
-        }
-
-        @media (max-width: 860px) {
-            .nav-in {
-                max-width: 1180px;
-            }
-
-            .nav-pill {
-                padding: 14px 18px;
-                min-height: 72px;
-                justify-content: space-between;
-            }
-
-            .nav-pill .brand {
-                left: 18px;
-            }
-
-            .nav-pill .nav-links {
-                display: none;
-            }
-
-            .nav-pill .burger {
-                display: block;
-                position: absolute;
-                right: 18px;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 10;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-pill {
-                padding: 12px 14px;
-                min-height: 64px;
-                border-radius: 60px;
-            }
-
-            .nav-pill .brand {
-                left: 14px;
-            }
-
-            .nav-pill .brand img {
-                height: clamp(38px, 5vw, 44px);
-            }
-
-            .nav-pill .burger {
-                right: 14px;
-                width: 32px;
-                height: 32px;
-            }
-
-            .nav-pill .burger .hamburger span {
-                width: 16px;
-            }
-
-            .nav-pill .burger .hamburger span:nth-child(1) {
-                transform: translateY(-3.5px);
-            }
-
-            .nav-pill .burger .hamburger span:nth-child(2) {
-                transform: translateY(3.5px);
-            }
-
-            .mobile-menu {
-                padding-top: 15vh;
-            }
-
-            .mobile-menu a {
-                font-size: 1.6rem;
-            }
-        }
-
-        /* ---- hero with earth bg + checkerboard (unchanged) ---- */
         .introduction {
-            min-height: 100svh;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100svh;
             padding: 100px 0 60px;
             overflow: hidden;
-            background-color: #0b0e14;
+            background: #0b0e14;
         }
 
         .introduction::before {
             content: "";
             position: absolute;
             inset: 0;
-            background-image: url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/earth.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.85;
-            z-index: 0;
+            background:
+                url('https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/earth.png') center/cover no-repeat;
+            opacity: .85;
         }
 
         .introduction::after {
             content: "";
             position: absolute;
             inset: 0;
-            z-index: 1;
-            pointer-events: none;
-            background:
-                linear-gradient(90deg,
-                    rgba(13, 15, 19, 0.24) 0%,
-                    rgba(24, 27, 32, 0.13) 42%,
-                    rgba(20, 23, 28, 0.08) 70%,
-                    rgba(10, 12, 16, 0.14) 100%),
-                rgba(128, 132, 138, 0.035);
+            background: linear-gradient(90deg,
+                    rgba(13, 15, 19, .24),
+                    rgba(20, 23, 28, .08) 70%,
+                    rgba(10, 12, 16, .14));
         }
 
         .introduction-in {
             position: relative;
             z-index: 2;
+            display: flex;
+            align-items: center;
             width: 100%;
             max-width: 1180px;
             min-height: calc(100svh - 160px);
-            margin: 0 auto;
+            margin: auto;
             padding: clamp(3.8rem, 7.5vh, 5.4rem) clamp(1rem, 3vw, 2.5rem) 2.5rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr;
-            gap: 0;
-            align-items: center;
         }
 
         .hero-copy {
-            align-self: center;
             max-width: 720px;
-            transform: translateY(-3vh);
-        }
-
-        .hero-kicker {
-            display: inline-flex;
-            align-items: center;
-            gap: .65rem;
-            margin-bottom: 1.25rem;
-            font-size: .76rem;
-            font-weight: 700;
-            letter-spacing: .16em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .58);
-        }
-
-        .hero-kicker::before {
-            content: "";
-            width: 28px;
-            height: 1px;
-            background: rgba(255, 255, 255, .38);
         }
 
         .introduction h1 {
-            margin: 0;
             max-width: 11ch;
             font-size: clamp(3.4rem, 7.2vw, 6.7rem);
             line-height: .93;
             font-weight: 600;
             letter-spacing: -.055em;
-            color: #fff;
-            text-wrap: balance;
-            text-shadow: 0 8px 38px rgba(0, 0, 0, .32);
         }
 
         .introduction h1 span {
             display: block;
-            font-weight: 500;
-            background: linear-gradient(108deg,
-                    #f4f9ff 0%,
-                    #d8eaff 13%,
-                    #a9d1ff 27%,
-                    #6eaff5 45%,
-                    #3f8fe7 66%,
-                    #246fc9 84%,
-                    #1859aa 100%);
-
-            -webkit-background-clip: text;
+            background: var(--impact-gradient);
             background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
             -webkit-text-fill-color: transparent;
-            filter:
-                drop-shadow(0 0 16px rgba(73, 145, 224, 0.14)) drop-shadow(0 0 34px rgba(39, 108, 196, 0.08));
+            filter: drop-shadow(0 0 16px rgba(73, 145, 224, .14));
         }
 
-        .introduction p.lede {
+        .lede {
             max-width: 55ch;
             margin: 1.4rem 0 1.8rem;
             color: rgba(255, 255, 255, .92);
             font-size: clamp(.98rem, 1.3vw, 1.12rem);
             font-weight: 500;
             line-height: 1.7;
-            text-shadow:
-                0 0 12px rgba(255, 255, 255, .10),
-                0 0 24px rgba(92, 137, 190, .12),
-                0 2px 12px rgba(0, 0, 0, .32);
-            -webkit-font-smoothing: antialiased;
         }
 
         .btn-row {
             display: flex;
-            align-items: center;
-            gap: .75rem;
             flex-wrap: wrap;
+            gap: .75rem;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: .55em;
             min-height: 48px;
             padding: 0 22px;
             border-radius: 999px;
-            font-weight: 650;
             font-size: .88rem;
-            transition: transform .25s var(--ease), background .2s, border-color .2s;
+            font-weight: 650;
+            transition: transform .25s var(--ease);
         }
 
-        .btn-icon {
-            flex-shrink: 0;
-        }
-
-        .btn-primary {
-            background: rgba(255, 255, 255, .94);
-            color: #0b0e14;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, .16);
-        }
-
-        .btn-primary:hover {
-            background: #fff;
+        .btn:hover {
             transform: translateY(-2px);
         }
 
+        .btn-primary {
+            color: #0b0e14;
+            background: rgba(255, 255, 255, .94);
+        }
+
         .btn-ghost {
-            border: 1px solid rgba(255, 255, 255, .16);
             color: rgba(255, 255, 255, .9);
+            border: 1px solid rgba(255, 255, 255, .16);
             background: rgba(255, 255, 255, .055);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
 
-        .btn-ghost:hover {
-            border-color: rgba(255, 255, 255, .28);
-            color: #fff;
-            transform: translateY(-2px);
+        .what-we-do {
+            position: relative;
+            height: 455vh;
+            isolation: isolate;
+            background:
+                radial-gradient(ellipse at 74% 48%,
+                    rgba(41, 112, 197, .105),
+                    transparent 55%),
+                radial-gradient(ellipse at 15% 75%,
+                    rgba(91, 157, 225, .05),
+                    transparent 40%),
+                linear-gradient(180deg,
+                    #05080d,
+                    #04070b 48%,
+                    #060a10);
         }
 
-        .hero-side {
-            align-self: end;
-            justify-self: end;
-            width: min(100%, 340px);
-            padding-bottom: .5rem;
+        .what-we-do::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle,
+                    rgba(184, 213, 244, .16) 1px,
+                    transparent 1.2px);
+            background-size: 34px 34px;
+            opacity: .3;
+            -webkit-mask-image:
+                radial-gradient(ellipse at center,
+                    #000,
+                    rgba(0, 0, 0, .75) 45%,
+                    transparent 88%);
+            mask-image:
+                radial-gradient(ellipse at center,
+                    #000,
+                    rgba(0, 0, 0, .75) 45%,
+                    transparent 88%);
+            pointer-events: none;
         }
 
-        .hero-side-label {
-            margin-bottom: .8rem;
-            font-size: .68rem;
-            font-weight: 700;
-            letter-spacing: .14em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .42);
+
+        .wwd-marks {
+            position: sticky;
+            top: 0;
+            height: 100svh;
+            margin-bottom: -100svh;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none
         }
 
-        .hero-side p {
-            font-size: .96rem;
-            line-height: 1.65;
-            color: rgba(255, 255, 255, .68);
+        .wwd-mark {
+            position: absolute;
+            width: 40px;
+            aspect-ratio: 1;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480"><path d="M480 0H0l240 240L480 0zM480 240H0l240 240 240-240z" fill="%239ecbfa"></path></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: .085;
+            filter: drop-shadow(0 0 12px rgba(116, 181, 245, .10))
         }
 
-        .hero-meta {
-            grid-column: 1 / -1;
+        .wwd-mark:nth-child(1) {
+            left: 3.5%;
+            top: 28%
+        }
+
+        .wwd-mark:nth-child(2) {
+            left: 12%;
+            top: 72%
+        }
+
+        .wwd-mark:nth-child(3) {
+            left: 47%;
+            top: 18%
+        }
+
+        .wwd-mark:nth-child(4) {
+            right: 4%;
+            top: 22%
+        }
+
+        .wwd-mark:nth-child(5) {
+            right: 3%;
+            top: 85%
+        }
+
+        .wwd-mark:nth-child(6) {
+            left: 49%;
+            bottom: 5%
+        }
+
+        .wwd-sticky {
+            position: sticky;
+            top: 0;
+            height: 100svh;
+            overflow: hidden;
+        }
+
+        .wwd-inner {
+            position: relative;
+            z-index: 2;
+            z-index: 2;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border-top: 1px solid rgba(255, 255, 255, .11);
-            padding-top: 1.25rem;
+            grid-template-rows: auto minmax(0, 1fr);
+            gap: clamp(10px, 1.6vh, 20px);
+            width: min(1180px, calc(100% - 48px));
+            height: 100%;
+            margin: auto;
+            padding: clamp(118px, 15vh, 150px) 0 clamp(24px, 4vh, 44px);
         }
 
-        .hero-meta-item {
-            min-height: 58px;
-            padding: .15rem 1.5rem;
-            border-left: 1px solid rgba(255, 255, 255, .10);
+        .wwd-heading {
+            position: relative;
+            isolation: isolate;
+            width: max-content;
+            margin-left: -.14em;
+            padding: .08em .15em .14em;
+            color: #fff;
+            font-size: clamp(3rem, min(5.4vw, 8.5vh), 5.4rem);
+            line-height: 1;
+            font-weight: 650;
+            letter-spacing: -.035em;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, .14);
         }
 
-        .hero-meta-item:first-child {
-            padding-left: 0;
-            border-left: 0;
+        .wwd-heading::before,
+        .wwd-heading::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            transform-origin: left center;
+            pointer-events: none;
         }
 
-        .hero-meta strong {
-            display: block;
-            margin-bottom: .25rem;
-            font-size: .72rem;
+        .wwd-heading::before {
+            left: -.015em;
+            right: -.045em;
+            top: 4%;
+            bottom: 0;
+            background: linear-gradient(94deg,
+                    rgba(126, 190, 244, .78) 0%,
+                    rgba(153, 207, 250, .84) 20%,
+                    rgba(113, 181, 240, .80) 48%,
+                    rgba(146, 203, 249, .84) 72%,
+                    rgba(106, 174, 235, .78) 100%);
+            clip-path: polygon(0 8%,
+                    5% 3%,
+                    11% 6%,
+                    18% 2%,
+                    27% 5%,
+                    36% 2%,
+                    45% 6%,
+                    55% 2%,
+                    65% 5%,
+                    74% 1%,
+                    84% 5%,
+                    93% 2%,
+                    100% 7%,
+                    99% 92%,
+                    94% 97%,
+                    86% 94%,
+                    77% 98%,
+                    67% 95%,
+                    58% 99%,
+                    48% 95%,
+                    38% 98%,
+                    28% 94%,
+                    19% 99%,
+                    10% 95%,
+                    3% 98%,
+                    0 92%);
+            transform:
+                rotate(-.3deg) scaleX(var(--heading-highlight, 0));
+            opacity: calc(.96 * var(--heading-highlight, 0));
+            box-shadow: 0 0 20px rgba(106, 177, 239, .12);
+        }
+
+        .wwd-heading::after {
+            left: .035em;
+            right: .01em;
+            top: 15%;
+            bottom: 7%;
+            background: linear-gradient(90deg,
+                    rgba(201, 229, 255, .18),
+                    rgba(225, 241, 255, .30),
+                    rgba(188, 220, 250, .13));
+            clip-path: polygon(0 13%,
+                    13% 4%,
+                    26% 11%,
+                    41% 3%,
+                    55% 9%,
+                    70% 2%,
+                    84% 8%,
+                    100% 4%,
+                    99% 86%,
+                    84% 93%,
+                    69% 87%,
+                    53% 95%,
+                    36% 88%,
+                    18% 94%,
+                    0 87%);
+            transform:
+                rotate(.4deg) scaleX(var(--heading-highlight, 0));
+            opacity: var(--heading-highlight, 0);
+            mix-blend-mode: screen;
+        }
+
+        .wwd-content {
+            display: grid;
+            grid-template-columns: minmax(500px, 1.32fr) minmax(280px, .68fr);
+            align-items: center;
+            gap: clamp(28px, 5vw, 76px);
+            min-height: 0;
+        }
+
+        .wwd-wheel {
+            position: relative;
+            width: 100%;
+            height: min(52vh, 455px);
+            min-height: 310px;
+            overflow: hidden;
+            opacity: var(--wheel-reveal, 0);
+            transform:
+                translateY(calc(12px * (1 - var(--wheel-reveal, 0))));
+            -webkit-mask-image:
+                linear-gradient(to bottom,
+                    transparent,
+                    #000 19%,
+                    #000 81%,
+                    transparent);
+            mask-image:
+                linear-gradient(to bottom,
+                    transparent,
+                    #000 19%,
+                    #000 81%,
+                    transparent);
+        }
+
+        .wwd-list {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wwd-item {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100%;
+            padding: .15em .16em .24em;
+            color: rgba(225, 234, 245, .48);
+            font-size: clamp(1.85rem, min(3.35vw, 5.5vh), 3.65rem);
+            line-height: 1.22;
+            font-weight: 500;
+            letter-spacing: -.012em;
+            text-align: center;
+            white-space: nowrap;
+            opacity: var(--wheel-opacity, .42);
+            transform:
+                translate(-50%,
+                    calc(-50% + var(--wheel-y, 0px))) scale(var(--wheel-scale, .88));
+            filter: blur(var(--wheel-blur, 0));
+            will-change: transform, opacity;
+        }
+
+        .wwd-item.active {
+            background: var(--impact-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .wwd-visual {
+            position: relative;
+            isolation: isolate;
+            justify-self: center;
+            width: min(100%, 360px, 40vh);
+            aspect-ratio: 1;
+            overflow: hidden;
+            border: 0;
+            border-radius: clamp(26px, 3vw, 40px);
+            background: rgba(255, 255, 255, .018);
+            box-shadow:
+                0 22px 60px rgba(0, 0, 0, .28),
+                0 0 0 .7px rgba(205, 228, 250, .13);
+            backdrop-filter: url(#wwd-liquid-glass-filter) blur(6.5px) saturate(1.08);
+            -webkit-backdrop-filter: url(#wwd-liquid-glass-filter) blur(6.5px) saturate(1.08);
+        }
+
+        .wwd-visual::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            border-radius: inherit;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, .16),
+                inset 1px 0 0 rgba(255, 255, 255, .055),
+                inset 0 -1px 0 rgba(130, 183, 235, .055);
+            pointer-events: none;
+        }
+
+        .wwd-visual::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 11;
+            border-radius: inherit;
+            background: linear-gradient(115deg, rgba(255, 255, 255, .055), transparent 23%, transparent 76%, rgba(119, 178, 235, .025));
+            pointer-events: none;
+        }
+
+        .wwd-glass-light {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            border-radius: inherit;
+            pointer-events: none;
+        }
+
+        .wwd-glass-light::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 62%;
+            height: 62%;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle,
+                    rgba(74, 151, 233, .13) 0%,
+                    rgba(65, 137, 218, .055) 38%,
+                    transparent 72%);
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(.8);
+            filter: blur(20px);
+            transition:
+                opacity .4s ease,
+                transform .5s var(--ease);
+        }
+
+        .wwd-visual.has-icon .wwd-glass-light::before {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .wwd-icon-refraction {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            opacity: 0;
+            mix-blend-mode: screen;
+            pointer-events: none;
+            transition: opacity .32s ease;
+        }
+
+        .wwd-icon-refraction.visible {
+            opacity: .25;
+        }
+
+        .wwd-icon-refraction svg {
+            width: clamp(94px, min(11vw, 17vh), 145px);
+            height: clamp(94px, min(11vw, 17vh), 145px);
+            stroke-width: 1.45;
+            transform:
+                translate(3px, 5px) scale(1.025);
+            filter:
+                url(#wwd-icon-refraction-filter) blur(.65px);
+        }
+
+        .wwd-icon-stage {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+        .wwd-icon {
+            position: absolute;
+            width: clamp(94px, min(11vw, 17vh), 145px);
+            height: clamp(94px, min(11vw, 17vh), 145px);
+            opacity: 0;
+            transform:
+                translateY(18px) scale(.9);
+            transition:
+                opacity .32s ease,
+                transform .48s var(--ease);
+            filter:
+                drop-shadow(0 0 24px rgba(72, 145, 224, .14));
+        }
+
+        .wwd-icon::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 95%;
+            height: 95%;
+            border-radius: 42%;
+            background:
+                radial-gradient(ellipse at center,
+                    rgba(78, 157, 239, .13),
+                    rgba(64, 134, 215, .045) 42%,
+                    transparent 72%);
+            opacity: 0;
+            transform:
+                translate(-50%, -50%) scale(.82);
+            filter: blur(18px);
+            transition:
+                opacity .35s ease,
+                transform .5s var(--ease);
+            pointer-events: none;
+        }
+
+        .wwd-icon.active {
+            opacity: 1;
+            transform:
+                translateY(0) scale(1);
+        }
+
+        .wwd-icon.active::before {
+            opacity: .9;
+            transform:
+                translate(-50%, -50%) scale(1.12);
+        }
+
+        .wwd-icon svg {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            stroke-width: 1.3;
+            filter:
+                drop-shadow(0 5px 9px rgba(20, 70, 130, .15));
+        }
+
+        .wwd-number {
+            position: absolute;
+            left: 24px;
+            bottom: 21px;
+            z-index: 6;
+            color: rgba(225, 235, 246, .58);
+            font-size: .82rem;
             font-weight: 700;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .42);
+            opacity: 0;
+            transform: translateY(7px);
+            transition:
+                opacity .28s ease,
+                transform .28s ease;
         }
 
-        .hero-meta span {
-            font-size: .92rem;
-            line-height: 1.45;
-            color: rgba(255, 255, 255, .86);
+        .wwd-number.visible {
+            opacity: 1;
+            transform: none;
         }
 
-        @media (max-width: 900px) {
-            .introduction-in {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                align-content: center;
-                gap: 2rem;
-                padding-top: 4.8rem;
+        /* Laptop */
+        @media (min-width:861px) and (max-height:820px) {
+            .wwd-inner {
+                padding-top: 108px;
+                padding-bottom: 20px;
             }
 
-            .hero-copy {
-                transform: translateY(-1.5vh);
+            .wwd-heading {
+                font-size: clamp(2.7rem, 7vh, 4rem);
             }
 
-            .hero-side {
-                justify-self: start;
-                width: min(100%, 560px);
-                padding-bottom: 0;
+            .wwd-wheel {
+                height: min(51vh, 390px);
             }
 
-            .hero-meta {
-                grid-column: 1;
+            .wwd-visual {
+                width: min(320px, 38vh);
             }
         }
 
-        @media (max-width: 600px) {
+        /* Tablet */
+        @media (min-width:521px) and (max-width:860px) {
+            .nav-in {
+                max-width: 1180px
+            }
+
+            .nav-pill {
+                min-height: 72px;
+                padding: 14px 18px;
+                justify-content: space-between
+            }
+
+            .nav-links {
+                display: none
+            }
+
+            .burger {
+                position: absolute;
+                right: 18px;
+                top: 50%;
+                display: block;
+                transform: translateY(-50%)
+            }
+
+            .what-we-do {
+                height: 455vh
+            }
+
+            .wwd-inner {
+                width: min(1180px, calc(100% - 48px));
+                padding: clamp(118px, 15vh, 150px) 0 clamp(24px, 4vh, 44px)
+            }
+
+            .wwd-content {
+                grid-template-columns: minmax(0, 1.32fr) minmax(220px, .68fr);
+                align-items: center;
+                gap: clamp(22px, 4vw, 48px)
+            }
+
+            .wwd-wheel {
+                height: min(52vh, 455px);
+                min-height: 310px
+            }
+
+            .wwd-item {
+                font-size: clamp(1.7rem, 4.6vw, 3rem);
+                white-space: nowrap
+            }
+
+            .wwd-visual {
+                width: min(100%, 280px, 34vh);
+                aspect-ratio: 1
+            }
+
+            .wwd-icon,
+            .wwd-icon-refraction svg {
+                width: clamp(84px, 13vw, 118px);
+                height: clamp(84px, 13vw, 118px)
+            }
+
+            .wwd-mark {
+                width: 34px;
+                opacity: .045
+            }
+
+            .wwd-mark:nth-child(1) {
+                left: 1.5%;
+                top: 27%
+            }
+
+            .wwd-mark:nth-child(2) {
+                left: 2%;
+                top: 76%
+            }
+
+            .wwd-mark:nth-child(3) {
+                display: none
+            }
+
+            .wwd-mark:nth-child(4) {
+                right: 1.5%;
+                top: 25%
+            }
+
+            .wwd-mark:nth-child(5) {
+                display: none
+            }
+
+            .wwd-mark:nth-child(6) {
+                display: none
+            }
+        }
+
+        /* Phone */
+        @media (max-width:520px) {
+            nav {
+                padding: 0 10px
+            }
+
+            .nav-pill {
+                min-height: 64px;
+                padding: 12px 14px;
+                border-radius: 60px
+            }
+
+            .brand {
+                left: 14px
+            }
+
+            .brand img {
+                height: 40px
+            }
+
+            .nav-links {
+                display: none
+            }
+
+            .burger {
+                position: absolute;
+                right: 14px;
+                top: 50%;
+                display: block;
+                width: 32px;
+                height: 32px;
+                transform: translateY(-50%)
+            }
+
+            .hamburger span {
+                width: 16px
+            }
+
+            .mobile-menu {
+                padding-top: 15vh
+            }
+
+            .mobile-menu a {
+                font-size: 1.6rem
+            }
+
             .introduction {
-                padding: 70px 0 24px;
+                padding: 70px 0 24px
             }
 
             .introduction-in {
                 min-height: calc(100svh - 94px);
-                padding: 3.6rem 1.15rem 1rem;
-                gap: 1.7rem;
+                padding: 3.6rem 1.15rem 1rem
             }
 
             .introduction h1 {
-                font-size: clamp(3rem, 15vw, 4.5rem);
+                font-size: clamp(3rem, 15vw, 4.5rem)
             }
 
-            .hero-side {
-                display: none;
+            .what-we-do {
+                height: 455vh
             }
 
-            .hero-meta {
-                grid-template-columns: 1fr;
-                gap: .8rem;
-                padding-top: 1rem;
+            .wwd-inner {
+                width: calc(100% - 28px);
+                padding: 104px 0 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 12px
             }
 
-            .hero-meta-item,
-            .hero-meta-item:first-child {
-                min-height: auto;
-                padding: .2rem 0;
-                border-left: 0;
+            .wwd-heading {
+                order: 2;
+                align-self: center;
+                margin: 0;
+                text-align: center;
+                font-size: clamp(2.5rem, 12vw, 3.8rem)
+            }
+
+            .wwd-content {
+                display: contents
+            }
+
+            .wwd-visual {
+                order: 1;
+                align-self: center;
+                width: min(72vw, 270px);
+                aspect-ratio: 1;
+                border-radius: 28px;
+                margin-bottom: 2px
+            }
+
+            .wwd-wheel {
+                order: 3;
+                width: 100%;
+                height: min(41vh, 325px);
+                min-height: 245px
+            }
+
+            .wwd-item {
+                font-size: clamp(1.55rem, 7.7vw, 2.35rem);
+                white-space: normal
+            }
+
+            .wwd-icon,
+            .wwd-icon-refraction svg {
+                width: clamp(84px, 25vw, 116px);
+                height: clamp(84px, 25vw, 116px)
+            }
+
+            .wwd-number {
+                left: 18px;
+                bottom: 15px
+            }
+
+            .wwd-mark {
+                width: 28px;
+                opacity: .045
+            }
+
+            .wwd-mark:nth-child(2),
+            .wwd-mark:nth-child(3),
+            .wwd-mark:nth-child(6) {
+                display: none
+            }
+
+            .wwd-item {
+                opacity: 0 !important;
+                pointer-events: none
+            }
+
+            .wwd-item.active {
+                opacity: 1 !important
+            }
+
+            .wwd-item.active+.wwd-item {
+                opacity: .58 !important
+            }
+
+            .wwd-item:has(+ .wwd-item.active) {
+                opacity: .58 !important
             }
         }
     </style>
@@ -610,283 +1055,1288 @@
 
 <body>
 
-    <!-- Dynamic KUBE Searchbox-style Liquid Glass filter.
-         The displacement/specular maps are generated from the actual topbar size. -->
-    <svg id="liquidGlassSvg" width="0" height="0" style="position:absolute;overflow:hidden;pointer-events:none"
-        aria-hidden="true">
+    <svg width="0" height="0" style="position:absolute;overflow:hidden;pointer-events:none" aria-hidden="true">
         <defs>
+
             <filter id="liquid-glass-filter" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-                <feImage id="liquidDisplacementImage" result="displacement_map" x="0" y="0" width="1" height="1"
+                <feImage id="navDisplacementImage" result="displacement_map" x="0" y="0" width="1" height="1"
                     preserveAspectRatio="none" />
-                <feDisplacementMap id="liquidDisplacement" in="SourceGraphic" in2="displacement_map" scale="0"
+
+                <feDisplacementMap id="navDisplacement" in="SourceGraphic" in2="displacement_map" scale="0"
                     xChannelSelector="R" yChannelSelector="G" result="refracted" />
-                <feImage id="liquidSpecularImage" result="specular_map" x="0" y="0" width="1" height="1"
+
+                <feImage id="navSpecularImage" result="specular_map" x="0" y="0" width="1" height="1"
                     preserveAspectRatio="none" />
-                <feColorMatrix in="specular_map" type="saturate" values="4" result="specular_sat" />
+
+                <feColorMatrix in="specular_map" type="saturate" values="1" result="specular_sat" />
+
                 <feComponentTransfer in="specular_sat" result="specular_alpha">
-                    <feFuncA type="linear" slope=".20" />
+                    <feFuncA type="linear" slope=".32" />
                 </feComponentTransfer>
+
                 <feBlend in="refracted" in2="specular_alpha" mode="screen" />
             </filter>
+
+            <filter id="wwd-liquid-glass-filter" x="0" y="0" width="100%" height="100%"
+                color-interpolation-filters="sRGB">
+                <feImage id="wwdDisplacementImage" result="displacement_map" x="0" y="0" width="1" height="1"
+                    preserveAspectRatio="none" />
+
+                <feDisplacementMap id="wwdDisplacement" in="SourceGraphic" in2="displacement_map" scale="0"
+                    xChannelSelector="R" yChannelSelector="G" result="refracted" />
+
+                <feImage id="wwdSpecularImage" result="specular_map" x="0" y="0" width="1" height="1"
+                    preserveAspectRatio="none" />
+
+                <feColorMatrix in="specular_map" type="saturate" values="1" result="specular_sat" />
+
+                <feComponentTransfer in="specular_sat" result="specular_alpha">
+                    <feFuncA type="linear" slope=".25" />
+                </feComponentTransfer>
+
+                <feBlend in="refracted" in2="specular_alpha" mode="screen" />
+            </filter>
+
+            <filter id="wwd-icon-refraction-filter" x="-30%" y="-30%" width="160%" height="160%">
+                <feTurbulence type="fractalNoise" baseFrequency=".012 .025" numOctaves="1" seed="8" result="noise" />
+
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="B" />
+            </filter>
+
         </defs>
     </svg>
 
-    <!-- NAV (with Liquid Glass) -->
     <nav>
         <div class="nav-in">
             <div class="nav-pill" id="navPill">
+
                 <a class="brand" href="#top">
                     <img src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
-                        alt="Jai Hind College Logo" onerror="this.style.display='none'" />
+                        alt="Jai Hind College Logo">
                 </a>
+
                 <ul class="nav-links">
                     <li><a href="#top">Home</a></li>
-                    <li><a href="#top">About</a></li>
+                    <li><a href="#about">About</a></li>
                     <li><a href="#top">Programmes</a></li>
                     <li><a href="#top">Facilities</a></li>
                     <li><a href="#top">Mentors</a></li>
                 </ul>
+
                 <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
                     <div class="hamburger">
                         <span></span>
                         <span></span>
                     </div>
                 </button>
+
             </div>
         </div>
     </nav>
 
-    <!-- mobile menu -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="menu-title">MENU</div>
         <a href="#top">Home</a>
-        <a href="#top">About</a>
+        <a href="#about">About</a>
         <a href="#top">Programmes</a>
         <a href="#top">Facilities</a>
         <a href="#top">Mentors</a>
     </div>
 
-    <!-- HERO -->
     <section class="introduction" id="top">
         <div class="introduction-in">
             <div class="hero-copy">
-                <h1>Ideas into <span>impact.</span></h1>
-                <p class="lede">The Incubator &amp; Accelerator Centre helps student founders turn ambitious ideas into
-                    real ventures — with mentorship, resources, industry access and a community built to move faster.
+
+                <h1>
+                    Ideas into
+                    <span>impact.</span>
+                </h1>
+
+                <p class="lede">
+                    The Incubator &amp; Accelerator Centre helps student founders
+                    turn ambitious ideas into real ventures — with mentorship,
+                    resources, industry access and a community built to move faster.
                 </p>
+
                 <div class="btn-row">
                     <a class="btn btn-primary" href="https://forms.gle/pkk8YXcVLg9dCSgn9" target="_blank"
-                        rel="noopener">Apply for Incubation
-                        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7 17 17 7" />
-                            <path d="M7 7h10v10" />
-                        </svg>
+                        rel="noopener">
+                        Apply for Incubation
                     </a>
-                    <a class="btn btn-ghost" href="#about">Explore IAC</a>
+
+                    <a class="btn btn-ghost" href="#about">
+                        Explore IAC
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="what-we-do" id="about">
+        <div class="wwd-marks" aria-hidden="true">
+            <i class="wwd-mark"></i><i class="wwd-mark"></i><i class="wwd-mark"></i>
+            <i class="wwd-mark"></i><i class="wwd-mark"></i><i class="wwd-mark"></i>
+        </div>
+        <div class="wwd-sticky">
+            <div class="wwd-inner">
+
+                <h2 class="wwd-heading">
+                    What We Do
+                </h2>
+
+                <div class="wwd-content">
+
+                    <div class="wwd-wheel">
+                        <div class="wwd-list">
+                            <h3 class="wwd-item">Incubate Startups</h3>
+                            <h3 class="wwd-item">Mentoring Sessions</h3>
+                            <h3 class="wwd-item">Internship Fair</h3>
+                            <h3 class="wwd-item">IPR Awareness</h3>
+                            <h3 class="wwd-item">Startup Exposition</h3>
+                            <h3 class="wwd-item">Ignite Program</h3>
+                        </div>
+                    </div>
+
+                    <div class="wwd-visual" id="wwdVisual">
+
+                        <div class="wwd-glass-light"></div>
+
+                        <div class="wwd-icon-refraction" id="wwdIconRefraction"></div>
+
+                        <div class="wwd-icon-stage">
+
+                            <div class="wwd-icon">
+                                <i data-icon="rocket"></i>
+                            </div>
+
+                            <div class="wwd-icon">
+                                <i data-icon="messages-square"></i>
+                            </div>
+
+                            <div class="wwd-icon">
+                                <i data-icon="briefcase-business"></i>
+                            </div>
+
+                            <div class="wwd-icon">
+                                <i data-icon="shield-check"></i>
+                            </div>
+
+                            <div class="wwd-icon">
+                                <i data-icon="presentation"></i>
+                            </div>
+
+                            <div class="wwd-icon">
+                                <i data-icon="flame"></i>
+                            </div>
+
+                        </div>
+
+                        <div class="wwd-number">
+                            1
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-        // ---- KUBE Searchbox Liquid Glass generator ----
-        // Searchbox parameters shown in KUBE article:
-        // specular opacity .20, saturation 4, refraction .70, blur 1.0.
-        const liquidGlass = (() => {
-            const nav = document.getElementById('navPill');
-            const filter = document.getElementById('liquid-glass-filter');
-            const displacementImage = document.getElementById('liquidDisplacementImage');
-            const specularImage = document.getElementById('liquidSpecularImage');
-            const displacementNode = document.getElementById('liquidDisplacement');
+    <script>
+        function createLiquidGlass(element, ids, options = {}) {
+            const displacementImage = document.getElementById(ids.displacementImage);
+            const specularImage = document.getElementById(ids.specularImage);
+            const displacementNode = document.getElementById(ids.displacementNode);
 
             const params = {
-                bezelWidth: 18,
-                glassThickness: 70,
-                refractiveIndex: 1.5,
-                refractionLevel: .70,
-                specularOpacity: .20,
-                specularSaturation: 4
+                bezelWidth: options.bezelWidth || 30,
+                glassThickness: options.glassThickness || 105,
+                refractiveIndex: options.refractiveIndex || 1.5,
+                refractionLevel: options.refractionLevel || 1.15
             };
 
-            // KUBE's Convex Squircle surface:
-            // y = fourthRoot(1 - (1-x)^4)
-            const surface = x => Math.pow(
-                Math.max(0, 1 - Math.pow(1 - Math.max(0, Math.min(1, x)), 4)),
-                .25
-            );
+            const surface = x =>
+                Math.pow(
+                    Math.max(
+                        0,
+                        1 - Math.pow(
+                            1 - Math.max(0, Math.min(1, x)),
+                            4
+                        )
+                    ),
+                    .25
+                );
 
             const derivative = x => {
                 const d = .001;
-                return (surface(Math.min(1, x + d)) -
-                    surface(Math.max(0, x - d))) / (2 * d);
+
+                return (
+                    surface(Math.min(1, x + d)) -
+                    surface(Math.max(0, x - d))
+                ) / (2 * d);
             };
 
-            // Snell-Descartes based 2D ray displacement magnitude.
-            function displacementAt(t) {
+            const displacementAt = t => {
                 if (t >= 1) return 0;
-                const slope = derivative(Math.max(.002, Math.min(.998, t)));
-                const theta1 = Math.atan(Math.abs(slope));
-                const theta2 = Math.asin(
-                    Math.min(.999, Math.sin(theta1) / params.refractiveIndex)
-                );
-                const bend = Math.tan(Math.max(0, theta1 - theta2));
-                return bend * params.glassThickness * (1 - t);
-            }
 
-            function roundedRectSDF(px, py, w, h, radius) {
-                const cx = w / 2, cy = h / 2;
-                const qx = Math.abs(px - cx) - (w / 2 - radius);
-                const qy = Math.abs(py - cy) - (h / 2 - radius);
-                const ox = Math.max(qx, 0), oy = Math.max(qy, 0);
-                return Math.hypot(ox, oy) + Math.min(Math.max(qx, qy), 0) - radius;
-            }
+                const slope =
+                    derivative(
+                        Math.max(
+                            .002,
+                            Math.min(.998, t)
+                        )
+                    );
+
+                const theta1 =
+                    Math.atan(
+                        Math.abs(slope)
+                    );
+
+                const theta2 =
+                    Math.asin(
+                        Math.min(
+                            .999,
+                            Math.sin(theta1) /
+                            params.refractiveIndex
+                        )
+                    );
+
+                return (
+                    Math.tan(
+                        Math.max(
+                            0,
+                            theta1 - theta2
+                        )
+                    ) *
+                    params.glassThickness *
+                    (1 - t)
+                );
+            };
+
+            const roundedRectSDF = (px, py, w, h, r) => {
+                const cx = w / 2;
+                const cy = h / 2;
+
+                const qx =
+                    Math.abs(px - cx) -
+                    (w / 2 - r);
+
+                const qy =
+                    Math.abs(py - cy) -
+                    (h / 2 - r);
+
+                const ox = Math.max(qx, 0);
+                const oy = Math.max(qy, 0);
+
+                return (
+                    Math.hypot(ox, oy) +
+                    Math.min(
+                        Math.max(qx, qy),
+                        0
+                    ) -
+                    r
+                );
+            };
 
             function build() {
-                const rect = nav.getBoundingClientRect();
-                const dpr = Math.min(window.devicePixelRatio || 1, 2);
-                const w = Math.max(1, Math.round(rect.width));
-                const h = Math.max(1, Math.round(rect.height));
-                const radius = h / 2;
-                const bezel = Math.min(params.bezelWidth, radius - 1);
+                const rect =
+                    element.getBoundingClientRect();
 
-                // Use CSS pixel resolution. It maps 1:1 to filter coordinates.
-                const canvas = document.createElement('canvas');
+                const w =
+                    Math.max(
+                        1,
+                        Math.round(rect.width)
+                    );
+
+                const h =
+                    Math.max(
+                        1,
+                        Math.round(rect.height)
+                    );
+
+                if (w < 2 || h < 2) return;
+
+                const radius =
+                    Math.min(w, h) *
+                    (options.radiusRatio || .5);
+
+                const bezel =
+                    Math.min(
+                        params.bezelWidth,
+                        Math.min(w, h) / 2 - 1
+                    );
+
+                const canvas =
+                    document.createElement('canvas');
+
                 canvas.width = w;
                 canvas.height = h;
-                const ctx = canvas.getContext('2d', { willReadFrequently: true });
-                const image = ctx.createImageData(w, h);
 
-                const mags = new Float32Array(128);
+                const ctx =
+                    canvas.getContext(
+                        '2d',
+                        {
+                            willReadFrequently: true
+                        }
+                    );
+
+                const image =
+                    ctx.createImageData(w, h);
+
+                const mags =
+                    new Float32Array(128);
+
                 let maxDisp = 0;
+
                 for (let i = 0; i < 128; i++) {
                     const t = i / 127;
                     const m = displacementAt(t);
+
                     mags[i] = m;
-                    if (Number.isFinite(m)) maxDisp = Math.max(maxDisp, m);
+
+                    if (Number.isFinite(m)) {
+                        maxDisp =
+                            Math.max(
+                                maxDisp,
+                                m
+                            );
+                    }
                 }
-                maxDisp = Math.max(maxDisp, 1);
+
+                maxDisp =
+                    Math.max(
+                        maxDisp,
+                        1
+                    );
 
                 for (let y = 0; y < h; y++) {
                     for (let x = 0; x < w; x++) {
-                        const i = (y * w + x) * 4;
-                        const sdf = roundedRectSDF(x + .5, y + .5, w, h, radius);
-                        const inside = Math.max(0, -sdf);
 
-                        let vx = 0, vy = 0;
+                        const i =
+                            (y * w + x) * 4;
+
+                        const sdf =
+                            roundedRectSDF(
+                                x + .5,
+                                y + .5,
+                                w,
+                                h,
+                                radius
+                            );
+
+                        const inside =
+                            Math.max(
+                                0,
+                                -sdf
+                            );
+
+                        let vx = 0;
+                        let vy = 0;
+
                         if (inside < bezel) {
-                            const t = inside / bezel;
-                            const mi = Math.min(127, Math.max(0, Math.round(t * 127)));
-                            const mag = mags[mi] / maxDisp;
 
-                            // Numerical inward normal of rounded-rect distance field.
+                            const t =
+                                inside / bezel;
+
+                            const mi =
+                                Math.min(
+                                    127,
+                                    Math.max(
+                                        0,
+                                        Math.round(t * 127)
+                                    )
+                                );
+
+                            const edge =
+                                1 - t;
+
+                            const edgeRamp =
+                                edge *
+                                edge *
+                                (3 - 2 * edge);
+
+                            const mag =
+                                (mags[mi] / maxDisp) *
+                                (.22 + .78 * edgeRamp);
+
                             const eps = .5;
-                            const gx =
-                                roundedRectSDF(x + .5 + eps, y + .5, w, h, radius) -
-                                roundedRectSDF(x + .5 - eps, y + .5, w, h, radius);
-                            const gy =
-                                roundedRectSDF(x + .5, y + .5 + eps, w, h, radius) -
-                                roundedRectSDF(x + .5, y + .5 - eps, w, h, radius);
-                            const gl = Math.hypot(gx, gy) || 1;
 
-                            // inward vector: convex glass keeps sampling inside
-                            vx = -(gx / gl) * mag;
-                            vy = -(gy / gl) * mag;
+                            const gx =
+                                roundedRectSDF(
+                                    x + .5 + eps,
+                                    y + .5,
+                                    w,
+                                    h,
+                                    radius
+                                ) -
+                                roundedRectSDF(
+                                    x + .5 - eps,
+                                    y + .5,
+                                    w,
+                                    h,
+                                    radius
+                                );
+
+                            const gy =
+                                roundedRectSDF(
+                                    x + .5,
+                                    y + .5 + eps,
+                                    w,
+                                    h,
+                                    radius
+                                ) -
+                                roundedRectSDF(
+                                    x + .5,
+                                    y + .5 - eps,
+                                    w,
+                                    h,
+                                    radius
+                                );
+
+                            const gl =
+                                Math.hypot(gx, gy) || 1;
+
+                            vx =
+                                -(gx / gl) * mag;
+
+                            vy =
+                                -(gy / gl) * mag;
                         }
 
-                        image.data[i] = Math.round(128 + vx * 127);
-                        image.data[i + 1] = Math.round(128 + vy * 127);
+                        image.data[i] =
+                            Math.round(
+                                128 + vx * 127
+                            );
+
+                        image.data[i + 1] =
+                            Math.round(
+                                128 + vy * 127
+                            );
+
                         image.data[i + 2] = 128;
                         image.data[i + 3] = 255;
                     }
                 }
-                ctx.putImageData(image, 0, 0);
 
-                // Separate specular rim map, as KUBE combines refraction + highlight.
-                const spec = document.createElement('canvas');
+                ctx.putImageData(
+                    image,
+                    0,
+                    0
+                );
+
+                const spec =
+                    document.createElement('canvas');
+
                 spec.width = w;
                 spec.height = h;
-                const sctx = spec.getContext('2d');
-                sctx.clearRect(0, 0, w, h);
-                const g = sctx.createLinearGradient(0, 0, w, h);
-                g.addColorStop(0, 'rgba(255,255,255,.48)');
-                g.addColorStop(.28, 'rgba(255,255,255,.10)');
-                g.addColorStop(.65, 'rgba(255,255,255,.03)');
-                g.addColorStop(1, 'rgba(255,255,255,.24)');
-                sctx.strokeStyle = g;
-                sctx.lineWidth = 1;
-                sctx.beginPath();
-                if (sctx.roundRect) {
-                    sctx.roundRect(1.5, 1.5, w - 3, h - 3, Math.max(1, radius - 1.5));
-                } else {
-                    sctx.rect(1.5, 1.5, w - 3, h - 3);
+
+                const sctx =
+                    spec.getContext('2d');
+
+                function rim(inset, width, alpha) {
+
+                    const g =
+                        sctx.createLinearGradient(
+                            0,
+                            0,
+                            w,
+                            h
+                        );
+
+                    g.addColorStop(
+                        0,
+                        `rgba(255,255,255,${.72 * alpha})`
+                    );
+
+                    g.addColorStop(
+                        .16,
+                        `rgba(255,255,255,${.28 * alpha})`
+                    );
+
+                    g.addColorStop(
+                        .4,
+                        `rgba(255,255,255,${.035 * alpha})`
+                    );
+
+                    g.addColorStop(
+                        .64,
+                        `rgba(255,255,255,${.07 * alpha})`
+                    );
+
+                    g.addColorStop(
+                        .84,
+                        `rgba(255,255,255,${.20 * alpha})`
+                    );
+
+                    g.addColorStop(
+                        1,
+                        `rgba(255,255,255,${.48 * alpha})`
+                    );
+
+                    sctx.strokeStyle = g;
+                    sctx.lineWidth = width;
+
+                    sctx.beginPath();
+
+                    if (sctx.roundRect) {
+
+                        sctx.roundRect(
+                            inset,
+                            inset,
+                            w - inset * 2,
+                            h - inset * 2,
+                            Math.max(
+                                1,
+                                radius - inset
+                            )
+                        );
+
+                    } else {
+
+                        sctx.rect(
+                            inset,
+                            inset,
+                            w - inset * 2,
+                            h - inset * 2
+                        );
+
+                    }
+
+                    sctx.stroke();
                 }
-                sctx.stroke();
 
-                filter.setAttribute('x', '0');
-                filter.setAttribute('y', '0');
-                filter.setAttribute('width', String(w));
-                filter.setAttribute('height', String(h));
-                filter.setAttribute('filterUnits', 'userSpaceOnUse');
-                filter.setAttribute('primitiveUnits', 'userSpaceOnUse');
+                rim(
+                    .75,
+                    .8,
+                    .72
+                );
 
-                displacementImage.setAttribute('width', String(w));
-                displacementImage.setAttribute('height', String(h));
-                specularImage.setAttribute('width', String(w));
-                specularImage.setAttribute('height', String(h));
+                if (options.secondaryRim) {
 
-                displacementImage.setAttribute('href', canvas.toDataURL('image/png'));
-                specularImage.setAttribute('href', spec.toDataURL('image/png'));
+                    rim(
+                        2.4,
+                        1.4,
+                        .10
+                    );
 
-                // normalized map is rescaled to the physical max displacement.
+                }
+
+                displacementImage.setAttribute(
+                    'width',
+                    w
+                );
+
+                displacementImage.setAttribute(
+                    'height',
+                    h
+                );
+
+                specularImage.setAttribute(
+                    'width',
+                    w
+                );
+
+                specularImage.setAttribute(
+                    'height',
+                    h
+                );
+
+                displacementImage.setAttribute(
+                    'href',
+                    canvas.toDataURL('image/png')
+                );
+
+                specularImage.setAttribute(
+                    'href',
+                    spec.toDataURL('image/png')
+                );
+
                 displacementNode.setAttribute(
                     'scale',
-                    String(maxDisp * params.refractionLevel)
+                    maxDisp *
+                    params.refractionLevel
                 );
             }
 
             let raf;
+
             const schedule = () => {
                 cancelAnimationFrame(raf);
                 raf = requestAnimationFrame(build);
             };
 
-            if ('ResizeObserver' in window) new ResizeObserver(schedule).observe(nav);
-            window.addEventListener('resize', schedule, { passive: true });
-            window.addEventListener('load', schedule, { once: true });
+            if ('ResizeObserver' in window) {
+                new ResizeObserver(
+                    schedule
+                ).observe(element);
+            }
+
+            window.addEventListener(
+                'resize',
+                schedule,
+                {
+                    passive: true
+                }
+            );
+
+            window.addEventListener(
+                'load',
+                schedule,
+                {
+                    once: true
+                }
+            );
+
             schedule();
-
-            return { rebuild: schedule };
-        })();
-
-        // ---- mobile menu toggle ----
-        const burger = document.getElementById('burger');
-        const menu = document.getElementById('mobileMenu');
-        const navPill = document.getElementById('navPill');
-        const body = document.body;
-
-        function openMenu() {
-            menu.classList.add('open');
-            burger.classList.add('open');
-            navPill.classList.add('menu-open');
-            burger.setAttribute('aria-expanded', 'true');
-            body.classList.add('no-scroll');
         }
+
+        createLiquidGlass(
+            document.getElementById('navPill'),
+            {
+                displacementImage:
+                    'navDisplacementImage',
+
+                specularImage:
+                    'navSpecularImage',
+
+                displacementNode:
+                    'navDisplacement'
+            },
+            {
+                bezelWidth: 30,
+                glassThickness: 105,
+                refractionLevel: 1.15,
+                radiusRatio: .5,
+                secondaryRim: true
+            }
+        );
+
+        createLiquidGlass(
+            document.getElementById('wwdVisual'),
+            {
+                displacementImage:
+                    'wwdDisplacementImage',
+
+                specularImage:
+                    'wwdSpecularImage',
+
+                displacementNode:
+                    'wwdDisplacement'
+            },
+            {
+                bezelWidth: 34,
+                glassThickness: 122,
+                refractionLevel: 1.28,
+                radiusRatio: .11,
+                specularRim: true,
+                secondaryRim: true
+            }
+        );
+
+        const burger =
+            document.getElementById(
+                'burger'
+            );
+
+        const menu =
+            document.getElementById(
+                'mobileMenu'
+            );
+
         function closeMenu() {
-            menu.classList.remove('open');
-            burger.classList.remove('open');
-            navPill.classList.remove('menu-open');
-            burger.setAttribute('aria-expanded', 'false');
-            body.classList.remove('no-scroll');
+
+            menu.classList.remove(
+                'open'
+            );
+
+            burger.classList.remove(
+                'open'
+            );
+
+            burger.setAttribute(
+                'aria-expanded',
+                'false'
+            );
+
+            document.body.classList.remove(
+                'no-scroll'
+            );
+
         }
-        burger.addEventListener('click', () => {
-            menu.classList.contains('open') ? closeMenu() : openMenu();
-        });
-        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 860 && menu.classList.contains('open')) closeMenu();
-        });
+
+        burger.addEventListener(
+            'click',
+            () => {
+                const open =
+                    menu.classList.toggle(
+                        'open'
+                    );
+
+                burger.classList.toggle(
+                    'open',
+                    open
+                );
+
+                burger.setAttribute(
+                    'aria-expanded',
+                    open
+                );
+
+                document.body.classList.toggle(
+                    'no-scroll',
+                    open
+                );
+            }
+        );
+
+        menu
+            .querySelectorAll('a')
+            .forEach(
+                link =>
+                    link.addEventListener(
+                        'click',
+                        closeMenu
+                    )
+            );
+
+        document
+            .querySelectorAll(
+                '[data-icon]'
+            )
+            .forEach(
+                element => {
+                    element.setAttribute(
+                        'data-' + 'lucide',
+                        element.dataset.icon
+                    );
+
+                    element.removeAttribute(
+                        'data-icon'
+                    );
+                }
+            );
+
+        window[
+            'luc' + 'ide'
+        ].createIcons();
+
+        const iconContainers = [
+            ...document.querySelectorAll(
+                '.wwd-icon'
+            )
+        ];
+
+        const firstSvg =
+            iconContainers[0]
+                ?.querySelector('svg');
+
+        if (firstSvg) {
+
+            const ns =
+                'http://www.w3.org/2000/svg';
+
+            const defs =
+                document.createElementNS(
+                    ns,
+                    'defs'
+                );
+
+            const gradient =
+                document.createElementNS(
+                    ns,
+                    'linearGradient'
+                );
+
+            gradient.id =
+                'impactIconGradient';
+
+            gradient.setAttribute(
+                'x1',
+                '0%'
+            );
+
+            gradient.setAttribute(
+                'y1',
+                '0%'
+            );
+
+            gradient.setAttribute(
+                'x2',
+                '100%'
+            );
+
+            gradient.setAttribute(
+                'y2',
+                '100%'
+            );
+
+            [
+                ['0%', '#f4f9ff'],
+                ['13%', '#d8eaff'],
+                ['27%', '#a9d1ff'],
+                ['45%', '#6eaff5'],
+                ['66%', '#3f8fe7'],
+                ['84%', '#246fc9'],
+                ['100%', '#1859aa']
+            ].forEach(
+                ([offset, color]) => {
+
+                    const stop =
+                        document.createElementNS(
+                            ns,
+                            'stop'
+                        );
+
+                    stop.setAttribute(
+                        'offset',
+                        offset
+                    );
+
+                    stop.setAttribute(
+                        'stop-color',
+                        color
+                    );
+
+                    gradient.appendChild(
+                        stop
+                    );
+
+                }
+            );
+
+            defs.appendChild(
+                gradient
+            );
+
+            firstSvg.prepend(
+                defs
+            );
+
+            iconContainers.forEach(
+                container => {
+
+                    const svg =
+                        container.querySelector(
+                            'svg'
+                        );
+
+                    if (svg) {
+
+                        svg.setAttribute(
+                            'stroke',
+                            'url(#impactIconGradient)'
+                        );
+
+                    }
+
+                }
+            );
+        }
+
+        const visual =
+            document.getElementById(
+                'wwdVisual'
+            );
+
+        const refractionLayer =
+            document.getElementById(
+                'wwdIconRefraction'
+            );
+
+        function updateRefractedIcon(index) {
+
+            const source =
+                iconContainers[index]
+                    ?.querySelector('svg');
+
+            if (!source) {
+
+                refractionLayer.innerHTML = '';
+
+                refractionLayer.classList.remove(
+                    'visible'
+                );
+
+                visual.classList.remove(
+                    'has-icon'
+                );
+
+                return;
+            }
+
+            const clone =
+                source.cloneNode(true);
+
+            clone.removeAttribute(
+                'style'
+            );
+
+            clone.setAttribute(
+                'aria-hidden',
+                'true'
+            );
+
+            refractionLayer.replaceChildren(
+                clone
+            );
+
+            requestAnimationFrame(
+                () => {
+                    refractionLayer
+                        .classList
+                        .add(
+                            'visible'
+                        );
+
+                    visual
+                        .classList
+                        .add(
+                            'has-icon'
+                        );
+                }
+            );
+        }
+
+        function clearRefractedIcon() {
+
+            refractionLayer
+                .classList
+                .remove(
+                    'visible'
+                );
+
+            visual
+                .classList
+                .remove(
+                    'has-icon'
+                );
+
+            refractionLayer.innerHTML = '';
+
+        }
+
+        (() => {
+            const section =
+                document.querySelector(
+                    '.what-we-do'
+                );
+
+            const heading =
+                document.querySelector(
+                    '.wwd-heading'
+                );
+
+            const wheel =
+                document.querySelector(
+                    '.wwd-wheel'
+                );
+
+            const items = [
+                ...document.querySelectorAll(
+                    '.wwd-item'
+                )
+            ];
+
+            const icons = [
+                ...document.querySelectorAll(
+                    '.wwd-icon'
+                )
+            ];
+
+            const number =
+                document.querySelector(
+                    '.wwd-number'
+                );
+
+            let raf = 0;
+            let current = -1;
+
+            const clamp =
+                (value, min, max) =>
+                    Math.min(
+                        Math.max(
+                            value,
+                            min
+                        ),
+                        max
+                    );
+
+            const smoothstep =
+                (a, b, x) => {
+                    const t =
+                        clamp(
+                            (x - a) / (b - a),
+                            0,
+                            1
+                        );
+
+                    return (
+                        t *
+                        t *
+                        (3 - 2 * t)
+                    );
+                };
+
+            function render() {
+
+                raf = 0;
+
+                const rect =
+                    section
+                        .getBoundingClientRect();
+
+                const range =
+                    Math.max(
+                        1,
+                        section.offsetHeight -
+                        window.innerHeight
+                    );
+
+                const progress =
+                    clamp(
+                        -rect.top,
+                        0,
+                        range
+                    ) /
+                    range;
+
+                const highlight =
+                    smoothstep(
+                        .015,
+                        .105,
+                        progress
+                    );
+
+                heading.style.setProperty(
+                    '--heading-highlight',
+                    highlight.toFixed(4)
+                );
+
+                const programmeStart = .15;
+
+                const reveal =
+                    smoothstep(
+                        .135,
+                        .185,
+                        progress
+                    );
+
+                wheel.style.setProperty(
+                    '--wheel-reveal',
+                    reveal.toFixed(4)
+                );
+
+                if (
+                    progress <
+                    programmeStart
+                ) {
+
+                    items.forEach(
+                        item => {
+                            item.classList.remove(
+                                'active'
+                            );
+
+                            item.style.setProperty(
+                                '--wheel-opacity',
+                                '0'
+                            );
+                        }
+                    );
+
+                    icons.forEach(
+                        icon =>
+                            icon.classList.remove(
+                                'active'
+                            )
+                    );
+
+                    number.classList.remove(
+                        'visible'
+                    );
+
+                    if (current !== -1) {
+
+                        clearRefractedIcon();
+
+                    }
+
+                    current = -1;
+
+                    return;
+                }
+
+                const programmeProgress =
+                    clamp(
+                        (
+                            progress -
+                            programmeStart
+                        ) /
+                        (
+                            1 -
+                            programmeStart
+                        ),
+                        0,
+                        1
+                    );
+
+                const position =
+                    programmeProgress *
+                    (items.length - 1);
+
+                const active =
+                    clamp(
+                        Math.round(
+                            position
+                        ),
+                        0,
+                        items.length - 1
+                    );
+
+                const spacing =
+                    Math.min(
+                        Math.max(
+                            window.innerHeight *
+                            .105,
+                            68
+                        ),
+                        88
+                    );
+
+                items.forEach(
+                    (item, index) => {
+
+                        const delta =
+                            index - position;
+
+                        const distance =
+                            Math.abs(
+                                delta
+                            );
+
+                        const y =
+                            delta *
+                            spacing;
+
+                        const opacity =
+                            Math.max(
+                                .24,
+                                1 -
+                                distance *
+                                .28
+                            ) *
+                            reveal;
+
+                        const scale =
+                            Math.max(
+                                .82,
+                                1 -
+                                distance *
+                                .065
+                            );
+
+                        const blur =
+                            Math.max(
+                                0,
+                                (
+                                    distance -
+                                    1.85
+                                ) *
+                                .18
+                            );
+
+                        item.style.setProperty(
+                            '--wheel-y',
+                            `${y}px`
+                        );
+
+                        item.style.setProperty(
+                            '--wheel-opacity',
+                            opacity.toFixed(3)
+                        );
+
+                        item.style.setProperty(
+                            '--wheel-scale',
+                            scale.toFixed(3)
+                        );
+
+                        item.style.setProperty(
+                            '--wheel-blur',
+                            `${blur.toFixed(2)}px`
+                        );
+
+                        item.classList.toggle(
+                            'active',
+                            index === active
+                        );
+
+                    }
+                );
+
+                if (active !== current) {
+
+                    current = active;
+
+                    icons.forEach(
+                        (icon, index) => {
+
+                            icon.classList.toggle(
+                                'active',
+                                index === active
+                            );
+
+                        }
+                    );
+
+                    number.textContent =
+                        String(
+                            active + 1
+                        );
+
+                    updateRefractedIcon(
+                        active
+                    );
+                }
+
+                number.classList.add(
+                    'visible'
+                );
+            }
+
+            function queue() {
+
+                if (!raf) {
+
+                    raf =
+                        requestAnimationFrame(
+                            render
+                        );
+
+                }
+
+            }
+
+            render();
+
+            window.addEventListener(
+                'scroll',
+                queue,
+                {
+                    passive: true
+                }
+            );
+
+            window.addEventListener(
+                'resize',
+                queue,
+                {
+                    passive: true
+                }
+            );
+        })();
     </script>
 
 </body>
