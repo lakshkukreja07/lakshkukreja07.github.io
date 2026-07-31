@@ -76,8 +76,8 @@
             inset: 0;
             z-index: 900;
             background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             opacity: 0;
             pointer-events: none;
             transition: opacity .45s var(--ease);
@@ -97,7 +97,7 @@
         }
 
         .nav-pill {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -317,13 +317,14 @@
 
         .hero-tag {
             display: block;
-            font-size: var(--fs-stat);
-            letter-spacing: 1px;
+            font-size: 14px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            opacity: 0.85;
+            opacity: 1;
             margin-bottom: 20px;
             font-weight: 400;
             font-family: var(--font-primary);
+            color: #ffffff;
         }
 
         h1 {
@@ -334,6 +335,7 @@
             letter-spacing: -0.3px;
             text-transform: uppercase;
             font-family: var(--font-heading);
+            color: #ffffff;
         }
 
         .hero-info {
@@ -341,9 +343,10 @@
             font-size: 18px;
             line-height: 1.6;
             max-width: 480px;
-            opacity: 0.95;
+            opacity: 1;
             font-weight: 400;
             font-family: var(--font-primary);
+            color: #ffffff;
         }
 
         .hero-stats {
@@ -352,7 +355,7 @@
             align-items: center;
             padding-top: 10px;
             padding-bottom: 4px;
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid rgba(255, 255, 255, 0.5);
             font-size: var(--fs-stat);
             letter-spacing: 0.8px;
             text-transform: uppercase;
@@ -550,6 +553,12 @@
                 --fs-tagline: 10px;
             }
 
+            .hero-tag {
+                font-size: 11px;
+                letter-spacing: 1.5px;
+                margin-bottom: 12px;
+            }
+
             .stats-row {
                 grid-template-columns: 1fr;
                 gap: 8px;
@@ -627,11 +636,6 @@
                 width: 16px;
             }
 
-            .hero-tag {
-                font-size: 7px;
-                margin-bottom: 12px;
-            }
-
             .hero-info {
                 font-size: 14px;
             }
@@ -639,6 +643,7 @@
             .hero-stats {
                 font-size: 7px;
                 padding-top: 8px;
+                border-top-width: 2px;
             }
 
             .about-eyebrow {
@@ -653,6 +658,11 @@
         @media (min-width: 481px) and (max-width: 768px) {
             :root {
                 --fs-tagline: 11px;
+            }
+
+            .hero-tag {
+                font-size: 12px;
+                letter-spacing: 1.8px;
             }
 
             .stats-row {
@@ -710,6 +720,7 @@
 
             .hero-stats {
                 padding-top: 10px;
+                border-top-width: 2px;
             }
 
             .about-split {
@@ -726,6 +737,11 @@
                 grid-template-columns: 1.1fr 1fr;
                 gap: 50px;
                 align-items: center;
+            }
+
+            .hero-tag {
+                font-size: 13px;
+                letter-spacing: 2px;
             }
 
             .stat-num {
@@ -825,12 +841,9 @@
                 font-size: 16px;
             }
 
-            .hero-tag {
-                margin-bottom: 16px;
-            }
-
             .hero-stats {
                 padding-top: 12px;
+                border-top-width: 2px;
             }
 
             .about-header {
@@ -847,6 +860,11 @@
                 grid-template-columns: 1.1fr 1fr;
                 gap: 60px;
                 align-items: center;
+            }
+
+            .hero-tag {
+                font-size: 14px;
+                letter-spacing: 2px;
             }
 
             .stat-num {
@@ -950,13 +968,10 @@
                 font-size: 17px;
             }
 
-            .hero-tag {
-                margin-bottom: 16px;
-            }
-
             .hero-stats {
                 padding-top: 14px;
                 padding-bottom: 4px;
+                border-top-width: 2px;
             }
 
             .about-header {
@@ -985,6 +1000,11 @@
                 grid-template-columns: 1.1fr 1fr;
                 gap: 70px;
                 align-items: center;
+            }
+
+            .hero-tag {
+                font-size: 15px;
+                letter-spacing: 2.5px;
             }
 
             .stat-num {
@@ -1053,13 +1073,10 @@
                 font-size: 18px;
             }
 
-            .hero-tag {
-                margin-bottom: 16px;
-            }
-
             .hero-stats {
                 padding-top: 14px;
                 padding-bottom: 4px;
+                border-top-width: 2px;
             }
 
             .nav-panel.open {
@@ -1099,6 +1116,12 @@
                 height: 100svh;
                 min-height: 100svh;
                 padding: 30px 20px;
+            }
+
+            .hero-tag {
+                font-size: 10px;
+                letter-spacing: 1.5px;
+                margin-bottom: 8px;
             }
 
             .about-headline {
@@ -1163,11 +1186,6 @@
                 border-radius: 10px;
             }
 
-            .hero-tag {
-                font-size: 6px;
-                margin-bottom: 8px;
-            }
-
             .hero-info {
                 font-size: 11px;
                 margin-top: 8px;
@@ -1176,6 +1194,7 @@
             .hero-stats {
                 font-size: 6px;
                 padding-top: 6px;
+                border-top-width: 2px;
             }
 
             .nav-top {
