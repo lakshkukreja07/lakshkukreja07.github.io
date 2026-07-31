@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Incubator & Accelerator Center | Jai Hind College</title>
+    <link rel="icon"
+        href="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=BBH+Hegarty&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Stack+Sans+Headline:wght@200..700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=BBH+Hegarty&family=Stack+Sans+Headline:wght@200..700&display=swap"
         rel="stylesheet">
 
     <style>
@@ -38,7 +40,6 @@
             --bg-color: #ffffff;
             --font-primary: 'Stack Sans Headline';
             --font-heading: 'Stack Sans Headline';
-            --font-mono: 'Roboto Mono';
             --ink: #1a1a1a;
             --ink-dim: rgba(26, 26, 26, 0.38);
             --ink-mid: rgba(26, 26, 26, 0.58);
@@ -64,11 +65,6 @@
 
         body.menu-open {
             overflow: hidden;
-        }
-
-        .mono-text {
-            font-family: var(--font-mono);
-            font-weight: 400;
         }
 
         .backdrop {
@@ -385,7 +381,7 @@
         }
 
         .about-eyebrow {
-            font-family: var(--font-mono);
+            font-family: var(--font-primary);
             font-size: 12px;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -481,7 +477,7 @@
         }
 
         .stat-label {
-            font-family: var(--font-mono);
+            font-family: var(--font-primary);
             font-size: 10px;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -519,7 +515,7 @@
         }
 
         .pillar-index {
-            font-family: var(--font-mono);
+            font-family: var(--font-primary);
             font-size: 14px;
             font-weight: 500;
             letter-spacing: 1px;
@@ -566,7 +562,7 @@
         }
 
         .wwd-eyebrow {
-            font-family: var(--font-mono);
+            font-family: var(--font-primary);
             font-size: 12px;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -609,7 +605,6 @@
 
         .wwd-grid-wrapper {
             border-radius: 14px;
-            overflow: hidden;
             border: 1px solid var(--rule);
         }
 
@@ -617,8 +612,9 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1px;
-            overflow: visible;
             background: var(--rule);
+            border-radius: 14px;
+            overflow: hidden;
         }
 
         .wwd-card {
@@ -628,27 +624,24 @@
             flex-direction: column;
             gap: 12px;
             position: relative;
-            overflow: visible;
-            transition: background 0.3s, box-shadow 0.3s;
+            overflow: hidden;
             cursor: default;
         }
 
-        .wwd-card:hover {
-            background: rgba(26, 26, 26, 0.03);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        .wwd-card>*:not(.wwd-card-num) {
+            position: relative;
+            z-index: 1;
         }
 
         .wwd-card-num {
             position: absolute;
-            bottom: -10px;
-            right: 10px;
-            font-family: var(--font-mono);
-            font-size: 110px;
-            font-weight: 700;
-            font-style: italic;
-            color: rgba(26, 26, 26, 0.06);
-            line-height: 1;
-            letter-spacing: -2px;
+            bottom: 14px;
+            right: 16px;
+            font-family: var(--font-primary);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--ink-dim);
             pointer-events: none;
             user-select: none;
         }
@@ -657,8 +650,6 @@
             width: 40px;
             height: 40px;
             color: var(--ink);
-            position: relative;
-            z-index: 1;
         }
 
         .wwd-card h4 {
@@ -807,12 +798,6 @@
                 padding: 20px 16px 16px;
             }
 
-            .wwd-card-num {
-                font-size: 80px;
-                bottom: -45px;
-                right: 8px;
-            }
-
             .wwd-card h3 {
                 font-size: 15px;
             }
@@ -906,12 +891,6 @@
 
             .wwd-card {
                 padding: 24px 20px 20px;
-            }
-
-            .wwd-card-num {
-                font-size: 90px;
-                bottom: -50px;
-                right: 10px;
             }
         }
 
@@ -1049,11 +1028,6 @@
 
             .wwd-card {
                 padding: 24px 20px 20px;
-            }
-
-            .wwd-card-num {
-                font-size: 95px;
-                bottom: -55px;
             }
         }
 
@@ -1198,11 +1172,6 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            .wwd-card-num {
-                font-size: 105px;
-                bottom: -58px;
-            }
-
             :root {
                 --fs-tagline: 12px;
                 --fs-menu-item: 15px;
@@ -1327,12 +1296,6 @@
 
             .wwd-grid {
                 grid-template-columns: repeat(3, 1fr);
-            }
-
-            .wwd-card-num {
-                font-size: 110px;
-                bottom: -60px;
-                right: 12px;
             }
 
             :root {
@@ -1479,12 +1442,6 @@
                 padding: 14px 12px 12px;
             }
 
-            .wwd-card-num {
-                font-size: 55px;
-                bottom: -30px;
-                right: 8px;
-            }
-
             .wwd-card h3 {
                 font-size: 12px;
             }
@@ -1502,7 +1459,7 @@
         <div class="nav-pill" id="navPill">
             <div class="nav-top">
                 <a href="#" class="logo" aria-label="Home"></a>
-                <span class="tagline mono-text">Let's Incubate</span>
+                <span class="tagline">Let's Incubate</span>
                 <button class="burger" id="burger" aria-label="Menu">
                     <span></span><span></span><span></span>
                 </button>
@@ -1526,7 +1483,7 @@
         <div class="hero-content">
             <div class="hero-main">
                 <div class="headline-block">
-                    <span class="hero-tag mono-text">[ Incubator & Accelerator Center ]</span>
+                    <span class="hero-tag">[ Incubator & Accelerator Center ]</span>
                     <h1>Build A New Journey With Us, <br>From Ideas To Impact.</h1>
                 </div>
                 <p class="hero-info">
@@ -1535,8 +1492,11 @@
                 </p>
             </div>
             <div class="hero-stats">
-                <span class="mono-text">Initiative By Jai Hind College</span>
-                <span class="mono-text">Made In India</span>
+                <span class="hero-stat-left"><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
+                        height="18" style="vertical-align:middle;margin-right:8px;opacity:0.85;">Initiative By Jai Hind
+                    College</span>
+                <span>Made In India</span>
             </div>
         </div>
     </section>
