@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Events | Jai Hind Incubator</title>
+    <link rel="icon"
+        href="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap"
+        rel="stylesheet">
+    <style>
+        ::selection {
+            color: #fafafa;
+            background: #444444;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --ink: #1a1a1a;
+            --ink-dim: rgba(26, 26, 26, 0.38);
+            --ink-mid: rgba(26, 26, 26, 0.58);
+            --rule: rgba(26, 26, 26, 0.1);
+            --accent: #2563eb;
+            --font: 'Stack Sans Headline', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--font);
+            overflow-x: hidden;
+        }
+
+        .events {
+            padding: 80px 14px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .events-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .events-eyebrow {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--ink-dim);
+            white-space: nowrap;
+        }
+
+        .events-rule {
+            flex: 1;
+            height: 1px;
+            background: var(--rule);
+        }
+
+        .events-title {
+            font-size: clamp(38px, 6vw, 72px);
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.05;
+            color: var(--ink);
+            margin-bottom: 50px;
+            letter-spacing: -0.5px;
+        }
+
+        .highlight {
+            position: relative;
+            display: inline-block;
+            color: var(--ink);
+            z-index: 0;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            inset: 0 -12px;
+            background: #86b7ee;
+            border-radius: 2px;
+            z-index: -1;
+        }
+
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .event-row {
+            display: flex;
+            flex-direction: column;
+            padding: 28px;
+            border-bottom: 1px solid var(--rule);
+            cursor: default;
+            transition: background .3s;
+            gap: 16px;
+        }
+
+        .event-row:last-child {
+            border-bottom: none;
+        }
+
+        .event-row:hover {
+            background: rgba(26, 26, 26, 0.02);
+        }
+
+        .event-top {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .event-num-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .event-num {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--ink-dim);
+        }
+
+        .event-tag {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .event-meta-str {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: 0.2px;
+        }
+
+        .event-row h3 {
+            font-size: clamp(20px, 3vw, 30px);
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: var(--ink);
+            line-height: 1.1;
+        }
+
+        .event-row p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--ink-mid);
+        }
+
+        .event-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--rule);
+            gap: 12px;
+        }
+
+        .event-footer-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* BELL */
+        .cal-btn {
+            position: relative;
+            background: none;
+            border: 1px solid var(--ink-dim);
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 5px 7px;
+            display: flex;
+            align-items: center;
+            color: var(--ink-dim);
+            transition: color .2s, border-color .2s;
+        }
+
+        .cal-btn:hover {
+            color: var(--ink);
+            border-color: var(--ink);
+        }
+
+        .cal-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .cal-popup {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 0;
+            background: #fff;
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(4px);
+            transition: opacity .2s, transform .2s;
+        }
+
+        .cal-popup.open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .cal-popup a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 16px;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--rule);
+            transition: background .15s;
+        }
+
+        .cal-popup a:last-child {
+            border-bottom: none;
+        }
+
+        .cal-popup a:hover {
+            background: rgba(26, 26, 26, 0.03);
+        }
+
+        .cal-popup a svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+        }
+
+        @media(min-width:769px) {
+            .events {
+                padding: 100px 50px 80px;
+                min-height: auto;
+            }
+
+            .event-row {
+                padding: 32px;
+            }
+        }
+
+        @media(min-width:481px) and (max-width:768px) {
+            .events {
+                padding: 70px 20px 50px;
+                min-height: auto;
+            }
+        }
+
+        @media(max-width:480px) {
+            .events {
+                padding: 60px 14px 40px;
+                min-height: auto;
+            }
+
+            .events-header {
+                margin-bottom: 30px;
+            }
+
+            .events-title {
+                margin-bottom: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="events" id="events">
+        <div class="events-header">
+            <span class="events-eyebrow">[ Events ]</span>
+            <div class="events-rule"></div>
+        </div>
+
+        <h2 class="events-title">Don't Miss<br>What's <span class="highlight">Coming.</span></h2>
+
+        <div class="event-list">
+
+            <div class="event-row">
+                <div class="event-top">
+                    <div class="event-num-row"><span class="event-num">01</span><span class="event-tag">Workshop</span>
+                    </div>
+                    <h3>Ecosystem Discovery</h3>
+                    <p>Welcome to the Jai Hind College Incubator &amp; Accelerator Centre. Meet the newly elected
+                        2026–2027 core team and discover how our entrepreneurial ecosystem, incubation programs, and
+                        flagship events help transform ideas into impactful ventures.</p>
+                </div>
+                <div class="event-footer">
+                    <div class="event-footer-left">
+                        <button class="cal-btn" onclick="toggleCal(this)" aria-label="Add to calendar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10.268 21a2 2 0 0 0 3.464 0" />
+                                <path
+                                    d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
+                            </svg>
+                            <div class="cal-popup">
+                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ecosystem+Discovery+%E2%80%93+Jai+Hind+Incubator&dates=20260808T090000Z/20260808T170000Z&details=Welcome+to+the+Jai+Hind+College+Incubator+%26+Accelerator+Centre.&location=Jai+Hind+College%2C+Mumbai"
+                                    target="_blank">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                    Google Calendar
+                                </a>
+                                <a href="#"
+                                    href="javascript:openAppleCal('Ecosystem+Discovery+–+Jai+Hind+Incubator','20260808T090000Z','20260808T170000Z','Jai+Hind+College,+Mumbai','Welcome+to+the+Jai+Hind+College+Incubator')"
+                                    onclick="return openAppleCal('Ecosystem+Discovery','20260808T090000Z','20260808T170000Z','Jai+Hind+College,+Mumbai','Welcome+to+the+Jai+Hind+College+Incubator+%26+Accelerator+Centre.')"
+                                    href="#" ">
+                                <svg viewBox=" 0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z" />
+                                    <path d="M12 6v6l4 2" /></svg>
+                                    Apple Calendar
+                                </a>
+                            </div>
+                        </button>
+                        <span class="event-meta-str">8th August, 2026</span>
+                    </div>
+                    <span class="event-meta-str">Jai Hind College, Mumbai</span>
+                </div>
+            </div>
+
+            <div class="event-row">
+                <div class="event-top">
+                    <div class="event-num-row"><span class="event-num">02</span><span class="event-tag">Annual</span>
+                    </div>
+                    <h3>Internship Fair</h3>
+                    <p>Connect with leading companies offering incredible internship opportunities. Whether you're a
+                        startup seeking passionate talent or a student ready to make an impact, this fair is your
+                        gateway to growth and learning.</p>
+                </div>
+                <div class="event-footer">
+                    <div class="event-footer-left">
+                        <button class="cal-btn" onclick="toggleCal(this)" aria-label="Add to calendar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10.268 21a2 2 0 0 0 3.464 0" />
+                                <path
+                                    d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
+                            </svg>
+                            <div class="cal-popup">
+                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Internship+Fair+%E2%80%93+Jai+Hind+Incubator&dates=20270115T090000Z/20270115T170000Z&details=Connect+with+leading+companies+offering+incredible+internship+opportunities.&location=Jai+Hind+College%2C+Mumbai"
+                                    target="_blank">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                    Google Calendar
+                                </a>
+                                <a href="#"
+                                    onclick="openAppleCal('Internship Fair','20270115T090000Z','20270115T170000Z','Jai Hind College, Mumbai','Connect with leading companies offering incredible internship opportunities.');return false;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z" />
+                                        <path d="M12 6v6l4 2" />
+                                    </svg>
+                                    Apple Calendar
+                                </a>
+                            </div>
+                        </button>
+                        <span class="event-meta-str">15th January, 2027</span>
+                    </div>
+                    <span class="event-meta-str">Jai Hind College, Mumbai</span>
+                </div>
+            </div>
+
+            <div class="event-row">
+                <div class="event-top">
+                    <div class="event-num-row"><span class="event-num">03</span><span class="event-tag">Flagship</span>
+                    </div>
+                    <h3>Startup Exposition</h3>
+                    <p>Step into a world of innovation where industry experts mentor, guide, and inspire. Gain insights,
+                        showcase your ideas, and build meaningful connections in an ecosystem buzzing with
+                        entrepreneurial energy.</p>
+                </div>
+                <div class="event-footer">
+                    <div class="event-footer-left">
+                        <button class="cal-btn" onclick="toggleCal(this)" aria-label="Add to calendar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10.268 21a2 2 0 0 0 3.464 0" />
+                                <path
+                                    d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
+                            </svg>
+                            <div class="cal-popup">
+                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Startup+Exposition+%E2%80%93+Jai+Hind+Incubator&dates=20250117T090000Z/20250117T170000Z&details=Showcase+your+ideas+and+build+meaningful+connections.&location=Jai+Hind+College%2C+Mumbai"
+                                    target="_blank">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                    Google Calendar
+                                </a>
+                                <a href="#"
+                                    onclick="openAppleCal('Startup Exposition','20250117T090000Z','20250117T170000Z','Jai Hind College, Mumbai','Showcase your ideas and build meaningful connections.');return false;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z" />
+                                        <path d="M12 6v6l4 2" />
+                                    </svg>
+                                    Apple Calendar
+                                </a>
+                            </div>
+                        </button>
+                        <span class="event-meta-str">17th January, 2025</span>
+                    </div>
+                    <span class="event-meta-str">Jai Hind College, Mumbai</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        function toggleCal(btn) {
+            const popup = btn.querySelector('.cal-popup');
+            const isOpen = popup.classList.contains('open');
+            document.querySelectorAll('.cal-popup.open').forEach(p => p.classList.remove('open'));
+            if (!isOpen) popup.classList.add('open');
+        }
+
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.cal-btn')) {
+                document.querySelectorAll('.cal-popup.open').forEach(p => p.classList.remove('open'));
+            }
+        });
+
+        function downloadIcs(title, start, end, location, description) {
+            const ics = [
+                'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Jai Hind Incubator//EN',
+                'BEGIN:VEVENT',
+                'DTSTART:' + start,
+                'DTEND:' + end,
+                'SUMMARY:' + title + ' – Jai Hind Incubator',
+                'DESCRIPTION:' + description,
+                'LOCATION:' + location,
+                'END:VEVENT', 'END:VCALENDAR'
+            ].join('\r\n');
+            const a = document.createElement('a');
+            a.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+            a.download = title.replace(/ /g, '_') + '.ics';
+            a.click();
+        }
+    </script>
+</body>
+
+</html>
