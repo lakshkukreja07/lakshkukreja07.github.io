@@ -192,19 +192,17 @@
         .cal-btn {
             position: relative;
             background: none;
-            border: 1px solid var(--ink-dim);
-            border-radius: 6px;
+            border: none;
             cursor: pointer;
-            padding: 5px 7px;
+            padding: 4px;
             display: flex;
             align-items: center;
-            color: var(--ink-dim);
-            transition: color .2s, border-color .2s;
+            color: var(--ink);
+            transition: opacity .2s;
         }
 
         .cal-btn:hover {
-            color: var(--ink);
-            border-color: var(--ink);
+            opacity: 0.6;
         }
 
         .cal-btn svg {
@@ -212,56 +210,7 @@
             height: 16px;
         }
 
-        .cal-popup {
-            position: absolute;
-            bottom: calc(100% + 8px);
-            left: 0;
-            background: #fff;
-            border: 1px solid var(--rule);
-            border-radius: 10px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            white-space: nowrap;
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(4px);
-            transition: opacity .2s, transform .2s;
-        }
 
-        .cal-popup.open {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
-
-        .cal-popup a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 11px 16px;
-            font-family: var(--font);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--ink);
-            text-decoration: none;
-            border-bottom: 1px solid var(--rule);
-            transition: background .15s;
-        }
-
-        .cal-popup a:last-child {
-            border-bottom: none;
-        }
-
-        .cal-popup a:hover {
-            background: rgba(26, 26, 26, 0.03);
-        }
-
-        .cal-popup a svg {
-            width: 15px;
-            height: 15px;
-            flex-shrink: 0;
-        }
 
         @media(min-width:769px) {
             .events {
@@ -320,36 +269,13 @@
                 </div>
                 <div class="event-footer">
                     <div class="event-footer-left">
-                        <button class="cal-btn" onclick="toggleCal(this)" aria-label="Add to calendar">
+                        <button class="cal-btn" onclick="notifyMe(this)" aria-label="Set reminder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M10.268 21a2 2 0 0 0 3.464 0" />
                                 <path
                                     d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
                             </svg>
-                            <div class="cal-popup">
-                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ecosystem+Discovery+%E2%80%93+Jai+Hind+Incubator&dates=20260808T090000Z/20260808T170000Z&details=Welcome+to+the+Jai+Hind+College+Incubator+%26+Accelerator+Centre.&location=Jai+Hind+College%2C+Mumbai"
-                                    target="_blank">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                                        <line x1="16" y1="2" x2="16" y2="6" />
-                                        <line x1="8" y1="2" x2="8" y2="6" />
-                                        <line x1="3" y1="10" x2="21" y2="10" />
-                                    </svg>
-                                    Google Calendar
-                                </a>
-                                <a href="#"
-                                    href="javascript:openAppleCal('Ecosystem+Discovery+–+Jai+Hind+Incubator','20260808T090000Z','20260808T170000Z','Jai+Hind+College,+Mumbai','Welcome+to+the+Jai+Hind+College+Incubator')"
-                                    onclick="return openAppleCal('Ecosystem+Discovery','20260808T090000Z','20260808T170000Z','Jai+Hind+College,+Mumbai','Welcome+to+the+Jai+Hind+College+Incubator+%26+Accelerator+Centre.')"
-                                    href="#" ">
-                                <svg viewBox=" 0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z" />
-                                    <path d="M12 6v6l4 2" /></svg>
-                                    Apple Calendar
-                                </a>
-                            </div>
                         </button>
                         <span class="event-meta-str">8th August, 2026</span>
                     </div>
@@ -368,35 +294,13 @@
                 </div>
                 <div class="event-footer">
                     <div class="event-footer-left">
-                        <button class="cal-btn" onclick="toggleCal(this)" aria-label="Add to calendar">
+                        <button class="cal-btn" onclick="notifyMe(this)" aria-label="Set reminder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M10.268 21a2 2 0 0 0 3.464 0" />
                                 <path
                                     d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
                             </svg>
-                            <div class="cal-popup">
-                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Internship+Fair+%E2%80%93+Jai+Hind+Incubator&dates=20270115T090000Z/20270115T170000Z&details=Connect+with+leading+companies+offering+incredible+internship+opportunities.&location=Jai+Hind+College%2C+Mumbai"
-                                    target="_blank">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                                        <line x1="16" y1="2" x2="16" y2="6" />
-                                        <line x1="8" y1="2" x2="8" y2="6" />
-                                        <line x1="3" y1="10" x2="21" y2="10" />
-                                    </svg>
-                                    Google Calendar
-                                </a>
-                                <a href="#"
-                                    onclick="openAppleCal('Internship Fair','20270115T090000Z','20270115T170000Z','Jai Hind College, Mumbai','Connect with leading companies offering incredible internship opportunities.');return false;">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z" />
-                                        <path d="M12 6v6l4 2" />
-                                    </svg>
-                                    Apple Calendar
-                                </a>
-                            </div>
                         </button>
                         <span class="event-meta-str">15th January, 2027</span>
                     </div>
@@ -415,35 +319,13 @@
                 </div>
                 <div class="event-footer">
                     <div class="event-footer-left">
-                        <button class="cal-btn" onclick="toggleCal(this)" aria-label="Add to calendar">
+                        <button class="cal-btn" onclick="notifyMe(this)" aria-label="Set reminder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M10.268 21a2 2 0 0 0 3.464 0" />
                                 <path
                                     d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
                             </svg>
-                            <div class="cal-popup">
-                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Startup+Exposition+%E2%80%93+Jai+Hind+Incubator&dates=20250117T090000Z/20250117T170000Z&details=Showcase+your+ideas+and+build+meaningful+connections.&location=Jai+Hind+College%2C+Mumbai"
-                                    target="_blank">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                                        <line x1="16" y1="2" x2="16" y2="6" />
-                                        <line x1="8" y1="2" x2="8" y2="6" />
-                                        <line x1="3" y1="10" x2="21" y2="10" />
-                                    </svg>
-                                    Google Calendar
-                                </a>
-                                <a href="#"
-                                    onclick="openAppleCal('Startup Exposition','20250117T090000Z','20250117T170000Z','Jai Hind College, Mumbai','Showcase your ideas and build meaningful connections.');return false;">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z" />
-                                        <path d="M12 6v6l4 2" />
-                                    </svg>
-                                    Apple Calendar
-                                </a>
-                            </div>
                         </button>
                         <span class="event-meta-str">17th January, 2025</span>
                     </div>
@@ -455,34 +337,61 @@
     </section>
 
     <script>
-        function toggleCal(btn) {
-            const popup = btn.querySelector('.cal-popup');
-            const isOpen = popup.classList.contains('open');
-            document.querySelectorAll('.cal-popup.open').forEach(p => p.classList.remove('open'));
-            if (!isOpen) popup.classList.add('open');
-        }
+        const EVENTS = [
+            { title: 'Ecosystem Discovery', date: '8th August 2026', ts: '2026-08-01T10:55:00' },
+            { title: 'Internship Fair', date: '15th January 2027', ts: '2027-01-15T08:00:00' },
+            { title: 'Startup Exposition', date: '17th January 2025', ts: '2025-01-17T08:00:00' },
+        ];
+        const KEY = 'jhc_notif_';
 
-        document.addEventListener('click', e => {
-            if (!e.target.closest('.cal-btn')) {
-                document.querySelectorAll('.cal-popup.open').forEach(p => p.classList.remove('open'));
-            }
+        // Restore blue bells on load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.cal-btn').forEach((btn, i) => {
+                if (localStorage.getItem(KEY + i)) btn.style.color = 'var(--accent)';
+            });
         });
 
-        function downloadIcs(title, start, end, location, description) {
-            const ics = [
-                'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Jai Hind Incubator//EN',
-                'BEGIN:VEVENT',
-                'DTSTART:' + start,
-                'DTEND:' + end,
-                'SUMMARY:' + title + ' – Jai Hind Incubator',
-                'DESCRIPTION:' + description,
-                'LOCATION:' + location,
-                'END:VEVENT', 'END:VCALENDAR'
-            ].join('\r\n');
-            const a = document.createElement('a');
-            a.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
-            a.download = title.replace(/ /g, '_') + '.ics';
-            a.click();
+        function notifyMe(btn) {
+            const idx = [...document.querySelectorAll('.cal-btn')].indexOf(btn);
+            const ev = EVENTS[idx];
+            if (!('Notification' in window)) { alert('Notifications not supported.'); return; }
+            if (Notification.permission === 'granted') { toggle(idx, ev, btn); }
+            else if (Notification.permission !== 'denied') {
+                Notification.requestPermission().then(p => { if (p === 'granted') toggle(idx, ev, btn); });
+            } else { alert('Notifications blocked — enable them in browser settings.'); }
+        }
+
+        function toggle(idx, ev, btn) {
+            const key = KEY + idx;
+            if (localStorage.getItem(key)) {
+                localStorage.removeItem(key);
+                btn.style.color = 'var(--ink)';
+                toast('Reminder removed for ' + ev.title);
+            } else {
+                localStorage.setItem(key, '1');
+                btn.style.color = 'var(--accent)';
+                toast('Reminder set for ' + ev.date + ' at 8am');
+                // Immediate test notification so user sees it works
+                new Notification('Reminder set — ' + ev.title, {
+                    body: ev.date + ' · Jai Hind College, Mumbai',
+                    icon: 'https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png'
+                });
+            }
+        }
+
+        function toast(msg) {
+            let t = document.getElementById('jhc-toast');
+            if (!t) {
+                t = document.createElement('div');
+                t.id = 'jhc-toast';
+                t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--ink);color:#fff;font-family:var(--font);font-size:13px;padding:12px 20px;border-radius:8px;z-index:9999;opacity:0;transition:opacity .3s,transform .3s;white-space:nowrap;pointer-events:none;';
+                document.body.appendChild(t);
+            }
+            t.textContent = msg;
+            t.style.opacity = '1';
+            t.style.transform = 'translateX(-50%) translateY(0)';
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(10px)'; }, 3000);
         }
     </script>
 </body>
