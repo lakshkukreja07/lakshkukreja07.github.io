@@ -644,17 +644,9 @@
             border-radius: 3px;
             padding: 14px 14px 0;
             border: 1px solid rgba(26, 26, 26, .1);
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .07)) drop-shadow(0 6px 16px rgba(0, 0, 0, .07));
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .07), 0 8px 20px rgba(0, 0, 0, .3);
             transition: transform .4s var(--ease), filter .4s var(--ease);
-            transform: translateZ(0);
             touch-action: pan-y
-        }
-
-        @media(hover:hover) {
-            .pol:hover {
-                transform: translateY(-8px) scale(1.015) translateZ(0);
-                filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .10)) drop-shadow(0 20px 40px rgba(0, 0, 0, .09))
-            }
         }
 
         .pol-img {
@@ -664,7 +656,7 @@
             display: block;
             border: 1px solid rgba(26, 26, 26, .08);
             min-height: 160px;
-            contain: strict
+            contain: paint;
         }
 
         .pol:nth-child(1) .pol-img {
