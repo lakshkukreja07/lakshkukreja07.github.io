@@ -546,6 +546,10 @@
             border-bottom: none;
         }
 
+        .event-row:hover {
+            background: rgba(26, 26, 26, .02);
+        }
+
         .event-top {
             display: flex;
             align-items: center;
@@ -1008,8 +1012,20 @@
 
             <div class="event-row">
                 <div class="event-top">
-                    <span class="event-num">01</span>
                     <span class="event-tag workshop">Workshop</span>
+                    <span class="event-tag workshop event-countdown" id="cd1">--d --h</span>
+                    <a class="event-tag workshop"
+                        href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Ecosystem+Discovery+%E2%80%94+JHC+Incubator&details=Welcome,%0A%0AThanks+For+Tuning+In+At+Incubator+%26+Accelerator+Center,%0A%0AWe+Invite+You+To+Our+Very+First+Event+%22Ecosystem+Discovery%22+Organized+By+The+Newly+Elected+2026%E2%80%932027+Core+Team.%0A%0AJoin+us+to+discover+the+entrepreneurial+ecosystem+at+Jai+Hind+College,+our+incubation+programs,+internship+fairs,+startup+expositions,+mentoring+opportunities+and+much+more.%0A%0AWe+are+proudly+hosting+this+event+along+with+150%2B+students+to+spread+awareness+regarding+our+Incubator+%26+Accelerator+Centre.%0A%0AVenue:%0AJai+Hind+College+(Empowered+Autonomous)%0AWRMG%2BR34,+A+Rd,+Churchgate,%0AMumbai,+Maharashtra+400020,+India%0A%0ADate:%0A8+August+2026%0A%0ATime:%0A12:00+AM+%E2%80%93+11:00+AM%0A%0ARegards,%0AJHC+Incubator+%26+Accelerator+Centre&location=Jai+Hind+College,+WRMG%2BR34,+A+Rd,+Churchgate,+Mumbai,+Maharashtra+400020,+India&dates=20260808T000000/20260808T110000"
+                        target="_blank" rel="noopener"
+                        style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10.268 21a2 2 0 0 0 3.464 0" />
+                            <path d="M15 8h6" />
+                            <path d="M18 5v6" />
+                            <path
+                                d="M20.002 14.464a9 9 0 0 0 .738.863A1 1 0 0 1 20 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 8.75-5.332" />
+                        </svg>Notify Me</a>
                 </div>
                 <div class="event-body">
                     <h3>Ecosystem Discovery</h3>
@@ -1025,8 +1041,8 @@
 
             <div class="event-row">
                 <div class="event-top">
-                    <span class="event-num">02</span>
                     <span class="event-tag annual">Annual</span>
+                    <span class="event-tag annual event-countdown" id="cd2">--d --h</span>
                 </div>
                 <div class="event-body">
                     <h3>Internship Fair</h3>
@@ -1042,8 +1058,8 @@
 
             <div class="event-row">
                 <div class="event-top">
-                    <span class="event-num">03</span>
                     <span class="event-tag flagship">Flagship</span>
+                    <span class="event-tag flagship event-countdown" id="cd3">--d --h</span>
                 </div>
                 <div class="event-body">
                     <h3>Startup Exposition</h3>
@@ -1085,6 +1101,31 @@
         bd.addEventListener('click', closeMenu);
         document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeMenu));
 
+        // ── COUNTDOWN (IST) ──
+        const cdTargets = [
+            { el: document.getElementById('cd1'), date: new Date('2026-08-08T00:00:00+05:30') },
+            { el: document.getElementById('cd2'), date: new Date('2027-01-15T00:00:00+05:30') },
+            { el: document.getElementById('cd3'), date: new Date('2027-01-16T00:00:00+05:30') },
+        ];
+        let drift = 0;
+        function pad(n) { return String(n).padStart(2, '0'); }
+        function tick() {
+            const now = Date.now() + drift;
+            cdTargets.forEach(({ el, date }) => {
+                const diff = date.getTime() - now;
+                if (diff <= 0) { el.textContent = 'Live Now'; return; }
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+                el.textContent = `${pad(d)}d ${pad(h)}h`;
+            });
+        }
+        fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata')
+            .then(r => r.json())
+            .then(d => { drift = new Date(d.datetime).getTime() - Date.now(); })
+            .catch(() => { })
+            .finally(() => { tick(); setInterval(tick, 1000); });
 
     </script>
 </body>
