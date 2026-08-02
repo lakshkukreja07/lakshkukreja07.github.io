@@ -12,6 +12,14 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&family=Roboto+Mono:wght@100..700&display=swap"
         rel="stylesheet">
+    <link rel="preload" as="image"
+        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic1.jpg">
+    <link rel="preload" as="image"
+        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic2.jpg">
+    <link rel="preload" as="image"
+        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic3.jpg">
+    <link rel="preload" as="image"
+        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic4.jpg">
     <style>
         :root {
             --ease: cubic-bezier(.65, 0, .15, 1);
@@ -699,7 +707,7 @@
             gap: 10px;
             margin-top: 40px;
             padding: 14px 24px;
-            border: 1px solid var(--ink);
+            border: 1.5px solid var(--ink);
             border-radius: 6px;
             background: none;
             font-family: var(--font);
@@ -709,21 +717,23 @@
             text-transform: uppercase;
             color: var(--ink);
             cursor: pointer;
-            transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
-            align-self: flex-start
-        }
-
-        .gallery-btn:hover {
-            background: var(--ink);
-            color: #fff
+            transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), gap .3s var(--ease);
+            align-self: flex-start;
+            position: relative
         }
 
         .gallery-btn svg {
             transition: transform .35s var(--ease)
         }
 
+        .gallery-btn:hover {
+            background: var(--ink);
+            color: #fff;
+            gap: 16px
+        }
+
         .gallery-btn:hover svg {
-            transform: translateX(5px)
+            transform: translateX(4px)
         }
 
         @media(min-width:481px) and (max-width:768px) {
@@ -995,14 +1005,14 @@
                     <span class="hero-tag">[ Incubator &amp; Accelerator Center ]</span>
                     <h1>Build A New Journey With Us,<br>From Ideas To Impact.</h1>
                 </div>
-                <p class="hero-info">We help student founders turn ambitious ideas into real ventures with
-                    mentorship, resources, industry access and a community built to move faster.</p>
+                <p class="hero-info">We help student founders turn ambitious ideas into real ventures with mentorship,
+                    resources, industry access and a community built to move faster.</p>
             </div>
             <div class="hero-stats">
                 <span><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
-                        height="20" style="vertical-align:middle;margin-right:8px;opacity:0.85">Initiative By Jai
-                    Hind College</span>
+                        height="20" style="vertical-align:middle;margin-right:8px;opacity:0.85">Initiative By Jai Hind
+                    College</span>
                 <span>Made In India</span>
             </div>
         </div>
@@ -1016,9 +1026,9 @@
             <div>
                 <h2 class="section-title">Ideas deserve<br><span class="highlight">momentum.</span></h2>
                 <p class="about-body">The Jai Hind College (Empowered Autonomous) Presents,<br><br>Incubator &amp;
-                    Accelerator Centre Is A Safe Harbour For Young Business Ventures Grappling About In Their Start
-                    Up Stage.<br><br>We Believe In Contributing To The Nation By Creating A Wholesome Start Up
-                    Ecosystem By Mentoring &amp; Supporting Several Budding Entrepreneurs.</p>
+                    Accelerator Centre Is A Safe Harbour For Young Business Ventures Grappling About In Their Start Up
+                    Stage.<br><br>We Believe In Contributing To The Nation By Creating A Wholesome Start Up Ecosystem By
+                    Mentoring &amp; Supporting Several Budding Entrepreneurs.</p>
                 <div class="stats-row">
                     <div class="stat-cell"><span class="stat-num">70<span class="plus">+</span></span><span
                             class="stat-label">Startups Incubated</span></div>
@@ -1032,15 +1042,15 @@
                 <div class="pillar"><span class="pillar-index">01</span>
                     <div class="pillar-body">
                         <h4>Mentorship</h4>
-                        <p>Direct access to founders and investors who have built real companies and taken real
-                            risks.</p>
+                        <p>Direct access to founders and investors who have built real companies and taken real risks.
+                        </p>
                     </div>
                 </div>
                 <div class="pillar"><span class="pillar-index">02</span>
                     <div class="pillar-body">
                         <h4>Curriculum</h4>
-                        <p>A phased program that moves from idea validation and market research through to a
-                            pitch-ready business.</p>
+                        <p>A phased program that moves from idea validation and market research through to a pitch-ready
+                            business.</p>
                     </div>
                 </div>
                 <div class="pillar"><span class="pillar-index">03</span>
@@ -1053,8 +1063,8 @@
                 <div class="pillar"><span class="pillar-index">04</span>
                     <div class="pillar-body">
                         <h4>Community</h4>
-                        <p>A cohort of builders who trade honest feedback, share leads, and hold each other
-                            accountable.</p>
+                        <p>A cohort of builders who trade honest feedback, share leads, and hold each other accountable.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1097,8 +1107,8 @@
                         <line x1="16" y1="32" x2="24" y2="32" />
                     </svg>
                     <h4>Internship Fair</h4>
-                    <p>Connect growing startups with top talent and interns with impactful, real-world
-                        opportunities.</p>
+                    <p>Connect growing startups with top talent and interns with impactful, real-world opportunities.
+                    </p>
                 </div>
                 <div class="wwd-card"><span class="wwd-card-num">03</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
                         fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -1184,10 +1194,8 @@
                         class="event-meta-str">Jai Hind College, Mumbai</span></div>
             </div>
             <div class="event-row">
-                <div class="event-top">
-                    <span class="event-tag annual">Annual</span>
-                    <span class="event-tag annual event-countdown" id="cd2">--d --h</span>
-                </div>
+                <div class="event-top"><span class="event-tag annual">Annual</span><span
+                        class="event-tag annual event-countdown" id="cd2">--d --h</span></div>
                 <div class="event-body">
                     <h3>Internship Fair</h3>
                     <p>Connect with leading companies offering incredible internship opportunities. Whether you're a
@@ -1198,14 +1206,12 @@
                         class="event-meta-str">Jai Hind College, Mumbai</span></div>
             </div>
             <div class="event-row">
-                <div class="event-top">
-                    <span class="event-tag flagship">Flagship</span>
-                    <span class="event-tag flagship event-countdown" id="cd3">--d --h</span>
-                </div>
+                <div class="event-top"><span class="event-tag flagship">Flagship</span><span
+                        class="event-tag flagship event-countdown" id="cd3">--d --h</span></div>
                 <div class="event-body">
                     <h3>Startup Exposition</h3>
-                    <p>Step into a world of innovation where industry experts mentor, guide, and inspire. Gain
-                        insights, showcase your ideas, and build meaningful connections in an ecosystem buzzing with
+                    <p>Step into a world of innovation where industry experts mentor, guide, and inspire. Gain insights,
+                        showcase your ideas, and build meaningful connections in an ecosystem buzzing with
                         entrepreneurial energy.</p>
                 </div>
                 <div class="event-footer"><span class="event-meta-str">16th January, 2027</span><span
@@ -1220,51 +1226,30 @@
         </div>
         <h2 class="section-title">Our Journey,<br><span class="highlight">Framed.</span></h2>
         <div class="pol-grid">
-
-            <!-- PHOTO 1 -->
-            <div class="pol">
-                <img class="pol-img"
+            <div class="pol"><img class="pol-img"
                     src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic1.jpg"
-                    alt="Startup Exposition 2025">
-                <div class="pol-caption">
-                    <span class="pol-caption-title">Startup Exposition</span>
-                    <span class="pol-caption-sub">Jan 2025 · Mumbai</span>
-                </div>
+                    alt="Startup Exposition 2025" loading="eager" decoding="async">
+                <div class="pol-caption"><span class="pol-caption-title">Startup Exposition</span><span
+                        class="pol-caption-sub">Jan 2025 · Mumbai</span></div>
             </div>
-
-            <!-- PHOTO 2 -->
-            <div class="pol">
-                <img class="pol-img"
+            <div class="pol"><img class="pol-img"
                     src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic2.jpg"
-                    alt="Internship Fair 2025">
-                <div class="pol-caption">
-                    <span class="pol-caption-title">Internship Fair</span>
-                    <span class="pol-caption-sub">Jan 2025 · Mumbai</span>
-                </div>
+                    alt="Internship Fair 2025" loading="eager" decoding="async">
+                <div class="pol-caption"><span class="pol-caption-title">Internship Fair</span><span
+                        class="pol-caption-sub">Jan 2025 · Mumbai</span></div>
             </div>
-
-            <!-- PHOTO 3 -->
-            <div class="pol">
-                <img class="pol-img"
+            <div class="pol"><img class="pol-img"
                     src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic3.jpg"
-                    alt="Mentoring Session">
-                <div class="pol-caption">
-                    <span class="pol-caption-title">Mentoring Session</span>
-                    <span class="pol-caption-sub">Oct 2024 · Mumbai</span>
-                </div>
+                    alt="Mentoring Session" loading="eager" decoding="async">
+                <div class="pol-caption"><span class="pol-caption-title">Mentoring Session</span><span
+                        class="pol-caption-sub">Oct 2024 · Mumbai</span></div>
             </div>
-
-            <!-- PHOTO 4 -->
-            <div class="pol">
-                <img class="pol-img"
+            <div class="pol"><img class="pol-img"
                     src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic4.jpg"
-                    alt="IPR Awareness Workshop">
-                <div class="pol-caption">
-                    <span class="pol-caption-title">IPR Awareness</span>
-                    <span class="pol-caption-sub">Sep 2024 · Mumbai</span>
-                </div>
+                    alt="IPR Awareness Workshop" loading="eager" decoding="async">
+                <div class="pol-caption"><span class="pol-caption-title">IPR Awareness</span><span
+                        class="pol-caption-sub">Sep 2024 · Mumbai</span></div>
             </div>
-
         </div>
         <button class="gallery-btn" onclick="void(0)">
             View Gallery
@@ -1282,12 +1267,7 @@
         burger.addEventListener('click', () => { const o = !panel.classList.contains('open'); burger.classList.toggle('open', o); panel.classList.toggle('open', o); bd.classList.toggle('show', o); document.body.classList.toggle('menu-open', o); navTop.classList.toggle('menu-open', o) });
         bd.addEventListener('click', closeMenu);
         document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeMenu));
-
-        const cdTargets = [
-            { el: document.getElementById('cd1'), date: new Date('2026-08-08T00:00:00+05:30') },
-            { el: document.getElementById('cd2'), date: new Date('2027-01-15T00:00:00+05:30') },
-            { el: document.getElementById('cd3'), date: new Date('2027-01-16T00:00:00+05:30') },
-        ];
+        const cdTargets = [{ el: document.getElementById('cd1'), date: new Date('2026-08-08T00:00:00+05:30') }, { el: document.getElementById('cd2'), date: new Date('2027-01-15T00:00:00+05:30') }, { el: document.getElementById('cd3'), date: new Date('2027-01-16T00:00:00+05:30') }];
         let drift = 0;
         function pad(n) { return String(n).padStart(2, '0') }
         function tick() { const now = Date.now() + drift; cdTargets.forEach(({ el, date }) => { const diff = date.getTime() - now; if (diff <= 0) { el.textContent = 'Live Now'; return } el.textContent = `${pad(Math.floor(diff / 86400000))}d ${pad(Math.floor((diff % 86400000) / 3600000))}h` }) }
