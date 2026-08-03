@@ -1245,26 +1245,26 @@
         <h2 class="section-title">Our Journey,<br><span class="highlight">Framed.</span></h2>
         <div class="pol-grid">
             <div class="pol"><img class="pol-img"
-                    src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic1.jpg"
-                    alt="Startup Exposition 2025" fetchpriority="high" decoding="async">
+                    src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic1.jpg&w=600&output=webp&q=55"
+                    alt="Startup Exposition 2025" fetchpriority="high" decoding="async" loading="eager">
                 <div class="pol-caption"><span class="pol-caption-title">Startup Exposition</span><span
                         class="pol-caption-sub">Jan 2025 · Mumbai</span></div>
             </div>
             <div class="pol"><img class="pol-img"
-                    data-src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic2.jpg"
-                    alt="Internship Fair 2025" decoding="async">
+                    src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic2.jpg&w=600&output=webp&q=55"
+                    alt="Internship Fair 2025" decoding="async" loading="lazy">
                 <div class="pol-caption"><span class="pol-caption-title">Internship Fair</span><span
                         class="pol-caption-sub">Jan 2025 · Mumbai</span></div>
             </div>
             <div class="pol"><img class="pol-img"
-                    data-src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic3.jpg"
-                    alt="Mentoring Session" decoding="async">
+                    src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic3.jpg&w=600&output=webp&q=55"
+                    alt="Mentoring Session" decoding="async" loading="lazy">
                 <div class="pol-caption"><span class="pol-caption-title">Mentoring Session</span><span
                         class="pol-caption-sub">Oct 2024 · Mumbai</span></div>
             </div>
             <div class="pol"><img class="pol-img"
-                    data-src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic4.jpg"
-                    alt="IPR Awareness Workshop" decoding="async">
+                    src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic4.jpg&w=600&output=webp&q=55"
+                    alt="IPR Awareness Workshop" decoding="async" loading="lazy">
                 <div class="pol-caption"><span class="pol-caption-title">IPR Awareness</span><span
                         class="pol-caption-sub">Sep 2024 · Mumbai</span></div>
             </div>
@@ -1291,15 +1291,7 @@
         function pad(n) { return String(n).padStart(2, '0') }
         function tick() { const now = Date.now() + drift; cdTargets.forEach(({ el, date }) => { const diff = date.getTime() - now; if (diff <= 0) { el.textContent = 'Live Now'; return } el.textContent = `${pad(Math.floor(diff / 86400000))}d ${pad(Math.floor((diff % 86400000) / 3600000))}h` }) }
         fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata').then(r => r.json()).then(d => { drift = new Date(d.datetime).getTime() - Date.now() }).catch(() => { }).finally(() => { tick(); setInterval(tick, 1000) });
-        const lazyImgs = document.querySelectorAll('img[data-src]');
-        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-        const slowDevice = conn && (conn.saveData || conn.effectiveType === 'slow-2g' || conn.effectiveType === '2g');
-        if (slowDevice) {
-            lazyImgs.forEach(img => { img.src = img.dataset.src; img.removeAttribute('data-src') });
-        } else {
-            const lazyObs = new IntersectionObserver((entries) => { entries.forEach(e => { if (!e.isIntersecting) return; e.target.src = e.target.dataset.src; e.target.removeAttribute('data-src'); lazyObs.unobserve(e.target) }) }, { rootMargin: '800px' });
-            lazyImgs.forEach(img => lazyObs.observe(img));
-        }
+
     </script>
 </body>
 
