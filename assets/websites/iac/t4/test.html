@@ -1616,7 +1616,7 @@
             <div class="event-row">
                 <div class="event-top">
                     <span class="event-tag workshop">Workshop</span>
-                    <span class="event-tag workshop event-countdown" id="cd1">--d --h</span>
+                    <span class="event-tag workshop event-countdown" id="cd1">FETCHING TIME</span>
                     <a class="event-tag workshop"
                         href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Ecosystem+Discovery+%E2%80%94+JHC+Incubator&details=Welcome,%0A%0AThanks+For+Tuning+In+At+Incubator+%26+Accelerator+Center,%0A%0AWe+Invite+You+To+Our+Very+First+Event+%22Ecosystem+Discovery%22+Organized+By+The+Newly+Elected+2026%E2%80%932027+Core+Team.%0A%0AJoin+us+to+discover+the+entrepreneurial+ecosystem+at+Jai+Hind+College,+our+incubation+programs,+internship+fairs,+startup+expositions,+mentoring+opportunities+and+much+more.%0A%0AWe+are+proudly+hosting+this+event+along+with+150%2B+students+to+spread+awareness+regarding+our+Incubator+%26+Accelerator+Centre.%0A%0AVenue:%0AJai+Hind+College+(Empowered+Autonomous)%0AWRMG%2BR34,+A+Rd,+Churchgate,%0AMumbai,+Maharashtra+400020,+India%0A%0ADate:%0A8+August+2026%0A%0ATime:%0A12:00+AM+%E2%80%93+11:00+AM%0A%0ARegards,%0AJHC+Incubator+%26+Accelerator+Centre&location=Jai+Hind+College,+WRMG%2BR34,+A+Rd,+Churchgate,+Mumbai,+Maharashtra+400020,+India&dates=20260808T000000/20260808T110000"
                         target="_blank" rel="noopener"
@@ -1641,7 +1641,7 @@
             </div>
             <div class="event-row">
                 <div class="event-top"><span class="event-tag annual">Annual</span><span
-                        class="event-tag annual event-countdown" id="cd2">--d --h</span></div>
+                        class="event-tag annual event-countdown" id="cd2">FETCHING TIME</span></div>
                 <div class="event-body">
                     <h3>Internship Fair</h3>
                     <p>Connect with leading companies offering incredible internship opportunities. Whether you're a
@@ -1653,7 +1653,7 @@
             </div>
             <div class="event-row">
                 <div class="event-top"><span class="event-tag flagship">Flagship</span><span
-                        class="event-tag flagship event-countdown" id="cd3">--d --h</span></div>
+                        class="event-tag flagship event-countdown" id="cd3">FETCHING TIME</span></div>
                 <div class="event-body">
                     <h3>Startup Exposition</h3>
                     <p>Step into a world of innovation where industry experts mentor, guide, and inspire. Gain insights,
@@ -1923,7 +1923,7 @@
             cdTargets.forEach(({ el, date }) => {
                 const diff = date.getTime() - now;
                 if (diff <= 0) { el.textContent = 'Live Now'; return }
-                el.textContent = `${pad(Math.floor(diff / 86400000))}d ${pad(Math.floor((diff % 86400000) / 3600000))}h`
+                el.textContent = `${pad(Math.floor(diff / 86400000))} DAYS ${pad(Math.floor((diff % 86400000) / 3600000))} HOURS`
             })
         }
 
