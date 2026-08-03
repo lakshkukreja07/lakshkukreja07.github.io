@@ -13,13 +13,9 @@
         href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&family=Roboto+Mono:wght@100..700&display=swap"
         rel="stylesheet">
     <link rel="preload" as="image"
-        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic1.jpg">
-    <link rel="preload" as="image"
-        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic2.jpg">
-    <link rel="preload" as="image"
-        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic3.jpg">
-    <link rel="preload" as="image"
-        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic4.jpg">
+        href="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic1.jpg&w=600&output=webp&q=55"
+        fetchpriority="high">
+
     <style>
         :root {
             --ease: cubic-bezier(.65, 0, .15, 1);
@@ -36,7 +32,7 @@
 
         ::selection {
             color: #fafafa;
-            background: #000
+            background: #444
         }
 
         *,
@@ -511,7 +507,12 @@
         .wwd-card-icon {
             width: 40px;
             height: 40px;
-            color: var(--ink)
+            color: var(--ink);
+            stroke: #000;
+            stroke-width: 1.8;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round
         }
 
         .wwd-card h4 {
@@ -623,7 +624,9 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 28px;
             align-items: start;
-            contain: layout style
+            contain: layout style;
+            content-visibility: auto;
+            contain-intrinsic-size: 0 560px
         }
 
         .pol-grid .pol:nth-child(2) {
@@ -645,9 +648,12 @@
             border-radius: 3px;
             padding: 14px 14px 0;
             border: 1px solid rgba(26, 26, 26, .1);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .07), 0 8px 20px rgba(0, 0, 0, .3);
-            transition: transform .4s var(--ease), filter .4s var(--ease);
-            touch-action: pan-y
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+            transition: transform .4s var(--ease);
+            touch-action: pan-y;
+            contain: layout paint;
+            transform: translateZ(0);
+            will-change: transform
         }
 
         .pol-img {
@@ -657,7 +663,8 @@
             display: block;
             border: 1px solid rgba(26, 26, 26, .08);
             min-height: 160px;
-            contain: paint;
+            background: #e8e5de;
+            content-visibility: auto
         }
 
         .pol:nth-child(1) .pol-img {
@@ -674,10 +681,6 @@
 
         .pol:nth-child(4) .pol-img {
             background: #cfd4cd
-        }
-
-        .pol {
-            touch-action: pan-y
         }
 
         .pol-caption {
@@ -738,7 +741,6 @@
             transform: translateX(4px)
         }
 
-        /* ===== CONTACT SECTION ===== */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1166,7 +1168,6 @@
             transform: translateX(-50%) translateY(0)
         }
 
-        /* ===== RESPONSIVE ===== */
         @media(min-width:769px) {
             .nav {
                 top: 16px;
@@ -1561,11 +1562,10 @@
         <h2 class="section-title">Built To Help You<br><span class="highlight">Launch.</span></h2>
         <div class="wwd-grid-wrapper">
             <div class="wwd-grid">
-                <div class="wwd-card"><span class="wwd-card-num">01</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <div class="wwd-card"><span class="wwd-card-num">01</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
                         <path
-                            d="M24 6C17.4 6 12 11.4 12 18c0 4.4 2.3 8.3 5.8 10.5V32h12.4v-3.5C33.7 26.3 36 22.4 36 18c0-6.6-5.4-12-12-12z"
-                            fill="#FFECA6" />
+                            d="M24 6C17.4 6 12 11.4 12 18c0 4.4 2.3 8.3 5.8 10.5V32h12.4v-3.5C33.7 26.3 36 22.4 36 18c0-6.6-5.4-12-12-12z" />
                         <path d="M17.8 32c0 1 .2 2 .6 2.8M30.2 32c0 1-.2 2-.6 2.8" />
                         <path d="M19 38h10" />
                         <path d="M20.5 42h7" />
@@ -1582,9 +1582,9 @@
                     <p>Turn your innovative ideas into thriving ventures with expert mentorship, resources, and a
                         dedicated incubation center.</p>
                 </div>
-                <div class="wwd-card"><span class="wwd-card-num">02</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="8" y="14" width="32" height="24" rx="2" fill="#D99E68" />
+                <div class="wwd-card"><span class="wwd-card-num">02</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
+                        <rect x="8" y="14" width="32" height="24" rx="2" />
                         <path d="M16 14v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" />
                         <line x1="16" y1="26" x2="32" y2="26" />
                         <line x1="16" y1="32" x2="24" y2="32" />
@@ -1593,16 +1593,9 @@
                     <p>Connect growing startups with top talent and interns with impactful, real-world
                         opportunities.</p>
                 </div>
-                <div class="wwd-card"><span class="wwd-card-num">03</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M6 42
-           L6 36
-           L16 24
-           L24 29
-           L36 12
-           L36 42
-           Z" fill="#54C949" stroke="none" />
+                <div class="wwd-card"><span class="wwd-card-num">03</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
+                        <path d="M6 42 L6 36 L16 24 L24 29 L36 12 L36 42 Z" />
                         <polyline points="6,36 16,24 24,29 36,12" />
                         <polyline points="30,12 36,12 36,18" />
                         <line x1="6" y1="42" x2="42" y2="42" />
@@ -1615,22 +1608,19 @@
                     <h4>Startup Exposition</h4>
                     <p>Showcase groundbreaking innovation, network with investors, and gain invaluable exposure.</p>
                 </div>
-                <div class="wwd-card"><span class="wwd-card-num">04</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                        stroke-linejoin="round">
-
-                        <circle cx="18" cy="16" r="6" fill="#FFF7E8" />
-                        <path d="M6 40c0-7 5-11 12-11s12 4 12 11" fill="#FFE0EE" />
-
+                <div class="wwd-card"><span class="wwd-card-num">04</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
+                        <circle cx="18" cy="16" r="6" />
+                        <path d="M6 40c0-7 5-11 12-11s12 4 12 11" />
                         <path d="M32 14c2 1.5 4 4 4 7s-2 5.5-4 7" />
                         <path d="M37 10c4 2.5 7 7 7 13s-3 10.5-7 13" />
                     </svg>
                     <h4>Mentoring Sessions</h4>
                     <p>Seasoned industry leaders guide you to refine strategies, solve challenges, and grow.</p>
                 </div>
-                <div class="wwd-card"><span class="wwd-card-num">05</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 17v10h7l15 9V8L13 17H6z" fill="#B5DCFF" />
+                <div class="wwd-card"><span class="wwd-card-num">05</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
+                        <path d="M6 17v10h7l15 9V8L13 17H6z" />
                         <line x1="13" y1="17" x2="13" y2="27" />
                         <path d="M32 18.5a6 6 0 0 1 0 9" />
                         <path d="M36 14a12 12 0 0 1 0 18" />
@@ -1638,8 +1628,8 @@
                     <h4>IPR Awareness</h4>
                     <p>Protect your innovative ideas with expert insights on intellectual property rights.</p>
                 </div>
-                <div class="wwd-card"><span class="wwd-card-num">06</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="#FFE069" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <div class="wwd-card"><span class="wwd-card-num">06</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
                         <path
                             d="M28 7c1 5-1 9-4 11 0-4-3-6-5-4-3 3-3 8-1 12-3-2-5-6-5-10C10 26 12 38 24 41c12-3 14-15 10-22-2 5-5 6-5 6 2-4 1-11-1-18z" />
                         <path d="M21 33c0 3 1.5 5 3 5s3-2 3-5c0-2-1.5-4-3-5-1.5 1-3 3-3 5z" />
@@ -1717,26 +1707,26 @@
         <h2 class="section-title">Our Journey,<br><span class="highlight">Framed.</span></h2>
         <div class="pol-grid">
             <div class="pol"><img class="pol-img"
-                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic1.jpg"
-                    alt="Startup Exposition 2025" loading="lazy" fetchpriority="low" decoding="async">
+                    src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic1.jpg&w=600&output=webp&q=55"
+                    alt="Startup Exposition 2025" fetchpriority="high" decoding="async" loading="eager">
                 <div class="pol-caption"><span class="pol-caption-title">Startup Exposition</span><span
                         class="pol-caption-sub">Jan 2025 · Mumbai</span></div>
             </div>
             <div class="pol"><img class="pol-img"
-                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic2.jpg"
-                    alt="Internship Fair 2025" loading="lazy" fetchpriority="low" decoding="async">
+                    src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic2.jpg&w=600&output=webp&q=55"
+                    alt="Internship Fair 2025" decoding="async" loading="lazy">
                 <div class="pol-caption"><span class="pol-caption-title">Internship Fair</span><span
                         class="pol-caption-sub">Jan 2025 · Mumbai</span></div>
             </div>
             <div class="pol"><img class="pol-img"
-                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic3.jpg"
-                    alt="Mentoring Session" loading="lazy" fetchpriority="low" decoding="async">
+                    src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic3.jpg&w=600&output=webp&q=55"
+                    alt="Mentoring Session" decoding="async" loading="lazy">
                 <div class="pol-caption"><span class="pol-caption-title">Mentoring Session</span><span
                         class="pol-caption-sub">Oct 2024 · Mumbai</span></div>
             </div>
             <div class="pol"><img class="pol-img"
-                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic4.jpg"
-                    alt="IPR Awareness Workshop" loading="lazy" fetchpriority="low" decoding="async">
+                    src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic4.jpg&w=600&output=webp&q=55"
+                    alt="IPR Awareness Workshop" decoding="async" loading="lazy">
                 <div class="pol-caption"><span class="pol-caption-title">IPR Awareness</span><span
                         class="pol-caption-sub">Sep 2024 · Mumbai</span></div>
             </div>
@@ -1751,7 +1741,6 @@
         </button>
     </section>
 
-    <!-- ===== CONTACT SECTION ===== -->
     <section class="section-wrap" id="contact">
         <div class="section-header">
             <span class="section-eyebrow">[ Contact Us ]</span>
@@ -1855,7 +1844,7 @@
                 <div class="notify-wrap">
                     <div class="notify-header">
                         <h3 class="notify-title">Stay In The Loop.</h3>
-                        <p class="notify-sub">Get Ready To Be Informed First About Our Upcoming Events, Join Our
+                        <p class="notify-sub">Get Ready To Be Informed First About Our Upcoming Events, <br>Join Our
                             Community To Stay Connected To Everything Happening At IAC.</p>
                     </div>
                     <div class="notify-perks">
@@ -1921,7 +1910,6 @@
     <div class="toast" id="toast"></div>
 
     <script>
-        // Navigation
         const heroVid = document.querySelector('.hero video');
         if (heroVid) {
             const vio = new IntersectionObserver(([e]) => {
@@ -1929,6 +1917,7 @@
             }, { threshold: 0.01 });
             vio.observe(heroVid)
         }
+
         const burger = document.getElementById('burger'),
             panel = document.getElementById('navPanel'),
             bd = document.getElementById('backdrop'),
@@ -1941,6 +1930,7 @@
             document.body.classList.remove('menu-open');
             navTop.classList.remove('menu-open')
         }
+
         burger.addEventListener('click', () => {
             const o = !panel.classList.contains('open');
             burger.classList.toggle('open', o);
@@ -1949,10 +1939,10 @@
             document.body.classList.toggle('menu-open', o);
             navTop.classList.toggle('menu-open', o)
         });
+
         bd.addEventListener('click', closeMenu);
         document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeMenu));
 
-        // Countdown
         const cdTargets = [
             { el: document.getElementById('cd1'), date: new Date('2026-08-08T00:00:00+05:30') },
             { el: document.getElementById('cd2'), date: new Date('2027-01-15T00:00:00+05:30') },
@@ -1970,6 +1960,7 @@
                 el.textContent = `${pad(Math.floor(diff / 86400000))}d ${pad(Math.floor((diff % 86400000) / 3600000))}h`
             })
         }
+
         fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata')
             .then(r => r.json())
             .then(d => { drift = new Date(d.datetime).getTime() - Date.now() })
@@ -1979,7 +1970,6 @@
                 setInterval(tick, 1000)
             });
 
-        // Toast
         function showToast(msg) {
             const t = document.getElementById('toast');
             t.textContent = msg;
@@ -1987,7 +1977,6 @@
             setTimeout(() => t.classList.remove('show'), 3200);
         }
 
-        // Contact form
         document.getElementById('notifyBtn').addEventListener('click', () => {
             const name = document.getElementById('nf-name').value.trim();
             const email = document.getElementById('nf-email').value.trim();
@@ -1999,7 +1988,7 @@
                 const existing = JSON.parse(localStorage.getItem(key) || '[]');
                 existing.push({ name, email, date: new Date().toISOString() });
                 localStorage.setItem(key, JSON.stringify(existing));
-            } catch (e) { /* storage unavailable, continue anyway */ }
+            } catch (e) { }
 
             document.getElementById('notifyForm').style.display = 'none';
             document.getElementById('notifySuccess').classList.add('show');
