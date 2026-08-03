@@ -652,6 +652,7 @@
             border: 1px solid rgba(26, 26, 26, .08);
             min-height: 160px;
             contain: paint;
+            background: #e8e5de
         }
 
         .pol:nth-child(1) .pol-img {
@@ -1241,7 +1242,7 @@
         </div>
         <h2 class="section-title">Our Journey,<br><span class="highlight">Framed.</span></h2>
         <div class="pol-grid">
-        <div class="pol"><img class="pol-img"
+            <div class="pol"><img class="pol-img"
                     src="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic1.jpg"
                     alt="Startup Exposition 2025" fetchpriority="high" decoding="async">
                 <div class="pol-caption"><span class="pol-caption-title">Startup Exposition</span><span
@@ -1289,8 +1290,14 @@
         function tick() { const now = Date.now() + drift; cdTargets.forEach(({ el, date }) => { const diff = date.getTime() - now; if (diff <= 0) { el.textContent = 'Live Now'; return } el.textContent = `${pad(Math.floor(diff / 86400000))}d ${pad(Math.floor((diff % 86400000) / 3600000))}h` }) }
         fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata').then(r => r.json()).then(d => { drift = new Date(d.datetime).getTime() - Date.now() }).catch(() => { }).finally(() => { tick(); setInterval(tick, 1000) });
         const lazyImgs = document.querySelectorAll('img[data-src]');
-        const lazyObs = new IntersectionObserver((entries) => { entries.forEach(e => { if (!e.isIntersecting) return; e.target.src = e.target.dataset.src; e.target.removeAttribute('data-src'); lazyObs.unobserve(e.target) }) }, { rootMargin: '300px' });
-        lazyImgs.forEach(img => lazyObs.observe(img));
+        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        const slowDevice = conn && (conn.saveData || conn.effectiveType === 'slow-2g' || conn.effectiveType === '2g');
+        if (slowDevice) {
+            lazyImgs.forEach(img => { img.src = img.dataset.src; img.removeAttribute('data-src') });
+        } else {
+            const lazyObs = new IntersectionObserver((entries) => { entries.forEach(e => { if (!e.isIntersecting) return; e.target.src = e.target.dataset.src; e.target.removeAttribute('data-src'); lazyObs.unobserve(e.target) }) }, { rootMargin: '800px' });
+            lazyImgs.forEach(img => lazyObs.observe(img));
+        }
     </script>
 </body>
 
