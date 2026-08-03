@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Contact Us | Incubator &amp; Accelerator Center | Jai Hind College</title>
+    <title>Incubator &amp; Accelerator Center | Jai Hind College</title>
     <link rel="icon"
         href="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +12,14 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&family=Roboto+Mono:wght@100..700&display=swap"
         rel="stylesheet">
+    <link rel="preload" as="image"
+        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic1.jpg">
+    <link rel="preload" as="image"
+        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic2.jpg">
+    <link rel="preload" as="image"
+        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic3.jpg">
+    <link rel="preload" as="image"
+        href="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic4.jpg">
     <style>
         :root {
             --ease: cubic-bezier(.65, 0, .15, 1);
@@ -22,12 +30,13 @@
             --ink-mid: rgba(26, 26, 26, .58);
             --rule: rgba(26, 26, 26, .1);
             --font: 'Stack Sans Headline', sans-serif;
-            --mono: 'Roboto Mono', monospace
+            --mono: 'Roboto Mono', monospace;
+            --highlight: #86b7ee;
         }
 
         ::selection {
             color: #fafafa;
-            background: #444
+            background: #000
         }
 
         *,
@@ -40,10 +49,269 @@
 
         html,
         body {
+            height: 100%;
             background: var(--bg);
-            color: var(--ink);
+            color: var(--fg);
             font-family: var(--font);
             overflow-x: hidden
+        }
+
+        body.menu-open {
+            overflow: hidden
+        }
+
+        .backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 900;
+            background: rgba(0, 0, 0, .25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .45s var(--ease)
+        }
+
+        .backdrop.show {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        .nav {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            z-index: 1000
+        }
+
+        .nav-pill {
+            background: rgba(0, 0, 0, .5);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 8px;
+            overflow: hidden
+        }
+
+        .nav-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+            padding: 0 14px;
+            position: relative
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none
+        }
+
+        .tagline {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-weight: 400
+        }
+
+        .burger {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            flex-shrink: 0
+        }
+
+        .burger span {
+            width: 18px;
+            height: 1.5px;
+            background: var(--fg);
+            transition: transform .8s var(--ease), opacity .8s var(--ease)
+        }
+
+        .burger.open span:nth-child(1) {
+            transform: translateY(5.5px)
+        }
+
+        .burger.open span:nth-child(2) {
+            opacity: 0
+        }
+
+        .burger.open span:nth-child(3) {
+            transform: translateY(-5.5px)
+        }
+
+        .nav-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .55s var(--ease)
+        }
+
+        .nav-panel.open {
+            max-height: 500px
+        }
+
+        .nav-panel ul {
+            list-style: none
+        }
+
+        .nav-panel li {
+            position: relative;
+            overflow: hidden
+        }
+
+        .nav-panel li::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 14px;
+            right: 14px;
+            height: 1px;
+            background: rgba(255, 255, 255, .1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .45s var(--ease) .05s
+        }
+
+        .nav-panel.open li::before {
+            transform: scaleX(1)
+        }
+
+        .nav-panel a.item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 14px;
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 14px
+        }
+
+        .nav-panel li .reveal {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform .45s var(--ease), opacity .45s var(--ease)
+        }
+
+        .nav-panel.open li .reveal {
+            transform: translateY(0);
+            opacity: 1
+        }
+
+        .nav-panel li:nth-child(1) .reveal {
+            transition-delay: .10s
+        }
+
+        .nav-panel li:nth-child(2) .reveal {
+            transition-delay: .15s
+        }
+
+        .nav-panel li:nth-child(3) .reveal {
+            transition-delay: .20s
+        }
+
+        .nav-panel li:nth-child(4) .reveal {
+            transition-delay: .25s
+        }
+
+        .nav-panel li:nth-child(5) .reveal {
+            transition-delay: .30s
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100svh;
+            overflow: hidden;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end
+        }
+
+        .hero video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(180deg, rgba(26, 28, 28, .05) 0%, rgba(26, 28, 28, 0) 30%, rgba(26, 28, 28, .55) 100%)
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 14px 12px;
+            color: var(--fg)
+        }
+
+        .hero-main {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 12px
+        }
+
+        .hero-tag {
+            display: block;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 400;
+            color: #fff
+        }
+
+        h1 {
+            font-size: 38px;
+            line-height: .98;
+            font-weight: 700;
+            letter-spacing: -.3px;
+            text-transform: uppercase;
+            color: #fff
+        }
+
+        .hero-info {
+            margin-top: 16px;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 480px;
+            font-weight: 400;
+            color: #fff
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            padding-bottom: 4px;
+            border-top: 2px solid rgba(255, 255, 255, .5);
+            font-size: 9px;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            color: #fff
         }
 
         .highlight {
@@ -57,7 +325,7 @@
             content: '';
             position: absolute;
             inset: 0 -4px;
-            background: #86b7ee;
+            background: var(--highlight);
             border-radius: 2px;
             z-index: -1
         }
@@ -105,6 +373,372 @@
             letter-spacing: -.5px
         }
 
+        .about-split {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            align-items: center
+        }
+
+        .about-body {
+            font-size: 16px;
+            line-height: 1.4;
+            color: var(--ink-mid);
+            max-width: 540px;
+            margin-bottom: 40px
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px
+        }
+
+        .stat-cell {
+            padding: 18px 8px;
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .075)
+        }
+
+        .stat-num {
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1;
+            display: block
+        }
+
+        .stat-num .plus {
+            font-size: .45em;
+            vertical-align: super;
+            letter-spacing: 0;
+            margin-left: 2px
+        }
+
+        .stat-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--ink-dim);
+            margin-top: 6px;
+            display: block
+        }
+
+        .pillars {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            overflow: hidden
+        }
+
+        .pillar {
+            display: grid;
+            grid-template-columns: 32px 1fr;
+            align-items: center;
+            padding: 24px 18px;
+            border-bottom: 1px solid var(--rule);
+            cursor: default
+        }
+
+        .pillar:last-child {
+            border-bottom: none
+        }
+
+        .pillar-index {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--ink-dim)
+        }
+
+        .pillar-body h4 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -.3px;
+            color: var(--ink);
+            margin-bottom: 4px
+        }
+
+        .pillar-body p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--ink-mid)
+        }
+
+        .wwd-grid-wrapper {
+            border-radius: 14px;
+            border: 1px solid var(--rule)
+        }
+
+        .wwd-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--rule);
+            border-radius: 14px;
+            overflow: hidden
+        }
+
+        .wwd-card {
+            background: #fff;
+            padding: 28px 24px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            cursor: default
+        }
+
+        .wwd-card-num {
+            font-family: var(--mono);
+            position: absolute;
+            bottom: 14px;
+            right: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--ink-dim);
+            pointer-events: none;
+            user-select: none
+        }
+
+        .wwd-card-icon {
+            width: 40px;
+            height: 40px;
+            color: var(--ink)
+        }
+
+        .wwd-card h4 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -.3px;
+            color: var(--ink);
+            margin-bottom: 4px
+        }
+
+        .wwd-card p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--ink-mid)
+        }
+
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            overflow: hidden
+        }
+
+        .event-row {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 28px;
+            border-bottom: 1px solid var(--rule);
+            cursor: default
+        }
+
+        .event-row:last-child {
+            border-bottom: none
+        }
+
+        .event-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .event-tag {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            padding: 4px 10px
+        }
+
+        .event-tag.flagship {
+            color: #92600a;
+            background: rgba(234, 179, 8, .12);
+            border: 1px solid rgba(234, 179, 8, .4)
+        }
+
+        .event-tag.annual {
+            color: #1d5fa8;
+            background: rgba(59, 130, 246, .10);
+            border: 1px solid rgba(59, 130, 246, .35)
+        }
+
+        .event-tag.workshop {
+            color: #b91c1c;
+            background: rgba(220, 38, 38, .09);
+            border: 1px solid rgba(220, 38, 38, .3)
+        }
+
+        .event-body {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .event-row h3 {
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 700;
+            letter-spacing: -.3px;
+            color: var(--ink);
+            line-height: 1.1
+        }
+
+        .event-row p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--ink-mid)
+        }
+
+        .event-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .event-meta-str {
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--ink);
+            white-space: nowrap
+        }
+
+        .pol-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            align-items: start;
+            contain: layout style
+        }
+
+        .pol-grid .pol:nth-child(2) {
+            margin-top: 40px
+        }
+
+        .pol-grid .pol:nth-child(3) {
+            margin-top: 20px
+        }
+
+        .pol-grid .pol:nth-child(4) {
+            margin-top: 60px
+        }
+
+        .pol {
+            display: flex;
+            flex-direction: column;
+            background: #faf9f7;
+            border-radius: 3px;
+            padding: 14px 14px 0;
+            border: 1px solid rgba(26, 26, 26, .1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .07), 0 8px 20px rgba(0, 0, 0, .3);
+            transition: transform .4s var(--ease), filter .4s var(--ease);
+            touch-action: pan-y
+        }
+
+        .pol-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            display: block;
+            border: 1px solid rgba(26, 26, 26, .08);
+            min-height: 160px;
+            contain: paint;
+        }
+
+        .pol:nth-child(1) .pol-img {
+            background: #d4cfc6
+        }
+
+        .pol:nth-child(2) .pol-img {
+            background: #cdd0d4
+        }
+
+        .pol:nth-child(3) .pol-img {
+            background: #d0cec8
+        }
+
+        .pol:nth-child(4) .pol-img {
+            background: #cfd4cd
+        }
+
+        .pol {
+            touch-action: pan-y
+        }
+
+        .pol-caption {
+            padding: 16px 4px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px
+        }
+
+        .pol-caption-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: -.2px;
+            line-height: 1.2
+        }
+
+        .pol-caption-sub {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--ink-dim)
+        }
+
+        .gallery-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+            padding: 14px 24px;
+            border: 1.5px solid var(--ink);
+            border-radius: 6px;
+            background: none;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--ink);
+            cursor: pointer;
+            transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), gap .3s var(--ease);
+            align-self: flex-start;
+            position: relative
+        }
+
+        .gallery-btn svg {
+            transition: transform .35s var(--ease)
+        }
+
+        .gallery-btn:hover {
+            background: var(--ink);
+            color: #fff;
+            gap: 16px
+        }
+
+        .gallery-btn:hover svg {
+            transform: translateX(4px)
+        }
+
+        /* ===== CONTACT SECTION ===== */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -163,12 +797,6 @@
             z-index: 0
         }
 
-        .channel-link:hover {
-            border-color: var(--ink);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 24px rgba(26, 26, 26, .1)
-        }
-
         .channel-link:hover::before {
             transform: translateX(0)
         }
@@ -195,7 +823,7 @@
 
         .channel-link:hover .channel-icon {
             background: rgba(255, 255, 255, .12);
-            color: #fff
+            color: #fff;
         }
 
         .channel-text {
@@ -204,6 +832,18 @@
             gap: 2px;
             flex: 1;
             transition: color .4s var(--ease)
+        }
+
+        .channel-link:hover .channel-text {
+            color: #fff
+        }
+
+        .channel-link:hover .channel-name {
+            color: #fff
+        }
+
+        .channel-link:hover .channel-handle {
+            color: rgba(255, 255, 255, .6)
         }
 
         .channel-name {
@@ -220,11 +860,6 @@
             color: var(--ink-dim);
             letter-spacing: .5px;
             transition: color .4s var(--ease)
-        }
-
-        .channel-link:hover .channel-name,
-        .channel-link:hover .channel-handle {
-            color: #fff
         }
 
         .channel-arrow {
@@ -279,8 +914,8 @@
         }
 
         .notify-wrap {
-            background: #0a0a0a;
-            border: 1px solid #0a0a0a;
+            background: #ffffff;
+            border: 1px solid var(--rule);
             border-radius: 14px;
             overflow: hidden;
             display: flex;
@@ -290,13 +925,12 @@
 
         .notify-header {
             padding: 28px 28px 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, .08)
         }
 
         .notify-title {
             font-size: clamp(32px, 4.5vw, 56px);
             font-weight: 700;
-            color: #fff;
+            color: var(--ink);
             line-height: 1.0;
             letter-spacing: -.5px;
             margin-bottom: 12px;
@@ -306,12 +940,11 @@
         .notify-sub {
             font-size: 13px;
             line-height: 1.65;
-            color: rgba(255, 255, 255, .5)
+            color: var(--ink-mid);
         }
 
         .notify-perks {
             padding: 0 28px;
-            border-bottom: 1px solid rgba(255, 255, 255, .08);
             display: flex;
             flex-direction: column;
             gap: 0
@@ -322,9 +955,9 @@
             align-items: center;
             gap: 16px;
             padding: 14px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, .08);
-            font-size: 13px;
-            color: rgba(255, 255, 255, .7)
+            font-size: 15px;
+            color: #000000;
+            font-weight: 500;
         }
 
         .notify-perk:last-child {
@@ -332,27 +965,11 @@
         }
 
         .notify-perk-num {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 1px;
+            font-size: 14px;
+            font-weight: 600;
             flex-shrink: 0;
-            width: 22px
-        }
-
-        .notify-perk-num.c1 {
-            color: #60a5fa
-        }
-
-        .notify-perk-num.c2 {
-            color: #f59e0b
-        }
-
-        .notify-perk-num.c3 {
-            color: #a78bfa
-        }
-
-        .notify-perk-num.c4 {
-            color: #34d399
+            width: 30px;
+            color: #000000;
         }
 
         .notify-form {
@@ -376,11 +993,12 @@
         }
 
         .form-label {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 1.5px;
+            font-family: var(--font);
+            font-size: 12px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, .4)
+            color: #000000;
+            font-weight: 600;
         }
 
         .form-required {
@@ -388,25 +1006,25 @@
         }
 
         .form-input {
-            background: rgba(255, 255, 255, .05);
-            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(26, 26, 26, .04);
+            border: 1px solid var(--rule);
             border-radius: 8px;
             padding: 12px 14px;
             font-family: var(--font);
             font-size: 14px;
-            color: #fff;
+            color: var(--ink);
             outline: none;
             transition: border-color .3s var(--ease), background .3s var(--ease);
             width: 100%
         }
 
         .form-input::placeholder {
-            color: rgba(255, 255, 255, .3)
+            color: var(--ink-dim);
         }
 
         .form-input:focus {
-            border-color: rgba(255, 255, 255, .4);
-            background: rgba(255, 255, 255, .08)
+            border-color: var(--ink);
+            background: rgba(26, 26, 26, .06);
         }
 
         .form-submit {
@@ -415,22 +1033,22 @@
             justify-content: center;
             gap: 10px;
             padding: 16px 24px;
-            background: #fff;
-            border: 1px solid rgba(255, 255, 255, .12);
+            background: var(--ink);
+            border: 1px solid var(--ink);
             border-radius: 12px;
             font-family: var(--font);
             font-size: 14px;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: #0a0a0a;
+            color: #fff;
             cursor: pointer;
             width: 100%;
             transition: background .3s var(--ease), color .3s var(--ease), gap .3s var(--ease), transform .3s var(--ease)
         }
 
         .form-submit:hover {
-            background: rgba(255, 255, 255, .85);
+            background: rgba(26, 26, 26, .85);
             gap: 16px;
             transform: translateY(-2px)
         }
@@ -444,13 +1062,14 @@
         }
 
         .form-privacy {
-            font-family: var(--mono);
-            font-size: 11px;
-            letter-spacing: 2px;
+            font-family: var(--font);
+            font-size: 12px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, .55);
+            color: #000000;
             line-height: 1.6;
-            text-align: center
+            text-align: center;
+            font-weight: 500;
         }
 
         .notify-success {
@@ -472,8 +1091,8 @@
             width: 64px;
             height: 64px;
             border-radius: 50%;
-            background: rgba(20, 122, 71, .14);
-            border: 1.5px solid rgba(20, 122, 71, .55);
+            background: rgba(20, 122, 71, .10);
+            border: 1.5px solid rgba(20, 122, 71, .35);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -489,7 +1108,7 @@
         .success-title {
             font-size: 18px;
             font-weight: 700;
-            color: #fff;
+            color: var(--ink);
             text-transform: uppercase;
             letter-spacing: -.2px
         }
@@ -497,7 +1116,7 @@
         .success-sub {
             font-size: 13px;
             line-height: 1.6;
-            color: rgba(255, 255, 255, .55);
+            color: var(--ink-mid);
             max-width: 320px
         }
 
@@ -547,49 +1166,127 @@
             transform: translateX(-50%) translateY(0)
         }
 
-        @media(min-width:1025px) {
+        /* ===== RESPONSIVE ===== */
+        @media(min-width:769px) {
+            .nav {
+                top: 16px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: 480px
+            }
+
             .section-wrap {
                 padding: 100px 50px 80px;
                 min-height: auto
             }
-        }
 
-        @media(min-width:769px) and (max-width:1024px) {
-            .section-wrap {
-                padding: 80px 32px 60px;
-                min-height: auto
+            .about-split {
+                grid-template-columns: 1.1fr 1fr;
+                gap: 60px
             }
 
-            .contact-grid {
-                gap: 36px
+            .hero-main {
+                flex-direction: row;
+                align-items: flex-end;
+                justify-content: space-between;
+                gap: 50px;
+                margin-bottom: 20px
             }
 
-            .section-title {
-                margin-bottom: 40px
+            .headline-block {
+                flex: 1;
+                max-width: 55%
+            }
+
+            .hero-info {
+                margin-top: 0;
+                max-width: 340px;
+                flex-shrink: 0;
+                padding-bottom: 4px
+            }
+
+            .hero-content {
+                padding: 0 40px 20px
+            }
+
+            h1 {
+                font-size: 52px
+            }
+
+            .hero-stats {
+                padding-top: 14px;
+                font-size: 10px
+            }
+
+            .stat-num {
+                font-size: 42px
+            }
+
+            .event-row {
+                padding: 32px
             }
         }
 
         @media(min-width:481px) and (max-width:768px) {
+            .nav {
+                top: 12px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: 420px
+            }
+
             .section-wrap {
                 padding: 70px 20px 50px;
                 min-height: auto
+            }
+
+            .wwd-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .hero-content {
+                padding: 0 20px 16px
+            }
+
+            .hero-info {
+                font-size: 16px
+            }
+
+            .pol-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px
+            }
+
+            .pol-grid .pol:nth-child(2) {
+                margin-top: 30px
+            }
+
+            .pol-grid .pol:nth-child(3) {
+                margin-top: 0
+            }
+
+            .pol-grid .pol:nth-child(4) {
+                margin-top: 30px
             }
 
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 40px
             }
-
-            .contact-left {
-                height: auto
-            }
-
-            .form-row-2 {
-                grid-template-columns: 1fr 1fr
-            }
         }
 
         @media(max-width:480px) {
+            .stat-num {
+                font-size: 28px
+            }
+
+            .stat-cell {
+                padding: 12px 8px;
+                border-radius: 12px
+            }
+
             .section-wrap {
                 padding: 60px 14px 40px;
                 min-height: auto
@@ -600,17 +1297,72 @@
             }
 
             .section-title {
-                font-size: clamp(30px, 9vw, 72px);
                 margin-bottom: 36px
+            }
+
+            .wwd-grid {
+                grid-template-columns: 1fr
+            }
+
+            .hero-info {
+                font-size: 14px
+            }
+
+            .hero-stats {
+                font-size: 7px
+            }
+
+            .pol-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px
+            }
+
+            .pol-grid .pol:nth-child(odd) {
+                margin-top: 0
+            }
+
+            .pol-grid .pol:nth-child(even) {
+                margin-top: 28px
+            }
+
+            .pol-grid .pol:nth-child(2) {
+                margin-top: 28px
+            }
+
+            .pol-grid .pol:nth-child(3) {
+                margin-top: 0
+            }
+
+            .pol-grid .pol:nth-child(4) {
+                margin-top: 28px
+            }
+
+            .pol {
+                padding: 10px 10px 0
+            }
+
+            .pol-caption {
+                padding: 10px 2px 14px;
+                gap: 3px
+            }
+
+            .pol-caption-title {
+                font-size: 13px
+            }
+
+            .pol-caption-sub {
+                font-size: 9px
+            }
+
+            .gallery-btn {
+                font-size: 13px;
+                padding: 12px 20px;
+                margin-top: 30px
             }
 
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 32px
-            }
-
-            .contact-left {
-                height: auto
             }
 
             .channel-link {
@@ -628,7 +1380,7 @@
             }
 
             .notify-header {
-                padding: 22px 20px 18px
+                padding: 22px 14px 18px
             }
 
             .notify-title {
@@ -636,20 +1388,68 @@
             }
 
             .notify-perks {
-                padding: 0 20px
+                padding: 0 14px
             }
 
             .notify-form {
-                padding: 20px 20px 22px
+                padding: 20px 14px 22px
             }
         }
 
-        @media(prefers-reduced-motion: reduce) {
+        @media(pointer:coarse) {
+            .pol {
+                transition: none;
+                transform: none
+            }
 
-            *,
-            *::before,
-            *::after {
-                transition-duration: .01ms !important
+            .pol:active {
+                transform: scale(.98) translateZ(0);
+                transition: transform .15s ease
+            }
+        }
+
+        @media(max-height:500px) and (orientation:landscape) {
+            .section-wrap {
+                min-height: auto;
+                padding: 40px 20px 30px
+            }
+
+            .section-header {
+                margin-bottom: 20px
+            }
+
+            .about-split {
+                gap: 20px
+            }
+
+            .stat-num {
+                font-size: 22px
+            }
+
+            .stat-cell {
+                padding: 8px 6px
+            }
+
+            .wwd-grid {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .nav-top {
+                height: 40px
+            }
+
+            .nav {
+                top: 8px;
+                left: 8px;
+                right: 8px
+            }
+
+            .pol-grid {
+                grid-template-columns: repeat(4, 1fr)
+            }
+
+            .pol-grid .pol {
+                margin-top: 0 !important
             }
         }
     </style>
@@ -657,6 +1457,301 @@
 
 <body>
 
+    <div class="backdrop" id="backdrop"></div>
+
+    <div class="nav">
+        <div class="nav-pill" id="navPill">
+            <div class="nav-top">
+                <a href="#" class="logo" aria-label="Home"></a>
+                <span class="tagline">Let's Incubate</span>
+                <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+            <div class="nav-panel" id="navPanel">
+                <ul>
+                    <li><a href="#about" class="item" data-close><span class="reveal">About Us</span></a></li>
+                    <li><a href="#wwd" class="item" data-close><span class="reveal">What We Do</span></a></li>
+                    <li><a href="#events" class="item" data-close><span class="reveal">Events</span></a></li>
+                    <li><a href="#moments" class="item" data-close><span class="reveal">Moments</span></a></li>
+                    <li><a href="#contact" class="item" data-close><span class="reveal">Contact Us</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline preload="metadata">
+            <source src="https://videos.pexels.com/video-files/37196341/15757698_3840_2160_24fps.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <div class="hero-main">
+                <div class="headline-block">
+                    <span class="hero-tag">[ Incubator &amp; Accelerator Center ]</span>
+                    <h1>Build A New Journey With Us,<br>From Ideas To Impact.</h1>
+                </div>
+                <p class="hero-info">We help student founders turn ambitious ideas into real ventures with mentorship,
+                    resources, industry access and a community built to move faster.</p>
+            </div>
+            <div class="hero-stats">
+                <span><img
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
+                        height="20" style="vertical-align:middle;margin-right:8px;opacity:0.85">Initiative By Jai Hind
+                    College</span>
+                <span>Made In India</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-wrap" id="about">
+        <div class="section-header"><span class="section-eyebrow">[ About Us ]</span>
+            <div class="section-rule"></div>
+        </div>
+        <div class="about-split">
+            <div>
+                <h2 class="section-title">Ideas deserve<br><span class="highlight">momentum.</span></h2>
+                <p class="about-body">The Jai Hind College (Empowered Autonomous) Presents,<br><br>Incubator &amp;
+                    Accelerator Centre Is A Safe Harbour For Young Business Ventures Grappling About In Their Start Up
+                    Stage.<br><br>We Believe In Contributing To The Nation By Creating A Wholesome Start Up Ecosystem By
+                    Mentoring &amp; Supporting Several Budding Entrepreneurs.</p>
+                <div class="stats-row">
+                    <div class="stat-cell"><span class="stat-num">70<span class="plus">+</span></span><span
+                            class="stat-label">Startups Incubated</span></div>
+                    <div class="stat-cell"><span class="stat-num">95<span class="plus">+</span></span><span
+                            class="stat-label">Industrial Mentors</span></div>
+                    <div class="stat-cell"><span class="stat-num">6Yrs<span class="plus">+</span></span><span
+                            class="stat-label">Our Legacy</span></div>
+                </div>
+            </div>
+            <div class="pillars">
+                <div class="pillar"><span class="pillar-index">01</span>
+                    <div class="pillar-body">
+                        <h4>Mentorship</h4>
+                        <p>Direct access to founders and investors who have built real companies and taken real risks.
+                        </p>
+                    </div>
+                </div>
+                <div class="pillar"><span class="pillar-index">02</span>
+                    <div class="pillar-body">
+                        <h4>Curriculum</h4>
+                        <p>A phased program that moves from idea validation and market research through to a pitch-ready
+                            business.</p>
+                    </div>
+                </div>
+                <div class="pillar"><span class="pillar-index">03</span>
+                    <div class="pillar-body">
+                        <h4>Funding</h4>
+                        <p>Seed support and resource access so that early-stage costs never become the reason a good
+                            idea dies.</p>
+                    </div>
+                </div>
+                <div class="pillar"><span class="pillar-index">04</span>
+                    <div class="pillar-body">
+                        <h4>Community</h4>
+                        <p>A cohort of builders who trade honest feedback, share leads, and hold each other accountable.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-wrap" id="wwd">
+        <div class="section-header"><span class="section-eyebrow">[ What We Do ]</span>
+            <div class="section-rule"></div>
+        </div>
+        <h2 class="section-title">Built To Help You<br><span class="highlight">Launch.</span></h2>
+        <div class="wwd-grid-wrapper">
+            <div class="wwd-grid">
+                <div class="wwd-card"><span class="wwd-card-num">01</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
+                        fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M24 6C17.4 6 12 11.4 12 18c0 4.4 2.3 8.3 5.8 10.5V32h12.4v-3.5C33.7 26.3 36 22.4 36 18c0-6.6-5.4-12-12-12z"
+                            fill="#FFECA6" />
+                        <path d="M17.8 32c0 1 .2 2 .6 2.8M30.2 32c0 1-.2 2-.6 2.8" />
+                        <path d="M19 38h10" />
+                        <path d="M20.5 42h7" />
+                        <line x1="24" y1="6" x2="24" y2="3" />
+                        <line x1="36.5" y1="9.5" x2="38.6" y2="7.4" />
+                        <line x1="42" y1="18" x2="45" y2="18" />
+                        <line x1="11.5" y1="9.5" x2="9.4" y2="7.4" />
+                        <line x1="6" y1="18" x2="3" y2="18" />
+                        <line x1="24" y1="22" x2="24" y2="26" />
+                        <line x1="21" y1="19" x2="24" y2="22" />
+                        <line x1="27" y1="19" x2="24" y2="22" />
+                    </svg>
+                    <h4>Incubate Startups</h4>
+                    <p>Turn your innovative ideas into thriving ventures with expert mentorship, resources, and a
+                        dedicated incubation center.</p>
+                </div>
+                <div class="wwd-card"><span class="wwd-card-num">02</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
+                        fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="8" y="14" width="32" height="24" rx="2" fill="#D99E68" />
+                        <path d="M16 14v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" />
+                        <line x1="16" y1="26" x2="32" y2="26" />
+                        <line x1="16" y1="32" x2="24" y2="32" />
+                    </svg>
+                    <h4>Internship Fair</h4>
+                    <p>Connect growing startups with top talent and interns with impactful, real-world
+                        opportunities.</p>
+                </div>
+                <div class="wwd-card"><span class="wwd-card-num">03</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M6 42
+           L6 36
+           L16 24
+           L24 29
+           L36 12
+           L36 42
+           Z" fill="#54C949" stroke="none" />
+                        <polyline points="6,36 16,24 24,29 36,12" />
+                        <polyline points="30,12 36,12 36,18" />
+                        <line x1="6" y1="42" x2="42" y2="42" />
+                        <line x1="6" y1="42" x2="6" y2="8" />
+                        <line x1="6" y1="30" x2="9" y2="30" />
+                        <line x1="6" y1="20" x2="9" y2="20" />
+                        <line x1="18" y1="42" x2="18" y2="39" />
+                        <line x1="30" y1="42" x2="30" y2="39" />
+                    </svg>
+                    <h4>Startup Exposition</h4>
+                    <p>Showcase groundbreaking innovation, network with investors, and gain invaluable exposure.</p>
+                </div>
+                <div class="wwd-card"><span class="wwd-card-num">04</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+
+                        <circle cx="18" cy="16" r="6" fill="#FFF7E8" />
+                        <path d="M6 40c0-7 5-11 12-11s12 4 12 11" fill="#FFE0EE" />
+
+                        <path d="M32 14c2 1.5 4 4 4 7s-2 5.5-4 7" />
+                        <path d="M37 10c4 2.5 7 7 7 13s-3 10.5-7 13" />
+                    </svg>
+                    <h4>Mentoring Sessions</h4>
+                    <p>Seasoned industry leaders guide you to refine strategies, solve challenges, and grow.</p>
+                </div>
+                <div class="wwd-card"><span class="wwd-card-num">05</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
+                        fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 17v10h7l15 9V8L13 17H6z" fill="#B5DCFF" />
+                        <line x1="13" y1="17" x2="13" y2="27" />
+                        <path d="M32 18.5a6 6 0 0 1 0 9" />
+                        <path d="M36 14a12 12 0 0 1 0 18" />
+                    </svg>
+                    <h4>IPR Awareness</h4>
+                    <p>Protect your innovative ideas with expert insights on intellectual property rights.</p>
+                </div>
+                <div class="wwd-card"><span class="wwd-card-num">06</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
+                        fill="#FFE069" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M28 7c1 5-1 9-4 11 0-4-3-6-5-4-3 3-3 8-1 12-3-2-5-6-5-10C10 26 12 38 24 41c12-3 14-15 10-22-2 5-5 6-5 6 2-4 1-11-1-18z" />
+                        <path d="M21 33c0 3 1.5 5 3 5s3-2 3-5c0-2-1.5-4-3-5-1.5 1-3 3-3 5z" />
+                    </svg>
+                    <h4>Ignite Program</h4>
+                    <p>Learn to build impactful and successful ventures with the Wadhwani Foundation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-wrap" id="events">
+        <div class="section-header"><span class="section-eyebrow">[ Events ]</span>
+            <div class="section-rule"></div>
+        </div>
+        <h2 class="section-title">Don't Miss<br>What's <span class="highlight">Coming.</span></h2>
+        <div class="event-list">
+            <div class="event-row">
+                <div class="event-top">
+                    <span class="event-tag workshop">Workshop</span>
+                    <span class="event-tag workshop event-countdown" id="cd1">--d --h</span>
+                    <a class="event-tag workshop"
+                        href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Ecosystem+Discovery+%E2%80%94+JHC+Incubator&details=Welcome,%0A%0AThanks+For+Tuning+In+At+Incubator+%26+Accelerator+Center,%0A%0AWe+Invite+You+To+Our+Very+First+Event+%22Ecosystem+Discovery%22+Organized+By+The+Newly+Elected+2026%E2%80%932027+Core+Team.%0A%0AJoin+us+to+discover+the+entrepreneurial+ecosystem+at+Jai+Hind+College,+our+incubation+programs,+internship+fairs,+startup+expositions,+mentoring+opportunities+and+much+more.%0A%0AWe+are+proudly+hosting+this+event+along+with+150%2B+students+to+spread+awareness+regarding+our+Incubator+%26+Accelerator+Centre.%0A%0AVenue:%0AJai+Hind+College+(Empowered+Autonomous)%0AWRMG%2BR34,+A+Rd,+Churchgate,%0AMumbai,+Maharashtra+400020,+India%0A%0ADate:%0A8+August+2026%0A%0ATime:%0A12:00+AM+%E2%80%93+11:00+AM%0A%0ARegards,%0AJHC+Incubator+%26+Accelerator+Centre&location=Jai+Hind+College,+WRMG%2BR34,+A+Rd,+Churchgate,+Mumbai,+Maharashtra+400020,+India&dates=20260808T000000/20260808T110000"
+                        target="_blank" rel="noopener"
+                        style="display:inline-flex;align-items:center;gap:6px;text-decoration:none"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10.268 21a2 2 0 0 0 3.464 0" />
+                            <path d="M15 8h6" />
+                            <path d="M18 5v6" />
+                            <path
+                                d="M20.002 14.464a9 9 0 0 0 .738.863A1 1 0 0 1 20 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 8.75-5.332" />
+                        </svg>Notify Me</a>
+                </div>
+                <div class="event-body">
+                    <h3>Ecosystem Discovery</h3>
+                    <p>Welcome to the Jai Hind College Incubator &amp; Accelerator Centre. Meet the newly elected
+                        2026–2027 core team and discover how our entrepreneurial ecosystem, incubation programs, and
+                        flagship events help transform ideas into impactful ventures.</p>
+                </div>
+                <div class="event-footer"><span class="event-meta-str">8th August, 2026</span><span
+                        class="event-meta-str">Jai Hind College, Mumbai</span></div>
+            </div>
+            <div class="event-row">
+                <div class="event-top"><span class="event-tag annual">Annual</span><span
+                        class="event-tag annual event-countdown" id="cd2">--d --h</span></div>
+                <div class="event-body">
+                    <h3>Internship Fair</h3>
+                    <p>Connect with leading companies offering incredible internship opportunities. Whether you're a
+                        startup seeking passionate talent or a student ready to make an impact, this fair is your
+                        gateway to growth and learning.</p>
+                </div>
+                <div class="event-footer"><span class="event-meta-str">15th January, 2027</span><span
+                        class="event-meta-str">Jai Hind College, Mumbai</span></div>
+            </div>
+            <div class="event-row">
+                <div class="event-top"><span class="event-tag flagship">Flagship</span><span
+                        class="event-tag flagship event-countdown" id="cd3">--d --h</span></div>
+                <div class="event-body">
+                    <h3>Startup Exposition</h3>
+                    <p>Step into a world of innovation where industry experts mentor, guide, and inspire. Gain insights,
+                        showcase your ideas, and build meaningful connections in an ecosystem buzzing with
+                        entrepreneurial energy.</p>
+                </div>
+                <div class="event-footer"><span class="event-meta-str">16th January, 2027</span><span
+                        class="event-meta-str">Jai Hind College, Mumbai</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-wrap" id="moments">
+        <div class="section-header"><span class="section-eyebrow">[ Moments ]</span>
+            <div class="section-rule"></div>
+        </div>
+        <h2 class="section-title">Our Journey,<br><span class="highlight">Framed.</span></h2>
+        <div class="pol-grid">
+            <div class="pol"><img class="pol-img"
+                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic1.jpg"
+                    alt="Startup Exposition 2025" loading="lazy" fetchpriority="low" decoding="async">
+                <div class="pol-caption"><span class="pol-caption-title">Startup Exposition</span><span
+                        class="pol-caption-sub">Jan 2025 · Mumbai</span></div>
+            </div>
+            <div class="pol"><img class="pol-img"
+                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic2.jpg"
+                    alt="Internship Fair 2025" loading="lazy" fetchpriority="low" decoding="async">
+                <div class="pol-caption"><span class="pol-caption-title">Internship Fair</span><span
+                        class="pol-caption-sub">Jan 2025 · Mumbai</span></div>
+            </div>
+            <div class="pol"><img class="pol-img"
+                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic3.jpg"
+                    alt="Mentoring Session" loading="lazy" fetchpriority="low" decoding="async">
+                <div class="pol-caption"><span class="pol-caption-title">Mentoring Session</span><span
+                        class="pol-caption-sub">Oct 2024 · Mumbai</span></div>
+            </div>
+            <div class="pol"><img class="pol-img"
+                    src="https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/src/iac/pic4.jpg"
+                    alt="IPR Awareness Workshop" loading="lazy" fetchpriority="low" decoding="async">
+                <div class="pol-caption"><span class="pol-caption-title">IPR Awareness</span><span
+                        class="pol-caption-sub">Sep 2024 · Mumbai</span></div>
+            </div>
+        </div>
+        <button class="gallery-btn" onclick="void(0)">
+            View Gallery
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+            </svg>
+        </button>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
     <section class="section-wrap" id="contact">
         <div class="section-header">
             <span class="section-eyebrow">[ Contact Us ]</span>
@@ -760,25 +1855,24 @@
                 <div class="notify-wrap">
                     <div class="notify-header">
                         <h3 class="notify-title">Stay In The Loop.</h3>
-                        <p class="notify-sub">Events, internship fairs, startup showcases, mentoring sessions — get
-                            notified before anyone else. Join our community and stay connected to everything happening
-                            at IAC.</p>
+                        <p class="notify-sub">Get Ready To Be Informed First About Our Upcoming Events, Join Our
+                            Community To Stay Connected To Everything Happening At IAC.</p>
                     </div>
                     <div class="notify-perks">
                         <div class="notify-perk">
-                            <span class="notify-perk-num c1">01</span>
+                            <span class="notify-perk-num">01</span>
                             <span>Early access to event registrations</span>
                         </div>
                         <div class="notify-perk">
-                            <span class="notify-perk-num c2">02</span>
+                            <span class="notify-perk-num">02</span>
                             <span>Internship &amp; opportunity alerts</span>
                         </div>
                         <div class="notify-perk">
-                            <span class="notify-perk-num c3">03</span>
+                            <span class="notify-perk-num">03</span>
                             <span>Behind-the-scenes updates</span>
                         </div>
                         <div class="notify-perk">
-                            <span class="notify-perk-num c4">04</span>
+                            <span class="notify-perk-num">04</span>
                             <span>150+ students already in the community</span>
                         </div>
                     </div>
@@ -827,6 +1921,65 @@
     <div class="toast" id="toast"></div>
 
     <script>
+        // Navigation
+        const heroVid = document.querySelector('.hero video');
+        if (heroVid) {
+            const vio = new IntersectionObserver(([e]) => {
+                e.isIntersecting ? heroVid.play() : heroVid.pause()
+            }, { threshold: 0.01 });
+            vio.observe(heroVid)
+        }
+        const burger = document.getElementById('burger'),
+            panel = document.getElementById('navPanel'),
+            bd = document.getElementById('backdrop'),
+            navTop = document.querySelector('.nav-top');
+
+        function closeMenu() {
+            burger.classList.remove('open');
+            panel.classList.remove('open');
+            bd.classList.remove('show');
+            document.body.classList.remove('menu-open');
+            navTop.classList.remove('menu-open')
+        }
+        burger.addEventListener('click', () => {
+            const o = !panel.classList.contains('open');
+            burger.classList.toggle('open', o);
+            panel.classList.toggle('open', o);
+            bd.classList.toggle('show', o);
+            document.body.classList.toggle('menu-open', o);
+            navTop.classList.toggle('menu-open', o)
+        });
+        bd.addEventListener('click', closeMenu);
+        document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeMenu));
+
+        // Countdown
+        const cdTargets = [
+            { el: document.getElementById('cd1'), date: new Date('2026-08-08T00:00:00+05:30') },
+            { el: document.getElementById('cd2'), date: new Date('2027-01-15T00:00:00+05:30') },
+            { el: document.getElementById('cd3'), date: new Date('2027-01-16T00:00:00+05:30') }
+        ];
+        let drift = 0;
+
+        function pad(n) { return String(n).padStart(2, '0') }
+
+        function tick() {
+            const now = Date.now() + drift;
+            cdTargets.forEach(({ el, date }) => {
+                const diff = date.getTime() - now;
+                if (diff <= 0) { el.textContent = 'Live Now'; return }
+                el.textContent = `${pad(Math.floor(diff / 86400000))}d ${pad(Math.floor((diff % 86400000) / 3600000))}h`
+            })
+        }
+        fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata')
+            .then(r => r.json())
+            .then(d => { drift = new Date(d.datetime).getTime() - Date.now() })
+            .catch(() => { })
+            .finally(() => {
+                tick();
+                setInterval(tick, 1000)
+            });
+
+        // Toast
         function showToast(msg) {
             const t = document.getElementById('toast');
             t.textContent = msg;
@@ -834,6 +1987,7 @@
             setTimeout(() => t.classList.remove('show'), 3200);
         }
 
+        // Contact form
         document.getElementById('notifyBtn').addEventListener('click', () => {
             const name = document.getElementById('nf-name').value.trim();
             const email = document.getElementById('nf-email').value.trim();
