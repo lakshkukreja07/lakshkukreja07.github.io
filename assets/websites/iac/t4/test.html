@@ -762,10 +762,11 @@
 
         .block-label {
             font-family: var(--mono);
-            font-size: 10px;
+            font-size: 13px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--ink-dim);
+            color: var(--ink);
+            font-weight: 600;
             margin-bottom: 14px;
         }
 
@@ -780,6 +781,7 @@
             color: var(--ink);
             margin-bottom: 10px;
             transition: border-color .3s var(--ease);
+            background: #fafafa;
         }
 
         .channel-link:last-child {
@@ -790,8 +792,8 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(26, 26, 26, .05);
-            color: var(--ink);
+            background: var(--ink);
+            color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -807,17 +809,17 @@
         }
 
         .channel-name {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             color: var(--ink);
             letter-spacing: -.1px;
         }
 
         .channel-handle {
-            font-family: var(--mono);
-            font-size: 11px;
+            font-family: var(--font);
+            font-size: 13px;
             color: var(--ink-dim);
-            letter-spacing: .5px;
+            letter-spacing: 0.5px;
             word-break: break-all;
         }
 
@@ -1029,7 +1031,7 @@
         }
 
         .form-privacy {
-            font-family: var(--font);
+            font-family: var(--mono);
             font-size: 12px;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -1133,6 +1135,93 @@
             transform: translateX(-50%) translateY(0);
         }
 
+        .footer {
+            background: #1a1a1a;
+            color: #f4f1ea;
+            padding: 40px 14px 24px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 22px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(244, 241, 234, .7);
+            max-width: 320px;
+        }
+
+        .footer-links h4 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            color: #f4f1ea;
+        }
+
+        .footer-links a {
+            display: block;
+            color: rgba(244, 241, 234, .6);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 4px 0;
+            transition: color .3s var(--ease);
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(244, 241, 234, .1);
+            margin-top: 32px;
+            padding-top: 24px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom p {
+            font-size: 12px;
+            color: rgba(244, 241, 234, .5);
+            font-family: var(--mono);
+            letter-spacing: 0.5px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-socials a {
+            color: rgba(244, 241, 234, .5);
+            transition: color .3s var(--ease), transform .3s var(--ease);
+        }
+
+        .footer-socials a:hover {
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
         @media (min-width: 769px) {
             .nav {
                 top: 16px;
@@ -1192,6 +1281,10 @@
             .event-row {
                 padding: 32px;
             }
+
+            .footer-inner {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
         }
 
         @media (min-width: 481px) and (max-width: 768px) {
@@ -1240,6 +1333,14 @@
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
+            }
+
+            .block-label {
+                font-size: 13px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -1430,8 +1531,27 @@
             }
 
             .block-label {
-                font-size: 9px;
+                font-size: 13px;
                 margin-bottom: 10px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .footer {
+                padding: 32px 14px 20px;
+            }
+
+            .footer-brand p {
+                font-size: 13px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
             }
         }
 
@@ -1795,10 +1915,12 @@
                         href="https://www.linkedin.com/company/incubator-accelerator-centre?originalSubdomain=in"
                         target="_blank" rel="noopener">
                         <div class="channel-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
                                 <path
-                                    d="M6.5 9h2v9h-2V9zm1-1.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM10 9h1.9v1.2c.5-.9 1.5-1.4 2.6-1.4 2.3 0 3 1.5 3 3.5V18h-2v-5.2c0-1.2-.4-2-1.5-2-1.3 0-2 .9-2 2.2V18H10V9z"
-                                    fill="currentColor" />
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
                             </svg>
                         </div>
                         <div class="channel-text">
@@ -1815,11 +1937,11 @@
                     <a class="channel-link" href="https://www.instagram.com/iac.jaihindcollege/" target="_blank"
                         rel="noopener">
                         <div class="channel-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                                <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor"
-                                    stroke-width="1.5" />
-                                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" />
-                                <circle cx="17" cy="7" r="1" fill="currentColor" />
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" />
+                                <circle cx="12" cy="12" r="5" />
+                                <circle cx="17" cy="7" r="1" fill="#fff" />
                             </svg>
                         </div>
                         <div class="channel-text">
@@ -1837,8 +1959,8 @@
                         href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&su=Enquiry+Through+Official+Website&to=incubation.centre@jaihindcollege.edu.in"
                         target="_blank" rel="noopener">
                         <div class="channel-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="4" width="20" height="16" rx="2" />
                                 <path d="m2 7 10 7 10-7" />
                             </svg>
@@ -1873,32 +1995,31 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="contact-right">
                 <div class="notify-wrap">
                     <div class="notify-header">
                         <h3 class="notify-title">Stay In The Loop.</h3>
-                        <p class="notify-sub">Get Ready To Be Informed First About Our Upcoming Events,<br>Join Our
-                            Community To Stay Connected To Everything Happening At IAC.</p>
+                        <p class="notify-sub"></p> Join Our Community For Exclusive Updates & Stay Connected Seamlessly.
+                        </p>
                     </div>
                     <div class="notify-perks">
                         <div class="notify-perk">
                             <span class="notify-perk-num">01</span>
-                            <span>Early access to event registrations</span>
+                            <span>Get Notified About Upcoming Events.</span>
                         </div>
                         <div class="notify-perk">
                             <span class="notify-perk-num">02</span>
-                            <span>Internship &amp; opportunity alerts</span>
+                            <span>Internship & Opportunity Alerts.</span>
                         </div>
                         <div class="notify-perk">
                             <span class="notify-perk-num">03</span>
-                            <span>Behind-the-scenes updates</span>
+                            <span>Behind The Scenes Updates.</span>
                         </div>
                         <div class="notify-perk">
                             <span class="notify-perk-num">04</span>
-                            <span>150+ students already in the community</span>
+                            <span>Access To Our Newsletters.</span>
                         </div>
                     </div>
                     <div class="notify-form" id="notifyForm">
@@ -1942,6 +2063,59 @@
 
         </div>
     </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>Incubator &amp; Accelerator Center</h3>
+                <p>Jai Hind College (Empowered Autonomous) — nurturing the next generation of founders, builders, and
+                    changemakers.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigate</h4>
+                <a href="#about">About</a>
+                <a href="#wwd">What We Do</a>
+                <a href="#events">Events</a>
+                <a href="#moments">Moments</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="https://www.linkedin.com/company/incubator-accelerator-centre" target="_blank">LinkedIn</a>
+                <a href="https://www.instagram.com/iac.jaihindcollege/" target="_blank">Instagram</a>
+                <a href="mailto:incubation.centre@jaihindcollege.edu.in">Email</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Jai Hind College Incubator &amp; Accelerator Center. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/company/incubator-accelerator-centre" target="_blank"
+                    aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                        <rect x="2" y="9" width="4" height="12" />
+                        <circle cx="4" cy="4" r="2" />
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/iac.jaihindcollege/" target="_blank" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" />
+                        <circle cx="12" cy="12" r="5" />
+                        <circle cx="17" cy="7" r="1" fill="currentColor" />
+                    </svg>
+                </a>
+                <a href="mailto:incubation.centre@jaihindcollege.edu.in" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m2 7 10 7 10-7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <div class="toast" id="toast"></div>
 
