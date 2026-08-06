@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Incubator &amp; Accelerator Center | Jai Hind College</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <title>Incubator & Accelerator Centre | Jai Hind College</title>
     <link rel="icon"
         href="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&family=Roboto+Mono:wght@100..700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@400;600;700&family=Roboto+Mono:wght@400;500;600&display=swap&display=swap"
         rel="stylesheet">
     <link rel="preload" as="image"
-        href="https://cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic1.jpg"
+        href="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic1.jpg&w=600&output=webp&q=55"
         fetchpriority="high">
     <style>
         :root {
@@ -21,21 +21,15 @@
             --bg: #fff;
             --fg: #f4f1ea;
             --ink: #1a1a1a;
-            --ink-dim: rgba(26, 26, 26, .38);
-            --ink-mid: rgba(26, 26, 26, .58);
+            --ink-d: rgba(26, 26, 26, .38);
+            --ink-m: rgba(26, 26, 26, .58);
             --rule: rgba(26, 26, 26, .1);
             --font: 'Stack Sans Headline', sans-serif;
-            --mono: 'Roboto Mono', monospace
+            --mono: 'Roboto Mono', monospace;
+            --hl: #86b7ee
         }
 
-        ::selection {
-            color: #fafafa;
-            background: #444
-        }
-
-        *,
-        *::before,
-        *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box
@@ -45,9 +39,14 @@
         body {
             height: 100%;
             background: var(--bg);
-            color: var(--fg);
+            color: var(--ink);
             font-family: var(--font);
             overflow-x: hidden
+        }
+
+        ::selection {
+            color: #fafafa;
+            background: #000
         }
 
         body.menu-open {
@@ -97,22 +96,23 @@
             position: relative
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none
+        .nav-logo {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            flex-shrink: 0;
         }
 
         .tagline {
             font-size: 12px;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             color: #fff;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             white-space: nowrap;
-            font-weight: 400
+            font-weight: 700;
         }
 
         .burger {
@@ -198,7 +198,9 @@
             display: inline-block;
             transform: translateY(100%);
             opacity: 0;
-            transition: transform .45s var(--ease), opacity .45s var(--ease)
+            transition: transform .45s var(--ease), opacity .45s var(--ease);
+            font-family: var(--mono);
+            text-transform: uppercase;
         }
 
         .nav-panel.open li .reveal {
@@ -258,7 +260,7 @@
             position: relative;
             z-index: 2;
             padding: 0 14px 12px;
-            color: var(--fg)
+            color: #fff
         }
 
         .hero-main {
@@ -319,7 +321,7 @@
             content: '';
             position: absolute;
             inset: 0 -4px;
-            background: #86b7ee;
+            background: var(--hl);
             border-radius: 2px;
             z-index: -1
         }
@@ -347,7 +349,7 @@
             font-size: 12px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--ink-dim);
+            color: var(--ink-d);
             white-space: nowrap
         }
 
@@ -377,7 +379,7 @@
         .about-body {
             font-size: 16px;
             line-height: 1.4;
-            color: var(--ink-mid);
+            color: var(--ink-m);
             max-width: 540px;
             margin-bottom: 40px
         }
@@ -416,7 +418,7 @@
             font-size: 10px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--ink-dim);
+            color: var(--ink-d);
             margin-top: 6px;
             display: block
         }
@@ -447,7 +449,7 @@
             font-size: 14px;
             font-weight: 500;
             letter-spacing: 1px;
-            color: var(--ink-dim)
+            color: var(--ink-d)
         }
 
         .pillar-body h4 {
@@ -461,7 +463,7 @@
         .pillar-body p {
             font-size: 13px;
             line-height: 1.6;
-            color: var(--ink-mid)
+            color: var(--ink-m)
         }
 
         .wwd-grid-wrapper {
@@ -497,7 +499,7 @@
             font-size: 14px;
             font-weight: 500;
             letter-spacing: 1px;
-            color: var(--ink-dim);
+            color: var(--ink-d);
             pointer-events: none;
             user-select: none
         }
@@ -505,7 +507,12 @@
         .wwd-card-icon {
             width: 40px;
             height: 40px;
-            color: var(--ink)
+            color: var(--ink);
+            stroke: #000;
+            stroke-width: 1.8;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round
         }
 
         .wwd-card h4 {
@@ -519,7 +526,7 @@
         .wwd-card p {
             font-size: 13px;
             line-height: 1.6;
-            color: var(--ink-mid)
+            color: var(--ink-m)
         }
 
         .event-list {
@@ -557,7 +564,16 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             border-radius: 4px;
-            padding: 4px 10px
+            padding: 4px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px
+        }
+
+        .event-tag svg.astroid {
+            flex-shrink: 0;
+            width: 12px;
+            height: 12px
         }
 
         .event-tag.flagship {
@@ -595,13 +611,15 @@
         .event-row p {
             font-size: 14px;
             line-height: 1.6;
-            color: var(--ink-mid)
+            color: var(--ink-m)
         }
 
         .event-footer {
             display: flex;
             align-items: center;
-            justify-content: space-between
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px
         }
 
         .event-meta-str {
@@ -609,7 +627,17 @@
             font-size: 14px;
             font-weight: 400;
             color: var(--ink);
-            white-space: nowrap
+            display: inline-flex;
+            align-items: center;
+            gap: 5px
+        }
+
+        .event-countdown {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase
         }
 
         .pol-grid {
@@ -657,7 +685,6 @@
             border: 1px solid rgba(26, 26, 26, .08);
             min-height: 160px;
             background: #e8e5de;
-            image-rendering: auto;
             content-visibility: auto
         }
 
@@ -697,7 +724,7 @@
             font-size: 10px;
             letter-spacing: 1.2px;
             text-transform: uppercase;
-            color: var(--ink-dim)
+            color: var(--ink-d)
         }
 
         .gallery-btn {
@@ -718,10 +745,12 @@
             cursor: pointer;
             transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), gap .3s var(--ease);
             align-self: flex-start;
-            position: relative
+            position: relative;
+            text-decoration: none;
         }
 
-        .gallery-btn svg {
+        .gallery-btn svg,
+        .form-submit svg {
             transition: transform .35s var(--ease)
         }
 
@@ -731,51 +760,477 @@
             gap: 16px
         }
 
-        .gallery-btn:hover svg {
+        .gallery-btn:hover svg,
+        .form-submit:hover svg {
             transform: translateX(4px)
         }
 
-        @media(min-width:481px) and (max-width:768px) {
-            .nav {
-                top: 12px;
-                left: 50%;
-                right: auto;
-                transform: translateX(-50%);
-                width: 420px
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: stretch
+        }
+
+        .contact-left {
+            display: flex;
+            flex-direction: column;
+            gap: 32px
+        }
+
+        .contact-left>div:last-child {
+            display: flex;
+            flex-direction: column;
+            flex: 1
+        }
+
+        .block-label {
+            font-family: var(--mono);
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ink);
+            font-weight: 600;
+            margin-bottom: 14px
+        }
+
+        .channel-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--ink);
+            margin-bottom: 10px;
+            transition: border-color .3s var(--ease);
+            background: #fafafa
+        }
+
+        .channel-link:last-child {
+            margin-bottom: 0
+        }
+
+        .channel-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--ink);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0
+        }
+
+        .channel-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+            min-width: 0
+        }
+
+        .channel-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: -.1px
+        }
+
+        .channel-handle {
+            font-family: var(--font);
+            font-size: 13px;
+            color: var(--ink-d);
+            letter-spacing: .5px;
+            word-break: break-all
+        }
+
+        .channel-arrow {
+            color: var(--ink-d);
+            flex-shrink: 0;
+            transition: transform .35s var(--ease)
+        }
+
+        .channel-link:hover .channel-arrow {
+            transform: translate(3px, -3px)
+        }
+
+        .map-wrap {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--rule);
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 260px
+        }
+
+        .map-wrap iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            display: block;
+            border: none;
+            filter: grayscale(15%);
+            flex: 1
+        }
+
+        .map-footer {
+            padding: 14px 18px;
+            background: #fafafa;
+            border-top: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .map-footer svg {
+            flex-shrink: 0;
+            stroke: #1a1a1a
+        }
+
+        .map-footer-text {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--ink-m)
+        }
+
+        .contact-right {
+            display: flex;
+            flex-direction: column
+        }
+
+        .notify-wrap {
+            background: #fff;
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%
+        }
+
+        .notify-header {
+            padding: 28px 28px 20px
+        }
+
+        .notify-title {
+            font-size: clamp(32px, 4.5vw, 56px);
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1;
+            letter-spacing: -.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase
+        }
+
+        .notify-sub {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #000
+        }
+
+        .notify-perks {
+            padding: 4px 28px 12px;
+            display: flex;
+            flex-direction: column
+        }
+
+        .notify-perk {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 0;
+            font-size: 14px;
+            color: #000;
+            font-weight: 400;
+            border-bottom: 1px solid var(--rule)
+        }
+
+        .notify-perk:last-child {
+            border-bottom: none
+        }
+
+        .notify-perk-num {
+            font-size: 13px;
+            font-weight: 600;
+            flex-shrink: 0;
+            width: 28px;
+            color: #000;
+            opacity: .4;
+            font-family: var(--mono)
+        }
+
+        .notify-form {
+            padding: 16px 28px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px
+        }
+
+        .form-label {
+            font-family: var(--font);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #000;
+            font-weight: 600
+        }
+
+        .form-required {
+            color: #ff4d4d
+        }
+
+        .form-input {
+            background: rgba(26, 26, 26, .04);
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-family: var(--font);
+            font-size: 14px;
+            color: var(--ink);
+            outline: none;
+            transition: border-color .3s var(--ease), background .3s var(--ease);
+            width: 100%
+        }
+
+        .form-input::placeholder {
+            color: var(--ink-d)
+        }
+
+        .form-input:focus {
+            border-color: var(--ink);
+            background: rgba(26, 26, 26, .06)
+        }
+
+        .form-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 24px;
+            background: var(--ink);
+            border: 1px solid var(--ink);
+            border-radius: 12px;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+            transition: background .3s var(--ease), gap .3s var(--ease), transform .3s var(--ease)
+        }
+
+        .form-submit:hover {
+            background: rgba(26, 26, 26, .85);
+            gap: 16px;
+            transform: translateY(-2px)
+        }
+
+        .form-privacy {
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #000;
+            line-height: 1.6;
+            text-align: center;
+            font-weight: 500
+        }
+
+        .notify-success {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 16px;
+            padding: 40px 28px
+        }
+
+        .notify-success.show {
+            display: flex
+        }
+
+        .success-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(20, 122, 71, .10);
+            border: 1.5px solid rgba(20, 122, 71, .35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: successPop .5s var(--ease)
+        }
+
+        .success-circle svg path {
+            stroke-dasharray: 24;
+            stroke-dashoffset: 24;
+            animation: successDraw .4s .35s var(--ease) forwards
+        }
+
+        .success-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--ink);
+            text-transform: uppercase;
+            letter-spacing: -.2px
+        }
+
+        .success-sub {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--ink-m);
+            max-width: 320px
+        }
+
+        @keyframes successPop {
+            0% {
+                transform: scale(.4);
+                opacity: 0
             }
 
-            .section-wrap {
-                padding: 70px 20px 50px;
-                min-height: auto
+            60% {
+                transform: scale(1.08);
+                opacity: 1
             }
 
-            .wwd-grid {
-                grid-template-columns: 1fr 1fr
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        @keyframes successDraw {
+            to {
+                stroke-dashoffset: 0
+            }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #1a1a1a;
+            color: #fff;
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 1px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .4s var(--ease), transform .4s var(--ease);
+            z-index: 9999;
+            white-space: nowrap
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        .footer {
+            background: var(--bg);
+            border-top: 1px solid var(--rule)
+        }
+
+        .footer-bottom {
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px
+        }
+
+        .footer-status-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .footer-status-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            border: 1px solid rgba(26, 26, 26, .15);
+            border-radius: 4px;
+            padding: 6px 12px
+        }
+
+        .footer-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        .footer-status-dot.green {
+            background: #16c054
+        }
+
+        .footer-status-dot.red {
+            background: #ef2d2d
+        }
+
+        .footer-status-dot.yellow {
+            background: #f5a800
+        }
+
+        .footer-bottom-right {
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: .5px;
+            color: #1a1a1a
+        }
+
+        @media(max-width:600px) {
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                padding: 16px 16px 20px
             }
 
-            .hero-content {
-                padding: 0 20px 16px
+            .footer-status-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                width: 100%
             }
 
-            .hero-info {
-                font-size: 16px
+            .footer-status-item {
+                width: 100%
             }
 
-            .pol-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px
-            }
-
-            .pol-grid .pol:nth-child(2) {
-                margin-top: 30px
-            }
-
-            .pol-grid .pol:nth-child(3) {
-                margin-top: 0
-            }
-
-            .pol-grid .pol:nth-child(4) {
-                margin-top: 30px
+            .footer-bottom-right {
+                font-size: 11px
             }
         }
 
@@ -790,7 +1245,7 @@
 
             .section-wrap {
                 padding: 100px 50px 80px;
-                min-height: auto
+                min-height: 100svh
             }
 
             .about-split {
@@ -840,7 +1295,78 @@
             }
         }
 
+        @media(min-width:481px) and (max-width:768px) {
+            .nav {
+                top: 12px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: 420px
+            }
+
+            .section-wrap {
+                padding: 70px 20px 50px;
+                min-height: 100svh
+            }
+
+            .wwd-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .hero-content {
+                padding: 0 20px 16px
+            }
+
+            .hero-info {
+                font-size: 16px
+            }
+
+            .pol-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px
+            }
+
+            .pol-grid .pol:nth-child(2) {
+                margin-top: 30px
+            }
+
+            .pol-grid .pol:nth-child(3) {
+                margin-top: 0
+            }
+
+            .pol-grid .pol:nth-child(4) {
+                margin-top: 30px
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px
+            }
+        }
+
         @media(max-width:480px) {
+            .section-wrap {
+                padding: 60px 14px 40px;
+                min-height: auto
+            }
+
+            .section-header {
+                gap: 16px;
+                margin-bottom: 48px;
+                padding-top: 12px
+            }
+
+            .section-eyebrow {
+                font-size: 10px;
+                letter-spacing: 2px
+            }
+
+            .section-title {
+                font-size: clamp(30px, 9vw, 44px);
+                margin-bottom: 36px;
+                line-height: 1.08
+            }
+
             .stat-num {
                 font-size: 28px
             }
@@ -848,19 +1374,6 @@
             .stat-cell {
                 padding: 12px 8px;
                 border-radius: 12px
-            }
-
-            .section-wrap {
-                padding: 60px 14px 40px;
-                min-height: auto
-            }
-
-            .section-header {
-                margin-bottom: 30px
-            }
-
-            .section-title {
-                margin-bottom: 36px
             }
 
             .wwd-grid {
@@ -888,16 +1401,8 @@
                 margin-top: 28px
             }
 
-            .pol-grid .pol:nth-child(2) {
-                margin-top: 28px
-            }
-
             .pol-grid .pol:nth-child(3) {
                 margin-top: 0
-            }
-
-            .pol-grid .pol:nth-child(4) {
-                margin-top: 28px
             }
 
             .pol {
@@ -921,6 +1426,104 @@
                 font-size: 13px;
                 padding: 12px 20px;
                 margin-top: 30px
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 32px
+            }
+
+            .contact-left {
+                gap: 28px
+            }
+
+            .channel-link {
+                padding: 14px 16px;
+                gap: 12px
+            }
+
+            .channel-icon {
+                width: 36px;
+                height: 36px
+            }
+
+            .form-row-2 {
+                grid-template-columns: 1fr
+            }
+
+            .notify-header {
+                padding: 22px 16px 18px
+            }
+
+            .notify-sub {
+                font-size: 13px;
+                line-height: 1.5
+            }
+
+            .notify-perks {
+                padding: 0 16px 8px
+            }
+
+            .notify-perk {
+                font-size: 13px;
+                padding: 8px 0;
+                gap: 12px
+            }
+
+            .notify-perk-num {
+                font-size: 12px;
+                width: 24px
+            }
+
+            .notify-form {
+                padding: 12px 16px 20px;
+                gap: 10px
+            }
+
+            .form-label {
+                font-size: 11px
+            }
+
+            .form-input {
+                font-size: 13px;
+                padding: 10px 12px
+            }
+
+            .form-submit {
+                font-size: 13px;
+                padding: 14px 20px
+            }
+
+            .form-privacy {
+                font-size: 11px
+            }
+
+            .map-wrap {
+                min-height: 200px
+            }
+
+            .map-wrap iframe {
+                min-height: 180px
+            }
+
+            .map-footer {
+                padding: 10px 14px
+            }
+
+            .map-footer-text {
+                font-size: 9px;
+                letter-spacing: 1px
+            }
+
+            .block-label {
+                font-size: 13px;
+                margin-bottom: 10px
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px
             }
         }
 
@@ -990,17 +1593,19 @@
     <div class="nav">
         <div class="nav-pill" id="navPill">
             <div class="nav-top">
-                <a href="#" class="logo" aria-label="Home"></a>
-                <span class="tagline">Let's Incubate</span>
+                <a href="#" aria-label="Home"><img class="nav-logo"
+                        src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
+                        alt="JHC_LOGO"></a>
+                <span class="tagline">Incubator & Accelerator Centre</span>
                 <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
             </div>
             <div class="nav-panel" id="navPanel">
                 <ul>
-                    <li><a href="#about" class="item" data-close><span class="reveal">About Us</span></a></li>
-                    <li><a href="#wwd" class="item" data-close><span class="reveal">What We Do</span></a></li>
+                    <li><a href="#about-us" class="item" data-close><span class="reveal">About Us</span></a></li>
+                    <li><a href="#what-we-do" class="item" data-close><span class="reveal">What We Do</span></a></li>
                     <li><a href="#events" class="item" data-close><span class="reveal">Events</span></a></li>
                     <li><a href="#moments" class="item" data-close><span class="reveal">Moments</span></a></li>
-                    <li><a href="#contact" class="item" data-close><span class="reveal">Contact Us</span></a></li>
+                    <li><a href="#contact-us" class="item" data-close><span class="reveal">Contact Us</span></a></li>
                 </ul>
             </div>
         </div>
@@ -1013,7 +1618,7 @@
         <div class="hero-content">
             <div class="hero-main">
                 <div class="headline-block">
-                    <span class="hero-tag">[ Incubator &amp; Accelerator Center ]</span>
+                    <span class="hero-tag">[ Incubator & Accelerator Centre ]</span>
                     <h1>Build A New Journey With Us,<br>From Ideas To Impact.</h1>
                 </div>
                 <p class="hero-info">We help student founders turn ambitious ideas into real ventures with mentorship,
@@ -1022,24 +1627,24 @@
             <div class="hero-stats">
                 <span><img
                         src="https://internationalmanagementconference.com/wp-content/uploads/2026/02/jai_hind_college_logo.png"
-                        height="20" style="vertical-align:middle;margin-right:8px;opacity:0.85">Initiative By Jai Hind
-                    College</span>
+                        height="20" style="vertical-align:middle;margin-right:8px;opacity:0.85" alt="">Initiative By Jai
+                    Hind College</span>
                 <span>Made In India</span>
             </div>
         </div>
     </section>
 
-    <section class="section-wrap" id="about">
+    <section class="section-wrap" id="about-us">
         <div class="section-header"><span class="section-eyebrow">[ About Us ]</span>
             <div class="section-rule"></div>
         </div>
         <div class="about-split">
             <div>
                 <h2 class="section-title">Ideas deserve<br><span class="highlight">momentum.</span></h2>
-                <p class="about-body">The Jai Hind College (Empowered Autonomous) Presents,<br><br>Incubator &amp;
+                <p class="about-body">The Jai Hind College (Empowered Autonomous) Presents,<br><br>Incubator &
                     Accelerator Centre Is A Safe Harbour For Young Business Ventures Grappling About In Their Start Up
                     Stage.<br><br>We Believe In Contributing To The Nation By Creating A Wholesome Start Up Ecosystem By
-                    Mentoring &amp; Supporting Several Budding Entrepreneurs.</p>
+                    Mentoring & Supporting Several Budding Entrepreneurs.</p>
                 <div class="stats-row">
                     <div class="stat-cell"><span class="stat-num">70<span class="plus">+</span></span><span
                             class="stat-label">Startups Incubated</span></div>
@@ -1082,21 +1687,19 @@
         </div>
     </section>
 
-    <section class="section-wrap" id="wwd">
+    <section class="section-wrap" id="what-we-do">
         <div class="section-header"><span class="section-eyebrow">[ What We Do ]</span>
             <div class="section-rule"></div>
         </div>
         <h2 class="section-title">Built To Help You<br><span class="highlight">Launch.</span></h2>
         <div class="wwd-grid-wrapper">
             <div class="wwd-grid">
-                <div class="wwd-card"><span class="wwd-card-num">01</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <div class="wwd-card"><span class="wwd-card-num">01</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
                         <path
-                            d="M24 6C17.4 6 12 11.4 12 18c0 4.4 2.3 8.3 5.8 10.5V32h12.4v-3.5C33.7 26.3 36 22.4 36 18c0-6.6-5.4-12-12-12z"
-                            fill="#FFECA6" />
+                            d="M24 6C17.4 6 12 11.4 12 18c0 4.4 2.3 8.3 5.8 10.5V32h12.4v-3.5C33.7 26.3 36 22.4 36 18c0-6.6-5.4-12-12-12z" />
                         <path d="M17.8 32c0 1 .2 2 .6 2.8M30.2 32c0 1-.2 2-.6 2.8" />
-                        <path d="M19 38h10" />
-                        <path d="M20.5 42h7" />
+                        <path d="M19 38h10M20.5 42h7" />
                         <line x1="24" y1="6" x2="24" y2="3" />
                         <line x1="36.5" y1="9.5" x2="38.6" y2="7.4" />
                         <line x1="42" y1="18" x2="45" y2="18" />
@@ -1108,29 +1711,21 @@
                     </svg>
                     <h4>Incubate Startups</h4>
                     <p>Turn your innovative ideas into thriving ventures with expert mentorship, resources, and a
-                        dedicated incubation center.</p>
+                        dedicated incubation centre.</p>
                 </div>
-                <div class="wwd-card"><span class="wwd-card-num">02</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="8" y="14" width="32" height="24" rx="2" fill="#D99E68" />
+                <div class="wwd-card"><span class="wwd-card-num">02</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
+                        <rect x="8" y="14" width="32" height="24" rx="2" />
                         <path d="M16 14v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" />
                         <line x1="16" y1="26" x2="32" y2="26" />
                         <line x1="16" y1="32" x2="24" y2="32" />
                     </svg>
                     <h4>Internship Fair</h4>
-                    <p>Connect growing startups with top talent and interns with impactful, real-world
-                        opportunities.</p>
+                    <p>Connect growing startups with top talent and interns with impactful, real-world opportunities.
+                    </p>
                 </div>
-                <div class="wwd-card"><span class="wwd-card-num">03</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M6 42
-           L6 36
-           L16 24
-           L24 29
-           L36 12
-           L36 42
-           Z" fill="#54C949" stroke="none" />
+                <div class="wwd-card"><span class="wwd-card-num">03</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
                         <polyline points="6,36 16,24 24,29 36,12" />
                         <polyline points="30,12 36,12 36,18" />
                         <line x1="6" y1="42" x2="42" y2="42" />
@@ -1143,22 +1738,19 @@
                     <h4>Startup Exposition</h4>
                     <p>Showcase groundbreaking innovation, network with investors, and gain invaluable exposure.</p>
                 </div>
-                <div class="wwd-card"><span class="wwd-card-num">04</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                        stroke-linejoin="round">
-
-                        <circle cx="18" cy="16" r="6" fill="#FFF7E8" />
-                        <path d="M6 40c0-7 5-11 12-11s12 4 12 11" fill="#FFE0EE" />
-
+                <div class="wwd-card"><span class="wwd-card-num">04</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
+                        <circle cx="18" cy="16" r="6" />
+                        <path d="M6 40c0-7 5-11 12-11s12 4 12 11" />
                         <path d="M32 14c2 1.5 4 4 4 7s-2 5.5-4 7" />
                         <path d="M37 10c4 2.5 7 7 7 13s-3 10.5-7 13" />
                     </svg>
                     <h4>Mentoring Sessions</h4>
                     <p>Seasoned industry leaders guide you to refine strategies, solve challenges, and grow.</p>
                 </div>
-                <div class="wwd-card"><span class="wwd-card-num">05</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 17v10h7l15 9V8L13 17H6z" fill="#B5DCFF" />
+                <div class="wwd-card"><span class="wwd-card-num">05</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
+                        <path d="M6 17v10h7l15 9V8L13 17H6z" />
                         <line x1="13" y1="17" x2="13" y2="27" />
                         <path d="M32 18.5a6 6 0 0 1 0 9" />
                         <path d="M36 14a12 12 0 0 1 0 18" />
@@ -1166,8 +1758,8 @@
                     <h4>IPR Awareness</h4>
                     <p>Protect your innovative ideas with expert insights on intellectual property rights.</p>
                 </div>
-                <div class="wwd-card"><span class="wwd-card-num">06</span><svg class="wwd-card-icon" viewBox="0 0 48 48"
-                        fill="#FFE069" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <div class="wwd-card"><span class="wwd-card-num">06</span>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
                         <path
                             d="M28 7c1 5-1 9-4 11 0-4-3-6-5-4-3 3-3 8-1 12-3-2-5-6-5-10C10 26 12 38 24 41c12-3 14-15 10-22-2 5-5 6-5 6 2-4 1-11-1-18z" />
                         <path d="M21 33c0 3 1.5 5 3 5s3-2 3-5c0-2-1.5-4-3-5-1.5 1-3 3-3 5z" />
@@ -1187,24 +1779,35 @@
         <div class="event-list">
             <div class="event-row">
                 <div class="event-top">
-                    <span class="event-tag workshop">Workshop</span>
-                    <span class="event-tag workshop event-countdown" id="cd1">--d --h</span>
+                    <span class="event-tag workshop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="astroid">
+                            <path
+                                d="M12.983 21.186a1 1 0 0 1-1.966 0 10 10 0 0 0-8.203-8.203 1 1 0 0 1 0-1.966 10 10 0 0 0 8.203-8.203 1 1 0 0 1 1.966 0 10 10 0 0 0 8.203 8.203 1 1 0 0 1 0 1.966 10 10 0 0 0-8.203 8.203" />
+                        </svg>Workshop</span>
+                    <span class="event-tag workshop event-countdown" id="cd1"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cd-clock">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg><span class="cd-text">FETCHING TIME</span></span>
                     <a class="event-tag workshop"
-                        href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Ecosystem+Discovery+%E2%80%94+JHC+Incubator&details=Welcome,%0A%0AThanks+For+Tuning+In+At+Incubator+%26+Accelerator+Center,%0A%0AWe+Invite+You+To+Our+Very+First+Event+%22Ecosystem+Discovery%22+Organized+By+The+Newly+Elected+2026%E2%80%932027+Core+Team.%0A%0AJoin+us+to+discover+the+entrepreneurial+ecosystem+at+Jai+Hind+College,+our+incubation+programs,+internship+fairs,+startup+expositions,+mentoring+opportunities+and+much+more.%0A%0AWe+are+proudly+hosting+this+event+along+with+150%2B+students+to+spread+awareness+regarding+our+Incubator+%26+Accelerator+Centre.%0A%0AVenue:%0AJai+Hind+College+(Empowered+Autonomous)%0AWRMG%2BR34,+A+Rd,+Churchgate,%0AMumbai,+Maharashtra+400020,+India%0A%0ADate:%0A8+August+2026%0A%0ATime:%0A12:00+AM+%E2%80%93+11:00+AM%0A%0ARegards,%0AJHC+Incubator+%26+Accelerator+Centre&location=Jai+Hind+College,+WRMG%2BR34,+A+Rd,+Churchgate,+Mumbai,+Maharashtra+400020,+India&dates=20260808T000000/20260808T110000"
+                        href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Ecosystem+Discovery+%E2%80%94+JHC+Incubator&details=Welcome,%0A%0AThanks+For+Tuning+In+At+Incubator+%26+Accelerator+Centre,%0A%0AWe+Invite+You+To+Our+Very+First+Event+%22Ecosystem+Discovery%22+Organized+By+The+Newly+Elected+2026%E2%80%932027+Core+Team.%0A%0AJoin+us+to+discover+the+entrepreneurial+ecosystem+at+Jai+Hind+College,+our+incubation+programs,+internship+fairs,+startup+expositions,+mentoring+opportunities+and+much+more.%0A%0AWe+are+proudly+hosting+this+event+along+with+150%2B+students+to+spread+awareness+regarding+our+Incubator+%26+Accelerator+Centre.%0A%0AVenue:%0AJai+Hind+College+(Empowered+Autonomous)%0AWRMG%2BR34,+A+Rd,+Churchgate,%0AMumbai,+Maharashtra+400020,+India%0A%0ADate:%0A8+August+2026%0A%0ATime:%0A12:00+AM+%E2%80%93+11:00+AM%0A%0ARegards,%0AJHC+Incubator+%26+Accelerator+Centre&location=Jai+Hind+College,+WRMG%2BR34,+A+Rd,+Churchgate,+Mumbai,+Maharashtra+400020,+India&dates=20260808T000000/20260808T110000"
                         target="_blank" rel="noopener"
-                        style="display:inline-flex;align-items:center;gap:6px;text-decoration:none"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                        style="display:inline-flex;align-items:center;gap:6px;text-decoration:none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M10.268 21a2 2 0 0 0 3.464 0" />
                             <path d="M15 8h6" />
                             <path d="M18 5v6" />
                             <path
                                 d="M20.002 14.464a9 9 0 0 0 .738.863A1 1 0 0 1 20 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 8.75-5.332" />
-                        </svg>Notify Me</a>
+                        </svg>Notify Me
+                    </a>
                 </div>
                 <div class="event-body">
                     <h3>Ecosystem Discovery</h3>
-                    <p>Welcome to the Jai Hind College Incubator &amp; Accelerator Centre. Meet the newly elected
+                    <p>Welcome to the Jai Hind College Incubator & Accelerator Centre. Meet the newly elected
                         2026–2027 core team and discover how our entrepreneurial ecosystem, incubation programs, and
                         flagship events help transform ideas into impactful ventures.</p>
                 </div>
@@ -1212,8 +1815,18 @@
                         class="event-meta-str">Jai Hind College, Mumbai</span></div>
             </div>
             <div class="event-row">
-                <div class="event-top"><span class="event-tag annual">Annual</span><span
-                        class="event-tag annual event-countdown" id="cd2">--d --h</span></div>
+                <div class="event-top"><span class="event-tag annual"><svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="astroid">
+                            <path
+                                d="M12.983 21.186a1 1 0 0 1-1.966 0 10 10 0 0 0-8.203-8.203 1 1 0 0 1 0-1.966 10 10 0 0 0 8.203-8.203 1 1 0 0 1 1.966 0 10 10 0 0 0 8.203 8.203 1 1 0 0 1 0 1.966 10 10 0 0 0-8.203 8.203" />
+                        </svg>Annual</span><span class="event-tag annual event-countdown" id="cd2"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="cd-clock">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg><span class="cd-text">FETCHING TIME</span></span></div>
                 <div class="event-body">
                     <h3>Internship Fair</h3>
                     <p>Connect with leading companies offering incredible internship opportunities. Whether you're a
@@ -1224,8 +1837,18 @@
                         class="event-meta-str">Jai Hind College, Mumbai</span></div>
             </div>
             <div class="event-row">
-                <div class="event-top"><span class="event-tag flagship">Flagship</span><span
-                        class="event-tag flagship event-countdown" id="cd3">--d --h</span></div>
+                <div class="event-top"><span class="event-tag flagship"><svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="astroid">
+                            <path
+                                d="M12.983 21.186a1 1 0 0 1-1.966 0 10 10 0 0 0-8.203-8.203 1 1 0 0 1 0-1.966 10 10 0 0 0 8.203-8.203 1 1 0 0 1 1.966 0 10 10 0 0 0 8.203 8.203 1 1 0 0 1 0 1.966 10 10 0 0 0-8.203 8.203" />
+                        </svg>Flagship</span><span class="event-tag flagship event-countdown" id="cd3"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="cd-clock">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg><span class="cd-text">FETCHING TIME</span></span></div>
                 <div class="event-body">
                     <h3>Startup Exposition</h3>
                     <p>Step into a world of innovation where industry experts mentor, guide, and inspire. Gain insights,
@@ -1246,52 +1869,302 @@
         <div class="pol-grid">
             <div class="pol"><img class="pol-img"
                     src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic1.jpg&w=600&output=webp&q=55"
-                    alt="Startup Exposition 2025" fetchpriority="high" decoding="async" loading="eager">
+                    alt="Startup Exposition 2025" loading="eager" fetchpriority="high" decoding="async">
                 <div class="pol-caption"><span class="pol-caption-title">Startup Exposition</span><span
-                        class="pol-caption-sub">Jan 2025 · Mumbai</span></div>
+                        class="pol-caption-sub">January 2026 · Mumbai</span></div>
             </div>
             <div class="pol"><img class="pol-img"
                     src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic2.jpg&w=600&output=webp&q=55"
-                    alt="Internship Fair 2025" decoding="async" loading="lazy">
+                    alt="Internship Fair 2025" loading="lazy" decoding="async">
                 <div class="pol-caption"><span class="pol-caption-title">Internship Fair</span><span
-                        class="pol-caption-sub">Jan 2025 · Mumbai</span></div>
+                        class="pol-caption-sub">January 2026 · Mumbai</span></div>
             </div>
             <div class="pol"><img class="pol-img"
                     src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic3.jpg&w=600&output=webp&q=55"
-                    alt="Mentoring Session" decoding="async" loading="lazy">
+                    alt="Mentoring Session" loading="lazy" decoding="async">
                 <div class="pol-caption"><span class="pol-caption-title">Mentoring Session</span><span
-                        class="pol-caption-sub">Oct 2024 · Mumbai</span></div>
+                        class="pol-caption-sub">January 2026 · Mumbai</span></div>
             </div>
             <div class="pol"><img class="pol-img"
                     src="https://wsrv.nl/?url=cdn.jsdelivr.net/gh/lakshkukreja07/lakshkukreja07.github.io/assets/src/iac/pic4.jpg&w=600&output=webp&q=55"
-                    alt="IPR Awareness Workshop" decoding="async" loading="lazy">
+                    alt="IPR Awareness Workshop" loading="lazy" decoding="async">
                 <div class="pol-caption"><span class="pol-caption-title">IPR Awareness</span><span
-                        class="pol-caption-sub">Sep 2024 · Mumbai</span></div>
+                        class="pol-caption-sub">January 2026 · Mumbai</span></div>
             </div>
         </div>
-        <button class="gallery-btn" onclick="void(0)">
-            View Gallery
+        <a href="../iac/gallery.html" class="gallery-btn">View Gallery
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
             </svg>
-        </button>
+        </a>
     </section>
 
-    <script>
-        const heroVid = document.querySelector('.hero video'); if (heroVid) { const vio = new IntersectionObserver(([e]) => { e.isIntersecting ? heroVid.play() : heroVid.pause() }, { threshold: 0.01 }); vio.observe(heroVid) }
-        const burger = document.getElementById('burger'), panel = document.getElementById('navPanel'), bd = document.getElementById('backdrop'), navTop = document.querySelector('.nav-top');
-        function closeMenu() { burger.classList.remove('open'); panel.classList.remove('open'); bd.classList.remove('show'); document.body.classList.remove('menu-open'); navTop.classList.remove('menu-open') }
-        burger.addEventListener('click', () => { const o = !panel.classList.contains('open'); burger.classList.toggle('open', o); panel.classList.toggle('open', o); bd.classList.toggle('show', o); document.body.classList.toggle('menu-open', o); navTop.classList.toggle('menu-open', o) });
-        bd.addEventListener('click', closeMenu);
-        document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeMenu));
-        const cdTargets = [{ el: document.getElementById('cd1'), date: new Date('2026-08-08T00:00:00+05:30') }, { el: document.getElementById('cd2'), date: new Date('2027-01-15T00:00:00+05:30') }, { el: document.getElementById('cd3'), date: new Date('2027-01-16T00:00:00+05:30') }];
-        let drift = 0;
-        function pad(n) { return String(n).padStart(2, '0') }
-        function tick() { const now = Date.now() + drift; cdTargets.forEach(({ el, date }) => { const diff = date.getTime() - now; if (diff <= 0) { el.textContent = 'Live Now'; return } el.textContent = `${pad(Math.floor(diff / 86400000))}d ${pad(Math.floor((diff % 86400000) / 3600000))}h` }) }
-        fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata').then(r => r.json()).then(d => { drift = new Date(d.datetime).getTime() - Date.now() }).catch(() => { }).finally(() => { tick(); setInterval(tick, 1000) });
+    <section class="section-wrap" id="contact-us">
+        <div class="section-header"><span class="section-eyebrow">[ Contact Us ]</span>
+            <div class="section-rule"></div>
+        </div>
+        <h2 class="section-title">Be Part Of<br><span class="highlight">Our Community.</span></h2>
+        <div class="contact-grid">
+            <div class="contact-left">
+                <div>
+                    <p class="block-label">Find us on</p>
+                    <a class="channel-link"
+                        href="https://www.linkedin.com/company/incubator-accelerator-centre?originalSubdomain=in"
+                        target="_blank" rel="noopener">
+                        <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg></div>
+                        <div class="channel-text"><span class="channel-name">LinkedIn</span><span
+                                class="channel-handle">Incubator & Accelerator Centre</span></div>
+                        <svg class="channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7" />
+                            <polyline points="7 7 17 7 17 17" />
+                        </svg>
+                    </a>
+                    <a class="channel-link" href="https://www.instagram.com/iac.jaihindcollege/" target="_blank"
+                        rel="noopener">
+                        <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" />
+                                <circle cx="12" cy="12" r="5" />
+                                <circle cx="17" cy="7" r="1" fill="#fff" />
+                            </svg></div>
+                        <div class="channel-text"><span class="channel-name">Instagram</span><span
+                                class="channel-handle">@iac.jaihindcollege</span></div>
+                        <svg class="channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7" />
+                            <polyline points="7 7 17 7 17 17" />
+                        </svg>
+                    </a>
+                    <a class="channel-link"
+                        href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&su=Enquiry+Through+Official+Website&to=incubation.centre@jaihindcollege.edu.in"
+                        target="_blank" rel="noopener">
+                        <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2" />
+                                <path d="m2 7 10 7 10-7" />
+                            </svg></div>
+                        <div class="channel-text"><span class="channel-name">Email</span><span
+                                class="channel-handle">incubation.centre@jaihindcollege.edu.in</span></div>
+                        <svg class="channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7" />
+                            <polyline points="7 7 17 7 17 17" />
+                        </svg>
+                    </a>
+                </div>
+                <div>
+                    <p class="block-label">Where to find us</p>
+                    <div class="map-wrap">
+                        <iframe
+                            src="https://maps.google.com/maps?q=Jai+Hind+College,+Mumbai&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+                            title="Google Map showing Jai Hind College Mumbai location"></iframe>
+                        <div class="map-footer">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            <span class="map-footer-text">Jai Hind College, A Road, Churchgate, Mumbai — 400020</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-right">
+                <div class="notify-wrap">
+                    <div class="notify-header">
+                        <h3 class="notify-title">Stay In The Loop.</h3>
+                        <p class="notify-sub">Join Our Community For Exclusive Updates & Stay Connected Seamlessly.
+                        </p>
+                    </div>
+                    <div class="notify-perks">
+                        <div class="notify-perk"><span class="notify-perk-num">01</span><span>Get Notified About
+                                Upcoming Events.</span></div>
+                        <div class="notify-perk"><span class="notify-perk-num">02</span><span>Internship &
+                                Opportunity Alerts.</span></div>
+                        <div class="notify-perk"><span class="notify-perk-num">03</span><span>Behind The Scenes
+                                Updates.</span></div>
+                        <div class="notify-perk"><span class="notify-perk-num">04</span><span>Access To Our
+                                Newsletters.</span></div>
+                    </div>
+                    <div class="notify-form" id="notifyForm">
+                        <div class="form-row-2">
+                            <div class="form-field"><label class="form-label" for="nf-name">Name <span
+                                        class="form-required">*</span></label><input class="form-input" id="nf-name"
+                                    type="text" placeholder="Laksh Kukreja" autocomplete="given-name"></div>
+                            <div class="form-field"><label class="form-label" for="nf-email">Email <span
+                                        class="form-required">*</span></label><input class="form-input" id="nf-email"
+                                    type="email" placeholder="your-name@email.com" autocomplete="email"></div>
+                        </div>
+                        <button class="form-submit" id="notifyBtn" type="button">Join the Community<svg width="16"
+                                height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg></button>
+                        <p class="form-privacy">No spam, ever. Unsubscribe anytime.</p>
+                    </div>
+                    <div class="notify-success" id="notifySuccess">
+                        <div class="success-circle"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"
+                                stroke="#147a47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 13l4 4L19 7" />
+                            </svg></div>
+                        <h4 class="success-title">You're In.</h4>
+                        <p class="success-sub">Welcome to the community — we'll keep you posted on everything happening
+                            at IAC.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <footer class="footer">
+        <div class="footer-bottom">
+            <span class="footer-status-bar">
+                <span class="footer-status-item"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                        <circle cx="9" cy="7" r="4" />
+                    </svg><span id="ft-views">— SITE
+                        VISITORS</span></span>
+                <span class="footer-status-item"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                    </svg><span id="ft-time">--:--:--
+                        IST</span></span>
+                <span class="footer-status-item"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" />
+                    </svg>VERSION 2.03HX</span>
+            </span>
+            <span class="footer-bottom-right">© 2020 - 2026 Incubator & Accelerator Centre. All rights
+                reserved.</span>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        (() => {
+            const $ = id => document.getElementById(id);
+            const heroVid = document.querySelector('.hero video');
+            if (heroVid) {
+                new IntersectionObserver(([e]) => { e.isIntersecting ? heroVid.play() : heroVid.pause() }, { threshold: .01 }).observe(heroVid);
+            }
+
+            const burger = $('burger'), panel = $('navPanel'), bd = $('backdrop'), navTop = document.querySelector('.nav-top');
+            const closeMenu = () => {
+                burger.classList.remove('open'); panel.classList.remove('open');
+                bd.classList.remove('show'); document.body.classList.remove('menu-open'); navTop.classList.remove('menu-open');
+            };
+            burger.addEventListener('click', () => {
+                const o = panel.classList.contains('open');
+                burger.classList.toggle('open', !o); panel.classList.toggle('open', !o);
+                bd.classList.toggle('show', !o); document.body.classList.toggle('menu-open', !o); navTop.classList.toggle('menu-open', !o);
+            });
+            bd.addEventListener('click', closeMenu);
+
+            const removeHash = () => { if (location.hash) history.pushState(null, null, location.pathname); };
+            document.querySelectorAll('.item[data-close]').forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    const t = a.getAttribute('href');
+                    if (t && t[0] === '#') {
+                        closeMenu();
+                        const el = document.querySelector(t);
+                        if (el) setTimeout(() => { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(removeHash, 100); }, 50);
+                    }
+                });
+            });
+            window.addEventListener('load', removeHash);
+            if (location.hash) {
+                setTimeout(() => {
+                    const el = document.querySelector(location.hash);
+                    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(removeHash, 150); }
+                }, 300);
+            }
+
+            const pad = n => String(n).padStart(2, '0');
+            const cdTargets = [
+                { el: $('cd1'), start: new Date('2026-08-08T00:00:00+05:30'), end: new Date('2026-08-08T23:59:59+05:30') },
+                { el: $('cd2'), start: new Date('2027-01-15T00:00:00+05:30'), end: new Date('2027-01-15T23:59:59+05:30') },
+                { el: $('cd3'), start: new Date('2027-01-16T00:00:00+05:30'), end: new Date('2027-01-16T23:59:59+05:30') }
+            ];
+            let drift = 0;
+            const tick = () => {
+                const now = Date.now() + drift;
+                cdTargets.forEach(({ el, start, end }) => {
+                    const txt = el.querySelector('.cd-text');
+                    const clk = el.querySelector('.cd-clock');
+                    const diff = start.getTime() - now;
+                    if (now >= start.getTime() && now <= end.getTime()) {
+                        txt.textContent = 'EVENT IS LIVE';
+                        if (clk) clk.style.display = 'none';
+                    } else if (now > end.getTime()) {
+                        txt.textContent = 'EVENT ENDED';
+                        if (clk) clk.style.display = 'none';
+                    } else {
+                        if (clk) clk.style.display = '';
+                        const totalDays = Math.floor(diff / 86400000);
+                        const hours = Math.floor((diff % 86400000) / 3600000);
+                        if (totalDays === 0) {
+                            txt.textContent = pad(hours) + ' HOURS';
+                        } else if (totalDays === 1) {
+                            txt.textContent = '1 DAY ' + pad(hours) + ' HOURS';
+                        } else {
+                            txt.textContent = totalDays + ' DAYS ' + pad(hours) + ' HOURS';
+                        }
+                    }
+                });
+            };
+            fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata')
+                .then(r => r.json()).then(d => { drift = new Date(d.datetime).getTime() - Date.now(); })
+                .catch(() => { }).finally(() => { tick(); setInterval(tick, 60000); });
+
+            const toast = $('toast');
+            const showToast = msg => { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3200); };
+
+            const key = 'iac_visit_count';
+            const count = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+            localStorage.setItem(key, count);
+            $('ft-views').textContent = (1 + Math.floor(count * 1.7)).toLocaleString('en-IN') + ' SITE VISITORS';
+
+            const ftTime = $('ft-time');
+            const tickClock = () => {
+                const ist = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+                ftTime.textContent = pad(ist.getHours()) + ':' + pad(ist.getMinutes()) + ':' + pad(ist.getSeconds()) + ' IST';
+            };
+            tickClock(); setInterval(tickClock, 1000);
+
+            $('notifyBtn').addEventListener('click', () => {
+                const name = $('nf-name').value.trim(), email = $('nf-email').value.trim();
+                if (!name || !email) { showToast('Please fill in your name and email.'); return; }
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please enter a valid email address.'); return; }
+                try {
+                    const k = 'iac_community_signups', ex = JSON.parse(localStorage.getItem(k) || '[]');
+                    ex.push({ name, email, date: new Date().toISOString() });
+                    localStorage.setItem(k, JSON.stringify(ex));
+                } catch (e) { }
+                $('notifyForm').style.display = 'none';
+                $('notifySuccess').classList.add('show');
+            });
+        })();
     </script>
 </body>
 
