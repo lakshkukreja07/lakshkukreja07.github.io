@@ -12,9 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@400;600;700&family=Roboto+Mono:wght@400;500;600&display=swap"
         rel="stylesheet" />
-    <link rel="preload" as="image"
-        href="https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/1.jpg"
-        fetchpriority="high" />
     <style>
         * {
             margin: 0;
@@ -33,9 +30,8 @@
             --font: 'Stack Sans Headline', sans-serif;
             --mono: 'Roboto Mono', monospace;
             --hl: #86b7ee;
-            --dot-color: rgba(255, 255, 255, .3);
-            --dot-active-bg: rgba(255, 255, 255, .12);
-            --slide-duration: 5s;
+            --dot-color: rgba(255, 255, 255, .2);
+            --dot-active-bg: rgba(255, 255, 255, .2);
         }
 
         html,
@@ -256,12 +252,19 @@
         .hero-slide {
             position: absolute;
             inset: 0;
-            background-size: cover;
-            background-position: center;
             opacity: 0;
             transform: none;
             will-change: opacity;
-            transition: opacity 1.2s cubic-bezier(.25, .46, .45, .94);
+            transition: opacity 1.5s cubic-bezier(.25, .46, .45, .94);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .hero-slide.active {
@@ -274,35 +277,11 @@
             z-index: 1;
         }
 
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 45%;
-            z-index: 3;
-            background: linear-gradient(to bottom, rgba(11, 11, 11, .7) 0%, rgba(11, 11, 11, .35) 40%, transparent 100%);
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 68%;
-            z-index: 3;
-            background: linear-gradient(to top, rgba(11, 11, 11, .92) 0%, rgba(11, 11, 11, .55) 32%, transparent 100%);
-            pointer-events: none;
-        }
-
-        .hero-shade {
+        .hero-tint {
             position: absolute;
             inset: 0;
-            z-index: 1;
-            background: linear-gradient(90deg, rgba(11, 11, 11, .8) 0%, rgba(11, 11, 11, .35) 32%, rgba(11, 11, 11, 0) 62%);
+            z-index: 3;
+            background: rgba(0, 0, 0, .5);
             pointer-events: none;
         }
 
@@ -343,8 +322,10 @@
             gap: 10px;
             margin-top: 28px;
             padding: 14px 28px;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(56, 56, 56, 0.3);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border: 1px solid rgba(112, 112, 112, 0.7);
             border-radius: 8px;
             color: #fff;
             font-family: var(--font);
@@ -377,6 +358,16 @@
             justify-content: flex-end;
             margin-top: 40px;
             gap: 20px;
+        }
+
+        .slide-controls-wrap {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(56, 56, 56, 0.3);
+            padding: 8px 14px 8px 8px;
+            border-radius: 499px;
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
         }
 
         .slide-controls {
@@ -423,7 +414,12 @@
             width: 0%;
             background: #fff;
             border-radius: 499px;
+            transition: width .1s linear;
+        }
+
+        .slide-dots button:not(.active) .progress-fill {
             transition: none;
+            width: 0% !important;
         }
 
         .slide-pause {
@@ -1316,18 +1312,11 @@
         .footer-copyright {
             font-family: var(--font);
             font-size: 13px;
-            color: var(--ink-d);
+            color: #000;
             letter-spacing: 0.3px;
             display: flex;
             align-items: center;
-            gap: 6px;
-        }
-
-        .footer-copyright .copyright-icon {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-            stroke: var(--ink-d);
+            gap: 4px;
         }
 
         .footer-to-top {
@@ -1377,10 +1366,6 @@
         }
 
         @media(max-width:768px) {
-            .hero-shade {
-                background: linear-gradient(180deg, rgba(11, 11, 11, .55) 0%, rgba(11, 11, 11, 0) 30%, rgba(11, 11, 11, 0) 55%, rgba(11, 11, 11, .35) 100%);
-            }
-
             .slide-controls {
                 gap: 1.2rem;
             }
@@ -1393,6 +1378,10 @@
             .slide-dots button {
                 width: 9px;
                 height: 9px;
+            }
+
+            .slide-controls-wrap {
+                padding: 8px 12px 8px 8px;
             }
 
             .slide-pause {
@@ -1413,6 +1402,10 @@
                 justify-content: flex-start;
                 width: 100%;
             }
+
+            .hero-tint {
+                background: rgba(0, 0, 0, .5);
+            }
         }
 
         @media(min-width:769px) {
@@ -1424,8 +1417,8 @@
                 width: 480px;
             }
 
-            .hero-shade {
-                background: linear-gradient(90deg, rgba(11, 11, 11, .85) 0%, rgba(11, 11, 11, .45) 28%, rgba(11, 11, 11, .08) 56%, rgba(11, 11, 11, 0) 78%);
+            .hero-tint {
+                background: rgba(0, 0, 0, .5);
             }
 
             .section-wrap {
@@ -1511,6 +1504,10 @@
             .slide-controls {
                 gap: 1rem;
             }
+
+            .hero-tint {
+                background: rgba(0, 0, 0, .5);
+            }
         }
 
         @media(max-width:480px) {
@@ -1559,16 +1556,16 @@
             }
 
             .hero-apply-btn {
-                padding: 12px 18px;
-                font-size: 11px;
-                gap: 8px;
+                padding: 16px 24px;
+                font-size: 14px;
+                gap: 10px;
                 margin-top: 20px;
                 white-space: nowrap;
             }
 
             .hero-apply-btn svg {
-                width: 14px;
-                height: 14px;
+                width: 18px;
+                height: 18px;
             }
 
             .hero-foot {
@@ -1595,6 +1592,10 @@
 
             .slide-dots {
                 gap: 0.7rem;
+            }
+
+            .slide-controls-wrap {
+                padding: 9px 14px 9px 9px;
             }
 
             .slide-pause {
@@ -1742,6 +1743,10 @@
                 font-size: 13px;
                 margin-bottom: 10px;
             }
+
+            .hero-tint {
+                background: rgba(0, 0, 0, .7);
+            }
         }
 
         @media(pointer:coarse) {
@@ -1845,8 +1850,11 @@
 
     <section class="hero">
         <div class="hero-slides" id="heroSlides">
-            <div class="hero-slide active"
-                style="background-image:url('https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/1.jpg')">
+            <div class="hero-slide active">
+                <video muted playsinline preload="auto">
+                    <source src="https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/1.mp4"
+                        type="video/mp4">
+                </video>
             </div>
             <div class="hero-slide"
                 style="background-image:url('https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/2.jpg')">
@@ -1855,7 +1863,7 @@
                 style="background-image:url('https://www.internationalmanagementconference.com/wp-content/uploads/2026/06/3.jpg')">
             </div>
         </div>
-        <div class="hero-shade"></div>
+        <div class="hero-tint"></div>
         <div class="hero-content">
             <div class="hero-main">
                 <h1>From Ideas<br>To <span class="highlight-impact">Impact.</span></h1>
@@ -1871,20 +1879,23 @@
                 </a>
             </div>
             <div class="hero-foot">
-                <div class="slide-controls">
-                    <button class="slide-pause" id="slidePause" aria-label="Pause slideshow">
-                        <svg id="iconPause" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M5.92 24.096q0 0.832 0.576 1.408t1.44 0.608h4.032q0.832 0 1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-4.032q-0.832 0-1.44 0.576t-0.576 1.44v16.16zM18.016 24.096q0 0.832 0.608 1.408t1.408 0.608h4.032q0.832 0 1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-4.032q-0.832 0-1.408 0.576t-0.608 1.44v16.16z"
-                                fill="#ffffff" />
-                        </svg>
-                        <svg id="iconPlay" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="display:none;">
-                            <path
-                                d="M5.92 24.096q0 1.088 0.928 1.728 0.512 0.288 1.088 0.288 0.448 0 0.896-0.224l16.16-8.064q0.48-0.256 0.8-0.736t0.288-1.088-0.288-1.056-0.8-0.736l-16.16-8.064q-0.448-0.224-0.896-0.224-0.544 0-1.088 0.288-0.928 0.608-0.928 1.728v16.16z"
-                                fill="#ffffff" />
-                        </svg>
-                    </button>
-                    <div class="slide-dots" id="slideDots"></div>
+                <div class="slide-controls-wrap">
+                    <div class="slide-controls">
+                        <button class="slide-pause" id="slidePause" aria-label="Pause slideshow">
+                            <svg id="iconPause" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.92 24.096q0 0.832 0.576 1.408t1.44 0.608h4.032q0.832 0 1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-4.032q-0.832 0-1.44 0.576t-0.576 1.44v16.16zM18.016 24.096q0 0.832 0.608 1.408t1.408 0.608h4.032q0.832 0 1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-4.032q-0.832 0-1.408 0.576t-0.608 1.44v16.16z"
+                                    fill="#ffffff" />
+                            </svg>
+                            <svg id="iconPlay" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                style="display:none;">
+                                <path
+                                    d="M5.92 24.096q0 1.088 0.928 1.728 0.512 0.288 1.088 0.288 0.448 0 0.896-0.224l16.16-8.064q0.48-0.256 0.8-0.736t0.288-1.088-0.288-1.056-0.8-0.736l-16.16-8.064q-0.448-0.224-0.896-0.224-0.544 0-1.088 0.288-0.928 0.608-0.928 1.728v16.16z"
+                                    fill="#ffffff" />
+                            </svg>
+                        </button>
+                        <div class="slide-dots" id="slideDots"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2286,12 +2297,7 @@
     <footer class="footer">
         <div class="footer-inner">
             <span class="footer-copyright">
-                <svg class="copyright-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M10 9a3 3 0 0 1 4 0M10 15a3 3 0 0 0 4 0" />
-                </svg>
-                2026 Department of Management Studies, Jai Hind College. All rights reserved.
+                &#169; 2026 Department of Management Studies, Jai Hind College. All rights reserved.
             </span>
             <a href="#" class="footer-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -2321,7 +2327,12 @@
             let isTransitioning = false;
             let progress = 0;
             let lastUpdate = 0;
-            const SLIDE_DURATION = 5000;
+            const SLIDE_DURATIONS = [7000, 7000, 7000];
+            let videos = [];
+
+            function getCurrentDuration() {
+                return SLIDE_DURATIONS[current] || 7000;
+            }
 
             function createDots() {
                 slides.forEach((_, i) => {
@@ -2332,7 +2343,7 @@
                     fill.className = 'progress-fill';
                     b.appendChild(fill);
                     b.addEventListener('click', () => {
-                        if (!isTransitioning && playing) {
+                        if (!isTransitioning) {
                             goTo(i);
                         }
                     });
@@ -2366,6 +2377,27 @@
                 }
             }
 
+            function pauseVideo(index) {
+                const video = slides[index].querySelector('video');
+                if (video && !video.paused) {
+                    video.pause();
+                }
+            }
+
+            function playVideo(index) {
+                const video = slides[index].querySelector('video');
+                if (!video) return;
+                video.pause();
+                const doPlay = () => video.play().catch(() => { });
+                if (video.readyState >= 2) {
+                    video.currentTime = 0;
+                    video.addEventListener('seeked', doPlay, { once: true });
+                } else {
+                    video.currentTime = 0;
+                    video.addEventListener('canplay', doPlay, { once: true });
+                }
+            }
+
             function goTo(idx) {
                 if (isTransitioning) return;
                 isTransitioning = true;
@@ -2373,6 +2405,9 @@
                 const next = (idx + slides.length) % slides.length;
                 const currentSlide = slides[current];
                 const nextSlide = slides[next];
+
+                pauseTimer();
+                pauseVideo(current);
 
                 currentSlide.classList.remove('active', 'exit-left');
                 nextSlide.classList.remove('active', 'exit-left');
@@ -2385,20 +2420,20 @@
                 dots[current].classList.remove('active');
                 dots[next].classList.add('active');
 
+                current = next;
+                progress = 0;
                 resetProgress();
+
+                if (playing) {
+                    playVideo(current);
+                    lastUpdate = Date.now();
+                    startTimer();
+                }
 
                 setTimeout(() => {
                     currentSlide.classList.remove('exit-left');
                     isTransitioning = false;
-                }, 1200);
-
-                current = next;
-                progress = 0;
-
-                if (playing) {
-                    lastUpdate = Date.now();
-                    startTimer();
-                }
+                }, 1500);
             }
 
             function startTimer() {
@@ -2409,24 +2444,21 @@
                 if (!playing) return;
 
                 lastUpdate = Date.now();
+                const duration = getCurrentDuration();
 
                 timer = setInterval(() => {
-                    if (isTransitioning) return;
-
                     const now = Date.now();
                     const elapsed = now - lastUpdate;
                     lastUpdate = now;
 
-                    const pctIncrease = (elapsed / SLIDE_DURATION) * 100;
+                    const pctIncrease = (elapsed / duration) * 100;
                     const newProgress = Math.min(100, progress + pctIncrease);
                     setProgress(newProgress);
 
                     if (newProgress >= 100) {
                         clearInterval(timer);
                         timer = null;
-                        if (!isTransitioning && playing) {
-                            goTo(current + 1);
-                        }
+                        if (playing) goTo(current + 1);
                     }
                 }, 50);
             }
@@ -2441,6 +2473,21 @@
 
             const dots = getDots();
             resetProgress();
+
+            slides.forEach((slide, i) => {
+                const video = slide.querySelector('video');
+                if (video) {
+                    videos.push(video);
+                    video.addEventListener('loadeddata', () => {
+                        if (i === 0 && playing) {
+                            video.play().catch(() => { });
+                        }
+                    });
+                    if (i === 0) {
+                        video.play().catch(() => { });
+                    }
+                }
+            });
 
             lastUpdate = Date.now();
             startTimer();
@@ -2462,6 +2509,8 @@
                         fill.style.animationPlayState = 'running';
                         activeDot.classList.remove('paused');
                     }
+                    const resumeVideo = slides[current].querySelector('video');
+                    if (resumeVideo) resumeVideo.play().catch(() => { });
                     lastUpdate = Date.now();
                     startTimer();
                 } else {
@@ -2471,6 +2520,7 @@
                         fill.style.animationPlayState = 'paused';
                         activeDot.classList.add('paused');
                     }
+                    pauseVideo(current);
                     pauseTimer();
                 }
             });
