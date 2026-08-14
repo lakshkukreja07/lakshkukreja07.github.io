@@ -11,7 +11,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@400;600;700&family=Roboto+Mono:wght@400;500;600&display=swap"
         rel="stylesheet" />
-    <!-- Eager-fetch all heavy assets so loader caches them on first visit -->
     <link rel="preload" as="video" href="https://www.jhcincubator.com/wp-content/uploads/2026/08/intro_trailer.mp4"
         type="video/mp4">
     <link rel="preload" as="image" href="https://www.jhcincubator.com/wp-content/uploads/2026/08/intro_slide_2.jpg">
@@ -94,8 +93,8 @@
         }
 
         .loader-logo {
-            width: 52px;
-            height: 52px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
             opacity: .9
         }
@@ -116,7 +115,6 @@
             transition: width .2s ease
         }
 
-        /* Loading text — same style as nav links */
         .loader-label {
             font-family: var(--mono);
             font-size: 14px;
@@ -125,7 +123,6 @@
             color: rgba(255, 255, 255, .6)
         }
 
-        /* ── Backdrop ── */
         .backdrop {
             position: fixed;
             inset: 0;
@@ -143,7 +140,6 @@
             pointer-events: auto
         }
 
-        /* ── Nav ── */
         .nav {
             position: fixed;
             top: 12px;
@@ -189,7 +185,6 @@
             font-weight: 700
         }
 
-        /* ── Burger — 2-line seamless X ── */
         .burger {
             background: none;
             border: none;
@@ -215,7 +210,6 @@
             display: block
         }
 
-        /* open: top line rotates to \, bottom line rotates to / → forms × */
         .burger.open span:nth-child(1) {
             transform: translateY(4px) rotate(45deg)
         }
@@ -224,7 +218,6 @@
             transform: translateY(-4px) rotate(-45deg)
         }
 
-        /* ── Nav Panel ── */
         .nav-panel {
             max-height: 0;
             overflow: hidden;
@@ -312,7 +305,6 @@
             transition-delay: .21s
         }
 
-        /* ── Hero ── */
         .hero {
             position: relative;
             width: 100%;
@@ -441,7 +433,6 @@
             gap: 20px
         }
 
-        /* ── Slide controls ── */
         .slide-controls-wrap {
             display: inline-flex;
             align-items: center;
@@ -541,7 +532,6 @@
             z-index: 1
         }
 
-        /* ── Highlights ── */
         .highlight {
             position: relative;
             display: inline-block;
@@ -567,7 +557,6 @@
             display: inline-block
         }
 
-        /* ── Sections ── */
         .section-wrap {
             background: var(--bg);
             padding: 80px 14px 60px;
@@ -611,7 +600,6 @@
             letter-spacing: -.5px
         }
 
-        /* ── About ── */
         .about-split {
             display: grid;
             grid-template-columns: 1fr;
@@ -709,7 +697,6 @@
             color: var(--ink-m)
         }
 
-        /* ── What We Do ── */
         .wwd-grid-wrapper {
             border-radius: 14px;
             border: 1px solid var(--rule)
@@ -773,7 +760,6 @@
             color: var(--ink-m)
         }
 
-        /* ── Events ── */
         .event-list {
             display: flex;
             flex-direction: column;
@@ -918,7 +904,6 @@
             transform: translate(2px, -2px)
         }
 
-        /* ── Moments ── */
         .pol-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -1023,7 +1008,6 @@
             transform: translateX(4px)
         }
 
-        /* ── Contact ── */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1386,7 +1370,6 @@
             }
         }
 
-        /* ── Toast ── */
         .toast {
             position: fixed;
             bottom: 24px;
@@ -1411,7 +1394,6 @@
             transform: translateX(-50%) translateY(0)
         }
 
-        /* ── Footer ── */
         .footer {
             background: var(--bg);
             border-top: 1px solid var(--rule);
@@ -1437,7 +1419,6 @@
             gap: 4px
         }
 
-        /* ── Responsive ── */
         @media(max-width:600px) {
             .footer-inner {
                 flex-direction: column;
@@ -1924,7 +1905,6 @@
                         alt="JHC Logo" />
                 </a>
                 <span class="tagline">Incubator &amp; Accelerator Centre</span>
-                <!-- 2-line burger → seamless X -->
                 <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
             </div>
             <div class="nav-panel" id="navPanel">
@@ -2393,16 +2373,10 @@
     <script>
         (() => {
             const $ = id => document.getElementById(id);
-            // ── Loader ──
-            // Show on: first visit, force-refresh (navigate). Skip on: normal reload.
-            // Detection: performance.navigation type — 'navigate' = fresh/force, 'reload' = soft reload.
             const loader = $('page-loader');
             const bar = $('loaderBar');
             const label = $('loaderLabel');
-
             const navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate';
-            // 'reload' = Ctrl+R / browser refresh button (soft) → skip loader instantly, no flash
-            // 'navigate' = first visit or Ctrl+Shift+R / force-refresh → show loader
             const skipLoader = (navType === 'reload');
 
             const ASSETS_IMGS = [
@@ -2420,7 +2394,6 @@
             }
 
             if (skipLoader) {
-                // Instant hide — no transition, no flash
                 loader.classList.add('skip');
             } else {
                 let loaded = 0;
@@ -2445,11 +2418,9 @@
                     heroVideo.readyState >= 3 ? tick() : heroVideo.addEventListener('canplay', tick, { once: true });
                 } else tick();
 
-                // Hard fallback at 8s
                 setTimeout(() => { if (loaded < total) { loaded = total - 1; tick(); } }, 8000);
             }
 
-            // ── Slideshow ──
             const slides = [...document.querySelectorAll('.hero-slide')];
             const dotsWrap = $('slideDots');
             const pauseBtn = $('slidePause');
@@ -2548,7 +2519,6 @@
                 }
             });
 
-            // ── Nav burger ──
             const burger = $('burger'), panel = $('navPanel'), bd = $('backdrop');
             const navTop = document.querySelector('.nav-top');
             const closeMenu = () => {
@@ -2568,7 +2538,6 @@
             });
             bd.addEventListener('click', closeMenu);
 
-            // ── Countdown timers ──
             const pad = n => String(n).padStart(2, '0');
             const cdTargets = [
                 { el: $('cd2'), start: new Date('2027-01-15T00:00:00+05:30'), end: new Date('2027-01-15T23:59:59+05:30') },
@@ -2603,7 +2572,6 @@
 
             (async () => { await syncServerTime(); updateTimers(); setInterval(updateTimers, 60000); })();
 
-            // ── Toast & form ──
             const toast = $('toast');
             const showToast = msg => { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3200); };
 
