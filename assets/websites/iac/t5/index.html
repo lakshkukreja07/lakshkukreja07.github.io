@@ -789,6 +789,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            background: black;
         }
 
         .event-card-body {
@@ -813,6 +814,15 @@
             color: var(--ink-m);
         }
 
+        .event-card-bottom-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: auto;
+            padding-top: 12px;
+        }
+
         .event-card-link-bottom {
             font-family: var(--font);
             font-size: 13px;
@@ -823,8 +833,6 @@
             align-items: center;
             gap: 5px;
             width: fit-content;
-            margin-top: auto;
-            padding-top: 12px;
             transition: color .2s ease, transform .2s ease;
         }
 
@@ -840,6 +848,29 @@
 
         .event-card-link-bottom:hover svg {
             transform: translate(2px, -2px);
+        }
+
+        .event-card-logos {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .event-card-partner-logo {
+            height: 24px;
+            width: auto;
+            max-width: 65px;
+            object-fit: contain;
+            display: block;
+            opacity: 0.85;
+            transition: opacity .2s ease, transform .2s ease;
+        }
+
+        .event-card-logo-sep {
+            width: 1px;
+            height: 32px;
+            background: var(--rule);
+            display: block;
         }
 
         .event-card-foot {
@@ -1418,6 +1449,17 @@
                 font-size: 11px;
                 justify-content: center
             }
+
+            .event-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .event-card-foot {
+                padding: 10px 14px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
         }
 
         @media(max-width:768px) {
@@ -1448,11 +1490,6 @@
                 width: 100%
             }
 
-            .event-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
             .event-card {
                 padding: 0;
                 min-height: auto;
@@ -1461,16 +1498,61 @@
             .event-card-top-wrap {
                 padding: 14px 14px 0;
             }
+        }
+
+        @media(min-width:601px) and (max-width:1024px) {
+            .event-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            .event-card-body h3 {
+                font-size: 15px;
+            }
+
+            .event-card-body p {
+                font-size: 11.5px;
+                line-height: 1.5;
+            }
 
             .event-card-foot {
-                padding: 10px 14px;
-                flex-wrap: wrap;
-                gap: 10px;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 12px;
+                gap: 8px;
+            }
+
+            .event-card-foot-date {
+                font-size: 12px;
+                width: 100%;
             }
 
             .event-card-actions {
-                display: inline-flex;
+                display: flex;
+                width: 100%;
                 gap: 6px;
+            }
+
+            .event-btn-action {
+                flex: 1;
+                justify-content: center;
+                padding: 6px 4px;
+                font-size: 10.5px;
+                gap: 3px;
+            }
+
+            .event-btn-action svg {
+                width: 11px;
+                height: 11px;
+            }
+
+            .event-card-partner-logo {
+                height: 18px;
+                max-width: 45px;
+            }
+
+            .event-card-logo-sep {
+                height: 22px;
             }
         }
 
@@ -1513,11 +1595,6 @@
                 margin-top: 30px
             }
 
-            .event-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 40px
@@ -1530,17 +1607,6 @@
 
             .slide-controls {
                 gap: 1rem
-            }
-        }
-
-        @media(min-width:769px) and (max-width:1024px) {
-            .event-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .event-grid .event-card:last-child {
-                grid-column: span 2;
             }
         }
 
@@ -2353,15 +2419,26 @@
                         <p>A dynamic platform connecting students with exciting career opportunities across diverse
                             domains including Finance, Marketing, HR, Operations, Media, Business Development,
                             Consulting, Technology, Design and Entrepreneurship.</p>
-                        <a class="event-card-link-bottom" href="https://jhcincubator.com/startup-internship-fair"
-                            target="_blank" rel="noopener">
-                            <span>Learn More</span>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                <polyline points="7 7 17 7 17 17"></polyline>
-                            </svg>
-                        </a>
+                        <div class="event-card-bottom-row">
+                            <a class="event-card-link-bottom" href="https://jhcincubator.com/startup-internship-fair"
+                                target="_blank" rel="noopener">
+                                <span>Learn More</span>
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                </svg>
+                            </a>
+                            <div class="event-card-logos">
+                                <img class="event-card-partner-logo"
+                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/iac_logo.png"
+                                    alt="IAC Logo" loading="lazy">
+                                <span class="event-card-logo-sep"></span>
+                                <img class="event-card-partner-logo"
+                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/iic_logo.png"
+                                    alt="IIC Logo" loading="lazy">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="event-card-foot">
@@ -2417,15 +2494,26 @@
                         <p>The Startup Exposition brings entrepreneurs together in a space wherein they can demonstrate
                             their inventions, where all the exciting start-up ideas are showcased. A place where they
                             can interact with mentors.</p>
-                        <a class="event-card-link-bottom" href="https://jhcincubator.com/startup-exposition"
-                            target="_blank" rel="noopener">
-                            <span>Learn More</span>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                <polyline points="7 7 17 7 17 17"></polyline>
-                            </svg>
-                        </a>
+                        <div class="event-card-bottom-row">
+                            <a class="event-card-link-bottom" href="https://jhcincubator.com/startup-exposition"
+                                target="_blank" rel="noopener">
+                                <span>Learn More</span>
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                </svg>
+                            </a>
+                            <div class="event-card-logos">
+                                <img class="event-card-partner-logo"
+                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/iac_logo.png"
+                                    alt="IAC Logo" loading="lazy">
+                                <span class="event-card-logo-sep"></span>
+                                <img class="event-card-partner-logo"
+                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/iic_logo.png"
+                                    alt="IIC Logo" loading="lazy">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="event-card-foot">
@@ -2482,15 +2570,26 @@
                         <p>A global convention uniting visionaries, industry titans, founders, and angel investors to
                             foster cross-border innovation, startup acceleration, keynote panels, and venture funding
                             opportunities.</p>
-                        <a class="event-card-link-bottom" href="https://www.jaihindesummit.com/" target="_blank"
-                            rel="noopener">
-                            <span>Learn More</span>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                <polyline points="7 7 17 7 17 17"></polyline>
-                            </svg>
-                        </a>
+                        <div class="event-card-bottom-row">
+                            <a class="event-card-link-bottom" href="https://www.jaihindesummit.com/" target="_blank"
+                                rel="noopener">
+                                <span>Learn More</span>
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                </svg>
+                            </a>
+                            <div class="event-card-logos">
+                                <img class="event-card-partner-logo"
+                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/ecell_logo.png"
+                                    alt="E-Cell Logo" loading="lazy">
+                                <span class="event-card-logo-sep"></span>
+                                <img class="event-card-partner-logo"
+                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/iic_logo.png"
+                                    alt="IIC Logo" loading="lazy">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="event-card-foot">
@@ -2929,8 +3028,14 @@
             document.querySelectorAll('.event-remind-btn').forEach(btn => {
                 btn.addEventListener('click', e => {
                     e.preventDefault();
-                    const eventName = btn.getAttribute('data-event') || 'IAC Event';
-                    showToast(`Reminder set for ${eventName}! We'll notify our community.`);
+                    const target = document.getElementById('contact-us') || document.getElementById('notifyForm');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    }
+                    const emailInput = document.getElementById('nf-email');
+                    if (emailInput) {
+                        setTimeout(() => emailInput.focus(), 50);
+                    }
                 });
             });
 
