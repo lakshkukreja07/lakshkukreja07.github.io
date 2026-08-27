@@ -1454,8 +1454,23 @@
             }
 
             .event-card {
-                padding: 20px;
+                padding: 0;
                 min-height: auto;
+            }
+
+            .event-card-top-wrap {
+                padding: 14px 14px 0;
+            }
+
+            .event-card-foot {
+                padding: 10px 14px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .event-card-actions {
+                display: inline-flex;
+                gap: 6px;
             }
         }
 
@@ -1498,6 +1513,11 @@
                 margin-top: 30px
             }
 
+            .event-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 40px
@@ -1510,6 +1530,17 @@
 
             .slide-controls {
                 gap: 1rem
+            }
+        }
+
+        @media(min-width:769px) and (max-width:1024px) {
+            .event-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .event-grid .event-card:last-child {
+                grid-column: span 2;
             }
         }
 
@@ -1782,10 +1813,6 @@
 
             .hero-slide {
                 background-position: 20% center
-            }
-
-            .event-card {
-                padding: 18px;
             }
         }
 
@@ -2314,7 +2341,6 @@
         </div>
         <h2 class="section-title">What's On The<br><span class="highlight">Calendar.</span></h2>
         <div class="event-grid">
-            <!-- Event Card 1: Startup Internship Fair -->
             <div class="event-card" id="event-internship-fair">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
@@ -2379,7 +2405,6 @@
                 </div>
             </div>
 
-            <!-- Event Card 2: Startup Exposition -->
             <div class="event-card" id="event-startup-exposition">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
@@ -2443,7 +2468,6 @@
                 </div>
             </div>
 
-            <!-- Event Card 3: Global Entrepreneurship Summit -->
             <div class="event-card" id="event-global-summit">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
@@ -2715,7 +2739,6 @@
             } else {
                 let loaded = 0;
                 const heroVideo = document.querySelector('.hero-slide video');
-                // +1 for video, +1 for fonts
                 const total = ASSETS_IMGS.length + 2;
 
                 function tick() {
@@ -2726,25 +2749,21 @@
                     if (loaded >= total) setTimeout(dismissLoader, 300);
                 }
 
-                // Load images
                 ASSETS_IMGS.forEach(src => {
                     const img = new Image();
                     img.onload = img.onerror = tick;
                     img.src = src;
                 });
 
-                // Load video
                 if (heroVideo) {
                     heroVideo.readyState >= 3 ? tick() : heroVideo.addEventListener('canplay', tick, { once: true });
                 } else tick();
 
-                // Wait for fonts — ensures Inter & Roboto Mono are ready before dismissing
                 (document.fonts && document.fonts.ready
                     ? document.fonts.ready
                     : Promise.resolve()
                 ).then(tick).catch(tick);
 
-                // Hard cap: force-finish after 5s so a slow network never freezes the loader
                 setTimeout(() => { if (loaded < total) { loaded = total - 1; tick(); } }, 4000);
             }
 
@@ -2874,8 +2893,6 @@
                 toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
             };
 
-
-            // Handle incoming deep links (e.g. ?share_type=iac-broadcast&card_id=internship_fair)
             (function handleIncomingCardLink() {
                 try {
                     const params = new URLSearchParams(window.location.search);
@@ -2900,7 +2917,6 @@
                         }
                     }
 
-                    // Clean the address bar back to base URL without reloading
                     if (window.location.search) {
                         const cleanUrl = window.location.origin + window.location.pathname;
                         window.history.replaceState({}, document.title, cleanUrl);
@@ -2910,7 +2926,6 @@
                 }
             })();
 
-            // Remind Me button functionality (non-scrolling prompt / calendar reminder)
             document.querySelectorAll('.event-remind-btn').forEach(btn => {
                 btn.addEventListener('click', e => {
                     e.preventDefault();
@@ -2919,7 +2934,6 @@
                 });
             });
 
-            // Event card share: copies broadcast link with popup toast
             document.querySelectorAll('.event-share-btn').forEach(btn => {
                 btn.addEventListener('click', async e => {
                     e.preventDefault();
@@ -2929,16 +2943,14 @@
                     const desc = btn.getAttribute('data-desc') || 'Join us for this exciting event!';
 
                     const baseUrl = 'https://lakshkukreja07.github.io/assets/websites/iac/t5/index.html';
-                    const shareUrl = `${baseUrl}/?share_type=iac-event&card_id=${cardId}`;
+                    const shareUrl = `${baseUrl}?share_type=iac-event&card_id=${cardId}`;
 
-                    // Direct copy to clipboard with prompt popup
                     if (navigator.clipboard) {
                         try {
                             await navigator.clipboard.writeText(shareUrl);
                             showToast('Link Copied! Share With Anyone.');
                             return;
                         } catch (err) {
-                            // Fallback to share dialog
                         }
                     }
 
@@ -2955,7 +2967,6 @@
                             }
                         }
                     } else {
-                        // Fallback input copy
                         const tempInput = document.createElement('input');
                         tempInput.value = shareUrl;
                         document.body.appendChild(tempInput);
