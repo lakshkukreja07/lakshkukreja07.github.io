@@ -2407,11 +2407,12 @@
         </div>
         <h2 class="section-title">What's On The<br><span class="highlight">Calendar.</span></h2>
         <div class="event-grid">
-            <div class="event-card" id="event-internship-fair">
+            <div class="event-card" id="event-startup-internship-fair">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
                         <video muted playsinline loop autoplay preload="auto">
-                            <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/.mp4" type="video/mp4">
+                            <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/s.mp4"
+                                type="video/mp4">
                         </video>
                     </div>
                     <div class="event-card-body">
@@ -2463,7 +2464,7 @@
                             <span>Remind Me</span>
                         </button>
                         <button type="button" class="event-btn-action event-share-btn"
-                            data-target="event-internship-fair" data-card-id="internship_fair"
+                            data-target="event-startup-internship-fair" data-card-id="startup_internship_fair"
                             data-title="Startup Internship Fair" data-date="15 Jan 2027"
                             data-desc="A dynamic platform connecting students with exciting career opportunities across diverse domains."
                             data-url="https://jhcincubator.com/startup-internship-fair"
@@ -2617,8 +2618,7 @@
                             data-card-id="global_summit" data-title="Global Entrepreneurship Summit"
                             data-date="15 & 16 Jan 2027"
                             data-desc="A global convention uniting visionaries, industry titans, founders, and angel investors."
-                            data-url="https://jhcincubator.com/global-entrepreneurship-summit"
-                            title="Share event picture & link">
+                            data-url="https://www.jaihindesummit.com/" title="Share event picture & link">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="18" cy="5" r="3"></circle>
@@ -2999,10 +2999,10 @@
                     const cardId = params.get('card_id');
 
                     const validCards = {
-                        'internship_fair': 'event-internship-fair',
+                        'startup_internship_fair': 'event-startup-internship-fair',
                         'startup_exposition': 'event-startup-exposition',
                         'global_summit': 'event-global-summit',
-                        'official_agenda': 'event-internship-fair'
+                        'official_agenda': 'event-startup-internship-fair'
                     };
 
                     if (cardId && validCards[cardId]) {
@@ -3042,12 +3042,12 @@
             document.querySelectorAll('.event-share-btn').forEach(btn => {
                 btn.addEventListener('click', async e => {
                     e.preventDefault();
-                    const cardId = btn.getAttribute('data-card-id') || 'internship_fair';
+                    const cardId = btn.getAttribute('data-card-id') || 'startup_internship_fair';
                     const title = btn.getAttribute('data-title') || 'IAC Event';
                     const date = btn.getAttribute('data-date') || 'Upcoming';
                     const desc = btn.getAttribute('data-desc') || 'Join us for this exciting event!';
 
-                    const baseUrl = 'https://lakshkukreja07.github.io/assets/websites/iac/t5/index.html';
+                    const baseUrl = window.location.origin + window.location.pathname;
                     const shareUrl = `${baseUrl}?share_type=iac-event&card_id=${cardId}`;
 
                     if (navigator.clipboard) {
