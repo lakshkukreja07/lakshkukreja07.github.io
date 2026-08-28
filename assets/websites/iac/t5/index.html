@@ -9,14 +9,12 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link rel="preload" as="style"
         href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&family=Stack+Sans+Headline:wght@300;400;500;600;700&display=swap">
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&family=Stack+Sans+Headline:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <title>Incubator & Accelerator Centre | Jai Hind College</title>
-
     <style>
         * {
             margin: 0;
@@ -309,7 +307,7 @@
             inset: 0;
             opacity: 0;
             will-change: opacity;
-            transition: opacity 1.5s cubic-bezier(.25, .46, .45, .94);
+            transition: opacity 1.2s ease;
             background-size: cover;
             background-position: center
         }
@@ -741,6 +739,134 @@
             color: var(--ink-m)
         }
 
+        .industry-panel {
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            align-self: stretch;
+        }
+
+        .industry-panel-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            padding: 18px 20px 14px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .industry-panel-label {
+            font-family: var(--font);
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .industry-panel-sub {
+            font-family: var(--font);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--ink);
+            font-weight: 400;
+        }
+
+        .industry-bar-wrap {
+            padding: 20px 20px 0;
+        }
+
+        .industry-bar {
+            display: flex;
+            width: 100%;
+            height: 28px;
+            border-radius: 6px;
+            overflow: hidden;
+            gap: 2px;
+        }
+
+        .industry-bar-seg {
+            height: 100%;
+            cursor: pointer;
+            transition: opacity .18s ease, flex .25s ease;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .industry-bar-seg:hover {
+            opacity: .8;
+        }
+
+        .industry-tooltip {
+            font-family: var(--font);
+            font-size: 12px;
+            letter-spacing: 0;
+            color: var(--ink);
+            padding: 10px 20px 0;
+            min-height: 28px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .industry-tooltip-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .industry-legend {
+            padding: 12px 16px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            flex: 1;
+        }
+
+        .industry-leg-item {
+            display: grid;
+            grid-template-columns: 10px 1fr auto;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background .18s ease;
+        }
+
+        .industry-leg-item:hover,
+        .industry-leg-item.active {
+            background: rgba(26, 26, 26, .05);
+        }
+
+        .industry-leg-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .industry-leg-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--ink);
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .industry-leg-pct {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--ink);
+            letter-spacing: 0;
+        }
+
         .event-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -930,6 +1056,71 @@
             flex-shrink: 0;
         }
 
+        .collab-wrapper {
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        .collab-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--rule);
+            margin-bottom: 20px;
+        }
+
+        .collab-row {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .collab-label {
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #000;
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-weight: 600;
+        }
+
+        .collab-logos {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex: 1;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .collab-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            height: 60px;
+        }
+
+        .collab-item img {
+            height: 50px;
+            width: auto;
+            max-width: 160px;
+            object-fit: contain;
+            display: block;
+            filter: none;
+            opacity: 1;
+        }
+
+        .body-scrolling .pol {
+            transition: none !important;
+        }
+
+        .body-scrolling .hero-slide {
+            transition: none !important;
+        }
+
         .pol-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -959,8 +1150,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
             transition: transform .4s var(--ease);
             touch-action: pan-y;
-            transform: translateZ(0);
-            will-change: transform
+            transform: translateZ(0)
         }
 
         .pol-img,
@@ -1460,6 +1650,34 @@
                 flex-wrap: wrap;
                 gap: 10px;
             }
+
+            .collab-wrapper {
+                margin-top: 40px;
+            }
+
+            .collab-row {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .collab-logos {
+                gap: 12px;
+                justify-content: center;
+            }
+
+            .collab-item {
+                height: 44px;
+            }
+
+            .collab-item img {
+                height: 36px;
+                max-width: 90px;
+            }
+
+            .collab-label {
+                font-size: 10px;
+                letter-spacing: 2px;
+            }
         }
 
         @media(max-width:768px) {
@@ -1553,6 +1771,15 @@
 
             .event-card-logo-sep {
                 height: 22px;
+            }
+
+            .collab-item {
+                height: 50px;
+            }
+
+            .collab-item img {
+                height: 40px;
+                max-width: 120px;
             }
         }
 
@@ -1880,6 +2107,25 @@
             .hero-slide {
                 background-position: 20% center
             }
+
+            .collab-logos {
+                gap: 8px;
+                justify-content: center;
+            }
+
+            .collab-item {
+                height: 38px;
+            }
+
+            .collab-item img {
+                height: 30px;
+                max-width: 70px;
+            }
+
+            .collab-label {
+                font-size: 9px;
+                letter-spacing: 1.5px;
+            }
         }
 
         @media(pointer:coarse) {
@@ -1984,7 +2230,6 @@
                                 <path d="M7 7h10v10" />
                                 <path d="M7 17 17 7" />
                             </svg></a></li>
-
                     <li><a href="https://jhcincubator.com/startup-exposition" class="item"><span class="reveal">Startup
                                 Exposition</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1992,48 +2237,46 @@
                                 <path d="M7 7h10v10" />
                                 <path d="M7 17 17 7" />
                             </svg></a></li>
-                </ul>
-                <li><a href="https://jhcincubator.com/mentor-sessions" class="item"><span class="reveal">Mentor
-                            Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7 7h10v10" />
-                            <path d="M7 17 17 7" />
-                        </svg></a></li>
-                </ul>
-                <li><a href="https://jhcincubator.com/ipr-sessions" class="item"><span class="reveal">IPR
-                            Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7 7h10v10" />
-                            <path d="M7 17 17 7" />
-                        </svg></a></li>
-                </ul>
-                <li><a href="https://jhcincubator.com/mentor-board" class="item"><span class="reveal">Mentor
-                            Board</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7 7h10v10" />
-                            <path d="M7 17 17 7" />
-                        </svg></a></li>
-                </ul>
-                <li><a href="https://jhcincubator.com/akruti-kendra" class="item"><span class="reveal">Akruti
-                            Kendra</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7 7h10v10" />
-                            <path d="M7 17 17 7" />
-                        </svg></a></li>
-                </ul>
-                <li><a href="https://jhcincubator.com/our-team" class="item"><span class="reveal">Our Team</span><svg
-                            class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7 7h10v10" />
-                            <path d="M7 17 17 7" />
-                        </svg></a></li>
-                </ul>
-                <li><a href="https://jhcincubator.com/gallery" class="item"><span class="reveal">Gallery</span><svg
-                            class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7 7h10v10" />
-                            <path d="M7 17 17 7" />
-                        </svg></a></li>
+                    <li><a href="https://jhcincubator.com/mentor-sessions" class="item"><span class="reveal">Mentor
+                                Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/ipr-sessions" class="item"><span class="reveal">IPR
+                                Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/mentor-board" class="item"><span class="reveal">Mentor
+                                Board</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/akruti-kendra" class="item"><span class="reveal">Akruti
+                                Kendra</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/our-team" class="item"><span class="reveal">Our
+                                Team</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/gallery" class="item"><span class="reveal">Gallery</span><svg
+                                class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
                 </ul>
             </div>
         </div>
@@ -2099,11 +2342,10 @@
             <div>
                 <h2 class="section-title">Ideas deserve<br><span class="highlight">momentum.</span></h2>
                 <p class="about-body">The Incubator & Accelerator Centre at Jai Hind College is a safe harbour for
-                    early-stage ventures — a space
-                    where raw ideas meet the structure, guidance, and momentum needed to become real
-                    businesses.<br><br>We are committed to building a wholesome startup ecosystem that mentors and
-                    supports budding entrepreneurs, and to contributing to the nation through innovation at the student
-                    level.</p>
+                    early-stage ventures — a space where raw ideas meet the structure, guidance, and momentum needed to
+                    become real businesses.<br><br>We are committed to building a wholesome startup ecosystem that
+                    mentors and supports budding entrepreneurs, and to contributing to the nation through innovation at
+                    the student level.</p>
                 <div class="stats-row">
                     <div class="stat-cell"><span class="stat-num">70<span class="plus">+</span></span><span
                             class="stat-label">Startups Incubated</span></div>
@@ -2124,195 +2366,6 @@
                 <div class="industry-tooltip" id="industryTooltip"></div>
                 <div class="industry-legend" id="industryLegend"></div>
             </div>
-            <style>
-                .industry-panel {
-                    border: 1px solid var(--rule);
-                    border-radius: 14px;
-                    overflow: hidden;
-                    display: flex;
-                    flex-direction: column;
-                    background: #fff;
-                    align-self: stretch;
-                }
-
-                .industry-panel-header {
-                    display: flex;
-                    align-items: baseline;
-                    justify-content: space-between;
-                    padding: 18px 20px 14px;
-                    border-bottom: 1px solid var(--rule);
-                }
-
-                .industry-panel-label {
-                    font-family: var(--font);
-                    font-size: 14px;
-                    letter-spacing: 1px;
-                    text-transform: uppercase;
-                    color: var(--ink);
-                    font-weight: 700;
-                }
-
-                .industry-panel-sub {
-                    font-family: var(--font);
-                    font-size: 12px;
-                    letter-spacing: 1px;
-                    text-transform: uppercase;
-                    color: var(--ink);
-                    font-weight: 400;
-                }
-
-                .industry-bar-wrap {
-                    padding: 20px 20px 0;
-                }
-
-                .industry-bar {
-                    display: flex;
-                    width: 100%;
-                    height: 28px;
-                    border-radius: 6px;
-                    overflow: hidden;
-                    gap: 2px;
-                }
-
-                .industry-bar-seg {
-                    height: 100%;
-                    cursor: pointer;
-                    transition: opacity .18s ease, flex .25s ease;
-                    border-radius: 3px;
-                    flex-shrink: 0;
-                }
-
-                .industry-bar-seg:hover {
-                    opacity: .8;
-                }
-
-                .industry-tooltip {
-                    font-family: var(--font);
-                    font-size: 12px;
-                    letter-spacing: 0;
-                    color: var(--ink);
-                    padding: 10px 20px 0;
-                    min-height: 28px;
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                }
-
-                .industry-tooltip-dot {
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 2px;
-                    flex-shrink: 0;
-                }
-
-                .industry-legend {
-                    padding: 12px 16px 16px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1px;
-                    flex: 1;
-                }
-
-                .industry-leg-item {
-                    display: grid;
-                    grid-template-columns: 10px 1fr auto;
-                    align-items: center;
-                    gap: 10px;
-                    padding: 6px 8px;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    transition: background .18s ease;
-                }
-
-                .industry-leg-item:hover,
-                .industry-leg-item.active {
-                    background: rgba(26, 26, 26, .05);
-                }
-
-                .industry-leg-dot {
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 3px;
-                    flex-shrink: 0;
-                }
-
-                .industry-leg-name {
-                    font-size: 12px;
-                    font-weight: 500;
-                    color: var(--ink);
-                    letter-spacing: 0.2px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-
-                .industry-leg-pct {
-                    font-size: 11px;
-                    font-weight: 500;
-                    color: var(--ink);
-                    letter-spacing: 0;
-                }
-            </style>
-            <script>
-                (function () {
-                    const segments = [
-                        { label: 'Consumer Goods & Retail', pct: 21.9, color: '#4a7fc1' },
-                        { label: 'Technology & SaaS', pct: 12.5, color: '#7bafd4' },
-                        { label: 'Fashion & Apparels', pct: 9.4, color: '#e8924a' },
-                        { label: 'Fintech', pct: 6.2, color: '#d4a853' },
-                        { label: 'Education & Ed-Tech', pct: 6.2, color: '#4a8f5e' },
-                        { label: 'Technology & Consumer', pct: 6.2, color: '#8cc98b' },
-                        { label: 'Skincare & Cosmetology', pct: 3.1, color: '#c75b5b' },
-                        { label: 'Sports Equipment', pct: 3.1, color: '#e09cb5' },
-                        { label: 'Travel & Tourism', pct: 3.1, color: '#e8c4a0' },
-                        { label: 'Healthcare & Healthtech', pct: 3.1, color: '#b8d4f0' },
-                        { label: 'Technology & AI', pct: 3.1, color: '#9b7fcb' },
-                        { label: 'Digital Marketing', pct: 3.1, color: '#7fb8b8' },
-                        { label: 'Gaming', pct: 3.1, color: '#d4b896' },
-                        { label: 'Clean & Green Technology', pct: 3.1, color: '#c9a0dc' },
-                        { label: 'Stationary', pct: 3.1, color: '#c3d94f' },
-                        { label: 'Advertising Consultancy', pct: 3.1, color: '#b0b8c8' },
-                        { label: 'Agri-Tech', pct: 3.1, color: '#a8c48a' },
-                        { label: 'Others', pct: 3.1, color: '#c8c0b8' },
-                    ];
-
-                    const bar = document.getElementById('industryBar');
-                    const legend = document.getElementById('industryLegend');
-                    const tooltip = document.getElementById('industryTooltip');
-                    const segs = [], legItems = [];
-
-                    segments.forEach((seg, i) => {
-                        const el = document.createElement('div');
-                        el.className = 'industry-bar-seg';
-                        el.style.background = seg.color;
-                        el.style.flex = seg.pct;
-                        el.addEventListener('mouseenter', () => highlight(i));
-                        el.addEventListener('mouseleave', () => reset());
-                        bar.appendChild(el);
-                        segs.push(el);
-
-                        const item = document.createElement('div');
-                        item.className = 'industry-leg-item';
-                        item.innerHTML = `<div class="industry-leg-dot" style="background:${seg.color}"></div><span class="industry-leg-name">${seg.label}</span><span class="industry-leg-pct">${seg.pct}%</span>`;
-                        item.addEventListener('mouseenter', () => highlight(i));
-                        item.addEventListener('mouseleave', () => reset());
-                        legend.appendChild(item);
-                        legItems.push(item);
-                    });
-
-                    function highlight(idx) {
-                        segs.forEach((s, i) => s.style.opacity = i === idx ? '1' : '0.2');
-                        legItems.forEach((el, i) => el.classList.toggle('active', i === idx));
-                        tooltip.innerHTML = `<div class="industry-tooltip-dot" style="background:${segments[idx].color}"></div>${segments[idx].label} &mdash; ${segments[idx].pct}%`;
-                    }
-
-                    function reset() {
-                        segs.forEach(s => s.style.opacity = '1');
-                        legItems.forEach(el => el.classList.remove('active'));
-                        tooltip.innerHTML = '';
-                    }
-                })();
-            </script>
         </div>
     </section>
 
@@ -2321,7 +2374,6 @@
             <div class="section-rule"></div>
         </div>
         <h2 class="section-title">Built To Help You<br><span class="highlight">Launch.</span></h2>
-
         <div class="wwd-grid-wrapper">
             <div class="wwd-grid">
                 <div class="wwd-card"><span class="wwd-card-num">01</span>
@@ -2410,7 +2462,7 @@
             <div class="event-card" id="event-startup-internship-fair">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
-                        <video muted playsinline loop autoplay preload="auto">
+                        <video muted playsinline loop autoplay preload="none">
                             <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/s.mp4"
                                 type="video/mp4">
                         </video>
@@ -2426,8 +2478,8 @@
                                 <span>Learn More</span>
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                    <line x1="7" y1="17" x2="17" y2="7" />
+                                    <polyline points="7 7 17 7 17 17" />
                                 </svg>
                             </a>
                             <div class="event-card-logos">
@@ -2458,8 +2510,8 @@
                             data-event="Startup Internship Fair" title="Get notified about this event">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
                             </svg>
                             <span>Remind Me</span>
                         </button>
@@ -2471,11 +2523,11 @@
                             title="Share event picture & link">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="18" cy="5" r="3"></circle>
-                                <circle cx="6" cy="12" r="3"></circle>
-                                <circle cx="18" cy="19" r="3"></circle>
-                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                <circle cx="18" cy="5" r="3" />
+                                <circle cx="6" cy="12" r="3" />
+                                <circle cx="18" cy="19" r="3" />
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
                             </svg>
                             <span>Share</span>
                         </button>
@@ -2486,7 +2538,7 @@
             <div class="event-card" id="event-startup-exposition">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
-                        <video muted playsinline loop autoplay preload="auto">
+                        <video muted playsinline loop autoplay preload="none">
                             <source src="https://jhcincubator.com/wp-content/uploads/2026/08/x.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -2501,8 +2553,8 @@
                                 <span>Learn More</span>
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                    <line x1="7" y1="17" x2="17" y2="7" />
+                                    <polyline points="7 7 17 7 17 17" />
                                 </svg>
                             </a>
                             <div class="event-card-logos">
@@ -2533,8 +2585,8 @@
                             title="Get notified about this event">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
                             </svg>
                             <span>Remind Me</span>
                         </button>
@@ -2545,11 +2597,11 @@
                             data-url="https://jhcincubator.com/startup-exposition" title="Share event picture & link">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="18" cy="5" r="3"></circle>
-                                <circle cx="6" cy="12" r="3"></circle>
-                                <circle cx="18" cy="19" r="3"></circle>
-                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                <circle cx="18" cy="5" r="3" />
+                                <circle cx="6" cy="12" r="3" />
+                                <circle cx="18" cy="19" r="3" />
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
                             </svg>
                             <span>Share</span>
                         </button>
@@ -2560,7 +2612,7 @@
             <div class="event-card" id="event-global-summit">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
-                        <video muted playsinline loop autoplay preload="auto">
+                        <video muted playsinline loop autoplay preload="none">
                             <source
                                 src="https://www.jhcincubator.com/wp-content/uploads/2026/08/moments_global_e_summit_trailer.mp4"
                                 type="video/mp4">
@@ -2577,8 +2629,8 @@
                                 <span>Learn More</span>
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                    <line x1="7" y1="17" x2="17" y2="7" />
+                                    <polyline points="7 7 17 7 17 17" />
                                 </svg>
                             </a>
                             <div class="event-card-logos">
@@ -2609,8 +2661,8 @@
                             data-event="Global Entrepreneurship Summit" title="Get notified about this event">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
                             </svg>
                             <span>Remind Me</span>
                         </button>
@@ -2621,15 +2673,36 @@
                             data-url="https://www.jaihindesummit.com/" title="Share event picture & link">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="18" cy="5" r="3"></circle>
-                                <circle cx="6" cy="12" r="3"></circle>
-                                <circle cx="18" cy="19" r="3"></circle>
-                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                <circle cx="18" cy="5" r="3" />
+                                <circle cx="6" cy="12" r="3" />
+                                <circle cx="18" cy="19" r="3" />
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
                             </svg>
                             <span>Share</span>
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="collab-wrapper">
+            <div class="collab-divider"></div>
+            <div class="collab-row">
+                <span class="collab-label">Our Collaborations</span>
+                <div class="collab-logos">
+                    <span class="collab-item"><img
+                            src="https://jhcincubator.com/wp-content/uploads/2026/08/nhem_logo.png" alt="NHEM"
+                            loading="lazy" decoding="async"></span>
+                    <span class="collab-item"><img
+                            src="https://jhcincubator.com/wp-content/uploads/2026/08/wadhwani_foundation_logo.png"
+                            alt="WadhwaniFoundation" loading="lazy" decoding="async"></span>
+                    <span class="collab-item"><img
+                            src="https://jhcincubator.com/wp-content/uploads/2026/08/aic_logo.png"
+                            alt="AtalIncubationCentre" loading="lazy" decoding="async"></span>
+                    <span class="collab-item"><img
+                            src="https://jhcincubator.com/wp-content/uploads/2026/08/kapila_logo.png" alt="Kapila"
+                            loading="lazy" decoding="async"></span>
                 </div>
             </div>
         </div>
@@ -2642,7 +2715,7 @@
         <h2 class="section-title">Moments To<br><span class="highlight">Milestones.</span></h2>
         <div class="pol-grid">
             <div class="pol">
-                <video class="pol-video" muted playsinline loop preload="auto">
+                <video class="pol-video" muted playsinline loop preload="none">
                     <source src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_jay_lee.mp4"
                         type="video/mp4">
                 </video>
@@ -2651,18 +2724,18 @@
             <div class="pol">
                 <img class="pol-img"
                     src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_startup_exposition.jpg"
-                    alt="Startup Exposition" loading="eager" fetchpriority="high" />
+                    alt="Startup Exposition" loading="eager" fetchpriority="high" decoding="async" />
                 <div class="pol-caption"><span class="pol-caption-title">Startup Exposition</span></div>
             </div>
             <div class="pol">
                 <img class="pol-img"
                     src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_internship_fair.jpg"
-                    alt="Startup Internship Fair" loading="eager" fetchpriority="high" />
+                    alt="Startup Internship Fair" loading="eager" fetchpriority="high" decoding="async" />
                 <div class="pol-caption"><span class="pol-caption-title">Startup Internship Fair</span></div>
             </div>
             <div class="pol">
                 <img class="pol-img" src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_iac_room.jpg"
-                    alt="Incubator & Accelerator Centre" loading="eager" fetchpriority="high" />
+                    alt="Incubator & Accelerator Centre" loading="eager" fetchpriority="high" decoding="async" />
                 <div class="pol-caption"><span class="pol-caption-title">Inucbator & Accelerator Centre</span></div>
             </div>
         </div>
@@ -2793,8 +2866,7 @@
                             </svg></div>
                         <h4 class="success-title">You're In.</h4>
                         <p class="success-sub">Welcome to the community!<br>We will keep you posted on everything
-                            happening
-                            at Incubator & Accelerator Centre.</p>
+                            happening at Incubator & Accelerator Centre.</p>
                     </div>
                 </div>
             </div>
@@ -2847,24 +2919,85 @@
                     label.textContent = 'LOADING ' + pct + '%';
                     if (loaded >= total) setTimeout(dismissLoader, 300);
                 }
-
                 ASSETS_IMGS.forEach(src => {
                     const img = new Image();
                     img.onload = img.onerror = tick;
                     img.src = src;
                 });
-
                 if (heroVideo) {
                     heroVideo.readyState >= 3 ? tick() : heroVideo.addEventListener('canplay', tick, { once: true });
                 } else tick();
-
-                (document.fonts && document.fonts.ready
-                    ? document.fonts.ready
-                    : Promise.resolve()
-                ).then(tick).catch(tick);
-
+                (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(tick).catch(tick);
                 setTimeout(() => { if (loaded < total) { loaded = total - 1; tick(); } }, 4000);
             }
+
+            const industrySegments = [
+                { label: 'Consumer Goods & Retail', pct: 21.9, color: '#4a7fc1' },
+                { label: 'Technology & SaaS', pct: 12.5, color: '#7bafd4' },
+                { label: 'Fashion & Apparels', pct: 9.4, color: '#e8924a' },
+                { label: 'Fintech', pct: 6.2, color: '#d4a853' },
+                { label: 'Education & Ed-Tech', pct: 6.2, color: '#4a8f5e' },
+                { label: 'Technology & Consumer', pct: 6.2, color: '#8cc98b' },
+                { label: 'Skincare & Cosmetology', pct: 3.1, color: '#c75b5b' },
+                { label: 'Sports Equipment', pct: 3.1, color: '#e09cb5' },
+                { label: 'Travel & Tourism', pct: 3.1, color: '#e8c4a0' },
+                { label: 'Healthcare & Healthtech', pct: 3.1, color: '#b8d4f0' },
+                { label: 'Technology & AI', pct: 3.1, color: '#9b7fcb' },
+                { label: 'Digital Marketing', pct: 3.1, color: '#7fb8b8' },
+                { label: 'Gaming', pct: 3.1, color: '#d4b896' },
+                { label: 'Clean & Green Technology', pct: 3.1, color: '#c9a0dc' },
+                { label: 'Stationary', pct: 3.1, color: '#c3d94f' },
+                { label: 'Advertising Consultancy', pct: 3.1, color: '#b0b8c8' },
+                { label: 'Agri-Tech', pct: 3.1, color: '#a8c48a' },
+                { label: 'Others', pct: 3.1, color: '#c8c0b8' },
+            ];
+
+            (function initIndustry() {
+                const bar = document.getElementById('industryBar');
+                const legend = document.getElementById('industryLegend');
+                const tooltip = document.getElementById('industryTooltip');
+                const segs = [], legItems = [];
+
+                industrySegments.forEach((seg, i) => {
+                    const el = document.createElement('div');
+                    el.className = 'industry-bar-seg';
+                    el.style.background = seg.color;
+                    el.style.flex = seg.pct;
+                    el.addEventListener('mouseenter', () => highlight(i));
+                    el.addEventListener('mouseleave', () => reset());
+                    bar.appendChild(el);
+                    segs.push(el);
+
+                    const item = document.createElement('div');
+                    item.className = 'industry-leg-item';
+                    item.innerHTML = `<div class="industry-leg-dot" style="background:${seg.color}"></div><span class="industry-leg-name">${seg.label}</span><span class="industry-leg-pct">${seg.pct}%</span>`;
+                    item.addEventListener('mouseenter', () => highlight(i));
+                    item.addEventListener('mouseleave', () => reset());
+                    legend.appendChild(item);
+                    legItems.push(item);
+                });
+
+                function highlight(idx) {
+                    segs.forEach((s, i) => s.style.opacity = i === idx ? '1' : '0.2');
+                    legItems.forEach((el, i) => el.classList.toggle('active', i === idx));
+                    tooltip.innerHTML = `<div class="industry-tooltip-dot" style="background:${industrySegments[idx].color}"></div>${industrySegments[idx].label} &mdash; ${industrySegments[idx].pct}%`;
+                }
+
+                function reset() {
+                    segs.forEach(s => s.style.opacity = '1');
+                    legItems.forEach(el => el.classList.remove('active'));
+                    tooltip.innerHTML = '';
+                }
+            })();
+
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                document.body.classList.add('body-scrolling');
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    document.body.classList.remove('body-scrolling');
+                }, 150);
+            });
 
             const slides = [...document.querySelectorAll('.hero-slide')];
             const dotsWrap = $('slideDots');
@@ -2892,15 +3025,19 @@
                 const fill = getFill(getDot(current));
                 if (fill) fill.style.width = (progress = Math.max(0, Math.min(100, pct))) + '%';
             }
+
             function resetProgress() {
                 const fill = getFill(getDot(current));
                 if (fill) { progress = 0; fill.style.width = '0%'; }
             }
+
             function pauseVideo(i) { const v = slides[i].querySelector('video'); if (v && !v.paused) v.pause(); }
+
             function playVideo(i) {
                 const v = slides[i].querySelector('video');
                 if (!v) return;
-                v.pause(); v.currentTime = 0;
+                v.pause();
+                v.currentTime = 0;
                 const doPlay = () => v.play().catch(() => { });
                 v.addEventListener(v.readyState >= 2 ? 'seeked' : 'canplay', doPlay, { once: true });
             }
@@ -2910,14 +3047,17 @@
                 isTransitioning = true;
                 const next = (idx + slides.length) % slides.length;
                 const cur = slides[current], nxt = slides[next];
-                pauseTimer(); pauseVideo(current);
+                pauseTimer();
+                pauseVideo(current);
                 cur.classList.remove('active', 'exit-left');
                 nxt.classList.remove('active', 'exit-left');
                 void cur.offsetWidth;
                 nxt.classList.add('active');
                 getDot(current).classList.remove('active');
                 getDot(next).classList.add('active');
-                current = next; progress = 0; resetProgress();
+                current = next;
+                progress = 0;
+                resetProgress();
                 if (playing) { playVideo(current); lastUpdate = Date.now(); startTimer(); }
                 setTimeout(() => { cur.classList.remove('exit-left'); isTransitioning = false; }, 1500);
             }
@@ -2933,8 +3073,9 @@
                     lastUpdate = now;
                     setProgress(np);
                     if (np >= 100) { pauseTimer(); if (playing) goTo(current + 1); }
-                }, 50);
+                }, 200);
             }
+
             function pauseTimer() { clearInterval(timer); timer = null; }
 
             resetProgress();
@@ -2957,10 +3098,12 @@
                     if (fill) { progress = parseFloat(fill.style.width) || 0; dot.classList.remove('paused'); }
                     const v = slides[current].querySelector('video');
                     if (v) v.play().catch(() => { });
-                    lastUpdate = Date.now(); startTimer();
+                    lastUpdate = Date.now();
+                    startTimer();
                 } else {
                     if (fill) { progress = parseFloat(fill.style.width) || 0; dot.classList.add('paused'); }
-                    pauseVideo(current); pauseTimer();
+                    pauseVideo(current);
+                    pauseTimer();
                 }
             });
 
@@ -2995,16 +3138,13 @@
             (function handleIncomingCardLink() {
                 try {
                     const params = new URLSearchParams(window.location.search);
-                    const shareType = params.get('share_type');
                     const cardId = params.get('card_id');
-
                     const validCards = {
                         'startup_internship_fair': 'event-startup-internship-fair',
                         'startup_exposition': 'event-startup-exposition',
                         'global_summit': 'event-global-summit',
                         'official_agenda': 'event-startup-internship-fair'
                     };
-
                     if (cardId && validCards[cardId]) {
                         const targetCard = document.getElementById(validCards[cardId]);
                         if (targetCard) {
@@ -3015,14 +3155,11 @@
                             }, 400);
                         }
                     }
-
                     if (window.location.search) {
                         const cleanUrl = window.location.origin + window.location.pathname;
                         window.history.replaceState({}, document.title, cleanUrl);
                     }
-                } catch (e) {
-                    console.warn('URL handling error:', e);
-                }
+                } catch (e) { console.warn('URL handling error:', e); }
             })();
 
             document.querySelectorAll('.event-remind-btn').forEach(btn => {
@@ -3045,20 +3182,15 @@
                     const cardId = btn.getAttribute('data-card-id') || 'startup_internship_fair';
                     const title = btn.getAttribute('data-title') || 'IAC Event';
                     const date = btn.getAttribute('data-date') || 'Upcoming';
-                    const desc = btn.getAttribute('data-desc') || 'Join us for this exciting event!';
-
                     const baseUrl = window.location.origin + window.location.pathname;
                     const shareUrl = `${baseUrl}?share_type=iac-event&card_id=${cardId}`;
-
                     if (navigator.clipboard) {
                         try {
                             await navigator.clipboard.writeText(shareUrl);
                             showToast('Link Copied! Share With Anyone.');
                             return;
-                        } catch (err) {
-                        }
+                        } catch (err) { }
                     }
-
                     if (navigator.share) {
                         try {
                             await navigator.share({
@@ -3087,63 +3219,30 @@
                 const btn = $('notifyBtn');
                 const name = $('nf-name').value.trim();
                 const email = $('nf-email').value.trim();
-
-                if (!name) {
-                    showToast('Please enter your name.');
-                    $('nf-name').focus();
-                    return;
-                }
-
-                if (!email) {
-                    showToast('Please enter your email address.');
-                    $('nf-email').focus();
-                    return;
-                }
-
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    showToast('Please enter a valid email address.');
-                    $('nf-email').focus();
-                    return;
-                }
-
+                if (!name) { showToast('Please enter your name.'); $('nf-name').focus(); return; }
+                if (!email) { showToast('Please enter your email address.'); $('nf-email').focus(); return; }
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please enter a valid email address.'); $('nf-email').focus(); return; }
                 const original = btn.innerHTML;
                 btn.disabled = true;
                 btn.innerHTML = '<span style="display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:subscribeSpin .7s linear infinite;vertical-align:-3px;margin-right:8px"></span>Joining...';
-
                 try {
                     const res = await fetch('<?php echo esc_url(get_stylesheet_directory_uri() . "/subscribe.php"); ?>', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                         body: JSON.stringify({ name, email })
                     });
-
                     const raw = await res.text();
                     let data;
-
-                    try {
-                        data = JSON.parse(raw);
-                    } catch (e) {
-                        console.error('Subscribe response:', raw);
-                        throw new Error('The subscription service returned an invalid response.');
-                    }
-
-                    if (!res.ok || data.success !== true) {
-                        throw new Error(data.message || 'We could not complete your subscription. Please try again.');
-                    }
-
+                    try { data = JSON.parse(raw); } catch (e) { console.error('Subscribe response:', raw); throw new Error('The subscription service returned an invalid response.'); }
+                    if (!res.ok || data.success !== true) { throw new Error(data.message || 'We could not complete your subscription. Please try again.'); }
                     $('notifyForm').style.display = 'none';
                     $('notifySuccess').classList.add('show');
-
                 } catch (error) {
                     showToast(error.message || 'We could not complete your subscription. Please try again.');
                     btn.disabled = false;
                     btn.innerHTML = original;
                     return;
                 }
-
                 btn.disabled = false;
                 btn.innerHTML = original;
             });
