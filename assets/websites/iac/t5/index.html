@@ -9,11 +9,8 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&family=Stack+Sans+Headline:wght@300;400;500;600;700&display=swap">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&family=Stack+Sans+Headline:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&family=Stack+Sans+Headline:wght@300;400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&family=Stack+Sans+Headline:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Incubator & Accelerator Centre | Jai Hind College</title>
     <style>
         * {
@@ -21,7 +18,6 @@
             padding: 0;
             box-sizing: border-box
         }
-
         :root {
             --ease: cubic-bezier(.65, 0, .15, 1);
             --nav-ease: cubic-bezier(.4, 0, .2, 1);
@@ -37,11 +33,9 @@
             --dot-color: rgba(255, 255, 255, .25);
             --dot-active-bg: rgba(255, 255, 255, .15)
         }
-
         html {
             scroll-behavior: smooth
         }
-
         html,
         body {
             height: 100%;
@@ -50,16 +44,13 @@
             font-family: var(--font);
             overflow-x: hidden
         }
-
         ::selection {
             color: #fafafa;
             background: #000
         }
-
         body.menu-open {
             overflow: hidden
         }
-
         #page-loader {
             position: fixed;
             inset: 0;
@@ -72,17 +63,14 @@
             gap: 0;
             transition: opacity .8s ease, visibility .8s ease
         }
-
         #page-loader.done {
             opacity: 0;
             visibility: hidden;
             pointer-events: none
         }
-
         #page-loader.skip {
             display: none
         }
-
         .loader-logo {
             width: 100px;
             height: 100px;
@@ -91,7 +79,6 @@
             margin-bottom: 28px;
             margin-top: -40px
         }
-
         .loader-bar-wrap {
             width: 200px;
             height: 3px;
@@ -100,7 +87,6 @@
             overflow: hidden;
             margin-bottom: 12px
         }
-
         .loader-bar {
             height: 100%;
             width: 0%;
@@ -108,7 +94,6 @@
             border-radius: 3px;
             transition: width .2s ease
         }
-
         .loader-label {
             font-family: var(--font);
             font-size: 14px;
@@ -116,7 +101,6 @@
             text-transform: uppercase;
             color: rgba(255, 255, 255, .75)
         }
-
         .backdrop {
             position: fixed;
             inset: 0;
@@ -128,12 +112,10 @@
             pointer-events: none;
             transition: opacity .4s var(--nav-ease)
         }
-
         .backdrop.show {
             opacity: 1;
             pointer-events: auto
         }
-
         .nav {
             position: fixed;
             top: 12px;
@@ -141,27 +123,23 @@
             right: 12px;
             z-index: 1000
         }
-
         .nav-pill {
             background: rgba(0, 0, 0, .5);
             border: 1px solid rgba(255, 255, 255, .08);
             border-radius: 8px;
             overflow: hidden
         }
-
         @supports (backdrop-filter: blur(2px)) {
             .nav-pill {
                 backdrop-filter: blur(2px);
                 -webkit-backdrop-filter: blur(2px);
             }
         }
-
         @supports not (backdrop-filter: blur(2px)) {
             .nav-pill {
                 background: rgba(0, 0, 0, .7);
             }
         }
-
         .nav-top {
             display: flex;
             align-items: center;
@@ -170,14 +148,12 @@
             padding: 0 14px;
             position: relative
         }
-
         .nav-logo {
             width: 28px;
             height: 28px;
             object-fit: contain;
             flex-shrink: 0
         }
-
         .tagline {
             font-size: 12px;
             letter-spacing: 1px;
@@ -189,7 +165,6 @@
             white-space: nowrap;
             font-weight: 700
         }
-
         .burger {
             background: none;
             border: none;
@@ -204,7 +179,6 @@
             flex-shrink: 0;
             padding: 4px
         }
-
         .burger span {
             width: 20px;
             height: 2px;
@@ -214,34 +188,27 @@
             transform-origin: center;
             display: block
         }
-
         .burger.open span:nth-child(1) {
             transform: translateY(4px) rotate(45deg)
         }
-
         .burger.open span:nth-child(2) {
             transform: translateY(-4px) rotate(-45deg)
         }
-
         .nav-panel {
             max-height: 0;
             overflow: hidden;
             transition: max-height .5s var(--nav-ease)
         }
-
         .nav-panel.open {
             max-height: 500px
         }
-
         .nav-panel ul {
             list-style: none
         }
-
         .nav-panel li {
             position: relative;
             overflow: hidden
         }
-
         .nav-panel li::before {
             content: "";
             position: absolute;
@@ -254,11 +221,9 @@
             transform-origin: left;
             transition: transform .4s var(--nav-ease) .05s
         }
-
         .nav-panel.open li::before {
             transform: scaleX(1)
         }
-
         .nav-panel a.item {
             display: flex;
             align-items: center;
@@ -268,33 +233,27 @@
             text-decoration: none;
             font-size: 14px
         }
-
         .nav-panel a.item .reveal {
             transition: transform .35s var(--nav-ease);
         }
-
         .nav-panel a.item .nav-arrow {
             opacity: .5;
             transition: opacity .3s, transform .3s var(--nav-ease);
             flex-shrink: 0
         }
-
         .nav-panel a.item:hover .reveal {
             transform: translateX(8px) scale(1.1);
         }
-
         .nav-panel a.item:hover .nav-arrow {
             opacity: 1;
             transform: translate(2px, -2px)
         }
-
         .nav-panel li .reveal {
             display: inline-block;
             opacity: 1;
             font-family: var(--mono);
             text-transform: uppercase
         }
-
         .hero {
             position: relative;
             width: 100%;
@@ -305,14 +264,12 @@
             flex-direction: column;
             justify-content: flex-end
         }
-
         .hero-slides {
             position: absolute;
             inset: 0;
             z-index: 0;
             overflow: hidden
         }
-
         .hero-slide {
             position: absolute;
             inset: 0;
@@ -322,24 +279,20 @@
             background-size: cover;
             background-position: center
         }
-
         .hero-slide video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block
         }
-
         .hero-slide.active {
             opacity: 1;
             z-index: 2
         }
-
         .hero-slide.exit-left {
             opacity: 0;
             z-index: 1
         }
-
         .hero-tint {
             position: absolute;
             inset: 0;
@@ -347,19 +300,16 @@
             background: rgba(0, 0, 0, .5);
             pointer-events: none
         }
-
         .hero-content {
             position: relative;
             z-index: 4;
             padding: 0 18px 44px;
             color: #fff
         }
-
         .hero-main {
             display: flex;
             flex-direction: column
         }
-
         h1 {
             font-size: clamp(42px, 9vw, 96px);
             line-height: 1;
@@ -368,7 +318,6 @@
             text-transform: uppercase;
             color: #fff
         }
-
         .hero-info {
             margin-top: 20px;
             font-size: clamp(15px, 1.6vw, 18px);
@@ -378,7 +327,6 @@
             color: #fff;
             letter-spacing: .3px
         }
-
         .hero-apply-btn {
             display: inline-flex;
             align-items: center;
@@ -399,33 +347,28 @@
             width: fit-content;
             white-space: nowrap
         }
-
         @supports (backdrop-filter: blur(3px)) {
             .hero-apply-btn {
                 backdrop-filter: blur(3px);
                 -webkit-backdrop-filter: blur(3px);
             }
         }
-
         @supports not (backdrop-filter: blur(3px)) {
             .hero-apply-btn {
                 background: rgba(0, 0, 0, .5);
             }
         }
-
         .hero-apply-btn:hover {
             background: rgba(255, 255, 255, .1);
             border-color: rgba(255, 255, 255, .35);
             transform: scale(1.05)
         }
-
         .hero-apply-btn svg {
             width: 18px;
             height: 18px;
             stroke: #fff;
             flex-shrink: 0
         }
-
         .hero-foot {
             display: flex;
             align-items: center;
@@ -433,7 +376,6 @@
             margin-top: 40px;
             gap: 20px
         }
-
         .slide-controls-wrap {
             display: inline-flex;
             align-items: center;
@@ -442,32 +384,27 @@
             border-radius: 499px;
             border: 1px solid rgba(255, 255, 255, .15)
         }
-
         @supports (backdrop-filter: blur(3px)) {
             .slide-controls-wrap {
                 backdrop-filter: blur(3px);
                 -webkit-backdrop-filter: blur(3px);
             }
         }
-
         @supports not (backdrop-filter: blur(3px)) {
             .slide-controls-wrap {
                 background: rgba(0, 0, 0, .6);
             }
         }
-
         .slide-controls {
             display: flex;
             align-items: center;
             gap: 1rem
         }
-
         .slide-dots {
             display: flex;
             gap: .5rem;
             align-items: center
         }
-
         .slide-dots button {
             width: 8px;
             height: 8px;
@@ -483,7 +420,6 @@
             display: flex;
             align-items: center
         }
-
         .slide-dots button.active {
             width: 64px;
             height: 8px;
@@ -491,7 +427,6 @@
             background: var(--dot-active-bg);
             overflow: hidden
         }
-
         .slide-dots button .progress-fill {
             position: absolute;
             left: 0;
@@ -502,12 +437,10 @@
             border-radius: 499px;
             transition: width .1s linear
         }
-
         .slide-dots button:not(.active) .progress-fill {
             transition: none;
             width: 0% !important
         }
-
         .slide-pause {
             background: none;
             border: none;
@@ -523,7 +456,6 @@
             width: 32px;
             height: 32px
         }
-
         .slide-pause::before {
             content: '';
             position: absolute;
@@ -535,7 +467,6 @@
             transition: all .25s ease;
             pointer-events: none
         }
-
         .slide-pause svg {
             width: 32px;
             height: 32px;
@@ -543,14 +474,12 @@
             position: relative;
             z-index: 1
         }
-
         .highlight {
             position: relative;
             display: inline-block;
             color: var(--ink);
             z-index: 0
         }
-
         .highlight::after {
             content: '';
             position: absolute;
@@ -560,7 +489,6 @@
             z-index: -1;
             opacity: .7
         }
-
         .highlight-impact {
             background: linear-gradient(135deg, #fff, #6ab0ff);
             -webkit-background-clip: text;
@@ -568,7 +496,6 @@
             background-clip: text;
             display: inline-block
         }
-
         .section-wrap {
             background: var(--bg);
             padding: 80px 14px 60px;
@@ -579,14 +506,12 @@
             justify-content: center;
             min-height: 100svh
         }
-
         .section-header {
             display: flex;
             align-items: center;
             gap: 20px;
             margin-bottom: 50px
         }
-
         .section-eyebrow {
             font-family: var(--mono);
             font-size: 12px;
@@ -595,13 +520,11 @@
             color: var(--ink-d);
             white-space: nowrap
         }
-
         .section-rule {
             flex: 1;
             height: 1px;
             background: var(--rule)
         }
-
         .section-title {
             font-size: clamp(38px, 6vw, 72px);
             font-weight: 700;
@@ -611,14 +534,12 @@
             margin-bottom: 50px;
             letter-spacing: -.5px
         }
-
         .about-split {
             display: grid;
             grid-template-columns: 1fr;
             gap: 50px;
             align-items: stretch
         }
-
         .about-body {
             font-size: 16px;
             line-height: 1.4;
@@ -626,13 +547,11 @@
             max-width: 540px;
             margin-bottom: 40px
         }
-
         .stats-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px
         }
-
         .stat-cell {
             padding: 18px 8px;
             border: 1px solid var(--rule);
@@ -640,7 +559,6 @@
             text-align: center;
             box-shadow: 0 10px 25px rgba(0, 0, 0, .075)
         }
-
         .stat-num {
             font-size: 38px;
             font-weight: 700;
@@ -648,14 +566,12 @@
             line-height: 1;
             display: block
         }
-
         .stat-num .plus {
             font-size: .45em;
             vertical-align: super;
             letter-spacing: 0;
             margin-left: 2px
         }
-
         .stat-label {
             font-family: var(--mono);
             font-size: 10px;
@@ -665,7 +581,6 @@
             margin-top: 6px;
             display: block
         }
-
         .pillars {
             display: flex;
             flex-direction: column;
@@ -673,7 +588,6 @@
             border-radius: 14px;
             overflow: hidden
         }
-
         .pillar {
             display: grid;
             grid-template-columns: 32px 1fr;
@@ -682,11 +596,9 @@
             border-bottom: 1px solid var(--rule);
             cursor: default
         }
-
         .pillar:last-child {
             border-bottom: none
         }
-
         .pillar-index {
             font-family: var(--mono);
             font-size: 14px;
@@ -694,7 +606,6 @@
             letter-spacing: 1px;
             color: var(--ink-d)
         }
-
         .pillar-body h4 {
             font-size: 20px;
             font-weight: 600;
@@ -702,18 +613,15 @@
             color: var(--ink);
             margin-bottom: 4px
         }
-
         .pillar-body p {
             font-size: 13px;
             line-height: 1.6;
             color: var(--ink-m)
         }
-
         .wwd-grid-wrapper {
             border-radius: 14px;
             border: 1px solid var(--rule)
         }
-
         .wwd-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -722,7 +630,6 @@
             border-radius: 14px;
             overflow: hidden
         }
-
         .wwd-card {
             background: #fff;
             padding: 28px 24px 40px;
@@ -733,7 +640,6 @@
             overflow: hidden;
             cursor: default
         }
-
         .wwd-card-num {
             font-family: var(--mono);
             position: absolute;
@@ -746,7 +652,6 @@
             pointer-events: none;
             user-select: none
         }
-
         .wwd-card-icon {
             width: 40px;
             height: 40px;
@@ -757,7 +662,6 @@
             stroke-linecap: round;
             stroke-linejoin: round
         }
-
         .wwd-card h4 {
             font-size: 20px;
             font-weight: 600;
@@ -765,13 +669,11 @@
             color: var(--ink);
             margin-bottom: 4px
         }
-
         .wwd-card p {
             font-size: 13px;
             line-height: 1.6;
             color: var(--ink-m)
         }
-
         .industry-panel {
             border: 1px solid var(--rule);
             border-radius: 14px;
@@ -781,7 +683,6 @@
             background: #fff;
             align-self: stretch;
         }
-
         .industry-panel-header {
             display: flex;
             align-items: baseline;
@@ -789,7 +690,6 @@
             padding: 18px 20px 14px;
             border-bottom: 1px solid var(--rule);
         }
-
         .industry-panel-label {
             font-family: var(--font);
             font-size: 14px;
@@ -798,7 +698,6 @@
             color: var(--ink);
             font-weight: 700;
         }
-
         .industry-panel-sub {
             font-family: var(--font);
             font-size: 12px;
@@ -807,11 +706,9 @@
             color: var(--ink);
             font-weight: 400;
         }
-
         .industry-bar-wrap {
             padding: 20px 20px 0;
         }
-
         .industry-bar {
             display: flex;
             width: 100%;
@@ -820,7 +717,6 @@
             overflow: hidden;
             gap: 2px;
         }
-
         .industry-bar-seg {
             height: 100%;
             cursor: pointer;
@@ -828,11 +724,9 @@
             border-radius: 3px;
             flex-shrink: 0;
         }
-
         .industry-bar-seg:hover {
             opacity: .8;
         }
-
         .industry-tooltip {
             font-family: var(--font);
             font-size: 12px;
@@ -844,14 +738,12 @@
             align-items: center;
             gap: 8px;
         }
-
         .industry-tooltip-dot {
             width: 10px;
             height: 10px;
             border-radius: 2px;
             flex-shrink: 0;
         }
-
         .industry-legend {
             padding: 12px 16px 16px;
             display: flex;
@@ -859,7 +751,6 @@
             gap: 1px;
             flex: 1;
         }
-
         .industry-leg-item {
             display: grid;
             grid-template-columns: 10px 1fr auto;
@@ -870,19 +761,16 @@
             cursor: pointer;
             transition: background .18s ease;
         }
-
         .industry-leg-item:hover,
         .industry-leg-item.active {
             background: rgba(26, 26, 26, .05);
         }
-
         .industry-leg-dot {
             width: 10px;
             height: 10px;
             border-radius: 3px;
             flex-shrink: 0;
         }
-
         .industry-leg-name {
             font-size: 12px;
             font-weight: 500;
@@ -892,21 +780,18 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
         .industry-leg-pct {
             font-size: 11px;
             font-weight: 500;
             color: var(--ink);
             letter-spacing: 0;
         }
-
         .event-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             width: 100%;
         }
-
         .event-card {
             background: #fff;
             border: 1px solid var(--rule);
@@ -920,19 +805,16 @@
             overflow: hidden;
             transition: box-shadow .3s ease, border-color .3s ease;
         }
-
         .event-card.card-highlight {
             border: 1.5px solid rgba(79, 140, 255, 0.18) !important;
             box-shadow: 0 0 12px rgba(79, 140, 255, 0.22), 0 0 35px rgba(79, 140, 255, 0.13), 0 0 70px rgba(79, 140, 255, 0.07);
         }
-
         .event-card-top-wrap {
             padding: 16px 16px 0;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
-
         .event-card-media {
             width: 100%;
             aspect-ratio: 16/9;
@@ -942,7 +824,6 @@
             position: relative;
             margin-bottom: 16px;
         }
-
         .event-card-media video {
             width: 100%;
             height: 100%;
@@ -950,7 +831,6 @@
             display: block;
             background: black;
         }
-
         .event-card-body {
             display: flex;
             flex-direction: column;
@@ -958,7 +838,6 @@
             flex-grow: 1;
             padding-bottom: 16px;
         }
-
         .event-card-body h3 {
             font-size: clamp(19px, 2vw, 22px);
             font-weight: 700;
@@ -966,13 +845,11 @@
             color: var(--ink);
             line-height: 1.2;
         }
-
         .event-card-body p {
             font-size: 13.5px;
             line-height: 1.6;
             color: var(--ink-m);
         }
-
         .event-card-bottom-row {
             display: flex;
             align-items: center;
@@ -981,7 +858,6 @@
             margin-top: auto;
             padding-top: 12px;
         }
-
         .event-card-link-bottom {
             font-family: var(--font);
             font-size: 13px;
@@ -994,27 +870,22 @@
             width: fit-content;
             transition: color .2s ease, transform .2s ease;
         }
-
         .event-card-link-bottom:hover {
             color: #000;
             text-decoration: none;
         }
-
         .event-card-link-bottom svg {
             transition: transform .2s ease;
             stroke: currentColor;
         }
-
         .event-card-link-bottom:hover svg {
             transform: translate(2px, -2px);
         }
-
         .event-card-logos {
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
-
         .event-card-partner-logo {
             height: 24px;
             width: auto;
@@ -1024,14 +895,12 @@
             opacity: 0.85;
             transition: opacity .2s ease, transform .2s ease;
         }
-
         .event-card-logo-sep {
             width: 1px;
             height: 32px;
             background: var(--rule);
             display: block;
         }
-
         .event-card-foot {
             border-top: 1px solid var(--rule);
             display: flex;
@@ -1043,7 +912,6 @@
             width: 100%;
             box-sizing: border-box;
         }
-
         .event-card-foot-date {
             font-family: var(--font);
             font-size: 14px;
@@ -1053,12 +921,10 @@
             align-items: center;
             gap: 6px;
         }
-
         .event-card-foot-date svg {
             color: #64748b;
             flex-shrink: 0;
         }
-
         .event-btn-action {
             background: #faf9f6;
             border: 1px solid var(--rule);
@@ -1075,39 +941,33 @@
             transition: background .2s ease, border-color .2s ease, color .2s ease;
             white-space: nowrap;
         }
-
         .event-btn-action:hover {
             background: #000;
             border-color: #000;
             color: #fff;
         }
-
         .event-btn-action svg {
             width: 13px;
             height: 13px;
             stroke: currentColor;
             flex-shrink: 0;
         }
-
         .collab-wrapper {
             margin-top: 60px;
             width: 100%;
         }
-
         .collab-divider {
             width: 100%;
             height: 1px;
             background: var(--rule);
             margin-bottom: 20px;
         }
-
         .collab-row {
             display: flex;
             align-items: center;
             gap: 30px;
             width: 100%;
         }
-
         .collab-label {
             font-family: var(--mono);
             font-size: 12px;
@@ -1118,7 +978,6 @@
             flex-shrink: 0;
             font-weight: 600;
         }
-
         .collab-logos {
             display: flex;
             align-items: center;
@@ -1127,7 +986,6 @@
             gap: 20px;
             flex-wrap: nowrap;
         }
-
         .collab-item {
             display: flex;
             align-items: center;
@@ -1137,7 +995,6 @@
             flex: 1;
             min-width: 0;
         }
-
         .collab-item img {
             height: 50px;
             width: auto;
@@ -1147,34 +1004,27 @@
             filter: none;
             opacity: 1;
         }
-
         .body-scrolling .pol {
             transition: none !important;
         }
-
         .body-scrolling .hero-slide {
             transition: none !important;
         }
-
         .pol-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 28px;
             align-items: start
         }
-
         .pol-grid .pol:nth-child(2) {
             margin-top: 40px
         }
-
         .pol-grid .pol:nth-child(3) {
             margin-top: 20px
         }
-
         .pol-grid .pol:nth-child(4) {
             margin-top: 60px
         }
-
         .pol {
             display: flex;
             flex-direction: column;
@@ -1187,7 +1037,6 @@
             touch-action: pan-y;
             transform: translateZ(0)
         }
-
         .pol-img,
         .pol-video {
             width: 100%;
@@ -1198,14 +1047,12 @@
             min-height: 160px;
             background: #e8e5de
         }
-
         .pol-caption {
             padding: 16px 4px 20px;
             display: flex;
             flex-direction: column;
             gap: 5px
         }
-
         .pol-caption-title {
             font-size: 15px;
             font-weight: 600;
@@ -1213,7 +1060,6 @@
             letter-spacing: -.2px;
             line-height: 1.2
         }
-
         .gallery-btn {
             display: inline-flex;
             align-items: center;
@@ -1234,42 +1080,35 @@
             align-self: flex-start;
             text-decoration: none
         }
-
         .gallery-btn svg,
         .form-submit svg {
             transition: transform .35s var(--ease)
         }
-
         .gallery-btn:hover {
             background: var(--ink);
             color: #fff;
             gap: 16px
         }
-
         .gallery-btn:hover svg,
         .form-submit:hover svg {
             transform: translateX(4px)
         }
-
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: stretch
         }
-
         .contact-left {
             display: flex;
             flex-direction: column;
             gap: 32px
         }
-
         .contact-left>div:last-child {
             display: flex;
             flex-direction: column;
             flex: 1
         }
-
         .block-label {
             font-family: var(--mono);
             font-size: 13px;
@@ -1279,7 +1118,6 @@
             font-weight: 600;
             margin-bottom: 14px
         }
-
         .channel-link {
             display: flex;
             align-items: center;
@@ -1293,11 +1131,9 @@
             transition: border-color .3s var(--ease);
             background: #fafafa
         }
-
         .channel-link:last-child {
             margin-bottom: 0
         }
-
         .channel-icon {
             width: 40px;
             height: 40px;
@@ -1309,7 +1145,6 @@
             justify-content: center;
             flex-shrink: 0
         }
-
         .channel-text {
             display: flex;
             flex-direction: column;
@@ -1317,14 +1152,12 @@
             flex: 1;
             min-width: 0
         }
-
         .channel-name {
             font-size: 16px;
             font-weight: 600;
             color: var(--ink);
             letter-spacing: -.1px
         }
-
         .channel-handle {
             font-family: var(--font);
             font-size: 13px;
@@ -1332,17 +1165,14 @@
             letter-spacing: .5px;
             word-break: break-all
         }
-
         .channel-arrow {
             color: var(--ink-d);
             flex-shrink: 0;
             transition: transform .35s var(--ease)
         }
-
         .channel-link:hover .channel-arrow {
             transform: translate(3px, -3px)
         }
-
         .map-wrap {
             border-radius: 14px;
             overflow: hidden;
@@ -1352,7 +1182,6 @@
             flex: 1;
             min-height: 260px
         }
-
         .map-wrap iframe {
             width: 100%;
             height: 100%;
@@ -1362,7 +1191,6 @@
             filter: grayscale(15%);
             flex: 1
         }
-
         .map-footer {
             padding: 14px 18px;
             background: #fafafa;
@@ -1371,12 +1199,10 @@
             align-items: center;
             gap: 10px
         }
-
         .map-footer svg {
             flex-shrink: 0;
             stroke: #1a1a1a
         }
-
         .map-footer-text {
             font-family: var(--mono);
             font-size: 10px;
@@ -1384,12 +1210,10 @@
             text-transform: uppercase;
             color: var(--ink-m)
         }
-
         .contact-right {
             display: flex;
             flex-direction: column
         }
-
         .notify-wrap {
             background: #fff;
             border: 1px solid var(--rule);
@@ -1399,11 +1223,9 @@
             flex-direction: column;
             height: 100%
         }
-
         .notify-header {
             padding: 28px 28px 20px
         }
-
         .notify-title {
             font-size: clamp(32px, 4.5vw, 56px);
             font-weight: 700;
@@ -1413,19 +1235,16 @@
             margin-bottom: 12px;
             text-transform: uppercase
         }
-
         .notify-sub {
             font-size: 14px;
             line-height: 1.6;
             color: #000
         }
-
         .notify-perks {
             padding: 4px 28px 12px;
             display: flex;
             flex-direction: column
         }
-
         .notify-perk {
             display: flex;
             align-items: center;
@@ -1436,11 +1255,9 @@
             font-weight: 400;
             border-bottom: 1px solid var(--rule)
         }
-
         .notify-perk:last-child {
             border-bottom: none
         }
-
         .notify-perk-num {
             font-size: 13px;
             font-weight: 600;
@@ -1450,7 +1267,6 @@
             opacity: .4;
             font-family: var(--mono)
         }
-
         .notify-form {
             padding: 16px 28px 28px;
             display: flex;
@@ -1458,19 +1274,16 @@
             gap: 12px;
             flex: 1
         }
-
         .form-row-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px
         }
-
         .form-field {
             display: flex;
             flex-direction: column;
             gap: 6px
         }
-
         .form-label {
             font-family: var(--font);
             font-size: 12px;
@@ -1479,11 +1292,9 @@
             color: #000;
             font-weight: 600
         }
-
         .form-required {
             color: #ff4d4d
         }
-
         .form-input {
             background: rgba(26, 26, 26, .04);
             border: 1px solid var(--rule);
@@ -1496,16 +1307,13 @@
             transition: border-color .3s var(--ease), background .3s var(--ease);
             width: 100%
         }
-
         .form-input::placeholder {
             color: var(--ink-d)
         }
-
         .form-input:focus {
             border-color: var(--ink);
             background: rgba(26, 26, 26, .06)
         }
-
         .form-submit {
             display: inline-flex;
             align-items: center;
@@ -1525,13 +1333,11 @@
             width: 100%;
             transition: background .3s var(--ease), gap .3s var(--ease), transform .3s var(--ease)
         }
-
         .form-submit:hover {
             background: rgba(26, 26, 26, .85);
             gap: 16px;
             transform: translateY(-2px)
         }
-
         .form-privacy {
             font-family: var(--mono);
             font-size: 12px;
@@ -1542,7 +1348,6 @@
             text-align: center;
             font-weight: 500
         }
-
         .notify-success {
             display: none;
             flex: 1;
@@ -1553,11 +1358,9 @@
             gap: 16px;
             padding: 40px 28px
         }
-
         .notify-success.show {
             display: flex
         }
-
         .success-circle {
             width: 64px;
             height: 64px;
@@ -1569,13 +1372,11 @@
             justify-content: center;
             animation: successPop .5s var(--ease)
         }
-
         .success-circle svg path {
             stroke-dasharray: 24;
             stroke-dashoffset: 24;
             animation: successDraw .4s .35s var(--ease) forwards
         }
-
         .success-title {
             font-size: 18px;
             font-weight: 700;
@@ -1583,46 +1384,38 @@
             text-transform: uppercase;
             letter-spacing: -.2px
         }
-
         .success-sub {
             font-size: 13px;
             line-height: 1.6;
             color: var(--ink-m);
             max-width: 320px
         }
-
         @keyframes successPop {
             0% {
                 transform: scale(.4);
                 opacity: 0
             }
-
             60% {
                 transform: scale(1.08);
                 opacity: 1
             }
-
             100% {
                 transform: scale(1)
             }
         }
-
         @keyframes successDraw {
             to {
                 stroke-dashoffset: 0
             }
         }
-
         @keyframes subscribeSpin {
             0% {
                 transform: rotate(0deg);
             }
-
             100% {
                 transform: rotate(360deg);
             }
         }
-
         .toast {
             position: fixed;
             bottom: 24px;
@@ -1641,18 +1434,15 @@
             z-index: 9999;
             white-space: nowrap
         }
-
         .toast.show {
             opacity: 1;
             transform: translateX(-50%) translateY(0)
         }
-
         .footer {
             background: var(--bg);
             border-top: 1px solid var(--rule);
             padding: 20px 0
         }
-
         .footer-inner {
             max-width: 1200px;
             margin: 0 auto;
@@ -1661,7 +1451,6 @@
             align-items: center;
             justify-content: center
         }
-
         .footer-copyright {
             font-family: var(--font);
             font-size: 13px;
@@ -1671,7 +1460,6 @@
             align-items: center;
             gap: 4px
         }
-
         @media(max-width:600px) {
             .footer-inner {
                 flex-direction: column;
@@ -1679,126 +1467,102 @@
                 padding: 0 16px;
                 text-align: center
             }
-
             .footer-copyright {
                 font-size: 11px;
                 justify-content: center
             }
-
             .event-grid {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
-
             .event-card-foot {
                 padding: 10px 14px;
                 flex-wrap: wrap;
                 gap: 10px;
             }
-
             .collab-wrapper {
                 margin-top: 40px;
             }
-
             .collab-row {
                 flex-wrap: wrap;
                 gap: 12px;
             }
-
             .collab-logos {
                 gap: 8px;
                 justify-content: space-between;
                 width: 100%;
             }
-
             .collab-item {
                 height: 44px;
                 flex: 1;
                 min-width: 0;
             }
-
             .collab-item img {
                 height: 32px;
                 max-width: 100%;
             }
-
             .collab-label {
                 font-size: 10px;
                 letter-spacing: 2px;
             }
         }
-
         @media(max-width:768px) {
             .slide-controls {
                 gap: 1.2rem
             }
-
             .slide-dots button.active {
                 width: 64px;
                 height: 9px
             }
-
             .slide-dots button {
                 width: 9px;
                 height: 9px
             }
-
             .slide-controls-wrap {
                 padding: 8px 12px 8px 8px
             }
-
             .slide-pause::before {
                 inset: -6px
             }
-
             .hero-foot {
                 justify-content: flex-start;
                 width: 100%
             }
-
             .event-card {
                 padding: 0;
                 min-height: auto;
             }
-
             .event-card-top-wrap {
                 padding: 14px 14px 0;
             }
         }
-
         @media(min-width:601px) and (max-width:1024px) {
             .event-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 12px;
             }
-
             .event-card-body h3 {
                 font-size: 15px;
             }
-
             .event-card-body p {
                 font-size: 11.5px;
                 line-height: 1.5;
             }
-
             .event-card-foot {
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 10px 12px;
                 gap: 8px;
             }
-
             .event-card-foot-date {
                 font-size: 12px;
                 width: 100%;
             }
-
             .event-card-actions {
                 display: flex;
                 width: 100%;
                 gap: 6px;
             }
-
             .event-btn-action {
                 flex: 1;
                 justify-content: center;
@@ -1806,30 +1570,24 @@
                 font-size: 10.5px;
                 gap: 3px;
             }
-
             .event-btn-action svg {
                 width: 11px;
                 height: 11px;
             }
-
             .event-card-partner-logo {
                 height: 18px;
                 max-width: 45px;
             }
-
             .event-card-logo-sep {
                 height: 22px;
             }
-
             .collab-item {
                 height: 50px;
             }
-
             .collab-item img {
                 height: 40px;
             }
         }
-
         @media(min-width:481px) and (max-width:768px) {
             .nav {
                 top: 12px;
@@ -1838,52 +1596,41 @@
                 transform: translateX(-50%);
                 width: 420px
             }
-
             .section-wrap {
                 padding: 70px 20px 50px;
                 min-height: 100svh
             }
-
             .wwd-grid {
                 grid-template-columns: 1fr 1fr
             }
-
             .hero-content {
                 padding: 0 24px 32px
             }
-
             .pol-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px
             }
-
             .pol-grid .pol:nth-child(2) {
                 margin-top: 30px
             }
-
             .pol-grid .pol:nth-child(3) {
                 margin-top: 0
             }
-
             .pol-grid .pol:nth-child(4) {
                 margin-top: 30px
             }
-
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 40px
             }
-
             .hero-foot {
                 justify-content: flex-start;
                 width: 100%
             }
-
             .slide-controls {
                 gap: 1rem
             }
         }
-
         @media(min-width:769px) {
             .nav {
                 top: 16px;
@@ -1892,80 +1639,64 @@
                 transform: translateX(-50%);
                 width: 480px
             }
-
             .section-wrap {
                 padding: 100px 50px 80px;
                 min-height: 100svh
             }
-
             .about-split {
                 grid-template-columns: 1.1fr 1fr;
                 gap: 60px
             }
-
             .hero-main {
                 max-width: 900px
             }
-
             .hero-info {
                 max-width: 480px
             }
-
             .hero-content {
                 padding: 0 48px 56px
             }
-
             .stat-num {
                 font-size: 42px
             }
         }
-
         @media(max-width:480px) {
             .section-wrap {
                 padding: 60px 14px 40px;
                 min-height: auto
             }
-
             .section-header {
                 gap: 16px;
                 margin-bottom: 48px;
                 padding-top: 12px
             }
-
             .section-eyebrow {
                 font-size: 10px;
                 letter-spacing: 2px
             }
-
             .section-title {
                 font-size: clamp(30px, 9vw, 44px);
                 margin-bottom: 36px;
                 line-height: 1.08
             }
-
             .stat-num {
                 font-size: 28px
             }
-
             .stat-cell {
                 padding: 12px 8px;
                 border-radius: 12px
             }
-
             .wwd-grid {
                 grid-template-columns: 1fr
             }
-
             h1 {
                 font-size: clamp(36px, 13vw, 52px);
                 line-height: 1
             }
-
             .hero-info {
                 font-size: 14px;
                 max-width: 100%
             }
-
             .hero-apply-btn {
                 padding: 16px 24px;
                 font-size: 14px;
@@ -1973,286 +1704,226 @@
                 margin-top: 20px;
                 white-space: nowrap
             }
-
             .hero-apply-btn svg {
                 width: 18px;
                 height: 18px
             }
-
             .hero-foot {
                 margin-top: 28px;
                 justify-content: flex-start;
                 width: 100%
             }
-
             .slide-controls {
                 gap: 1.2rem;
                 justify-content: flex-start;
                 width: 100%
             }
-
             .slide-dots button.active {
                 width: 72px;
                 height: 10px
             }
-
             .slide-dots button {
                 width: 10px;
                 height: 10px
             }
-
             .slide-dots {
                 gap: .7rem
             }
-
             .slide-controls-wrap {
                 padding: 9px 14px 9px 9px
             }
-
             .slide-pause {
                 width: 30px;
                 height: 30px
             }
-
             .slide-pause svg {
                 width: 30px;
                 height: 30px
             }
-
             .slide-pause::before {
                 inset: -6px
             }
-
             .pol-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 14px
             }
-
             .pol-grid .pol:nth-child(odd) {
                 margin-top: 0
             }
-
             .pol-grid .pol:nth-child(even) {
                 margin-top: 28px
             }
-
             .pol-grid .pol:nth-child(3) {
                 margin-top: 0
             }
-
             .pol {
                 padding: 10px 10px 0
             }
-
             .pol-caption {
                 padding: 10px 2px 14px;
                 gap: 3px
             }
-
             .pol-caption-title {
                 font-size: 13px
             }
-
             .gallery-btn {
                 font-size: 13px;
                 padding: 12px 20px;
                 margin-top: 30px
             }
-
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 32px
             }
-
             .contact-left {
                 gap: 28px
             }
-
             .channel-link {
                 padding: 14px 16px;
                 gap: 12px
             }
-
             .channel-icon {
                 width: 36px;
                 height: 36px
             }
-
             .form-row-2 {
                 grid-template-columns: 1fr
             }
-
             .notify-header {
                 padding: 22px 16px 18px
             }
-
             .notify-sub {
                 font-size: 13px;
                 line-height: 1.5
             }
-
             .notify-perks {
                 padding: 0 16px 8px
             }
-
             .notify-perk {
                 font-size: 13px;
                 padding: 8px 0;
                 gap: 12px
             }
-
             .notify-perk-num {
                 font-size: 12px;
                 width: 24px
             }
-
             .notify-form {
                 padding: 12px 16px 20px;
                 gap: 10px
             }
-
             .form-label {
                 font-size: 11px
             }
-
             .form-input {
                 font-size: 13px;
                 padding: 10px 12px
             }
-
             .form-submit {
                 font-size: 13px;
                 padding: 14px 20px
             }
-
             .form-privacy {
                 font-size: 11px
             }
-
             .map-wrap {
                 min-height: 200px
             }
-
             .map-wrap iframe {
                 min-height: 180px
             }
-
             .map-footer {
                 padding: 10px 14px
             }
-
             .map-footer-text {
                 font-size: 9px;
                 letter-spacing: 1px
             }
-
             .block-label {
                 font-size: 13px;
                 margin-bottom: 10px
             }
-
             .hero-slide {
                 background-position: 20% center
             }
-
             .collab-wrapper {
                 margin-top: 30px;
             }
-
             .collab-row {
                 flex-wrap: wrap;
                 gap: 8px;
             }
-
             .collab-logos {
                 gap: 6px;
                 justify-content: space-between;
                 width: 100%;
             }
-
             .collab-item {
                 height: 36px;
                 flex: 1;
                 min-width: 0;
             }
-
             .collab-item img {
                 height: 28px;
                 max-width: 100%;
             }
-
             .collab-label {
                 font-size: 9px;
                 letter-spacing: 1.5px;
             }
-
             .collab-divider {
                 margin-bottom: 12px;
             }
         }
-
         @media(pointer:coarse) {
             .pol {
                 transition: none;
                 transform: none
             }
-
             .pol:active {
                 transform: scale(.98) translateZ(0);
                 transition: transform .15s ease
             }
         }
-
         @media(max-height:500px) and (orientation:landscape) {
             .section-wrap {
                 min-height: auto;
                 padding: 40px 20px 30px
             }
-
             .section-header {
                 margin-bottom: 20px
             }
-
             .about-split {
                 gap: 20px
             }
-
             .stat-num {
                 font-size: 22px
             }
-
             .stat-cell {
                 padding: 8px 6px
             }
-
             .wwd-grid {
                 grid-template-columns: repeat(3, 1fr)
             }
-
             .nav-top {
                 height: 40px
             }
-
             .nav {
                 top: 8px;
                 left: 8px;
                 right: 8px
             }
-
             .pol-grid {
                 grid-template-columns: repeat(4, 1fr)
             }
-
             .pol-grid .pol {
                 margin-top: 0 !important
             }
-
             .hero-apply-btn {
                 padding: 8px 16px;
                 font-size: 10px;
                 margin-top: 12px
             }
-
             .hero-apply-btn svg {
                 width: 12px;
                 height: 12px
@@ -2264,8 +1935,7 @@
 <body>
 
     <div id="page-loader">
-        <img class="loader-logo" src="https://jhcincubator.com/wp-content/uploads/2026/08/jai_hind_college_logo.png"
-            alt="Jai Hind College" />
+        <img class="loader-logo" src="https://jhcincubator.com/wp-content/uploads/2026/08/jai_hind_college_logo.png" alt="Jai Hind College" />
         <div class="loader-bar-wrap">
             <div class="loader-bar" id="loaderBar"></div>
         </div>
@@ -2278,68 +1948,21 @@
         <div class="nav-pill" id="navPill">
             <div class="nav-top">
                 <a href="https://jhcincubator.com" aria-label="Home">
-                    <img class="nav-logo"
-                        src="https://jhcincubator.com/wp-content/uploads/2026/08/jai_hind_college_logo.png"
-                        alt="JHC Logo" />
+                    <img class="nav-logo" src="https://jhcincubator.com/wp-content/uploads/2026/08/jai_hind_college_logo.png" alt="JHC Logo" />
                 </a>
                 <span class="tagline">Incubator &amp; Accelerator Centre</span>
                 <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
             </div>
             <div class="nav-panel" id="navPanel">
                 <ul>
-                    <li><a href="https://jhcincubator.com" class="item"><span class="reveal">Home</span><svg
-                                class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M7 7h10v10" />
-                                <path d="M7 17 17 7" />
-                            </svg></a></li>
-                    <li><a href="https://jhcincubator.com/startup-exposition" class="item"><span class="reveal">Startup
-                                Exposition</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M7 7h10v10" />
-                                <path d="M7 17 17 7" />
-                            </svg></a></li>
-                    <li><a href="https://jhcincubator.com/mentor-sessions" class="item"><span class="reveal">Mentor
-                                Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M7 7h10v10" />
-                                <path d="M7 17 17 7" />
-                            </svg></a></li>
-                    <li><a href="https://jhcincubator.com/ipr-sessions" class="item"><span class="reveal">IPR
-                                Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M7 7h10v10" />
-                                <path d="M7 17 17 7" />
-                            </svg></a></li>
-                    <li><a href="https://jhcincubator.com/mentor-board" class="item"><span class="reveal">Mentor
-                                Board</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M7 7h10v10" />
-                                <path d="M7 17 17 7" />
-                            </svg></a></li>
-                    <li><a href="https://jhcincubator.com/akruti-kendra" class="item"><span class="reveal">Akruti
-                                Kendra</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M7 7h10v10" />
-                                <path d="M7 17 17 7" />
-                            </svg></a></li>
-                    <li><a href="https://jhcincubator.com/our-team" class="item"><span class="reveal">Our
-                                Team</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M7 7h10v10" />
-                                <path d="M7 17 17 7" />
-                            </svg></a></li>
-                    <li><a href="https://jhcincubator.com/gallery" class="item"><span class="reveal">Gallery</span><svg
-                                class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M7 7h10v10" />
-                                <path d="M7 17 17 7" />
-                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com" class="item"><span class="reveal">Home</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
+                    <li><a href="https://jhcincubator.com/startup-exposition" class="item"><span class="reveal">Startup Exposition</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
+                    <li><a href="https://jhcincubator.com/mentor-sessions" class="item"><span class="reveal">Mentor Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
+                    <li><a href="https://jhcincubator.com/ipr-sessions" class="item"><span class="reveal">IPR Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
+                    <li><a href="https://jhcincubator.com/mentor-board" class="item"><span class="reveal">Mentor Board</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
+                    <li><a href="https://jhcincubator.com/akruti-kendra" class="item"><span class="reveal">Akruti Kendra</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
+                    <li><a href="https://jhcincubator.com/our-team" class="item"><span class="reveal">Our Team</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
+                    <li><a href="https://jhcincubator.com/gallery" class="item"><span class="reveal">Gallery</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
                 </ul>
             </div>
         </div>
@@ -2349,46 +1972,28 @@
         <div class="hero-slides" id="heroSlides">
             <div class="hero-slide active">
                 <video muted playsinline preload="metadata">
-                    <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/intro_trailer.mp4"
-                        type="video/mp4">
+                    <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/intro_trailer.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="hero-slide"
-                style="background-image:url('https://www.jhcincubator.com/wp-content/uploads/2026/08/intro_slide_2.jpg')">
-            </div>
-            <div class="hero-slide"
-                style="background-image:url('https://www.jhcincubator.com/wp-content/uploads/2026/08/intro_slide_3.jpg')">
-            </div>
+            <div class="hero-slide" style="background-image:url('https://www.jhcincubator.com/wp-content/uploads/2026/08/intro_slide_2.jpg')"></div>
+            <div class="hero-slide" style="background-image:url('https://www.jhcincubator.com/wp-content/uploads/2026/08/intro_slide_3.jpg')"></div>
         </div>
         <div class="hero-tint"></div>
         <div class="hero-content">
             <div class="hero-main">
                 <h1>From Ideas<br>To <span class="highlight-impact">Impact.</span></h1>
-                <p class="hero-info">Empowering student founders with mentorship, resources, and industry access — built
-                    to move faster, built to last.</p>
+                <p class="hero-info">Empowering student founders with mentorship, resources, and industry access — built to move faster, built to last.</p>
                 <a href="https://forms.gle/pkk8YXcVLg9dCSgn9" target="_blank" rel="noopener" class="hero-apply-btn">
                     <span class="text">Apply For Incubation</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M7 7h10v10" />
-                        <path d="M7 17 17 7" />
-                    </svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
                 </a>
             </div>
             <div class="hero-foot">
                 <div class="slide-controls-wrap">
                     <div class="slide-controls">
                         <button class="slide-pause" id="slidePause" aria-label="Pause slideshow">
-                            <svg id="iconPause" viewBox="0 0 32 32">
-                                <path
-                                    d="M5.92 24.096q0 .832.576 1.408t1.44.608h4.032q.832 0 1.44-.608t.576-1.408v-16.16q0-.832-.576-1.44t-1.44-.576h-4.032q-.832 0-1.44.576t-.576 1.44v16.16zM18.016 24.096q0 .832.608 1.408t1.408.608h4.032q.832 0 1.44-.608t.576-1.408v-16.16q0-.832-.576-1.44t-1.44-.576h-4.032q-.832 0-1.408.576t-.608 1.44v16.16z"
-                                    fill="#fff" />
-                            </svg>
-                            <svg id="iconPlay" viewBox="0 0 32 32" style="display:none">
-                                <path
-                                    d="M5.92 24.096q0 1.088.928 1.728.512.288 1.088.288.448 0 .896-.224l16.16-8.064q.48-.256.8-.736t.288-1.088-.288-1.056-.8-.736l-16.16-8.064q-.448-.224-.896-.224-.544 0-1.088.288-.928.608-.928 1.728v16.16z"
-                                    fill="#fff" />
-                            </svg>
+                            <svg id="iconPause" viewBox="0 0 32 32"><path d="M5.92 24.096q0 .832.576 1.408t1.44.608h4.032q.832 0 1.44-.608t.576-1.408v-16.16q0-.832-.576-1.44t-1.44-.576h-4.032q-.832 0-1.44.576t-.576 1.44v16.16zM18.016 24.096q0 .832.608 1.408t1.408.608h4.032q.832 0 1.44-.608t.576-1.408v-16.16q0-.832-.576-1.44t-1.44-.576h-4.032q-.832 0-1.408.576t-.608 1.44v16.16z" fill="#fff"/></svg>
+                            <svg id="iconPlay" viewBox="0 0 32 32" style="display:none"><path d="M5.92 24.096q0 1.088.928 1.728.512.288 1.088.288.448 0 .896-.224l16.16-8.064q.48-.256.8-.736t.288-1.088-.288-1.056-.8-.736l-16.16-8.064q-.448-.224-.896-.224-.544 0-1.088.288-.928.608-.928 1.728v16.16z" fill="#fff"/></svg>
                         </button>
                         <div class="slide-dots" id="slideDots"></div>
                     </div>
@@ -2398,24 +2003,15 @@
     </section>
 
     <section class="section-wrap" id="about-us">
-        <div class="section-header"><span class="section-eyebrow">[ About Us ]</span>
-            <div class="section-rule"></div>
-        </div>
+        <div class="section-header"><span class="section-eyebrow">[ About Us ]</span><div class="section-rule"></div></div>
         <div class="about-split">
             <div>
                 <h2 class="section-title">Ideas deserve<br><span class="highlight">momentum.</span></h2>
-                <p class="about-body">The Incubator & Accelerator Centre at Jai Hind College is a safe harbour for
-                    early-stage ventures — a space where raw ideas meet the structure, guidance, and momentum needed to
-                    become real businesses.<br><br>We are committed to building a wholesome startup ecosystem that
-                    mentors and supports budding entrepreneurs, and to contributing to the nation through innovation at
-                    the student level.</p>
+                <p class="about-body">The Incubator & Accelerator Centre at Jai Hind College is a safe harbour for early-stage ventures — a space where raw ideas meet the structure, guidance, and momentum needed to become real businesses.<br><br>We are committed to building a wholesome startup ecosystem that mentors and supports budding entrepreneurs, and to contributing to the nation through innovation at the student level.</p>
                 <div class="stats-row">
-                    <div class="stat-cell"><span class="stat-num">70<span class="plus">+</span></span><span
-                            class="stat-label">Startups Incubated</span></div>
-                    <div class="stat-cell"><span class="stat-num">95<span class="plus">+</span></span><span
-                            class="stat-label">Industrial Mentors</span></div>
-                    <div class="stat-cell"><span class="stat-num">6Yrs<span class="plus">+</span></span><span
-                            class="stat-label">Our Legacy</span></div>
+                    <div class="stat-cell"><span class="stat-num">70<span class="plus">+</span></span><span class="stat-label">Startups Incubated</span></div>
+                    <div class="stat-cell"><span class="stat-num">95<span class="plus">+</span></span><span class="stat-label">Industrial Mentors</span></div>
+                    <div class="stat-cell"><span class="stat-num">6Yrs<span class="plus">+</span></span><span class="stat-label">Our Legacy</span></div>
                 </div>
             </div>
             <div class="industry-panel">
@@ -2433,82 +2029,37 @@
     </section>
 
     <section class="section-wrap" id="what-we-do">
-        <div class="section-header"><span class="section-eyebrow">[ What We Do ]</span>
-            <div class="section-rule"></div>
-        </div>
+        <div class="section-header"><span class="section-eyebrow">[ What We Do ]</span><div class="section-rule"></div></div>
         <h2 class="section-title">Built To Help You<br><span class="highlight">Launch.</span></h2>
         <div class="wwd-grid-wrapper">
             <div class="wwd-grid">
                 <div class="wwd-card"><span class="wwd-card-num">01</span>
-                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
-                        <path
-                            d="M24 6C17.4 6 12 11.4 12 18c0 4.4 2.3 8.3 5.8 10.5V32h12.4v-3.5C33.7 26.3 36 22.4 36 18c0-6.6-5.4-12-12-12z" />
-                        <path d="M17.8 32c0 1 .2 2 .6 2.8M30.2 32c0 1-.2 2-.6 2.8" />
-                        <path d="M19 38h10M20.5 42h7" />
-                        <line x1="24" y1="6" x2="24" y2="3" />
-                        <line x1="36.5" y1="9.5" x2="38.6" y2="7.4" />
-                        <line x1="42" y1="18" x2="45" y2="18" />
-                        <line x1="11.5" y1="9.5" x2="9.4" y2="7.4" />
-                        <line x1="6" y1="18" x2="3" y2="18" />
-                        <line x1="24" y1="22" x2="24" y2="26" />
-                        <line x1="21" y1="19" x2="24" y2="22" />
-                        <line x1="27" y1="19" x2="24" y2="22" />
-                    </svg>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48"><path d="M24 6C17.4 6 12 11.4 12 18c0 4.4 2.3 8.3 5.8 10.5V32h12.4v-3.5C33.7 26.3 36 22.4 36 18c0-6.6-5.4-12-12-12z"/><path d="M17.8 32c0 1 .2 2 .6 2.8M30.2 32c0 1-.2 2-.6 2.8"/><path d="M19 38h10M20.5 42h7"/><line x1="24" y1="6" x2="24" y2="3"/><line x1="36.5" y1="9.5" x2="38.6" y2="7.4"/><line x1="42" y1="18" x2="45" y2="18"/><line x1="11.5" y1="9.5" x2="9.4" y2="7.4"/><line x1="6" y1="18" x2="3" y2="18"/><line x1="24" y1="22" x2="24" y2="26"/><line x1="21" y1="19" x2="24" y2="22"/><line x1="27" y1="19" x2="24" y2="22"/></svg>
                     <h4>Incubate Startups</h4>
-                    <p>Turn your innovative ideas into thriving ventures with expert mentorship, resources, and a
-                        dedicated incubation centre.</p>
+                    <p>Turn your innovative ideas into thriving ventures with expert mentorship, resources, and a dedicated incubation centre.</p>
                 </div>
                 <div class="wwd-card"><span class="wwd-card-num">02</span>
-                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
-                        <rect x="8" y="14" width="32" height="24" rx="2" />
-                        <path d="M16 14v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" />
-                        <line x1="16" y1="26" x2="32" y2="26" />
-                        <line x1="16" y1="32" x2="24" y2="32" />
-                    </svg>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48"><rect x="8" y="14" width="32" height="24" rx="2"/><path d="M16 14v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><line x1="16" y1="26" x2="32" y2="26"/><line x1="16" y1="32" x2="24" y2="32"/></svg>
                     <h4>Startup Internship Fair</h4>
-                    <p>Connect growing startups with top talent and interns with impactful, real-world opportunities.
-                    </p>
+                    <p>Connect growing startups with top talent and interns with impactful, real-world opportunities.</p>
                 </div>
                 <div class="wwd-card"><span class="wwd-card-num">03</span>
-                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
-                        <polyline points="6,36 16,24 24,29 36,12" />
-                        <polyline points="30,12 36,12 36,18" />
-                        <line x1="6" y1="42" x2="42" y2="42" />
-                        <line x1="6" y1="42" x2="6" y2="8" />
-                        <line x1="6" y1="30" x2="9" y2="30" />
-                        <line x1="6" y1="20" x2="9" y2="20" />
-                        <line x1="18" y1="42" x2="18" y2="39" />
-                        <line x1="30" y1="42" x2="30" y2="39" />
-                    </svg>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48"><polyline points="6,36 16,24 24,29 36,12"/><polyline points="30,12 36,12 36,18"/><line x1="6" y1="42" x2="42" y2="42"/><line x1="6" y1="42" x2="6" y2="8"/><line x1="6" y1="30" x2="9" y2="30"/><line x1="6" y1="20" x2="9" y2="20"/><line x1="18" y1="42" x2="18" y2="39"/><line x1="30" y1="42" x2="30" y2="39"/></svg>
                     <h4>Startup Exposition</h4>
                     <p>Showcase groundbreaking innovation, network with investors, and gain invaluable exposure.</p>
                 </div>
                 <div class="wwd-card"><span class="wwd-card-num">04</span>
-                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
-                        <circle cx="18" cy="16" r="6" />
-                        <path d="M6 40c0-7 5-11 12-11s12 4 12 11" />
-                        <path d="M32 14c2 1.5 4 4 4 7s-2 5.5-4 7" />
-                        <path d="M37 10c4 2.5 7 7 7 13s-3 10.5-7 13" />
-                    </svg>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48"><circle cx="18" cy="16" r="6"/><path d="M6 40c0-7 5-11 12-11s12 4 12 11"/><path d="M32 14c2 1.5 4 4 4 7s-2 5.5-4 7"/><path d="M37 10c4 2.5 7 7 7 13s-3 10.5-7 13"/></svg>
                     <h4>Mentoring Sessions</h4>
                     <p>Seasoned industry leaders guide you to refine strategies, solve challenges, and grow.</p>
                 </div>
                 <div class="wwd-card"><span class="wwd-card-num">05</span>
-                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
-                        <path d="M6 17v10h7l15 9V8L13 17H6z" />
-                        <line x1="13" y1="17" x2="13" y2="27" />
-                        <path d="M32 18.5a6 6 0 0 1 0 9" />
-                        <path d="M36 14a12 12 0 0 1 0 18" />
-                    </svg>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48"><path d="M6 17v10h7l15 9V8L13 17H6z"/><line x1="13" y1="17" x2="13" y2="27"/><path d="M32 18.5a6 6 0 0 1 0 9"/><path d="M36 14a12 12 0 0 1 0 18"/></svg>
                     <h4>IPR Awareness</h4>
                     <p>Protect your innovative ideas with expert insights on intellectual property rights.</p>
                 </div>
                 <div class="wwd-card"><span class="wwd-card-num">06</span>
-                    <svg class="wwd-card-icon" viewBox="0 0 48 48">
-                        <path
-                            d="M28 7c1 5-1 9-4 11 0-4-3-6-5-4-3 3-3 8-1 12-3-2-5-6-5-10C10 26 12 38 24 41c12-3 14-15 10-22-2 5-5 6-5 6 2-4 1-11-1-18z" />
-                        <path d="M21 33c0 3 1.5 5 3 5s3-2 3-5c0-2-1.5-4-3-5-1.5 1-3 3-3 5z" />
-                    </svg>
+                    <svg class="wwd-card-icon" viewBox="0 0 48 48"><path d="M28 7c1 5-1 9-4 11 0-4-3-6-5-4-3 3-3 8-1 12-3-2-5-6-5-10C10 26 12 38 24 41c12-3 14-15 10-22-2 5-5 6-5 6 2-4 1-11-1-18z"/><path d="M21 33c0 3 1.5 5 3 5s3-2 3-5c0-2-1.5-4-3-5-1.5 1-3 3-3 5z"/></svg>
                     <h4>Ignite Program</h4>
                     <p>Learn to build impactful and successful ventures with the Wadhwani Foundation.</p>
                 </div>
@@ -2517,81 +2068,49 @@
     </section>
 
     <section class="section-wrap" id="events">
-        <div class="section-header"><span class="section-eyebrow">[ Events ]</span>
-            <div class="section-rule"></div>
-        </div>
+        <div class="section-header"><span class="section-eyebrow">[ Events ]</span><div class="section-rule"></div></div>
         <h2 class="section-title">What's On The<br><span class="highlight">Calendar.</span></h2>
         <div class="event-grid">
             <div class="event-card" id="event-startup-internship-fair">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
                         <video muted playsinline loop preload="none">
-                            <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/events_sif_snippet.mp4"
-                                type="video/mp4">
+                            <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/events_sif_snippet.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="event-card-body">
                         <h3>Startup Internship Fair</h3>
-                        <p>A dynamic platform connecting students with exciting career opportunities across diverse
-                            domains including Finance, Marketing, HR, Operations, Media, Business Development,
-                            Consulting, Technology, Design and Entrepreneurship.</p>
+                        <p>A dynamic platform connecting students with exciting career opportunities across diverse domains including Finance, Marketing, HR, Operations, Media, Business Development, Consulting, Technology, Design and Entrepreneurship.</p>
                         <div class="event-card-bottom-row">
-                            <a class="event-card-link-bottom" href="https://jhcincubator.com/startup-internship-fair"
-                                target="_blank" rel="noopener">
+                            <a class="event-card-link-bottom" href="https://jhcincubator.com/startup-internship-fair" target="_blank" rel="noopener">
                                 <span>Learn More</span>
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="7" y1="17" x2="17" y2="7" />
-                                    <polyline points="7 7 17 7 17 17" />
-                                </svg>
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                             </a>
                             <div class="event-card-logos">
-                                <img class="event-card-partner-logo"
-                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/iac_logo.png"
-                                    alt="IAC Logo" loading="lazy">
+                                <img class="event-card-partner-logo" src="https://jhcincubator.com/wp-content/uploads/2026/08/iac_logo.png" alt="IAC Logo" loading="lazy">
                                 <span class="event-card-logo-sep"></span>
-                                <img class="event-card-partner-logo"
-                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/iic_logo.png"
-                                    alt="IIC Logo" loading="lazy">
+                                <img class="event-card-partner-logo" src="https://jhcincubator.com/wp-content/uploads/2026/08/iic_logo.png" alt="IIC Logo" loading="lazy">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="event-card-foot">
                     <div class="event-card-foot-date">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
                         </svg>
                         <span>15 Jan 2027</span>
                     </div>
                     <div class="event-card-actions">
-                        <button type="button" class="event-btn-action event-remind-btn"
-                            data-event="Startup Internship Fair" title="Get notified about this event">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                            </svg>
+                        <button type="button" class="event-btn-action event-remind-btn" data-event="Startup Internship Fair" title="Get notified about this event">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
                             <span>Remind Me</span>
                         </button>
-                        <button type="button" class="event-btn-action event-share-btn"
-                            data-target="event-startup-internship-fair" data-card-id="startup_internship_fair"
-                            data-title="Startup Internship Fair" data-date="15 Jan 2027"
-                            data-desc="A dynamic platform connecting students with exciting career opportunities across diverse domains."
-                            data-url="https://jhcincubator.com/startup-internship-fair"
-                            title="Share event picture & link">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="18" cy="5" r="3" />
-                                <circle cx="6" cy="12" r="3" />
-                                <circle cx="18" cy="19" r="3" />
-                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                            </svg>
+                        <button type="button" class="event-btn-action event-share-btn" data-target="event-startup-internship-fair" data-card-id="startup_internship_fair" data-title="Startup Internship Fair" data-date="15 Jan 2027" data-desc="A dynamic platform connecting students with exciting career opportunities across diverse domains." data-url="https://jhcincubator.com/startup-internship-fair" title="Share event picture & link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
                             <span>Share</span>
                         </button>
                     </div>
@@ -2602,71 +2121,42 @@
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
                         <video muted playsinline loop preload="none">
-                            <source src="https://jhcincubator.com/wp-content/uploads/2026/08/events_se_snippet.mp4"
-                                type="video/mp4">
+                            <source src="https://jhcincubator.com/wp-content/uploads/2026/08/events_se_snippet.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="event-card-body">
                         <h3>Startup Exposition</h3>
-                        <p>The Startup Exposition brings entrepreneurs together in a space wherein they can demonstrate
-                            their inventions, where all the exciting start-up ideas are showcased. A place where they
-                            can interact with mentors.</p>
+                        <p>The Startup Exposition brings entrepreneurs together in a space wherein they can demonstrate their inventions, where all the exciting start-up ideas are showcased. A place where they can interact with mentors.</p>
                         <div class="event-card-bottom-row">
-                            <a class="event-card-link-bottom" href="https://jhcincubator.com/startup-exposition"
-                                target="_blank" rel="noopener">
+                            <a class="event-card-link-bottom" href="https://jhcincubator.com/startup-exposition" target="_blank" rel="noopener">
                                 <span>Learn More</span>
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="7" y1="17" x2="17" y2="7" />
-                                    <polyline points="7 7 17 7 17 17" />
-                                </svg>
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                             </a>
                             <div class="event-card-logos">
-                                <img class="event-card-partner-logo"
-                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/iac_logo.png"
-                                    alt="IAC Logo" loading="lazy">
+                                <img class="event-card-partner-logo" src="https://jhcincubator.com/wp-content/uploads/2026/08/iac_logo.png" alt="IAC Logo" loading="lazy">
                                 <span class="event-card-logo-sep"></span>
-                                <img class="event-card-partner-logo"
-                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/iic_logo.png"
-                                    alt="IIC Logo" loading="lazy">
+                                <img class="event-card-partner-logo" src="https://jhcincubator.com/wp-content/uploads/2026/08/iic_logo.png" alt="IIC Logo" loading="lazy">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="event-card-foot">
                     <div class="event-card-foot-date">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
                         </svg>
                         <span>16 Jan 2027</span>
                     </div>
                     <div class="event-card-actions">
-                        <button type="button" class="event-btn-action event-remind-btn" data-event="Startup Exposition"
-                            title="Get notified about this event">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                            </svg>
+                        <button type="button" class="event-btn-action event-remind-btn" data-event="Startup Exposition" title="Get notified about this event">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
                             <span>Remind Me</span>
                         </button>
-                        <button type="button" class="event-btn-action event-share-btn"
-                            data-target="event-startup-exposition" data-card-id="startup_exposition"
-                            data-title="Startup Exposition" data-date="16 Jan 2027"
-                            data-desc="Entrepreneurs showcase groundbreaking ideas, innovative prototypes, and connect directly with mentors."
-                            data-url="https://jhcincubator.com/startup-exposition" title="Share event picture & link">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="18" cy="5" r="3" />
-                                <circle cx="6" cy="12" r="3" />
-                                <circle cx="18" cy="19" r="3" />
-                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                            </svg>
+                        <button type="button" class="event-btn-action event-share-btn" data-target="event-startup-exposition" data-card-id="startup_exposition" data-title="Startup Exposition" data-date="16 Jan 2027" data-desc="Entrepreneurs showcase groundbreaking ideas, innovative prototypes, and connect directly with mentors." data-url="https://jhcincubator.com/startup-exposition" title="Share event picture & link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
                             <span>Share</span>
                         </button>
                     </div>
@@ -2677,71 +2167,42 @@
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
                         <video muted playsinline loop preload="none">
-                            <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/events_ges_snippet.mp4"
-                                type="video/mp4">
+                            <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/events_ges_snippet.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="event-card-body">
                         <h3>Global Entrepreneurship Summit</h3>
-                        <p>A global convention uniting visionaries, industry titans, founders, and angel investors to
-                            foster cross-border innovation, startup acceleration, keynote panels, and venture funding
-                            opportunities.</p>
+                        <p>A global convention uniting visionaries, industry titans, founders, and angel investors to foster cross-border innovation, startup acceleration, keynote panels, and venture funding opportunities.</p>
                         <div class="event-card-bottom-row">
-                            <a class="event-card-link-bottom" href="https://www.jaihindesummit.com/" target="_blank"
-                                rel="noopener">
+                            <a class="event-card-link-bottom" href="https://www.jaihindesummit.com/" target="_blank" rel="noopener">
                                 <span>Learn More</span>
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="7" y1="17" x2="17" y2="7" />
-                                    <polyline points="7 7 17 7 17 17" />
-                                </svg>
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                             </a>
                             <div class="event-card-logos">
-                                <img class="event-card-partner-logo"
-                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/ecell_logo.png"
-                                    alt="E-Cell Logo" loading="lazy">
+                                <img class="event-card-partner-logo" src="https://jhcincubator.com/wp-content/uploads/2026/08/ecell_logo.png" alt="E-Cell Logo" loading="lazy">
                                 <span class="event-card-logo-sep"></span>
-                                <img class="event-card-partner-logo"
-                                    src="https://jhcincubator.com/wp-content/uploads/2026/08/iic_logo.png"
-                                    alt="IIC Logo" loading="lazy">
+                                <img class="event-card-partner-logo" src="https://jhcincubator.com/wp-content/uploads/2026/08/iic_logo.png" alt="IIC Logo" loading="lazy">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="event-card-foot">
                     <div class="event-card-foot-date">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
                         </svg>
                         <span>15 &amp; 16 Jan 2027</span>
                     </div>
                     <div class="event-card-actions">
-                        <button type="button" class="event-btn-action event-remind-btn"
-                            data-event="Global Entrepreneurship Summit" title="Get notified about this event">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                            </svg>
+                        <button type="button" class="event-btn-action event-remind-btn" data-event="Global Entrepreneurship Summit" title="Get notified about this event">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
                             <span>Remind Me</span>
                         </button>
-                        <button type="button" class="event-btn-action event-share-btn" data-target="event-global-summit"
-                            data-card-id="global_summit" data-title="Global Entrepreneurship Summit"
-                            data-date="15 & 16 Jan 2027"
-                            data-desc="A global convention uniting visionaries, industry titans, founders, and angel investors."
-                            data-url="https://www.jaihindesummit.com/" title="Share event picture & link">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="18" cy="5" r="3" />
-                                <circle cx="6" cy="12" r="3" />
-                                <circle cx="18" cy="19" r="3" />
-                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                            </svg>
+                        <button type="button" class="event-btn-action event-share-btn" data-target="event-global-summit" data-card-id="global_summit" data-title="Global Entrepreneurship Summit" data-date="15 & 16 Jan 2027" data-desc="A global convention uniting visionaries, industry titans, founders, and angel investors." data-url="https://www.jaihindesummit.com/" title="Share event picture & link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
                             <span>Share</span>
                         </button>
                     </div>
@@ -2754,135 +2215,70 @@
             <div class="collab-row">
                 <span class="collab-label">Our Collaborations</span>
                 <div class="collab-logos">
-                    <span class="collab-item"><img
-                            src="https://jhcincubator.com/wp-content/uploads/2026/08/nhem_logo.png" alt="NHEM"
-                            loading="lazy" decoding="async"></span>
-                    <span class="collab-item"><img
-                            src="https://jhcincubator.com/wp-content/uploads/2026/08/wadhwani_foundation_logo.png"
-                            alt="WadhwaniFoundation" loading="lazy" decoding="async"></span>
-                    <span class="collab-item"><img
-                            src="https://jhcincubator.com/wp-content/uploads/2026/08/aic_logo.png"
-                            alt="AtalIncubationCentre" loading="lazy" decoding="async"></span>
-                    <span class="collab-item"><img
-                            src="https://jhcincubator.com/wp-content/uploads/2026/08/kapila_logo.png" alt="Kapila"
-                            loading="lazy" decoding="async"></span>
+                    <span class="collab-item"><img src="https://jhcincubator.com/wp-content/uploads/2026/08/nhem_logo.png" alt="NHEM" loading="lazy" decoding="async"></span>
+                    <span class="collab-item"><img src="https://jhcincubator.com/wp-content/uploads/2026/08/wadhwani_foundation_logo.png" alt="WadhwaniFoundation" loading="lazy" decoding="async"></span>
+                    <span class="collab-item"><img src="https://jhcincubator.com/wp-content/uploads/2026/08/aic_logo.png" alt="AtalIncubationCentre" loading="lazy" decoding="async"></span>
+                    <span class="collab-item"><img src="https://jhcincubator.com/wp-content/uploads/2026/08/kapila_logo.png" alt="Kapila" loading="lazy" decoding="async"></span>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="section-wrap" id="moments">
-        <div class="section-header"><span class="section-eyebrow">[ Moments ]</span>
-            <div class="section-rule"></div>
-        </div>
+        <div class="section-header"><span class="section-eyebrow">[ Moments ]</span><div class="section-rule"></div></div>
         <h2 class="section-title">Moments To<br><span class="highlight">Milestones.</span></h2>
         <div class="pol-grid">
             <div class="pol">
                 <video class="pol-video" muted playsinline loop preload="none">
-                    <source src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_jay_lee.mp4"
-                        type="video/mp4">
+                    <source src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_jay_lee.mp4" type="video/mp4">
                 </video>
                 <div class="pol-caption"><span class="pol-caption-title">Jay Lee · Founder's Talk</span></div>
             </div>
             <div class="pol">
-                <img class="pol-img"
-                    src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_startup_exposition.jpg"
-                    alt="Startup Exposition" loading="eager" fetchpriority="high" decoding="async" />
+                <img class="pol-img" src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_startup_exposition.jpg" alt="Startup Exposition" loading="eager" fetchpriority="high" decoding="async" />
                 <div class="pol-caption"><span class="pol-caption-title">Startup Exposition</span></div>
             </div>
             <div class="pol">
-                <img class="pol-img"
-                    src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_internship_fair.jpg"
-                    alt="Startup Internship Fair" loading="eager" fetchpriority="high" decoding="async" />
+                <img class="pol-img" src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_internship_fair.jpg" alt="Startup Internship Fair" loading="eager" fetchpriority="high" decoding="async" />
                 <div class="pol-caption"><span class="pol-caption-title">Startup Internship Fair</span></div>
             </div>
             <div class="pol">
-                <img class="pol-img" src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_iac_room.jpg"
-                    alt="Incubator & Accelerator Centre" loading="eager" fetchpriority="high" decoding="async" />
+                <img class="pol-img" src="https://jhcincubator.com/wp-content/uploads/2026/08/moments_iac_room.jpg" alt="Incubator & Accelerator Centre" loading="eager" fetchpriority="high" decoding="async" />
                 <div class="pol-caption"><span class="pol-caption-title">Inucbator & Accelerator Centre</span></div>
             </div>
         </div>
-        <a href="https://jhcincubator.com/gallery" class="gallery-btn">View Gallery <svg width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-            </svg></a>
+        <a href="https://jhcincubator.com/gallery" class="gallery-btn">View Gallery <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </section>
 
     <section class="section-wrap" id="contact-us">
-        <div class="section-header"><span class="section-eyebrow">[ Contact Us ]</span>
-            <div class="section-rule"></div>
-        </div>
+        <div class="section-header"><span class="section-eyebrow">[ Contact Us ]</span><div class="section-rule"></div></div>
         <h2 class="section-title">Be Part Of<br><span class="highlight">Our Community.</span></h2>
         <div class="contact-grid">
             <div class="contact-left">
                 <div>
                     <p class="block-label">Follow us on</p>
-                    <a class="channel-link"
-                        href="https://www.linkedin.com/company/incubator-accelerator-centre?originalSubdomain=in"
-                        target="_blank" rel="noopener">
-                        <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                                <rect x="2" y="9" width="4" height="12" />
-                                <circle cx="4" cy="4" r="2" />
-                            </svg></div>
-                        <div class="channel-text"><span class="channel-name">LinkedIn</span><span
-                                class="channel-handle">Incubator &amp; Accelerator Centre</span></div>
-                        <svg class="channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7" />
-                            <polyline points="7 7 17 7 17 17" />
-                        </svg>
+                    <a class="channel-link" href="https://www.linkedin.com/company/incubator-accelerator-centre?originalSubdomain=in" target="_blank" rel="noopener">
+                        <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+                        <div class="channel-text"><span class="channel-name">LinkedIn</span><span class="channel-handle">Incubator &amp; Accelerator Centre</span></div>
+                        <svg class="channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                     </a>
-                    <a class="channel-link" href="https://www.instagram.com/iac.jaihindcollege/" target="_blank"
-                        rel="noopener">
-                        <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" />
-                                <circle cx="12" cy="12" r="5" />
-                                <circle cx="17" cy="7" r="1" fill="#fff" />
-                            </svg></div>
-                        <div class="channel-text"><span class="channel-name">Instagram</span><span
-                                class="channel-handle">@iac.jaihindcollege</span></div>
-                        <svg class="channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7" />
-                            <polyline points="7 7 17 7 17 17" />
-                        </svg>
+                    <a class="channel-link" href="https://www.instagram.com/iac.jaihindcollege/" target="_blank" rel="noopener">
+                        <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17" cy="7" r="1" fill="#fff"/></svg></div>
+                        <div class="channel-text"><span class="channel-name">Instagram</span><span class="channel-handle">@iac.jaihindcollege</span></div>
+                        <svg class="channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                     </a>
-                    <a class="channel-link"
-                        href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&su=Enquiry+Through+Official+Website&to=incubation.centre@jaihindcollege.edu.in"
-                        target="_blank" rel="noopener">
-                        <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="4" width="20" height="16" rx="2" />
-                                <path d="m2 7 10 7 10-7" />
-                            </svg></div>
-                        <div class="channel-text"><span class="channel-name">Email</span><span
-                                class="channel-handle">incubation.centre@jaihindcollege.edu.in</span></div>
-                        <svg class="channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7" />
-                            <polyline points="7 7 17 7 17 17" />
-                        </svg>
+                    <a class="channel-link" href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&su=Enquiry+Through+Official+Website&to=incubation.centre@jaihindcollege.edu.in" target="_blank" rel="noopener">
+                        <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div>
+                        <div class="channel-text"><span class="channel-name">Email</span><span class="channel-handle">incubation.centre@jaihindcollege.edu.in</span></div>
+                        <svg class="channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                     </a>
                 </div>
                 <div>
                     <p class="block-label">Our Headquarters</p>
                     <div class="map-wrap">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Jai+Hind+College,+Mumbai&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            loading="eager" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
-                            title="Google Map showing Jai Hind College Mumbai location"></iframe>
+                        <iframe src="https://maps.google.com/maps?q=Jai+Hind+College,+Mumbai&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="eager" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Google Map showing Jai Hind College Mumbai location"></iframe>
                         <div class="map-footer">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
-                                <circle cx="12" cy="10" r="3" />
-                            </svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             <span class="map-footer-text">Jai Hind College, A Road, Churchgate, Mumbai — 400020</span>
                         </div>
                     </div>
@@ -2892,44 +2288,26 @@
                 <div class="notify-wrap">
                     <div class="notify-header">
                         <h3 class="notify-title">Stay In The Loop.</h3>
-                        <p class="notify-sub">Join Our Community For Exclusive Updates &amp; Stay Connected Seamlessly.
-                        </p>
+                        <p class="notify-sub">Join Our Community For Exclusive Updates &amp; Stay Connected Seamlessly.</p>
                     </div>
                     <div class="notify-perks">
-                        <div class="notify-perk"><span class="notify-perk-num">01</span><span>Get Notified About
-                                Upcoming Events.</span></div>
-                        <div class="notify-perk"><span class="notify-perk-num">02</span><span>Internship &amp;
-                                Opportunity Alerts.</span></div>
-                        <div class="notify-perk"><span class="notify-perk-num">03</span><span>Behind The Scenes
-                                Updates.</span></div>
-                        <div class="notify-perk"><span class="notify-perk-num">04</span><span>Access To Our
-                                Newsletters.</span></div>
+                        <div class="notify-perk"><span class="notify-perk-num">01</span><span>Get Notified About Upcoming Events.</span></div>
+                        <div class="notify-perk"><span class="notify-perk-num">02</span><span>Internship &amp; Opportunity Alerts.</span></div>
+                        <div class="notify-perk"><span class="notify-perk-num">03</span><span>Behind The Scenes Updates.</span></div>
+                        <div class="notify-perk"><span class="notify-perk-num">04</span><span>Access To Our Newsletters.</span></div>
                     </div>
                     <div class="notify-form" id="notifyForm">
                         <div class="form-row-2">
-                            <div class="form-field"><label class="form-label" for="nf-name">Name <span
-                                        class="form-required">*</span></label><input class="form-input" id="nf-name"
-                                    type="text" placeholder="Laksh Kukreja" autocomplete="given-name" /></div>
-                            <div class="form-field"><label class="form-label" for="nf-email">Email <span
-                                        class="form-required">*</span></label><input class="form-input" id="nf-email"
-                                    type="email" placeholder="name@email.com" autocomplete="email" /></div>
+                            <div class="form-field"><label class="form-label" for="nf-name">Name <span class="form-required">*</span></label><input class="form-input" id="nf-name" type="text" placeholder="Laksh Kukreja" autocomplete="given-name" /></div>
+                            <div class="form-field"><label class="form-label" for="nf-email">Email <span class="form-required">*</span></label><input class="form-input" id="nf-email" type="email" placeholder="name@email.com" autocomplete="email" /></div>
                         </div>
-                        <button class="form-submit" id="notifyBtn" type="button">Join the Community<svg width="16"
-                                height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                                <polyline points="12 5 19 12 12 19" />
-                            </svg></button>
+                        <button class="form-submit" id="notifyBtn" type="button">Join the Community<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
                         <p class="form-privacy"> No Spam | Unsubscribe anytime</p>
                     </div>
                     <div class="notify-success" id="notifySuccess">
-                        <div class="success-circle"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"
-                                stroke="#147a47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 13l4 4L19 7" />
-                            </svg></div>
+                        <div class="success-circle"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#147a47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
                         <h4 class="success-title">You're In.</h4>
-                        <p class="success-sub">Welcome to the community!<br>We will keep you posted on everything
-                            happening at Incubator & Accelerator Centre.</p>
+                        <p class="success-sub">Welcome to the community!<br>We will keep you posted on everything happening at Incubator & Accelerator Centre.</p>
                     </div>
                 </div>
             </div>
@@ -2938,8 +2316,7 @@
 
     <footer class="footer">
         <div class="footer-inner">
-            <span class="footer-copyright">&#169; 2026 Department of Management Studies, Jai Hind College. All rights
-                reserved.</span>
+            <span class="footer-copyright">&#169; 2026 Department of Management Studies, Jai Hind College. All rights reserved.</span>
         </div>
     </footer>
 
@@ -3104,7 +2481,7 @@
                 if (!v) return;
                 v.pause();
                 v.currentTime = 0;
-                const doPlay = () => v.play().catch(() => { });
+                const doPlay = () => v.play().catch(() => {});
                 v.addEventListener(v.readyState >= 2 ? 'seeked' : 'canplay', doPlay, { once: true });
             }
 
@@ -3157,8 +2534,8 @@
             slides.forEach((slide, i) => {
                 const v = slide.querySelector('video');
                 if (!v) return;
-                if (!i) v.play().catch(() => { });
-                v.addEventListener('loadeddata', () => { if (!i && playing) v.play().catch(() => { }); });
+                if (!i) v.play().catch(() => {});
+                v.addEventListener('loadeddata', () => { if (!i && playing) v.play().catch(() => {}); });
             });
             if (playing) { lastTime = performance.now(); startAnimation(); }
 
@@ -3171,7 +2548,7 @@
                 if (playing) {
                     if (fill) { dot.classList.remove('paused'); }
                     const v = slides[current].querySelector('video');
-                    if (v) v.play().catch(() => { });
+                    if (v) v.play().catch(() => {});
                     lastTime = performance.now();
                     startAnimation();
                 } else {
@@ -3263,7 +2640,7 @@
                             await navigator.clipboard.writeText(shareUrl);
                             showToast('Link Copied! Share With Anyone.');
                             return;
-                        } catch (err) { }
+                        } catch (err) {}
                     }
                     if (navigator.share) {
                         try {
@@ -3325,7 +2702,7 @@
                 entries.forEach(entry => {
                     const video = entry.target;
                     if (entry.isIntersecting) {
-                        video.play().catch(() => { });
+                        video.play().catch(() => {});
                     } else {
                         video.pause();
                     }
@@ -3344,9 +2721,8 @@
                 });
             });
 
-            document.querySelectorAll('.pol-video').forEach(v => v.play().catch(() => { }));
+            document.querySelectorAll('.pol-video').forEach(v => v.play().catch(() => {}));
         })();
     </script>
 </body>
-
 </html>
