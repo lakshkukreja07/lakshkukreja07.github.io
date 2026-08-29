@@ -144,11 +144,22 @@
 
         .nav-pill {
             background: rgba(0, 0, 0, .5);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
             border: 1px solid rgba(255, 255, 255, .08);
             border-radius: 8px;
             overflow: hidden
+        }
+
+        @supports (backdrop-filter: blur(2px)) {
+            .nav-pill {
+                backdrop-filter: blur(2px);
+                -webkit-backdrop-filter: blur(2px);
+            }
+        }
+
+        @supports not (backdrop-filter: blur(2px)) {
+            .nav-pill {
+                background: rgba(0, 0, 0, .7);
+            }
         }
 
         .nav-top {
@@ -375,8 +386,6 @@
             margin-top: 28px;
             padding: 14px 28px;
             background: rgba(0, 0, 0, .3);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
             border: 1px solid rgba(255, 255, 255, .2);
             border-radius: 8px;
             color: #fff;
@@ -389,6 +398,19 @@
             transition: all .3s var(--ease);
             width: fit-content;
             white-space: nowrap
+        }
+
+        @supports (backdrop-filter: blur(3px)) {
+            .hero-apply-btn {
+                backdrop-filter: blur(3px);
+                -webkit-backdrop-filter: blur(3px);
+            }
+        }
+
+        @supports not (backdrop-filter: blur(3px)) {
+            .hero-apply-btn {
+                background: rgba(0, 0, 0, .5);
+            }
         }
 
         .hero-apply-btn:hover {
@@ -418,9 +440,20 @@
             background: rgba(0, 0, 0, .45);
             padding: 8px 16px 8px 8px;
             border-radius: 499px;
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
             border: 1px solid rgba(255, 255, 255, .15)
+        }
+
+        @supports (backdrop-filter: blur(3px)) {
+            .slide-controls-wrap {
+                backdrop-filter: blur(3px);
+                -webkit-backdrop-filter: blur(3px);
+            }
+        }
+
+        @supports not (backdrop-filter: blur(3px)) {
+            .slide-controls-wrap {
+                background: rgba(0, 0, 0, .6);
+            }
         }
 
         .slide-controls {
@@ -1580,6 +1613,16 @@
             }
         }
 
+        @keyframes subscribeSpin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         .toast {
             position: fixed;
             bottom: 24px;
@@ -2305,7 +2348,7 @@
     <section class="hero">
         <div class="hero-slides" id="heroSlides">
             <div class="hero-slide active">
-                <video muted playsinline preload="auto">
+                <video muted playsinline preload="metadata">
                     <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/intro_trailer.mp4"
                         type="video/mp4">
                 </video>
@@ -2482,8 +2525,8 @@
             <div class="event-card" id="event-startup-internship-fair">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
-                        <video muted playsinline loop autoplay preload="none">
-                            <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/s.mp4"
+                        <video muted playsinline loop preload="none">
+                            <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/events_sif_snippet.mp4"
                                 type="video/mp4">
                         </video>
                     </div>
@@ -2516,8 +2559,8 @@
                 </div>
                 <div class="event-card-foot">
                     <div class="event-card-foot-date">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                             <line x1="16" y1="2" x2="16" y2="6" />
                             <line x1="8" y1="2" x2="8" y2="6" />
@@ -2558,8 +2601,9 @@
             <div class="event-card" id="event-startup-exposition">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
-                        <video muted playsinline loop autoplay preload="none">
-                            <source src="https://jhcincubator.com/wp-content/uploads/2026/08/x.mp4" type="video/mp4">
+                        <video muted playsinline loop preload="none">
+                            <source src="https://jhcincubator.com/wp-content/uploads/2026/08/events_se_snippet.mp4"
+                                type="video/mp4">
                         </video>
                     </div>
                     <div class="event-card-body">
@@ -2591,8 +2635,8 @@
                 </div>
                 <div class="event-card-foot">
                     <div class="event-card-foot-date">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                             <line x1="16" y1="2" x2="16" y2="6" />
                             <line x1="8" y1="2" x2="8" y2="6" />
@@ -2632,9 +2676,8 @@
             <div class="event-card" id="event-global-summit">
                 <div class="event-card-top-wrap">
                     <div class="event-card-media">
-                        <video muted playsinline loop autoplay preload="none">
-                            <source
-                                src="https://www.jhcincubator.com/wp-content/uploads/2026/08/moments_global_e_summit_trailer.mp4"
+                        <video muted playsinline loop preload="none">
+                            <source src="https://www.jhcincubator.com/wp-content/uploads/2026/08/events_ges_snippet.mp4"
                                 type="video/mp4">
                         </video>
                     </div>
@@ -2667,8 +2710,8 @@
                 </div>
                 <div class="event-card-foot">
                     <div class="event-card-foot-date">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                             <line x1="16" y1="2" x2="16" y2="6" />
                             <line x1="8" y1="2" x2="8" y2="6" />
@@ -3025,7 +3068,7 @@
             const iconPause = $('iconPause');
             const iconPlay = $('iconPlay');
             const DURATIONS = [7000, 7000, 7000];
-            let current = 0, playing = true, timer = null, isTransitioning = false, progress = 0, lastUpdate = 0;
+            let current = 0, playing = true, isTransitioning = false, progress = 0, lastTime = 0, rafId = null;
 
             const getDot = i => dotsWrap.children[i];
             const getFill = d => d.querySelector('.progress-fill');
@@ -3043,7 +3086,10 @@
 
             function setProgress(pct) {
                 const fill = getFill(getDot(current));
-                if (fill) fill.style.width = (progress = Math.max(0, Math.min(100, pct))) + '%';
+                if (fill) {
+                    progress = Math.max(0, Math.min(100, pct));
+                    fill.style.width = progress + '%';
+                }
             }
 
             function resetProgress() {
@@ -3067,7 +3113,6 @@
                 isTransitioning = true;
                 const next = (idx + slides.length) % slides.length;
                 const cur = slides[current], nxt = slides[next];
-                pauseTimer();
                 pauseVideo(current);
                 cur.classList.remove('active', 'exit-left');
                 nxt.classList.remove('active', 'exit-left');
@@ -3078,25 +3123,35 @@
                 current = next;
                 progress = 0;
                 resetProgress();
-                if (playing) { playVideo(current); lastUpdate = Date.now(); startTimer(); }
+                if (playing) { playVideo(current); lastTime = performance.now(); startAnimation(); }
                 setTimeout(() => { cur.classList.remove('exit-left'); isTransitioning = false; }, 1500);
             }
 
-            function startTimer() {
-                pauseTimer();
+            function startAnimation() {
+                cancelAnimationFrame(rafId);
                 if (!playing) return;
-                lastUpdate = Date.now();
+                lastTime = performance.now();
                 const dur = DURATIONS[current] || 7000;
-                timer = setInterval(() => {
-                    const now = Date.now();
-                    const np = Math.min(100, progress + (now - lastUpdate) / dur * 100);
-                    lastUpdate = now;
+                let startProg = progress || 0;
+
+                function animate(time) {
+                    if (!playing) { rafId = null; return; }
+                    const delta = time - lastTime;
+                    lastTime = time;
+                    const np = Math.min(100, progress + (delta / dur) * 100);
                     setProgress(np);
-                    if (np >= 100) { pauseTimer(); if (playing) goTo(current + 1); }
-                }, 200);
+                    progress = np;
+                    if (progress >= 100) {
+                        if (playing && !isTransitioning) goTo(current + 1);
+                        rafId = null;
+                        return;
+                    }
+                    rafId = requestAnimationFrame(animate);
+                }
+                rafId = requestAnimationFrame(animate);
             }
 
-            function pauseTimer() { clearInterval(timer); timer = null; }
+            function stopAnimation() { cancelAnimationFrame(rafId); rafId = null; }
 
             resetProgress();
             slides.forEach((slide, i) => {
@@ -3105,8 +3160,7 @@
                 if (!i) v.play().catch(() => { });
                 v.addEventListener('loadeddata', () => { if (!i && playing) v.play().catch(() => { }); });
             });
-            lastUpdate = Date.now();
-            startTimer();
+            if (playing) { lastTime = performance.now(); startAnimation(); }
 
             pauseBtn.addEventListener('click', () => {
                 playing = !playing;
@@ -3115,15 +3169,15 @@
                 pauseBtn.setAttribute('aria-label', playing ? 'Pause slideshow' : 'Play slideshow');
                 const dot = getDot(current), fill = getFill(dot);
                 if (playing) {
-                    if (fill) { progress = parseFloat(fill.style.width) || 0; dot.classList.remove('paused'); }
+                    if (fill) { dot.classList.remove('paused'); }
                     const v = slides[current].querySelector('video');
                     if (v) v.play().catch(() => { });
-                    lastUpdate = Date.now();
-                    startTimer();
+                    lastTime = performance.now();
+                    startAnimation();
                 } else {
-                    if (fill) { progress = parseFloat(fill.style.width) || 0; dot.classList.add('paused'); }
+                    if (fill) { dot.classList.add('paused'); }
                     pauseVideo(current);
-                    pauseTimer();
+                    stopAnimation();
                 }
             });
 
@@ -3185,10 +3239,10 @@
             document.querySelectorAll('.event-remind-btn').forEach(btn => {
                 btn.addEventListener('click', e => {
                     e.preventDefault();
-                    const target = document.getElementById('contact-us') || document.getElementById('notifyForm');
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'instant', block: 'start' });
-                    }
+                    window.scrollTo({
+                        top: document.documentElement.scrollHeight,
+                        behavior: 'instant'
+                    });
                     const emailInput = document.getElementById('nf-email');
                     if (emailInput) {
                         setTimeout(() => emailInput.focus(), 50);
@@ -3265,6 +3319,29 @@
                 }
                 btn.disabled = false;
                 btn.innerHTML = original;
+            });
+
+            const videoObservers = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        video.play().catch(() => { });
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            document.querySelectorAll('.event-card-media video, .pol-video').forEach(video => {
+                videoObservers.observe(video);
+            });
+
+            document.querySelectorAll('.hero-slide video').forEach(video => {
+                video.addEventListener('play', () => {
+                    document.querySelectorAll('.hero-slide video').forEach(v => {
+                        if (v !== video && !v.paused) v.pause();
+                    });
+                });
             });
 
             document.querySelectorAll('.pol-video').forEach(v => v.play().catch(() => { }));
