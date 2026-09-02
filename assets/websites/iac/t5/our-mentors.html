@@ -626,13 +626,7 @@
                     { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/aparna-debnath.avif" },
                     { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/hardik-jain.avif" },
                     { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/hemani-singh.avif" },
-                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
-                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
-                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
-                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
-                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
                     { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/kishu-daswani.avif" },
-                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
                 ]
             };
 
@@ -641,7 +635,7 @@
 
             function render(year) {
                 yearBtns.forEach(b => b.classList.toggle('active', b.dataset.year === year));
-                const mentors = MENTORS[year] || [];
+                const mentors = (MENTORS[year] || []).filter(m => m && m.img && m.img.endsWith('.avif') || (m && m.img && m.img.endsWith('.jpg')) || (m && m.img && m.img.endsWith('.png')));
 
                 if (!mentors.length) {
                     grid.innerHTML = `
@@ -655,12 +649,11 @@
                 }
 
                 grid.innerHTML = mentors.map(m => {
-                    const imgHtml = m.img ?
-                        `<img src="${m.img}" alt="Mentor" loading="lazy" onerror="this.parentElement.innerHTML='<span class=\\'initials\\'>👤</span>'">` :
-                        `<span class="initials">👤</span>`;
                     return `
                         <div class="mentor-card">
-                            <div class="mentor-avatar">${imgHtml}</div>
+                            <div class="mentor-avatar">
+                                <img src="${m.img}" alt="Mentor" loading="lazy">
+                            </div>
                         </div>
                     `;
                 }).join('');
