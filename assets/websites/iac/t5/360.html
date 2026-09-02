@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IAC 360° Virtual Tour</title>
+
+    <!-- Pannellum CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #panorama {
+            width: 100%;
+            height: 100vh;
+        }
+
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            z-index: 1000;
+
+            padding: 12px 18px;
+
+            color: #fff;
+            background: rgba(0, 0, 0, 0.7);
+
+            border-radius: 10px;
+
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+
+            transition: opacity 0.3s ease;
+        }
+
+        #title {
+            position: absolute;
+
+            top: 20px;
+            left: 20px;
+
+            z-index: 1000;
+
+            padding: 10px 15px;
+
+            color: #fff;
+            background: rgba(0, 0, 0, 0.55);
+
+            border-radius: 10px;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            backdrop-filter: blur(8px);
+        }
+
+        @media (max-width: 600px) {
+            #title {
+                top: 12px;
+                left: 12px;
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 360° Viewer -->
+    <div id="panorama"></div>
+
+    <!-- Title -->
+    <div id="title">
+        IAC • 360° Virtual Tour
+    </div>
+
+    <!-- Loading -->
+    <div id="loading">
+        Loading 360° view...
+    </div>
+
+
+    <!-- Pannellum JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+
+    <script>
+
+        /* ==========================================
+           YOUR 360° IMAGE
+           ========================================== */
+
+        const panoramaImage =
+            "https://raw.githubusercontent.com/lakshkukreja07/lakshkukreja07.github.io/main/assets/websites/iac/t5/1.jpg";
+
+
+        /* ==========================================
+           CREATE VIEWER
+           ========================================== */
+
+        const viewer = pannellum.viewer("panorama", {
+
+            type: "equirectangular",
+
+            panorama: panoramaImage,
+
+            autoLoad: true,
+
+            autoRotate: false,
+
+            compass: true,
+
+            showZoomCtrl: true,
+
+            showFullscreenCtrl: true,
+
+            mouseZoom: true,
+
+            draggable: true,
+
+            keyboardZoom: true,
+
+            hfov: 100,
+
+            minHfov: 50,
+
+            maxHfov: 120,
+
+            pitch: 0,
+
+            yaw: 0
+
+        });
+
+
+        /* ==========================================
+           LOADING SCREEN
+           ========================================== */
+
+        viewer.on("load", function () {
+
+            const loading =
+                document.getElementById("loading");
+
+            loading.style.opacity = "0";
+
+            setTimeout(function () {
+                loading.style.display = "none";
+            }, 300);
+
+        });
+
+
+        /* ==========================================
+           ERROR
+           ========================================== */
+
+        viewer.on("error", function (error) {
+
+            const loading =
+                document.getElementById("loading");
+
+            loading.innerHTML =
+                "Unable to load the 360° image.";
+
+            console.error(
+                "Pannellum error:",
+                error
+            );
+
+        });
+
+    </script>
+
+</body>
+
+</html>
