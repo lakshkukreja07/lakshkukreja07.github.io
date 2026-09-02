@@ -1,559 +1,708 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes" />
-  <title>Our Mentors · JHC Incubator</title>
-  <link rel="icon" href="https://jhcincubator.com/wp-content/uploads/2026/08/jai_hind_college_logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@400;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    :root {
-      --ease: cubic-bezier(.65, 0, .15, 1);
-      --nav-ease: cubic-bezier(.4, 0, .2, 1);
-      --bg: #fff;
-      --fg: #f4f1ea;
-      --ink: #1a1a1a;
-      --ink-d: rgba(26, 26, 26, .38);
-      --ink-m: rgba(26, 26, 26, .58);
-      --rule: rgba(26, 26, 26, .1);
-      --font: 'Stack Sans Headline', sans-serif;
-      --mono: 'Roboto Mono', monospace;
-    }
-    html { scroll-behavior: smooth; }
-    html, body {
-      min-height: 100vh;
-      min-height: 100svh;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--font);
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    ::selection { color: #fafafa; background: #000; }
-    body.menu-open { overflow: hidden; }
-    .backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 900;
-      background: rgba(0, 0, 0, .25);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .4s var(--nav-ease);
-    }
-    .backdrop.show { opacity: 1; pointer-events: auto; }
-    .nav {
-      position: fixed;
-      top: 12px;
-      left: 12px;
-      right: 12px;
-      z-index: 1000;
-    }
-    .nav-pill {
-      background: rgba(0, 0, 0, .5);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .nav-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 52px;
-      padding: 0 14px;
-      position: relative;
-    }
-    .nav-logo {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-    .tagline {
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #fff;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      font-weight: 700;
-    }
-    .burger {
-      background: none;
-      border: none;
-      cursor: pointer;
-      width: 28px;
-      height: 28px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      flex-shrink: 0;
-      padding: 4px;
-    }
-    .burger span {
-      width: 20px;
-      height: 2px;
-      background: var(--fg);
-      border-radius: 2px;
-      transition: transform .4s var(--nav-ease), opacity .3s ease;
-      transform-origin: center;
-      display: block;
-    }
-    .burger.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-    .burger.open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
-    .nav-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .5s var(--nav-ease);
-    }
-    .nav-panel.open { max-height: 500px; }
-    .nav-panel ul { list-style: none; }
-    .nav-panel li {
-      position: relative;
-      overflow: hidden;
-    }
-    .nav-panel li::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 14px;
-      right: 14px;
-      height: 1px;
-      background: rgba(255, 255, 255, .1);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .4s var(--nav-ease) .05s;
-    }
-    .nav-panel.open li::before { transform: scaleX(1); }
-    .nav-panel a.item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px;
-      color: var(--fg);
-      text-decoration: none;
-      font-size: 14px;
-    }
-    .nav-panel a.item .reveal { transition: transform .35s var(--nav-ease); }
-    .nav-panel a.item .nav-arrow {
-      opacity: .5;
-      transition: opacity .3s, transform .3s var(--nav-ease);
-      flex-shrink: 0;
-    }
-    .nav-panel a.item:hover .reveal { transform: translateX(8px) scale(1.1); }
-    .nav-panel a.item:hover .nav-arrow { opacity: 1; transform: translate(2px, -2px); }
-    .nav-panel li .reveal {
-      display: inline-block;
-      opacity: 1;
-      font-family: var(--mono);
-      text-transform: uppercase;
-    }
-    .wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      flex: 1 0 auto;
-      padding: 100px 24px 40px;
-    }
-    .page-title {
-      font-size: clamp(38px, 6vw, 72px);
-      font-weight: 700;
-      text-transform: uppercase;
-      line-height: 1;
-      letter-spacing: -.5px;
-      color: #000;
-      margin-bottom: 48px;
-    }
-    /* year selector – identical to sessions */
-    .year-selector {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 10px;
-      margin-bottom: 48px;
-      padding: 16px;
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      background: #fafafa;
-    }
-    .year-btn {
-      padding: 12px 8px;
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      background: #fff;
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 600;
-      color: #000;
-      cursor: pointer;
-      transition: all .25s var(--ease);
-      text-align: center;
-      width: 100%;
-    }
-    .year-btn:hover { border-color: #000; }
-    .year-btn.active {
-      background: #000;
-      color: #fff;
-      border-color: #000;
-    }
-    /* mentor grid – exactly the same card style as sessions */
-    .mentor-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px 16px;
-      align-content: start;
-      flex: 1;
-    }
-    .mentor-card {
-      display: flex;
-      flex-direction: column;
-      background: #fff;
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      overflow: hidden;
-      transition: box-shadow .2s var(--ease);
-    }
-    .mentor-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.03); }
-    .mentor-poster-wrap {
-      width: calc(100% - 20px);
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      border-radius: 10px;
-      margin: 10px 10px 0 10px;
-      background: #f5f5f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .mentor-poster-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .mentor-info {
-      padding: 10px 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .mentor-name {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.2;
-    }
-    .mentor-role {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--ink-m);
-      letter-spacing: 0.2px;
-      text-transform: uppercase;
-    }
-    .mentor-bio {
-      font-family: var(--font);
-      font-size: 13px;
-      color: var(--ink-d);
-      line-height: 1.5;
-      margin-top: 4px;
-    }
-    .empty-state {
-      grid-column: 1 / -1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      text-align: center;
-      padding: 30px 20px;
-    }
-    .empty-state svg {
-      width: 80px;
-      height: 80px;
-      stroke: #000;
-      opacity: 1;
-    }
-    .empty-title {
-      font-family: var(--mono);
-      font-size: 24px;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: #000;
-      line-height: 1.2;
-    }
-    .empty-sub {
-      font-family: var(--font);
-      font-size: 15px;
-      color: var(--ink-d);
-      max-width: 450px;
-      line-height: 1.4;
-    }
-    .footer {
-      background: var(--bg);
-      border-top: 1px solid var(--rule);
-      padding: 20px 0;
-      margin-top: auto;
-    }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .footer-copyright {
-      font-family: var(--font);
-      font-size: 13px;
-      color: #000;
-      letter-spacing: .3px;
-    }
-    @media (min-width: 1025px) {
-      .nav { top: 16px; left: 50%; right: auto; transform: translateX(-50%); width: 480px; }
-    }
-    @media (min-width: 768px) and (max-width: 1024px) {
-      .nav { top: 16px; left: 50%; right: auto; transform: translateX(-50%); width: 480px; }
-      .mentor-grid { grid-template-columns: repeat(3, 1fr); }
-      .year-selector { grid-template-columns: repeat(4, 1fr); }
-    }
-    @media (min-width: 600px) and (max-width: 767px) {
-      .wrap { padding: 88px 16px 30px; }
-      .mentor-grid { grid-template-columns: repeat(2, 1fr); gap: 14px 12px; }
-      .year-selector { grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 12px; margin-bottom: 32px; }
-      .year-btn { padding: 10px 6px; font-size: 13px; }
-      .page-title { letter-spacing: -.3px; margin-bottom: 32px; }
-    }
-    @media (max-width: 599px) {
-      .nav { top: 10px; left: 10px; right: 10px; }
-      .wrap { padding: 88px 16px 30px; }
-      .mentor-grid { grid-template-columns: 1fr; gap: 16px; }
-      .mentor-poster-wrap { width: calc(100% - 20px); aspect-ratio: 1 / 1; margin: 10px 10px 0 10px; }
-      .year-selector { grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 12px; margin-bottom: 32px; }
-      .year-btn { padding: 10px 6px; font-size: 13px; }
-      .page-title { letter-spacing: -.3px; margin-bottom: 32px; }
-      .footer-inner { padding: 0 16px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
+    <title>Our Mentors | Jai Hind College</title>
+    <link rel="icon" href="https://jhcincubator.com/wp-content/uploads/2026/08/jai_hind_college_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@400;600;700&family=Roboto+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ease: cubic-bezier(.65, 0, .15, 1);
+            --nav-ease: cubic-bezier(.4, 0, .2, 1);
+            --bg: #fff;
+            --fg: #f4f1ea;
+            --ink: #1a1a1a;
+            --ink-d: rgba(26, 26, 26, .38);
+            --ink-m: rgba(26, 26, 26, .58);
+            --rule: rgba(26, 26, 26, .1);
+            --font: 'Stack Sans Headline', sans-serif;
+            --mono: 'Roboto Mono', monospace;
+            --frame-color: #fafafa;
+            --frame-padding: 10px;
+            --card-radius: 14px;
+            --border-color: rgba(26, 26, 26, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html,
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--font);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        ::selection {
+            color: #fafafa;
+            background: #000;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        .backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 900;
+            background: rgba(0, 0, 0, .25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .4s var(--nav-ease);
+        }
+
+        .backdrop.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            z-index: 1000;
+        }
+
+        .nav-pill {
+            background: rgba(0, 0, 0, .5);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .nav-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+            padding: 0 14px;
+            position: relative;
+        }
+
+        .nav-logo {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .tagline {
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-weight: 700;
+        }
+
+        .burger {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-shrink: 0;
+            padding: 4px;
+        }
+
+        .burger span {
+            width: 20px;
+            height: 2px;
+            background: var(--fg);
+            border-radius: 2px;
+            transition: transform .4s var(--nav-ease), opacity .3s ease;
+            transform-origin: center;
+            display: block;
+        }
+
+        .burger.open span:nth-child(1) {
+            transform: translateY(4px) rotate(45deg);
+        }
+
+        .burger.open span:nth-child(2) {
+            transform: translateY(-4px) rotate(-45deg);
+        }
+
+        .nav-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .5s var(--nav-ease);
+        }
+
+        .nav-panel.open {
+            max-height: 500px;
+        }
+
+        .nav-panel ul {
+            list-style: none;
+        }
+
+        .nav-panel li {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-panel li::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 14px;
+            right: 14px;
+            height: 1px;
+            background: rgba(255, 255, 255, .1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s var(--nav-ease) .05s;
+        }
+
+        .nav-panel.open li::before {
+            transform: scaleX(1);
+        }
+
+        .nav-panel a.item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px;
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-panel a.item .reveal {
+            transition: transform .35s var(--nav-ease);
+        }
+
+        .nav-panel a.item .nav-arrow {
+            opacity: .5;
+            transition: opacity .3s, transform .3s var(--nav-ease);
+            flex-shrink: 0;
+        }
+
+        .nav-panel a.item:hover .reveal {
+            transform: translateX(8px) scale(1.1);
+        }
+
+        .nav-panel a.item:hover .nav-arrow {
+            opacity: 1;
+            transform: translate(2px, -2px);
+        }
+
+        .nav-panel li .reveal {
+            display: inline-block;
+            opacity: 1;
+            font-family: var(--mono);
+            text-transform: uppercase;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            flex: 1 0 auto;
+            padding: 100px 24px 40px;
+        }
+
+        .page-title {
+            font-size: clamp(38px, 6vw, 72px);
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: -.5px;
+            color: #000;
+            margin-bottom: 48px;
+        }
+
+        .year-selector {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-bottom: 48px;
+            padding: 16px;
+            border: 1px solid var(--rule);
+            border-radius: 14px;
+            background: #fafafa;
+        }
+
+        .year-btn {
+            padding: 12px 8px;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            background: #fff;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+            cursor: pointer;
+            transition: all .25s var(--ease);
+            text-align: center;
+            width: 100%;
+        }
+
+        .year-btn:hover {
+            border-color: #000;
+        }
+
+        .year-btn.active {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        .mentors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            align-content: start;
+            flex: 1;
+        }
+
+        .mentor-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--frame-color);
+            padding: var(--frame-padding);
+            border-radius: var(--card-radius);
+            width: 100%;
+            position: relative;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .mentor-avatar {
+            width: 100%;
+            overflow: hidden;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-radius: calc(var(--card-radius) - 4px);
+        }
+
+        .mentor-avatar img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: transparent;
+        }
+
+        .mentor-avatar .initials {
+            font-family: var(--mono);
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--ink-d);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            stroke: #000;
+            opacity: 0.3;
+        }
+
+        .empty-title {
+            font-family: var(--mono);
+            font-size: 24px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--ink-d);
+            line-height: 1.2;
+        }
+
+        .empty-sub {
+            font-family: var(--font);
+            font-size: 15px;
+            color: var(--ink-d);
+            max-width: 450px;
+            line-height: 1.4;
+        }
+
+        .footer {
+            background: var(--bg);
+            border-top: 1px solid var(--rule);
+            padding: 20px 0;
+            margin-top: auto;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-copyright {
+            font-family: var(--font);
+            font-size: 13px;
+            color: #000;
+            letter-spacing: .3px;
+        }
+
+        @media (min-width: 1025px) {
+            .nav {
+                top: 16px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: 480px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .nav {
+                top: 16px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: 480px;
+            }
+
+            .mentors-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 28px;
+            }
+
+            .year-selector {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            :root {
+                --frame-padding: 10px;
+                --card-radius: 14px;
+            }
+        }
+
+        @media (min-width: 600px) and (max-width: 767px) {
+            .wrap {
+                padding: 88px 16px 30px;
+            }
+
+            .mentors-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
+            .year-selector {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                padding: 12px;
+                margin-bottom: 32px;
+            }
+
+            .year-btn {
+                padding: 10px 6px;
+                font-size: 13px;
+            }
+
+            .page-title {
+                margin-bottom: 32px;
+            }
+
+            :root {
+                --frame-padding: 10px;
+                --card-radius: 12px;
+            }
+        }
+
+        @media (max-width: 599px) {
+            .nav {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+            }
+
+            .wrap {
+                padding: 88px 16px 30px;
+            }
+
+            .mentors-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+            }
+
+            .year-selector {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+                padding: 10px;
+                margin-bottom: 28px;
+            }
+
+            .year-btn {
+                padding: 8px 4px;
+                font-size: 12px;
+            }
+
+            .page-title {
+                letter-spacing: -.3px;
+                margin-bottom: 28px;
+                font-size: clamp(32px, 10vw, 48px);
+            }
+
+            .footer-inner {
+                padding: 0 16px;
+            }
+
+            :root {
+                --frame-padding: 8px;
+                --card-radius: 10px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .mentors-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="backdrop" id="backdrop"></div>
+    <div class="backdrop" id="backdrop"></div>
 
-<nav class="nav">
-  <div class="nav-pill" id="navPill">
-    <div class="nav-top">
-      <a href="https://jhcincubator.com" aria-label="Home">
-        <img class="nav-logo" src="https://jhcincubator.com/wp-content/uploads/2026/08/jai_hind_college_logo.png" alt="JHC Logo" />
-      </a>
-      <span class="tagline">Incubator &amp; Accelerator Centre</span>
-      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
-    </div>
-    <div class="nav-panel" id="navPanel">
-      <ul>
-        <li><a href="https://jhcincubator.com" class="item"><span class="reveal">Home</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
-        <li><a href="https://jhcincubator.com/startup-exposition" class="item"><span class="reveal">Startup Exposition</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
-        <li><a href="https://jhcincubator.com/mentor-sessions" class="item"><span class="reveal">Mentor Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
-        <li><a href="https://jhcincubator.com/ipr-sessions" class="item"><span class="reveal">IPR Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
-        <li><a href="https://jhcincubator.com/mentor-board" class="item"><span class="reveal">Mentor Board</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
-        <li><a href="https://jhcincubator.com/akruti-kendra" class="item"><span class="reveal">Akruti Kendra</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
-        <li><a href="https://jhcincubator.com/our-team" class="item"><span class="reveal">Our Team</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <nav class="nav">
+        <div class="nav-pill" id="navPill">
+            <div class="nav-top">
+                <a href="https://jhcincubator.com" aria-label="Home">
+                    <img class="nav-logo"
+                        src="https://jhcincubator.com/wp-content/uploads/2026/08/jai_hind_college_logo.png"
+                        alt="JHC Logo" />
+                </a>
+                <span class="tagline">Incubator &amp; Accelerator Centre</span>
+                <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+            </div>
+            <div class="nav-panel" id="navPanel">
+                <ul>
+                    <li><a href="https://jhcincubator.com" class="item"><span class="reveal">Home</span><svg
+                                class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/startup-exposition" class="item"><span class="reveal">Startup
+                                Exposition</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/mentor-sessions" class="item"><span class="reveal">Mentor
+                                Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/ipr-sessions" class="item"><span class="reveal">IPR
+                                Sessions</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/mentor-board" class="item"><span class="reveal">Mentor
+                                Board</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/akruti-kendra" class="item"><span class="reveal">Akruti
+                                Kendra</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/our-team" class="item"><span class="reveal">Our
+                                Team</span><svg class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                    <li><a href="https://jhcincubator.com/gallery" class="item"><span class="reveal">Gallery</span><svg
+                                class="nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<main class="wrap">
-  <h1 class="page-title">Our Mentors</h1>
+    <main class="wrap">
+        <h1 class="page-title">Our Mentors</h1>
 
-  <!-- YEAR SELECTOR -->
-  <div class="year-selector" id="yearSelector">
-    <button class="year-btn" data-year="2021">2021</button>
-    <button class="year-btn" data-year="2022">2022</button>
-    <button class="year-btn" data-year="2023">2023</button>
-    <button class="year-btn" data-year="2024">2024</button>
-    <button class="year-btn" data-year="2025">2025</button>
-    <button class="year-btn active" data-year="2026">2026</button>
-    <button class="year-btn" data-year="2027">2027</button>
-  </div>
+        <div class="year-selector" id="yearSelector">
+            <button class="year-btn" data-year="2021">2021</button>
+            <button class="year-btn" data-year="2022">2022</button>
+            <button class="year-btn" data-year="2023">2023</button>
+            <button class="year-btn" data-year="2024">2024</button>
+            <button class="year-btn" data-year="2025">2025</button>
+            <button class="year-btn active" data-year="2026">2026</button>
+        </div>
+        <div class="mentors-grid" id="mentorsGrid"></div>
+    </main>
 
-  <div class="mentor-grid" id="mentorGrid"></div>
-</main>
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copyright">&#169; 2026 Department of Management Studies, Jai Hind College. All rights
+                reserved.</span>
+        </div>
+    </footer>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <span class="footer-copyright">&#169; 2026 Department of Management Studies, Jai Hind College. All rights reserved.</span>
-  </div>
-</footer>
+    <script>
+        (function () {
+            const MENTORS = {
+                "2021": [],
+                "2022": [],
+                "2023": [],
+                "2024": [],
+                "2025": [],
+                "2026": [
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/alok-ranjan.avif" },
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/aparna-debnath.avif" },
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/hardik-jain.avif" },
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/hemani-singh.avif" },
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/kishu-daswani.avif" },
+                    { img: "https://jhcincubator.com/wp-content/uploads/2026/our-mentors/" },
+                ]
+            };
 
-<script>
-  (function() {
-    // ---------- MENTOR DATA grouped by year (same structure as sessions) ----------
-    const MENTORS_BY_YEAR = {
-      "2021": [],
-      "2022": [],
-      "2023": [],
-      "2024": [
-        {
-          name: "Mansi Mahansaria",
-          role: "Supply Chain & Operations",
-          bio: "Efficiency tools & strategies for scaling ventures.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2024-ms-mansi-mahansaria.jpg"
-        },
-        {
-          name: "Sonesh Prakash",
-          role: "Product-Market Fit Specialist",
-          bio: "Validating niches & beyond-basics PMF.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2024-ms-sonesh-prakash-2.jpg"
-        },
-        {
-          name: "Akshay Gurnani",
-          role: "Brand Voice & Storytelling",
-          bio: "Lessons from Schbang's journey to consistency.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2024-ms-akshay-gurnani.jpg"
-        },
-        {
-          name: "Gautam Adani",
-          role: "Industry Icon",
-          bio: "Breaking boundaries · an evening of inspiration.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2024-ms-gautam-adani.jpg"
-        },
-        {
-          name: "Shireen Sultana",
-          role: "B2B GTM & Brand Strategy",
-          bio: "Real-world brand operations in B2B contexts.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2024-ms-shireen-sultana.jpg"
-        },
-        {
-          name: "Adesh Jain",
-          role: "Financial Navigator",
-          bio: "Budgeting, cash flow & debt utilization.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2024-ms-adesh-jain.jpg"
-        },
-        {
-          name: "Kapil Khandelwal",
-          role: "Conversation & Retention",
-          bio: "Market smart, talk right, retain better.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2024-ms-kapil-khandelwal.jpg"
-        },
-        {
-          name: "Vishal Rupani",
-          role: "Brand Architect",
-          bio: "From idea to icon – branding for early-stage startups.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2024-ms-vishal-rupani.jpg"
-        }
-      ],
-      "2025": [
-        {
-          name: "Alpana Mandal",
-          role: "Brand & Content Strategist",
-          bio: "Helping founders build narrative-driven pipelines.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2025-ms-alpana-mandal.jpg"
-        },
-        {
-          name: "Aparna Gaur",
-          role: "IP & Patent Attorney",
-          bio: "Navigating intellectual property for early-stage ventures.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2025-ms-aparna-gaur.jpg"
-        }
-      ],
-      "2026": [
-        {
-          name: "Jay Lee",
-          role: "Global Fundraising Advisor",
-          bio: "Cross-border capital & visibility for founders.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2026-ms-jay-lee.jpg"
-        },
-        {
-          name: "Vikram Jeet Bhayana",
-          role: "Brand & Trust Strategist",
-          bio: "FinFluence · building relevance in the age of trust.",
-          img: "https://jhcincubator.com/wp-content/uploads/2026/08/2026-ms-vikram-bhayana.jpg"
-        }
-      ],
-      "2027": []
-    };
+            const grid = document.getElementById('mentorsGrid');
+            const yearBtns = document.querySelectorAll('.year-btn');
 
-    const grid = document.getElementById('mentorGrid');
+            function render(year) {
+                yearBtns.forEach(b => b.classList.toggle('active', b.dataset.year === year));
+                const mentors = MENTORS[year] || [];
 
-    function renderMentors(year) {
-      // update active button
-      document.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === year));
+                if (!mentors.length) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                            <div class="empty-title">Coming Soon</div>
+                            <div class="empty-sub">Mentor photos for ${year} will be added shortly.</div>
+                        </div>
+                    `;
+                    return;
+                }
 
-      const mentors = MENTORS_BY_YEAR[year] || [];
-      if (!mentors.length) {
-        grid.innerHTML = `<div class="empty-state">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-          <div class="empty-title">Coming Soon</div>
-          <div class="empty-sub">Mentor profiles for ${year} will be added shortly.</div>
-        </div>`;
-        return;
-      }
+                grid.innerHTML = mentors.map(m => {
+                    const imgHtml = m.img ?
+                        `<img src="${m.img}" alt="Mentor" loading="lazy" onerror="this.parentElement.innerHTML='<span class=\\'initials\\'>👤</span>'">` :
+                        `<span class="initials">👤</span>`;
+                    return `
+                        <div class="mentor-card">
+                            <div class="mentor-avatar">${imgHtml}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
 
-      grid.innerHTML = mentors.map(m => {
-        const fallback = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f0f0f0;padding:16px;text-align:center;"><span style="font-family:var(--mono);font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;line-height:1.5;">${m.name}</span></div>`;
-        const imgHtml = m.img 
-          ? `<img src="${m.img}" alt="${m.name}" class="mentor-poster" onerror="this.parentElement.innerHTML='${fallback.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}'" />`
-          : fallback;
-        return `<div class="mentor-card">
-          <div class="mentor-poster-wrap">${imgHtml}</div>
-          <div class="mentor-info">
-            <div class="mentor-name">${m.name}</div>
-            <div class="mentor-role">${m.role}</div>
-            <div class="mentor-bio">${m.bio}</div>
-          </div>
-        </div>`;
-      }).join('');
-    }
+            yearBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    render(this.dataset.year);
+                });
+            });
 
-    // year selector event listeners
-    document.querySelectorAll('.year-btn').forEach(btn => {
-      btn.addEventListener('click', () => renderMentors(btn.dataset.year));
-    });
+            render('2026');
 
-    // default: 2026 (active)
-    renderMentors('2026');
+            const burger = document.getElementById('burger');
+            const panel = document.getElementById('navPanel');
+            const bd = document.getElementById('backdrop');
+            const navTop = document.querySelector('.nav-top');
 
-    // ---------- NAVIGATION (identical to mentor-sessions page) ----------
-    const $ = id => document.getElementById(id);
-    const burger = $('burger'), panel = $('navPanel'), bd = $('backdrop');
-    const navTop = document.querySelector('.nav-top');
-    const closeMenu = () => {
-      burger.classList.remove('open');
-      panel.classList.remove('open');
-      bd.classList.remove('show');
-      document.body.classList.remove('menu-open');
-      navTop?.classList.remove('menu-open');
-    };
-    burger.addEventListener('click', () => {
-      const o = panel.classList.contains('open');
-      burger.classList.toggle('open', !o);
-      panel.classList.toggle('open', !o);
-      bd.classList.toggle('show', !o);
-      document.body.classList.toggle('menu-open', !o);
-      navTop?.classList.toggle('menu-open', !o);
-    });
-    bd.addEventListener('click', closeMenu);
-    document.querySelectorAll('.nav-panel a.item').forEach(l => l.addEventListener('click', closeMenu));
-  })();
-</script>
+            function closeMenu() {
+                burger.classList.remove('open');
+                panel.classList.remove('open');
+                bd.classList.remove('show');
+                document.body.classList.remove('menu-open');
+                navTop.classList.remove('menu-open');
+            }
+
+            burger.addEventListener('click', function () {
+                const isOpen = panel.classList.contains('open');
+                burger.classList.toggle('open', !isOpen);
+                panel.classList.toggle('open', !isOpen);
+                bd.classList.toggle('show', !isOpen);
+                document.body.classList.toggle('menu-open', !isOpen);
+                navTop.classList.toggle('menu-open', !isOpen);
+            });
+
+            bd.addEventListener('click', closeMenu);
+            document.querySelectorAll('.nav-panel a.item').forEach(function (link) {
+                link.addEventListener('click', closeMenu);
+            });
+        })();
+    </script>
+
 </body>
+
 </html>
