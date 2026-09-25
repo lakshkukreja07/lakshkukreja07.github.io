@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Factory Sentinel</title>
+
+    <!-- Inter & Roboto Mono Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ============================================================ */
+        /* GITHUB COLOR SYSTEM (DARK & LIGHT)                           */
+        /* ============================================================ */
+        :root,
+        [data-theme="dark"] {
+            /* GitHub Dark Mode (Primer) */
+            --bg-canvas: #0d1117;
+            --bg-default: #161b22;
+            --bg-subtle: #21262d;
+            --bg-overlay: #161b22;
+            --bg-hover: #30363d;
+            --bg-active: #282e33;
+
+            --border-default: #30363d;
+            --border-muted: #21262d;
+            --border-subtle: #30363d80;
+
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --text-tertiary: #6e7681;
+            --text-link: #58a6ff;
+
+            --accent-fg: #58a6ff;
+            --accent-emphasis: #1f6feb;
+            --accent-subtle: rgba(56, 139, 253, 0.12);
+
+            --status-ok: #3fb950;
+            --status-ok-bg: rgba(46, 160, 67, 0.15);
+            --status-ok-border: rgba(63, 185, 80, 0.4);
+
+            --status-warn: #d29922;
+            --status-warn-bg: rgba(187, 128, 9, 0.15);
+            --status-warn-border: rgba(210, 153, 34, 0.4);
+
+            --status-crit: #f85149;
+            --status-crit-bg: rgba(248, 81, 73, 0.15);
+            --status-crit-border: rgba(248, 81, 73, 0.4);
+
+            --chart-grid: #21262d;
+            --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] {
+            /* GitHub Light Mode (Primer) */
+            --bg-canvas: #ffffff;
+            --bg-default: #f6f8fa;
+            --bg-subtle: #eaeef2;
+            --bg-overlay: #ffffff;
+            --bg-hover: #e1e4e8;
+            --bg-active: #d0d7de;
+
+            --border-default: #d0d7de;
+            --border-muted: #e1e4e8;
+            --border-subtle: #d0d7de80;
+
+            --text-primary: #1f2328;
+            --text-secondary: #656d76;
+            --text-tertiary: #8c959f;
+            --text-link: #0969da;
+
+            --accent-fg: #0969da;
+            --accent-emphasis: #1f883d;
+            --accent-subtle: #ddf4ff;
+
+            --status-ok: #1a7f37;
+            --status-ok-bg: #dafbe1;
+            --status-ok-border: #4ac26b;
+
+            --status-warn: #9a6700;
+            --status-warn-bg: #fff8c5;
+            --status-warn-border: #d4a72c;
+
+            --status-crit: #cf222e;
+            --status-crit-bg: #ffebe9;
+            --status-crit-border: #ff8182;
+
+            --chart-grid: #eaeef2;
+            --shadow-card: 0 1px 3px rgba(31, 35, 40, 0.08);
+        }
+
+        :root {
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            /* Instant theme toggle without any delayed transitions */
+            transition: none !important;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-canvas);
+            color: var(--text-primary);
+            min-height: 100vh;
+            font-size: 13px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .u-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            stroke-width: 2;
+            stroke: currentColor;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* --- LOGIN SCREEN (Clean GitHub Style) --- */
+        .login-view {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: var(--bg-canvas);
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 340px;
+            background: var(--bg-default);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .login-brand-title {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .login-brand-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--bg-canvas);
+            border: 1px solid var(--border-default);
+            color: var(--text-primary);
+            padding: 7px 10px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-fg);
+            box-shadow: 0 0 0 3px var(--accent-subtle);
+        }
+
+        .btn-green {
+            background: #238636;
+            color: #ffffff;
+            padding: 7px 14px;
+            border-radius: var(--radius-md);
+            width: 100%;
+            margin-top: 6px;
+            font-weight: 600;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+        }
+
+        .btn-green:hover {
+            background: #2ea043;
+        }
+
+        /* --- APP SHELL --- */
+        .app-shell {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TOP BAR (Clean, No-Logo Factory Sentinel, GitHub-Styled) --- */
+        .topbar {
+            height: 48px;
+            background: var(--bg-default);
+            border-bottom: 1px solid var(--border-default);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-text {
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: -0.2px;
+            color: var(--text-primary);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-tab {
+            padding: 5px 9px;
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .nav-tab.active {
+            color: var(--text-primary);
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-default);
+            font-weight: 600;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        /* LIVE STATUS WITH FLASHING RED RADAR DOT */
+        .live-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 8px;
+            background: var(--status-crit-bg);
+            border: 1px solid var(--status-crit-border);
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--status-crit);
+        }
+
+        .live-dot-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 8px;
+            height: 8px;
+        }
+
+        .live-dot-core {
+            width: 6px;
+            height: 6px;
+            background-color: var(--status-crit);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .live-dot-beacon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--status-crit);
+            animation: radarPulse 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes radarPulse {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.8;
+            }
+
+            70%,
+            100% {
+                transform: scale(2.8);
+                opacity: 0;
+            }
+        }
+
+        /* IST TIME CLOCK (Roboto Mono) */
+        .ist-clock {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-secondary);
+            padding: 3px 7px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+        }
+
+        /* THEME TOGGLE (Instant switch without transitions) */
+        .btn-theme-toggle {
+            padding: 4px 8px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-default);
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .btn-theme-toggle:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .btn-signout {
+            padding: 4px 8px;
+            color: var(--text-secondary);
+            border-radius: var(--radius-md);
+            font-size: 12px;
+        }
+
+        .btn-signout:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        /* --- MAIN WORKSPACE (SIMPLE GITHUB-LIKE LAYOUT) --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 18px 16px;
+            flex: 1;
+        }
+
+        /* Top Action / Filter Bar */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            gap: 12px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .btn-add {
+            background: #238636;
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: var(--radius-md);
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+        }
+
+        .btn-add:hover {
+            background: #2ea043;
+        }
+
+        /* GITHUB-LIKE STATS HEADER CARDS */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .kpi-item {
+            background: var(--bg-default);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-md);
+            padding: 10px 14px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .kpi-item-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .kpi-item-num {
+            font-size: 20px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            margin-top: 2px;
+            color: var(--text-primary);
+        }
+
+        .kpi-item-num.ok {
+            color: var(--status-ok);
+        }
+
+        .kpi-item-num.warn {
+            color: var(--status-warn);
+        }
+
+        .kpi-item-num.crit {
+            color: var(--status-crit);
+        }
+
+        /* GITHUB REPOSITORY / ISSUE STYLE LIST CARD */
+        .github-box {
+            background: var(--bg-default);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .github-box-header {
+            background: var(--bg-subtle);
+            border-bottom: 1px solid var(--border-default);
+            padding: 10px 14px;
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .github-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .github-table th {
+            text-align: left;
+            padding: 8px 14px;
+            color: var(--text-tertiary);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-default);
+            background: var(--bg-canvas);
+        }
+
+        .github-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border-muted);
+            color: var(--text-secondary);
+        }
+
+        .github-table tr.machine-row {
+            cursor: pointer;
+        }
+
+        .github-table tr.machine-row:hover {
+            background: var(--bg-hover);
+        }
+
+        .github-table tr.machine-row.selected {
+            background: var(--accent-subtle);
+        }
+
+        .github-table tr.machine-row.selected td:first-child {
+            border-left: 3px solid var(--accent-fg);
+        }
+
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 7px;
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-status.ok {
+            background: var(--status-ok-bg);
+            color: var(--status-ok);
+            border: 1px solid var(--status-ok-border);
+        }
+
+        .badge-status.warn {
+            background: var(--status-warn-bg);
+            color: var(--status-warn);
+            border: 1px solid var(--status-warn-border);
+        }
+
+        .badge-status.crit {
+            background: var(--status-crit-bg);
+            color: var(--status-crit);
+            border: 1px solid var(--status-crit-border);
+        }
+
+        .mono-val {
+            font-family: var(--font-mono);
+        }
+
+        /* 2-COLUMN SPLIT: ACTIVE MACHINE DETAILS & TELEMETRY */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .metric-cards-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            padding: 14px;
+        }
+
+        .metric-card-box {
+            background: var(--bg-canvas);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-sm);
+            padding: 10px;
+        }
+
+        .metric-card-lbl {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .metric-card-val {
+            font-size: 16px;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            color: var(--text-primary);
+        }
+
+        .alert-bar {
+            margin: 0 14px 14px 14px;
+            padding: 10px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+        }
+
+        .alert-bar.crit {
+            background: var(--status-crit-bg);
+            border: 1px solid var(--status-crit-border);
+            color: var(--status-crit);
+        }
+
+        .alert-bar.ok {
+            background: var(--status-ok-bg);
+            border: 1px solid var(--status-ok-border);
+            color: var(--status-ok);
+        }
+
+        .btn-outline {
+            background: var(--bg-canvas);
+            border: 1px solid var(--border-default);
+            color: var(--text-primary);
+            padding: 4px 10px;
+            border-radius: var(--radius-md);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-hover);
+        }
+
+        /* CHART BOX */
+        .chart-container {
+            padding: 12px;
+        }
+
+        canvas#chart {
+            width: 100%;
+            height: 160px;
+            display: block;
+        }
+
+        /* AUDIT LOG BUFFER */
+        .log-box {
+            max-height: 160px;
+            overflow-y: auto;
+            padding: 8px 14px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+        }
+
+        .log-line {
+            display: flex;
+            gap: 8px;
+            padding: 3px 0;
+            border-bottom: 1px solid var(--border-muted);
+            color: var(--text-secondary);
+        }
+
+        .log-time {
+            color: var(--text-tertiary);
+            flex-shrink: 0;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: grid;
+            place-items: center;
+            z-index: 100;
+            padding: 16px;
+        }
+
+        .modal-body {
+            background: var(--bg-default);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 360px;
+            padding: 20px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .modal-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        /* ============================================================ */
+        /* RESPONSIVE BREAKPOINTS (Mobile & Tablet)                     */
+        /* ============================================================ */
+        @media (max-width: 900px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .topbar {
+                padding: 0 10px;
+            }
+
+            .nav-links {
+                display: none;
+                /* Simplified header on phones */
+            }
+
+            .ist-clock {
+                font-size: 10px;
+            }
+
+            .main-container {
+                padding: 12px 10px;
+            }
+
+            .kpi-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .metric-cards-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================== -->
+    <!-- 1. LOGIN SCREEN                                -->
+    <!-- ============================================== -->
+    <div id="login" class="login-view">
+        <div class="login-card">
+            <div class="login-brand-title">Factory Sentinel</div>
+            <div class="login-brand-desc">Sign in to industrial telemetry terminal</div>
+
+            <div class="form-group">
+                <label class="form-label">Username or Email</label>
+                <input id="email" class="form-input" value="admin@factorysentinel.com">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input id="password" type="password" class="form-input" value="123456">
+            </div>
+
+            <button class="btn-green" onclick="login()">
+                Sign In
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- 2. MAIN SCADA SHELL                            -->
+    <!-- ============================================== -->
+    <div id="app" class="app-shell hidden">
+
+        <!-- TOP BAR: Factory Sentinel name (no icon), Tabs, LIVE, IST Clock, Theme Toggle -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <!-- Name without icon as requested -->
+                <div class="brand-text" onclick="switchNav('overview')">
+                    Factory Sentinel
+                </div>
+
+                <nav class="nav-links" id="mainNav">
+                    <button class="nav-tab active" data-tab="overview" onclick="switchNav('overview')">
+                        <svg class="u-icon" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                        </svg>
+                        <span>Overview</span>
+                    </button>
+                    <button class="nav-tab" data-tab="machines" onclick="switchNav('machines')">
+                        <svg class="u-icon" viewBox="0 0 24 24">
+                            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                            <path d="M9 9h6v6H9z"></path>
+                            <path d="M9 1v3m6-3v3m-6 16v3m6-3v3M1 9h3m-3 6h3m16-6h3m-3 6h3"></path>
+                        </svg>
+                        <span>Machines</span>
+                    </button>
+                    <button class="nav-tab" data-tab="alerts" onclick="switchNav('alerts')">
+                        <svg class="u-icon" viewBox="0 0 24 24">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span>Alerts</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="topbar-right">
+                <!-- LIVE STATUS WITH FLASHING RADAR DOT -->
+                <div class="live-tag" title="Telemetry Stream: Active 1000ms Heartbeat">
+                    <div class="live-dot-wrap">
+                        <div class="live-dot-beacon"></div>
+                        <div class="live-dot-core"></div>
+                    </div>
+                    <span>LIVE</span>
+                </div>
+
+                <!-- LIVE IST TIME CLOCK -->
+                <div class="ist-clock" id="clock">--:--:-- IST</div>
+
+                <!-- INSTANT THEME TOGGLE (NO TRANSITIONS) -->
+                <button class="btn-theme-toggle" id="themeToggleBtn" onclick="toggleTheme()"
+                    title="Switch GitHub Dark / Light mode">
+                    <svg class="u-icon" id="themeIcon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <span id="themeLabel" style="font-size: 11px;">Light</span>
+                </button>
+
+                <!-- SIGN OUT -->
+                <button class="btn-signout" onclick="logout()" title="Sign Out">
+                    <svg class="u-icon" viewBox="0 0 24 24">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN CONTAINER -->
+        <main class="main-container">
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+                <div>
+                    <h1 class="section-title">Factory Overview</h1>
+                </div>
+                <button class="btn-add" onclick="openAdd()">
+                    <svg class="u-icon" style="width: 14px; height: 14px;" viewBox="0 0 24 24">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>Add Machine</span>
+                </button>
+            </div>
+
+            <!-- KPI SUMMARY CARDS -->
+            <div class="kpi-row">
+                <div class="kpi-item">
+                    <div class="kpi-item-title">Total Units</div>
+                    <div class="kpi-item-num" id="machineCount">0</div>
+                </div>
+
+                <div class="kpi-item">
+                    <div class="kpi-item-title">Healthy</div>
+                    <div class="kpi-item-num ok" id="healthy">0</div>
+                </div>
+
+                <div class="kpi-item">
+                    <div class="kpi-item-title">Warning</div>
+                    <div class="kpi-item-num warn" id="warnings">0</div>
+                </div>
+
+                <div class="kpi-item">
+                    <div class="kpi-item-title">Critical</div>
+                    <div class="kpi-item-num crit" id="critical">0</div>
+                </div>
+            </div>
+
+            <!-- ASSET LIST (GITHUB REPO / ITEM LIST STYLE) -->
+            <div class="github-box">
+                <div class="github-box-header">
+                    <span>Connected Factory Assets</span>
+                    <span style="font-size: 11px; color: var(--text-tertiary); font-family: var(--font-mono);">1s
+                        SYNC</span>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="github-table">
+                        <thead>
+                            <tr>
+                                <th>Machine Tag</th>
+                                <th>Status</th>
+                                <th>Health Score</th>
+                                <th>Last Telemetry</th>
+                            </tr>
+                        </thead>
+                        <tbody id="devices">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2-COLUMN SPLIT: SELECTED UNIT INSPECTOR & LIVE CHART -->
+            <div class="details-grid">
+                <!-- INSPECTOR -->
+                <div class="github-box">
+                    <div class="github-box-header">
+                        <span id="deviceTitle">No Unit Selected</span>
+                        <button id="testBtn" class="btn-outline hidden" onclick="testDevice()">
+                            Inject Fault
+                        </button>
+                    </div>
+
+                    <div id="deviceContent">
+                        <!-- Dynamic details -->
+                    </div>
+                </div>
+
+                <!-- LIVE TELEMETRY CHART -->
+                <div class="github-box">
+                    <div class="github-box-header">
+                        <span>Live Telemetry Bus</span>
+                        <div style="display: flex; gap: 10px; font-size: 11px; font-family: var(--font-mono);">
+                            <span style="color: #58a6ff;">● Temp (°C)</span>
+                            <span style="color: #d29922;">● Vibration (g)</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUDIT / EVENT LOG -->
+            <div class="github-box">
+                <div class="github-box-header">
+                    <span>Activity &amp; Diagnostics Log</span>
+                    <button class="btn-outline" onclick="clearLogs()">Clear</button>
+                </div>
+                <div class="log-box" id="logs">
+                    <!-- Logs inserted dynamically -->
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- 3. ADD MACHINE MODAL                           -->
+    <!-- ============================================== -->
+    <div id="modal" class="modal-overlay hidden">
+        <div class="modal-body">
+            <div class="modal-title">Add Factory Machine</div>
+
+            <div class="form-group">
+                <label class="form-label">Machine Identifier / Tag</label>
+                <input id="deviceName" class="form-input" placeholder="e.g. CNC-MILL-02"
+                    onkeydown="if(event.key==='Enter') addDevice()">
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-outline" onclick="closeAdd()">Cancel</button>
+                <button class="btn-green" style="width: auto;" onclick="addDevice()">Add Machine</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- 4. JS LOGIC                                    -->
+    <!-- ============================================== -->
+    <script>
+        /* THEME MANAGEMENT (INSTANT - NO TRANSITIONS) */
+        let currentTheme = localStorage.getItem("sentinel_theme") || "dark";
+
+        function applyTheme(theme) {
+            currentTheme = theme;
+            document.documentElement.setAttribute("data-theme", theme);
+            document.documentElement.className = theme;
+            localStorage.setItem("sentinel_theme", theme);
+
+            const icon = document.getElementById("themeIcon");
+            const label = document.getElementById("themeLabel");
+
+            if (icon && label) {
+                if (theme === "dark") {
+                    icon.innerHTML = `
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    `;
+                    label.textContent = "Light";
+                } else {
+                    icon.innerHTML = `
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    `;
+                    label.textContent = "Dark";
+                }
+            }
+            drawChart();
+        }
+
+        function toggleTheme() {
+            applyTheme(currentTheme === "dark" ? "light" : "dark");
+        }
+
+        /* STATE */
+        let devices = [
+            {
+                id: 101,
+                name: "CNC-MILL-01",
+                health: 98,
+                temperature: 31.4,
+                vibration: 0.22,
+                current: 0.41,
+                status: "Healthy",
+                tested: false,
+                fixed: false,
+                last: new Date()
+            },
+            {
+                id: 102,
+                name: "HYD-PRESS-04",
+                health: 79,
+                temperature: 38.1,
+                vibration: 0.36,
+                current: 0.49,
+                status: "Warning",
+                tested: false,
+                fixed: false,
+                last: new Date()
+            },
+            {
+                id: 103,
+                name: "ROBOT-WELD-02",
+                health: 96,
+                temperature: 29.8,
+                vibration: 0.18,
+                current: 0.39,
+                status: "Healthy",
+                tested: false,
+                fixed: false,
+                last: new Date()
+            }
+        ];
+        let selected = 101;
+        let chartData = [];
+
+        /* NAVIGATION */
+        function switchNav(tab) {
+            document.querySelectorAll(".nav-tab").forEach(item => {
+                if (item.getAttribute("data-tab") === tab) {
+                    item.classList.add("active");
+                } else {
+                    item.classList.remove("active");
+                }
+            });
+            addLog(`Switched view to ${tab.toUpperCase()}`);
+        }
+
+        /* AUTH */
+        function login() {
+            document.getElementById("login").classList.add("hidden");
+            document.getElementById("app").classList.remove("hidden");
+            addLog("Authenticated as admin");
+            render();
+        }
+
+        function logout() {
+            document.getElementById("app").classList.add("hidden");
+            document.getElementById("login").classList.remove("hidden");
+        }
+
+        /* ADD MODAL */
+        function openAdd() {
+            document.getElementById("modal").classList.remove("hidden");
+            setTimeout(() => document.getElementById("deviceName").focus(), 50);
+        }
+
+        function closeAdd() {
+            document.getElementById("modal").classList.add("hidden");
+            document.getElementById("deviceName").value = "";
+        }
+
+        function addDevice() {
+            let name = document.getElementById("deviceName").value.trim();
+            if (!name) name = "UNIT-0" + (devices.length + 1);
+
+            let newUnit = {
+                id: Date.now(),
+                name: name,
+                health: 100,
+                temperature: 29.0 + (Math.random() * 3),
+                vibration: 0.20 + (Math.random() * 0.05),
+                current: 0.40 + (Math.random() * 0.04),
+                status: "Healthy",
+                tested: false,
+                fixed: false,
+                last: new Date()
+            };
+
+            devices.push(newUnit);
+            selected = newUnit.id;
+            closeAdd();
+            addLog(`Added machine ${name}`);
+            render();
+        }
+
+        /* DIAGNOSTIC / FIX ACTIONS */
+        function testDevice() {
+            let d = getSelected();
+            if (!d) return;
+
+            d.tested = true;
+            d.fixed = false;
+            d.health = 32;
+            d.temperature = 63.8;
+            d.vibration = 1.42;
+            d.current = 0.95;
+            d.status = "Critical";
+
+            chartData = [];
+            addLog(`Fault injected into ${d.name} (Critical thresholds exceeded)`);
+            render();
+        }
+
+        function fixDevice() {
+            let d = getSelected();
+            if (!d) return;
+
+            d.health = 95;
+            d.temperature = 31.0;
+            d.vibration = 0.23;
+            d.current = 0.41;
+            d.status = "Healthy";
+            d.fixed = true;
+
+            addLog(`Recalibrated ${d.name} - Nominal condition restored`);
+            render();
+        }
+
+        function selectDevice(id) {
+            selected = id;
+            chartData = [];
+            render();
+        }
+
+        function getSelected() {
+            return devices.find(d => d.id === selected) || null;
+        }
+
+        /* 1s TICK TELEMETRY */
+        function updateData() {
+            devices.forEach(d => {
+                if (d.tested && !d.fixed) {
+                    d.temperature += (Math.random() - 0.5) * 1.5;
+                    d.vibration += (Math.random() - 0.5) * 0.08;
+                    d.current += (Math.random() - 0.5) * 0.04;
+
+                    d.temperature = Math.max(52, Math.min(85, d.temperature));
+                    d.vibration = Math.max(0.95, Math.min(2.1, d.vibration));
+                    d.current = Math.max(0.8, Math.min(1.2, d.current));
+
+                    d.health = Math.max(18, d.health - Math.random() * 0.6);
+                    d.status = d.health < 40 ? "Critical" : "Warning";
+                } else {
+                    d.temperature = 29.5 + Math.random() * 4;
+                    d.vibration = 0.20 + Math.random() * 0.12;
+                    d.current = 0.39 + Math.random() * 0.06;
+
+                    if (d.fixed) {
+                        d.health = Math.min(97, d.health + Math.random() * 0.8);
+                    } else {
+                        d.health = Math.min(99, d.health + (Math.random() - 0.48) * 0.4);
+                    }
+                    d.status = d.health > 75 ? "Healthy" : "Warning";
+                }
+                d.last = new Date();
+            });
+
+            let d = getSelected();
+            if (d) {
+                chartData.push({
+                    temperature: d.temperature,
+                    vibration: d.vibration
+                });
+                if (chartData.length > 60) chartData.shift();
+            }
+
+            render();
+        }
+
+        /* RENDER DISPATCH */
+        function render() {
+            renderDevices();
+            renderKpis();
+            renderDetail();
+            drawChart();
+            renderClock();
+        }
+
+        /* ROSTER TABLE */
+        function renderDevices() {
+            let html = "";
+            devices.forEach(d => {
+                let badgeClass = d.status === "Healthy" ? "ok" : d.status === "Warning" ? "warn" : "crit";
+                let isSelected = d.id === selected;
+
+                html += `
+                    <tr class="machine-row ${isSelected ? 'selected' : ''}" onclick="selectDevice(${d.id})">
+                        <td>
+                            <strong style="color: var(--text-primary); font-family: var(--font-mono);">${d.name}</strong>
+                        </td>
+                        <td>
+                            <span class="badge-status ${badgeClass}">
+                                ● ${d.status}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="mono-val" style="font-weight:600; color: ${d.status === 'Healthy' ? 'var(--status-ok)' : d.status === 'Warning' ? 'var(--status-warn)' : 'var(--status-crit)'}">
+                                ${Math.round(d.health)}%
+                            </span>
+                        </td>
+                        <td class="mono-val" style="font-size: 11px;">
+                            ${formatISTTime(d.last)}
+                        </td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById("devices").innerHTML = html || `
+                <tr><td colspan="4" style="text-align:center; padding: 20px; color: var(--text-tertiary);">No units registered</td></tr>
+            `;
+        }
+
+        /* KPI STATS */
+        function renderKpis() {
+            let healthy = devices.filter(d => d.status === "Healthy").length;
+            let warnings = devices.filter(d => d.status === "Warning").length;
+            let critical = devices.filter(d => d.status === "Critical").length;
+
+            document.getElementById("machineCount").textContent = devices.length;
+            document.getElementById("healthy").textContent = healthy;
+            document.getElementById("warnings").textContent = warnings;
+            document.getElementById("critical").textContent = critical;
+        }
+
+        /* DETAIL INSPECTOR */
+        function renderDetail() {
+            let d = getSelected();
+            const titleEl = document.getElementById("deviceTitle");
+            const testBtn = document.getElementById("testBtn");
+            const contentEl = document.getElementById("deviceContent");
+
+            if (!d) {
+                titleEl.textContent = "No Unit Selected";
+                testBtn.classList.add("hidden");
+                contentEl.innerHTML = `<div style="color: var(--text-tertiary); text-align: center; padding: 24px;">Select a machine to inspect metrics</div>`;
+                return;
+            }
+
+            titleEl.textContent = d.name;
+            testBtn.classList.remove("hidden");
+
+            let alertHtml = "";
+            if (d.tested && !d.fixed) {
+                alertHtml = `
+                    <div class="alert-bar crit">
+                        <strong>Anomaly Alert:</strong> Temperature & vibration exceed threshold limits.
+                        <div style="margin-top: 8px;">
+                            <button class="btn-green" style="width: auto; padding: 4px 10px; font-size: 11px;" onclick="fixDevice()">
+                                Recalibrate & Fix Unit
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (d.fixed) {
+                alertHtml = `
+                    <div class="alert-bar ok">
+                        <strong>Nominal:</strong> Unit recalibrated and operating in standard range.
+                    </div>
+                `;
+            }
+
+            contentEl.innerHTML = `
+                <div class="metric-cards-row">
+                    <div class="metric-card-box">
+                        <div class="metric-card-lbl">Health Index</div>
+                        <div class="metric-card-val" style="color: ${d.status === 'Healthy' ? 'var(--status-ok)' : d.status === 'Warning' ? 'var(--status-warn)' : 'var(--status-crit)'};">
+                            ${Math.round(d.health)}%
+                        </div>
+                    </div>
+
+                    <div class="metric-card-box">
+                        <div class="metric-card-lbl">Core Temp</div>
+                        <div class="metric-card-val" style="color: ${d.temperature > 50 ? 'var(--status-crit)' : 'var(--text-primary)'}">
+                            ${d.temperature.toFixed(1)} <span style="font-size: 11px; color: var(--text-tertiary);">°C</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card-box">
+                        <div class="metric-card-lbl">Vibration</div>
+                        <div class="metric-card-val" style="color: ${d.vibration > 0.8 ? 'var(--status-crit)' : 'var(--text-primary)'}">
+                            ${d.vibration.toFixed(2)} <span style="font-size: 11px; color: var(--text-tertiary);">g</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card-box">
+                        <div class="metric-card-lbl">Current Load</div>
+                        <div class="metric-card-val" style="color: ${d.current > 0.7 ? 'var(--status-crit)' : 'var(--text-primary)'}">
+                            ${d.current.toFixed(2)} <span style="font-size: 11px; color: var(--text-tertiary);">A</span>
+                        </div>
+                    </div>
+                </div>
+
+                ${alertHtml}
+            `;
+        }
+
+        /* LIVE IST CLOCK (Asia/Kolkata timezone) */
+        function renderClock() {
+            const now = new Date();
+            const istTime = now.toLocaleTimeString("en-IN", {
+                timeZone: "Asia/Kolkata",
+                hour12: false,
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            });
+            const clockEl = document.getElementById("clock");
+            if (clockEl) clockEl.textContent = `${istTime} IST`;
+        }
+
+        function formatISTTime(date) {
+            return new Date(date).toLocaleTimeString("en-IN", {
+                timeZone: "Asia/Kolkata",
+                hour12: false,
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            });
+        }
+
+        /* LOGGING */
+        function addLog(msg) {
+            const logsEl = document.getElementById("logs");
+            if (!logsEl) return;
+            const row = document.createElement("div");
+            row.className = "log-line";
+            row.innerHTML = `<span class="log-time">[${formatISTTime(new Date())}]</span><span>${msg}</span>`;
+            logsEl.prepend(row);
+            while (logsEl.children.length > 40) logsEl.removeChild(logsEl.lastChild);
+        }
+
+        function clearLogs() {
+            document.getElementById("logs").innerHTML = "";
+            addLog("Audit log buffer cleared");
+        }
+
+        /* TELEMETRY CHART */
+        function drawChart() {
+            const canvas = document.getElementById("chart");
+            if (!canvas) return;
+            const ctx = canvas.getContext("2d");
+
+            const w = canvas.clientWidth;
+            const h = 160;
+            canvas.width = w * (window.devicePixelRatio || 1);
+            canvas.height = h * (window.devicePixelRatio || 1);
+            ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+
+            ctx.clearRect(0, 0, w, h);
+
+            const isDark = currentTheme === "dark";
+            ctx.strokeStyle = isDark ? "#21262d" : "#eaeef2";
+            ctx.lineWidth = 1;
+
+            for (let i = 0; i <= 4; i++) {
+                const y = (i * h) / 4;
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(w, y);
+                ctx.stroke();
+            }
+
+            if (chartData.length < 2) return;
+
+            function plotLine(key, color, min, max) {
+                ctx.beginPath();
+                chartData.forEach((pt, i) => {
+                    const x = (i / (chartData.length - 1)) * w;
+                    const norm = (pt[key] - min) / (max - min);
+                    const clamped = Math.max(0, Math.min(1, norm));
+                    const y = h - clamped * (h - 20) - 10;
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 1.75;
+                ctx.stroke();
+            }
+
+            // Temperature line
+            plotLine("temperature", isDark ? "#58a6ff" : "#0969da", 20, 80);
+            // Vibration line
+            plotLine("vibration", isDark ? "#d29922" : "#9a6700", 0, 2.0);
+        }
+
+        /* INIT */
+        window.addEventListener("DOMContentLoaded", () => {
+            applyTheme(currentTheme);
+            render();
+            setInterval(updateData, 1000);
+            setInterval(renderClock, 1000);
+        });
+    </script>
+</body>
+
+</html>
