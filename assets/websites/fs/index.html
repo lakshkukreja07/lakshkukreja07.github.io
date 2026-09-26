@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="dark" data-theme="dark">
 
@@ -874,6 +873,63 @@
                 font-size: 16px;
             }
         }
+
+        .vibration-indicator {
+            display: none;
+            align-items: center;
+            gap: 7px;
+            margin-left: 8px;
+            color: var(--color-danger-fg);
+            font-size: 11px;
+            font-family: var(--font-mono);
+        }
+
+        .vibration-indicator.active {
+            display: inline-flex;
+        }
+
+        .vibration-bars {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 12px;
+        }
+
+        .vibration-bars span {
+            width: 2px;
+            background: currentColor;
+            animation: vibrationBar .35s infinite alternate ease-in-out;
+        }
+
+        .vibration-bars span:nth-child(1) {
+            height: 5px;
+            animation-delay: -.20s;
+        }
+
+        .vibration-bars span:nth-child(2) {
+            height: 10px;
+            animation-delay: -.10s;
+        }
+
+        .vibration-bars span:nth-child(3) {
+            height: 7px;
+            animation-delay: -.28s;
+        }
+
+        .vibration-bars span:nth-child(4) {
+            height: 12px;
+            animation-delay: -.05s;
+        }
+
+        @keyframes vibrationBar {
+            from {
+                transform: scaleY(.45);
+            }
+
+            to {
+                transform: scaleY(1);
+            }
+        }
     </style>
 </head>
 
@@ -1037,6 +1093,10 @@
                             </svg>
                             <span>Run Test</span>
                         </button>
+                        <span id="vibrationIndicator" class="vibration-indicator" aria-live="polite">
+                            <span class="vibration-bars"><span></span><span></span><span></span><span></span></span>
+                            VIBRATING
+                        </span>
                     </div>
 
                     <div id="deviceContent">
@@ -1148,6 +1208,23 @@
         let devices = [];
         let selected = null;
         let chartData = [];
+        let vibrationTimer = null;
+        let vibrationSupported = "vibrate" in navigator;
+
+        function triggerDeviceVibration(duration = 1200) {
+            // Works on supported mobile browsers. Desktop browsers generally ignore navigator.vibrate().
+            if (!vibrationSupported) return;
+            try {
+                navigator.vibrate([120, 80, 120, 80, 180]);
+                clearTimeout(vibrationTimer);
+                vibrationTimer = setTimeout(() => navigator.vibrate(0), duration);
+            } catch (e) { }
+        }
+
+        function setVibrationIndicator(active) {
+            const el = document.getElementById("vibrationIndicator");
+            if (el) el.classList.toggle("active", active);
+        }
 
         function login() {
             document.getElementById("login").classList.add("hidden");
@@ -1205,8 +1282,13 @@
             d.current = 1.38;
             d.status = "Critical";
 
+            // Physical demo: make the phone vibrate when Run Test is pressed.
+            triggerDeviceVibration(2200);
+            setVibrationIndicator(true);
+            setTimeout(() => setVibrationIndicator(false), 2400);
+
             chartData = [];
-            addLog(`Diagnostic test on ${d.name} -> FAULT: High temperature & Ampere surge`);
+            addLog(`Diagnostic test on ${d.name} -> FAULT: High temperature, Ampere surge & vibration anomaly`);
             render();
         }
 
@@ -1219,6 +1301,10 @@
             d.current = 0.41;
             d.status = "Healthy";
             d.fixed = true;
+
+            try { navigator.vibrate(0); } catch (e) { }
+            clearTimeout(vibrationTimer);
+            setVibrationIndicator(false);
 
             addLog(`Recalibrated ${d.name} -> Operating parameters restored to nominal`);
             render();
@@ -1410,6 +1496,13 @@
                         <div class="metric-card-val" style="color: ${d.current > 0.7 ? 'var(--color-danger-fg)' : 'var(--color-fg-default)'}">
                             <span>${d.current.toFixed(2)}</span>
                             <span class="unit-badge amp-badge">A</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card-box">
+                        <div class="metric-card-lbl">Vibration</div>
+                        <div class="metric-card-val" style="color: ${d.tested && !d.fixed ? 'var(--color-danger-fg)' : 'var(--color-fg-default)'}">
+                            <span>${d.tested && !d.fixed ? 'HIGH' : 'LOW'}</span>
                         </div>
                     </div>
 
