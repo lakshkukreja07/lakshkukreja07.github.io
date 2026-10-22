@@ -1974,23 +1974,144 @@
             }
         }
 
-        [hidden] { display: none !important }
-        @media(min-width:640px) { .cards { grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)) } }
-        .cards[data-n="1"] .metric { grid-template-columns: minmax(0, 1fr) auto }
-        .ftogs { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--raised); overflow: hidden }
-        .ftog { position: relative; display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 16px; font-weight: 500; cursor: pointer; user-select: none; -webkit-user-select: none }
-        .ftog+.ftog { border-top: 1px solid var(--line) }
-        .ftog span { flex: 1; min-width: 0 }
-        .ftog svg.i { color: var(--muted) }
-        .ftog input { position: absolute; opacity: 0; width: 0; height: 0; padding: 0; border: 0 }
-        .sw { flex: none; position: relative; width: 51px; height: 31px; border-radius: 16px; background: #3a3f45; transition: background .2s }
-        .sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px #0006; transition: transform .2s }
-        input:checked+.sw { background: var(--ok) }
-        input:checked+.sw::after { transform: translateX(20px) }
-        input:disabled+.sw { opacity: .55 }
-        .ftog:has(input:disabled) { cursor: not-allowed }
-        .ftog:has(:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px }
-        @media(max-width:639px) { .stack { gap: 12px } .settings-grid { gap: 16px } .ftog { padding: 0 14px } .panelhead span { width: 100% } }
+        [hidden] {
+            display: none !important
+        }
+
+        @media(min-width:640px) {
+            .cards {
+                grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr))
+            }
+        }
+
+        .cards[data-n="1"] .metric {
+            grid-template-columns: minmax(0, 1fr) auto
+        }
+
+        .ftogs {
+            border: 1px solid var(--line);
+            border-radius: var(--r-md);
+            background: var(--raised);
+            overflow: hidden
+        }
+
+        .ftog {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 56px;
+            padding: 0 16px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none
+        }
+
+        .ftog+.ftog {
+            border-top: 1px solid var(--line)
+        }
+
+        .ftog span {
+            flex: 1;
+            min-width: 0
+        }
+
+        .ftog svg.i {
+            color: var(--muted)
+        }
+
+        .ftog input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            padding: 0;
+            border: 0
+        }
+
+        .sw {
+            flex: none;
+            position: relative;
+            width: 51px;
+            height: 31px;
+            border-radius: 16px;
+            background: #3a3f45;
+            transition: background .2s
+        }
+
+        .sw::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 2px 4px #0006;
+            transition: transform .2s
+        }
+
+        input:checked+.sw {
+            background: var(--ok)
+        }
+
+        input:checked+.sw::after {
+            transform: translateX(20px)
+        }
+
+        input:disabled+.sw {
+            opacity: .55
+        }
+
+        .ftog:has(input:disabled) {
+            cursor: not-allowed
+        }
+
+        .ftog:has(:focus-visible) {
+            outline: 2px solid var(--accent);
+            outline-offset: -2px
+        }
+
+        @media(max-width:639px) {
+            .stack {
+                gap: 12px
+            }
+
+            .settings-grid {
+                gap: 16px
+            }
+
+            .ftog {
+                padding: 0 14px
+            }
+
+            .panelhead span {
+                width: 100%
+            }
+        }
+
+        .pill:before {
+            transition: background .25s, box-shadow .25s
+        }
+
+        .pill.ok,
+        .pill.err {
+            color: var(--text)
+        }
+
+        .pill.err:before {
+            box-shadow: 0 0 0 3px #ff616126
+        }
+
+        .busy svg.i {
+            animation: spin .8s linear infinite
+        }
+
+        .fetched b {
+            transition: opacity .2s
+        }
     </style>
 </head>
 
@@ -2096,7 +2217,7 @@
                     </div>
                 </div>
                 <div class="topright">
-                    <div class="pill" id="servicePill"><span id="service">Not configured</span></div><button
+                    <div class="pill" id="servicePill"><span id="service">Connecting…</span></div><button
                         class="icon-btn" id="refreshBtn" onclick="refresh(true)" aria-label="Refresh"><svg class="i">
                             <use href="#i-refresh" />
                         </svg></button>
@@ -2126,7 +2247,7 @@
                                 <div class="machine-name" id="ovName">No device selected</div>
                                 <div class="fetched"><svg class="i">
                                         <use href="#i-refresh" />
-                                    </svg><span>Last fetched</span><b id="lastFetched">—</b></div>
+                                    </svg><span id="fetchLbl">Not updated yet</span><b id="lastFetched"></b></div>
                             </div>
                         </div>
                         <div class="card sbox sbox-ai">
@@ -2175,9 +2296,10 @@
                         <div class="panel">
                             <div class="panelhead">
                                 <h3>Sensor history</h3>
-                                <div class="seg" id="metricSeg"><button class="active"
-                                        data-m="temperature" data-f="temperature">Temp</button><button
-                                        data-m="vibration" data-f="vibration">Vibration</button><button data-m="current" data-f="current">Current</button>
+                                <div class="seg" id="metricSeg"><button class="active" data-m="temperature"
+                                        data-f="temperature">Temp</button><button data-m="vibration"
+                                        data-f="vibration">Vibration</button><button data-m="current"
+                                        data-f="current">Current</button>
                                 </div>
                             </div>
                             <div id="chartEmpty" class="empty">
@@ -2333,9 +2455,18 @@
                                 <h3>Monitored fields</h3><span>At least one required</span>
                             </div>
                             <div class="ftogs" id="fieldToggles">
-                                <label class="ftog"><svg class="i"><use href="#i-temp" /></svg><span>Temperature</span><input type="checkbox" role="switch" value="temperature"><i class="sw"></i></label>
-                                <label class="ftog"><svg class="i"><use href="#i-wave" /></svg><span>Vibration</span><input type="checkbox" role="switch" value="vibration"><i class="sw"></i></label>
-                                <label class="ftog"><svg class="i"><use href="#i-bolt" /></svg><span>Current</span><input type="checkbox" role="switch" value="current"><i class="sw"></i></label>
+                                <label class="ftog"><svg class="i">
+                                        <use href="#i-temp" />
+                                    </svg><span>Temperature</span><input type="checkbox" role="switch"
+                                        value="temperature"><i class="sw"></i></label>
+                                <label class="ftog"><svg class="i">
+                                        <use href="#i-wave" />
+                                    </svg><span>Vibration</span><input type="checkbox" role="switch"
+                                        value="vibration"><i class="sw"></i></label>
+                                <label class="ftog"><svg class="i">
+                                        <use href="#i-bolt" />
+                                    </svg><span>Current</span><input type="checkbox" role="switch" value="current"><i
+                                        class="sw"></i></label>
                             </div>
                         </div>
                         <div class="panel">
@@ -2343,18 +2474,23 @@
                                 <h3>Machine thresholds</h3><span>Used for status and health</span>
                             </div>
                             <div class="settings-grid">
-                                <div class="field" data-f="temperature"><label for="tWarn">Temperature warning (°C)</label><input id="tWarn"
-                                        type="number" inputmode="decimal" value="35"></div>
-                                <div class="field" data-f="temperature"><label for="tCrit">Temperature critical (°C)</label><input id="tCrit"
-                                        type="number" inputmode="decimal" value="40"></div>
-                                <div class="field" data-f="vibration"><label for="vWarn">Vibration warning (m/s²)</label><input id="vWarn"
-                                        type="number" inputmode="decimal" value="10"></div>
-                                <div class="field" data-f="vibration"><label for="vCrit">Vibration critical (m/s²)</label><input id="vCrit"
-                                        type="number" inputmode="decimal" value="15"></div>
-                                <div class="field" data-f="current"><label for="cWarn">Current warning (A)</label><input id="cWarn"
-                                        type="number" inputmode="decimal" step=".01" value=".70"></div>
-                                <div class="field" data-f="current"><label for="cCrit">Current critical (A)</label><input id="cCrit"
-                                        type="number" inputmode="decimal" step=".01" value="1"></div>
+                                <div class="field" data-f="temperature"><label for="tWarn">Temperature warning
+                                        (°C)</label><input id="tWarn" type="number" inputmode="decimal" value="35">
+                                </div>
+                                <div class="field" data-f="temperature"><label for="tCrit">Temperature critical
+                                        (°C)</label><input id="tCrit" type="number" inputmode="decimal" value="40">
+                                </div>
+                                <div class="field" data-f="vibration"><label for="vWarn">Vibration warning
+                                        (m/s²)</label><input id="vWarn" type="number" inputmode="decimal" value="10">
+                                </div>
+                                <div class="field" data-f="vibration"><label for="vCrit">Vibration critical
+                                        (m/s²)</label><input id="vCrit" type="number" inputmode="decimal" value="15">
+                                </div>
+                                <div class="field" data-f="current"><label for="cWarn">Current warning (A)</label><input
+                                        id="cWarn" type="number" inputmode="decimal" step=".01" value=".70"></div>
+                                <div class="field" data-f="current"><label for="cCrit">Current critical
+                                        (A)</label><input id="cCrit" type="number" inputmode="decimal" step=".01"
+                                        value="1"></div>
                             </div>
                             <div class="actions"><button class="btn primary" onclick="saveThresholds()">Save
                                     thresholds</button></div>
@@ -2394,7 +2530,21 @@
         function cls(s) { return s === "NORMAL" ? "online" : s === "WARNING" ? "warn" : "critical" }
         const label = s => s.charAt(0) + s.slice(1).toLowerCase();
 
-        function setService(text, state) { $("service").textContent = text; $("servicePill").className = "pill " + (state || "") }
+        let svc = "";
+        function setService(text, state) { if (svc === text) return; svc = text; $("service").textContent = text; $("servicePill").className = "pill " + (state || ""); $("servicePill").title = text }
+        let lastOk = 0, busy = 0, inflight = false;
+        function fetchUI() {
+            const l = $("fetchLbl"), b = $("lastFetched");
+            if (busy) { l.textContent = "Updating…"; b.textContent = ""; return }
+            if (!lastOk) { l.textContent = "Not updated yet"; b.textContent = ""; return }
+            const n = Math.floor((Date.now() - lastOk) / 1000);
+            l.textContent = "Updated"; b.textContent = n < 2 ? "just now" : n < 60 ? n + " seconds ago" : Math.floor(n / 60) + " min ago";
+        }
+        setInterval(fetchUI, 1000);
+        const spinEls = () => document.querySelectorAll("#refreshBtn,.fetched");
+        function startBusy() { busy = Date.now(); spinEls().forEach(e => e.classList.add("busy")); fetchUI() }
+        function endBusy() { const el = Date.now() - busy; setTimeout(() => { busy = 0; spinEls().forEach(e => e.classList.remove("busy")); fetchUI() }, Math.ceil(el / 800) * 800 - el) }
+        addEventListener("offline", () => setService("Disconnected", "err")); addEventListener("online", () => refresh());
 
         function meter(id, lid, val, warn, crit, unit) {
             const el = $(id), max = crit * 1.25, m = el.querySelectorAll("b");
@@ -2418,7 +2568,8 @@
                 vuNow += Math.sign(vuTgt - vuNow); paint(vuNow);
             }, 450);
         }
-        function levelOf(t, v, c) { [t, v, c] = mask(t, v, c);
+        function levelOf(t, v, c) {
+            [t, v, c] = mask(t, v, c);
             const f = (x, w, k) => x < w ? .65 * x / w : x < k ? .65 + .2 * (x - w) / (k - w) : .85 + .15 * Math.min(1, (x - k) / (k * .25));
             return Math.max(0, Math.min(1, Math.max(f(t, cfg.tw, cfg.tc), f(v, cfg.vw, cfg.vc), f(c, cfg.cw, cfg.cc))));
         }
@@ -2431,7 +2582,8 @@
             let li = 0, ci = 0;
             aiTimer = setInterval(() => { if (li >= lines.length) { clearInterval(aiTimer); return } ci++; els[li].textContent = lines[li].t.slice(0, ci); if (ci >= lines[li].t.length) { li++; ci = 0 } }, 12);
         }
-        function aiAdvice(t, v, c) { [t, v, c] = mask(t, v, c);
+        function aiAdvice(t, v, c) {
+            [t, v, c] = mask(t, v, c);
             const o = [], add = (c, t) => o.push({ c, t });
             if (t >= cfg.tc) add("crit", `Temp ${t.toFixed(1)}°C critical. Stop, check cooling.`); else if (t >= cfg.tw) add("warn", `Temp ${t.toFixed(1)}°C rising. Check airflow.`);
             if (v >= cfg.vc) add("crit", `Vib ${v.toFixed(2)} m/s² critical. Check bearings.`); else if (v >= cfg.vw) add("warn", `Vib ${v.toFixed(2)} m/s² high. Tighten mounts.`);
@@ -2465,14 +2617,19 @@
             $("ovStatus").textContent = s === "NORMAL" ? "Good" : label(s); $("ovStatus").className = "sword " + cs(s); setVU(levelOf(t, v, c), s === "NORMAL"); $("ovStatus").title = "Received " + new Date(seen).toLocaleTimeString();
         }
 
-        async function refresh(manual) {
-            if (manual) { const b = $("refreshBtn"); b.classList.remove("spin"); void b.offsetWidth; b.classList.add("spin") }
-            if (!sb || !selectedDevice) { setOffline("No Supabase/device configured."); return }
-            setService("Connected", "ok");
-            const { data, error } = await sb.from("sensor_readings").select("*").eq("device_id", selectedDevice).order("created_at", { ascending: false }).limit(1);
-            if (error) { setService("Error", "err"); setOffline("Could not read telemetry."); return }
+        async function refresh() {
+            if (inflight) return;
+            if (!sb) { setService("Disconnected", "err"); setOffline("No Supabase configured."); return }
+            if (!selectedDevice) { setService("Connected", "ok"); setOffline("No device configured."); return }
+            inflight = true; startBusy(); let data;
+            try {
+                if (!navigator.onLine) throw 0;
+                const r = await sb.from("sensor_readings").select("*").eq("device_id", selectedDevice).order("created_at", { ascending: false }).limit(1);
+                if (r.error) throw r.error; data = r.data;
+            } catch (e) { setService("Disconnected", "err"); setOffline("Could not read telemetry."); return }
+            finally { inflight = false; endBusy() }
+            setService("Connected", "ok"); lastOk = Date.now();
             if (!data?.length) { setOffline("Device paired, but no telemetry has been received."); return }
-            $("lastFetched").textContent = new Date().toLocaleTimeString();
             setLive(data[0]); loadChart(); loadAlerts();
         }
 
@@ -2607,8 +2764,8 @@
         }
         async function connect() {
             const url = localStorage.getItem("fs_url"), key = localStorage.getItem("fs_key"); selectedDevice = localStorage.getItem("fs_device") || "";
-            if (!url || !key) { setService("Not configured"); setOffline("Configure Supabase in Settings."); return }
-            sb = window.supabase.createClient(url, key); setService("Connected", "ok");
+            if (!url || !key) { sb = null; setService("Disconnected", "err"); setOffline("Configure Supabase in Settings."); return }
+            sb = window.supabase.createClient(url, key); setService("Connecting…");
             if (selectedDevice) { const { data } = await sb.from("devices").select("name").eq("id", selectedDevice).limit(1); $("ovName").textContent = data?.[0]?.name || selectedDevice }
             clearInterval(poll); poll = setInterval(refresh, 5000); refresh();
         }
