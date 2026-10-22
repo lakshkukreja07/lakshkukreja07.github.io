@@ -1973,6 +1973,24 @@
                 margin-top: 8px !important
             }
         }
+
+        [hidden] { display: none !important }
+        @media(min-width:640px) { .cards { grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)) } }
+        .cards[data-n="1"] .metric { grid-template-columns: minmax(0, 1fr) auto }
+        .ftogs { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--raised); overflow: hidden }
+        .ftog { position: relative; display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 16px; font-weight: 500; cursor: pointer; user-select: none; -webkit-user-select: none }
+        .ftog+.ftog { border-top: 1px solid var(--line) }
+        .ftog span { flex: 1; min-width: 0 }
+        .ftog svg.i { color: var(--muted) }
+        .ftog input { position: absolute; opacity: 0; width: 0; height: 0; padding: 0; border: 0 }
+        .sw { flex: none; position: relative; width: 51px; height: 31px; border-radius: 16px; background: #3a3f45; transition: background .2s }
+        .sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px #0006; transition: transform .2s }
+        input:checked+.sw { background: var(--ok) }
+        input:checked+.sw::after { transform: translateX(20px) }
+        input:disabled+.sw { opacity: .55 }
+        .ftog:has(input:disabled) { cursor: not-allowed }
+        .ftog:has(:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px }
+        @media(max-width:639px) { .stack { gap: 12px } .settings-grid { gap: 16px } .ftog { padding: 0 14px } .panelhead span { width: 100% } }
     </style>
 </head>
 
@@ -2121,8 +2139,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="cards">
-                        <div class="card metric">
+                    <div class="cards" id="cardsRow">
+                        <div class="card metric" data-f="temperature">
                             <div class="mhead">
                                 <div class="chip"><svg class="i">
                                         <use href="#i-temp" />
@@ -2132,7 +2150,7 @@
                             <div class="meter" id="mTemp"><i></i><b></b><b></b></div>
                             <div class="limits" id="lTemp"></div>
                         </div>
-                        <div class="card metric">
+                        <div class="card metric" data-f="vibration">
                             <div class="mhead">
                                 <div class="chip"><svg class="i">
                                         <use href="#i-wave" />
@@ -2142,7 +2160,7 @@
                             <div class="meter" id="mVib"><i></i><b></b><b></b></div>
                             <div class="limits" id="lVib"></div>
                         </div>
-                        <div class="card metric">
+                        <div class="card metric" data-f="current">
                             <div class="mhead">
                                 <div class="chip"><svg class="i">
                                         <use href="#i-bolt" />
@@ -2158,8 +2176,8 @@
                             <div class="panelhead">
                                 <h3>Sensor history</h3>
                                 <div class="seg" id="metricSeg"><button class="active"
-                                        data-m="temperature">Temp</button><button
-                                        data-m="vibration">Vibration</button><button data-m="current">Current</button>
+                                        data-m="temperature" data-f="temperature">Temp</button><button
+                                        data-m="vibration" data-f="vibration">Vibration</button><button data-m="current" data-f="current">Current</button>
                                 </div>
                             </div>
                             <div id="chartEmpty" class="empty">
@@ -2247,9 +2265,9 @@
                                 <thead>
                                     <tr>
                                         <th>Time</th>
-                                        <th>Temp °C</th>
-                                        <th>Vibration</th>
-                                        <th>Current A</th>
+                                        <th data-f="temperature">Temp °C</th>
+                                        <th data-f="vibration">Vibration</th>
+                                        <th data-f="current">Current A</th>
                                         <th>Health</th>
                                         <th>Status</th>
                                     </tr>
@@ -2312,20 +2330,30 @@
                         </div>
                         <div class="panel">
                             <div class="panelhead">
+                                <h3>Monitored fields</h3><span>At least one required</span>
+                            </div>
+                            <div class="ftogs" id="fieldToggles">
+                                <label class="ftog"><svg class="i"><use href="#i-temp" /></svg><span>Temperature</span><input type="checkbox" role="switch" value="temperature"><i class="sw"></i></label>
+                                <label class="ftog"><svg class="i"><use href="#i-wave" /></svg><span>Vibration</span><input type="checkbox" role="switch" value="vibration"><i class="sw"></i></label>
+                                <label class="ftog"><svg class="i"><use href="#i-bolt" /></svg><span>Current</span><input type="checkbox" role="switch" value="current"><i class="sw"></i></label>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panelhead">
                                 <h3>Machine thresholds</h3><span>Used for status and health</span>
                             </div>
                             <div class="settings-grid">
-                                <div class="field"><label for="tWarn">Temperature warning (°C)</label><input id="tWarn"
+                                <div class="field" data-f="temperature"><label for="tWarn">Temperature warning (°C)</label><input id="tWarn"
                                         type="number" inputmode="decimal" value="35"></div>
-                                <div class="field"><label for="tCrit">Temperature critical (°C)</label><input id="tCrit"
+                                <div class="field" data-f="temperature"><label for="tCrit">Temperature critical (°C)</label><input id="tCrit"
                                         type="number" inputmode="decimal" value="40"></div>
-                                <div class="field"><label for="vWarn">Vibration warning (m/s²)</label><input id="vWarn"
+                                <div class="field" data-f="vibration"><label for="vWarn">Vibration warning (m/s²)</label><input id="vWarn"
                                         type="number" inputmode="decimal" value="10"></div>
-                                <div class="field"><label for="vCrit">Vibration critical (m/s²)</label><input id="vCrit"
+                                <div class="field" data-f="vibration"><label for="vCrit">Vibration critical (m/s²)</label><input id="vCrit"
                                         type="number" inputmode="decimal" value="15"></div>
-                                <div class="field"><label for="cWarn">Current warning (A)</label><input id="cWarn"
+                                <div class="field" data-f="current"><label for="cWarn">Current warning (A)</label><input id="cWarn"
                                         type="number" inputmode="decimal" step=".01" value=".70"></div>
-                                <div class="field"><label for="cCrit">Current critical (A)</label><input id="cCrit"
+                                <div class="field" data-f="current"><label for="cCrit">Current critical (A)</label><input id="cCrit"
                                         type="number" inputmode="decimal" step=".01" value="1"></div>
                             </div>
                             <div class="actions"><button class="btn primary" onclick="saveThresholds()">Save
@@ -2341,6 +2369,9 @@
     <script>
         let sb = null, selectedDevice = localStorage.getItem("fs_device") || "", chart = null, poll = null, series = [], metric = "temperature";
         let cfg = { timeout: Number(localStorage.getItem("fs_timeout") || 15), tw: Number(localStorage.getItem("fs_tw") || 35), tc: Number(localStorage.getItem("fs_tc") || 40), vw: Number(localStorage.getItem("fs_vw") || 10), vc: Number(localStorage.getItem("fs_vc") || 15), cw: Number(localStorage.getItem("fs_cw") || .7), cc: Number(localStorage.getItem("fs_cc") || 1) };
+        const ALL = ["temperature", "vibration", "current"];
+        let on = ALL.filter(k => (JSON.parse(localStorage.getItem("fs_fields") || "null") || ALL).includes(k)); if (!on.length) on = ALL.slice();
+        const en = k => on.includes(k), mask = (t, v, c) => [en("temperature") ? t : 0, en("vibration") ? v : 0, en("current") ? c : 0];
         const $ = x => document.getElementById(x);
         const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
         const ico = n => `<svg class="i"><use href="#i-${n}"/></svg>`;
@@ -2358,8 +2389,8 @@
         }
         document.querySelectorAll(".nav button").forEach(b => b.onclick = () => showView(b.dataset.view));
 
-        function statusOf(t, v, c) { if (t >= cfg.tc || v >= cfg.vc || c >= cfg.cc) return "CRITICAL"; if (t >= cfg.tw || v >= cfg.vw || c >= cfg.cw) return "WARNING"; return "NORMAL" }
-        function healthOf(t, v, c) { let s = 100; if (t > cfg.tw) s -= (t - cfg.tw) * 3; if (v > 6) s -= (v - 6) * 4; if (c > cfg.cw) s -= (c - cfg.cw) * 20; return Math.max(0, Math.min(100, Math.round(s))) }
+        function statusOf(t, v, c) { [t, v, c] = mask(t, v, c); if (t >= cfg.tc || v >= cfg.vc || c >= cfg.cc) return "CRITICAL"; if (t >= cfg.tw || v >= cfg.vw || c >= cfg.cw) return "WARNING"; return "NORMAL" }
+        function healthOf(t, v, c) { [t, v, c] = mask(t, v, c); let s = 100; if (t > cfg.tw) s -= (t - cfg.tw) * 3; if (v > 6) s -= (v - 6) * 4; if (c > cfg.cw) s -= (c - cfg.cw) * 20; return Math.max(0, Math.min(100, Math.round(s))) }
         function cls(s) { return s === "NORMAL" ? "online" : s === "WARNING" ? "warn" : "critical" }
         const label = s => s.charAt(0) + s.slice(1).toLowerCase();
 
@@ -2387,7 +2418,7 @@
                 vuNow += Math.sign(vuTgt - vuNow); paint(vuNow);
             }, 450);
         }
-        function levelOf(t, v, c) {
+        function levelOf(t, v, c) { [t, v, c] = mask(t, v, c);
             const f = (x, w, k) => x < w ? .65 * x / w : x < k ? .65 + .2 * (x - w) / (k - w) : .85 + .15 * Math.min(1, (x - k) / (k * .25));
             return Math.max(0, Math.min(1, Math.max(f(t, cfg.tw, cfg.tc), f(v, cfg.vw, cfg.vc), f(c, cfg.cw, cfg.cc))));
         }
@@ -2400,7 +2431,7 @@
             let li = 0, ci = 0;
             aiTimer = setInterval(() => { if (li >= lines.length) { clearInterval(aiTimer); return } ci++; els[li].textContent = lines[li].t.slice(0, ci); if (ci >= lines[li].t.length) { li++; ci = 0 } }, 12);
         }
-        function aiAdvice(t, v, c) {
+        function aiAdvice(t, v, c) { [t, v, c] = mask(t, v, c);
             const o = [], add = (c, t) => o.push({ c, t });
             if (t >= cfg.tc) add("crit", `Temp ${t.toFixed(1)}°C critical. Stop, check cooling.`); else if (t >= cfg.tw) add("warn", `Temp ${t.toFixed(1)}°C rising. Check airflow.`);
             if (v >= cfg.vc) add("crit", `Vib ${v.toFixed(2)} m/s² critical. Check bearings.`); else if (v >= cfg.vw) add("warn", `Vib ${v.toFixed(2)} m/s² high. Tighten mounts.`);
@@ -2542,11 +2573,11 @@
             $("historyEmpty").style.display = "grid"; $("historyTable").style.display = "none";
             if (error) { $("historyEmpty").textContent = error.message; return } if (!data?.length) { $("historyEmpty").textContent = "No telemetry for this device."; return }
             $("historyEmpty").style.display = "none"; $("historyTable").style.display = "table";
-            $("historyTable").querySelector("tbody").innerHTML = data.map(r => { let t = Number(r.temperature), v = Number(r.vibration), c = Number(r.current), s = statusOf(t, v, c); return `<tr><td data-label="Time">${new Date(r.created_at).toLocaleString()}</td><td data-label="Temp °C">${t.toFixed(1)}</td><td data-label="Vibration">${v.toFixed(2)}</td><td data-label="Current A">${c.toFixed(2)}</td><td data-label="Health">${healthOf(t, v, c)}%</td><td data-label="Status"><span class="badge ${cls(s)}">${label(s)}</span></td></tr>` }).join("");
+            $("historyTable").querySelector("tbody").innerHTML = data.map(r => { let t = Number(r.temperature), v = Number(r.vibration), c = Number(r.current), s = statusOf(t, v, c); return `<tr><td data-label="Time">${new Date(r.created_at).toLocaleString()}</td><td data-label="Temp °C" data-f="temperature">${t.toFixed(1)}</td><td data-label="Vibration" data-f="vibration">${v.toFixed(2)}</td><td data-label="Current A" data-f="current">${c.toFixed(2)}</td><td data-label="Health">${healthOf(t, v, c)}%</td><td data-label="Status"><span class="badge ${cls(s)}">${label(s)}</span></td></tr>` }).join(""); applyFields();
         }
 
         function eventHTML(r) {
-            const t = Number(r.temperature), v = Number(r.vibration), c = Number(r.current), s = statusOf(t, v, c), reasons = [];
+            const [t, v, c] = mask(Number(r.temperature), Number(r.vibration), Number(r.current)), s = statusOf(t, v, c), reasons = [];
             if (t >= cfg.tw) reasons.push(`Temperature ${t.toFixed(1)}°C`); if (v >= cfg.vw) reasons.push(`Vibration ${v.toFixed(2)} m/s²`); if (c >= cfg.cw) reasons.push(`Current ${c.toFixed(2)}A`);
             return `<div class="event ${cls(s)}">${ico("alert")}<b>${label(s)}</b><span class="msg">${reasons.join(" · ")}</span><time>${new Date(r.created_at).toLocaleString()}</time></div>`;
         }
@@ -2581,7 +2612,19 @@
             if (selectedDevice) { const { data } = await sb.from("devices").select("name").eq("id", selectedDevice).limit(1); $("ovName").textContent = data?.[0]?.name || selectedDevice }
             clearInterval(poll); poll = setInterval(refresh, 5000); refresh();
         }
-        drawLimits(); loadSettings(); connect();
+        function applyFields() {
+            document.querySelectorAll("[data-f]").forEach(e => e.hidden = !en(e.dataset.f));
+            const r = $("cardsRow"); r.dataset.n = on.length; r.style.setProperty("--n", on.length); $("metricSeg").hidden = on.length < 2;
+            if (!en(metric)) { metric = on[0]; document.querySelectorAll("#metricSeg button").forEach(x => x.classList.toggle("active", x.dataset.m === metric)); drawChart() }
+        }
+        const fieldInputs = document.querySelectorAll("#fieldToggles input");
+        function syncToggles() { fieldInputs.forEach(i => { i.checked = en(i.value); i.disabled = on.length === 1 && i.checked }) }
+        fieldInputs.forEach(i => i.onchange = () => {
+            const n = ALL.filter(k => [...fieldInputs].some(x => x.value === k && x.checked));
+            if (!n.length) { i.checked = true; toast("Keep at least one field on", 1); return }
+            on = n; localStorage.setItem("fs_fields", JSON.stringify(on)); syncToggles(); applyFields(); refresh(); toast("Fields updated");
+        });
+        drawLimits(); loadSettings(); syncToggles(); applyFields(); connect();
     </script>
 </body>
 
