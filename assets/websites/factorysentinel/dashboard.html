@@ -112,7 +112,7 @@
             height: 36px;
             border-radius: var(--r-md);
             background: var(--accent);
-            color: var(--ink);
+            color: var(--on-accent);
             display: grid;
             place-items: center;
             flex: none
@@ -294,7 +294,7 @@
 
         .btn.primary {
             background: var(--accent);
-            color: var(--ink)
+            color: var(--on-accent)
         }
 
         .btn.primary:hover {
@@ -2112,6 +2112,190 @@
         .fetched b {
             transition: opacity .2s
         }
+
+        :root {
+            --swoff: #3a3f45;
+            --on-accent: #0c0d0f
+        }
+
+        :root[data-theme="light"] {
+            --ink: #f2f3f5;
+            --panel: #fff;
+            --raised: #eceef1;
+            --line: #dcdfe4;
+            --text: #14161a;
+            --muted: #5f666f;
+            --idle: #8a9199;
+            --ok: #16a34a;
+            --warn: #d97706;
+            --crit: #dc2626;
+            --swoff: #c8ccd2;
+            color-scheme: light
+        }
+
+        :root[data-theme="light"] body {
+            color-scheme: light
+        }
+
+        .sw {
+            background: var(--swoff)
+        }
+
+        input:focus,
+        select:focus {
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent)
+        }
+
+        .table tbody tr:hover td {
+            background: color-mix(in srgb, var(--raised) 40%, transparent)
+        }
+
+        @media(max-width:639px) {
+            aside {
+                background: color-mix(in srgb, var(--panel) 95%, transparent)
+            }
+        }
+
+        .tseg {
+            display: flex;
+            width: 100%
+        }
+
+        .tseg button {
+            flex: 1
+        }
+
+        .swatches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px
+        }
+
+        .swa {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--c);
+            box-shadow: inset 0 0 0 1px #0002;
+            transition: box-shadow .15s
+        }
+
+        .swa.on {
+            box-shadow: 0 0 0 3px var(--panel), 0 0 0 5px var(--c)
+        }
+
+        .event .msg {
+            flex: 1;
+            min-width: 0;
+            font: 500 13px/1.3 Figtree, system-ui, sans-serif;
+            color: var(--text)
+        }
+
+        .event time {
+            white-space: nowrap
+        }
+
+        @media(max-width:1023px) {
+            .event {
+                flex-wrap: nowrap
+            }
+
+            .event .msg {
+                order: 0;
+                flex-basis: auto;
+                white-space: normal
+            }
+        }
+
+        @media(max-width:399px) {
+            .event time {
+                font-size: 11px
+            }
+        }
+
+        :root[data-theme="dark"][data-black] {
+            --ink: #000;
+            --panel: #08090a;
+            --raised: #121315;
+            --line: #202225
+        }
+
+        .ftog small {
+            display: block;
+            margin-top: 1px;
+            color: var(--muted);
+            font-weight: 400;
+            font-size: 12px
+        }
+
+        .swa.pick {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background: conic-gradient(#ff4d4d, #ffb84d, #4ddb6a, #4dc9ff, #7a5cff, #ff4dc4, #ff4d4d)
+        }
+
+        .swa.pick::after {
+            content: "";
+            position: absolute;
+            inset: 9px;
+            border-radius: 50%;
+            background: var(--panel)
+        }
+
+        .swa.pick.has::after {
+            background: var(--cc)
+        }
+
+        .swa.pick.on {
+            box-shadow: 0 0 0 3px var(--panel), 0 0 0 5px var(--cc)
+        }
+
+        .swa.pick input {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            border: 0;
+            opacity: 0;
+            cursor: pointer
+        }
+
+        .swa:has(:focus-visible) {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px
+        }
+
+        .hexv {
+            margin-left: auto;
+            align-self: center;
+            color: var(--muted);
+            font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+        }
+
+        .aclear {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px
+        }
+
+        .aclear select {
+            flex: 1 1 200px
+        }
+
+        .crange {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex: 1 1 100%
+        }
+
+        .crange input {
+            flex: 1 1 180px
+        }
     </style>
 </head>
 
@@ -2405,6 +2589,23 @@
                         <div class="panelhead">
                             <h3>Alerts &amp; events</h3><span>From the last 100 readings</span>
                         </div>
+                        <div class="aclear">
+                            <select id="clearRange" aria-label="Clear alerts"
+                                onchange="$('clearCustom').hidden = this.value !== 'custom'">
+                                <option value="all">Clear all alerts</option>
+                                <option value="3600000">Older than 1 hour</option>
+                                <option value="86400000">Older than 24 hours</option>
+                                <option value="604800000">Older than 7 days</option>
+                                <option value="custom">Custom range…</option>
+                            </select>
+                            <button class="btn primary sm" onclick="clearAlerts()">Clear</button>
+                            <button class="btn ghost sm" id="restoreBtn" onclick="restoreAlerts()"
+                                hidden>Restore</button>
+                            <div class="crange" id="clearCustom" hidden>
+                                <input type="datetime-local" id="clearFrom" aria-label="From">
+                                <input type="datetime-local" id="clearTo" aria-label="To">
+                            </div>
+                        </div>
                         <div id="alertList">
                             <div class="empty">No telemetry has been received.</div>
                         </div>
@@ -2428,12 +2629,33 @@
                                 <div class="field"><label for="setTimeout">Offline timeout (seconds)</label><input
                                         id="setTimeout" type="number" inputmode="numeric" value="15"></div>
                             </div>
-                            <div class="note"><svg class="i">
-                                    <use href="#i-alert" />
-                                </svg><span>Never paste a Supabase service-role key here. Use the anon/public key with
-                                    Row Level Security enabled.</span></div>
                             <div class="actions"><button class="btn primary" onclick="saveSettings()">Save and
                                     connect</button></div>
+                        </div>
+                        <div class="panel">
+                            <div class="panelhead">
+                                <h3>Appearance</h3><span>Applies instantly</span>
+                            </div>
+                            <div class="field"><label>Theme</label>
+                                <div class="seg tseg" id="themeSeg"><button data-t="dark">Dark</button><button
+                                        data-t="light">Light</button><button data-t="system">System</button></div>
+                            </div>
+                            <div class="ftogs" style="margin-top:20px"><label class="ftog"><span>Pure black<small>Dark
+                                            mode only · true black background</small></span><input type="checkbox"
+                                        role="switch" id="blackToggle"><i class="sw"></i></label></div>
+                            <div class="field" style="margin-top:20px"><label>Accent color</label>
+                                <div class="swatches" id="accentRow">
+                                    <button class="swa" data-a="neutral" style="--c:var(--text)" aria-label="White"
+                                        title="White"></button>
+                                    <button class="swa" data-a="oos" style="--c:#2ea7ff" aria-label="Light blue"
+                                        title="Light blue"></button>
+                                    <button class="swa" data-a="red" style="--c:#eb0028" aria-label="OnePlus red"
+                                        title="OnePlus red"></button>
+                                    <label class="swa pick" id="accentPickWrap" title="Custom color"><input type="color"
+                                            id="accentPick" aria-label="Custom accent color"></label>
+                                    <span class="hexv" id="accentHexv"></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="panel">
                             <div class="panelhead">
@@ -2636,7 +2858,7 @@
         const metricMeta = { temperature: { name: "Temperature", axis: "Temperature (°C)", unit: "°C", w: "tw", c: "tc", col: "#eceef0" }, vibration: { name: "Vibration", axis: "Vibration (m/s²)", unit: "m/s²", w: "vw", c: "vc", col: "#eceef0" }, current: { name: "Current", axis: "Current (A)", unit: "A", w: "cw", c: "cc", col: "#eceef0" } };
         function drawChart() {
             if (!series.length) return;
-            const narrow = window.innerWidth < 640, m = metricMeta[metric], n0 = series.length, step = Math.ceil(n0 / 1500), view = step > 1 ? series.filter((_, i) => i % step === 0 || i === n0 - 1) : series, n = view.length, mute = "#8d949c", multi = new Date(view[0].created_at).toDateString() !== new Date(view[n - 1].created_at).toDateString();
+            const narrow = window.innerWidth < 640, m = metricMeta[metric], n0 = series.length, step = Math.ceil(n0 / 1500), view = step > 1 ? series.filter((_, i) => i % step === 0 || i === n0 - 1) : series, n = view.length, mute = cv("--muted"), acc = accentHex, multi = new Date(view[0].created_at).toDateString() !== new Date(view[n - 1].created_at).toDateString();
             $("chartEmpty").style.display = "none"; $("chartBox").style.display = "block"; $("chartLabel").textContent = n0 + " readings" + (step > 1 ? " (sampled for display)" : "");
             if (chart) chart.destroy();
             const ref = (l, v, col) => ({ label: l, data: Array(n).fill(v), borderColor: col, borderWidth: 1, borderDash: [4, 4], pointRadius: 0, pointHoverRadius: 0, fill: false });
@@ -2644,19 +2866,19 @@
             chart = new Chart($("chart"), {
                 type: "line", data: {
                     labels: view.map(x => new Date(x.created_at).toLocaleString([], multi ? { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" } : narrow ? { hour: "2-digit", minute: "2-digit" } : { hour: "2-digit", minute: "2-digit", second: "2-digit" })), datasets: [
-                        { label: m.name, data: view.map(x => x[metric]), borderColor: m.col, borderWidth: 2, pointRadius: 0, pointHoverRadius: 4, pointHoverBackgroundColor: m.col, pointHoverBorderColor: "#15171a", pointHoverBorderWidth: 2, tension: .3, fill: true, backgroundColor: c => { const a = c.chart.chartArea; if (!a) return "transparent"; const g = c.chart.ctx.createLinearGradient(0, a.top, 0, a.bottom); g.addColorStop(0, "rgba(236,238,240,.18)"); g.addColorStop(1, "rgba(236,238,240,0)"); return g } },
-                        ref("Warning", cfg[m.w], "#f5b83d"), ref("Critical", cfg[m.c], "#ff6161")]
+                        { label: m.name, data: view.map(x => x[metric]), borderColor: acc, borderWidth: 2, pointRadius: 0, pointHoverRadius: 4, pointHoverBackgroundColor: acc, pointHoverBorderColor: cv("--panel"), pointHoverBorderWidth: 2, tension: .3, fill: true, backgroundColor: c => { const a = c.chart.chartArea; if (!a) return "transparent"; const g = c.chart.ctx.createLinearGradient(0, a.top, 0, a.bottom); g.addColorStop(0, hexA(acc, .18)); g.addColorStop(1, hexA(acc, 0)); return g } },
+                        ref("Warning", cfg[m.w], cv("--warn")), ref("Critical", cfg[m.c], cv("--crit"))]
                 },
                 options: {
                     layout: narrow ? { padding: { left: 0, right: 14, top: 4, bottom: 6 } } : {},
                     responsive: true, maintainAspectRatio: false, animation: false, interaction: { mode: "index", intersect: false },
                     plugins: {
                         legend: { align: "end", labels: { color: mute, font: { size: 11 }, boxWidth: 16, boxHeight: 2 } },
-                        tooltip: { filter: i => i.datasetIndex === 0, backgroundColor: "#1d2024", borderColor: "#2a2e33", borderWidth: 1, titleColor: mute, bodyColor: "#eceef0", padding: 10, cornerRadius: 8, displayColors: false, callbacks: { label: c => Number(c.parsed.y).toFixed(2) + " " + m.unit } }
+                        tooltip: { filter: i => i.datasetIndex === 0, backgroundColor: cv("--raised"), borderColor: cv("--line"), borderWidth: 1, titleColor: mute, bodyColor: cv("--text"), padding: 10, cornerRadius: 8, displayColors: false, callbacks: { label: c => Number(c.parsed.y).toFixed(2) + " " + m.unit } }
                     },
                     scales: {
-                        x: { title: { ...axisTitle("Time"), display: !narrow }, ticks: { color: mute, font: { size: 11 }, maxTicksLimit: narrow ? 3 : 6, maxRotation: 0, padding: narrow ? 8 : 3, align: narrow ? "inner" : "center" }, grid: { display: false }, border: { color: "#2a2e33" } },
-                        y: { title: { ...axisTitle(m.axis), display: !narrow }, beginAtZero: true, suggestedMax: cfg[m.c] * 1.1, ticks: { color: mute, font: { size: 11 }, maxTicksLimit: 5 }, grid: { color: "#2a2e3399" }, border: { display: false } }
+                        x: { title: { ...axisTitle("Time"), display: !narrow }, ticks: { color: mute, font: { size: 11 }, maxTicksLimit: narrow ? 3 : 6, maxRotation: 0, padding: narrow ? 8 : 3, align: narrow ? "inner" : "center" }, grid: { display: false }, border: { color: cv("--line") } },
+                        y: { title: { ...axisTitle(m.axis), display: !narrow }, beginAtZero: true, suggestedMax: cfg[m.c] * 1.1, ticks: { color: mute, font: { size: 11 }, maxTicksLimit: 5 }, grid: { color: cv("--line") + "99" }, border: { display: false } }
                     }
                 }
             });
@@ -2733,16 +2955,30 @@
             $("historyTable").querySelector("tbody").innerHTML = data.map(r => { let t = Number(r.temperature), v = Number(r.vibration), c = Number(r.current), s = statusOf(t, v, c); return `<tr><td data-label="Time">${new Date(r.created_at).toLocaleString()}</td><td data-label="Temp °C" data-f="temperature">${t.toFixed(1)}</td><td data-label="Vibration" data-f="vibration">${v.toFixed(2)}</td><td data-label="Current A" data-f="current">${c.toFixed(2)}</td><td data-label="Health">${healthOf(t, v, c)}%</td><td data-label="Status"><span class="badge ${cls(s)}">${label(s)}</span></td></tr>` }).join(""); applyFields();
         }
 
+        let alertsRaw = [];
+        const clrKey = () => "fs_cleared_" + selectedDevice, getCleared = () => { try { return JSON.parse(localStorage.getItem(clrKey()) || "[]") } catch (e) { return [] } }, isCleared = (t, rs) => rs.some(x => t >= x[0] && t <= x[1]);
+        function clearAlerts() {
+            if (!selectedDevice) { toast("No device selected.", 1); return }
+            const v = $("clearRange").value, now = Date.now(); let a = 0, b;
+            if (v === "all") b = Math.max(now, ...alertsRaw.map(r => new Date(r.created_at).getTime()));
+            else if (v === "custom") {
+                const f = $("clearFrom").value, t = $("clearTo").value; if (!f && !t) { toast("Pick a start and/or end time.", 1); return }
+                a = f ? new Date(f).getTime() : 0; b = t ? new Date(t).getTime() : now; if (a > b) { toast("Start must be before end.", 1); return }
+            } else b = now - Number(v);
+            const n = alertsRaw.filter(r => { const t = new Date(r.created_at).getTime(); return t >= a && t <= b }).length;
+            const rs = getCleared(); rs.push([a, b]); localStorage.setItem(clrKey(), JSON.stringify(rs)); loadAlerts(); toast(n + (n === 1 ? " alert cleared" : " alerts cleared"));
+        }
+        function restoreAlerts() { localStorage.removeItem(clrKey()); loadAlerts(); toast("Alerts restored") }
         function eventHTML(r) {
-            const [t, v, c] = mask(Number(r.temperature), Number(r.vibration), Number(r.current)), s = statusOf(t, v, c), reasons = [];
-            if (t >= cfg.tw) reasons.push(`Temperature ${t.toFixed(1)}°C`); if (v >= cfg.vw) reasons.push(`Vibration ${v.toFixed(2)} m/s²`); if (c >= cfg.cw) reasons.push(`Current ${c.toFixed(2)}A`);
-            return `<div class="event ${cls(s)}">${ico("alert")}<b>${label(s)}</b><span class="msg">${reasons.join(" · ")}</span><time>${new Date(r.created_at).toLocaleString()}</time></div>`;
+            const [t, v, c] = mask(Number(r.temperature), Number(r.vibration), Number(r.current)), s = statusOf(t, v, c), f = [], d = new Date(r.created_at);
+            if (t >= cfg.tw) f.push("Temperature"); if (v >= cfg.vw) f.push("Vibration"); if (c >= cfg.cw) f.push("Current");
+            return `<div class="event ${cls(s)}" title="${label(s)}">${ico("alert")}<span class="msg">${f.join(" · ")}</span><time>${d.toLocaleDateString([], { day: "numeric", month: "short" })}, ${d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}</time></div>`;
         }
         const noAlerts = '<div class="empty"><div><svg class="i"><use href="#i-check"/></svg><strong>All clear</strong>No warning or critical readings recorded.</div></div>';
         async function loadAlerts() {
             if (!sb || !selectedDevice) { $("alertList").innerHTML = '<div class="empty">No device selected.</div>'; return }
             const { data } = await sb.from("sensor_readings").select("*").eq("device_id", selectedDevice).order("created_at", { ascending: false }).limit(100);
-            const alerts = (data || []).filter(r => statusOf(Number(r.temperature), Number(r.vibration), Number(r.current)) !== "NORMAL");
+            const rs = getCleared(); alertsRaw = (data || []).filter(r => statusOf(Number(r.temperature), Number(r.vibration), Number(r.current)) !== "NORMAL"); const alerts = alertsRaw.filter(r => !isCleared(new Date(r.created_at).getTime(), rs)); $("restoreBtn").hidden = !rs.length;
             const cnt = $("alertCount"); cnt.textContent = alerts.length > 99 ? "99+" : alerts.length; cnt.classList.toggle("on", alerts.length > 0);
             if (!alerts.length) { $("alertList").innerHTML = noAlerts; $("overviewAlerts").innerHTML = noAlerts; return }
             $("alertList").innerHTML = '<div class="filelist">' + alerts.map(eventHTML).join("") + "</div>";
@@ -2781,7 +3017,29 @@
             if (!n.length) { i.checked = true; toast("Keep at least one field on", 1); return }
             on = n; localStorage.setItem("fs_fields", JSON.stringify(on)); syncToggles(); applyFields(); refresh(); toast("Fields updated");
         });
-        drawLimits(); loadSettings(); syncToggles(); applyFields(); connect();
+        const cv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim(), hexA = (h, a) => { const n = parseInt(h.slice(1), 16); return `rgba(${n >> 16},${n >> 8 & 255},${n & 255},${a})` };
+        const ACC = { neutral: null, oos: "#2ea7ff", red: "#eb0028" }, mq = matchMedia("(prefers-color-scheme: dark)");
+        let themeMode = localStorage.getItem("fs_theme") || "dark", accentKey = localStorage.getItem("fs_accent") || "neutral", customHex = localStorage.getItem("fs_accent_hex") || "#ff7a00", pureBlack = localStorage.getItem("fs_black") === "1", accentHex = "#ffffff";
+        function applyTheme() {
+            const dark = themeMode === "system" ? mq.matches : themeMode === "dark", r = document.documentElement;
+            r.dataset.theme = dark ? "dark" : "light"; r.toggleAttribute("data-black", dark && pureBlack);
+            accentHex = accentKey === "custom" ? customHex : ACC[accentKey] || (dark ? "#ffffff" : "#14161a");
+            const n = parseInt(accentHex.slice(1), 16);
+            r.style.setProperty("--accent", accentHex); r.style.setProperty("--on-accent", (.299 * (n >> 16) + .587 * (n >> 8 & 255) + .114 * (n & 255)) / 255 > .5 ? "#0c0d0f" : "#fff");
+            document.querySelector('meta[name="theme-color"]').content = cv("--ink");
+            document.querySelectorAll("#themeSeg button").forEach(b => b.classList.toggle("active", b.dataset.t === themeMode));
+            document.querySelectorAll("#accentRow button").forEach(b => b.classList.toggle("on", b.dataset.a === accentKey));
+            const pk = $("accentPickWrap"); pk.style.setProperty("--cc", customHex); pk.classList.toggle("has", accentKey === "custom"); pk.classList.toggle("on", accentKey === "custom"); $("accentPick").value = customHex;
+            $("accentHexv").textContent = accentHex.toUpperCase();
+            const bt = $("blackToggle"); bt.disabled = !dark; bt.checked = dark && pureBlack;
+            drawChart();
+        }
+        mq.addEventListener("change", () => themeMode === "system" && applyTheme());
+        document.querySelectorAll("#themeSeg button").forEach(b => b.onclick = () => { themeMode = b.dataset.t; localStorage.setItem("fs_theme", themeMode); applyTheme() });
+        document.querySelectorAll("#accentRow button").forEach(b => b.onclick = () => { accentKey = b.dataset.a; localStorage.setItem("fs_accent", accentKey); applyTheme() });
+        $("accentPick").oninput = e => { customHex = e.target.value; accentKey = "custom"; localStorage.setItem("fs_accent", "custom"); localStorage.setItem("fs_accent_hex", customHex); applyTheme() };
+        $("blackToggle").onchange = e => { pureBlack = e.target.checked; localStorage.setItem("fs_black", pureBlack ? "1" : "0"); applyTheme() };
+        applyTheme(); drawLimits(); loadSettings(); syncToggles(); applyFields(); connect();
     </script>
 </body>
 
