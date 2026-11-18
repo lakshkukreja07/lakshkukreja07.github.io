@@ -2,618 +2,692 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laksh Kukreja</title>
-   <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M32 2C15.432 2 2 15.432 2 32s13.432 30 30 30s30-13.432 30-30S48.568 2 32 2zm11.275 44.508h-20.55V17.492h6.063v23.799h14.488v5.217z' fill='%23fff'/></svg>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111;
-            --bg-card: #1a1a1a;
-            --border: #333;
-            --text-primary: #fafafa;
-            --text-secondary: #888;
-            --accent-blue: #0070f3;
-            --accent-purple: #8a63d2;
-            --accent-green: #17c964;
-            --accent-orange: #f5a623;
-            --radius-sm: 6px;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0e0e0e">
+  <title>My Projects | Laksh Kukreja</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M32 2C15.432 2 2 15.432 2 32s13.432 30 30 30 30-13.432 30-30S48.568 2 32 2zm11.275 44.508h-20.55V17.492h6.063v23.799h14.488z' fill='%23fff'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --fg: #ffffff;
+      --mut: rgba(255, 255, 255, .75);
+      --dim: rgba(255, 255, 255, .42);
+      --line: rgba(255, 255, 255, .12);
+      --card-bg: rgba(255, 255, 255, .04);
+      --card-border: rgba(255, 255, 255, .1);
+      --pill-bg: rgba(255, 255, 255, .08);
+      --pill-hover: rgba(255, 255, 255, .16);
+      --pill-border: rgba(255, 255, 255, .15);
+      --spring: cubic-bezier(.34, 1.56, .64, 1);
+      --ease: cubic-bezier(.22, .8, .24, 1);
+      --pad: clamp(16px, 4.5vw, 60px);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Manrope', sans-serif;
-        }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            line-height: 1.5;
-            overflow-x: hidden;
-            font-family: 'Manrope', sans-serif;
-        }
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+      background: #0e0e0e;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 24px;
-        }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      color: var(--fg);
+      line-height: 1.45;
+      background: #0e0e0e;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    }
 
-        .welcome-header {
-            margin-bottom: 60px;
-            text-align: center;
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        .welcome-title {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-family: 'Manrope', sans-serif;
-        }
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
 
-        .welcome-subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 24px;
-            font-family: 'Manrope', sans-serif;
-        }
+    :focus-visible {
+      outline: 2px solid rgba(255, 255, 255, .8);
+      outline-offset: 4px;
+      border-radius: 6px;
+    }
 
-        .section {
-            margin-bottom: 80px;
-        }
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)),
+        linear-gradient(to bottom, #0e0e0e 0%, #240e0e 35%, #421a1a 70%, #2a1111 90%, #150808 100%);
+    }
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 32px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-        }
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='256' height='256' viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.055'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+    }
 
-        .section-icon {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-card);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-primary);
-            font-family: 'Manrope', sans-serif;
-        }
+    .main-section {
+      flex: 1 0 auto;
+      width: 100%;
+      padding-top: clamp(36px, 7vh, 80px);
+      padding-bottom: clamp(28px, 5vh, 52px);
+      position: relative;
+      z-index: 3;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
 
-        .section-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-primary);
-            font-family: 'Manrope', sans-serif;
-        }
+    @media (min-height: 820px) and (min-width: 1025px) {
+      .main-section {
+        padding-top: 64px;
+        padding-bottom: 44px;
+      }
+    }
 
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
-        }
+    .wrap {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      position: relative;
+    }
 
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            height: 180px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            font-family: 'Manrope', sans-serif;
-        }
+    .hero {
+      margin-bottom: clamp(20px, 3.8vh, 36px);
+    }
 
-        .card:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
+    .hero-title {
+      font-size: clamp(38px, 8.2vw, 80px);
+      font-weight: 800;
+      letter-spacing: -.045em;
+      line-height: 1.06;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      animation: fadeUp .7s var(--ease) .1s both;
+    }
 
-        .card:hover .card-link {
-            gap: 12px;
-        }
+    .hero-title em {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: inherit;
+      font-size: 1em;
+      letter-spacing: inherit;
+      line-height: inherit;
+      display: inline-block;
+      color: #ff7f61;
+      text-shadow: none;
+    }
 
-        .card:hover .card-link i {
-            transform: translateX(4px);
-        }
+    .label-row {
+      display: grid;
+      grid-template-columns: 1.5fr 1.1fr .75fr .45fr 44px;
+      gap: 16px;
+      align-items: baseline;
+      padding-bottom: clamp(10px, 1.6vh, 14px);
+      border-bottom: 1px solid var(--line);
+      transition: border-color .3s var(--ease);
+      animation: fadeUp .6s var(--ease) .2s both;
+    }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    .label {
+      font-size: clamp(12px, 1.2vw, 13px);
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--mut);
+    }
 
-        .card-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-            font-family: 'Manrope', sans-serif;
-        }
+    .label-row .lv {
+      text-align: right;
+    }
 
-        .badges {
-            display: flex;
-            gap: 8px;
-        }
+    .list {
+      animation: fadeUp .7s var(--ease) .3s both;
+    }
 
-        .badge {
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            font-family: 'Manrope', sans-serif;
-        }
+    .item {
+      position: relative;
+      isolation: isolate;
+      border-bottom: 1px solid var(--line);
+      transition: border-color .3s var(--ease);
+    }
 
-        .badge.beta {
-            background: rgba(245, 166, 35, 0.1);
-            color: var(--accent-orange);
-            border: 1px solid rgba(245, 166, 35, 0.2);
-        }
+    .item::before {
+      content: '';
+      position: absolute;
+      inset: 0 -12px -1px;
+      z-index: -1;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      background: var(--card-bg);
+      opacity: 0;
+      transition: opacity .3s var(--ease);
+    }
 
-        .badge.stable {
-            background: rgba(23, 201, 100, 0.1);
-            color: var(--accent-green);
-            border: 1px solid rgba(23, 201, 100, 0.2);
-        }
+    .item.open,
+    .item:has(+ .item.open) {
+      border-bottom-color: transparent;
+    }
 
-        .badge.date {
-            background: rgba(255, 255, 255, 0.1);
-            color: #e0e0e0;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
+    .wrap:has(.list > .item:first-child.open) .label-row {
+      border-bottom-color: transparent;
+    }
 
-        .card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-        }
+    .item.open::before {
+      opacity: 1;
+    }
 
-        .version-number {
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-family: 'Manrope', monospace;
-            letter-spacing: -0.5px;
-        }
+    .row-btn {
+      width: 100%;
+      min-height: 48px;
+      display: grid;
+      grid-template-columns: 1.5fr 1.1fr .75fr .45fr 44px;
+      gap: 16px;
+      align-items: center;
+      padding: clamp(11px, 1.5vh, 16px) 0;
+      font-size: clamp(14px, 1.25vw, 15px);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      transition: color .2s, transform .2s var(--spring);
+    }
 
-        .card-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: gap 0.2s;
-            font-family: 'Manrope', sans-serif;
-        }
+    .row-btn:active {
+      transform: scale(.993);
+    }
 
-        .card-link i {
-            font-size: 12px;
-            transition: transform 0.2s;
-        }
+    .row-btn .n {
+      font-weight: 600;
+      letter-spacing: -.015em;
+      transition: transform .3s var(--ease);
+    }
 
-        .footer {
-            padding: 60px 0 40px;
-            border-top: 1px solid var(--border);
-            margin-top: 40px;
-        }
+    .row-btn .b,
+    .row-btn .d,
+    .row-btn .v {
+      font-weight: 600;
+      letter-spacing: -.015em;
+    }
 
-        .footer-content {
-            text-align: left;
-            font-family: 'Manrope', sans-serif;
-        }
+    .row-btn .v {
+      text-align: right;
+    }
 
-        .copyright-main {
-            color: #ffffff;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            line-height: 1.4;
-            font-family: 'Manrope', sans-serif;
-        }
+    .plus-icon {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      color: var(--mut);
+      transition: transform .4s var(--spring), color .2s;
+    }
 
-        .legal-notice {
-            color: #e0e0e0;
-            font-size: 14px;
-            line-height: 1.7;
-            max-width: 1000px;
-            margin-top: 8px;
-            font-family: 'Manrope', sans-serif;
-        }
+    .row-btn[aria-expanded="true"] .plus-icon {
+      transform: rotate(45deg);
+      color: var(--fg);
+    }
 
-        .legal-notice p {
-            margin-bottom: 16px;
-        }
+    @media (hover: hover) and (pointer: fine) {
+      .list:hover .row-btn {
+        color: rgba(255, 255, 255, .32);
+      }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px 20px;
-            }
+      .list .item:hover .row-btn,
+      .row-btn[aria-expanded="true"] {
+        color: var(--fg) !important;
+      }
 
-            .welcome-title {
-                font-size: 36px;
-            }
+      .list .item:hover .row-btn .n,
+      .row-btn[aria-expanded="true"] .n {
+        transform: translateX(6px);
+      }
 
-            .welcome-subtitle {
-                font-size: 18px;
-            }
+      .row-btn[aria-expanded="true"]+.detail .detail-card {
+        padding-left: 6px;
+      }
+    }
 
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
+    .detail {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .45s var(--ease);
+    }
 
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
+    .item.open .detail {
+      grid-template-rows: 1fr;
+    }
 
-            .card {
-                height: 160px;
-                padding: 20px;
-            }
+    .detail-inner {
+      overflow: hidden;
+    }
 
-            .copyright-main {
-                font-size: 16px;
-            }
+    .detail-card {
+      padding: 0 0 clamp(14px, 2vh, 18px);
+      opacity: 0;
+      transition: opacity .35s var(--ease), padding-left .3s var(--ease);
+    }
 
-            .legal-notice {
-                font-size: 13px;
-            }
-        }
+    .item.open .detail-card {
+      opacity: 1;
+    }
 
-        @media (max-width: 480px) {
-            .welcome-title {
-                font-size: 28px;
-            }
+    .detail-desc {
+      font-size: clamp(13px, 1.2vw, 14px);
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
 
-            .welcome-subtitle {
-                font-size: 16px;
-            }
+    .detail-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+    }
 
-            .card {
-                height: 150px;
-                padding: 18px;
-            }
+    .visit-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 38px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--fg);
+      transition: background .2s, border-color .2s, transform .25s var(--spring);
+    }
 
-            .card-title {
-                font-size: 16px;
-            }
+    .visit-link:active {
+      transform: scale(.96);
+      background: var(--pill-hover);
+    }
 
-            .copyright-main {
-                font-size: 15px;
-            }
+    @media (hover: hover) and (pointer: fine) {
+      .visit-link:hover {
+        background: var(--pill-hover);
+        border-color: rgba(255, 255, 255, .3);
+        transform: translateY(-1px);
+      }
 
-            .legal-notice {
-                font-size: 12px;
-                line-height: 1.6;
-            }
-        }
+      .visit-link svg {
+        opacity: .7;
+        transition: opacity .2s, transform .25s var(--spring);
+      }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+      .visit-link:hover svg {
+        opacity: 1;
+        transform: translate(1.5px, -1.5px);
+      }
+    }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    footer {
+      flex: 0 0 auto;
+      width: 100%;
+      padding-top: clamp(40px, 7vh, 64px);
+      padding-bottom: max(env(safe-area-inset-bottom, 0px), clamp(36px, 6vh, 56px));
+      color: var(--mut);
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .6s var(--ease), transform .6s var(--ease);
+    }
 
-        .card {
-            animation: fadeIn 0.4s ease forwards;
-            opacity: 0;
-        }
+    footer.show {
+      opacity: 1;
+      transform: none;
+    }
 
-        .card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
+    footer b {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+    }
 
-        .card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
+    footer p {
+      margin: 0 auto;
+      max-width: 820px;
+      font-size: 12px;
+      line-height: 1.85;
+      color: rgba(255, 255, 255, 0.65);
+    }
 
-        .card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
 
-        .card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
 
-        .card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
+    @media (max-width: 1024px) and (min-width: 601px) {
+      .label-row {
+        grid-template-columns: 1.6fr 1.1fr .8fr 44px;
+        gap: 12px;
+      }
 
-        .card:nth-child(6) {
-            animation-delay: 0.6s;
-        }
+      .label-row .ld {
+        text-align: right;
+      }
 
-        .card:nth-child(7) {
-            animation-delay: 0.7s;
-        }
+      .label-row .lv {
+        display: none;
+      }
 
-        .card:nth-child(8) {
-            animation-delay: 0.8s;
-        }
+      .row-btn {
+        grid-template-columns: 1.6fr 1.1fr .8fr 44px;
+        gap: 12px;
+        padding: 13px 0;
+      }
 
-        .card:nth-child(9) {
-            animation-delay: 0.9s;
-        }
+      .row-btn .v {
+        display: none;
+      }
 
-        .welcome-header {
-            animation: fadeIn 0.6s ease forwards;
-        }
-    </style>
+      .row-btn .d {
+        text-align: right;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .main-section {
+        padding-top: 32px;
+        padding-bottom: 24px;
+      }
+
+      .hero {
+        margin-bottom: 22px;
+      }
+
+      .hero-title {
+        font-size: clamp(36px, 10.5vw, 48px);
+        line-height: 1.06;
+      }
+
+      .label-row {
+        grid-template-columns: 1fr auto 38px;
+        gap: 10px;
+        padding-bottom: 10px;
+      }
+
+      .label-row .lt,
+      .label-row .lv {
+        display: none;
+      }
+
+      .label-row .ld {
+        text-align: right;
+        font-size: 11px;
+      }
+
+      .label-row .ld::after {
+        content: ' / Version';
+      }
+
+      .row-btn {
+        min-height: 52px;
+        grid-template-columns: 1fr auto 38px;
+        grid-template-rows: auto auto;
+        gap: 3px 10px;
+        padding: 12px 0;
+      }
+
+      .row-btn .n {
+        grid-column: 1;
+        grid-row: 1;
+        font-size: 15px;
+      }
+
+      .row-btn .b {
+        grid-column: 1;
+        grid-row: 2;
+        font-size: 12.5px;
+      }
+
+      .row-btn .d {
+        grid-column: 2;
+        grid-row: 1;
+        font-size: 12px;
+        text-align: right;
+      }
+
+      .row-btn .v {
+        grid-column: 2;
+        grid-row: 2;
+        font-size: 12px;
+      }
+
+      .plus-icon {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        align-self: center;
+      }
+
+      .visit-link {
+        min-height: 38px;
+        padding: 8px 14px;
+        font-size: 12px;
+      }
+
+      footer {
+        padding-top: 32px;
+        padding-bottom: 28px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition-duration: .01ms !important;
+        transition-delay: 0s !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <!-- Welcome Header -->
-        <header class="welcome-header">
-            <h1 class="welcome-title">Welcome Laksh,</h1>
-            <p class="welcome-subtitle">Proceed By Choosing Any Website Build</p>
-        </header>
 
-<!-- Videocon Project Section -->
-<section class="section">
-    <div class="section-header">
-        <div class="section-icon">1</div>
-        <h2 class="section-title">Videocon Project Website</h2>
+  <div class="bg-overlay"></div>
+  <div class="bg-noise"></div>
+
+  <main class="main-section">
+    <div class="wrap">
+      <div class="hero">
+        <h1 class="hero-title">Design &amp;<br><em>Development.</em></h1>
+      </div>
+      <div class="label-row">
+        <span class="label">Project</span>
+        <span class="label lt">Type</span>
+        <span class="label ld">Release Date</span>
+        <span class="label lv">Version</span>
+        <span></span>
+      </div>
+      <section class="list" id="list"></section>
     </div>
+  </main>
 
-    <div class="cards-grid">
-        <!-- Build 01 -->
-        <div class="card" onclick="window.location.href='index.html'">
-            <div class="card-header">
-                <h3 class="card-title">Final Build</h3>
-                <div class="badges">
-                    <span class="badge stable">STABLE</span>
-                    <span class="badge date">11-02-2026</span>
-                </div>
-            </div>
-            <div class="card-footer">
-                <span class="version-number">v3.9</span>
-                <a href="assets/websites/videocon/index.html" class="card-link">
-                    Open Build
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
+  <footer>
+    <div class="wrap">
+      <b>© 2020-2026 Laksh Kukreja. All Rights Reserved.</b>
+      <p>All content, designs, graphics, text, and other materials displayed on this website are my original creative
+        work and are shared strictly for personal and educational purposes. Any unauthorized copying, reproduction,
+        redistribution, publication, or commercial use of any part of this website, whether in full or in part, without
+        prior written permission from the author is strictly prohibited and may result in legal action under applicable
+        copyright and intellectual property laws.</p>
     </div>
-</section>
+  </footer>
 
-        <!-- Vendora Project Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon">2</div>
-                <h2 class="section-title">Vendora Project Website</h2>
-            </div>
+  <script>
+    (function () {
+      const arrowIcon = '<svg width="12" height="12" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 10.5 10.5 2.5M4.5 2.5h6v6"/></svg>';
+      const plusIcon = '<svg class="plus-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/></svg>';
 
-            <div class="cards-grid">
-                <!-- Build 01 -->
-                <div class="card" onclick="window.location.href='index.html'">
-                    <div class="card-header">
-                        <h3 class="card-title">Final Build</h3>
-                        <div class="badges">
-                            <span class="badge stable">STABLE</span>
-                            <span class="badge date">25-01-2026</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="version-number">v2.8</span>
-                        <a href="assets/websites/vendora/index.html" class="card-link">
-                            Open Build
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
+      const builds = [
+        {
+          name: 'Incubator & Accelerator Centre',
+          type: 'Stable',
+          date: '19-11-2026',
+          version: 'Live',
+          about: 'Official Page Of Incubator & Accelerator Centre of Jai Hind College (Empowered Autonomous).<br>Developed & Maintained by Laksh Kukreja.',
+          links: [
+            ['Visit Website', 'https://www.jhcincubator.com'],
+            ['Changelogs', 'https://www.jhcincubator.com/changelogs'],
+          ]
+        },
+        {
+          name: 'Factory Sentinel',
+          type: 'Stable',
+          date: '01-10-2026',
+          version: 'V2.8',
+          about: 'Factory Sentinel Provides A Dashboard To Display Live Data From ESP32 Machines Using Supabase As Backend. This Wesbite Provides Aesthetic UI Optimized For All Types Of Devices With Bunch Of Features.',
+          links: [
+            ['Visit Website', 'https://lakshkukreja07.github.io/assets/websites/factorysentinel/index.html'],
+            ['Live Dashboard', 'https://lakshkukreja07.github.io/assets/websites/factorysentinel/dashboard.html'],
+          ]
+        },
+        {
+          name: 'International Management Conference',
+          type: 'Stable',
+          date: '23-04-2026',
+          version: 'Live',
+          about: 'Official Page Of International Management Conference of Jai Hind College (Empowered Autonomous).<br>Developed & Maintained by Laksh Kukreja.',
+          links: [
+            ['Visit Website', 'https://www.internationalmanagementconference.com'],
+            ['About & Changelogs', 'https://www.internationalmanagementconference.com/about'],
+          ]
+        },
+        {
+          name: 'Emberglen',
+          type: 'Stable',
+          date: '06-06-2026',
+          version: 'v1.7',
+          about: 'Emberglen, Provides Botanical Elixirs & Beverages. Our Website Provides A Fun To Play Game To Get Discounts & Vouchers.<br>Made Specially For Bachelor Of Management Studies SEM II Project',
+          links: [
+            ['Visit Website', 'https://lakshkukreja07.github.io/assets/websites/emberglen/index.html'],
+          ]
+        },
+        {
+          name: 'Videocon',
+          type: 'Stable',
+          date: '11-02-2026',
+          version: 'v3.9',
+          about: 'Rebranded & Redesigned Website For Videocon, With Product Catalogues, Fun To Play Game To Get Vouchers On Next Purchase & Much More.<br>Made Specially For Bachelor of Managent Studies SEM I Project.',
+          links: [
+            ['Visit Website', 'https://lakshkukreja07.github.io/assets/websites/videocon/index.html'],
+          ]
+        },
+        {
+          name: 'Petverse',
+          type: 'Stable',
+          date: '09-02-2026',
+          version: 'v4.8',
+          about: 'All In One Pet Care Booking, Wellness Tracking & Community Adoption Portal Designed With An Accessible Visual Hierarchy.<br>Made Specially For Bachelor of Management Studies SEM I Project',
+          links: [
+            ['Visit Website', 'https://lakshkukreja07.github.io/assets/websites/petverse/index.html'],
+          ]
+        },
+        {
+          name: 'Rizzora',
+          type: 'Stable',
+          date: '02-02-2026',
+          version: 'v2.1',
+          about: 'Rizzora Focuses On Selling Its Inhouse Developed Perfumes, With An Exceptional UI/UX Design, Working Shopping Cart, Subscribe Email Features & Much More.<br>Made Specially For Bachelor of Management Studies SEM I Project.',
+          links: [
+            ['Visit Website', 'https://lakshkukreja07.github.io/assets/websites/rizzora/index.html'],
+          ]
+        },
+        {
+          name: 'Vendora',
+          type: 'Stable',
+          date: '25-01-2026',
+          version: 'v7.8',
+          about: 'Vendora Provides Access To Its Exclusive Vending Machines Network 24x7 With Most Demanding Foods & Beverages With Exceptional Software And Delivery System. Made Specially For Bachelor of Management Studies SEM I Project.',
+          links: [
+            ['Final Build', 'https://lakshkukreja07.github.io/assets/websites/vendora/index.html'],
+          ]
+        },
+      ];
 
-        <!-- Rizzora Project Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon">3</div>
-                <h2 class="section-title">Rizzora Project Website</h2>
-            </div>
+      const list = document.getElementById('list');
 
-            <div class="cards-grid">
-                <!-- Build 01 -->
-                <div class="card" onclick="window.location.href='index.html'">
-                    <div class="card-header">
-                        <h3 class="card-title">Final Build</h3>
-                        <div class="badges">
-                            <span class="badge stable">STABLE</span>
-                            <span class="badge date">02-02-2026</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="version-number">v7.3</span>
-                        <a href="assets/websites/rizzora/index.html" class="card-link">
-                            Open Build
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-        </section>
-		
-        <!-- Petverse Project Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon">4</div>
-                <h2 class="section-title">Petverse Project Website</h2>
-            </div>
+      list.innerHTML = builds.map((p, i) =>
+        `<div class="item"><button class="row-btn" aria-expanded="false" aria-controls="proj-${i}">` +
+        `<span class="n">${p.name}</span><span class="b">${p.type}</span><span class="d">${p.date}</span><span class="v">${p.version}</span>${plusIcon}</button>` +
+        `<div class="detail" id="proj-${i}"><div class="detail-inner"><div class="detail-card">` +
+        `<p class="detail-desc">${p.about}</p>` +
+        `<div class="detail-links">${p.links.map(([label, href]) =>
+          `<a class="visit-link" href="${href}" target="_blank" rel="noopener noreferrer"><span>${label}</span>${arrowIcon}</a>`).join('')}</div>` +
+        `</div></div></div></div>`
+      ).join('');
 
-            <div class="cards-grid">
-                <!-- Build 01 -->
-                <div class="card" onclick="window.location.href='index.html'">
-                    <div class="card-header">
-                        <h3 class="card-title">Final Build</h3>
-                        <div class="badges">
-                            <span class="badge stable">STABLE</span>
-                            <span class="badge date">09-02-2026</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="version-number">v4.8</span>
-                        <a href="assets/websites/petverse/index.html" class="card-link">
-                            Open Build
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-        </section>
-		
-		<!-- Jai Hind College Industry Project Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon">5</div>
-                <h2 class="section-title">Jai Hind College Industry Project Website</h2>
-            </div>
+      const foot = document.querySelector('footer');
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((es, o) => {
+          if (es.some(e => e.isIntersecting)) { foot.classList.add('show'); o.disconnect(); }
+        }, { threshold: 0.1 }).observe(foot);
+      } else { foot.classList.add('show'); }
 
-            <div class="cards-grid">
-                <!-- Build 01 -->
-                <div class="card" onclick="window.location.href='index.html'">
-                    <div class="card-header">
-                        <h3 class="card-title">Final Build</h3>
-                        <div class="badges">
-                            <span class="badge stable">STABLE</span>
-                            <span class="badge date">20-02-2026</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="version-number">v2.1</span>
-                        <a href="assets/websites/jai_hind_college/index.html" class="card-link">
-                            Open Build
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-				<!-- Build 02 -->
-                <div class="card" onclick="window.location.href='postevent.html'">
-                    <div class="card-header">
-                        <h3 class="card-title">Post Event Build</h3>
-                        <div class="badges">
-                            <span class="badge stable">STABLE</span>
-                            <span class="badge date">26-06-26</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="version-number">v4.9</span>
-                        <a href="assets/websites/jai_hind_college/postevent.html" class="card-link">
-                            Open Build
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-        </section>
-		
-<!-- Emberglen Project Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon">6</div>
-                <h2 class="section-title">Emberglen Project Website</h2>
-            </div>
+      let current = null;
 
-            <div class="cards-grid">
-                <!-- Build 01 -->
-                <div class="card" onclick="window.location.href='index.html'">
-                    <div class="card-header">
-                        <h3 class="card-title">Final Build</h3>
-                        <div class="badges">
-                            <span class="badge stable">STABLE</span>
-                            <span class="badge date">06-06-2026</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="version-number">v1.0</span>
-                        <a href="assets/websites/emberglen/index.html" class="card-link">
-                            Open Build
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-        </section>
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="copyright-main">© 2020-2026 Laksh Kukreja. All Rights Reserved.</div>
-                <div class="legal-notice">
-                    <p>All content, designs, graphics, text, and other materials displayed on this website are my
-                        original creative work and are shared strictly for personal and educational purposes. Any
-                        unauthorized copying, reproduction, redistribution, publication, or commercial use of any part
-                        of this website, whether in full or in part, without prior written permission from the author is
-                        strictly prohibited and may result in legal action under applicable copyright and intellectual
-                        property laws.</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                card.addEventListener('click', function (e) {
-                    if (!e.target.closest('.card-link')) {
-                        const link = this.querySelector('.card-link');
-                        if (link) {
-                            window.location.href = link.href;
-                        }
-                    }
-                });
-
-                card.setAttribute('tabindex', '0');
-                card.addEventListener('keydown', function (e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        const link = this.querySelector('.card-link');
-                        if (link) {
-                            window.location.href = link.href;
-                        }
-                    }
-                });
-
-                card.addEventListener('mouseenter', function () {
-                    this.style.zIndex = '10';
-                });
-
-                card.addEventListener('mouseleave', function () {
-                    this.style.zIndex = '';
-                });
-            });
-        });
-    </script>
+      list.addEventListener('click', e => {
+        const btn = e.target.closest('.row-btn');
+        if (!btn) return;
+        const item = btn.parentElement;
+        if (current) {
+          current.classList.remove('open');
+          current.firstElementChild.setAttribute('aria-expanded', 'false');
+        }
+        current = item === current ? null : item;
+        if (current) {
+          current.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>
